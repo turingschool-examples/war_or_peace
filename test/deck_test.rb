@@ -52,4 +52,17 @@ class DeckTest < Minitest::Test
     deck.remove_card
     assert_equal 2, deck.cards.length
   end
+
+  def test_add_card
+    cards = []
+    cards << Card.new(:diamond, 'Queen', 12)
+    cards << Card.new(:spade, 'Jack', 11)
+    cards << Card.new(:club, '4', 4)
+    deck = Deck.new(cards)
+    card = Card.new(:heart, "Ace", 14)
+
+    deck.add_card(card)
+    assert_equal 4, deck.cards.length
+  end
+
 end
