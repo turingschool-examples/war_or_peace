@@ -6,6 +6,6 @@ class Deck
   end
 
   def rank_of_card_at(index)
-    self[index].rank
+    cards[index].rank
   end
 end
