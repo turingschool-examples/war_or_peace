@@ -39,6 +39,17 @@ class DeckTest < Minitest::Test
     cards << Card.new(:club, '4', 4)
     deck = Deck.new(cards)
 
-    assert 2.0/3.0, deck.percent_high_ranking
+    assert_equal 2.0/3.0, deck.percent_high_ranking
+  end
+
+  def test_remove_card
+    cards = []
+    cards << Card.new(:diamond, 'Queen', 12)
+    cards << Card.new(:spade, 'Jack', 11)
+    cards << Card.new(:club, '4', 4)
+    deck = Deck.new(cards)
+
+    deck.remove_card
+    assert_equal 2, deck.cards.length
   end
 end
