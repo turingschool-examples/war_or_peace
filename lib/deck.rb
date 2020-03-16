@@ -18,4 +18,9 @@ class Deck
     end
     high_rank_cards
   end
+
+  def percent_high_ranking
+    high_rank_cards = high_ranking_cards
+    high_rank_cards.length.to_f/cards.length.to_f
+  end
 end
