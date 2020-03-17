@@ -13,12 +13,10 @@ class Deck
 
   def high_ranking_cards
     face_cards = []
-    c = 0
-    while c < @cards.length
-      if rank_of_card_at(c) >= 11
-        face_cards << @cards[c]
+    @cards.each do |card|
+      if card.rank >= 11
+        face_cards << card
       end
-      c += 1
     end
     return face_cards
   end
