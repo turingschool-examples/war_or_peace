@@ -52,7 +52,6 @@ class PlayerTest < Minitest::Test
     player.deck.remove_card
     player.deck.remove_card
     player.deck.remove_card
-    player.deck.remove_card
     assert_equal true, player.has_lost?
   end
 end
