@@ -1,19 +1,26 @@
 class Turn
 
-  attr_reader :player1, :player2, :spoils_of_war
+  attr_reader :player1, :player2, :spoils_of_war, :game_over
 
   def initialize(player1, player2, spoils_of_war = [])
     @player1 = player1
     @player2 = player2
     @spoils_of_war = spoils_of_war
+    @game_over = false
   end
 
   def type
-    if player1.deck.rank_of_card_at(0) !=
+    if player1.deck.cards == [] && player2.deck.cards != []
+      "PLAYER 2 WINS"
+    elsif player2.deck.cards == [] && player1.deck.cards != []
+      "PLAYER 1 WINS"
+    elsif player1.deck.rank_of_card_at(0) !=
       player2.deck.rank_of_card_at(0)
       :basic
-    elsif player1.deck.rank_of_card_at(0) ==
-      player2.deck.rank_of_card_at(0)
+    elsif (player1.deck.rank_of_card_at(0) ==
+      player2.deck.rank_of_card_at(0)) &&
+      (player1.deck.rank_of_card_at(2) !=
+      player2.deck.rank_of_card_at(2))
       :war
     elsif (player1.deck.rank_of_card_at(0) ==
       player2.deck.rank_of_card_at(0) &&
@@ -27,7 +34,7 @@ class Turn
     # convert type return value from a symbol to a string
     if type.to_s == "basic"
       # if player 1 has a higher top card they win, vise versa
-      if player1.deck.rank_of_card_at(0) <
+      if player1.deck.rank_of_card_at(0) >
         player2.deck.rank_of_card_at(0)
         player1
       else
@@ -35,7 +42,7 @@ class Turn
       end
     elsif type.to_s == "war"
       # if player 1 has a higher card 2 then they win, vise versa
-      if player1.deck.rank_of_card_at(2) <
+      if player1.deck.rank_of_card_at(2) >
         player2.deck.rank_of_card_at(2)
         player1
       else
@@ -95,4 +102,12 @@ class Turn
     end
   end
 
+  def start
+    puts "Welcome to War! (or Peace) This game will be played with 52 cards.
+  The players today are #{player1} and #{player2}.
+  Type 'GO' to start the game!"
+  input = gets.chomp
+  if input == go
+    puts "WE DID IT"
+  end
 end
