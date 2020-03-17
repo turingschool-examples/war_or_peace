@@ -25,7 +25,8 @@ class Deck
   end
 
   def remove_card
-    @cards.shift
+    return @cards.shift unless cards.length == 0
+    @cards
   end
 
   def add_card(card)
