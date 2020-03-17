@@ -4,7 +4,6 @@ class Deck
 
   def initialize(cards)
     @cards = cards
-    @face_card_length = nil
   end
 
   def rank_of_card_at(index)
@@ -24,15 +23,22 @@ class Deck
         face_cards << card
       end
     end
-    @face_card_length = face_cards.length
     return face_cards
   end
 
   def percent_high_ranking
-    high_ranking_cards
-    # compare length of face_cards array to cards array
-    (@face_card_length.to_f / cards.length.to_f * 100).round(2)
+    # high_ranking_cards
+    # # compare length of face_cards array to cards array
+    # (face_card_length.to_f / cards.length.to_f * 100).round(2)
+    face_cards = []
+    cards.each do |card|
+      if card.rank >= 11
+        face_cards << card
+      end
+    end
+    (face_cards.length.to_f / cards.length.to_f * 100).round(2)
   end
+
 
   def remove_card
     cards.shift
