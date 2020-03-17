@@ -1,5 +1,5 @@
 class Player
 
-  def initialize
-  end 
+  def initialize(name, deck)
+  end
 end
