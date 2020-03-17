@@ -5,11 +5,13 @@ require './lib/card'
 
 class DeckTest < Minitest::Test
   def setup
-    @cards = []
-    @cards << Card.new(:diamond, 'Queen', 12)
-    @cards << Card.new(:spade, 'Jack', 11)
-    @cards << Card.new(:club, '4', 4)
+    @card1 = Card.new(:diamond, 'Queen', 12)
+    @card2 = Card.new(:spade, 'Jack', 11)
+    @card3 = Card.new(:club, '4', 4)
+    @card4 = Card.new(:heart, 'King', 13)
+    @cards =[@card1, @card2, @card3]
     @deck = Deck.new(@cards)
+
   end
 
   def test_rank_of_card_at_
@@ -31,7 +33,7 @@ class DeckTest < Minitest::Test
   end
 
   def test_add_card
-    @deck.add_card(@card)
+    @deck.add_card(@card4)
     assert_equal 4, @deck.cards.length
   end
 
