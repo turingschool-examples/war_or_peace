@@ -1,0 +1,39 @@
+require './card'
+
+class Deck
+  attr_reader :cards
+
+  def initialize(cards)
+    @cards = cards
+  end
+
+  def rank_of_card_at(index)
+    cards[index].rank
+  end
+
+  def high_ranking_cards
+    face_cards = []
+    c = 0
+    while c < @cards.length
+      if self.rank_of_card_at(c) >= 11
+        face_cards << @cards[c]
+      end
+      c += 1
+    end
+    return face_cards
+  end
+
+  def percent_high_ranking
+    num_face_cards = self.high_ranking_cards.length.to_f
+    num_face_cards / @cards.length.to_f
+  end
+
+  def remove_card
+    @cards.pop
+  end
+
+  def add_card(new_card)
+    @cards << new_card
+  end
+
+end
