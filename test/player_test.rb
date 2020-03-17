@@ -2,6 +2,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/card'
 require './lib/deck'
+require './lib/player'
 
 class PlayerTest < Minitest::Test
 
@@ -11,7 +12,7 @@ class PlayerTest < Minitest::Test
     card3 = Card.new(:heart, 'Ace', 14)
     deck = Deck.new([card1, card2, card3])
     player = Player.new('Clarisa', deck)
-    assert_instance_of Player, player 
+    assert_instance_of Player, player
   end
 
 end
