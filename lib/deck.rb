@@ -1,4 +1,5 @@
 require 'pry'
+require './lib/card'
 class Deck
 
   attr_reader :cards
@@ -10,7 +11,7 @@ class Deck
   def rank_of_card_at(index)
     # determine the rank of the card
     # find the rank at index of card array
-    cards[index].rank
+    @cards[index].rank
   end
 
   def high_ranking_cards
@@ -18,7 +19,7 @@ class Deck
     face_cards = []
     # iterate over the cards array.
     # if the card rank is 11 or above, add to array
-    cards.each do |card|
+    @cards.each do |card|
       if card.rank >= 11
         face_cards << card
       end
@@ -41,11 +42,11 @@ class Deck
   end
 
   def remove_card
-    cards.shift
+    @cards.shift
   end
 
   def add_card(card)
-    cards << card
+    @cards << card
   end
 
 end

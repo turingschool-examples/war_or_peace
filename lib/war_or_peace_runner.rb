@@ -59,8 +59,7 @@ card51 = Card.new(:diamond, '3', 3)
 card52 = Card.new(:diamond, '2', 2)
 
 #put cards in an array for sorting
-deck_of_52 =
-[card1, card2, card3, card4, card5, card6, card7, card8, card9, card10,
+deck_of_52 =[card1, card2, card3, card4, card5, card6, card7, card8, card9, card10,
 card11, card12, card13, card14, card15, card16, card17, card18, card19, card20,
 card21, card22, card23, card24, card25, card26, card27, card28, card29, card30,
 card31, card32, card33, card34, card35, card36, card37, card38, card39, card40,
@@ -77,20 +76,64 @@ index = deck_of_52.length
 52.times do
   #randomly find an card within the index
   random_int = (rand*index).to_i
-
+  #p deck_of_52[random_int]
+  #p "random: #{random_int}"
+  #p "index: #{index}"
   if index.odd?
     first_deck << deck_of_52[random_int]
   elsif index.even?
     second_deck << deck_of_52[random_int]
   end
+  deck_of_52.delete_at(random_int)
+  if index == 0
+    break
+  end
   index -= 1
 end
 
+#assign deck instances
 player1_deck = Deck.new(first_deck)
 player2_deck = Deck.new(second_deck)
 
+
+# player1_deck.cards.each do |card|
+#   p card.rank
+# end
+# p "--"
+# player2_deck.cards.each do |card|
+#   p card.rank
+# end
+#assign player instances
 player1 = Player.new('guppie', player1_deck)
 player2 = Player.new('shark', player2_deck)
+#assign turn instance
+master_turn = Turn.new(player1, player2)
 
 
-binding.pry
+
+master_turn.start
+turn_num = 1
+loop do
+  puts "#{master_turn.type}"
+  #puts "#{master_turn.player1.name} has #{master_turn.player1.deck.cards.length} cards"
+  #puts "#{master_turn.player2.name} has #{master_turn.player2.deck.cards.length} cards"
+  winner = master_turn.winner
+  if master_turn.type.to_s != "mutually_assured_destruction"
+     winner_name = master_turn.winner.name
+  else winner_name = "m.a.d"
+  end
+  master_turn.pile_cards
+  master_turn.spoils_of_war
+  #puts "spoils #{master_turn.spoils_of_war}"
+  puts "Turn #{turn_num}: #{winner_name} won #{master_turn.spoils_of_war.flatten.length} cards"
+
+  #puts "Next card p1: #{master_turn.player1.deck.cards}"
+
+  #puts "Next card p2: #{master_turn.player2.deck.cards}"
+  master_turn.award_spoils(winner)
+  turn_num += 1
+  if master_turn.game_over
+    puts "~*~*~*~*~*~#{winner_name} has won the game ~*~*~*~*~*~*~*~"
+    break
+  end
+end

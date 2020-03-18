@@ -20,6 +20,7 @@ class DeckTest < Minitest::Test
     # card3 = Card.new(:heart, 'Ace', 14)
     # cards = [card1, card2, card3]
     # deck = Deck.new(cards)
+    binding.pry
     assert_equal 12, @deck.rank_of_card_at(0)
   end
 
