@@ -39,18 +39,3 @@ class Deck
   end
 
 end
-
-card1 = Card.new(:diamond, 'Queen', 12)
-card2 = Card.new(:spade, '3', 3)
-card3 = Card.new(:heart, 'Ace', 14)
-card4 = Card.new(:club, '5', 5)
-cards = [card1, card2, card3]
-
-deck = Deck.new(cards)
-p deck.cards
-# puts deck.rank_of_card_at(2)
-# p deck.high_ranking_cards
-# p deck.high_ranking_cards.length
-# p deck.percent_high_ranking
-# p deck.remove_card
-# p deck.add_card(card4)
