@@ -60,10 +60,12 @@ class Turn
   end
 
   def award_spoils
-    if spoils_of_war != []
-      spoils_of_war.each do |spoil|
+    if @spoils_of_war != []
+      @spoils_of_war.each do |spoil|
         self.winner.deck.add_card(spoil)
       end
+      @spoils_of_war.clear
     end
   end
+
 end
