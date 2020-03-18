@@ -92,8 +92,8 @@ index = deck_of_52.length
 end
 
 #assign deck instances
-player1_deck = Deck.new(first_deck)
-player2_deck = Deck.new(second_deck)
+player2_deck = Deck.new(first_deck)
+player1_deck = Deck.new(second_deck)
 
 
 # player1_deck.cards.each do |card|
@@ -114,22 +114,23 @@ master_turn = Turn.new(player1, player2)
 master_turn.start
 turn_num = 1
 loop do
-  puts "#{master_turn.type}"
-  #puts "#{master_turn.player1.name} has #{master_turn.player1.deck.cards.length} cards"
-  #puts "#{master_turn.player2.name} has #{master_turn.player2.deck.cards.length} cards"
+
+  puts "guppie card #{master_turn.player1.deck.rank_of_card_at(0)} and #{master_turn.player1.deck.cards.length} cards"
+  puts "shark card #{master_turn.player2.deck.rank_of_card_at(0)} and #{master_turn.player2.deck.cards.length} cards"
   winner = master_turn.winner
   if master_turn.type.to_s != "mutually_assured_destruction"
      winner_name = master_turn.winner.name
   else winner_name = "m.a.d"
   end
+  puts "#{master_turn.type} winner: #{winner_name}"
   master_turn.pile_cards
   master_turn.spoils_of_war
   #puts "spoils #{master_turn.spoils_of_war}"
   puts "Turn #{turn_num}: #{winner_name} won #{master_turn.spoils_of_war.flatten.length} cards"
 
-  #puts "Next card p1: #{master_turn.player1.deck.cards}"
+  # puts "guppie card: #{master_turn.player1.deck.cards}"
 
-  #puts "Next card p2: #{master_turn.player2.deck.cards}"
+  # puts "shark card: #{master_turn.player2.deck.cards}"
   master_turn.award_spoils(winner)
   turn_num += 1
   if master_turn.game_over
