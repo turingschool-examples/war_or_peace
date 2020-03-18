@@ -38,5 +38,4 @@ class PlayerTest < Minitest::Test
     assert_equal [], @player.deck.cards
   end
 
-
 end
