@@ -19,5 +19,14 @@ class PlayerTest < Minitest::Test
     assert_instance_of Player, @player
   end
 
+  def test_player_has_attributes
+    assert_equal 'Clarisa', @player.name
+    assert_equal @deck, @player.deck
+  end
+
+  def test_if_player_has_lost
+    assert_equal false, @player.has_lost?
+  end
+
 
 end
