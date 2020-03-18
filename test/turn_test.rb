@@ -41,11 +41,29 @@ class TurnTest < MiniTest::Test
   end
 
   def test_war_turn
-
+    deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    deck2 = Deck.new([@card4, @card3, @card6, @card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    assert_instance_of Turn, turn
+    assert_equal player1, turn.player1
+    assert_equal player2, turn.player2
+    assert_equal [], turn.spoils_of_war
+    assert_equal :war, turn.type
+    winner = turn.winner
+    assert_equal player2, winner
+    turn.pile_cards
+    card_pile = [@card1, @card4, @card2, @card3, @card5, @card6]
+    assert_equal card_pile, turn.spoils_of_war
+    winner_deck = [@card7] + card_pile
+    turn.award_spoils(winner)
+    assert_equal [@card8], turn.player1.deck.cards
+    assert_equal winner_deck, turn.player2.deck.cards
   end
 
   def test_MAD_turn
-
+    @card6 = Card.new(:diamond, "8", 8)
   end
 
 end
