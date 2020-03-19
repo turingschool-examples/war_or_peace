@@ -66,4 +66,29 @@ class Turn
     @spoils_of_war.clear
   end
 
+  def start
+    turncount = 1
+    until (@player1.has_lost? || @player2.has_lost?) || turncount == 1000000
+      type = self.type
+      winner = self.winner
+      self.pile_cards
+      if type == :basic
+        puts "#{winner.name} won #{@spoils_of_war.length} cards"
+        award_spoils(winner)
+      elsif type == :war
+        puts "WAR - #{winner.name} won #{@spoils_of_war.length} cards"
+        award_spoils(winner)
+      else
+        puts "*Mutually Assured Destruction* - 6 cards removed from play"
+      end
+    end
+    if @player1.has_lost?
+      return @player2.name
+    elsif @player2.has_lost?
+      return @player1.name
+    else
+      return "DRAW"
+    end
+  end
+
 end
