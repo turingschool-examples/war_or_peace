@@ -6,35 +6,36 @@ class Turn
     @player2 = player2
     @spoils_of_war = []
     @winner = winner
+    @type = type
+
   end
 
   def type
     if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
-      type = :basic
+      @type = :basic
 
     #elsif player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2) && player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
       #type = :mutually_assured_destruction
 
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
-      type = :war
+      @type = :war
     end
   end
 
   def winner
-    if type == :basic
+    if @type == :basic
       if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
         @winner = player1
       else
         @winner = player2
       end
+    elsif @type == :war
+      if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+        @winner = player1
+      else
+        @winner = player2
+      end
     end
-    #if type == :war
-    #  if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-    #    @winner = player1
-    #  else
-    #    @winner = player2
-    #  end
-    #end
   end
 
   def pile_cards
