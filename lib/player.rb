@@ -7,11 +7,11 @@ class Player
   end
 
   def has_lost?
-     #if deck.cards.length == 0
-    if deck.cards.length < 3
+    if deck.cards.length == 0
+    #if deck.cards.length < 3
       true
-     #elsif deck.cards.length > 0
-    elsif deck.cards.length >= 3
+    elsif deck.cards.length > 0
+    #elsif deck.cards.length >= 3
       false
     end
   end

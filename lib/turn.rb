@@ -8,8 +8,36 @@ class Turn
     @player2 = player2
     @spoils_of_war = []
   end
-
+##################################################
   def type
+    #less than 3 cards player1
+    if @player1.deck.cards.length < 3 && @player2.deck.cards.length > 3
+      if  @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
+        :war
+        @player1_forfeit
+        return
+      end
+    end
+    #less than 3 cards player 2
+    if @player1.deck.cards.length > 3 && @player2.deck.cards.length < 3
+      if  @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
+        :war
+        @player2_forfeit
+        return
+      end
+    end
+
+    # both less than 3 cards
+    if @player1.deck.cards.length < 3 && @player2.deck.cards.length < 3
+      if  @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
+        :war
+        @draw
+        return
+      end
+    end
+
+
+    #normal play
     #basic
     if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
     #  binding.pry
@@ -41,7 +69,7 @@ class Turn
       "No Winner"
     end
   end
-
+##################################################
   def pile_cards
     @spoils_of_war = []
     type_string = type.to_s
@@ -95,7 +123,7 @@ class Turn
       @spoils_of_war = []
     end
   end
-
+##################################################
   def award_spoils
     if @spoils_of_war.length > 0
     #binding.pry
@@ -104,7 +132,7 @@ class Turn
       end
     end
   end
-
+##################################################
   def start
     @start_game = true
     # puts "Welcome to War! (or Peace) This game will be played with 52 cards.
@@ -121,10 +149,39 @@ class Turn
 
     turn_num = 1
       loop do
+        if @player1.has_lost?
+          puts "Turn num #{turn_num}"
+          puts "~*~*~*~*~*#{@player2.name} has won!~*~*~*~*~*"
+          puts "p1 cards: #{@player1.deck.cards.length} v p2 cards: #{@player2.deck.cards.length}"
+          break
+        elsif @player2.has_lost?
+          puts "Turn num #{turn_num}"
+          puts "~*~*~*~*~*#{@player1.name} has won!~*~*~*~*~*"
+          puts "p1 cards: #{@player1.deck.cards.length} v p2 cards: #{@player2.deck.cards.length}"
+          break
+        end
         #puts "p1: #{@player1.deck.cards.length}"
         #puts "p2: #{@player2.deck.cards.length}"
         #puts "#{@player1.deck.rank_of_card_at(0)} v #{@player2.deck.rank_of_card_at(0)} #{type}"
         type
+        if @player1_forfeit
+          puts puts "~*~*~*~*~*#{@player1.name} has forfieted!~*~*~*~*~*"
+          puts "p1 cards: #{@player1.deck.cards.length} v p2 cards: #{@player2.deck.cards.length}"
+          break
+        end
+        if @player2_forfeit
+            puts puts "~*~*~*~*~*#{@player2.name} has forfeited!~*~*~*~*~*"
+            puts "p1 cards: #{@player1.deck.cards.length} v p2 cards: #{@player2.deck.cards.length}"
+            break
+        end
+        if @draw
+            puts puts "~*~*~*~*~*Draw!~*~*~*~*~*"
+            puts "p1 cards: #{@player1.deck.cards.length} v p2 cards: #{@player2.deck.cards.length}"
+            break
+        end
+
+
+
         winner
         pile_cards
         award_spoils
@@ -135,15 +192,7 @@ class Turn
         end
 
         #puts "Turn num #{turn_num}"
-      if @player1.has_lost?
-        puts "Turn num #{turn_num}"
-        puts "~*~*~*~*~*#{@player2.name} has won!~*~*~*~*"
-        break
-      elsif @player2.has_lost?
-        puts "Turn num #{turn_num}"
-        puts "~*~*~*~*~*#{@player1.name} has won!~*~*~*~*"
-        break
-      end
+
 
       # if type.to_s == "mutually_assured_destruction"
       #   puts "MAD"

@@ -100,7 +100,7 @@ second_deck = []
 # end
 
 
-##### half deck 2 suits
+#### half deck 2 suits
 # index = 26
 # 26.times do
 #   #randomly find an card within the index
@@ -124,6 +124,7 @@ second_deck = []
 #   # binding.pry
 # end
 #
+
 # ###### 3 suits random
 # index = 39
 # 39.times do
@@ -149,7 +150,7 @@ second_deck = []
 # end
 
 
-##########full deck random assignment
+#########full deck random assignment
 index = 52
 # #iteration
 52.times do
@@ -173,16 +174,18 @@ index = 52
   index -= 1
   # binding.pry
 end
+
+
 #####another way to distrubute cards
-index = 1
-deck_of_52.each do |card|
-  if index.even?
-    first_deck << card
-  elsif index.odd?
-    second_deck << card
-  end
-  index += 1
-end
+# index = 1
+# deck_of_52.each do |card|
+#   if index.even?
+#     first_deck << card
+#   elsif index.odd?
+#     second_deck << card
+#   end
+#   index += 1
+# end
 
 # ###gaurentee win in 25 turns
 # deck_of_52.each do |card|
@@ -194,8 +197,8 @@ end
 # end
 #binding.pry
 #assign deck instances
-player2_deck = Deck.new(first_deck)
-player1_deck = Deck.new(second_deck)
+player1_deck = Deck.new(first_deck)
+player2_deck = Deck.new(second_deck)
 
 
 # player1_deck.cards.each do |card|
