@@ -1,7 +1,11 @@
 class Deck
-  attr_reader :suit
+  attr_reader :cards
 
-  def initialize(suit)
-    @suit = suit
+  def initialize(cards)
+    @cards = cards
+  end
+
+  def rank_of_card_at(index)
+    cards[index].rank
   end
 end
