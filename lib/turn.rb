@@ -25,14 +25,16 @@ class Turn
 
   def pile_cards
     @spoils_of_war << player1.deck.cards.first
+    player1.deck.cards.shift
     @spoils_of_war << player2.deck.cards.first
+    player2.deck.cards.shift
   end
 
   def award_spoils(winner)
-    #the spoils_of_war cards go to the bottom of the deck of the winner
-    #spoils of war array is then empty
+    @spoils_of_war.each do |spoil|
+      winner.deck.cards << spoil
+    end
+    @spoils_of_war = []
   end
-
-
 
 end
