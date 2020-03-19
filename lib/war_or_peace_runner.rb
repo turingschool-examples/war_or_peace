@@ -197,11 +197,17 @@ second_deck = []
 # binding.pry
 
 ########### mutually_assured_destruction
-first_deck = deck_of_52[0..12]
-second_deck = deck_of_52[13..25]
-second_deck << deck_of_52[28]
+# first_deck = deck_of_52[0..12]
+# second_deck = deck_of_52[13..25]
+# second_deck << deck_of_52[28]
 #binding.pry
 
+############# War on war! (ends v 3 cards)
+first_deck = deck_of_52[13..25].reverse
+second_deck = [card13, card12, card13, card10, card9, card13, card7, card6, card13, card4, card3, card13, card2, card1]
+binding.pry
+
+############ war on war! (ends v 2 cards)
 
 
 
