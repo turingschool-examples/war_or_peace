@@ -1,5 +1,5 @@
 # deck class
-require './lib/card.rb'
+
 
 class Deck
   attr_reader :cards
@@ -20,8 +20,21 @@ class Deck
         high_ranking_array << card_rank
       end
     end
-    return high_ranking_array
+     high_ranking_array
   end
 
+  def percent_high_ranking
+    percent = (high_ranking_cards.length.to_f / cards.length.to_f) * 100
+    percent.round(2)
+  end
+
+  def remove_card
+    @cards.shift
+    # return cards
+  end
+
+  def add_card(card)
+    @cards << card
+  end
 
 end

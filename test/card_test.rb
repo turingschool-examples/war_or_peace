@@ -2,6 +2,8 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/card'
 
+
+
 class CardTest < Minitest::Test
   def setup
     card = Card.new(:diamond, 'Queen', 12)
@@ -15,9 +17,12 @@ class CardTest < Minitest::Test
 
   def test_it_has_readable_attributes
     card = Card.new(:diamond, 'Queen', 12)
-    
+
     assert_equal :diamond, card.suit
     assert_equal 'Queen', card.value
     assert_equal 12, card.rank
   end
+
+
+
 end
