@@ -70,7 +70,7 @@ class Turn
       3.times do
         player2.deck.remove_card
       end
-    else type == :mutually_assured_destruction
+    else
       3.times do
         player1.deck.remove_card
       end
