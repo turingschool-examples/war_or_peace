@@ -141,15 +141,32 @@ class Turn
         @spoils_of_war << @player2.deck.cards[index]
         index += 1
       end
+      #player1 remove cards
+      index = 0
+      3.times do
+        if @player1.deck.cards == []
+          break
+        end
+        @player1.deck.remove_card
+      end
+      #player2 remove cards
+      index = 0
+      3.times do
+        if @player2.deck.cards == []
+          break
+        end
+        @player2.deck.remove_card
+      end
       @spoils_of_war = []
     end
   end
 ##################################################
-  def award_spoils
+  def award_spoils(winner)
     if @spoils_of_war.length > 0
     #binding.pry
       @spoils_of_war.each do |card|
-        @turn_winner.deck.cards << card
+        #@turn_winner.deck.cards << card
+        winner.deck.cards << card
       end
     end
   end
@@ -211,8 +228,9 @@ class Turn
 
 
         winner
+        winner_name = winner
         pile_cards
-        award_spoils
+        award_spoils(winner_name)
         turn_num += 1
         if turn_num > 1000000
           puts "Turns Maxed out #{turn_num}"
