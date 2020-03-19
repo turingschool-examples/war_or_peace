@@ -1,5 +1,3 @@
-# require './lib/card'
-
 class Card
   attr_reader :suit,
               :value,
