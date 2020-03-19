@@ -3,7 +3,6 @@ require './lib/card'
 
 class Deck
   attr_reader :cards, :suit, :value, :rank
-  attr_accessor :cards
   def initialize(cards)
     @cards = cards
   end
@@ -13,7 +12,6 @@ class Deck
     @cards.each do |card|
       if card.rank >= 11
         high_ranking << card
-      else
       end
     end
     high_ranking
@@ -22,7 +20,6 @@ class Deck
   def percent_high_ranking
     num_high_rank = 0.0
     total_card = @cards.count.to_f
-
     @cards.each do |card|
       if card.rank >= 11
         num_high_rank += 1
@@ -33,8 +30,8 @@ class Deck
     high_percent.round(2)
   end
 
-  def add_card(add)
-    cards.push(add)
+  def add_card(card)
+    cards.push(card)
   end
 
   def remove_card
