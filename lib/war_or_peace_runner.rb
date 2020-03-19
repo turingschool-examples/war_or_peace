@@ -71,135 +71,19 @@ card51, card52]
 first_deck = []
 second_deck = []
 
-deck_of_52_random = deck_of_52.shuffle
-
-first_deck = deck_of_52_random[1..10]
-second_deck = deck_of_52_random[11..20g]
+# deck_of_52_random = deck_of_52.shuffle
+# first_deck = deck_of_52_random[1..10]
+# second_deck = deck_of_52_random[11..20]
 #binding.pry
 
-
-######### one suit
-  # index = 13
-  # #iteration
-  # 13.times do
-  #   #randomly find an card within the index
-  #   random_int = (rand*index).to_i
-  #   #p deck_of_52[random_int]
-  #   #p "random: #{random_int}"
-  #   #p "index: #{index}"
-  #   if index.odd?
-  #     first_deck << deck_of_52[random_int]
-  #   elsif index.even?
-  #     second_deck << deck_of_52[random_int]
-  #   end
-  #
-  #   deck_of_52.delete_at(random_int)
-  #
-  #   if index == 0
-  #     break
-  #   end
-  #
-  #   index -= 1
-  #   # binding.pry
-  # end
-
-
-
-### half deck 2 suits
-# index = 26
-# 26.times do
-#   #randomly find an card within the index
-#   random_int = (rand*index).to_i
-#   #p deck_of_52[random_int]
-#   #p "random: #{random_int}"
-#   #p "index: #{index}"
-#   if index.odd?
-#     first_deck << deck_of_52[random_int]
-#   elsif index.even?
-#     second_deck << deck_of_52[random_int]
-#   end
-#
-#   deck_of_52.delete_at(random_int)
-#
-#   if index == 0
-#     break
-#   end
-#
-#   index -= 1
-#   # binding.pry
-# end
-
-
-# ###### 3 suits random
-# index = 39
-# 39.times do
-#   #randomly find an card within the index
-#   random_int = (rand*index).to_i
-#   #p deck_of_52[random_int]
-#   #p "random: #{random_int}"
-#   #p "index: #{index}"
-#   if index.odd?
-#     first_deck << deck_of_52[random_int]
-#   elsif index.even?
-#     second_deck << deck_of_52[random_int]
-#   end
-#
-#   deck_of_52.delete_at(random_int)
-#
-#   if index == 0
-#     break
-#   end
-#
-#   index -= 1
-#   # binding.pry
-# end
-
-
-#########full deck random assignment
-# index = 52
-# # #iteration
-# 52.times do
-#   #randomly find an card within the index
-#   random_int = (rand*index).to_i
-#   #p deck_of_52[random_int]
-#   #p "random: #{random_int}"
-#   #p "index: #{index}"
-#   if index.odd?
-#     first_deck << deck_of_52[random_int]
-#   elsif index.even?
-#     second_deck << deck_of_52[random_int]
-#   end
-#
-#   deck_of_52.delete_at(random_int)
-#
-#   if index == 0
-#     break
-#   end
-#
-#   index -= 1
-#   # binding.pry
-# end
-
-
-#####another way to distrubute cards
-# index = 1
-# deck_of_52.each do |card|
-#   if index.even?
-#     first_deck << card
-#   elsif index.odd?
-#     second_deck << card
-#   end
-#   index += 1
-# end
-
-#######gaurentee win in 25 turns
-# deck_of_52.each do |card|
-#   if card.rank > 7
-#     first_deck << card
-#   elsif card.rank < 8
-#     second_deck << card
-#   end
-# end
+##########gaurenteed win in 25 turns
+deck_of_52.each do |card|
+  if card.rank > 7
+    first_deck << card
+  elsif card.rank < 8
+    second_deck << card
+  end
+end
 # binding.pry
 
 ########### mutually_assured_destruction
@@ -228,8 +112,8 @@ second_deck = deck_of_52_random[11..20g]
 
 
 #assign deck instances
-player1_deck = Deck.new(first_deck)
-player2_deck = Deck.new(second_deck)
+player2_deck = Deck.new(first_deck)
+player1_deck = Deck.new(second_deck)
 
 
 # player1_deck.cards.each do |card|
