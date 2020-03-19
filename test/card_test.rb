@@ -18,5 +18,3 @@ class CardTest < Minitest::Test
     assert_equal 12, card.rank
   end
 end
-
-require 'pry'; binding.pry
