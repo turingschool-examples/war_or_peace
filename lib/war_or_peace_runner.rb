@@ -150,29 +150,29 @@ second_deck = []
 
 
 #########full deck random assignment
-index = 52
-# #iteration
-52.times do
-  #randomly find an card within the index
-  random_int = (rand*index).to_i
-  #p deck_of_52[random_int]
-  #p "random: #{random_int}"
-  #p "index: #{index}"
-  if index.odd?
-    first_deck << deck_of_52[random_int]
-  elsif index.even?
-    second_deck << deck_of_52[random_int]
-  end
-
-  deck_of_52.delete_at(random_int)
-
-  if index == 0
-    break
-  end
-
-  index -= 1
-  # binding.pry
-end
+# index = 52
+# # #iteration
+# 52.times do
+#   #randomly find an card within the index
+#   random_int = (rand*index).to_i
+#   #p deck_of_52[random_int]
+#   #p "random: #{random_int}"
+#   #p "index: #{index}"
+#   if index.odd?
+#     first_deck << deck_of_52[random_int]
+#   elsif index.even?
+#     second_deck << deck_of_52[random_int]
+#   end
+#
+#   deck_of_52.delete_at(random_int)
+#
+#   if index == 0
+#     break
+#   end
+#
+#   index -= 1
+#   # binding.pry
+# end
 
 
 #####another way to distrubute cards
@@ -195,6 +195,15 @@ end
 #   end
 # end
 #binding.pry
+
+########### mutually_assured_destruction
+first_deck = deck_of_52[0..12]
+second_deck = deck_of_52[13..25]
+binding.pry
+
+
+
+
 #assign deck instances
 player1_deck = Deck.new(first_deck)
 player2_deck = Deck.new(second_deck)
