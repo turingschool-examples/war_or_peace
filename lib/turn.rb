@@ -14,7 +14,7 @@ class Turn
     if @player1.deck.cards.length < 3 && @player2.deck.cards.length > 3
       if  @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
         :war
-        @player1_forfeit
+        @player1_forfeit = true
         return
       end
     end
@@ -22,7 +22,7 @@ class Turn
     if @player1.deck.cards.length > 3 && @player2.deck.cards.length < 3
       if  @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
         :war
-        @player2_forfeit
+        @player2_forfeit = true
         return
       end
     end
@@ -30,8 +30,10 @@ class Turn
     # both less than 3 cards
     if @player1.deck.cards.length < 3 && @player2.deck.cards.length < 3
       if  @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
+
         :war
-        @draw
+        @draw = true
+        #binding.pry
         return
       end
     end
@@ -160,9 +162,9 @@ class Turn
           puts "p1 cards: #{@player1.deck.cards.length} v p2 cards: #{@player2.deck.cards.length}"
           break
         end
-        #puts "p1: #{@player1.deck.cards.length}"
-        #puts "p2: #{@player2.deck.cards.length}"
-        #puts "#{@player1.deck.rank_of_card_at(0)} v #{@player2.deck.rank_of_card_at(0)} #{type}"
+        puts "p1: #{@player1.deck.cards.length}"
+        puts "p2: #{@player2.deck.cards.length}"
+        puts "#{@player1.deck.rank_of_card_at(0)} v #{@player2.deck.rank_of_card_at(0)} #{type}"
         type
         if @player1_forfeit
           puts puts "~*~*~*~*~*#{@player1.name} has forfieted!~*~*~*~*~*"
@@ -186,21 +188,21 @@ class Turn
         pile_cards
         award_spoils
         turn_num += 1
-        if turn_num > 1000000
+        if turn_num > 30
           puts "Turns Maxed out #{turn_num}"
           break
         end
 
-        #puts "Turn num #{turn_num}"
+        puts "Turn num #{turn_num}"
 
 
-      # if type.to_s == "mutually_assured_destruction"
-      #   puts "MAD"
-      #   break
-      # elsif type.to_s == "war"
-      #   puts "WAR"
-      #   break
-      # end
+        # if type.to_s == "mutually_assured_destruction"
+        #  puts "MAD"
+        #  break
+        # elsif type.to_s == "war"
+        #  puts "WAR"
+        #  break
+        # end
     end
   end
 
