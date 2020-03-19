@@ -98,4 +98,13 @@ class TurnTest < MiniTest::Test
     assert_equal [@card7], turn.player2.deck.cards
   end
 
+  def test_start_game
+    deck1 = Deck.new([@card1])
+    deck2 = Deck.new([@card2])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    assert_equal "Megan", turn.start
+  end
+
 end
