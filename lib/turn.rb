@@ -1,5 +1,3 @@
-require './lib/card'
-require './lib/deck'
 require './lib/player'
 
 class Turn
@@ -22,13 +20,13 @@ class Turn
   end
 
   def winner
-    if self.type == :basic
+    if type() == :basic
       if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
         return @player1
       else
         return @player2
       end
-    elsif self.type == :war
+    elsif type() == :war
       if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
         return @player1
       else
@@ -40,21 +38,21 @@ class Turn
   end
 
   def pile_cards
-    c = 0
-    if self.type == :basic
+    i = 0
+    if type() == :basic
       @spoils_of_war << @player1.deck.remove_card
       @spoils_of_war << @player2.deck.remove_card
-    elsif self.type == :war
-      while c <= 2
+    elsif type() == :war
+      while i <= 2
         @spoils_of_war << @player1.deck.remove_card
         @spoils_of_war << @player2.deck.remove_card
-        c += 1
+        i += 1
       end
     else
-      while c <= 2
+      while i <= 2
         @player1.deck.remove_card
         @player2.deck.remove_card
-        c += 1
+        i += 1
       end
     end
   end
@@ -69,9 +67,9 @@ class Turn
   def start
     turncount = 1
     until (@player1.has_lost? || @player2.has_lost?) || turncount == 1000000
-      type = self.type
-      winner = self.winner
-      self.pile_cards
+      type = type()
+      winner = winner()
+      pile_cards()
       if type == :basic
         puts "#{winner.name} won #{@spoils_of_war.length} cards"
         award_spoils(winner)
