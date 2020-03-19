@@ -43,7 +43,7 @@ class DeckTest < Minitest::Test
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
 
-    deck.remove_card
+    deck.remove_card(0)
     assert_equal [card2, card3], deck.cards
     assert_equal 50 , deck.percent_high_ranking
 
