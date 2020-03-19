@@ -1,9 +1,8 @@
 class Deck
-  attr_reader :cards, :high_cards
+  attr_reader :cards
 
   def initialize(cards)
-    @cards = cards #array
-    @high_cards = high_cards
+    @cards = cards
   end
 
   def rank_of_card_at(index)
