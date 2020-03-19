@@ -1,15 +1,14 @@
-require './lib/card'
+# require './lib/card'
 
 class Card
-  attr_reader :diamond,
+  attr_reader :suit,
+              :value,
+              :rank
 
   def initialize(suit, value, rank)
     @suit = suit
     @value = value
     @rank = rank
-  end
-
-  def suit(suit)
   end
 
 end
