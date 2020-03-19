@@ -20,8 +20,8 @@ class Deck
     percentage.round(2)
   end
 
-  def remove_card
-    cards.shift
+  def remove_card(index_position)
+    cards.delete_at(index_position)
   end
 
   def add_card(card)
