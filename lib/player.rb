@@ -14,7 +14,4 @@ class Player
   def has_lost?
      @deck.cards.empty?
   end
-
-
-
 end
