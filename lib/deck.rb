@@ -23,13 +23,15 @@
 #
 # Remember, #<Card:0x00randomletters&nums...> means “A Card Object” or “An Ins
 
-
+####
+#Getting unititialized constant error for Deck
 
 class Deck
   attr_reader :cards
-  def initialize(cards)
-    @cards = []
+  def initialize (cards)
+    @cards = cards
   end
+
 end
   # def rank_of_card_at (index)
   #
