@@ -216,35 +216,3 @@ master_turn = Turn.new(player1, player2)
 # puts "deck1 length #{master_turn.player1.deck.cards.length}"
 #puts "deck2 length #{master_turn.player2.deck.cards.length}"
 master_turn.start
-
-
-
-#
-# master_turn.start
-# turn_num = 1
-# puts master_turn.player1.has_lost?
-# puts master_turn.player2.has_lost?
-# until master_turn.player1.has_lost? || master_turn.player2.has_lost?
-#   puts "p1: #{master_turn.player1.deck.cards.length}"
-#   puts "p2: #{master_turn.player2.deck.cards.length}"
-#   puts "#{master_turn.player1.deck.rank_of_card_at(0)} v #{master_turn.player2.deck.rank_of_card_at(0)} #{master_turn.type}"
-#   #establish a winner, type created
-#   winner = master_turn.winner
-#   # pile cards - add to spoils
-#   # remove from both decks
-#   master_turn.pile_cards
-#   # look at the spoils pile
-#   # master_turn.spoils_of_war
-#   # award the spoils to the winner of round 1
-#   master_turn.award_spoils
-#   turn_num += 1
-#   if turn_num > 10000
-#     break
-#   end
-#   puts "Turn num #{turn_num}"
-# end
-# if master_turn.player1.has_lost?
-#   puts "~*~*~*~*~*#{master_turn.player1.name} has won!~*~*~*~*"
-# elsif master_turn.player2.has_lost?
-#   puts "~*~*~*~*~*#{master_turn.player2.name} has won!~*~*~*~*"
-# end
