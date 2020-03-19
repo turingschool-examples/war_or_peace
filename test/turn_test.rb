@@ -166,10 +166,13 @@ class TurnTest < Minitest::Test
   end
 
   def test_if_spoils_go_to_winner_when_award_spoils
+
     card1 = Card.new(:heart, '2', 2)
     card2 = Card.new(:heart, '3', 3)
     card3 = Card.new(:heart, '4', 4)
     card4 = Card.new(:heart, '5', 5)
+    # card5 = Card.new(:heart, '6', 6)
+    # card6 = Card.new(:heart, '7', 7)
     cards1 = [card1, card2]
     cards2 = [card3, card4]
     deck1 = Deck.new(cards1)
@@ -314,7 +317,7 @@ end
 
 
 
-# 
+#
 #
 # def test_spoils_added_to_player1_after_basic
 #   skip
