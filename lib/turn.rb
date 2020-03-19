@@ -86,7 +86,7 @@ class Turn
       @player2.deck.remove_card
     end
 
-    if type_string == "mutually_assured_destruction" || type_string == "war"
+    if type_string == "war"
       #player 1 add to spoils
       index = 0
       3.times do
@@ -124,6 +124,23 @@ class Turn
     end
 
     if type_string == "mutually_assured_destruction"
+      index = 0
+      3.times do
+        if @player1.deck.cards == []
+          break
+        end
+        @spoils_of_war << @player1.deck.cards[index]
+        index += 1
+      end
+      #player 2 add to spoils
+      index = 0
+      3.times do
+        if @player2.deck.cards == []
+          break
+        end
+        @spoils_of_war << @player2.deck.cards[index]
+        index += 1
+      end
       @spoils_of_war = []
     end
   end
@@ -170,16 +187,16 @@ class Turn
         type
         if @player1_forfeit
           puts "Turn num #{turn_num} #{type}"
-          puts "#{@player1.deck.cards[0].rank} #{@player1.deck.cards[0].suit} v #{@player1.deck.cards[0].rank} #{@player1.deck.cards[0].suit}"
-          puts "#{@player1.deck.cards[1].rank} #{@player1.deck.cards[1].suit} v #{@player1.deck.cards[1].rank} #{@player1.deck.cards[1].suit}"
+          puts "#{@player1.deck.cards[0].rank} #{@player1.deck.cards[0].suit} v #{@player2.deck.cards[0].rank} #{@player2.deck.cards[0].suit}"
+          puts "#{@player1.deck.cards[1].rank} #{@player1.deck.cards[1].suit} v #{@player2.deck.cards[1].rank} #{@player2.deck.cards[1].suit}"
           puts puts "~*~*~*~*~*#{@player1.name} has forfieted!~*~*~*~*~*"
           puts "p1 cards: #{@player1.deck.cards.length} v p2 cards: #{@player2.deck.cards.length}"
           break
         end
         if @player2_forfeit
           puts "Turn num #{turn_num} #{type}"
-          puts "#{@player1.deck.cards[0].rank} #{@player1.deck.cards[0].suit} v #{@player1.deck.cards[0].rank} #{@player1.deck.cards[0].suit}"
-          puts "#{@player1.deck.cards[1].rank} #{@player1.deck.cards[1].suit} v #{@player1.deck.cards[1].rank} #{@player1.deck.cards[1].suit}"
+          puts "#{@player1.deck.cards[0].rank} #{@player1.deck.cards[0].suit} v #{@player2.deck.cards[0].rank} #{@player2.deck.cards[0].suit}"
+          puts "#{@player1.deck.cards[1].rank} #{@player1.deck.cards[1].suit} v #{@player2.deck.cards[1].rank} #{@player2.deck.cards[1].suit}"
           puts puts "~*~*~*~*~*#{@player2.name} has forfeited!~*~*~*~*~*"
           puts "p1 cards: #{@player1.deck.cards.length} v p2 cards: #{@player2.deck.cards.length}"
           break
