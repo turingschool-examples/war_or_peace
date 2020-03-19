@@ -18,16 +18,40 @@ class TurnTest < MiniTest::Test
     @card8 = Card.new(:diamond, "2", 2)
   end
 
+  def test_existence
+    deck1 = Deck.new([@card1, @card2, @card3, @card4])
+    deck2 = Deck.new([@card5, @card6, @card7, @card8])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    assert_instance_of Turn, turn
+  end
+
+  def test_player_access
+    deck1 = Deck.new([@card1, @card2, @card3, @card4])
+    deck2 = Deck.new([@card5, @card6, @card7, @card8])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    assert_equal player1, turn.player1
+    assert_equal player2, turn.player2
+  end
+
+  def test_spoils_access
+    deck1 = Deck.new([@card1, @card2, @card3, @card4])
+    deck2 = Deck.new([@card5, @card6, @card7, @card8])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    assert_equal [], turn.spoils_of_war
+  end
+
   def test_basic_turn
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
     deck2 = Deck.new([@card3, @card4, @card6, @card7])
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
-    assert_instance_of Turn, turn
-    assert_equal player1, turn.player1
-    assert_equal player2, turn.player2
-    assert_equal [], turn.spoils_of_war
     assert_equal :basic, turn.type
     winner = turn.winner
     assert_equal player1, winner
@@ -46,10 +70,6 @@ class TurnTest < MiniTest::Test
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
-    assert_instance_of Turn, turn
-    assert_equal player1, turn.player1
-    assert_equal player2, turn.player2
-    assert_equal [], turn.spoils_of_war
     assert_equal :war, turn.type
     winner = turn.winner
     assert_equal player2, winner
@@ -69,10 +89,6 @@ class TurnTest < MiniTest::Test
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
-    assert_instance_of Turn, turn
-    assert_equal player1, turn.player1
-    assert_equal player2, turn.player2
-    assert_equal [], turn.spoils_of_war
     assert_equal :mutually_assured_destruction, turn.type
     winner = turn.winner
     assert_equal "No Winner", winner
