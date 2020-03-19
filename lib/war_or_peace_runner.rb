@@ -99,30 +99,30 @@ second_deck = []
 
 
 
-#### half deck 2 suits
-# index = 26
-# 26.times do
-#   #randomly find an card within the index
-#   random_int = (rand*index).to_i
-#   #p deck_of_52[random_int]
-#   #p "random: #{random_int}"
-#   #p "index: #{index}"
-#   if index.odd?
-#     first_deck << deck_of_52[random_int]
-#   elsif index.even?
-#     second_deck << deck_of_52[random_int]
-#   end
-#
-#   deck_of_52.delete_at(random_int)
-#
-#   if index == 0
-#     break
-#   end
-#
-#   index -= 1
-#   # binding.pry
-# end
-#
+### half deck 2 suits
+index = 26
+26.times do
+  #randomly find an card within the index
+  random_int = (rand*index).to_i
+  #p deck_of_52[random_int]
+  #p "random: #{random_int}"
+  #p "index: #{index}"
+  if index.odd?
+    first_deck << deck_of_52[random_int]
+  elsif index.even?
+    second_deck << deck_of_52[random_int]
+  end
+
+  deck_of_52.delete_at(random_int)
+
+  if index == 0
+    break
+  end
+
+  index -= 1
+  # binding.pry
+end
+
 
 # ###### 3 suits random
 # index = 39
@@ -202,10 +202,10 @@ second_deck = []
 # second_deck << deck_of_52[28]
 #binding.pry
 
-############ War on war! (ends v 2 cards)
-first_deck = deck_of_52[13..25].reverse
-second_deck = [card13, card12, card13, card10, card9, card13, card7, card6, card13, card4, card3, card13, card2, card1]
-binding.pry
+############ War on war! (ends v 1 cards)
+# first_deck = deck_of_52[16..25].reverse
+# second_deck = [card13, card12, card13, card10, card9, card13, card7, card6, card13, card4]
+# binding.pry
 
 
 ############# War on war! (ends v 2 cards)
