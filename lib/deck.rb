@@ -5,18 +5,25 @@ class Deck
     @cards = cards
   end
 
-  def rank_of_card_at()
-    return #this method will take one argument that represents the index
-    #location of a card to be used (typically 0 or 2 more on this later 😉 )
-    #and will return the rank of that card.
+  def rank_of_card_at(index)
+    @cards[index].rank
   end
 
   def high_ranking_cards
-    return #array of cards in the deck that have a rank of 11 or above (face cards and aces)
+    high_ranking_cards = []
+
+    @cards.each do |card|
+      if card.rank >= 11
+        high_ranking_cards << card
+      end
+    end
+    return high_ranking_cards
   end
 
   def percent_high_ranking
-    return #this method will return the percentage of cards that are high ranking
+    highs = high_ranking_cards
+    return (highs.length.to_f / @cards.length).round(4) * 100
+    #this method will return the percentage of cards that are high ranking
   end
 
   def remove_card
