@@ -1,6 +1,6 @@
 class Deck
-
   attr_reader :cards
+
   def initialize(cards)
     @cards = cards
   end
@@ -20,13 +20,11 @@ class Deck
     percentage.round(2)
   end
 
-  def remove_card(index_position)
-    cards.delete_at(index_position)
+  def remove_card
+    cards.shift
   end
 
   def add_card(card)
     cards << card
   end
-
-
 end
