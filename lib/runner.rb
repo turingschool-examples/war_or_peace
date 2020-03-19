@@ -1,5 +1,7 @@
 require './lib/card.rb'
 require './lib/deck.rb'
+require './lib/player.rb'
+
 
 card1 = Card.new(:diamond, 'Queen', 12)
 card2 = Card.new(:spade, '3', 3)
@@ -22,4 +24,7 @@ deck.add_card(card4)
 deck.cards
 deck.high_ranking_cards
 deck.percent_high_ranking
+
+player1 = Player.new("Jack", deck)
+player1.has_lost?
 # require 'pry'; binding.pry
