@@ -165,7 +165,7 @@ class TurnTest < Minitest::Test
 
   end
 
-  def test_if_spoils_go_to_winner_when_award_spoils
+  def test_if_spoils_go_to_winner_when_award_spoils_after_basic
 
     card1 = Card.new(:heart, '2', 2)
     card2 = Card.new(:heart, '3', 3)
@@ -186,6 +186,30 @@ class TurnTest < Minitest::Test
 
     assert_equal [card4, card1, card3], turn.player2.deck.cards
 
+  end
+
+  def test_if_spoils_go_to_winner_when_award_spoils_after_war
+
+    card1 = Card.new(:heart, '2', 2)
+    card2 = Card.new(:heart, '3', 3)
+    card3 = Card.new(:heart, '4', 4)
+    card4 = Card.new(:club, '2', 2)
+    card5 = Card.new(:heart, '6', 6)
+    card6 = Card.new(:heart, '7', 7)
+    cards1 = [card1, card2, card3]
+    cards2 = [card4, card5, card6]
+    deck1 = Deck.new(cards1)
+    deck2 = Deck.new(cards2)
+    player1 = Player.new('Shark', deck1)
+    player2 = Player.new('Guppie', deck2)
+    turn = Turn.new(player1, player2)
+    winner = turn.winner
+    turn.pile_cards
+    turn.award_spoils
+
+    binding.pry
+
+    assert_equal [card1, card2, card3, card4, card5, card6], turn.player2.deck.cards
 
   end
 
