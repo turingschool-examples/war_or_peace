@@ -218,39 +218,6 @@ master_turn = Turn.new(player1, player2)
 master_turn.start
 
 
-# master_turn.start
-# turn_num = 1
-# loop do
-#
-#   puts "guppie card #{master_turn.player1.deck.rank_of_card_at(0)} and #{master_turn.player1.deck.cards.length} cards"
-#   puts "shark card #{master_turn.player2.deck.rank_of_card_at(0)} and #{master_turn.player2.deck.cards.length} cards"
-#   winner = master_turn.winner
-#   if master_turn.type.to_s != "mutually_assured_destruction"
-#      winner_name = master_turn.winner.name
-#   else winner_name = "m.a.d"
-#   end
-#   puts "#{master_turn.type} winner: #{winner_name}"
-#   master_turn.pile_cards
-#   master_turn.spoils_of_war
-#   #puts "spoils #{master_turn.spoils_of_war}"
-#   puts "Turn #{turn_num}: #{winner_name} won #{master_turn.spoils_of_war.flatten.length} cards"
-#
-#   # puts "guppie card: #{master_turn.player1.deck.cards}"
-#
-#   # puts "shark card: #{master_turn.player2.deck.cards}"
-#   master_turn.award_spoils(winner)
-#   turn_num += 1
-#   if master_turn.game_over
-#     puts "~*~*~*~*~*~#{winner_name} has won the game ~*~*~*~*~*~*~*~"
-#     break
-#   elsif turn_num == 20000
-#     break
-#   end
-#   if turn_num > 995
-#
-#   #  binding.pry
-#   end
-# end
 
 #
 # master_turn.start
