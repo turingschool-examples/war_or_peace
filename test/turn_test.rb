@@ -69,6 +69,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_has_mutually_assured_destruction_type
+    skip
     card1 = Card.new(:diamond, '10', 10)
     card2 = Card.new(:heart, '9', 9)
     card3 = Card.new(:diamond, '8', 8)
@@ -84,7 +85,7 @@ class TurnTest < Minitest::Test
     assert_equal :mutually_assured_destruction, turn.type
   end
 
-  def test_it_has_winner
+  def test_it_has_basic_winner
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     deck1 = Deck.new([card1])
@@ -96,11 +97,15 @@ class TurnTest < Minitest::Test
     assert_equal player1, turn.winner
   end
 
-  def test_it_has_other_winner
-    card1 = Card.new(:heart, 'Jack', 11)
-    card2 = Card.new(:heart, '10', 10)
-    deck1 = Deck.new([card2])
-    deck2 = Deck.new([card1])
+  def test_it_has_war_winner
+    card1 = Card.new(:diamond, '10', 10)
+    card2 = Card.new(:clubs, '4', 4)
+    card3 = Card.new(:diamond, '5', 5)
+    card4 = Card.new(:heart, '10', 10)
+    card5 = Card.new(:diamond, '2', 2)
+    card6 = Card.new(:heart, '9', 9)
+    deck1 = Deck.new([card1, card2, card3])
+    deck2 = Deck.new([card4, card5, card6])
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
