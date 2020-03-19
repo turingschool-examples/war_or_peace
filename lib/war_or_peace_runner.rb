@@ -71,8 +71,87 @@ card51, card52]
 first_deck = []
 second_deck = []
 #index to assist interation
-index = deck_of_52.length
-#iteration
+#index = deck_of_52.length
+
+##### just one suit
+# index = 13
+#
+# #iteration
+# 13.times do
+#   #randomly find an card within the index
+#   random_int = (rand*index).to_i
+#   #p deck_of_52[random_int]
+#   #p "random: #{random_int}"
+#   #p "index: #{index}"
+#   if index.odd?
+#     first_deck << deck_of_52[random_int]
+#   elsif index.even?
+#     second_deck << deck_of_52[random_int]
+#   end
+#
+#   deck_of_52.delete_at(random_int)
+#
+#   if index == 0
+#     break
+#   end
+#
+#   index -= 1
+#   # binding.pry
+# end
+
+
+##### half deck 2 suits
+# index = 26
+# 26.times do
+#   #randomly find an card within the index
+#   random_int = (rand*index).to_i
+#   #p deck_of_52[random_int]
+#   #p "random: #{random_int}"
+#   #p "index: #{index}"
+#   if index.odd?
+#     first_deck << deck_of_52[random_int]
+#   elsif index.even?
+#     second_deck << deck_of_52[random_int]
+#   end
+#
+#   deck_of_52.delete_at(random_int)
+#
+#   if index == 0
+#     break
+#   end
+#
+#   index -= 1
+#   # binding.pry
+# end
+#
+# ###### 3 suits random
+# index = 39
+# 39.times do
+#   #randomly find an card within the index
+#   random_int = (rand*index).to_i
+#   #p deck_of_52[random_int]
+#   #p "random: #{random_int}"
+#   #p "index: #{index}"
+#   if index.odd?
+#     first_deck << deck_of_52[random_int]
+#   elsif index.even?
+#     second_deck << deck_of_52[random_int]
+#   end
+#
+#   deck_of_52.delete_at(random_int)
+#
+#   if index == 0
+#     break
+#   end
+#
+#   index -= 1
+#   # binding.pry
+# end
+
+
+##########full deck random assignment
+index = 52
+# #iteration
 52.times do
   #randomly find an card within the index
   random_int = (rand*index).to_i
@@ -84,13 +163,36 @@ index = deck_of_52.length
   elsif index.even?
     second_deck << deck_of_52[random_int]
   end
+
   deck_of_52.delete_at(random_int)
+
   if index == 0
     break
   end
+
   index -= 1
+  # binding.pry
+end
+#####another way to distrubute cards
+index = 1
+deck_of_52.each do |card|
+  if index.even?
+    first_deck << card
+  elsif index.odd?
+    second_deck << card
+  end
+  index += 1
 end
 
+# ###gaurentee win in 25 turns
+# deck_of_52.each do |card|
+#   if card.rank > 7
+#     first_deck << card
+#   elsif card.rank < 8
+#     second_deck << card
+#   end
+# end
+#binding.pry
 #assign deck instances
 player2_deck = Deck.new(first_deck)
 player1_deck = Deck.new(second_deck)
@@ -108,33 +210,71 @@ player1 = Player.new('guppie', player1_deck)
 player2 = Player.new('shark', player2_deck)
 #assign turn instance
 master_turn = Turn.new(player1, player2)
-
-
-
+# puts "deck1 length #{master_turn.player1.deck.cards.length}"
+#puts "deck2 length #{master_turn.player2.deck.cards.length}"
 master_turn.start
-turn_num = 1
-loop do
 
-  puts "guppie card #{master_turn.player1.deck.rank_of_card_at(0)} and #{master_turn.player1.deck.cards.length} cards"
-  puts "shark card #{master_turn.player2.deck.rank_of_card_at(0)} and #{master_turn.player2.deck.cards.length} cards"
-  winner = master_turn.winner
-  if master_turn.type.to_s != "mutually_assured_destruction"
-     winner_name = master_turn.winner.name
-  else winner_name = "m.a.d"
-  end
-  puts "#{master_turn.type} winner: #{winner_name}"
-  master_turn.pile_cards
-  master_turn.spoils_of_war
-  #puts "spoils #{master_turn.spoils_of_war}"
-  puts "Turn #{turn_num}: #{winner_name} won #{master_turn.spoils_of_war.flatten.length} cards"
 
-  # puts "guppie card: #{master_turn.player1.deck.cards}"
+# master_turn.start
+# turn_num = 1
+# loop do
+#
+#   puts "guppie card #{master_turn.player1.deck.rank_of_card_at(0)} and #{master_turn.player1.deck.cards.length} cards"
+#   puts "shark card #{master_turn.player2.deck.rank_of_card_at(0)} and #{master_turn.player2.deck.cards.length} cards"
+#   winner = master_turn.winner
+#   if master_turn.type.to_s != "mutually_assured_destruction"
+#      winner_name = master_turn.winner.name
+#   else winner_name = "m.a.d"
+#   end
+#   puts "#{master_turn.type} winner: #{winner_name}"
+#   master_turn.pile_cards
+#   master_turn.spoils_of_war
+#   #puts "spoils #{master_turn.spoils_of_war}"
+#   puts "Turn #{turn_num}: #{winner_name} won #{master_turn.spoils_of_war.flatten.length} cards"
+#
+#   # puts "guppie card: #{master_turn.player1.deck.cards}"
+#
+#   # puts "shark card: #{master_turn.player2.deck.cards}"
+#   master_turn.award_spoils(winner)
+#   turn_num += 1
+#   if master_turn.game_over
+#     puts "~*~*~*~*~*~#{winner_name} has won the game ~*~*~*~*~*~*~*~"
+#     break
+#   elsif turn_num == 20000
+#     break
+#   end
+#   if turn_num > 995
+#
+#   #  binding.pry
+#   end
+# end
 
-  # puts "shark card: #{master_turn.player2.deck.cards}"
-  master_turn.award_spoils(winner)
-  turn_num += 1
-  if master_turn.game_over
-    puts "~*~*~*~*~*~#{winner_name} has won the game ~*~*~*~*~*~*~*~"
-    break
-  end
-end
+#
+# master_turn.start
+# turn_num = 1
+# puts master_turn.player1.has_lost?
+# puts master_turn.player2.has_lost?
+# until master_turn.player1.has_lost? || master_turn.player2.has_lost?
+#   puts "p1: #{master_turn.player1.deck.cards.length}"
+#   puts "p2: #{master_turn.player2.deck.cards.length}"
+#   puts "#{master_turn.player1.deck.rank_of_card_at(0)} v #{master_turn.player2.deck.rank_of_card_at(0)} #{master_turn.type}"
+#   #establish a winner, type created
+#   winner = master_turn.winner
+#   # pile cards - add to spoils
+#   # remove from both decks
+#   master_turn.pile_cards
+#   # look at the spoils pile
+#   # master_turn.spoils_of_war
+#   # award the spoils to the winner of round 1
+#   master_turn.award_spoils
+#   turn_num += 1
+#   if turn_num > 10000
+#     break
+#   end
+#   puts "Turn num #{turn_num}"
+# end
+# if master_turn.player1.has_lost?
+#   puts "~*~*~*~*~*#{master_turn.player1.name} has won!~*~*~*~*"
+# elsif master_turn.player2.has_lost?
+#   puts "~*~*~*~*~*#{master_turn.player2.name} has won!~*~*~*~*"
+# end
