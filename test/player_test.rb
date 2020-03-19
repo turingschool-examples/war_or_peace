@@ -35,13 +35,6 @@ class PlayerTest < Minitest::Test
     assert_equal false, @player.has_lost?
   end
 
-  def test_it_has_empty_deck
-    @cards = []
-    @deck = Deck.new(@cards)
-    @player = Player.new('Shark', @deck)
-
-    assert_equal [], @player.deck.cards
-  end
 
   def test_it_has_lost
     @cards = []
