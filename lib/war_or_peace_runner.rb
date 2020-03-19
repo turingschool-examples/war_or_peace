@@ -70,34 +70,33 @@ card51, card52]
 #accumulators
 first_deck = []
 second_deck = []
-#index to assist interation
-#index = deck_of_52.length
 
-##### just one suit
-# index = 13
-#
-# #iteration
-# 13.times do
-#   #randomly find an card within the index
-#   random_int = (rand*index).to_i
-#   #p deck_of_52[random_int]
-#   #p "random: #{random_int}"
-#   #p "index: #{index}"
-#   if index.odd?
-#     first_deck << deck_of_52[random_int]
-#   elsif index.even?
-#     second_deck << deck_of_52[random_int]
-#   end
-#
-#   deck_of_52.delete_at(random_int)
-#
-#   if index == 0
-#     break
-#   end
-#
-#   index -= 1
-#   # binding.pry
-# end
+
+######### one suit
+  index = 13
+  #iteration
+  13.times do
+    #randomly find an card within the index
+    random_int = (rand*index).to_i
+    #p deck_of_52[random_int]
+    #p "random: #{random_int}"
+    #p "index: #{index}"
+    if index.odd?
+      first_deck << deck_of_52[random_int]
+    elsif index.even?
+      second_deck << deck_of_52[random_int]
+    end
+
+    deck_of_52.delete_at(random_int)
+
+    if index == 0
+      break
+    end
+
+    index -= 1
+    # binding.pry
+  end
+
 
 
 #### half deck 2 suits
