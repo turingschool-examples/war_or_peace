@@ -7,3 +7,5 @@ class Card
     @value = value
   end
 end
+
+#require "pry"; binding.pry
