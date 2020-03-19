@@ -21,6 +21,7 @@ class DeckTest < Minitest::Test
 
   def test_it_high_ranking_cards
   end
+  
 end
 
 # tests to add:
