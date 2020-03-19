@@ -113,12 +113,14 @@ class TurnTest < Minitest::Test
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
+    binding.pry
     turn.pile_cards
     turn.award_spoils(turn.winner)
-#currently awarding the spoils to the loser and I can't figure out why! but at least its doing what I want it to do on some level
-    assert_equal [card2, card5, card8], player1.deck.cards
+#currently awarding the spoils to the winner of the subsequent round.
+#need to somehow store the winner from the turn and not overwrite until another turn has been taken.
+    assert_equal [card2, card5, card8, card1, card3], player1.deck.cards
 
-    assert_equal [card4, card6, card7, card1, card3], player2.deck.cards
+    assert_equal [card4, card6, card7], player2.deck.cards
 
     assert_equal [], turn.spoils_of_war
   end
