@@ -25,7 +25,7 @@ class Deck
       end
     end
     #this is unused, but what I was attempting
-    return face_cards
+    face_cards
   end
 
   def percent_high_ranking
