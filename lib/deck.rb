@@ -24,7 +24,7 @@ class Deck
         face_cards << card
       end
     end
-    #this is unused, but what I was attempting
+
     face_cards
   end
 
