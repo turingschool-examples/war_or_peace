@@ -13,16 +13,18 @@ class Turn
     #less than 3 cards player1
     if @player1.deck.cards.length < 3 && @player2.deck.cards.length > 3
       if  @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
-        :war
+
         @player1_forfeit = true
+        :war
         return
       end
     end
     #less than 3 cards player 2
     if @player1.deck.cards.length > 3 && @player2.deck.cards.length < 3
       if  @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
-        :war
+
         @player2_forfeit = true
+        :war
         return
       end
     end
@@ -162,21 +164,28 @@ class Turn
           puts "p1 cards: #{@player1.deck.cards.length} v p2 cards: #{@player2.deck.cards.length}"
           break
         end
-        puts "p1: #{@player1.deck.cards.length}"
-        puts "p2: #{@player2.deck.cards.length}"
-        puts "#{@player1.deck.rank_of_card_at(0)} v #{@player2.deck.rank_of_card_at(0)} #{type}"
+        #puts "p1: #{@player1.deck.cards.length}"
+        #puts "p2: #{@player2.deck.cards.length}"
+      #  puts "#{@player1.deck.rank_of_card_at(0)} v #{@player2.deck.rank_of_card_at(0)} #{type}"
         type
         if @player1_forfeit
+          puts "Turn num #{turn_num} #{type}"
+          puts "#{@player1.deck.cards[0].rank} #{@player1.deck.cards[0].suit} v #{@player1.deck.cards[0].rank} #{@player1.deck.cards[0].suit}"
+          puts "#{@player1.deck.cards[1].rank} #{@player1.deck.cards[1].suit} v #{@player1.deck.cards[1].rank} #{@player1.deck.cards[1].suit}"
           puts puts "~*~*~*~*~*#{@player1.name} has forfieted!~*~*~*~*~*"
           puts "p1 cards: #{@player1.deck.cards.length} v p2 cards: #{@player2.deck.cards.length}"
           break
         end
         if @player2_forfeit
-            puts puts "~*~*~*~*~*#{@player2.name} has forfeited!~*~*~*~*~*"
-            puts "p1 cards: #{@player1.deck.cards.length} v p2 cards: #{@player2.deck.cards.length}"
-            break
+          puts "Turn num #{turn_num} #{type}"
+          puts "#{@player1.deck.cards[0].rank} #{@player1.deck.cards[0].suit} v #{@player1.deck.cards[0].rank} #{@player1.deck.cards[0].suit}"
+          puts "#{@player1.deck.cards[1].rank} #{@player1.deck.cards[1].suit} v #{@player1.deck.cards[1].rank} #{@player1.deck.cards[1].suit}"
+          puts puts "~*~*~*~*~*#{@player2.name} has forfeited!~*~*~*~*~*"
+          puts "p1 cards: #{@player1.deck.cards.length} v p2 cards: #{@player2.deck.cards.length}"
+          break
         end
         if @draw
+            puts "Turn num #{turn_num}"
             puts puts "~*~*~*~*~*Draw!~*~*~*~*~*"
             puts "p1 cards: #{@player1.deck.cards.length} v p2 cards: #{@player2.deck.cards.length}"
             break
@@ -188,12 +197,12 @@ class Turn
         pile_cards
         award_spoils
         turn_num += 1
-        if turn_num > 30
+        if turn_num > 1000000
           puts "Turns Maxed out #{turn_num}"
           break
         end
 
-        puts "Turn num #{turn_num}"
+        #puts "Turn num #{turn_num}"
 
 
         # if type.to_s == "mutually_assured_destruction"
