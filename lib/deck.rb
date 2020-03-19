@@ -8,7 +8,11 @@ class Deck
   end
 
   def rank_of_card_at(index)
-    @cards[index].rank
+    if !@cards[index].nil?
+      return @cards[index].rank
+    else
+      return @cards[index]
+    end
   end
 
   def high_ranking_cards

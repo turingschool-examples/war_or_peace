@@ -107,4 +107,13 @@ class TurnTest < MiniTest::Test
     assert_equal "Megan", turn.start
   end
 
+  def test_war_out_of_cards
+    deck1 = Deck.new([@card1, @card2, @card3, @card5])
+    deck2 = Deck.new([@card4, @card6])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    assert_equal "Megan", turn.start
+  end
+
 end

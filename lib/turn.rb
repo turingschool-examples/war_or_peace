@@ -27,7 +27,11 @@ class Turn
         return @player2
       end
     elsif type() == :war
-      if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
+      if @player1.deck.rank_of_card_at(2).nil?
+        return @player2
+      elsif @player2.deck.rank_of_card_at(2).nil?
+        return @player1
+      elsif @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
         return @player1
       else
         return @player2
@@ -44,8 +48,12 @@ class Turn
       @spoils_of_war << @player2.deck.remove_card
     elsif type() == :war
       while i <= 2
-        @spoils_of_war << @player1.deck.remove_card
-        @spoils_of_war << @player2.deck.remove_card
+        if @player1.deck.cards != []
+          @spoils_of_war << @player1.deck.remove_card
+        end
+        if @player2.deck.cards != []
+          @spoils_of_war << @player2.deck.remove_card
+        end
         i += 1
       end
     else
