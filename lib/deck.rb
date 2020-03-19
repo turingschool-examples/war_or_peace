@@ -10,18 +10,13 @@ class Deck
   end
 
   def high_ranking_cards
-    high_cards = cards.select do |card|
+    cards.select do |card|
       card.rank > 11
     end
-    return high_cards
   end
 
   def percent_high_ranking
-    high_cards = cards.select do |card|
-      card.rank > 11
-    end
-
-    percentage = (high_cards.length.to_f / cards.length.to_f) * 100
+    percentage = (high_ranking_cards.length.to_f / cards.length.to_f) * 100
     percentage.round(2)
   end
 
@@ -29,8 +24,8 @@ class Deck
     cards.shift
   end
 
-  def add_card(card4)
-    cards << card4
+  def add_card(card)
+    cards << card
   end
 
 
