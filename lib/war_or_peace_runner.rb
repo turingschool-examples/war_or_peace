@@ -73,29 +73,29 @@ second_deck = []
 
 
 ######### one suit
-  index = 13
-  #iteration
-  13.times do
-    #randomly find an card within the index
-    random_int = (rand*index).to_i
-    #p deck_of_52[random_int]
-    #p "random: #{random_int}"
-    #p "index: #{index}"
-    if index.odd?
-      first_deck << deck_of_52[random_int]
-    elsif index.even?
-      second_deck << deck_of_52[random_int]
-    end
-
-    deck_of_52.delete_at(random_int)
-
-    if index == 0
-      break
-    end
-
-    index -= 1
-    # binding.pry
-  end
+  # index = 13
+  # #iteration
+  # 13.times do
+  #   #randomly find an card within the index
+  #   random_int = (rand*index).to_i
+  #   #p deck_of_52[random_int]
+  #   #p "random: #{random_int}"
+  #   #p "index: #{index}"
+  #   if index.odd?
+  #     first_deck << deck_of_52[random_int]
+  #   elsif index.even?
+  #     second_deck << deck_of_52[random_int]
+  #   end
+  #
+  #   deck_of_52.delete_at(random_int)
+  #
+  #   if index == 0
+  #     break
+  #   end
+  #
+  #   index -= 1
+  #   # binding.pry
+  # end
 
 
 
@@ -186,7 +186,7 @@ second_deck = []
 #   index += 1
 # end
 
-# ###gaurentee win in 25 turns
+#######gaurentee win in 25 turns
 # deck_of_52.each do |card|
 #   if card.rank > 7
 #     first_deck << card
@@ -194,12 +194,13 @@ second_deck = []
 #     second_deck << card
 #   end
 # end
-#binding.pry
+# binding.pry
 
 ########### mutually_assured_destruction
 first_deck = deck_of_52[0..12]
 second_deck = deck_of_52[13..25]
-binding.pry
+second_deck << deck_of_52[28]
+#binding.pry
 
 
 
