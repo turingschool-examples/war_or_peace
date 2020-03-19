@@ -3,15 +3,6 @@ class Deck
 
   def initialize(cards)
     @cards = cards
-
-  end
-
-  def add_card (card) #add to the end
-    @cards << card
-  end
-
-  def remove_card #remove the last card
-    @cards.shift
   end
 
   def rank_of_card_at(index)
@@ -30,5 +21,14 @@ class Deck
 
   def percent_high_ranking
    ((high_ranking_cards.count / @cards.count.to_f) *100).round(2)
+  end
+
+  def remove_card
+    @cards.shift
+    p @cards
+  end
+
+  def add_card (card)
+    @cards << card
   end
 end
