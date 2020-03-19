@@ -44,7 +44,7 @@ class TurnTest < Minitest::Test
     assert_equal "Aurora", player2.name
   end
 
-  def test_it_has_type_method
+  def test_it_has_type_basic
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     deck1 = Deck.new([card1])
@@ -54,6 +54,34 @@ class TurnTest < Minitest::Test
     turn = Turn.new(player1, player2)
 
     assert_equal :basic, turn.type
+  end
+
+  def test_it_has_type_war
+    card1 = Card.new(:diamond, '10', 10)
+    card2 = Card.new(:heart, '10', 10)
+    deck1 = Deck.new([card1])
+    deck2 = Deck.new([card2])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+
+    assert_equal :war, turn.type
+  end
+
+  def test_it_has_mutually_assured_destruction_type
+    card1 = Card.new(:diamond, '10', 10)
+    card2 = Card.new(:heart, '9', 9)
+    card3 = Card.new(:diamond, '8', 8)
+    card4 = Card.new(:heart, '10', 10)
+    card5 = Card.new(:diamond, '2', 2)
+    card6 = Card.new(:heart, '8', 8)
+    deck1 = Deck.new([card1, card2, card3])
+    deck2 = Deck.new([card4, card5, card6])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+
+    assert_equal :mutually_assured_destruction, turn.type
   end
 
   def test_it_has_winner
