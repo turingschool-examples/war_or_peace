@@ -21,11 +21,13 @@ class DeckTest < Minitest::Test
 
   def test_it_high_ranking_cards
   end
-  
+
+  def test_it_percent_high_ranking
+  end
+
 end
 
 # tests to add:
 
-# percent_high_ranking
 # remove_card
 # add_card
