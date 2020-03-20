@@ -176,6 +176,7 @@ class TurnTest < Minitest::Test
     turn1 = Turn.new(player1, player2)
 
     assert_equal :basic, turn1.type
+    #binding.pry
     assert_equal turn1.player2, turn1.winner
   end
 
@@ -194,6 +195,21 @@ class TurnTest < Minitest::Test
     assert_equal turn1.player2, turn1.winner
 
   end
+
+  def test_winner_choose_NO_WINNER_if_mutually_assured_destruction
+    card1 = Card.new(:club, '2', 2)
+    cards1 = [card1, card1, card1]
+    cards2 = [card1, card1, card1]
+    deck1 = Deck.new(cards1)
+    deck2 = Deck.new(cards2)
+    player1 = Player.new('Shark', deck1)
+    player2 = Player.new('Guppie', deck2)
+    turn1 = Turn.new(player1, player2)
+
+    assert_equal :mutually_assured_destruction, turn1.type
+    assert_equal "No Winner", turn1.winner
+  end
+
 
 
 end
