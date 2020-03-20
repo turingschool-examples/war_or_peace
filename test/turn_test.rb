@@ -299,11 +299,10 @@ class TurnTest < Minitest::Test
 
   end
 
-  def test_it_is_aware_of_a_forfeit    card1 = Card.new(:club, '2', 2)
-      card2 = Card.new(:spade, '3', 3)
-      card3 = Card.new(:club, '5', 5)
-      cards1 = [card1, card3, card2]
-      cards2 = [card1, card3]
+  def test_it_is_aware_of_a_forfeit
+      card1 = Card.new(:club, '2', 2)
+      cards1 = [card1, card1, card1]
+      cards2 = [card1, card1]
       deck1 = Deck.new(cards1)
       deck2 = Deck.new(cards2)
       player1 = Player.new('Shark', deck1)
@@ -311,12 +310,26 @@ class TurnTest < Minitest::Test
       turn1 = Turn.new(player1, player2)
       turn1.type
       winner = turn1.winner
-      turn1.pile_cards
-      turn1.award_spoils(winner)
       #binding.pry
 
-      assert_equal [card3, card2], turn1.player1.deck.cards
-      assert_equal [card3, card1, card1, card2], turn1.player2.deck.cards
+      assert_equal true, turn1.forfeit
+      assert_equal turn1.player1.name, turn1.forfeit_winner
+      refute turn1.player2.name == turn1.forfeit_winner
+
+      card1 = Card.new(:club, '2', 2)
+      card2 = Card.new(:club, '3', 3)
+      cards1 = [card2, card1, card1]
+      cards2 = [card1, card1]
+      deck1 = Deck.new(cards1)
+      deck2 = Deck.new(cards2)
+      player1 = Player.new('Shark', deck1)
+      player2 = Player.new('Guppie', deck2)
+      turn1 = Turn.new(player1, player2)
+      turn1.type
+      winner = turn1.winner
+      #binding.pry
+
+      assert_equal false, turn1.forfeit
 
   end
 
