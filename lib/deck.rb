@@ -17,21 +17,20 @@ class Deck
         high_ranking_cards << card
       end
     end
-    return high_ranking_cards
+     high_ranking_cards
   end
 
   def percent_high_ranking
     highs = high_ranking_cards
-    return (highs.length.to_f / @cards.length).round(4) * 100
-    #this method will return the percentage of cards that are high ranking
+    (highs.length.to_f / @cards.length).round(4) * 100
   end
 
   def remove_card
-    return # this method will remove the top card from the deck
+    @cards.shift
   end
 
   def add_card
-    return #this method will add one card to the bottom (end) of the deck
+     #this method will add one card to the bottom (end) of the deck
   end
 
 end
