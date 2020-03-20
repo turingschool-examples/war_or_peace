@@ -31,7 +31,5 @@ class CardGenerator
 
   end
 
-  def
-
 
 end
