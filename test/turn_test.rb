@@ -68,6 +68,7 @@ class TurnTest < Minitest::Test
     turn = Turn.new(player1, player2)
 
     assert_equal :basic, turn.type
+    assert_equal player1, turn.winner
   end
 
   def test_it_works_for_war_turn
@@ -89,6 +90,7 @@ class TurnTest < Minitest::Test
     turn = Turn.new(player1, player2)
 
     assert_equal :war, turn.type
+    assert_equal player2, turn.winner
   end
 
   def test_it_works_for_mutually_assured_destruction_turn
@@ -110,6 +112,7 @@ class TurnTest < Minitest::Test
     turn = Turn.new(player1, player2)
 
     assert_equal :mutually_assured_destruction, turn.type
+    assert_equal "No Winner", turn.winner
   end
 
 end
