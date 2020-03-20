@@ -131,3 +131,4 @@ player2 = Player.new('p2', player2_deck)
 master_turn = Turn.new(player1, player2)
 #assign start instance
 master_start = Start.new(master_turn)
+master_start.start
