@@ -24,33 +24,61 @@
 # Remember, #<Card:0x00randomletters&nums...> means “A Card Object” or “An Ins
 
 ####
-#Getting unititialized constant error for Deck
+#do i need to require card file in this file?
+
 
 class Deck
   attr_reader :cards
-  def initialize (cards)
+  def initialize(cards)
     @cards = cards
   end
 
+
+  def rank_of_card_at(index)
+  #require "pry"; binding.pry
+    @cards[index].rank
+
+  end
+
+  def high_ranking_cards
+    high_ranking = []
+    @cards.each do |card|
+      if  card.rank >= 11
+        high_ranking << card
+      elsif
+        card.rank < 11
+        high_ranking != [card]
+
+      end
+
+    end
+    high_ranking
+
+  end
+  #
+  def percent_high_ranking
+    count = 0
+    @cards.each do |card|
+      if card.rank >= 11
+        count += 1
+      else
+        count += 0
+      end
+    end
+    ((count.fdiv((@cards.count).to_f))*100).round(0)
+
+  end
+
+
+  def remove_card
+    @cards.shift
+    @cards
+  #  require 'pry'; binding.pry
+  end
+
+  def add_card(card)
+    @cards << card
+    # require 'pry'; binding.pry
+  end
+
 end
-  # def rank_of_card_at (index)
-  #
-  #   [index]
-  #
-  # end
-  #
-  # def high_ranking_cards
-  #
-  # end
-  #
-  # def percent_high_ranking
-  #
-  # end
-  #
-  # def remove_card
-  #
-  # end
-  #
-  # def add_card
-  #
-  # end
