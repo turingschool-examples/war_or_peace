@@ -7,8 +7,6 @@ class Player
   def initialize(name, deck)
     @name = name
     @deck = deck
-    @loser = false
-    @play_count = 0
   end
 
   def has_lost?
