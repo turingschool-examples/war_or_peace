@@ -222,6 +222,7 @@ class TurnTest < Minitest::Test
     player2 = Player.new('Guppie', deck2)
     turn1 = Turn.new(player1, player2)
     turn1.type
+    turn1.winner
     turn1.pile_cards
     #binding.pry
 
@@ -245,6 +246,7 @@ class TurnTest < Minitest::Test
     player2 = Player.new('Guppie', deck2)
     turn1 = Turn.new(player1, player2)
     turn1.type
+    turn1.winner
     turn1.pile_cards
 
     assert_equal [card1, card2, card3, card4, card5, card6], turn1.spoils_of_war
@@ -253,26 +255,48 @@ class TurnTest < Minitest::Test
   end
 
   def test_pile_cards_adds_to_spoils_and_removes_from_players_mutually_assured_destruction
-    skip
     card1 = Card.new(:club, '2', 2)
     card2 = Card.new(:club, '3', 3)
     card3 = Card.new(:club, '4', 4)
     card4 = Card.new(:spade, '2', 2)
     card5 = Card.new(:spade, '3', 3)
     card6 = Card.new(:spade, '4', 4)
-    cards1 = [card1, card2, card3, card3, card3]
-    cards2 = [card4, card5, card6, card6, card6]
+    cards1 = [card1, card2, card3, card3]
+    cards2 = [card4, card5, card6, card6]
     deck1 = Deck.new(cards1)
     deck2 = Deck.new(cards2)
     player1 = Player.new('Shark', deck1)
     player2 = Player.new('Guppie', deck2)
     turn1 = Turn.new(player1, player2)
     turn1.type
+    turn1.winner
     turn1.pile_cards
 
-    assert_equal [card1, card2, card3, card4, card5, card6], turn1.spoils_of_war
+    assert_equal [], turn1.spoils_of_war
     assert_equal [card3], turn1.player1.deck.cards
     assert_equal [card6], turn1.player2.deck.cards
+  end
+
+  def test_it_awards_cards_to_winner_in_basic
+    card1 = Card.new(:club, '2', 2)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:club, '5', 5)
+    cards1 = [card1, card3, card2]
+    cards2 = [card2, card3, card1]
+    deck1 = Deck.new(cards1)
+    deck2 = Deck.new(cards2)
+    player1 = Player.new('Shark', deck1)
+    player2 = Player.new('Guppie', deck2)
+    turn1 = Turn.new(player1, player2)
+    turn1.type
+    winner = turn1.winner
+    turn1.pile_cards
+    turn1.award_spoils(winner)
+    #binding.pry
+
+    assert_equal [card3, card2], turn1.player1.deck.cards
+    assert_equal [card3, card1, card1, card2], turn1.player2.deck.cards
+
   end
 
 
