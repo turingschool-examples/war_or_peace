@@ -12,5 +12,8 @@ class Turn
   @spoils_of_war = []
   end
 
+  #def type
+  #end
+
 
 end
