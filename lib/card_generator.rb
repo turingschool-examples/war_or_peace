@@ -28,7 +28,11 @@ class CardGenerator
 
   def divide_into_3_components
     #this comment is made in card geneartor branch
+    #this comment is made in test branch
 
+  end
+
+  def test_branch_method
   end
 
   def
