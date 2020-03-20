@@ -35,7 +35,5 @@ class CardGenerator
   def test_branch_method
   end
 
-  def
-
 
 end
