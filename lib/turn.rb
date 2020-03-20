@@ -49,7 +49,10 @@ class Turn
       player2.deck.cards.first(3).each do |card|
         @spoils_of_war << card
         player2.deck.cards.shift(3)
-      end 
+      end
+    elsif type == :mutually_assured_destruction
+      player1.deck.cards.shift(3)
+      player2.deck.cards.shift(3)
     end
   end
 
