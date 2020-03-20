@@ -26,10 +26,12 @@ class CardGenerator
     @card_list
   end
 
-  def array_to_cards
+  def divide_into_3_components
 
 
   end
+
+  def
 
 
 end
