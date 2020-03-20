@@ -5,6 +5,10 @@ class Start
 
   def initialize(turn)
     @turn = turn
+
+  end
+
+  def start
     input = ''
     until input == 'go' || input == 'Go' ||input == 'GO'
       puts "Welcome to War! (or Peace) This game will be played with 52 cards.
@@ -20,6 +24,7 @@ class Start
         puts "Invalid input"
       end
     end
+
   end
 
   def new_turn
@@ -41,38 +46,49 @@ class Start
 
     loop do
       turn_num += 1
+      turn_type = turn.type
+      winner = turn.winner
       new_turn
+      #Turn 1: Megan won 2 cards
+      if turn_type == :basic
+        puts "Turn #{turn_num}: #{winner.name} won 2 cards"
+      elsif turn_type == :war
+        puts "Turn #{turn_num}: WAR - #{winner.name} won 6 cards"
+      elsif turn_type == :mutually_assured_destruction
+        puts "Turn #{turn_num}: *mutually assured destruction* 6 cards removed from play"
+      end
+
       #puts "p1 cards: #{master_start.turn.player1.deck.cards}"
       #puts "p1 cards: #{master_start.turn.player2.deck.cards}"
       if turn.player1.has_lost? && turn.player2.has_lost?
-        puts "DRAW"
-        puts "turn_num #{turn_num}"
+        puts "------- DRAW - No cards for War! --------"
+        puts "Turn #{turn_num}"
         puts "p1 cards: #{turn.player1.deck.cards.length}"
         puts "p1 cards: #{turn.player2.deck.cards.length}"
         break
       elsif turn.player1.has_lost?
-        puts "player 2 wins"
-        puts "turn_num #{turn_num}"
+        puts "*~*~*~* #{turn.player2.name} has won the game! *~*~*~*"
+        puts "Turn #{turn_num}"
         puts "p1 cards: #{turn.player1.deck.cards.length}"
         puts "p1 cards: #{turn.player2.deck.cards.length}"
         break
       elsif turn.player2.has_lost?
-        puts "player1 wins"
-        puts "turn_num #{turn_num}"
+        puts "*~*~*~* #{turn.player1.name} has won the game! *~*~*~*"
+        puts "Turn #{turn_num}"
         puts "p1 cards: #{turn.player1.deck.cards.length}"
         puts "p1 cards: #{turn.player2.deck.cards.length}"
         break
       elsif turn.forfeit
-        puts "forfeit! #{turn.forfeit_winner} wins by forfeit"
-        puts "turn_num #{turn_num}"
+        puts "*~*~*~* FORFEIT! #{turn.forfeit_winner} wins by forfeit *~*~*~*"
+        puts "Turn #{turn_num}: #{turn.type}"
         puts "p1 cards: #{turn.player1.deck.cards.length}"
         puts "p1 cards: #{turn.player2.deck.cards.length}"
         break
 
       elsif turn_num > 1000000
-        puts "turn_num #{turn_num}"
+        puts "---- DRAW -----"
         puts "p1 cards: #{turn.player1.deck.cards.length}"
-        puts "p1 cards: #{turn.player2.deck.cards.length}"
+        puts "p2 cards: #{turn.player2.deck.cards.length}"
         break
       end
 
