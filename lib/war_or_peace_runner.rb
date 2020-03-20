@@ -2,6 +2,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/start'
 require "pry"
 
 # standard deck
@@ -71,20 +72,28 @@ card51, card52]
 first_deck = []
 second_deck = []
 
-# deck_of_52_random = deck_of_52.shuffle
-# first_deck = deck_of_52_random[1..10]
-# second_deck = deck_of_52_random[11..20]
+# first_deck = [card1, card2]
+# second_deck = [card3, card4]
+#binding.pry
+#
+# first_deck = [card1, card1, card1]
+# second_deck = [card1, card1]
+
+deck_of_52_random = deck_of_52.shuffle
+first_deck = deck_of_52_random[0..1]
+second_deck = deck_of_52_random[2..3]
+#binding.pry
 #binding.pry
 
-##########gaurenteed win in 25 turns
-deck_of_52.each do |card|
-  if card.rank > 7
-    first_deck << card
-  elsif card.rank < 8
-    second_deck << card
-  end
-end
-# binding.pry
+#########gaurenteed win in 25 turns
+# deck_of_52.each do |card|
+#   if card.rank > 7
+#     first_deck << card
+#   elsif card.rank < 8
+#     second_deck << card
+#   end
+# end
+#binding.pry
 
 ########### mutually_assured_destruction
 # first_deck = deck_of_52[0..12]
@@ -112,8 +121,8 @@ end
 
 
 #assign deck instances
-player2_deck = Deck.new(first_deck)
-player1_deck = Deck.new(second_deck)
+player1_deck = Deck.new(first_deck)
+player2_deck = Deck.new(second_deck)
 
 
 # player1_deck.cards.each do |card|
@@ -124,10 +133,53 @@ player1_deck = Deck.new(second_deck)
 #   p card.rank
 # end
 #assign player instances
-player1 = Player.new('guppie', player1_deck)
-player2 = Player.new('shark', player2_deck)
+player1 = Player.new('p1', player1_deck)
+player2 = Player.new('p2', player2_deck)
 #assign turn instance
 master_turn = Turn.new(player1, player2)
 # puts "deck1 length #{master_turn.player1.deck.cards.length}"
 #puts "deck2 length #{master_turn.player2.deck.cards.length}"
-master_turn.start
+######master_turn.start
+
+master_start = Start.new(master_turn)
+turn_num = 0
+
+loop do
+  turn_num += 1
+  master_start.new_turn
+  #puts "p1 cards: #{master_start.turn.player1.deck.cards}"
+  #puts "p1 cards: #{master_start.turn.player2.deck.cards}"
+  if master_start.turn.player1.has_lost? && master_start.turn.player2.has_lost?
+    puts "DRAW"
+    puts "turn_num #{turn_num}"
+    puts "p1 cards: #{master_start.turn.player1.deck.cards.length}"
+    puts "p1 cards: #{master_start.turn.player2.deck.cards.length}"
+    break
+  elsif master_start.turn.player1.has_lost?
+    puts "player 2 wins"
+    puts "turn_num #{turn_num}"
+    puts "p1 cards: #{master_start.turn.player1.deck.cards.length}"
+    puts "p1 cards: #{master_start.turn.player2.deck.cards.length}"
+    break
+  elsif master_start.turn.player2.has_lost?
+    puts "player1 wins"
+    puts "turn_num #{turn_num}"
+    puts "p1 cards: #{master_start.turn.player1.deck.cards.length}"
+    puts "p1 cards: #{master_start.turn.player2.deck.cards.length}"
+    break
+  elsif master_start.turn.forfeit
+    puts "forfeit! #{master_start.turn.forfeit_winner} wins by forfeit"
+    puts "turn_num #{turn_num}"
+    puts "p1 cards: #{master_start.turn.player1.deck.cards.length}"
+    puts "p1 cards: #{master_start.turn.player2.deck.cards.length}"
+    break
+
+  elsif turn_num > 1000000
+    puts "turn_num #{turn_num}"
+    puts "p1 cards: #{master_start.turn.player1.deck.cards.length}"
+    puts "p1 cards: #{master_start.turn.player2.deck.cards.length}"
+    break
+  end
+
+
+end
