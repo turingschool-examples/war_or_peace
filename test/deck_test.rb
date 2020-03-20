@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require '../lib/card'
-require '../lib/deck'
+require './lib/card'
+require './lib/deck'
 require "pry"
 
 class DeckTest < Minitest::Test
@@ -53,7 +53,7 @@ class DeckTest < Minitest::Test
      card3 = Card.new(:heart, 'Ace', 14)
      cards = [card1, card2, card3]
      deck = Deck.new(cards)
-     #binding.pry
+
      assert_equal [card1, card3], deck.high_ranking_cards
    end
 
