@@ -68,20 +68,34 @@ class Turn
       "No Winner"
     end
 
-  end
+  end #winner
 #############################
   def pile_cards
     @spoils_of_war = []
-
+    if type == :basic
+      # add to spoils
+      @spoils_of_war << @player1.deck.cards[0]
+      @spoils_of_war << @player2.deck.cards[0]
+      # delete spoils cards
+      @player1.deck.remove_card
+      @player2.deck.remove_card
+    elsif type == :war || type == :mutually_assured_destruction
+      #player1 adds to spoils and looses cards
+      cards_to_spoils(player1).times do
+        #binding.pry
+        @spoils_of_war << @player1.deck.cards[0]
+        @player1.deck.remove_card
+      end
+      #player 2 adds to spoils and looses cards
+      cards_to_spoils(player2).times do
+       @spoils_of_war << @player2.deck.cards[0]
+        @player2.deck.remove_card
+      end
+    end
     
+  end #pile cards
 
 
 
 
-
-  end#pile cards
-
-
-
-
-end # THE FINAL END
+end #THE FINAL END
