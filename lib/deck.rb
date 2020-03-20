@@ -29,8 +29,8 @@ class Deck
     @cards.shift
   end
 
-  def add_card
-     #this method will add one card to the bottom (end) of the deck
+  def add_card(new_card)
+   @cards.push(new_card)#this method will add one card to the bottom (end) of the deck
   end
 
 end
