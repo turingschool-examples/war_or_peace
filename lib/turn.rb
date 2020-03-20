@@ -9,7 +9,7 @@ class Turn
     @player2 = player2
     @spoils_of_war = []
   end
-
+#############################
   def cards_to_spoils(player)
     if player.deck.cards.length >= 3
       3
@@ -21,17 +21,17 @@ class Turn
       0
     end
   end
-
+#############################
   def three_cards?(player)
     player.deck.cards.length >= 3
   end
-
+#############################
   def first_cards_equal?
     if cards_to_spoils(player1) > 0 && cards_to_spoils(player2) > 0
     @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
     end
   end
-
+#############################
   def third_cards_equal?
     if three_cards?(player1) && three_cards?(player2)
       @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
@@ -58,17 +58,30 @@ class Turn
       elsif @player1.deck.rank_of_card_at(0) < @player2.deck.rank_of_card_at(0)
         @player2
       end
-    end
-    if type == :war
+    elsif type == :war
       if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
         @player1
       elsif @player1.deck.rank_of_card_at(2) < @player2.deck.rank_of_card_at(2)
         @player2
       end
+    elsif type == :mutually_assured_destruction
+      "No Winner"
     end
+
   end
+#############################
+  def pile_cards
+    @spoils_of_war = []
+
+    
 
 
 
 
-end
+
+  end#pile cards
+
+
+
+
+end # THE FINAL END
