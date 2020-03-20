@@ -79,7 +79,7 @@ class Turn
       # delete spoils cards
       @player1.deck.remove_card
       @player2.deck.remove_card
-    elsif type == :war || type == :mutually_assured_destruction
+    elsif type == :war
       #player1 adds to spoils and looses cards
       cards_to_spoils(player1).times do
         #binding.pry
@@ -91,9 +91,29 @@ class Turn
        @spoils_of_war << @player2.deck.cards[0]
         @player2.deck.remove_card
       end
+    elsif type == :mutually_assured_destruction
+      #player1 looses cards
+      cards_to_spoils(player1).times do
+        #binding.pry
+        @player1.deck.remove_card
+      end
+      #player 2  looses cards
+      cards_to_spoils(player2).times do
+        @player2.deck.remove_card
+      end
+
     end
-    
+
   end #pile cards
+  #############################
+
+  def award_spoils(spoils_winner)
+    if @spoils_of_war.length > 0
+      @spoils_of_war.each do |card|
+        spoils_winner.deck.cards << card
+      end
+    end
+  end
 
 
 
