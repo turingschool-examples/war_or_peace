@@ -2,7 +2,7 @@
 
 class Turn
 
-  attr_reader :player1, :player2, :spoils_of_war
+  attr_reader :player1, :player2, :spoils_of_war, :forfeit_winner
 
   def initialize(player1, player2)
     @player1 = player1
@@ -50,8 +50,26 @@ class Turn
     end
   end
   ##########################
+  def forfeit
+    if type == :war && three_cards?(player1) && !three_cards?(player2)
+      @forfeit_winner = @player1.name
+      #binding.pry
+      true
+    elsif
+      type == :war && three_cards?(player2) && !three_cards?(player1)
+      @forfeit_winner = @player2.name
+      true
+    else
+      false
+    end
 
+  end #forfeit
+
+##########################
   def winner
+    if forfeit
+      return
+    end
     if type == :basic
       if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
         @player1
