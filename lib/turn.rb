@@ -53,17 +53,17 @@ class Turn
 
   def pile_cards
     if type == :basic
-      @spoils_of_war << player1.deck.cards[0]
-      @spoils_of_war << player2.deck.cards[0]
+      spoils_of_war << player1.deck.cards[0]
+      spoils_of_war << player2.deck.cards[0]
       player1.deck.remove_card
       player2.deck.remove_card
     elsif type == :war
-      @spoils_of_war << player1.deck.cards[0]
-      @spoils_of_war << player1.deck.cards[1]
-      @spoils_of_war << player1.deck.cards[2]
-      @spoils_of_war << player2.deck.cards[0]
-      @spoils_of_war << player2.deck.cards[1]
-      @spoils_of_war << player2.deck.cards[2]
+      spoils_of_war << player1.deck.cards[0]
+      spoils_of_war << player1.deck.cards[1]
+      spoils_of_war << player1.deck.cards[2]
+      spoils_of_war << player2.deck.cards[0]
+      spoils_of_war << player2.deck.cards[1]
+      spoils_of_war << player2.deck.cards[2]
       3.times do
         player1.deck.remove_card
       end
@@ -77,6 +77,20 @@ class Turn
       3.times do
         player2.deck.remove_card
       end
+    end
+  end
+
+  def award_spoils(winner)
+    if winner == player1
+      player1.deck.cards << spoils_of_war[0]
+      player1.deck.cards << spoils_of_war[1]
+      spoils_of_war.shift
+      spoils_of_war.shift
+    else
+      player2.deck.cards << spoils_of_war[0]
+      player2.deck.cards << spoils_of_war[1]
+      spoils_of_war.shift
+      spoils_of_war.shift
     end
   end
 end
