@@ -6,7 +6,7 @@ require './lib/card'
 
 class DeckTest < Minitest::Test
 
-  def test_it_deck_exists
+  def test_deck_exists
 
       card1 = Card.new(:spae, 'Queen', 11)
       card2 = Card.new(:club, 'King', 12)
