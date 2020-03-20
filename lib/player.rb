@@ -1,8 +1,6 @@
 class Player
   attr_reader :name,
-              :deck,
-              :loser,
-              :play_count
+              :deck
 
   def initialize(name, deck)
     @name = name
@@ -10,13 +8,6 @@ class Player
   end
 
   def has_lost?
-    @loser = false
-  end
-
-  def play
-    play_count += 1
-      if play_count == 3
-        @loser = true
-      end
+    deck.cards.empty?
   end
 end
