@@ -40,16 +40,28 @@ class Turn
   end
 
   def pile_cards
+  #if i don't have this here, the cards don't move in
     @spoils_of_war = []
     if type = :basic
       #each player adds one card to spoils
-      @spoils_of_war << player1.deck.cards[0]
-      @spoils_of_war << player2.deck.cards[0]
+      #this deletes one card from player's deck
+      @spoils_of_war << player1.deck.cards.first
+      player1.deck.cards.shift
+      @spoils_of_war << player2.deck.cards.first
+      player2.deck.cards.shift
     elsif type = :war
       #each player send 3 cards to spoils
-      @spoils_of_war << player1.deck.take(3)
-      @spoils_of_war << player2.deck.take(3)
+      #this deletes three cards from player's deck
+      player1.deck.cards.take(3).each do |card|
+        @spoils_of_war << card
+        player1.deck.cards.shift(3)
+      end
+      player2.deck.cards.take(3).each do |card|
+        @spoils_of_war << card
+        player2.deck.cards.shift(3)
+      end
     elsif type = :mutually_assured_destruction
+      @spoils_of_war = []
     #each player removes three cards to the side
       player1.deck.delete_at(0..2)
       player2.deck.delete_at(0..2)
