@@ -15,7 +15,7 @@ class Turn
         type = :mutually_assured_destruction
       else
         type = :war
-      end 
+      end
     end
   end
 
@@ -53,11 +53,6 @@ class Turn
         player2.deck.cards.shift(3)
       end
     elsif type == :mutually_assured_destruction
-      # if player1.deck.cards.length < 3
-      #   player1.deck.cards.shift(player1.deck.cards.length)
-      # elsif player2.deck.cards.length < 3
-      #   player2.deck.cards.shift(player2.deck.cards.length)
-      # else
         player1.deck.cards.shift(3)
         player2.deck.cards.shift(3)
       end
