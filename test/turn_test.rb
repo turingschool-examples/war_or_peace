@@ -29,4 +29,24 @@ class RunTest < Minitest::Test
     assert_instance_of Turn, @turn
   end
 
+  def test_turn
+    @deck3 = Deck.new([@card1, @card2, @card5, @card8])
+    @deck4 = Deck.new([@card1, @card4, @card6, @card7])
+    @deck5 = Deck.new([@card1, @card2, @card5, @card8])
+    @deck6 = Deck.new([@card1, @card4, @card5, @card7])
+
+    @player3 = Player.new("Megan", @deck3)
+    @player4 = Player.new("Aurora", @deck4)
+    @player5 = Player.new("Megan", @deck5)
+    @player6 = Player.new("Aurora", @deck6)
+
+    @turn = Turn.new(@player1, @player2)
+    @turn1 = Turn.new(@player3, @player4)
+    @turn2 = Turn.new(@player5, @player6)
+
+  assert_equal :basic, @turn.type
+  assert_equal :war, @turn1.type
+  assert_equal :mutually_assured_destruction, @turn2.type
+
+  end
 end
