@@ -51,8 +51,14 @@ class Turn
         player2.deck.cards.shift(3)
       end
     elsif type == :mutually_assured_destruction
-      player1.deck.cards.shift(3)
-      player2.deck.cards.shift(3)
+      # if player1.deck.cards.length < 3
+      #   player1.deck.cards.shift(player1.deck.cards.length)
+      # elsif player2.deck.cards.length < 3
+      #   player2.deck.cards.shift(player2.deck.cards.length)
+      # else
+        player1.deck.cards.shift(3)
+        player2.deck.cards.shift(3)
+      end
     end
   end
 
