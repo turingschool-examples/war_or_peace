@@ -68,3 +68,9 @@ card44, card45, card46, card47, card48, card49, card50, card51, card52]
 #split cards into two decks; need some random generator
 deck1 = Deck.new(game_deck.shuffle.slice(0, 26))
 deck2 = Deck.new(game_deck.shuffle.slice(26, 51))
+
+#assign decks to two players
+player1 = Player.new("Momo", deck1)
+player2 = Player.new("Joffrey", deck2)
+
+require "pry";binding.pry
