@@ -2,7 +2,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
-#require './lib/game'
+require './lib/game'
 require 'pry'
 
 def deal_cards
@@ -35,9 +35,10 @@ def deal_cards
   deck1 = Deck.new(shuffled_cards.slice(0, 26))
   deck2 = Deck.new(shuffled_cards.slice(26, 26))
 
-  player1 = Player.new("Honey Pie", deck1)
-  player2 = Player.new("Sgt Pepper", deck2)
+  @player1 = Player.new("Honey Pie", deck1)
+  @player2 = Player.new("Sgt Pepper", deck2)
 end
 
 deal_cards
-game.start(player1, player2)
+game = Game.new
+game.start(@player1, @player2)
