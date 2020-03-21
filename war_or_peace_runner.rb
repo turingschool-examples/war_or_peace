@@ -72,5 +72,3 @@ deck2 = Deck.new(game_deck.shuffle.slice(26, 51))
 #assign decks to two players
 player1 = Player.new("Momo", deck1)
 player2 = Player.new("Joffrey", deck2)
-
-require "pry";binding.pry
