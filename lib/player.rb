@@ -7,4 +7,9 @@ class Player
     @deck = deck
   end
 
+  def has_lost?
+    #require "pry"; binding.pry
+    deck.cards.empty?
+  end
+
 end
