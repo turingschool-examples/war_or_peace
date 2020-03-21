@@ -38,6 +38,34 @@ deck2 = Deck.new(shuffled_cards.slice(26, 26))
 player1 = Player.new("Honey Pie", deck1)
 player2 = Player.new("Sgt Pepper", deck2)
 
-# START the game using a new method called START (put it into a class or create a new class)
+def start(player1, player2)
+  p "Welcome to War! (or Peace) This game will be played with 52 cards. The players today are #{player1.name} and #{player2.name}." "Type 'GO' to start the game!"
+  reply = gets.chomp.upcase
+  if reply == "GO"
+    take_a_turn(player1, player2)
+  end
+end
+
+@turn_count = 0
+
+def take_a_turn(player1, player2)
+  turn = Turn.new(player1, player2)
+  winner = turn.winner
+  turn.pile_cards
+  turn.award_spoils(winner)
+  @turn_count += 1
+  p "Turn #{@turn_count}: #{winner.name} won"
+end
+
+start(player1, player2)
+
+# if turn_count < 1000000
+#   if player1.has_lost? == false && player2.has_lost == false
 #
+# else
+#   puts "---- DRAW ----"
+
+
+
+
 # if input = GO the game starts and then prints to the console different turns until game is completed or no one wins.
