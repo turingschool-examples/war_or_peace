@@ -64,11 +64,19 @@ class Turn
       end
     elsif type == :mutually_assured_destruction
     #each player removes three cards to the side
-      player1.deck.delete_at(0..2)
-      player2.deck.delete_at(0..2)
+      3.times do
+        player1.deck.remove_card
+      end
+      3.times do
+        player2.deck.remove_card
+      end
     end
   end
 
   def award_spoils(winner)
+    @spoils_of_war.each do |spoil|
+      winner.deck.cards << spoil
+    end
+    @spoils_of_war = []
   end
 end
