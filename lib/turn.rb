@@ -62,25 +62,47 @@ class Turn
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
-
+    @spoils_of_war = []
     # require 'pry';binding.pry
   end
 
-  if @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
-    def mutually_assured_destruction
+  def type
+    #require "pry"; binding.pry
+    if @player1.deck[0].rank == @player2.deck[0].rank && @player1.deck[2].rank == @player2.deck[2].rank
+require "pry"; binding.pry
+      @player1.deck[3..-1]
+      @player2.deck[3..-1]
+      return :mutually_assured_destruction
 
+    elsif @player1.deck[0].rank == @player2.deck[0].rank
+      @spoils_of_war << @player1.deck[0..2]
+      @spoils_of_war << @player2.deck[0..2]
+      return :war
+    else
+      @spoils_of_war << @player1.deck[0]
+      @spoils_of_war << @player2.deck[0]
+      return :basic
     end
-  elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
-    def war
 
-    end
+  def winner
 
-  else
-    def basic
-
-    end
   end
-  
+
+  def spoils_of_war
+
+  end
+
+  def award_spoils(winner)
+
+  end
+
+
+  end
+
+
+
+
+
 
 
 end
