@@ -35,7 +35,7 @@ class Deck
   end
 
   def add_card(card4)
-    @cards
+    @cards << card4 
   end
 
 end

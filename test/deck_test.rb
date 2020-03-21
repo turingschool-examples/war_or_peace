@@ -84,7 +84,7 @@ class DeckTest < Minitest::Test
     card3 = Card.new(:heart, 'Ace', 14)
     card4 = Card.new(:club, '5', 5)
 
-    cards = [card2, card3, card4]
+    cards = [card2, card3]
 
     deck = Deck.new(cards)
 
