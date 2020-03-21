@@ -6,5 +6,4 @@ class Card
     @value = value
     @rank = rank
   end
-end 
-  card1 = Card.new(:heart, "Jack", 11)
+end
