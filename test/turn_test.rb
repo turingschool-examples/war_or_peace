@@ -176,6 +176,8 @@ class TurnTest < Minitest::Test
     assert_equal [card8], player2.deck.cards
   end
 
+  # test it can appoint winner when there are not enough cards to pile or war 
+
   def test_it_can_award_spoils
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
