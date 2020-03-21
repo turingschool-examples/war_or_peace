@@ -21,10 +21,10 @@ class Game
 
         if turn.type == :basic
           p "Turn #{@turn_count}: #{winner.name} won"
-        elsif turn.type == :war
-          p "Turn #{@turn_count}: WAR - #{winner.name} won 6 cards"
         elsif turn.type == :mutually_assured_destruction
           p "Turn #{@turn_count}: *mutually assured destruction* 6 cards have been removed from play"
+        elsif turn.type == :war
+          p "Turn #{@turn_count}: WAR - #{winner.name} won 6 cards"
         end
 
         if player1.has_lost? == false && player2.has_lost? == false
