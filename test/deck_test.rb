@@ -9,13 +9,19 @@ class DeckTest < Minitest::Test
     @card2 = Card.new(:spade, '3', 3)
     @card3 = Card.new(:heart, 'Ace', 14)
 
-    cards = [@card1, @card2, @card3]
+    @cards = [@card1, @card2, @card3]
 
-    @deck = Deck.new(cards)
+    @deck = Deck.new(@cards)
   end
 
   def test_it_exists
     assert_instance_of Deck, @deck
   end
+
+  def test_it_has_cards
+
+    assert_equal @cards, @deck.cards
+  end
+
 
   end
