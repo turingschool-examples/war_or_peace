@@ -73,8 +73,8 @@ class DeckTest < Minitest::Test
     ]
 
     deck = Deck.new(cards)
-    assert_equal cards.drop(1), deck.remove_card
-    #cards index zero to make sure first card is the one removed 
+    assert_equal cards.shift, deck.remove_card
+    #cards index zero to make sure first card is the one removed
   end
 
   def test_add_card

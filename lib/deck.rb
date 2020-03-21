@@ -32,7 +32,7 @@ class Deck
 
 
   def remove_card
-    cards.drop(1)
+    cards.shift
     #want to remove first item in the array
     #look into method .shift
   end
