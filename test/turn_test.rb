@@ -161,7 +161,7 @@ class TurnTest < Minitest::Test
     assert_equal player2, turn.winner
   end
 
-  def test_it_can_pile_cards_for_winner_type
+  def test_it_can_pile_cards_winner_type
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -175,14 +175,10 @@ class TurnTest < Minitest::Test
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
+    turn.pile_cards
 
-    require "pry";binding.pry
-
-    assert_equal :war, turn.type
-    assert_equal player2, turn.winner
-    assert_equal [card1, card2, card5, card3, card4, card6], turn.spoils_of_war
+    assert_equal [card1, card2, card5, card4, card3, card6], turn.spoils_of_war
   end
-
 #Iteration tests for mutually assured destruction type
   def test_it_is_a_mutually_assured_destruction_type
     card1 = Card.new(:heart, 'Jack', 11)
