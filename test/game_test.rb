@@ -21,7 +21,7 @@ class GameTest < Minitest::Test
      assert_instance_of Game, game
    end
 
-   def test_it_can_start_and_get_user_input
+   def test_it_can_start
      card1 = Card.new(:heart, 'Jack', 11)
      card2 = Card.new(:heart, '10', 10)
      deck1 = Deck.new([card1])
@@ -33,4 +33,18 @@ class GameTest < Minitest::Test
 
      assert_equal "GO", reply
    end
+
+   def test_it_can_take_a_turn
+     card1 = Card.new(:heart, 'Jack', 11)
+     card2 = Card.new(:heart, '10', 10)
+     deck1 = Deck.new([card1])
+     deck2 = Deck.new([card2])
+     player1 = Player.new("Megan", deck1)
+     player2 = Player.new("Aurora", deck2)
+     game = Game.new
+     game.start(player1, player2)
+
+     assert_equal false, turn_count == 0
+   end
+   
 end
