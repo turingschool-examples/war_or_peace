@@ -59,12 +59,16 @@ end
 
 start(player1, player2)
 
-# if turn_count < 1000000
-#   if player1.has_lost? == false && player2.has_lost == false
-#
-# else
-#   puts "---- DRAW ----"
-
+if @turn_count < 1000000
+   if player1.has_lost? == false && player2.has_lost == false
+     take_a_turn(player1, player2)
+  elsif player1.has_lost? == true
+    puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
+  elsif player2.has_lost? == true
+    puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
+ else
+   puts "---- DRAW ----"
+end
 
 
 
