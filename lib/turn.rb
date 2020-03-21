@@ -26,28 +26,36 @@ class Turn
       else
         player2
       end
+
     elsif type = :war
       if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
         player1
       else
         player2
       end
-    else
-      p "No Winner"
+
+    elsif type = :mutually_assured_destruction
+      "No Winner"
     end
   end
 
   def pile_cards
-    spoil = []
+    @spoils_of_war = []
     if type = :basic
-      spoil << player1.deck.cards[0]
-      spoil << player2.deck.cards[0]
+      #each player adds one card to spoils
+      @spoils_of_war << player1.deck.cards[0]
+      @spoils_of_war << player2.deck.cards[0]
     elsif type = :war
-      spoil << player1.deck.take(3)
-      spoil << player2.deck.take(3)
+      #each player send 3 cards to spoils
+      @spoils_of_war << player1.deck.take(3)
+      @spoils_of_war << player2.deck.take(3)
     elsif type = :mutually_assured_destruction
+    #each player removes three cards to the side
       player1.deck.delete_at(0..2)
-      player2.deck.deleta_at(0..2)
+      player2.deck.delete_at(0..2)
     end
+  end
+
+  def award_spoils(winner)
   end
 end
