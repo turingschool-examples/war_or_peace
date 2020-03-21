@@ -17,7 +17,7 @@ class DeckTest < Minitest::Test
     card1 = Card.new(:diamond, 'Queen', 12)
     deck = Deck.new(card1)
 
-    assert_equal deck.cards, card1
+    assert_equal card1, deck.cards
   end
 
   def test_it_can_detect_rank
@@ -25,6 +25,17 @@ class DeckTest < Minitest::Test
     deck = Deck.new(card1)
 
      assert_equal 12, card1.rank
+   end
+
+   def test_it_can_handle_nil_card_at_given_index
+     card1 = Card.new(:diamond, '10', 10)
+     card2 = Card.new(:heart, '9', 9)
+     cards = [card1, card2]
+     deck = Deck.new(cards)
+     deck.rank_of_card_at(2)
+
+     assert_equal [], deck.cards
+
    end
 
    def test_it_can_find_rank_based_on_index
@@ -35,15 +46,6 @@ class DeckTest < Minitest::Test
      deck = Deck.new(cards)
 
      assert_equal 14, deck.rank_of_card_at(2)
-   end
-
-   def test_it_can_find_another_rank_based_on_index
-     card1 = Card.new(:diamond, 'Queen', 12)
-     card2 = Card.new(:spade, '3', 3)
-     card3 = Card.new(:heart, 'Ace', 14)
-     cards = [card1, card2, card3]
-     deck = Deck.new(cards)
-
      assert_equal 3, deck.rank_of_card_at(1)
    end
 
