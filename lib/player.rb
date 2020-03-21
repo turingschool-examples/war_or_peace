@@ -9,6 +9,6 @@ class Player
 
   def has_lost?
     return true if @deck.cards.count == 0
-      false 
+    false
   end
 end
