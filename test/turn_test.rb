@@ -5,7 +5,7 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 
-class DeckTest < Minitest::Test
+class TurnTest < Minitest::Test
   def setup
     @card1 = Card.new(:diamond, 'Queen', 12)
     @card2 = Card.new(:spade, 'Jack', 11)
@@ -22,15 +22,20 @@ class DeckTest < Minitest::Test
     @player2_basic = Player.new("Gus", @deck2_basic)
 
     @turn_basic = Turn.new(@player1_basic, @player2_basic)
+    @spoils_of_war_basic = [@player1_basic.deck.cards[0], @player2_basic.deck.cards[0]]
 
     @deck1_war = Deck.new([@card1, @card2, @card3])
     @deck2_war = Deck.new([@card1, @card2, @card4])
+
     @player1_war = Player.new("Taylor", @deck1_war)
     @player2_war = Player.new("Gus", @deck2_war)
+
     @turn_war = Turn.new(@player1_war, @player2_war)
+    @spoils_of_war_war = [@player1_war.deck.cards[0..2], @player2_war.deck.cards[0..2]].flatten!
 
     @player1_mutually_assured_destruction = Player.new("Taylor", @deck1_basic)
     @player2_mutually_assured_destruction = Player.new("Gus", @deck1_basic)
+
     @turn_mutually_assured_destruction = Turn.new(@player1_mutually_assured_destruction, @player2_mutually_assured_destruction)
 
   end
@@ -54,10 +59,12 @@ class DeckTest < Minitest::Test
 
   def test_type_mutually_assured_destruction
     assert_equal :mutually_assured_destruction, @turn_mutually_assured_destruction.type
+    refute_equal :war, @turn_mutually_assured_destruction.type
   end
 
   def test_type_war
     assert_equal :war, @turn_war.type
+    refute_equal :mutually_assured_destruction, @turn_war.type
   end
 
   def test_winner_basic
@@ -75,26 +82,30 @@ class DeckTest < Minitest::Test
     assert_equal "No Winner", @turn_mutually_assured_destruction.winner
   end
 
+  def test_winner_player_has_lost
+    3.times do
+      @player1_basic.deck.remove_card
+    end
+
+    assert_equal @player2_basic, @turn_basic.winner
+  end
+
   def test_pile_cards_basic
     assert_equal [], @turn_basic.spoils_of_war
 
     @turn_basic.pile_cards
-
-    # Make more robust by changing the 2 to a variable
-    assert_equal true, @turn_basic.spoils_of_war.length == 2
-    assert_equal true, @turn_basic.spoils_of_war.include?(@card1)
-    assert_equal true, @turn_basic.spoils_of_war.include?(@card3)
+    assert_equal @spoils_of_war_basic, @turn_basic.spoils_of_war
+    assert_equal @card2, @turn_basic.player1.deck.cards[0]
+    assert_equal @card4, @turn_basic.player2.deck.cards[0]
   end
 
   def test_pile_cards_war
     assert_equal [], @turn_war.spoils_of_war
 
     @turn_war.pile_cards
-
-    # Make more robust by changing the 6 to a variable
-    assert_equal true, @turn_war.spoils_of_war.length == 6
-    assert_equal true, @turn_war.spoils_of_war.include?(@card4)
-    assert_equal true, @turn_war.spoils_of_war.include?(@card3)
+    assert_equal @spoils_of_war_war, @turn_war.spoils_of_war
+    assert_equal [], @turn_war.player1.deck.cards
+    assert_equal [], @turn_war.player2.deck.cards
   end
 
   def test_pile_cards_mutually_assured_destruction
