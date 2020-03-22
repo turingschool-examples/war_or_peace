@@ -30,6 +30,7 @@ class RunTest < Minitest::Test
   end
 
   def test_turn
+
     @deck3 = Deck.new([@card1, @card2, @card5, @card8])
     @deck4 = Deck.new([@card1, @card4, @card6, @card7])
     @deck5 = Deck.new([@card1, @card2, @card5, @card8])
@@ -44,9 +45,34 @@ class RunTest < Minitest::Test
     @turn1 = Turn.new(@player3, @player4)
     @turn2 = Turn.new(@player5, @player6)
 
-  assert_equal :basic, @turn.type
-  assert_equal :war, @turn1.type
-  assert_equal :mutually_assured_destruction, @turn2.type
-
+    assert_equal :basic, @turn.type
+    assert_equal :war, @turn1.type
+    assert_equal :mutually_assured_destruction, @turn2.type
   end
+
+  def test_basic_turn_winner
+
+  
+    # # winner: this method will determine the winner of the turn.
+    # # if the turn has a type of :basic, it will return whichever
+    #  player has a higher rank_of_card_at(0)
+    # # if the turn has a type of :war the winner will be whichever player
+    # has a higher rank_of_card_at(2)
+    # # if the turn has a type of :mutually_assured_destruction
+    # the method will return No Winner.
+    assert_equal @player1, @turn.winner
+  end
+
+  def test_war_turn_winner
+    assert_equal @player4, @turn1.winner
+  end
+
+  def test_mutually_assured_destruction_winner
+    assert_equal 'No Winner', @turn2.winner
+  end
+
+  def test_spoils_of_war
+  skip
+  end
+
 end
