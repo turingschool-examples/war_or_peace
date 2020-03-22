@@ -4,7 +4,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 
-class DeckTest < Minitest::Test
+class PlayerTest < Minitest::Test
   def setup
     @card1 = Card.new(:diamond, 'Queen', 12)
     @card2 = Card.new(:spade, 'Jack', 11)
@@ -24,7 +24,7 @@ class DeckTest < Minitest::Test
   end
 
   def test_player_can_have_a_different_name
-    assert_equal "George", Player.new("George", @deck).name
+    assert_equal "Gus", Player.new("Gus", @deck).name
   end
 
   def test_player_has_a_deck_of_cards
@@ -33,9 +33,10 @@ class DeckTest < Minitest::Test
 
   def test_player_can_lose
     assert_equal false, @player1.has_lost?
-    @player1.deck.remove_card
-    @player1.deck.remove_card
-    @player1.deck.remove_card
-    assert_equal true, @player1.has_lost? 
+    3.times do
+      @player1.deck.remove_card
+    end
+
+    assert_equal true, @player1.has_lost?
   end
 end
