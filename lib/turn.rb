@@ -22,8 +22,25 @@ class Turn
     end
   end
 
-  # def winner
-  # end
+  def winner
+    if type == :basic
+      if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+        winner = player1
+        # require "pry"; binding.pry
+      else
+        winner = player2
+      end
+    elsif type == :war
+      if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+        winner = player1
+      else
+        winner = player2
+        # require "pry"; binding.pry
+      end
+    elsif type == :mutually_assured_destruction
+      winner = "No winner"
+    end
+  end
 
   # def pile_cards
   # end
