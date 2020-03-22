@@ -67,7 +67,7 @@ card33, card34, card35, card36, card37, card38, card39, card40, card41, card42, 
 card44, card45, card46, card47, card48, card49, card50, card51, card52]
 
 #split cards into two decks; need some random generator
-deck1 = Deck.new(game_deck.shuffle.slice(0, 26))
+deck1 = Deck.new(game_deck.shuffle.slice(0, 25))
 deck2 = Deck.new(game_deck.shuffle.slice(26, 51))
 
 #assign decks to two players
