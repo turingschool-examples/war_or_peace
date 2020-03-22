@@ -9,7 +9,7 @@ class Deck
   end
 
   def rank_of_card_at(int)
-    cards[int].rank
+    @cards[int].rank
   end
 
 
