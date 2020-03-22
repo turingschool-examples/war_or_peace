@@ -49,7 +49,7 @@ class TurnTest < Minitest::Test
     assert_equal [] ,turn.spoils_of_war
   end
 
-  def test_it_can_tell_if_is_a_basic_turn
+  def test_it_can_determine_if_it_is_a_basic_turn
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -70,7 +70,7 @@ class TurnTest < Minitest::Test
     assert_equal :basic, turn.type
   end
 
-  def test_it_can_tell_winner_for_basic_turn
+  def test_it_can_determine_winner_for_basic_turn
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -138,7 +138,7 @@ class TurnTest < Minitest::Test
     assert_equal [card4, card6, card7], turn.player2.deck.cards
   end
 
-  def test_it_test_it_can_tell_if_is_a_war_turn
+  def test_it_can_determine_if_it_is_a_war_turn
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -159,7 +159,7 @@ class TurnTest < Minitest::Test
     assert_equal :war, turn.type
   end
 
-  def test_it_test_it_can_tell_winner_for_war_turn
+  def test_it_can_determine_winner_for_war_turn
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
