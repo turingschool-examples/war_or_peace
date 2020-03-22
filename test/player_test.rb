@@ -30,6 +30,11 @@ class PlayerTest < Minitest::Test
     assert_equal @deck, @player.deck
   end
 
+  def test_it_starts_undefeated
+
+    assert_equal false, @player.has_lost?
+  end
+
 
 
 end
