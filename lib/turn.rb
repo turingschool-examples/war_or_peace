@@ -12,11 +12,13 @@ class Turn
 
   def type
     if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
-      return :basic
-    #elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
-    #  return :war
-    #else
-    #  return :mutually_assured_destruction
+        return :basic
+    elsif
+      @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) &&
+      @player1.deck.rank_of_card_at(2) != @player2.deck.rank_of_card_at(2)
+      return :war
+    else
+      return :mutually_assured_destruction
     end
   end
 
@@ -35,14 +37,18 @@ class Turn
 
   def pile_cards
     if type == :basic
-      @spoils_of_war << @player1.deck.cards[0] && @player1.deck.cards.delete_at(0)
-      @spoils_of_war << @player2.deck.cards[0] && @player2.deck.cards.delete_at(0)
+      @spoils_of_war << @player1.deck.remove_card
+      @spoils_of_war << @player2.deck.remove_card
     end
   end
 
   def award_spoils(winner)
+    if type == :basic
+      @spoils_of_war.map do |card|
+        winner.deck.cards << card
     #player gets two cards added to spoils of war added to their array
-    # winner.deck.cards << spoils of war
-    #@spoils of war = []
+    #winner.deck.cards << @spoils_of_war
+      end
+    end
   end
 end
