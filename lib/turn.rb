@@ -58,7 +58,7 @@ class Turn
     end
   end
 
-  def award_spoils
+  def award_spoils(winner)
     turn_winner = winner
     pile_cards
     if type == :basic || type == :war
@@ -66,5 +66,9 @@ class Turn
         turn_winner.deck.add_card(card)
       end
     end
+  end
+
+  def start
+
   end
 end

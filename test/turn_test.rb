@@ -132,7 +132,7 @@ class TurnTest < Minitest::Test
     turn = Turn.new(player1, player2)
     assert_equal :basic, turn.type
 
-    turn.award_spoils
+    turn.award_spoils(turn.winner)
 
     assert_equal [card2, card5, card8, card1, card3], turn.player1.deck.cards
     assert_equal [card4, card6, card7], turn.player2.deck.cards
@@ -221,7 +221,7 @@ class TurnTest < Minitest::Test
 
     assert_equal :war, turn.type
 
-    turn.award_spoils
+    turn.award_spoils(turn.winner)
 
     assert_equal [card7, card1, card2, card5, card4, card3, card6], turn.player2.deck.cards
     assert_equal [card8], turn.player1.deck.cards
@@ -256,7 +256,7 @@ class TurnTest < Minitest::Test
     card5 = Card.new(:heart, '8', 8)
     card6 = Card.new(:diamond, '8', 8)
     card7 = Card.new(:heart, '3', 3)
-    card8 = Card.new(:diamond, '2', 2)
+    card8 = Card.new(:diamond, '3', 3)
 
     deck1 = Deck.new([card1, card2, card5, card8])
     deck2 = Deck.new([card4, card3, card6, card7])
@@ -267,6 +267,15 @@ class TurnTest < Minitest::Test
     turn = Turn.new(player1, player2)
 
     assert_equal "No Winner", turn.winner
+
+    deck3 = Deck.new([card5, card8])
+    deck4 = Deck.new([card6, card7])
+    player3 = Player.new("Megann", deck3)
+    player4 = Player.new("Auroraa", deck4)
+    turn2 = Turn.new(player3, player4)
+
+    assert_equal "No Winner", turn2.winner
+
   end
 
   def test_it_can_pile_cards_for_mutually_assured_destruction_turn
@@ -312,7 +321,7 @@ class TurnTest < Minitest::Test
 
     assert_equal :mutually_assured_destruction, turn.type
 
-    turn.award_spoils
+    turn.award_spoils(turn.winner)
 
     assert_equal [card8], turn.player1.deck.cards
     assert_equal [card7], turn.player2.deck.cards
