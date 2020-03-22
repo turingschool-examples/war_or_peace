@@ -15,7 +15,7 @@ class DeckTest < Minitest::Test
   end
 
   def test_it_exists
-    
+
     assert_instance_of Deck, @deck
   end
 
@@ -24,4 +24,9 @@ class DeckTest < Minitest::Test
     assert_equal @cards, @deck.cards
   end
 
+  def test_it_has_rank_of_card_at
+
+    assert_equal 12, @deck.rank_of_card_at(0)
   end
+
+end
