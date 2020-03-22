@@ -67,9 +67,13 @@ class Turn
       end
     end
 
-    # def award_spoils(winner)
-    # add each of the cards in the @spoils_of_war array
-    # to the winner of the turn
-    # end
+    def award_spoils(winner)
+      @spoils_of_war.each do |spwar|
+        winner.deck.cards << spwar
+        require "pry"; binding.pry
+      end
+      @spoils_of_war = []
+      # require "pry"; binding.pry
+    end
 
   end
