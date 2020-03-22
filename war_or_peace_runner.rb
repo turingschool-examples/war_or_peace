@@ -2,6 +2,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/game'
 
 #deck of 52 cards
 
@@ -72,3 +73,7 @@ deck2 = Deck.new(game_deck.shuffle.slice(26, 51))
 #assign decks to two players
 player1 = Player.new("Momo", deck1)
 player2 = Player.new("Joffrey", deck2)
+
+#start the game
+game = Game.new(player1, player2)
+game.start
