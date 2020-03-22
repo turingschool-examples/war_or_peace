@@ -67,42 +67,68 @@ class Turn
   end
 
   def type
-    #require "pry"; binding.pry
+
     if @player1.deck[0].rank == @player2.deck[0].rank && @player1.deck[2].rank == @player2.deck[2].rank
-require "pry"; binding.pry
-      @player1.deck[3..-1]
-      @player2.deck[3..-1]
-      return :mutually_assured_destruction
+      # @player1.deck[3..-1]
+      # @player2.deck[3..-1]
+#require "pry"; binding.pry
+      :mutually_assured_destruction
 
     elsif @player1.deck[0].rank == @player2.deck[0].rank
-      @spoils_of_war << @player1.deck[0..2]
-      @spoils_of_war << @player2.deck[0..2]
-      return :war
+      # @spoils_of_war << @player1.deck[0..2]
+      # @spoils_of_war << @player2.deck[0..2]
+      :war
     else
-      @spoils_of_war << @player1.deck[0]
-      @spoils_of_war << @player2.deck[0]
-      return :basic
+      # @spoils_of_war << @player1.deck[0]
+      # @spoils_of_war << @player2.deck[0]
+      :basic
     end
+  end
 
   def winner
+    #if @player1.deck[0].rank != @player2.deck[0].rank
+    if type == :basic
+      if @player1.deck[0].rank > @player2.deck[0].rank
+        return @player1
+      else
+        return @player2
+      end
+    #elsif @player1.deck[0].rank == @player2.deck[0].rank
+    elsif type == :war
+      if @player1.deck[2].rank > @player2.deck[2].rank
+        require "pry"; binding.pry
+        return @player1
+      else
+        return @player2
+      end
+    else
+        return 'No Winner'
 
+    end
   end
+
+
 
   def spoils_of_war
-
+    if type == :war
+      @spoils_of_war << @player1.deck[0..2]
+      @spoils_of_war << @player2.deck[0..2]
+    elsif type == :basic
+      @spoils_of_war << @player1.deck[0]
+      @spoils_of_war << @player2.deck[0]
+    end
   end
 
-  def award_spoils(winner)
 
-  end
-
-
-  end
-
-
-
-
-
-
-
+  
+  #
+  # def award_spoils(winner)
+  #
+  # end
+  #
+  # def pile_cards
+  #
+  # end
+  #
+  # end
 end
