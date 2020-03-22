@@ -48,6 +48,7 @@ class Turn
         winner.deck.cards << card
     #player gets two cards added to spoils of war added to their array
     #winner.deck.cards << @spoils_of_war
+      @spoils_of_war = [] 
       end
     end
   end
