@@ -47,5 +47,13 @@ class Game
 
       break if play_count == 1000000
     end
+
+    if player1.has_lost? == true
+      p "*~*~*~*#{player2.name} has won the game!*~*~*~*"
+    elsif player2.has_lost? ==true
+      p "*~*~*~*#{player1.name} has won the game!*~*~*~*"
+    else
+      p "---- DRAW ----"
+    end
   end
 end
