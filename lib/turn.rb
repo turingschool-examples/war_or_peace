@@ -45,15 +45,27 @@ class Turn
       spoils_of_war << player2.deck.remove_card
     elsif type == :war
       3.times do
-        spoils_of_war << player1.deck.remove_card
+        if player1.has_lost == true
+          break
+        else
+          spoils_of_war << player1.deck.remove_card
+        end
       end
       3.times do
-        spoils_of_war << player2.deck.remove_card
+        if player2.has_lost == true
+          break
+        else
+          spoils_of_war << player2.deck.remove_card
+        end
       end
     elsif type == :mutually_assured_destruction
       3.times do
-        player1.deck.remove_card
-        player2.deck.remove_card
+        if player1.has_lost == true || player2.has_lost == true
+          break
+        else
+          player1.deck.remove_card
+          player2.deck.remove_card
+        end
       end
     end
   end
@@ -69,6 +81,27 @@ class Turn
   end
 
   def start
-
+    turn_counter = 1
+    maximum_turns == 1000000
+    while player1.has_lost == false && player2.has_lost == false
+      if turn_counter <= maximum_turns
+        if type == :basic
+          p "Turn #{turn_counter}: #{winner} won 2 cards"
+          award_spoils
+          turn_counter += 1
+        elsif type == :war
+          p "Turn #{turn_counter}: WAR - #{winner} won 6 cards."
+          award_spoils
+          turn_counter += 1
+        elsif type = mutually_assured_destruction
+          p "Turn #{turn_counter}: *mutually_assured_destruction* 6 cards removed from play"
+          pile_cards
+          turn_counter += 1
+        end
+      else
+        p "--- DRAW ---"
+        break
+      end
+    end
   end
 end
