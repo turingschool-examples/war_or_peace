@@ -42,10 +42,34 @@ class Turn
     end
   end
 
-  # def pile_cards
-  # end
-  #
-  # def award_spoils(winner)
-  # end
+  def pile_cards
+    if type == :basic
+      @spoils_of_war << player1.deck.cards.first #enumberable method!
+      player1.deck.cards.shift
+      # require "pry"; binding.pry
+      @spoils_of_war << player2.deck.cards.first
+      player2.deck.cards.shift
+      # require "pry"; binding.pry
+    elsif type == :war
+      player1.deck.cards.first(3).each do |card|
+        @spoils_of_war << card
+        player1.deck.cards.shift(3)
+        # require "pry"; binding.pry
+      end
+      player2.deck.cards.first(3).each do |card|
+        @spoils_of_war << card
+        player2.deck.cards.shift(3)
+      end
+    elsif type == :mutually_assured_destruction
+      player1.deck.cards.shift(3)
+      player2.deck.cards.shift(3)
+        # require "pry"; binding.pry
+      end
+    end
 
-end
+    # def award_spoils(winner)
+    # add each of the cards in the @spoils_of_war array
+    # to the winner of the turn
+    # end
+
+  end
