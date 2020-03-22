@@ -29,4 +29,13 @@ class DeckTest < Minitest::Test
     assert_equal 12, @deck.rank_of_card_at(0)
   end
 
+  def test_it_has_high_ranking_cards
+
+    assert_equal [@card1, @card3], @deck.high_ranking_cards
+  end
+
+  def test_it_has_percent_high_ranking
+    assert_equal 66.67, @deck.percent_high_ranking
+  end
+
 end
