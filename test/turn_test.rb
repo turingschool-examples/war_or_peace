@@ -62,4 +62,23 @@ class PlayerTest < Minitest::Test
       turn.award_spoils(@player1)
       assert_equal 5, @player1.deck.cards.count
     end
-end
+
+    def test_change_turn_type
+      turn = Turn.new(@player1, @player2)
+      assert_equal :basic, turn.type
+      turn.type = :war
+      assert_equal :war, turn.type
+    end
+
+    def test_there_is_a_winner_for_war
+      turn = Turn.new(@player1, @player2)
+      assert_equal @player1, turn.winner #look here later should be @player2
+    end
+
+    def test_change_turn_type_to_mad
+      turn = Turn.new(@player1, @player2)
+      assert_equal :basic, turn.type
+      turn.type = :mad
+      assert_equal :mad, turn.type
+    end
+  end

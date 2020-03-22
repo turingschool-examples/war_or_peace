@@ -14,10 +14,30 @@ class Turn
   end
 
   def winner
-    if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-      player1
-    else
-      player2
+    if @type == :basic
+      if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+        player1
+      else
+        player2
+      end
+    elsif @type == :war
+      if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+        player1
+      else
+        player2
+      end
+    elsif @type == :mad
+      first_cards_are_same = player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+      second_cards_are_same = player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+      if first_cards_are_same && second_cards_are_same
+        player1.deck.remove_card
+        player1.deck.remove_card
+        player1.deck.remove_card
+        player2.deck.remove_card
+        player2.deck.remove_card
+        player2.deck.remove_card
+        "No Winner"
+      end
     end
   end
 
@@ -30,8 +50,3 @@ class Turn
     winner.deck.cards << spoils_of_war
   end
 end
-
-
-
-#award_spoils: this method will add each of the cards in the @spoils_of_war array
-#to the winner of the turn.
