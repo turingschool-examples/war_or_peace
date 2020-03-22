@@ -20,10 +20,7 @@ class Deck
   end
 
   def percent_high_ranking
-    high_ranking_cards
-
-    require "pry"; binding.pry
-
+    ((high_ranking_cards.length / cards.length.to_f) * 100).round(2)
   end
 
 

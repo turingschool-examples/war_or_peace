@@ -35,6 +35,7 @@ class DeckTest < Minitest::Test
   end
 
   def test_it_has_percent_high_ranking
+    
     assert_equal 66.67, @deck.percent_high_ranking
   end
 
