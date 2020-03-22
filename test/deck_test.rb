@@ -14,10 +14,21 @@ class DeckTest < Minitest::Test
 
   end
 
-  # Change these to assert the array is correct vs checking length of the array
+  def test_it_exists
+    assert_instance_of Deck, @deck
+  end
+
+  def test_cards_attribute
+    assert_instance_of Card, @deck.cards[0]
+    assert_equal 3, @deck.cards.length
+    assert_equal :club, @deck.cards[2].suit
+  end
+
   def test_rank_of_card_at_
     @deck = Deck.new(@cards)
+
     assert_equal 12, @deck.rank_of_card_at(0)
+    assert_equal 4, @deck.rank_of_card_at(2)
   end
 
   def test_high_ranking_cards
@@ -40,7 +51,7 @@ class DeckTest < Minitest::Test
 
   def test_add_card
     @deck.add_card(@card4)
-    assert_equal @cards << @card4, @deck.cards
+    assert_equal @card4, @deck.cards[3]
   end
 
 end
