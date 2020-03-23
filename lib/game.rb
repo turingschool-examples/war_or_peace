@@ -43,7 +43,7 @@ class Game
   end
 
   def continue_playing
-    if @turn_count < 10000
+    if @turn_count < 1000
         if player1.has_lost? == false && player2.has_lost? == false
           take_a_turn
         elsif player1.has_lost? == true
