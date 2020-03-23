@@ -47,6 +47,5 @@ class Turn
   end
 
   def award_spoils(winner)
-    
   end
 end
