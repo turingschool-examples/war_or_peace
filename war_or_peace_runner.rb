@@ -48,5 +48,46 @@ class Game
     @turn_count = 0
   end
 
+  def start_game
+    p 'Welcome to War! (or Peace) This game will be played with 52 cards.
+    The players today are Megan and Aurora.
+    Type 'GO' to start the game!
+    ------------------------------------------------------------------'
+    respose = gets.chomp.upcase
+    if respose == 'GO'
+      play_game
+    else
+      p  'Try Again!'
+    end
+  end
+
+  def play_game
+    turn = Turn.new(player1, player2)
+
+    until player1.has_lost? || player2.has_lost?
+     if turn.type == :basic
+       winner = move.winner
+       turn.pile_cards
+       turn.award_spoils(winner)
+       turn_count += 1
+       p "Turn #{turn_count}: #{winner.name} won 2 cards"
+
+     elsif turn.type == :war
+       winner = turn.winner
+       turn.pile_cards
+       turn.award_spoils(winner)
+       turn_count += 1
+       p "Turn #{turn_count}: WAR - #{winner.name} won 6 cards"
+
+     elsif turn.type == :mutually_assured_destruction
+       turn.pile_cards
+       turn_count += 1
+       p "Turn #{turn_count}: *mutually assured destruction* 6 cards removed from play"
+     end
+     break if turn_count == 1000000
+    end
+
+  end
+
 
 end
