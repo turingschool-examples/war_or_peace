@@ -8,7 +8,7 @@ require './lib/turn'
 class TurnTest < Minitest::Test
 
   def test_players_exsist
-    skip
+
     card1 = Card.new(:spae, 'Queen', 11)
     card2 = Card.new(:club, 'King', 12)
     cards = [card1, card2]
@@ -27,7 +27,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_turn_type_basic
-    skip
+
     card1 = Card.new(:spae, 'Queen', 11)
     card2 = Card.new(:club, 'King', 12)
     card3 = Card.new(:heard, '4', 4)
@@ -51,7 +51,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_turn_type_war
-    skip
+
     card1 = Card.new(:spade, 'Queen', 11)
     card2 = Card.new(:club, 'Jack', 10)
     card3 = Card.new(:club, '9', 9)
@@ -73,7 +73,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_turn_type_mad
-    skip
+
     card1 = Card.new(:spade, 'Queen', 11)
     card2 = Card.new(:club, 'King', 12)
     card3 = Card.new(:heart, 'Jack', 10)
@@ -99,7 +99,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_for_winner_basic
-    skip
+
     card1 = Card.new(:spade, 'Queen', 11)
     card2 = Card.new(:club, 'King', 12)
     card6 = Card.new(:club, '3', 3)
@@ -125,7 +125,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_for_winner_war
-    skip
+
     card1 = Card.new(:spade, 'Queen', 11)
     card2 = Card.new(:club, 'King', 12)
     card6 = Card.new(:club, '3', 3)
@@ -151,7 +151,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_for_winner_mad
-    skip
+
     card1 = Card.new(:spade, 'Queen', 11)
     card2 = Card.new(:club, 'King', 12)
     card6 = Card.new(:club, '3', 3)
@@ -173,12 +173,12 @@ class TurnTest < Minitest::Test
     turn.type
     winner = turn.winner
 
-    assert_equal :neither_player, turn.winner
+    assert_equal "No Winner", turn.winner
   end
 
   def test_pile_cards_basic_turn
-    
-    card1 = Card.new(:spade, 'Queen', 10)
+
+    card1 = Card.new(:spade, 'Jack', 10)
     card2 = Card.new(:club, 'King', 12)
     card6 = Card.new(:club, '3', 3)
     cards = [card1, card2, card6]
@@ -199,11 +199,11 @@ class TurnTest < Minitest::Test
     turn.type
     winner = turn.winner
 
-    assert_equal [card1, card4], turn.pile_cards
+    assert_equal @spoils_of_war = [card1, card4], turn.pile_cards
   end
 
   def test_pile_cards_war_turn
-    skip
+
     card1 = Card.new(:spade, 'Queen', 11)
     card2 = Card.new(:club, 'King', 12)
     card6 = Card.new(:club, '3', 3)
@@ -229,7 +229,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_pile_cards_mad_turn
-    skip
+    
     card1 = Card.new(:spade, 'Queen', 11)
     card2 = Card.new(:club, 'King', 12)
     card6 = Card.new(:club, '4', 4)
@@ -276,8 +276,10 @@ class TurnTest < Minitest::Test
 
     turn.type
     winner = turn.winner
+    turn.pile_cards
 
-    assert_equal [card1, card4, card2, card6], turn.award_spoils
+
+    assert_equal [card1, card2, card6, card4], turn.award_spoils(player1)
   end
 
 end
