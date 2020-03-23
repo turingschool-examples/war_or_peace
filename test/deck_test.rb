@@ -14,7 +14,6 @@ class DeckTest < Minitest::Test
 
     deck = Deck.new(cards)
 
-
     assert_instance_of Deck, deck
   end
 
@@ -80,6 +79,7 @@ class DeckTest < Minitest::Test
   end
 
   def test_it_can_add_card
+    card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
     card4 = Card.new(:club, '5', 5)
