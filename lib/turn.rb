@@ -47,5 +47,9 @@ class Turn
   end
 
   def award_spoils(winner)
+    if player1.winner == @player1
+      player1.deck << @spoils_of_war
+    else
+      player2.deck << @spoils_of_war
   end
 end
