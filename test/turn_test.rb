@@ -77,4 +77,45 @@ class TurnTest < Minitest::Test
 
     assert_equal :mutually_assured_destruction, turn.type
   end
+
+  def test_it_has_basic_winner
+
+    assert_equal @player1, @turn.winner
+  end
+
+  def test_it_has_a_war_winner
+
+    deck3 = Deck.new([@card1, @card2, @card5, @card8])
+    deck4 = Deck.new([@card4, @card3, @card6, @card7])
+
+    player3 = Player.new("JoMama", deck3)
+    player4 = Player.new("NunyaBizness", deck4)
+
+    turn = Turn.new(player3, player4)
+
+    assert_equal player4, turn.winner
+  end
+
+  def test_it_has_no_winner
+    card9 = Card.new(:clubs, '3', 3)
+
+    deck3 = Deck.new([@card1, @card2, card9, @card5])
+    deck4 = Deck.new([@card4, @card3, @card7, @card6])
+
+    player3 = Player.new("JoMama", deck3)
+    player4 = Player.new("NunyaBizness", deck4)
+
+    turn = Turn.new(player3, player4)
+
+    assert_equal "No Winner", turn.winner
+  end
+
+  # def test_it_has_basic_pile_cards
+  #   @turn.pile_cards
+  #
+  #   assert_equal [@card1, @card3], @turn.spoils_of_war
+  # end
+
+
+
 end
