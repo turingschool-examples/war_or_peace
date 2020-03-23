@@ -1,7 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require './lib/card'
-require './lib/deck'
+require_relative 'test_helper'
 
 class DeckTest < Minitest::Test
 

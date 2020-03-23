@@ -1,9 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require './lib/card'
-require './lib/deck'
-require './lib/player'
-
+require_relative 'test_helper'
 
 class PlayerTest < Minitest::Test
 
@@ -35,7 +30,7 @@ class PlayerTest < Minitest::Test
     assert_equal false, @player.has_lost?
     @player.deck.remove_card
     assert_equal true, @player.has_lost?
-    assert_equal @deck, @player.deck 
+    assert_equal @deck, @player.deck
   end
 
 

@@ -1,6 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require './lib/card'
+require_relative 'test_helper'
 
 class CardTest < Minitest::Test
   def setup
