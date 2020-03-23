@@ -45,4 +45,36 @@ class TurnTest < Minitest::Test
 
     assert_equal [], @turn.spoils_of_war
   end
+
+  def test_it_has_basic_type
+
+    assert_equal :basic, @turn.type
+  end
+
+  def test_it_has_war_type
+
+    deck3 = Deck.new([@card1, @card2, @card5, @card8])
+    deck4 = Deck.new([@card4, @card3, @card6, @card7])
+
+    player3 = Player.new("JoMama", deck3)
+    player4 = Player.new("NunyaBizness", deck4)
+
+    turn = Turn.new(player3, player4)
+
+    assert_equal :war, turn.type
+  end
+
+  def test_it_has_mutually_assured_destruction_type
+    card9 = Card.new(:clubs, '3', 3)
+
+    deck3 = Deck.new([@card1, @card2, card9, @card5])
+    deck4 = Deck.new([@card4, @card3, @card7, @card6])
+
+    player3 = Player.new("JoMama", deck3)
+    player4 = Player.new("NunyaBizness", deck4)
+
+    turn = Turn.new(player3, player4)
+
+    assert_equal :mutually_assured_destruction, turn.type
+  end
 end
