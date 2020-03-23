@@ -12,7 +12,7 @@ class Turn
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
-    @spoils_of_war =[]
+    @spoils_of_war = []
 
 
   end
@@ -31,7 +31,6 @@ class Turn
    end
 
    def winner
-   #   require 'pry'; binding.pry
      if type == :basic
             if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
                 round_winner = @player1
@@ -42,51 +41,47 @@ class Turn
       elsif type == :war
            if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
             round_winner = @player1
-           else @player2.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
+          else @player2.deck.cards[2].rank > @player2.deck.rank_of_card_at(2)
             round_winner = @player2
            end
 
       elsif type == :mutually_assured_destruction
-            round_winner = :neither_player
+            round_winner = "No Winner"
 
       end
     end
 
     def pile_cards
-      # require 'pry'; binding.pry
+
+
       if type == :basic
       @spoils_of_war << @player1.deck.cards[0]
-        @player1.deck.cards.shift
       @spoils_of_war << @player2.deck.cards[0]
-        @player2.deck.cards.shift
+      # @player1.deck.cards.shift
+      # @player2.deck.cards.shift
+      # require 'pry'; binding.pry
+
+
 
       elsif type == :war
       @spoils_of_war << @player1.deck.cards[0..2]
-        @player1.deck.cards.shift
-        @player1.deck.cards.shift
-        @player1.deck.cards.shift
       @spoils_of_war << @player2.deck.cards[0..2]
-        @player2.deck.cards.shift
-        @player2.deck.cards.shift
-        @player2.deck.cards.shift
+      @spoils_of_war.flatten
+
 
       elsif type == :mutually_assured_destruction
-        @player1.deck.cards.shift
-        @player1.deck.cards.shift
-        @player1.deck.cards.shift
-        @player2.deck.cards.shift
-        @player2.deck.cards.shift
-        @player2.deck.cards.shift
-
+        @spoils_of_war << @player1.deck.cards[0..2]
+        @spoils_of_war << @player2.deck.cards[0..2]
+        @spoils_of_war.clear
       end
-      @spoils_of_war.flatten
-      require 'pry'; binding.pry
+      # require 'pry'; binding.pry
+
     end
 
-    def award_spoils
+    def award_spoils(winner)
       winner.deck.cards << @spoils_of_war
-      winner.deck.cards.flatten
+      winner.deck.cards.flatten.uniq
+      # require 'pry'; binding.pry
     end
 
-
- end
+  end
