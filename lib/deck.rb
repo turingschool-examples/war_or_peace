@@ -1,4 +1,5 @@
 
+
 class Deck
   attr_reader :cards, :deck1, :deck2
   def initialize(cards)
@@ -42,7 +43,6 @@ class Deck
   def remove_card
     @cards.shift
     @cards
-  #  require 'pry'; binding.pry
   end
 
   def add_card(card)
@@ -50,12 +50,18 @@ class Deck
   end
 
   def shuffle
-    @cards.shuffle
-    require "pry"; binding.pry
+    @cards = @cards.shuffle
   end
 
-  def split_deck
-
+  def split_deck1
+    @cards << @cards[0..26]
+    @cards.flatten!
   end
+
+  def split_deck2
+    @cards << @cards[27..52]
+    @cards.flatten!
+  end
+
 
 end
