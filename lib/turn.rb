@@ -47,8 +47,8 @@ class Turn
       player2_type_war && player2_type_mad
       @spoils_of_war.flatten!
     elsif type == :mutually_assured_destruction
-      player_1_type_mad
-      player_2_type_mad
+      player1_type_mad
+      player2_type_mad
     end
 
   end
