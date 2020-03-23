@@ -5,9 +5,12 @@ class Player
     @name = name
     @deck = deck
   end
+
   def has_lost?
-    if deck.remove_card == true
-    else false
-    end 
+    if deck.cards == []
+      true
+    else
+      false
+    end
   end
 end
