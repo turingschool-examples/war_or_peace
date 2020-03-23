@@ -90,11 +90,12 @@ The players today are #{player_1.name} and #{player_2.name}."
 
       if counter == 1000000
         p "Turn 1000000"
+
+
         p "------DRAW-----"
         break
     end
   end
-
 
 
 end
