@@ -110,12 +110,51 @@ class TurnTest < Minitest::Test
     assert_equal "No Winner", turn.winner
   end
 
-  # def test_it_has_basic_pile_cards
-  #   @turn.pile_cards
-  #
-  #   assert_equal [@card1, @card3], @turn.spoils_of_war
-  # end
+  def test_it_has_basic_pile_cards
+    @turn.pile_cards
 
+    assert_equal [@card1, @card3], @turn.spoils_of_war
+  end
 
+  def test_it_has_war_pile_cards
+    deck3 = Deck.new([@card1, @card2, @card5, @card8])
+    deck4 = Deck.new([@card4, @card3, @card6, @card7])
 
+    player3 = Player.new("JoMama", deck3)
+    player4 = Player.new("NunyaBizness", deck4)
+
+    turn = Turn.new(player3, player4)
+
+    turn.pile_cards
+
+    assert_equal [@card1, @card2, @card5, @card4, @card3, @card6], turn.spoils_of_war
+  end
+
+  def test_it_has_mutually_assured_destruction
+    card9 = Card.new(:clubs, '3', 3)
+
+    deck3 = Deck.new([@card1, @card2, card9, @card5])
+    deck4 = Deck.new([@card4, @card3, @card7, @card6])
+
+    player3 = Player.new("JoMama", deck3)
+    player4 = Player.new("NunyaBizness", deck4)
+
+    turn = Turn.new(player3, player4)
+
+    turn.pile_cards
+
+    assert_equal [@card5], player3.deck.cards
+    assert_equal [@card6], player4.deck.cards
+    assert_equal [], turn.spoils_of_war
+  end
+
+  def test_it_has_award_spoils
+    winner = @turn.winner
+    @turn.pile_cards
+
+    @turn.award_spoils(winner)
+
+    assert_equal [@card2, @card5, @card8, @card1, @card3], @player1.deck.cards
+    assert_equal [@card4, @card6, @card7], @player2.deck.cards
+  end
 end
