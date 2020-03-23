@@ -38,8 +38,5 @@ player2.has_lost?
 
 turn = Turn.new(player1, player2)
 
-turn.player1
-turn.player2
-turn.spoils_of_war
-turn.type
+
 # require 'pry'; binding.pry
