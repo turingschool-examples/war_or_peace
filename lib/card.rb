@@ -4,9 +4,5 @@ class Card
     @suit = suit
     @value = card_value
     @rank = rank
-    #require "pry"; binding.pry
-
   end
-
-
 end
