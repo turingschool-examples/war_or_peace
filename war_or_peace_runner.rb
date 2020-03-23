@@ -37,7 +37,7 @@ suits.each {|suit|
   player2 = Player.new('Petra', deck2)
 
   game = Game.new(player1, player2)
-  game.start
+  game.start_game
 
 class Game
   attr_reader :player1, :player2, :turn_count
@@ -86,6 +86,8 @@ class Game
      end
      break if turn_count == 1000000
     end
+
+
 
   end
 
