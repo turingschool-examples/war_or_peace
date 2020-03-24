@@ -5,14 +5,23 @@ class Game
     @player1 = player1
     @player2 = player2
     @turn_count = 0
+    @current_turn = turn_count
   end
 
   def start
     p "Welcome to War! (or Peace) This game will be played with 52 cards. The players today are #{player1.name} and #{player2.name}." "Type 'GO' to start the game!"
-    reply = gets.chomp.upcase
+    reply = get_user_input
+    response(reply)
+  end
+
+  def response(reply)
     if reply == "GO"
       take_a_turn
     end
+  end
+
+  def get_user_input
+    reply = gets.chomp.upcase
   end
 
   def take_a_turn
@@ -43,16 +52,18 @@ class Game
   end
 
   def continue_playing
-    if @turn_count < 1000
-        if player1.has_lost? == false && player2.has_lost? == false
-          take_a_turn
-        elsif player1.has_lost? == true
-          p "*~*~*~* #{player2.name} has won the game! *~*~*~*"
-        elsif player2.has_lost? == true
-          p "*~*~*~* #{player1.name} has won the game! *~*~*~*"
-        else
-          p "---- DRAW ----"
-        end
+    if @turn_count < 1000 && player1.has_lost? == false && player2.has_lost? == false
+      take_a_turn
+    else
+      end_game
+    end
+  end
+
+  def end_game
+    if player1.has_lost? == true
+      p "*~*~*~* #{player2.name} has won the game! *~*~*~*"
+    elsif player2.has_lost? == true
+      p "*~*~*~* #{player1.name} has won the game! *~*~*~*"
     else
       p "---- DRAW ----"
     end
