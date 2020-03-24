@@ -33,7 +33,6 @@ class GameTest < Minitest::Test
     assert_equal "---- DRAW ----", game.end_game
   end
 
-end
    # def test_it_can_take_a_turn
    #   card1 = Card.new(:heart, 'Jack', 11)
    #   card2 = Card.new(:heart, '10', 10)
