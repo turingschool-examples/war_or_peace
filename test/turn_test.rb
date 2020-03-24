@@ -41,7 +41,7 @@ class TurnTest < Minitest::Test
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
 
-    assert_equal "Aurora", player2.name
+    assert_equal player2, turn.player2
   end
 
   def test_it_has_basic_type
