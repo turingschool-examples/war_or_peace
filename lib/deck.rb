@@ -34,8 +34,4 @@ class Deck
   def add_card(card)
     @cards << card
   end
-
-  def count_cards
-    @cards.length
-  end
 end
