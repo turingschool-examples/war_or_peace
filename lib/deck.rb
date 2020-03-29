@@ -6,7 +6,17 @@ class Deck
 
   # What is all of this? Basically, this is dealing with the Law of
   # Demeter. If someone calls deck.length, forward that to deck.cards.length.
-  def_delegators :@cards, :length, :shuffle, :shuffle!
+  def_delegators :@cards,
+                 :[]
+                 :at,
+                 :each,
+                 :empty?,
+                 :first,
+                 :last,
+                 :length,
+                 :shuffle,
+                 :shuffle!
+  # If I ever want to remove the delegators and add custom logic, I can.
 
   def self.with_cards
     deck = Deck.new

@@ -183,6 +183,13 @@ describe "Deck" do
     end
   end
 
+  describe "#length" do
+    it "determine if a deck is empty" do
+      deck = Deck.new
+      assert deck.empty?
+    end
+  end
+
   describe "with_cards" do
     it "should have 52 cards" do
       deck = Deck.with_cards
