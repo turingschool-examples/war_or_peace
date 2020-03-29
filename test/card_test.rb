@@ -17,4 +17,18 @@ describe "Card" do
     assert_equal "Queen", @card.value
     assert_equal 12, @card.rank
   end
+
+  # Let's test the unhappy path!
+
+  it "should blow up if it's given a bad suit" do
+    assert_raises ArgumentError do
+      Card.new(:pentacles, "King")
+    end
+  end
+
+  it "should blow up if it's given a bad value" do
+    assert_raises ArgumentError do
+      Card.new(:diamond, "Squire")
+    end
+  end
 end

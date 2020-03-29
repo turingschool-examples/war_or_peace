@@ -166,4 +166,27 @@ describe "Deck" do
       assert_equal @deck.cards.length, cards_before - number_of_cards_to_remove
     end
   end
+
+  describe "#split" do
+    it "should have 52 cards" do
+      deck = Deck.with_cards
+      first, second = deck.split
+
+      assert_equal 26, first.cards.length
+      assert_equal 26, second.cards.length
+    end
+  end
+
+  describe "#length" do
+    it "should delegate to the @cards.length" do
+      assert_equal @deck.cards.length, @deck.length
+    end
+  end
+
+  describe "with_cards" do
+    it "should have 52 cards" do
+      deck = Deck.with_cards
+      assert_equal 52, deck.cards.length
+    end
+  end
 end

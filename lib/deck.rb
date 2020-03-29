@@ -1,6 +1,26 @@
+require "forwardable"
 require "./lib/card"
 
 class Deck
+  extend Forwardable
+
+  # What is all of this? Basically, this is dealing with the Law of
+  # Demeter. If someone calls deck.length, forward that to deck.cards.length.
+  def_delegators :@cards, :length, :shuffle, :shuffle!
+
+  def self.with_cards
+    deck = Deck.new
+
+    SUITS.each do |suit|
+      RANKS.keys.each do |rank|
+        card = Card.new(suit, rank)
+        deck.add_card(card)
+      end
+    end
+
+    deck
+  end
+
   def initialize(cards = [])
     @cards = []
     add_cards(cards)
@@ -45,5 +65,9 @@ class Deck
 
   def percent_high_ranking
     (high_ranking_cards.length.to_f / cards.length) * 100
+  end
+
+  def split(number_of_decks = 2)
+    shuffle.each_slice(@cards.length / number_of_decks).map { |cards| Deck.new(cards) }
   end
 end
