@@ -25,4 +25,11 @@ class DeckTest < Minitest::Test
     assert_equal cards, deck.cards
   end
 
+  def test_it_can_query_rank_of_card
+    cards = setup
+    deck = Deck.new(cards)
+    assert_equal 12, deck.rank_of_card_at(0)
+    assert_equal 14, deck.rank_of_card_at(2)
+  end
+
 end
