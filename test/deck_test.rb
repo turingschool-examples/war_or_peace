@@ -54,6 +54,8 @@ class DeckTest < Minitest::Test
     deck = Deck.new(cards)
     top_deck = deck.remove_card
     assert_equal "Queen", top_deck.value
+    assert_equal 2, deck.cards.length
+    assert_equal 50.0, deck.percent_high_ranking
   end
 
 end
