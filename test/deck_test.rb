@@ -49,4 +49,11 @@ class DeckTest < Minitest::Test
     assert_equal 66.67, deck.percent_high_ranking
   end
 
+  def test_it_can_remove_cards_from_the_top
+    cards = setup
+    deck = Deck.new(cards)
+    top_deck = deck.remove_card
+    assert_equal cards[0], top_deck
+  end
+
 end
