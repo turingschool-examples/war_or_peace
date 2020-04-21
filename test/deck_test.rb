@@ -53,7 +53,7 @@ class DeckTest < Minitest::Test
     cards = setup
     deck = Deck.new(cards)
     top_deck = deck.remove_card
-    assert_equal cards[0], top_deck
+    assert_equal "Queen", top_deck.value
   end
 
 end
