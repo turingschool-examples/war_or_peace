@@ -32,4 +32,14 @@ class DeckTest < Minitest::Test
     assert_equal 14, deck.rank_of_card_at(2)
   end
 
+  def test_it_can_query_high_ranking_cards
+    cards = setup
+    deck = Deck.new(cards)
+    highs = deck.high_ranking_cards
+    all_high = highs.all? do |high|
+      high.rank >= 11
+    end
+    assert all_high
+  end
+
 end
