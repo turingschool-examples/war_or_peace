@@ -58,4 +58,21 @@ class DeckTest < Minitest::Test
     assert_equal 50.0, deck.percent_high_ranking
   end
 
+  def test_it_can_add_a_card_to_the_bottom
+    cards = setup
+    deck = Deck.new(cards)
+    card4 = Card.new(:club, "5", 5)
+
+    deck.remove_card
+    assert_equal 2, deck.cards.length
+    assert_equal 50.0, deck.percent_high_ranking
+
+    deck.add_card(card4)
+    assert_equal "5", deck.cards.last.value
+    assert_equal 3, deck.cards.length
+    assert_equal 1, deck.high_ranking_cards.length
+    assert_equal 33.33, deck.percent_high_ranking
+
+  end
+
 end
