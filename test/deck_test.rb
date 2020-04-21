@@ -14,8 +14,15 @@ class DeckTest < Minitest::Test
   end
 
   def test_it_exists
-    deck = Deck.new
+    cards = setup
+    deck = Deck.new(cards)
     assert_instance_of Deck, deck
+  end
+
+  def test_it_has_cards
+    cards = setup
+    deck = Deck.new(cards)
+    assert_equal cards, deck.cards
   end
 
 end
