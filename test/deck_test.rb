@@ -42,4 +42,11 @@ class DeckTest < Minitest::Test
     assert all_high
   end
 
+  def test_it_can_query_percent_high_ranking
+    cards = setup
+    deck = Deck.new(cards)
+    # require "pry"; binding.pry
+    assert_equal 66.67, deck.percent_high_ranking
+  end
+
 end
