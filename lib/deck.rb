@@ -20,4 +20,8 @@ class Deck
     high_cards
   end
 
+  def percent_high_ranking
+
+  end
+
 end
