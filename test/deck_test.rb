@@ -39,7 +39,7 @@ class DeckTest < Minitest::Test
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
-    assert_equal 50, deck.percent_high_ranking
+    assert_equal 66.67, deck.percent_high_ranking
   end
 
 end
