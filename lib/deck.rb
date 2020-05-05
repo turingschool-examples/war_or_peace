@@ -10,4 +10,14 @@ class Deck
     @cards[position].rank
   end
 
+  def high_ranking_cards
+    high_cards = []
+    @cards.each do |card|
+      if card.rank > 9
+        high_cards << card
+      end
+    end
+    high_cards
+  end
+
 end
