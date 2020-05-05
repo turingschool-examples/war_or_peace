@@ -21,13 +21,21 @@ class Deck
   end
 
   def percent_high_ranking
-    highvalue = []
+    highrank = []
     cards.each do |card|
       if card.rank >= 11
-        highvalue.push(card)
+        highrank.push(card)
       end
     end
-    ((highvalue.count.to_f * 100) / (cards.count.to_f)).round(2)
+    ((highrank.count.to_f * 100) / (cards.count.to_f)).round(2)
+  end
+
+  def remove_card
+    cards.shift
+  end
+
+  def add_card(new_card)
+    cards.push(new_card)
   end
 
 end
