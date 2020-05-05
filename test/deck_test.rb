@@ -48,7 +48,7 @@ class DeckTest < Minitest::Test
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
-    assert_equal [card2, card3], deck.remove_card
+    assert_equal card1, deck.remove_card
   end
 
 end
