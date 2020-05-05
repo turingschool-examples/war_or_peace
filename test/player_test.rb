@@ -29,6 +29,7 @@ class DeckTest < Minitest::Test
     assert_equal false, player.has_lost?
     player.deck.remove_card
     assert_equal true, player.has_lost?
+    assert_equal [], player.deck.cards
   end
 
 end
