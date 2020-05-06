@@ -56,27 +56,34 @@ class Turn
 
   def pile_cards
     if type == :mutually_assured_destruction
-      3.times do
-        take_cards(@player1)
-      end
-      3.times do
-        take_cards(@player2)
-      end
+      mad_pile
     elsif type == :war
-      3.times do
-        @spoils_of_war << take_cards(@player1)
-      end
-      3.times do
-        @spoils_of_war << take_cards(@player2)
-      end
+      war_pile
     elsif type == :basic
-      @spoils_of_war << take_cards(@player1)
-      @spoils_of_war << take_cards(@player2)
+      basic_pile
     end
   end
 
-  def take_cards(player)
+  def take_card(player)
     player.deck.cards.shift
+  end
+
+  def mad_pile
+    @players.each do |player|
+      3.times { take_card(player) }
+    end
+  end
+
+  def war_pile
+    @players.each do |player|
+      3.times { @spoils_of_war << take_card(player) }
+    end
+  end
+
+  def basic_pile
+    @players.each do |player|
+      @spoils_of_war << take_card(player)
+    end
   end
 
 end
