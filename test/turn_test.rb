@@ -249,26 +249,4 @@ class TurnTest < Minitest::Test
     assert_equal expected, winner.deck.cards
   end
 
-  # def test_it_awards_nothing_when_mad_no_winner
-  #   skip
-  #   player1 = Player.new("Megan", @mad_deck_1)
-  #   player2 = Player.new("Aurora", @mad_deck_2)
-  #
-  #   turn = Turn.new(player1, player2)
-  #
-  #   assert_empty turn.spoils_of_war
-  #
-  #   expect1 = [player1.deck.cards.last]
-  #   expect2 = [player2.deck.cards.last]
-  #
-  #   turn.pile_cards
-  #
-  #   assert_empty turn.spoils_of_war
-  #
-  #   turn.award_spoils
-  #
-  #   assert_equal expect1, player1.deck.cards
-  #   assert_equal expect2, player2.deck.cards
-  # end
-
 end
