@@ -143,22 +143,22 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_piles_three_cards_when_war
-    player1 = Player.new("Megan", @basic_deck_1)
-    player2 = Player.new("Aurora", @basic_deck_2)
+    player1 = Player.new("Megan", @war_deck_1)
+    player2 = Player.new("Aurora", @war_deck_2)
 
     turn = Turn.new(player1, player2)
 
-    assert_equal :basic, turn.type
+    assert_equal :war, turn.type
 
   end
 
   def test_it_exiles_three_cards_when_mad
-    player1 = Player.new("Megan", @basic_deck_1)
-    player2 = Player.new("Aurora", @basic_deck_2)
+    player1 = Player.new("Megan", @mad_deck_1)
+    player2 = Player.new("Aurora", @mad_deck_2)
 
     turn = Turn.new(player1, player2)
 
-    assert_equal :basic, turn.type
+    assert_equal :mutually_assured_destruction, turn.type
 
   end
 
