@@ -55,17 +55,17 @@ class Turn
   end
 
   def pile_cards
-    if type == :basic
-      @players.each do |player|
-        first_card = player.deck.cards.shift
-        @spoils_of_war << first_card
+    if type == :war
+      3.times do
+        @spoils_of_war << @player1.deck.cards.shift
       end
+      3.times do
+        @spoils_of_war << @player2.deck.cards.shift
+      end
+    elsif type == :basic
+      @spoils_of_war << @player1.deck.cards.shift
+      @spoils_of_war << @player2.deck.cards.shift
     end
   end
-
-  # if type == :mutually_assured_destruction
-  #   "No Winner"
-  # elsif type == :war
-  #   war_winner
 
 end
