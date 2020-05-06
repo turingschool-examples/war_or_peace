@@ -147,10 +147,11 @@ class TurnTest < Minitest::Test
     assert_equal expected, turn.spoils_of_war
 
     assert_equal 3, player1.deck.cards.size
+    assert_equal 3, player2.deck.cards.size
   end
 
   def test_it_piles_three_cards_when_war
-    skip
+    # skip
     player1 = Player.new("Megan", @war_deck_1)
     player2 = Player.new("Aurora", @war_deck_2)
 
@@ -160,11 +161,14 @@ class TurnTest < Minitest::Test
 
     assert_empty turn.spoils_of_war
 
-    turn.pile_cards
-
     expected = [@war_deck_1.cards[0..2], @war_deck_2.cards[0..2]].flatten
 
+    turn.pile_cards
+
     assert_equal expected, turn.spoils_of_war
+
+    assert_equal 1, player1.deck.cards.size
+    assert_equal 1, player2.deck.cards.size
   end
 
   def test_it_exiles_three_cards_when_mad
