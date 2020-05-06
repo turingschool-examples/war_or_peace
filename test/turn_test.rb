@@ -91,31 +91,40 @@ class TurnTest < Minitest::Test
   end
 
 
-  def test_it_knows_basic_winner
+  def test_it_knows_basic_winner_has_higher_first_card
     skip
     player1 = Player.new("Megan", @basic_deck_1)
     player2 = Player.new("Aurora", @basic_deck_2)
 
     turn = Turn.new(player1, player2)
 
+    assert_equal :basic, turn.type
+
+    assert player1.deck.first_card > player2.deck.first_card
+
     assert_equal player1, turn.winner
   end
 
-  def test_it_knows_war_winner
+  def test_it_knows_war_winner_has_higher_third_card
     skip
     player1 = Player.new("Megan", @war_deck_1)
     player2 = Player.new("Aurora", @war_deck_2)
 
     turn = Turn.new(player1, player2)
 
-    assert_equal "Aurora", turn.winner
+    assert player1.deck.third_card < player2.deck.third_card
+
+    assert_equal player2, turn.winner
   end
 
-  def test_it_knows_mad_winner
+  def test_it_knows_mad_winner_when_first_and_third_cards_equal
     player1 = Player.new("Megan", @mad_deck_1)
     player2 = Player.new("Aurora", @mad_deck_2)
 
     turn = Turn.new(player1, player2)
+
+    assert player1.deck.first_card == player2.deck.first_card
+    assert player1.deck.third_card == player2.deck.third_card
 
     assert_equal "No Winner", turn.winner
   end
