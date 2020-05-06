@@ -172,7 +172,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_exiles_three_cards_when_mad
-    skip
+    # skip
     player1 = Player.new("Megan", @mad_deck_1)
     player2 = Player.new("Aurora", @mad_deck_2)
 
@@ -180,7 +180,15 @@ class TurnTest < Minitest::Test
 
     assert_empty turn.spoils_of_war
 
+    expect1 = [player1.deck.cards.last]
+    expect2 = [player2.deck.cards.last]
+
     turn.pile_cards
+
+    assert_empty turn.spoils_of_war
+
+    assert_equal expect1, player1.deck.cards
+    assert_equal expect2, player2.deck.cards
   end
 
 end
