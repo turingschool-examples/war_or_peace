@@ -10,6 +10,10 @@ class Player
   end
 
   def has_lost?
-    @has_lost 
+    if deck.cards.empty?
+      @has_lost = true
+    else
+      @has_lost
+    end 
   end
 end
