@@ -32,8 +32,8 @@ class Turn
 
   def war_winner
     winner = nil
+    card_rank = 0
     @players.each do |player|
-      card_rank = 0
       if player.deck.third_card > card_rank
         card_rank = player.deck.third_card
         winner = player
@@ -44,8 +44,8 @@ class Turn
 
   def basic_winner
     winner = nil
+    card_rank = 0
     @players.each do |player|
-      card_rank = 0
       if player.deck.first_card > card_rank
         card_rank = player.deck.first_card
         winner = player
