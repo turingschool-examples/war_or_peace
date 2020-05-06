@@ -26,7 +26,7 @@ class Turn
     elsif type == :war
       war_winner
     elsif type == :basic
-      #player with higher first card
+      basic_winner
     end
   end
 
@@ -41,5 +41,18 @@ class Turn
     end
     winner
   end
+
+  def basic_winner
+    winner = nil
+    @players.each do |player|
+      card_rank = 0
+      if player.deck.first_card > card_rank
+        card_rank = player.deck.first_card
+        winner = player
+      end
+    end
+    winner
+  end
+
 
 end
