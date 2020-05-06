@@ -16,4 +16,10 @@ class PlayerTest < Minitest::Test
   def test_it_exists
     assert_instance_of Player, @player
   end
+
+  def test_it_has_name_and_deck
+    assert_equal 'Clarisa', @player.name
+    assert_equal @deck, @player.deck
+    # not sure why expectation of second assertion doesn't work with [@card1, @card2, @card3]
+  end
 end
