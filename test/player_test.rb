@@ -24,5 +24,14 @@ class PlayerTest < Minitest::Test
 
   def test_it_can_determine_if_player_has_lost_the_game
     assert_equal false, @player.has_lost?
+
+    @player.deck.remove_card
+    assert_equal false, @player.has_lost?
+
+    @player.deck.remove_card
+    assert_equal false, @player.has_lost?
+
+    @player.deck.remove_card
+    assert_equal true, @player.has_lost?
   end
 end

@@ -7,6 +7,6 @@ class Player
   end
 
   def has_lost?
-    false
+    @deck.cards.empty?
   end
 end
