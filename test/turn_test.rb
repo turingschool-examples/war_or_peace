@@ -112,6 +112,8 @@ class TurnTest < Minitest::Test
 
     turn = Turn.new(player1, player2)
 
+    assert_equal :war, turn.type
+
     assert player1.deck.third_card < player2.deck.third_card
 
     assert_equal player2, turn.winner
@@ -122,6 +124,8 @@ class TurnTest < Minitest::Test
     player2 = Player.new("Aurora", @mad_deck_2)
 
     turn = Turn.new(player1, player2)
+
+    assert_equal :mutually_assured_destruction, turn.type
 
     assert player1.deck.first_card == player2.deck.first_card
     assert player1.deck.third_card == player2.deck.third_card
