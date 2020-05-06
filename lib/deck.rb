@@ -9,6 +9,14 @@ class Deck
     @cards[i].rank
   end
 
+  def first_card
+    rank_of_card_at(0)
+  end
+
+  def third_card
+    rank_of_card_at(2)
+  end
+
   def high_ranking_cards
     highs = []
     @cards.each do |card|
