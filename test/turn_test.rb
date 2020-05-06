@@ -138,12 +138,11 @@ class TurnTest < Minitest::Test
     turn = Turn.new(player1, player2)
 
     assert_equal :basic, turn.type
-
     assert_empty turn.spoils_of_war
 
-    turn.pile_cards
-
     expected = [@basic_deck_1.cards[0], @basic_deck_2.cards[0]]
+
+    turn.pile_cards
 
     assert_equal expected, turn.spoils_of_war
 
