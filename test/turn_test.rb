@@ -191,4 +191,16 @@ class TurnTest < Minitest::Test
     assert_equal expect2, player2.deck.cards
   end
 
+  def test_it_awards_spoils_to_the_basic_winner
+
+  end
+
+  def test_it_awards_spoils_to_the_war_winner
+
+  end
+
+  def test_it_awards_nothing_when_mad_no_winner
+
+  end
+
 end
