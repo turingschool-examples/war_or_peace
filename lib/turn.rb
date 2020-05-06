@@ -19,4 +19,14 @@ class Turn
     end
   end
 
+  def winner
+    if type == :mutually_assured_destruction
+      "No Winner"
+    elsif type == :war
+      #player with higher third card
+    elsif type == :basic
+      #player with higher first card
+    end
+  end
+
 end
