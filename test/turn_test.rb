@@ -99,7 +99,7 @@ class TurnTest < Minitest::Test
 
     turn = Turn.new(player1, player2)
 
-    assert_equal "", turn.winner
+    assert_equal player1, turn.winner
   end
 
   def test_it_knows_war_winner
@@ -108,7 +108,7 @@ class TurnTest < Minitest::Test
 
     turn = Turn.new(player1, player2)
 
-    assert_equal "", turn.winner
+    assert_equal "Aurora", turn.winner
   end
 
   def test_it_knows_mad_winner
@@ -117,7 +117,7 @@ class TurnTest < Minitest::Test
 
     turn = Turn.new(player1, player2)
 
-    assert_equal "", turn.winner
+    assert_equal "No Winner", turn.winner
   end
 
 end
