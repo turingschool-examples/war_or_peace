@@ -54,5 +54,17 @@ class Turn
     winner
   end
 
+  def pile_cards
+    if type == :basic
+      @spoils_of_war = @players.map do |player|
+        player.deck.cards[0]
+      end
+    end
+  end
+
+  # if type == :mutually_assured_destruction
+  #   "No Winner"
+  # elsif type == :war
+  #   war_winner
 
 end
