@@ -131,4 +131,35 @@ class TurnTest < Minitest::Test
     assert_equal "No Winner", turn.winner
   end
 
+  def test_it_piles_one_card_when_basic
+    player1 = Player.new("Megan", @basic_deck_1)
+    player2 = Player.new("Aurora", @basic_deck_2)
+
+    turn = Turn.new(player1, player2)
+
+    assert_equal :basic, turn.type
+
+
+  end
+
+  def test_it_piles_three_cards_when_war
+    player1 = Player.new("Megan", @basic_deck_1)
+    player2 = Player.new("Aurora", @basic_deck_2)
+
+    turn = Turn.new(player1, player2)
+
+    assert_equal :basic, turn.type
+
+  end
+
+  def test_it_exiles_three_cards_when_mad
+    player1 = Player.new("Megan", @basic_deck_1)
+    player2 = Player.new("Aurora", @basic_deck_2)
+
+    turn = Turn.new(player1, player2)
+
+    assert_equal :basic, turn.type
+
+  end
+
 end
