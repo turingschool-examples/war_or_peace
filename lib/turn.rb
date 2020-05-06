@@ -6,6 +6,7 @@ class Turn
   def initialize(p1, p2)
     @player1 = p1
     @player2 = p2
+    @players = [p1, p2]
     @spoils_of_war = []
   end
 
@@ -23,10 +24,22 @@ class Turn
     if type == :mutually_assured_destruction
       "No Winner"
     elsif type == :war
-      #player with higher third card
+      war_winner
     elsif type == :basic
       #player with higher first card
     end
+  end
+
+  def war_winner
+    winner = nil
+    @players.each do |player|
+      card_rank = 0
+      if player.deck.third_card > card_rank
+        card_rank = player.deck.third_card
+        winner = player
+      end
+    end
+    winner
   end
 
 end

@@ -106,7 +106,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_knows_war_winner_has_higher_third_card
-    skip
+    # skip
     player1 = Player.new("Megan", @war_deck_1)
     player2 = Player.new("Aurora", @war_deck_2)
 
