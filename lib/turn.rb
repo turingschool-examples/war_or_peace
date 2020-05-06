@@ -56,8 +56,9 @@ class Turn
 
   def pile_cards
     if type == :basic
-      @spoils_of_war = @players.map do |player|
-        player.deck.cards[0]
+      @players.each do |player|
+        first_card = player.deck.cards.shift
+        @spoils_of_war << first_card
       end
     end
   end
