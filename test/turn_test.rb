@@ -139,10 +139,17 @@ class TurnTest < Minitest::Test
 
     assert_equal :basic, turn.type
 
+    assert_empty turn.spoils_of_war
 
+    turn.pile_cards
+
+    expected = [@basic_deck_1.cards[0], @basic_deck_2.cards[0]]
+
+    assert_equal expected, turn.spoils_of_war
   end
 
   def test_it_piles_three_cards_when_war
+    skip
     player1 = Player.new("Megan", @war_deck_1)
     player2 = Player.new("Aurora", @war_deck_2)
 
@@ -150,16 +157,25 @@ class TurnTest < Minitest::Test
 
     assert_equal :war, turn.type
 
+    assert_empty turn.spoils_of_war
+
+    turn.pile_cards
+
+    expected = #[@war_deck_1.cards[0..2], @war_deck_2.cards[0..2]]
+
+    assert_equal expected, turn.spoils_of_war
   end
 
   def test_it_exiles_three_cards_when_mad
+    skip
     player1 = Player.new("Megan", @mad_deck_1)
     player2 = Player.new("Aurora", @mad_deck_2)
 
     turn = Turn.new(player1, player2)
 
-    assert_equal :mutually_assured_destruction, turn.type
+    assert_empty turn.spoils_of_war
 
+    turn.pile_cards
   end
 
 end
