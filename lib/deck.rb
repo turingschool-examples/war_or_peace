@@ -20,10 +20,10 @@ class Deck
   end
 
   def remove_card
-    @cards.shift(1)
+    @cards.shift
   end
 
   def add_card(card)
-    @cards << card 
+    @cards << card
   end
 end
