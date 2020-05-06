@@ -11,13 +11,21 @@ class Turn
   end
 
   def type
-    if @player1.deck.first_card == @player2.deck.first_card && @player1.deck.third_card == @player2.deck.third_card
+    if first_same? && third_same?
       :mutually_assured_destruction
-    elsif @player1.deck.first_card == @player2.deck.first_card
+    elsif first_same?
       :war
     else
       :basic
     end
+  end
+
+  def first_same?
+    @player1.deck.first_card == @player2.deck.first_card
+  end
+
+  def third_same?
+    @player1.deck.third_card == @player2.deck.third_card
   end
 
   def winner
