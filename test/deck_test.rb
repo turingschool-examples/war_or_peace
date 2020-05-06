@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require '../lib/card'
-require '../lib/deck'
+require './lib/card'
+require './lib/deck'
 
 class DeckTest < Minitest::Test
 
@@ -90,6 +90,5 @@ class DeckTest < Minitest::Test
     deck.remove_card
     assert_equal 50.00, deck.percent_high_ranking
   end
-
 
 end

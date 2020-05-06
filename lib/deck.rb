@@ -6,10 +6,6 @@ class Deck
     @cards = cards
   end
 
-  def cards
-    @cards
-  end
-
   def rank_of_card_at(position)
     cards.at(position).rank
   end
