@@ -86,4 +86,10 @@ class Turn
     end
   end
 
+  def award_spoils(winner)
+    until @spoils_of_war.empty? do
+      winner.deck.cards << @spoils_of_war.shift
+    end
+  end
+
 end
