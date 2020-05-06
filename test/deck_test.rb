@@ -4,4 +4,8 @@ require './lib/deck'
 
 class DeckTest < Minitest::Test
 
+  def setup
+    
+  end
+
 end
