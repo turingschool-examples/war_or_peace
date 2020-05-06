@@ -10,8 +10,13 @@ class Turn
   end
 
   def type
-    :basic if @player1.deck.first_card != @player2.deck.first_card
-    
+    if @player1.deck.first_card == @player2.deck.first_card && @player1.deck.third_card == @player2.deck.third_card
+      :mutually_assured_destruction
+    elsif @player1.deck.first_card == @player2.deck.first_card
+      :war
+    else
+      :basic
+    end
   end
 
 end
