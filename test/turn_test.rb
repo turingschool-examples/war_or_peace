@@ -192,15 +192,76 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_awards_spoils_to_the_basic_winner
+    player1 = Player.new("Megan", @basic_deck_1)
+    player2 = Player.new("Aurora", @basic_deck_2)
 
+    turn = Turn.new(player1, player2)
+
+    assert_equal :basic, turn.type
+    assert_equal player1, turn.winner
+
+    pre_pile = player1.deck.cards
+
+    turn.pile_cards
+
+    pile = turn.spoils_of_war
+
+    expected = []
+    expected << pre_pile
+    expected << pile
+    expected.flatten!
+
+    turn.award_spoils
+
+    assert_equal expected, player1.deck.cards
   end
 
   def test_it_awards_spoils_to_the_war_winner
+    skip
+    player1 = Player.new("Megan", @war_deck_1)
+    player2 = Player.new("Aurora", @war_deck_2)
 
+    turn = Turn.new(player1, player2)
+
+    assert_equal :war, turn.type
+    assert_equal player2, turn.winner
+
+    pre_pile = player2.deck.cards
+
+    turn.pile_cards
+
+    pile = turn.spoils_of_war
+
+    expected = []
+    expected << pre_pile
+    expected << pile
+    expected.flatten!
+
+    turn.award_spoils
+
+    assert_equal expected, nil
   end
 
   def test_it_awards_nothing_when_mad_no_winner
+    skip
+    player1 = Player.new("Megan", @mad_deck_1)
+    player2 = Player.new("Aurora", @mad_deck_2)
 
+    turn = Turn.new(player1, player2)
+
+    assert_empty turn.spoils_of_war
+
+    expect1 = [player1.deck.cards.last]
+    expect2 = [player2.deck.cards.last]
+
+    turn.pile_cards
+
+    assert_empty turn.spoils_of_war
+
+    turn.award_spoils
+
+    assert_equal expect1, player1.deck.cards
+    assert_equal expect2, player2.deck.cards
   end
 
 end
