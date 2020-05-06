@@ -55,7 +55,14 @@ class Turn
   end
 
   def pile_cards
-    if type == :war
+    if type == :mutually_assured_destruction
+      3.times do
+        @player1.deck.cards.shift
+      end
+      3.times do
+        @player2.deck.cards.shift
+      end
+    elsif type == :war
       3.times do
         @spoils_of_war << @player1.deck.cards.shift
       end
