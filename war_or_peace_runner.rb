@@ -4,17 +4,21 @@ require './lib/player'
 require './lib/turn'
 require './lib/start'
 
-l1 = "Welcome to War! (or Peace) This game will be played with 52 cards."
+@l1 = "Welcome to War! (or Peace) This game will be played with 52 cards."
 l2 = "The players today are #{"Megan"} and #{"Aurora"}."
 l3 = "Type 'GO' to start the game!"
 
-l1.length.times { print "-" }
-puts
-puts l1
+def dashes
+  @l1.length.times { print "-" }
+  puts
+end
+
+dashes
+puts @l1
 puts l2
 puts l3
-l1.length.times { print "-" }
-puts
+dashes
+
 
 loop do
   start = gets.chomp
@@ -60,3 +64,6 @@ deck2 = Deck.new(card_arr[26..52])
 
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
+
+p "We are gonna make it fam"
+dashes
