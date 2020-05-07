@@ -20,6 +20,9 @@ class Deck
     high_rank
   end
 
+#new comment
+# new new comment
+
   # def percent_high_ranking
   #   ranks = []
   #   total_rank_sum = 0
