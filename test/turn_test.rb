@@ -42,9 +42,18 @@ class TurnTest < Minitest::Test
     assert_equal :basic, @turn.type
   end
 
-  # test other turn types
+  # test identifying other turn types
 
   def test_it_can_identify_a_turn_winner_when_basic
     assert_equal @player1, @turn.winner
   end
+
+  # test identifying winners with other turn types
+
+  def test_pile_cards_method_sends_top_card_from_each_players_deck_to_spoils_of_war
+    @turn.pile_cards
+    assert_equal [@card1, @card3], @turn.spoils_of_war
+  end
+
+  # test pile_cards for other turn types
 end
