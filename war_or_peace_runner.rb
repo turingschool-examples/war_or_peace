@@ -68,9 +68,6 @@ deck2 = Deck.new(card_arr[26..52])
 p1 = Player.new("Megan", deck1)
 p2 = Player.new("Aurora", deck2)
 
-# p "We are gonna make it fam"
-dashes
-
 # WHERE IS MY INFORMATION LIVING?
   # Where is the game being played?
 
@@ -156,3 +153,13 @@ dashes
 
   # (LATER) the runner get.chomp to start the game?
     # any other interactions?
+
+# possible data structure for command-line interface
+stat_hash ={  mutually_assured_destruction:
+                "*mutually assured destruction* 6 cards removed from play",
+              war:
+                "WAR - #{turn.winner.name} won 6 cards",
+              basic:
+                "#{turn.winner.name} won 2 cards" }
+
+puts "Turn #{turn_n}: #{stat_hash[turn.type]}"
