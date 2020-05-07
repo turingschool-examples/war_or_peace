@@ -1,3 +1,4 @@
+#Created card class
 class Card
 
   attr_reader :suit,
