@@ -57,3 +57,6 @@ card_arr.shuffle!
 
 deck1 = Deck.new(card_arr[0..25])
 deck2 = Deck.new(card_arr[26..52])
+
+player1 = Player.new("Megan", deck1)
+player2 = Player.new("Aurora", deck2)
