@@ -42,20 +42,7 @@ class Deck
     @cards
   end
 
-
-
-
-
-
   def add_card(new_card)
     @cards << new_card
   end
-
-
-
-
-
-
-
-
 end

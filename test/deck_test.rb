@@ -67,9 +67,4 @@ class DeckTest < Minitest::Test
 
     assert_equal [card1, card2, card3, card4], deck.add_card(card4)
   end
-
-
-
-
-
 end
