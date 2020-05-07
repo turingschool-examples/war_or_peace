@@ -1,10 +1,11 @@
 #Deck.rb
 require 'pry'
 class Deck
-  attr_reader :cards
+  attr_reader :cards, :rank
 
   def initialize(cards)
     @cards = cards
+    @rank = rank
   end
 
   def rank_of_card_at(index)
@@ -15,9 +16,10 @@ class Deck
     new_array = []
     cards.each do |card|
       if card.rank >= 11
-        return new_array << card
+        new_array << card
       end
     end
+    new_array
   end
 
   def percent_high_ranking
@@ -34,13 +36,16 @@ class Deck
     end
 
     percent = (x / i) * 100
-    return percent.round(2)
+    percent.round(2)
   end
 
   def remove_card
     cards.shift
-    return cards
+    cards
   end
 
+  def add_card(new_card)
+    @cards << new_card
+  end
 
 end
