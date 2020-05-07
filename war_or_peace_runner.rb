@@ -53,4 +53,7 @@ proto_arr.length.times do |i|
   card_arr << Card.new(proto_arr[i]["suit"], proto_arr[i]["value"], proto_arr[i]["rank"])
 end
 
-# p card_arr.size
+card_arr.shuffle!
+
+deck1 = Deck.new(card_arr[0..25])
+deck2 = Deck.new(card_arr[26..52])
