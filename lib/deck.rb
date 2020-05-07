@@ -21,7 +21,7 @@ class Deck
   end
 
   def percent_high_ranking_cards
-    high_cards = []
+    high_cards = [] # change to instance variable?
     cards.each do |card|
       if card.rank > 10
         high_cards << card
@@ -34,10 +34,13 @@ class Deck
     cards.shift
   end
 
+  # def add_card(suit, value, rank)
+  #   card4 = Card.new(suit, value, rank)
+  #   cards << card4
+  # end 
+
+
 end
 
 
-
-
-# remove_card (from top of deck)
 # add_card (to bottom of deck)
