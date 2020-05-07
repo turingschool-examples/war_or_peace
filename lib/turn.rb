@@ -20,8 +20,10 @@ class Turn
   def type
     if (@player1.deck.cards[0].rank == @player2.deck.cards[0].rank) && (@player1.deck.cards[2].rank == @player2.deck.cards[2].rank)
       :mutually_assured_destruction
+
     elsif @player1.deck.cards[0].rank == @player2.deck.cards[0].rank
       :war
+
     else
       :basic
     end
@@ -34,14 +36,16 @@ class Turn
       elsif @player2.deck.cards[0].rank > @player1.deck.cards[0].rank
         @player2
       end
+
     elsif type == :war
       if @player1.deck.cards[2].rank > @player2.deck.cards[2].rank
         @player1
       elsif @player2.deck.cards[2].rank > @player1.deck.cards[2].rank
         @player2
       end
+
     elsif type == :mutually_assured_destruction
-      puts "No Winner."
+      @winner = "No Winner"
     end
   end
 
@@ -61,8 +65,10 @@ class Turn
         end
 
     elsif type == :mutually_assured_destruction
-      @player1.deck.cards.delete(@player1.deck.cards[0..2]).flatten!
-      @player2.deck.cards.delete(@player2.deck.cards[0..2]).flatten!
+      3.times do
+        @player1.deck.remove_card
+        @player2.deck.remove_card
+      end
     end
   end
 
