@@ -20,23 +20,30 @@ class Turn
     end
   end
 
-  def first_same?
-    @player1.deck.first_card == @player2.deck.first_card
-  end
-
-  def third_same?
-    @player1.deck.third_card == @player2.deck.third_card
-  end
-
   def winner
+    winner =  { mutually_assured_destruction: "No Winner",
+                war: war_winner,
+                basic: basic_winner }
+    winner[type]
+  end
+
+  def pile_cards
     if type == :mutually_assured_destruction
-      "No Winner"
+      mad_pile
     elsif type == :war
-      war_winner
+      war_pile
     elsif type == :basic
-      basic_winner
+      basic_pile
     end
   end
+
+  def award_spoils(winner)
+    until @spoils_of_war.empty? do
+      winner.deck.cards << @spoils_of_war.shift
+    end
+  end
+
+  # helper methods
 
   def war_winner
     winner = nil
@@ -62,14 +69,12 @@ class Turn
     winner
   end
 
-  def pile_cards
-    if type == :mutually_assured_destruction
-      mad_pile
-    elsif type == :war
-      war_pile
-    elsif type == :basic
-      basic_pile
-    end
+  def first_same?
+    @player1.deck.first_card == @player2.deck.first_card
+  end
+
+  def third_same?
+    @player1.deck.third_card == @player2.deck.third_card
   end
 
   def take_card(player)
@@ -91,12 +96,6 @@ class Turn
   def basic_pile
     @players.each do |player|
       @spoils_of_war << take_card(player)
-    end
-  end
-
-  def award_spoils(winner)
-    until @spoils_of_war.empty? do
-      winner.deck.cards << @spoils_of_war.shift
     end
   end
 
