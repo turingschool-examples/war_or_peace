@@ -6,7 +6,7 @@ require './lib/turn'
 class Start
 
   def start
-    p "Program start"
+    p "Hello World"
   end
 
 end
