@@ -65,6 +65,23 @@ end
 deck1 = Deck.new(card_arr[0..25])
 deck2 = Deck.new(card_arr[26..52])
 
+# show me
+print "Deck 1: "
+deck1.cards.each do |card|
+  print "#{card.value} of #{card.suit}s, "
+end
+
+puts
+puts
+
+print "Deck 2: "
+deck2.cards.each do |card|
+  print "#{card.value} of #{card.suit}s, "
+end
+
+puts
+puts
+
 p1 = Player.new("Megan", deck1)
 p2 = Player.new("Aurora", deck2)
 
@@ -155,11 +172,12 @@ p2 = Player.new("Aurora", deck2)
     # any other interactions?
 
 # possible data structure for command-line interface
-stat_hash ={  mutually_assured_destruction:
-                "*mutually assured destruction* 6 cards removed from play",
-              war:
-                "WAR - #{turn.winner.name} won 6 cards",
-              basic:
-                "#{turn.winner.name} won 2 cards" }
 
-puts "Turn #{turn_n}: #{stat_hash[turn.type]}"
+# stat_hash ={  mutually_assured_destruction:
+#                 "*mutually assured destruction* 6 cards removed from play",
+#               war:
+#                 "WAR - #{turn.winner.name} won 6 cards",
+#               basic:
+#                 "#{turn.winner.name} won 2 cards" }
+#
+# puts "Turn #{turn_n}: #{stat_hash[turn.type]}"
