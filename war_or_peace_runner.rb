@@ -26,8 +26,6 @@ loop do
   end
 end
 
-ranks = (1..13).to_a
-
 values = (2..10).to_a
 values = values.map do |value|
   value.to_s
@@ -41,16 +39,18 @@ end
 
 suits = [:club, :spade, :heart, :diamond]
 
-card_arr = []
+proto_arr = []
 
 suits.each do |suit|
   values.each_with_index do |value, i|
-    card_arr << {"suit" => suit, "value" => value, "rank" => i+1}
+    proto_arr << {"suit" => suit, "value" => value, "rank" => i+1}
   end
 end
 
-# Aces
-p card_arr[0]
-p card_arr[13]
-p card_arr[26]
-p card_arr[39]
+card_arr = []
+
+proto_arr.length.times do |i|
+  card_arr << Card.new(proto_arr[i]["suit"], proto_arr[i]["value"], proto_arr[i]["rank"])
+end
+
+# p card_arr.size
