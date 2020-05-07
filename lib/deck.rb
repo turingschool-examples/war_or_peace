@@ -37,6 +37,16 @@ class Deck
     percent.round(2)
   end
 
+  def remove_card
+    @cards.shift
+    @cards
+  end
+
+
+
+
+
+
   def add_card(new_card)
     @cards << new_card
   end
