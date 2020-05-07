@@ -53,16 +53,16 @@ class Turn
       @player2.deck.remove_card
 
     elsif type == :war
-      @spoils_of_war.push(@player1.deck.cards[0..1])
-      @spoils_of_war.push(@player2.deck.cards[0..1])
+      @spoils_of_war.push(@player1.deck.cards[0..2]).flatten!
+      @spoils_of_war.push(@player2.deck.cards[0..2]).flatten!
         3.times do
           @player1.deck.remove_card
           @player2.deck.remove_card
         end
 
     elsif type == :mutually_assured_destruction
-      @player1.deck.cards.delete(@player1.deck.cards[0..1])
-      @player2.deck.cards.delete(@player2.deck.cards[0..1])
+      @player1.deck.cards.delete(@player1.deck.cards[0..2]).flatten!
+      @player2.deck.cards.delete(@player2.deck.cards[0..2]).flatten!
     end
   end
 
