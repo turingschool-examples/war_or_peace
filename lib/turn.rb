@@ -19,4 +19,7 @@ class Turn
       :war
     end
   end
+
+  def winner
+  end 
 end
