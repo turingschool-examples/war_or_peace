@@ -36,27 +36,17 @@ class Turn
   end
 
   def war_winner
-    winner = nil
-    card_rank = 0
-    @players.each do |player|
-      if player.deck.third_card > card_rank
-        card_rank = player.deck.third_card
-        winner = player
-      end
+    sorted = @players.sort_by do |player|
+      player.deck.third_card
     end
-    winner
+    winner = sorted[-1]
   end
 
   def basic_winner
-    winner = nil
-    card_rank = 0
-    @players.each do |player|
-      if player.deck.first_card > card_rank
-        card_rank = player.deck.first_card
-        winner = player
-      end
+    sorted = @players.sort_by do |player|
+      player.deck.first_card
     end
-    winner
+    winner = sorted[-1]
   end
 
   def pile_cards
