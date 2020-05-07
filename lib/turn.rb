@@ -45,4 +45,8 @@ class Turn
       @player2.deck.cards.shift(3)
     end
   end
+
+  def award_spoils(winner)
+    
+  end
 end

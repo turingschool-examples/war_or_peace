@@ -56,4 +56,16 @@ class TurnTest < Minitest::Test
   end
 
   # test pile_cards for other turn types
+
+  def test_it_awards_spoils_of_war_to_winner_of_bsaic_turn
+    require "pry"; binding.pry
+    @turn.pile_cards
+    winner = @turn.winner
+    @turn.award_spoils(winner)
+
+    assert_equal [@card2, @card5, @card8, @card1, @card3], @player1.deck
+    assert_equal [@card4, @card6, @card7], @player2.deck
+    # assuming cards that went into spoils of war pile should automatically be removed from players' decks
+    assert_equal [], @turn.spoils_of_war
+  end
 end
