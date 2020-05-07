@@ -10,41 +10,36 @@ class Deck
   end
 
   def high_ranking_cards
-    high_rank = []
+    high_ranked_cards = []
 
     @cards.each do |card|
       if card.rank > 11
-        high_rank << card
+        high_ranked_cards << card
       end
     end
-    high_rank
+
+    high_ranked_cards
   end
 
-#new comment
-# new new comment
+  def percent_high_ranking
+    total_card_count = @cards.count
+    high_ranked_cards = []
 
-  # def percent_high_ranking
-  #   ranks = []
-  #   total_rank_sum = 0
-  #   high_ranks = []
-  #   high_rank_cards_sum = 0
-  #
-  #   @cards.each do |card|
-  #     ranks << card.rank
-  #   end
-  #
-  #   ranks.each do |rank|
-  #     total_rank_sum += rank
-  #   end
-  #
-  #   @cards.each do |card|
-  #     if card.rank > 11
-  #       high_ranks << card.rank
-  #     end
-  #   end
-  #
-  #     high_ranks.each do |high_rank|
-  #       high_rank_cards_sum += high_rank
-  #     end
-  # end
+    @cards.each do |card|
+      if card.rank > 11
+        high_ranked_cards << card
+      end
+    end
+
+    high_ranked_card_count = high_ranked_cards.count
+    result = high_ranked_card_count.to_f / total_card_count.to_f
+    percent = result * 100
+    percent.round(2)
+  end
+
+
+
+
+
+
 end
