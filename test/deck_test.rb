@@ -82,7 +82,7 @@ class DeckTest < Minitest::Test
 
 end
 
-# trying out a new branch
+# Branch practice comment
 # test it didn't break percent_high_ranking_cards
 # test it can add card
 # test nothing previus broke after adding card
