@@ -37,4 +37,14 @@ class TurnTest < Minitest::Test
   def test_it_starts_with_no_spoils_of_war
     assert_equal [], @turn.spoils_of_war
   end
+
+  def test_it_can_identify_turn_type_when_basic
+    assert_equal :basic, @turn.type
+  end
+
+  # test other turn types
+
+  def test_it_can_identify_a_turn_winner_when_basic
+    assert_equal @player1, @turn.winner
+  end
 end
