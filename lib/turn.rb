@@ -38,10 +38,14 @@ class Turn
 
   def war_winner
     sorted = @players.sort_by do |player|
-      player.deck.third_card
+      if player.deck.third_card == nil
+        puts "No third card"
+        break
+      else
+        player.deck.third_card
+      end
     end
-    winner = sorted[-1]
-    winner
+    winner = sorted[-1] unless sorted == nil
   end
 
   def basic_winner
