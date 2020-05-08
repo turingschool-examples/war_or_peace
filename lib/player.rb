@@ -6,6 +6,11 @@ class Player
     @deck = deck
   end
 
-  def test_it_has_lost
+  def has_lost?
+    if @deck.cards.empty?
+      true
+    else
+      false
+    end
   end
 end
