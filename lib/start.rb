@@ -24,18 +24,30 @@ class Start
 
   def initialize(turn)
     @turn = turn
+    @counter = 0
+    @winner = nil
     start
   end
 
   def start
-    until @turn.players.any? { |player| player.has_lost? == true }
+    until @counter == 10**6 || @turn.players.any? { |player| player.has_lost? == true }
+      @counter += 1
       if @turn.winner.class == String
-        p @turn.winner
+        @winner = @turn.winner
       else
-        p @turn.winner.name
+        @winner = @turn.winner.name
       end
+      puts "Turn #{@counter}: #{@winner}."
+      # puts "She has #{@turn.winner.deck.cards.size} cards." unless @winner == "No Winner"
       @turn.pile_cards
       @turn.award_spoils(@turn.winner)
+      if @turn.players.any? { |player| player.has_lost? == true }
+        puts "SOMEONE LOST - END GAME"
+        break
+      end
+    end
+    if @counter == 10**6
+      puts "DRAW GAME"
     end
   end
 
