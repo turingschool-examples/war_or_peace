@@ -15,7 +15,7 @@ class Deck
 
   def first_card
     if @cards.length < 1
-      puts "NO MORE CARDS"
+      puts "DECK: NO MORE CARDS"
     else
       rank_of_card_at(0)
     end
@@ -23,7 +23,7 @@ class Deck
 
   def third_card
     if @cards.length < 3
-      puts "Less than 3 cards"
+      puts "DECK: Less than 3 cards"
     else
       rank_of_card_at(2)
     end

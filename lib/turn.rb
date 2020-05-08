@@ -39,7 +39,7 @@ class Turn
   def war_winner
     sorted = @players.sort_by do |player|
       if player.deck.third_card == nil
-        puts "No third card"
+        puts "TURN: No third card"
         break
       else
         player.deck.third_card
@@ -51,7 +51,7 @@ class Turn
   def basic_winner
     sorted = @players.sort_by do |player|
       if player.deck.first_card == nil
-        puts "No first card"
+        puts "TURN: No first card"
         break
       else
         player.deck.first_card
@@ -96,6 +96,10 @@ class Turn
       winner.deck.add_card(@spoils_of_war.shift)
       end
     end
+    if @players.any? {|player| player.has_lost? == true }
+      puts "Someone just lost, yo."
+    end
   end
+
 
 end
