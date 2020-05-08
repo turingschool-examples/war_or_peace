@@ -5,4 +5,7 @@ class Player
     @name = name
     @deck = deck
   end
+
+  def test_it_has_lost
+  end
 end
