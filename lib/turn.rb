@@ -50,10 +50,14 @@ class Turn
 
   def basic_winner
     sorted = @players.sort_by do |player|
-      player.deck.first_card
+      if player.deck.first_card == nil
+        puts "No first card"
+        break
+      else
+        player.deck.first_card
+      end
     end
-    winner = sorted[-1]
-    winner
+    winner = sorted[-1] unless sorted == nil
   end
 
   def pile_cards
