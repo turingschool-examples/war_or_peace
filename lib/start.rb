@@ -30,7 +30,7 @@ class Start
   end
 
   def start
-    until @counter == 10**6 || @turn.players.any? { |player| player.has_lost? == true }
+    until @counter == 10**6 || someone_lost?
       @counter += 1
       if @turn.winner.class == String
         @winner = @turn.winner
@@ -41,7 +41,7 @@ class Start
       # puts "She has #{@turn.winner.deck.cards.size} cards." unless @winner == "No Winner"
       @turn.pile_cards
       @turn.award_spoils(@turn.winner)
-      if @turn.players.any? { |player| player.has_lost? == true }
+      if someone_lost?
         puts "SOMEONE LOST - END GAME"
         break
       end
@@ -51,6 +51,10 @@ class Start
     end
   end
 
+  # break if someone_lost?
+  def someone_lost?
+    @turn.players.any? { |player| player.has_lost? == true }
+  end
 
 end
 
