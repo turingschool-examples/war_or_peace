@@ -40,6 +40,9 @@ class Turn
     sorted = @players.sort_by do |player|
       if player.deck.third_card == nil
         puts "WAR TURN: No third card someone should lose"
+        puts "- Player has been informed they lost"
+        # tell player they lost
+        player.you_lose
         break
       else
         player.deck.third_card
@@ -97,7 +100,7 @@ class Turn
 
   def award_spoils(winner)
     if @players.any? {|player| player.has_lost? == true }
-      puts "Someone just lost, yo."
+      puts "Spoiler: someone just lost, yo."
     else
       until @spoils_of_war.empty?
         if winner.class == String
