@@ -6,15 +6,27 @@ class Deck
   end
 
   def rank_of_card_at(i)
-    @cards[i].rank
+    if @cards[i].rank == nil
+      p "No card to read rank"
+    else
+      @cards[i].rank
+    end
   end
 
   def first_card
-    rank_of_card_at(0)
+    if @cards.length < 1
+      puts "NO MORE CARDS"
+    else
+      rank_of_card_at(0)
+    end
   end
 
   def third_card
-    rank_of_card_at(2)
+    if @cards.length < 3
+      puts "Less than 3 cards"
+    else
+      rank_of_card_at(2)
+    end
   end
 
   def high_ranking_cards
