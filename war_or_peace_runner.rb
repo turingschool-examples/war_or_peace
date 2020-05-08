@@ -56,19 +56,21 @@ end
 deck1 = Deck.new(card_arr[0..25])
 deck2 = Deck.new(card_arr[26..51])
 
-p deck1.cards.size == deck2.cards.size
+# p deck1.cards.size == deck2.cards.size
 
 p1 = Player.new("Megan", deck1)
 p2 = Player.new("Aurora", deck2)
 
 turn = Turn.new(p1, p2)
 
-loop do
-  start = gets.chomp
-  if start == "GO"
-    Start.new(turn)
-    break
-  else
-    p l3
-  end
-end
+Start.new(turn)
+
+# loop do
+#   start = gets.chomp
+#   if start == "GO"
+#     Start.new(turn)
+#     break
+#   else
+#     p l3
+#   end
+# end
