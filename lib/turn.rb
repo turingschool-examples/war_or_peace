@@ -1,6 +1,7 @@
 class Turn
   attr_reader :player1,
               :player2,
+              :players,
               :spoils_of_war
 
   def initialize(p1, p2)
@@ -32,7 +33,7 @@ class Turn
     winner =  { mutually_assured_destruction: "No Winner",
                 war: war_winner,
                 basic: basic_winner }
-    winner[type]
+    winner[type] # returns a string
   end
 
   def war_winner
@@ -40,6 +41,7 @@ class Turn
       player.deck.third_card
     end
     winner = sorted[-1]
+    winner.name
   end
 
   def basic_winner
@@ -47,6 +49,7 @@ class Turn
       player.deck.first_card
     end
     winner = sorted[-1]
+    winner.name
   end
 
   def pile_cards
@@ -59,29 +62,28 @@ class Turn
     end
   end
 
-  def take_card(player)
-    player.deck.cards.shift
-  end
-
   def mad_pile
     @players.each do |player|
-      3.times { take_card(player) }
+      3.times { player.deck.remove_card }
     end
   end
 
   def war_pile
     @players.each do |player|
-      3.times { @spoils_of_war << take_card(player) }
+      3.times { @spoils_of_war << player.deck.remove_card }
     end
   end
 
   def basic_pile
     @players.each do |player|
-      @spoils_of_war << take_card(player)
+      @spoils_of_war << player.deck.remove_card
     end
   end
 
   def award_spoils(winner)
+    if winner.class == String
+      return "No Winner"
+    end
     until @spoils_of_war.empty?
       winner.deck.cards << @spoils_of_war.shift
     end
