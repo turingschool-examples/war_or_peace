@@ -39,7 +39,7 @@ class Turn
   def war_winner
     sorted = @players.sort_by do |player|
       if player.deck.third_card == nil
-        puts "TURN: No third card"
+        puts "WAR TURN: No third card someone should lose"
         break
       else
         player.deck.third_card
@@ -51,7 +51,7 @@ class Turn
   def basic_winner
     sorted = @players.sort_by do |player|
       if player.deck.first_card == nil
-        puts "TURN: No first card"
+        puts "BASIC TURN: Someone literally just lost right now"
         break
       else
         player.deck.first_card
@@ -74,11 +74,15 @@ class Turn
     @players.each do |player|
       3.times { player.deck.remove_card }
     end
+    # puts "Exiled"
   end
 
   def war_pile
     @players.each do |player|
       3.times { @spoils_of_war << player.deck.remove_card }
+    end
+    if @spoils_of_war.length < 6
+      puts "TURN WAR: someone ran out of cards"
     end
   end
 
@@ -86,20 +90,23 @@ class Turn
     @players.each do |player|
       @spoils_of_war << player.deck.remove_card
     end
+    if @spoils_of_war.length < 2
+      puts "TURN BASIC: someone ran out of cards"
+    end
   end
 
   def award_spoils(winner)
-    until @spoils_of_war.empty?
-      if winner.class == String
-        break
-      else
-      winner.deck.add_card(@spoils_of_war.shift)
-      end
-    end
     if @players.any? {|player| player.has_lost? == true }
       puts "Someone just lost, yo."
+    else
+      until @spoils_of_war.empty?
+        if winner.class == String
+          break
+        else
+        winner.deck.add_card(@spoils_of_war.shift) unless winner == nil
+        end
+      end
     end
   end
-
 
 end
