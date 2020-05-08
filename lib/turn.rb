@@ -33,7 +33,7 @@ class Turn
     winner =  { mutually_assured_destruction: "No Winner",
                 war: war_winner,
                 basic: basic_winner }
-    winner[type] # returns a string
+    winner[type] # returns a string or obj
   end
 
   def war_winner
@@ -41,7 +41,7 @@ class Turn
       player.deck.third_card
     end
     winner = sorted[-1]
-    winner.name
+    winner
   end
 
   def basic_winner
@@ -49,7 +49,7 @@ class Turn
       player.deck.first_card
     end
     winner = sorted[-1]
-    winner.name
+    winner
   end
 
   def pile_cards
@@ -81,11 +81,12 @@ class Turn
   end
 
   def award_spoils(winner)
-    if winner.class == String
-      return "No Winner"
-    end
     until @spoils_of_war.empty?
-      winner.deck.cards << @spoils_of_war.shift
+      if winner.class == String
+        break
+      else
+      winner.deck.add_card(@spoils_of_war.shift)
+      end
     end
   end
 
