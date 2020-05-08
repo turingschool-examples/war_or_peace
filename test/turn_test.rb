@@ -101,7 +101,7 @@ class TurnTest < Minitest::Test
 
     assert player1.deck.first_card > player2.deck.first_card
 
-    assert_equal player1, turn.winner
+    assert_equal "Megan", turn.winner
   end
 
   def test_it_knows_war_winner_has_higher_third_card
@@ -114,7 +114,7 @@ class TurnTest < Minitest::Test
 
     assert player1.deck.third_card < player2.deck.third_card
 
-    assert_equal player2, turn.winner
+    assert_equal "Aurora", turn.winner
   end
 
   def test_it_knows_mad_winner_when_first_and_third_cards_equal
