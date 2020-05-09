@@ -92,7 +92,7 @@ class TurnTest < Minitest::Test
     assert_equal [@card1, @card4, @card2, @card3, @card5, @card6], @turn.spoils_of_war
   end
 
-  def test_it_awards_spoils_of_war_to_winner_of_basic_turn
+  def test_it_awards_spoils_of_war_to_winner_of_turn_when_type_is_basic
     winner = @turn.winner
     @turn.pile_cards
     @turn.award_spoils(winner)
@@ -103,5 +103,22 @@ class TurnTest < Minitest::Test
     assert_equal [], @turn.spoils_of_war
   end
 end
-
 #try assert_empty for @spoils_of_war
+
+def test_it_awards_spoils_of_war_to_winner_of_turn_when_type_is_war
+  @deck1 = Deck.new([@card1, @card2, @card5, @card8])
+  @deck2 = Deck.new([@card4, @card3, @card6, @card7])
+  @player1 = Player.new("Megan", @deck1)
+  @player2 = Player.new("Aurora", @deck2)
+
+  @turn = Turn.new(@player1, @player2)
+
+  winner = turn.winner
+  @turn.pile_cards
+  @turn.award_spoil(winner)
+
+  assert_equal [], @player1.deck.cards
+  assert_equal [], @player2.deck.cards
+
+  assert_equal [], @turn.spoils_of_war
+end
