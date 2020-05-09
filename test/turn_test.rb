@@ -54,6 +54,19 @@ class TurnTest < Minitest::Test
     assert_equal :war, @turn.type
   end
 
+  def test_it_can_identify_turn_type_when_mutually_assured_destruction
+    @card6 = Card.new(:diamond, '8', 8)
+
+    @deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    @deck2 = Deck.new([@card4, @card3, @card6, @card7])
+
+    @player1 = Player.new("Megan", @deck1)
+    @player2 = Player.new("Aurora", @deck2)
+
+    @turn = Turn.new(@player1, @player2)
+
+    assert_equal :mutually_assured_destruction, @turn.type
+  end
 
   def test_it_can_identify_a_turn_winner_when_basic
     assert_equal @player1, @turn.winner
