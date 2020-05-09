@@ -27,19 +27,17 @@ class Turn
   end
 
   def same_first_rank?
+    @players.each do |player|
+      player.nil_check(0)
+    end
     player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
   end
 
   def same_third_rank?
-    # if not_enough_cards?
-    # end
-    player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
-  end
-
-  def not_enough_cards?
-    @players.any? do |player|
-      player.short?
+    @players.each do |player|
+      player.nil_check(2)
     end
+    player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
   end
 
   # a really weird getter/setter method
@@ -64,14 +62,12 @@ class Turn
   end
 
   def basic_winner
-    @players.detect { |player| player.you_lose if player.nil_check(0) }
     @players.max_by do |player|
       player.deck.rank_of_card_at(0)
     end
   end
 
   def war_winner
-    @players.detect { |player| player.you_lose if player.nil_check(2) }
     @players.max_by do |player|
       player.deck.rank_of_card_at(2)
     end
