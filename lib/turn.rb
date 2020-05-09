@@ -50,6 +50,9 @@ class Turn
       @spoils_of_war << player1.deck.cards[0] << player2.deck.cards[0]
     when :war
       (@spoils_of_war << player1.deck.remove_card(3)<< player2.deck.remove_card(3)).flatten!
+    else
+      player1.deck.remove_card(3)
+      player2.deck.remove_card(3)
     end
   end
 end
