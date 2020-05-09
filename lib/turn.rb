@@ -1,7 +1,8 @@
 class Turn
   attr_reader :player1,
               :player2,
-              :spoils_of_war
+              :spoils_of_war,
+              :players
 
   def initialize(p1, p2)
     @player1 = p1
@@ -9,6 +10,8 @@ class Turn
     @spoils_of_war = []
     @exile = []
     @players = [p1, p2]
+    @counter = 0
+    @limit = 10**6
   end
 
   def type
@@ -83,6 +86,12 @@ class Turn
       turn_winner.hand << spoil
     end
     @spoils_of_war = []
+  end
+
+  def count
+    @limit.times do
+      @counter += 1
+    end
   end
 
 end
