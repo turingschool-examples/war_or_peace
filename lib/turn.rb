@@ -7,6 +7,7 @@ class Turn
     @player1 = p1
     @player2 = p2
     @spoils_of_war = []
+    @exile = []
     @players = [p1, p2]
   end
 
@@ -71,9 +72,8 @@ class Turn
   end
 
   def mad_exile
-    3.times { @spoils_of_war << @player1.deck.remove_card }
-    3.times { @spoils_of_war << @player2.deck.remove_card }
-    @spoils_of_war = []
+    3.times { @exile << @player1.deck.remove_card }
+    3.times { @exile << @player2.deck.remove_card }
   end
 
 
