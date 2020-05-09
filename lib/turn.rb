@@ -16,6 +16,7 @@ class Turn
       :war
     end
   end
+  # turn this into an attribute w an attr_reader eventually?
 
   def winner
     if self.type == :basic
@@ -30,8 +31,8 @@ class Turn
       elsif @player2.deck.rank_of_card_at(2) > @player1.deck.rank_of_card_at(2)
         player2
       end
-    # elsif self.type == :mutually_assured_destruction
-    #   "No winner"
+    elsif self.type == :mutually_assured_destruction
+      "No Winner"
     end
   end
 
@@ -44,9 +45,9 @@ class Turn
         @spoils_of_war << @player1.deck.cards.shift
         @spoils_of_war << @player2.deck.cards.shift
       end
-    # elsif self.type == :mutually_assured_destruction
-    #   @player1.deck.cards.shift(3)
-    #   @player2.deck.cards.shift(3)
+    elsif self.type == :mutually_assured_destruction
+      @player1.deck.cards.shift(3)
+      @player2.deck.cards.shift(3)
     end
   end
 
