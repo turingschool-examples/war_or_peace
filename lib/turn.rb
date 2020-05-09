@@ -21,6 +21,7 @@ class Turn
     end
   end
   def winner
+
     case self.type
     when :basic
       if player1.deck.rank_of_card_at(0) >
@@ -39,6 +40,14 @@ class Turn
     else
       "No winner"
     end
-      
+
+  end
+
+  def pile_cards
+
+    case self.type
+    when :basic
+      @spoils_of_war << player1.deck.cards[0] << player2.deck.cards[0]
+    end
   end
 end
