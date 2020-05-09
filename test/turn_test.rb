@@ -44,42 +44,42 @@ class TurnTest < Minitest::Test
     assert_instance_of Turn, @turn_mad
   end
 
-  def test_it_has_readable_player_1_attributes
-    assert_equal @player_const, @turn_basic.player_1
-    assert_equal @player_const, @turn_war.player_1
-    assert_equal @player_const, @turn_mad.player_1
+  def test_it_has_readable_player1_attributes
+    assert_equal @player_const, @turn_basic.player1
+    assert_equal @player_const, @turn_war.player1
+    assert_equal @player_const, @turn_mad.player1
   end
 
-  def test_it_has_readable_player_2_attributes
-    assert_equal @player_basic, @turn_basic.player_2
-    assert_equal @player_war, @turn_war.player_2
-    assert_equal @player_mad, @turn_mad.player_2
+  def test_it_has_readable_player2_attributes
+    assert_equal @player_basic, @turn_basic.player2
+    assert_equal @player_war, @turn_war.player2
+    assert_equal @player_mad, @turn_mad.player2
   end
 
-  def test_it_inits_with_empty_array
-    assert.empty @turn_basic.spoils_of_war
-    assert.empty @turn_war.spoils_of_war
-    assert.empty @turn_mad.spoils_of_war
+  def test_it_inits_with_empty_spoils_array
+    assert_empty @turn_basic.spoils_of_war
+    assert_empty @turn_war.spoils_of_war
+    assert_empty @turn_mad.spoils_of_war
   end
 
   def test_it_is_type_basic_when_first_cards_rank_are_not_equal
     skip
-    assert @turn_basic.player_1.deck.rank_of_card_at(0) != @turn_basic.player_2.deck.rank_of_card_at(0)
+    assert @turn_basic.player1.deck.rank_of_card_at(0) != @turn_basic.player2.deck.rank_of_card_at(0)
 
     assert_equal :basic, @turn_basic.type
   end
 
   def test_it_is_type_war_when_first_cards_rank_are_equal
     skip
-    assert @turn_war.player_1.deck.rank_of_card_at(0) == @turn_war.player_2.deck.rank_of_card_at(0)
+    assert @turn_war.player1.deck.rank_of_card_at(0) == @turn_war.player2.deck.rank_of_card_at(0)
 
     assert_equal :war, @turn_war.type
   end
 
   def test_it_is_type_mad_when_first_and_third_cards_rank_are_equal
     skip
-    assert @turn_mad.player_1.deck.rank_of_card_at(0) == @turn_mad.player_2.deck.rank_of_card_at(0)
-    assert @turn_mad.player_1.deck.rank_of_card_at(2) == @turn_mad.player_2.deck.rank_of_card_at(2)
+    assert @turn_mad.player1.deck.rank_of_card_at(0) == @turn_mad.player2.deck.rank_of_card_at(0)
+    assert @turn_mad.player1.deck.rank_of_card_at(2) == @turn_mad.player2.deck.rank_of_card_at(2)
 
     assert_equal :mutually_assured_destruction, @turn_mad.type
   end
