@@ -86,17 +86,22 @@ class DeckTest < Minitest::Test
     assert_equal 50.0, deck.percent_high_ranking
     assert_equal :spade , deck.cards[0].suit
   end
-end
+  def test_it_can_add_card
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
 
-# pry(main)> card4 = Card.new(:club, '5', 5)
-# #=> #<Card:0x007fbfd2963978 @rank=5, @suit=:club, @value="5">
-#
-# pry(main)> deck.add_card(card4)
-#
-# pry(main)> deck.cards
-# #=> [#<Card:0x007fbfd19f4fa0...>, #<Card:0x007fbfd18555a0...>, #<Card:0x007fbfd2963978...>]
-#
-# pry(main)> deck.high_ranking_cards
-# #=> [#<Card:0x007fbfd18555a0...>]
-#
-# pry(main)> deck.percent_high_ranking
+    cards = [card1, card2, card3]
+
+    deck = Deck.new(cards)
+    deck.remove_card
+
+    card4 = Card.new(:club, '5', 5)
+
+    deck.add_card(card4)
+
+    assert_equal 3 , deck.cards.size
+    assert_equal 1 , deck.high_ranking_cards.size
+    assert_equal 33.33, deck.percent_high_ranking
+  end
+end
