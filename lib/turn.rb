@@ -49,15 +49,23 @@ class Turn
   end
 
   def pile_cards
-    pile_hash = {  basic: basic_pile,
-                }
-    pile_hash[type]
+    if type == :basic
+      basic_pile
+    elsif type == :war
+      war_pile
+
+    end
   end
 
   def basic_pile
-    @spoils_of_war = @players.map do |player|
-      player.deck.remove_card
-    end
+    @spoils_of_war << @player1.deck.remove_card
+    @spoils_of_war << @player2.deck.remove_card
   end
+
+  def war_pile
+    3.times { @spoils_of_war << @player1.deck.remove_card }
+    3.times { @spoils_of_war << @player2.deck.remove_card }
+  end
+
 
 end
