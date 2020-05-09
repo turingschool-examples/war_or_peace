@@ -20,37 +20,36 @@ class Turn
   def winner
     if self.type == :basic
       if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
-        player1
+        @player1
       elsif @player2.deck.rank_of_card_at(0) > @player1.deck.rank_of_card_at(0)
-        player2
+        @player2
       end
-    elsif self.type == :war
-      if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
-        player1
-      elsif @player2.deck.rank_of_card_at(2) > @player1.deck.rank_of_card_at(2)
-        player2
-      end
-    elsif self.type == :mutually_assured_destruction
-      "No winner"
+    # elsif self.type == :war
+    #   if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
+    #     player1
+    #   elsif @player2.deck.rank_of_card_at(2) > @player1.deck.rank_of_card_at(2)
+    #     player2
+    #   end
+    # elsif self.type == :mutually_assured_destruction
+    #   "No winner"
     end
   end
 
   def pile_cards
     if self.type == :basic
-      @spoils_of_war.push(@player1.deck.cards[0], @player2.deck.cards[0])
-    elsif self.type == :war
-      @spoils_of_war.push(@player1.deck.cards[0..2], @player2.deck.cards[0..2])
-    elsif self.type == :mutually_assured_destruction
-      @player1.deck.cards.shift(3)
-      @player2.deck.cards.shift(3)
+      @spoils_of_war << @player1.deck.cards.shift
+      @spoils_of_war << @player2.deck.cards.shift
+    # elsif self.type == :war
+        # @spoils_of_war << @player1.deck.cards.slice!(0..2)
+        # @spoils_of_war << @player2.deck.cards.slice!(0..2)
+    # elsif self.type == :mutually_assured_destruction
+    #   @player1.deck.cards.shift(3)
+    #   @player2.deck.cards.shift(3)
     end
   end
 
-  def award_spoils(winner)
-    @spoils_of_war.map do |card|
-      winner.deck.cards << card
-    end
-
-    # winner.deck.cards << @spoils_of_war
+  def award_spoils(winner_param)
+    winner_param.deck.cards.concat(@spoils_of_war)
+    @spoils_of_war.clear
   end
 end
