@@ -14,17 +14,23 @@ class DeckTest < Minitest::Test
 
     deck = Deck.new(cards)
     assert_instance_of Deck, deck
+  end
+
+  def test_it_has_cards
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+
+    cards = [card1, card2, card3]
+
+    deck = Deck.new(cards)
+
+    assert_equal false , deck.cards.empty?
 
   end
 end
 
 
-#
-# pry(main)> cards = [card1, card2, card3]
-#
-# pry(main)> deck = Deck.new(cards)
-# #=> #<Deck:0x007fbfd2984808 @cards=[#<Card:0x007fbfd18490e8...>, #<Card:0x007fbfd19f4fa0...>, #<Card:0x007fbfd18555a0...>]>
-#
 # pry(main)> deck.cards
 # #=> [#<Card:0x007fbfd18490e8...>, #<Card:0x007fbfd19f4fa0...>, #<Card:0x007fbfd18555a0...>]
 #
