@@ -48,4 +48,16 @@ class Turn
     end
   end
 
+  def pile_cards
+    pile_hash = {  basic: basic_pile,
+                }
+    pile_hash[type]
+  end
+
+  def basic_pile
+    @spoils_of_war = @players.map do |player|
+      player.deck.remove_card
+    end
+  end
+
 end
