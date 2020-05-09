@@ -105,11 +105,21 @@ class TurnTest < Minitest::Test
     assert_equal "No Winner", @turn_mad.winner
   end
 
+  def test_it_piles_two_cards_to_spoils_when_type_basic
+    assert_equal 0, @turn.spoils_of_war.size
 
+    @turn.pile_cards
 
+    assert_equal 2, @turn.spoils_of_war.size
+  end
 
+  def test_it_piles_six_cards_to_spoils_when_type_war
+    assert_equal 0, @turn.spoils_of_war.size
 
+    @turn.pile_cards
 
+    assert_equal 6, @turn.spoils_of_war.size
+  end
 
 
   #
