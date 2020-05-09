@@ -19,4 +19,8 @@ class Player
     @deck.cards
   end
 
+  def short?
+    @deck.cards.size < 3
+  end
+
 end
