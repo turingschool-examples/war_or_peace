@@ -10,13 +10,9 @@ class Deck
   end
 
   def high_ranking_cards
-    highs = []
-    @cards.each do |card|
-      if card.rank >= 11
-        highs << card
-      end
+    @cards.map do |card|
+      card if card.rank >= 11
     end
-    highs
   end
 
   def percent_high_ranking
