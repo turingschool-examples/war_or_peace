@@ -31,7 +31,9 @@ class Turn
   end
 
   def same_third_rank?
-    player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+    unless @players.any? { |player| player.short_hand? }
+      player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+    end
   end
 
   # a really weird getter/setter method
@@ -67,7 +69,28 @@ class Turn
     end
   end
 
+  def check_last_turn
+
+    def short?
+      @players.any? { |player| player.short_hand? }
+    end
+
+    def three_cards?
+      type == :mutually_assured_destruction || type == :war
+    end
+
+    def one_card?
+      type == :basic
+    end
+
+    if ( three_cards? || one_card? ) && short?
+      @limit == @counter
+    end
+
+  end
+
   def pile_cards
+    check_last_turn
     if type == :mutually_assured_destruction
       mad_exile
       if @turn_winner == nil
