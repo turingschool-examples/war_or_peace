@@ -235,16 +235,9 @@ require "minitest/pride"
      assert_equal 2, turn.spoils_of_war.size
 
      turn.award_spoils(winner)
-     
+
      assert_equal 5 , winner.deck.cards.size
      assert_equal [], turn.spoils_of_war
 
    end
  end
-
- # pry(main)> turn.award_spoils(winner)
- #
- # pry(main)> player1.deck
- # #=> #<Deck:0x007fa3eda472c8 @cards=[#<Card:0x007fa3eda519a8...>, #<Card:0x007fa3edb263d8...>, #<Card:0x007fa3eda89308...>, #<Card:0x007fa3edaa0df0...>, #<Card:0x007fa3ed98d9b8...>]>
- # pry(main)> player2.deck
- # #=> #<Deck:0x007fa3ee11ee48 @cards=[#<Card:0x007fa3ee14ef80...>, #<Card:0x007fa3eda3e1f0...>, #<Card:0x007fa3edad1cc0...>]>
