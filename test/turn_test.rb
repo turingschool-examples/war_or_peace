@@ -101,6 +101,10 @@ class TurnTest < Minitest::Test
     assert_equal @player_war, @turn_war.winner
   end
 
+  def test_it_picks_no_winner_when_type_mad
+    assert_equal "No Winner", @turn_mad.winner
+  end
+
 
 
 
