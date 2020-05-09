@@ -6,7 +6,11 @@ class Deck
   end
 
   def rank_of_card_at(i)
-    @cards[i].rank
+    if @cards[i] == nil
+      p "Card not found at position #{i}"
+    else
+      @cards[i].rank
+    end
   end
 
   def high_ranking_cards
