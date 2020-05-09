@@ -48,6 +48,8 @@ class Turn
     case self.type
     when :basic
       @spoils_of_war << player1.deck.cards[0] << player2.deck.cards[0]
+    when :war
+      (@spoils_of_war << player1.deck.remove_card(3)<< player2.deck.remove_card(3)).flatten!
     end
   end
 end
