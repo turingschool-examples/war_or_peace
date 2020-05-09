@@ -12,8 +12,6 @@ class Turn
     @players = [p1, p2]
     @counter = 0
     @limit = 10**6
-    @winner = nil
-    @turn_winner = nil
   end
 
   def type
@@ -31,12 +29,10 @@ class Turn
   end
 
   def same_third_rank?
-    unless @players.any? { |player| player.short_hand? }
-      player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
-    end
+    player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
   end
 
-  # a really weird getter/setter method
+  # a really weird getter method
   def winner
     win_hash = {  basic: basic_winner,
                   war: war_winner,
@@ -45,21 +41,9 @@ class Turn
     win_hash[type]
   end
 
-  def player_lost?
-    @players.any? do |player|
-      player.has_lost?
-    end
-  end
-
-  def loser
-    @players.select do |player|
-      player.has_lost?
-    end
-  end
-
   def basic_winner
     @players.max_by do |player|
-      player.deck.rank_of_card_at(0)
+      player.deck.rank_of_card_at(0) unless player.zero_check(0)
     end
   end
 
@@ -69,51 +53,40 @@ class Turn
     end
   end
 
-  def check_last_turn
-
-    def short?
-      @players.any? { |player| player.short_hand? }
+  def winner_name
+    if winner.class == Player
+      winner.name
+    else
+      "*mutually assured destruction*"
     end
-
-    def three_cards?
-      type == :mutually_assured_destruction || type == :war
-    end
-
-    def one_card?
-      type == :basic
-    end
-
-    if ( three_cards? || one_card? ) && short?
-      @limit == @counter
-    end
-
   end
 
   def pile_cards
-    check_last_turn
+    turn_winner = winner_name
     if type == :mutually_assured_destruction
       mad_exile
-      if @turn_winner == nil
-        "It's a tie."
-      else
-        "*mutually assured destruction* 6 cards removed from play"
-      end
+      "#{turn_winner} 6 cards removed from play"
     elsif type == :war
       war_pile
-      if @turn_winner == nil
-        "It's a tie."
-      else
-        "WAR - #{@turn_winner.name} won #{@spoils_of_war.size} cards"
-      end
+      "WAR - #{turn_winner} won #{@spoils_of_war.size} cards"
     elsif type == :basic
       basic_pile
-      if @turn_winner == nil
-        "It's a tie."
-      else
-        "#{@turn_winner.name} won #{@spoils_of_war.size} cards"
-      end
+      "#{turn_winner} won #{@spoils_of_war.size} cards"
     end
   end
+
+  def player_short?
+    @players.any? { |player| player.short_hand? }
+  end
+
+  def player_lost?
+    @players.any? { |player| player.has_lost? }
+  end
+
+  def get_loser
+    @players.select { |player| player.has_lost? }
+  end
+
 
   def basic_pile
     @players.each do |player|
@@ -145,6 +118,28 @@ class Turn
     end
   end
 
+  def last_turn?
+    # is this a closure?
+
+    def three_cards?
+      type == :mutually_assured_destruction || type == :war
+    end
+
+    def one_card?
+      type == :basic
+    end
+
+    last_turn = false
+
+    if ( three_cards? || one_card? ) && player_short?
+      last_turn = true
+    end
+
+    last_turn
+
+  end
+
+
  # for runner file
 
   def count
@@ -152,16 +147,17 @@ class Turn
   end
 
   def game_over?
-    @counter == @limit || player_lost?
+    @counter == @limit || last_turn?
   end
+
 
   def start
   until game_over? do
-    @turn_winner = winner
+    turn_winner = winner
     p "Turn #{count}: #{pile_cards}"
-    award_spoils(@turn_winner) unless @turn_winner == "No Winner"
+    award_spoils(turn_winner) unless turn_winner == "No Winner"
       if game_over?
-        p "GG"
+        p "GG #{winner_name} on Turn #{@counter}"
         break
       end
     end
