@@ -30,7 +30,8 @@ class Turn
 
   def winner
     win_hash = {  basic: basic_winner,
-                  war: war_winner
+                  war: war_winner,
+                  mutually_assured_destruction: "No Winner"
                 }
     win_hash[type]
   end
