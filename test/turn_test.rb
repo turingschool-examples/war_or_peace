@@ -185,7 +185,16 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_can_count_to_a_million
+    skip
     assert_equal 10**6, @turn_basic.count
+  end
+
+  def test_it_knows_a_player_loses_when_they_are_out_of_cards
+    skip
+
+    @turn_basic.player1.hand = []
+
+    assert_equal true, @turn_basic.player_lost?
   end
 
 end
