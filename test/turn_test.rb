@@ -19,14 +19,14 @@ class TurnTest < Minitest::Test
     card8 = Card.new(:diamond, "2", 2)
 
     # player_1 has same deck for all turn types
-    @control_deck = Deck.new([card1, card2, card5, card8])
+    @const_deck = Deck.new([card1, card2, card5, card8])
 
     # player_2 deck will vary, esp in mad turn
     @basic_deck = Deck.new([card3, card4, card6, card7])
     @war_deck = Deck.new([card4, card3, card6, card7])
     @mad_deck = Deck.new([card4, card3, Card.new(:diamond, "8", 8), card7])
 
-    @player_const = Player.new("Megan", @control_deck)
+    @player_const = Player.new("Megan", @const_deck)
 
     @player_basic = Player.new("Aurora", @basic_deck)
     @player_war = Player.new("Aurora", @war_deck)
@@ -35,6 +35,7 @@ class TurnTest < Minitest::Test
     @turn_basic = Turn.new(@player_const, @player_basic)
     @turn_war = Turn.new(@player_const, @player_war)
     @turn_mad = Turn.new(@player_const, @player_mad)
+
   end
 
 
@@ -108,45 +109,15 @@ class TurnTest < Minitest::Test
   def test_it_piles_two_cards_to_spoils_when_type_basic
     assert_equal 0, @turn_basic.spoils_of_war.size
 
+    assert_equal 4, @turn_basic.player1.hand
+    assert_equal 4, @turn_basic.player2.hand
+
     @turn_basic.pile_cards
 
     assert_equal 2, @turn_basic.spoils_of_war.size
+
+    assert_equal 3, @turn_basic.player1.hand
+    assert_equal 3, @turn_basic.player2.hand
   end
-
-  def test_it_piles_six_cards_to_spoils_when_type_war
-    assert_equal 0, @turn_war.spoils_of_war.size
-    
-    @turn_war.pile_cards
-
-    assert_equal 6, @turn_war.spoils_of_war.size
-  end
-
-  def test_it_exiles_six_cards_away_when_type_mad
-    assert_equal 0, @turn_war.spoils_of_war.size
-
-    @turn_war.pile_cards
-
-    assert_equal 0, @turn_war.spoils_of_war.size
-  end
-
-  #
-  # def test_it_picks_basic_winner_with_higher_first_card
-  #   assert @turn_basic.player1.deck.rank_of_card_at(0) > @turn_basic.player2.deck.rank_of_card_at(0)
-  #   assert_equal @player_const, @turn_basic.winner
-  # end
-  #
-  # def test_it_picks_war_winner_with_higher_third_card
-  #   skip
-  #   assert @turn_war.player1.deck.rank_of_card_at(0) > @turn_war.player2.deck.rank_of_card_at(0)
-  #   assert_equal @player_war, @turn_war.winner
-  # end
-  #
-  # def test_it_picks_no_winner_when_type_mad
-  #   skip
-  #   assert_equal :mutually_assured_destruction, @turn_mad.type
-  #   assert_equal "No Winner", @turn_mad.winner
-  # end
-
-
 
 end
