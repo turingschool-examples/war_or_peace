@@ -43,15 +43,23 @@ class DeckTest < Minitest::Test
     assert_equal 14 , deck.rank_of_card_at(2)
     assert_equal 12 , deck.rank_of_card_at(0)
   end
+
+  def test_it_has_a_high_ranking_cards
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+
+    cards = [card1, card2, card3]
+
+    deck = Deck.new(cards)
+
+    assert_equal 2, deck.high_ranking_cards.size
+    assert_equal 12, deck.high_ranking_cards[0].rank
+
+
+  end
 end
 
-
-# pry(main)> deck.rank_of_card_at(0)
-# #=> 12
-#
-# pry(main)> deck.rank_of_card_at(2)
-# #=> 14
-#
 # pry(main)> deck.cards
 # #=> [#<Card:0x007fbfd18490e8...>, #<Card:0x007fbfd19f4fa0...>, #<Card:0x007fbfd18555a0...>]
 #
