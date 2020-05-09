@@ -94,4 +94,23 @@ class TurnTest < Minitest::Test
     assert_equal :mutually_assured_destruction, @turn_mad.type
   end
 
+  def test_it_picks_basic_winner_with_higher_first_card
+    assert @turn_basic.player1.deck.rank_of_card_at(0) > @turn_basic.player2.deck.rank_of_card_at(0)
+    assert_equal @player_control, @turn_basic.winner
+  end
+
+  def test_it_picks_war_winner_with_higher_third_card
+    skip
+    assert @turn_war.player1.deck.rank_of_card_at(0) > @turn_war.player2.deck.rank_of_card_at(0)
+    assert_equal @player_war, @turn_war.winner
+  end
+
+  def test_it_picks_no_winner_when_type_mad
+    skip
+    assert_equal :mutually_assured_destruction, @turn_mad.type
+    assert_equal "No Winner", @turn_mad.winner
+  end
+
+
+
 end
