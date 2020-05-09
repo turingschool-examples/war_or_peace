@@ -26,6 +26,7 @@ class DeckTest < Minitest::Test
     deck = Deck.new(cards)
 
     assert_equal false , deck.cards.empty?
+    assert_equal 3 , deck.cards.size
 
   end
 end
