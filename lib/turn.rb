@@ -48,8 +48,8 @@ class Turn
     end
   end
 
-  def award_spoils(winner_param)
-    winner_param.deck.cards.concat(@spoils_of_war)
+  def award_spoils(winner)
+    winner.deck.cards.concat(@spoils_of_war)
     @spoils_of_war.clear
   end
 end
