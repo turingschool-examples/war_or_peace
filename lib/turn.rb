@@ -157,7 +157,11 @@ class Turn
     p "Turn #{count}: #{pile_cards}"
     award_spoils(turn_winner) unless turn_winner == "No Winner"
       if game_over?
-        p "GG #{winner_name} on Turn #{@counter}"
+        if turn_winner == "No Winner"
+          p "---- DRAW ----"
+        else
+          p "*~*~*~* #{turn_winner.name} has won the game! *~*~*~*"
+        end
         break
       end
     end
