@@ -49,23 +49,33 @@ class Turn
   end
 
   def pile_cards
-    if type == :basic
-      basic_pile
+    if type == :mutually_assured_destruction
+      mad_exile
     elsif type == :war
       war_pile
-
+    elsif type == :basic
+      basic_pile
     end
   end
 
   def basic_pile
     @spoils_of_war << @player1.deck.remove_card
     @spoils_of_war << @player2.deck.remove_card
+    @spoils_of_war.shuffle!
   end
 
   def war_pile
     3.times { @spoils_of_war << @player1.deck.remove_card }
     3.times { @spoils_of_war << @player2.deck.remove_card }
+    @spoils_of_war.shuffle!
   end
+
+  def mad_exile
+    3.times { @spoils_of_war << @player1.deck.remove_card }
+    3.times { @spoils_of_war << @player2.deck.remove_card }
+    @spoils_of_war = []
+  end
+
 
 
 end
