@@ -7,7 +7,7 @@ class Deck
 
   def rank_of_card_at(i)
     if @cards[i] == nil
-      p "Card not found at position #{i}"
+      # p "CARD NOT FOUND AT #{i}"
       0
     else
       @cards[i].rank
@@ -15,9 +15,10 @@ class Deck
   end
 
   def high_ranking_cards
-    @cards.map do |card|
+    highs = @cards.map do |card|
       card if card.rank >= 11
     end
+    highs.compact!
   end
 
   def percent_high_ranking
