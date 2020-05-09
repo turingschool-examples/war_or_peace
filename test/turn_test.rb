@@ -43,13 +43,6 @@ class TurnTest < Minitest::Test
   end
 
   # add tests identifying other turn types
-
-
-  def test_it_can_identify_a_turn_winner_when_basic
-    assert_equal @player1, @turn.winner
-  end
-
-  # add tests identifying winners with other turn types
   def test_it_can_identify_turn_type_when_war
     @deck1 = Deck.new([@card1, @card2, @card5, @card8])
     @deck2 = Deck.new([@card4, @card3, @card6, @card7])
@@ -60,7 +53,25 @@ class TurnTest < Minitest::Test
 
     assert_equal :war, @turn.type
   end
-  
+
+
+  def test_it_can_identify_a_turn_winner_when_basic
+    assert_equal @player1, @turn.winner
+  end
+
+  # add tests identifying winners with other turn types
+  def test_it_can_identify_a_turn_winner_when_war
+    @deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    @deck2 = Deck.new([@card4, @card3, @card6, @card7])
+    @player1 = Player.new("Megan", @deck1)
+    @player2 = Player.new("Aurora", @deck2)
+
+    @turn = Turn.new(@player1, @player2)
+
+    assert_equal @player2, @turn.winner
+  end
+
+
   def test_pile_cards_method_sends_top_card_from_each_players_deck_to_spoils_of_war
     @turn.pile_cards
     assert_equal [@card1, @card3], @turn.spoils_of_war
