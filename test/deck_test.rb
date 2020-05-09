@@ -40,7 +40,14 @@ class DeckTest < Minitest::Test
     assert_equal 14, deck.rank_of_card_at(2)
   end
 
+  def test_it_gives_rank_zero_when_index_not_found
+    deck = @deck
+
+    assert_equal 0, deck.rank_of_card_at(3)
+  end
+
   def test_it_knows_faces_and_aces
+    skip
     deck = @deck
 
     assert_equal [@card1, @card3], deck.high_ranking_cards
@@ -60,6 +67,7 @@ class DeckTest < Minitest::Test
   end
 
   def test_it_changes_percent_ranks_when_card_removed
+    skip
     deck = @deck
     deck.remove_card
 
@@ -74,6 +82,7 @@ class DeckTest < Minitest::Test
   end
 
   def test_it_changes_percent_ranks_when_card_removed_and_added
+    skip
     deck = @deck
     deck.remove_card
     deck.add_card(@card4)
