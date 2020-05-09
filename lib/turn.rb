@@ -45,9 +45,9 @@ class Turn
         @spoils_of_war << @player1.deck.cards.shift
         @spoils_of_war << @player2.deck.cards.shift
       end
-    # elsif self.type == :mutually_assured_destruction
-    #   @player1.deck.cards.shift(3)
-    #   @player2.deck.cards.shift(3)
+    elsif self.type == :mutually_assured_destruction
+      @player1.deck.cards.shift(3)
+      @player2.deck.cards.shift(3)
     end
   end
 
