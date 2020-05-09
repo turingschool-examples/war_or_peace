@@ -234,8 +234,9 @@ require "minitest/pride"
 
      assert_equal 2, turn.spoils_of_war.size
 
-
-     assert_equal 5 , turn.award_spoils(winner).size
+     turn.award_spoils(winner)
+     
+     assert_equal 5 , winner.deck.cards.size
      assert_equal [], turn.spoils_of_war
 
    end
