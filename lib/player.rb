@@ -16,7 +16,7 @@ class Player
   end
 
   def hand
-    @deck.cards.size
+    @deck.cards
   end
 
 end
