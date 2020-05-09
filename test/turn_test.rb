@@ -109,44 +109,51 @@ class TurnTest < Minitest::Test
   def test_it_piles_one_card_each_to_spoils_when_type_basic
     assert_equal 0, @turn_basic.spoils_of_war.size
 
-    assert_equal 4, @turn_basic.player1.hand
-    assert_equal 4, @turn_basic.player2.hand
+    assert_equal 4, @turn_basic.player1.hand.size
+    assert_equal 4, @turn_basic.player2.hand.size
 
     @turn_basic.pile_cards
 
     assert_equal 2, @turn_basic.spoils_of_war.size
 
-    assert_equal 3, @turn_basic.player1.hand
-    assert_equal 3, @turn_basic.player2.hand
+    assert_equal 3, @turn_basic.player1.hand.size
+    assert_equal 3, @turn_basic.player2.hand.size
   end
 
   def test_it_piles_three_cards_each_to_spoils_when_type_war
     assert_equal 0, @turn_war.spoils_of_war.size
 
-    assert_equal 4, @turn_war.player1.hand
-    assert_equal 4, @turn_war.player2.hand
+    assert_equal 4, @turn_war.player1.hand.size
+    assert_equal 4, @turn_war.player2.hand.size
 
     @turn_war.pile_cards
 
     assert_equal 6, @turn_war.spoils_of_war.size
 
-    assert_equal 1, @turn_war.player1.hand
-    assert_equal 1, @turn_war.player2.hand
+    assert_equal 1, @turn_war.player1.hand.size
+    assert_equal 1, @turn_war.player2.hand.size
   end
 
   def test_it_exiles_away_three_cards_each_when_type_mad
     assert_equal 0, @turn_mad.spoils_of_war.size
 
-    assert_equal 4, @turn_mad.player1.hand
-    assert_equal 4, @turn_mad.player2.hand
+    assert_equal 4, @turn_mad.player1.hand.size
+    assert_equal 4, @turn_mad.player2.hand.size
 
     @turn_mad.pile_cards
 
     assert_equal 0, @turn_mad.spoils_of_war.size
 
-    assert_equal 1, @turn_mad.player1.hand
-    assert_equal 1, @turn_mad.player2.hand
+    assert_equal 1, @turn_mad.player1.hand.size
+    assert_equal 1, @turn_mad.player2.hand.size
   end
+
+  # award_spoils: this method will add each of the cards in the @spoils_of_war array to the winner of the turn.
+
+  def test_it_awards_spoils_to_winner
+
+  end
+
 
 
 end
