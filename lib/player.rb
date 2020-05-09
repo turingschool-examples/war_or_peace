@@ -15,4 +15,8 @@ class Player
     @lost = true
   end
 
+  def hand
+    @deck.cards.size
+  end
+
 end
