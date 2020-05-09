@@ -21,9 +21,9 @@ class Player
 
   def nil_check(i)
     if @deck.rank_of_card_at(i) == nil
-      p "No card at position #{i}"
-      @lost == true
+      you_lose
     end
+
   end
 
 end
