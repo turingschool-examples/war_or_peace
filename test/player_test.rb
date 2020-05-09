@@ -43,8 +43,8 @@ class PlayerTest < Minitest::Test
     assert @player.has_lost?
   end
 
-  def test_it_knows_how_many_cards_in_hand
-    assert_equal 3, @player.hand
+  def test_it_holds_cards_in_hand
+    assert_equal @player.deck.cards, @player.hand
   end
 
 end
