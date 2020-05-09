@@ -47,7 +47,6 @@ class DeckTest < Minitest::Test
   end
 
   def test_it_knows_faces_and_aces
-    skip
     deck = @deck
 
     assert_equal [@card1, @card3], deck.high_ranking_cards
@@ -67,7 +66,6 @@ class DeckTest < Minitest::Test
   end
 
   def test_it_changes_percent_ranks_when_card_removed
-    skip
     deck = @deck
     deck.remove_card
 
@@ -82,7 +80,6 @@ class DeckTest < Minitest::Test
   end
 
   def test_it_changes_percent_ranks_when_card_removed_and_added
-    skip
     deck = @deck
     deck.remove_card
     deck.add_card(@card4)
