@@ -165,6 +165,21 @@ class TurnTest < Minitest::Test
     assert_equal 0, @turn_basic.spoils_of_war.size
   end
 
+  def test_it_awards_six_spoils_to_winner_war
+    assert_equal 0, @turn_war.spoils_of_war.size
+
+    winner = @turn_war.winner
+
+    @turn_war.pile_cards
+    assert_equal 6, @turn_war.spoils_of_war.size
+
+    @turn.award_spoils(winner)
+    assert_equal 7, @turn_war.player1.hand.size
+    assert_equal 1, @turn_war.player2.hand.size
+
+    assert_equal 0, @turn_war.spoils_of_war.size
+  end
+
 
 
 end
