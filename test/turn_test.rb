@@ -70,25 +70,24 @@ class TurnTest < Minitest::Test
     assert_equal false, @turn_basic.same_first_rank?
   end
 
-  def test_it_is_type_basic_when_first_cards_rank_are_not_equal
-    skip
-    assert @turn_basic.player1.deck.rank_of_card_at(0) != @turn_basic.player2.deck.rank_of_card_at(0)
 
+  def test_it_knows_when_the_third_cards_ranks_are_equal
+    assert_equal true, @turn_mad.same_third_rank?
+  end
+
+
+  def test_it_is_type_basic_when_first_cards_rank_are_not_equal
+    assert_equal false, @turn_basic.same_first_rank?
     assert_equal :basic, @turn_basic.type
   end
 
   def test_it_is_type_war_when_first_cards_rank_are_equal
-    skip
-    assert @turn_war.player1.deck.rank_of_card_at(0) == @turn_war.player2.deck.rank_of_card_at(0)
-
+    assert_equal true, @turn_war.same_first_rank?
     assert_equal :war, @turn_war.type
   end
 
   def test_it_is_type_mad_when_first_and_third_cards_rank_are_equal
-    skip
-    assert @turn_mad.player1.deck.rank_of_card_at(0) == @turn_mad.player2.deck.rank_of_card_at(0)
-    assert @turn_mad.player1.deck.rank_of_card_at(2) == @turn_mad.player2.deck.rank_of_card_at(2)
-
+    assert_equal true, @turn_mad.same_first_rank? && @turn_mad.same_third_rank?
     assert_equal :mutually_assured_destruction, @turn_mad.type
   end
 
