@@ -182,6 +182,11 @@ require "minitest/pride"
       turn = Turn.new(player1, player2)
 
       assert_equal :mutually_assured_destruction , turn.type
+
+      turn.pile_cards
+      assert_equal 1 , turn.player1.deck.cards.size
+      assert_equal 1 , turn.player2.deck.cards.size
+      assert_equal [] , turn.spoils_of_war
    end
    def test_it_has_winner_at_mutually_assured_destruction_type
      card1 = Card.new(:heart, 'Jack', 11)
