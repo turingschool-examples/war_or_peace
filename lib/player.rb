@@ -4,4 +4,7 @@ class Player
     @name = name
     @deck = deck
   end
+  def lost?
+    self.deck.cards.size <= 0
+  end
 end
