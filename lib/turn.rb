@@ -10,11 +10,21 @@ class Turn
   end
 
   def type
-    # :basic
+    if same_first_rank? && same_third_rank?
+      :mutually_assured_destruction
+    elsif same_first_rank?
+      :war
+    else
+      :basic
+    end
   end
 
   def same_first_rank?
     player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+  end
+
+  def same_third_rank?
+    player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
   end
 
 end
