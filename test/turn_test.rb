@@ -22,6 +22,8 @@ class DeckTest < Minitest::Test
     @player1 = Player.new("Megan", @deck1)
     @player2 = Player.new("Aurora", @deck2)
     @turn = Turn.new(@player1, @player2)
+    @spoils_of_war = @turn.spoils_of_war
+    @winner = @turn.winner
   end
 
   def test_it_can_return_player_names
@@ -38,7 +40,27 @@ class DeckTest < Minitest::Test
   end
 
   def test_if_is_winner
+    assert_equal @player1, @turn.winner
+  end
 
+  def test_if_pile_cards_functions
+    assert_empty @spoils_of_war
+    @turn.pile_cards
+    refute_empty @spoils_of_war
+    # NEED TO FIGURE OUT THIS TEST
+  end
+
+  def test_if_spoils_removes
+    @turn.pile_cards
+    @turn.spoils_of_war
+    # NEED TO FIGURE OUT THIS TEST
+  end
+
+  def test_if_spoils_are_given_to_winner
+    binding.pry
+    @turn.pile_cards
+    @turn.spoils_of_war
+    @turn.award_spoils(@winner)
   end
 
 
