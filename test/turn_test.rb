@@ -152,12 +152,15 @@ class TurnTest < Minitest::Test
 
   def test_it_awards_two_spoils_to_winner_basic
     assert_equal 0, @turn_basic.spoils_of_war.size
+    assert_equal @player_const, @turn_basic.winner
 
-    winner = @turn_basic.winner
+    turn_winner = @turn_basic.winner
 
     @turn_basic.pile_cards
     assert_equal 2, @turn_basic.spoils_of_war.size
-    @turn_basic.award_spoils(winner)
+    @turn_basic.award_spoils(turn_winner)
+
+    # turn_winner == @player_const == @turn_basic.player1
     assert_equal 5, @turn_basic.player1.hand.size
     assert_equal 3, @turn_basic.player2.hand.size
 
@@ -165,21 +168,21 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_awards_six_spoils_to_winner_war
-    skip
-    assert_equal 0, @turn_war.spoils_of_war.size
+    assert_equal 0, @turn_basic.spoils_of_war.size
+    assert_equal @player_war, @turn_war.winner
 
-    winner = @turn_war.winner
+    turn_winner = @turn_war.winner
 
     @turn_war.pile_cards
     assert_equal 6, @turn_war.spoils_of_war.size
+    @turn_war.award_spoils(turn_winner)
 
-    @turn.award_spoils(winner)
-    assert_equal 7, @turn_war.player1.hand.size
-    assert_equal 1, @turn_war.player2.hand.size
+    # turn_winner == @player_war == @turn_war.player2
+    assert_equal 1, @turn_war.player1.hand.size
+    assert_equal 7, @turn_war.player2.hand.size
 
     assert_equal 0, @turn_war.spoils_of_war.size
   end
-
 
 
 end
