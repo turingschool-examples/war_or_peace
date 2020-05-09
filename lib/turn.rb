@@ -29,7 +29,10 @@ class Turn
   end
 
   def winner
-    basic_winner
+    win_hash = {  basic: basic_winner,
+                  war: war_winner
+                }
+    win_hash[type]
   end
 
   def basic_winner
@@ -37,6 +40,11 @@ class Turn
       player.deck.rank_of_card_at(0)
     end
   end
-  
+
+  def war_winner
+    @players.max_by do |player|
+      player.deck.rank_of_card_at(2)
+    end
+  end
 
 end
