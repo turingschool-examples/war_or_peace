@@ -6,27 +6,7 @@ class Deck
   end
 
   def rank_of_card_at(i)
-    if @cards[i].rank == nil
-      p "No card to read rank"
-    else
-      @cards[i].rank
-    end
-  end
-
-  def first_card
-    if @cards.length < 1
-      puts "DECK: NO MORE CARDS"
-    else
-      rank_of_card_at(0)
-    end
-  end
-
-  def third_card
-    if @cards.length < 3
-      puts "DECK: Less than 3 cards"
-    else
-      rank_of_card_at(2)
-    end
+    @cards[i].rank
   end
 
   def high_ranking_cards
