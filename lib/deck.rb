@@ -8,6 +8,7 @@ class Deck
   def rank_of_card_at(i)
     if @cards[i] == nil
       p "Card not found at position #{i}"
+      0
     else
       @cards[i].rank
     end
