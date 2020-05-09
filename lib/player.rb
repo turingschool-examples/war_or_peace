@@ -19,10 +19,13 @@ class Player
     @deck.cards
   end
 
+  def short_hand?
+    @deck.cards.size < 3 || @deck.cards.size == 0
+  end
+
   def zero_check(i)
     if @deck.rank_of_card_at(i) == nil
       you_lose
-      return true
     end
   end
 
