@@ -5,7 +5,7 @@ require './lib/turn' # retvals sym, DOES commands ie. array manip
 require './lib/start' # SHOULD this class only query?
                       # retvals are sym, int, str?
 
-@l1 = "Welcome to War! (or Peace) This game will be played with 26 cards."
+@l1 = "Welcome to War! (or Peace) This game will be played with 52 cards."
 l2 = "The players today are #{"Megan"} and #{"Aurora"}."
 l3 = "Type 'GO' to start the game!"
 
@@ -52,11 +52,11 @@ end
 3.times { card_arr.shuffle! }
 
 # both decks in same order 1-13, 1-13
-# deck1 = Deck.new(card_arr[0..25])
-# deck2 = Deck.new(card_arr[26..51])
+deck1 = Deck.new(card_arr[0..25])
+deck2 = Deck.new(card_arr[26..51])
 
-deck1 = Deck.new(card_arr[0..12])
-deck2 = Deck.new(card_arr[13..25])
+# deck1 = Deck.new(card_arr[0..12])
+# deck2 = Deck.new(card_arr[13..25])
 
 
 # p deck1.cards.size == deck2.cards.size
@@ -66,14 +66,13 @@ p2 = Player.new("Aurora", deck2)
 
 turn = Turn.new(p1, p2)
 
-turn.start
 
-# loop do
-#   start = gets.chomp
-#   if start == "GO"
-#     Start.new(turn)
-#     break
-#   else
-#     p l3
-#   end
-# end
+loop do
+  start = gets.chomp
+  if start == "GO"
+    turn.start
+    break
+  else
+    p l3
+  end
+end
