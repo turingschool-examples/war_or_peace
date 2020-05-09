@@ -76,6 +76,11 @@ class Turn
     3.times { @exile << @player2.deck.remove_card }
   end
 
-
+  def award_spoils(winner)
+    @spoils_of_war.each do |spoil|
+      winner.hand << spoil
+    end
+    @spoils_of_war = []
+  end
 
 end
