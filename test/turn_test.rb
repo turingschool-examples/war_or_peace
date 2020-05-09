@@ -134,4 +134,19 @@ class TurnTest < Minitest::Test
     assert_equal 1, @turn_war.player2.hand
   end
 
+  def test_it_exiles_away_three_cards_each_when_type_mad
+    assert_equal 0, @turn_mad.spoils_of_war.size
+
+    assert_equal 4, @turn_mad.player1.hand
+    assert_equal 4, @turn_mad.player2.hand
+
+    @turn_mad.pile_cards
+
+    assert_equal 0, @turn_mad.spoils_of_war.size
+
+    assert_equal 1, @turn_mad.player1.hand
+    assert_equal 1, @turn_mad.player2.hand
+  end
+
+
 end
