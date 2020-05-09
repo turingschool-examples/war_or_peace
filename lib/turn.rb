@@ -60,25 +60,27 @@ class Turn
   end
 
   def basic_pile
-    @spoils_of_war << @player1.deck.remove_card
-    @spoils_of_war << @player2.deck.remove_card
-    @spoils_of_war.shuffle!
+    @players.each do |player|
+      @spoils_of_war << player.deck.remove_card
+    end
   end
 
   def war_pile
-    3.times { @spoils_of_war << @player1.deck.remove_card }
-    3.times { @spoils_of_war << @player2.deck.remove_card }
-    @spoils_of_war.shuffle!
+    3.times { basic_pile }
   end
 
   def mad_exile
-    3.times { @exile << @player1.deck.remove_card }
-    3.times { @exile << @player2.deck.remove_card }
+    3.times do
+      @players.each do |player|
+          @exile << player.deck.remove_card
+      end
+    end
   end
 
-  def award_spoils(winner)
+  def award_spoils(turn_winner)
+    @spoils_of_war.shuffle!
     @spoils_of_war.each do |spoil|
-      winner.hand << spoil
+      turn_winner.hand << spoil
     end
     @spoils_of_war = []
   end
