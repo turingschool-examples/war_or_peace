@@ -19,8 +19,11 @@ class Player
     @deck.cards
   end
 
-  def short?
-    @deck.cards.size < 3
+  def nil_check(i)
+    if @deck.rank_of_card_at(i) == nil
+      p "No card at position #{i}"
+      @lost == true
+    end
   end
 
 end
