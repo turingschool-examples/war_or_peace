@@ -27,16 +27,10 @@ class Turn
   end
 
   def same_first_rank?
-    @players.each do |player|
-      player.zero_check(0)
-    end
     player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
   end
 
   def same_third_rank?
-    @players.each do |player|
-      player.zero_check(2)
-    end
     player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
   end
 
@@ -134,7 +128,6 @@ class Turn
     @counter += 1
   end
 
-
   def game_over?
     @counter == @limit || player_lost?
   end
@@ -145,7 +138,7 @@ class Turn
     p "Turn #{count}: #{pile_cards}"
     award_spoils(@turn_winner) unless @turn_winner == "No Winner"
       if game_over?
-        p "GG #{@turn_winner.name}"
+        p "GG"
         break
       end
     end
