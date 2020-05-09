@@ -55,4 +55,7 @@ class Turn
       player2.deck.remove_card(3)
     end
   end
+  def award_spoils(winner)
+      self.winner.deck.cards << @spoils_of_war
+  end
 end
