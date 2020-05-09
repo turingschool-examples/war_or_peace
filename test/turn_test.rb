@@ -150,8 +150,19 @@ class TurnTest < Minitest::Test
 
   # award_spoils: this method will add each of the cards in the @spoils_of_war array to the winner of the turn.
 
-  def test_it_awards_spoils_to_winner
+  def test_it_awards_two_spoils_to_winner_basic
+    assert_equal 0, @turn_basic.spoils_of_war.size
 
+    winner = @turn_basic.winner
+
+    @turn_basic.pile_cards
+    assert_equal 2, @turn_basic.spoils_of_war.size
+
+    @turn.award_spoils(winner)
+    assert_equal 5, @turn_basic.player1.hand.size
+    assert_equal 3, @turn_basic.player2.hand.size
+
+    assert_equal 0, @turn_basic.spoils_of_war.size
   end
 
 
