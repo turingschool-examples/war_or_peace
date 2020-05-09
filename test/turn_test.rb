@@ -184,5 +184,8 @@ class TurnTest < Minitest::Test
     assert_equal 0, @turn_war.spoils_of_war.size
   end
 
+  def test_it_can_count_to_a_million
+    assert_equal 10**6, @turn_basic.count
+  end
 
 end
