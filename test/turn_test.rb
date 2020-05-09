@@ -75,6 +75,9 @@ class TurnTest < Minitest::Test
     assert_equal true, @turn_mad.same_third_rank?
   end
 
+  def test_it_knows_when_the_third_cards_ranks_are_not_equal
+    assert_equal false, @turn_war.same_third_rank?
+  end
 
   def test_it_is_type_basic_when_first_cards_rank_are_not_equal
     assert_equal false, @turn_basic.same_first_rank?
