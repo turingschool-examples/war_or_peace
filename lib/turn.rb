@@ -57,7 +57,7 @@ class Turn
   end
 
   def award_spoils(winner)
-      awarded = winner.deck.cards << @spoils_of_war
-      awarded.flatten!
+    awarded = winner.deck.cards << @spoils_of_war
+    awarded.flatten!
   end
 end
