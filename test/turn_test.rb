@@ -42,7 +42,6 @@ class TurnTest < Minitest::Test
     assert_equal :basic, @turn.type
   end
 
-  # add tests identifying other turn types
   def test_it_can_identify_turn_type_when_war
     @deck1 = Deck.new([@card1, @card2, @card5, @card8])
     @deck2 = Deck.new([@card4, @card3, @card6, @card7])
@@ -84,6 +83,19 @@ class TurnTest < Minitest::Test
     assert_equal @player2, @turn.winner
   end
 
+  def test_there_is_no_turn_winner_when_mutually_assured_destruction
+    @card6 = Card.new(:diamond, '8', 8)
+
+    @deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    @deck2 = Deck.new([@card4, @card3, @card6, @card7])
+
+    @player1 = Player.new("Megan", @deck1)
+    @player2 = Player.new("Aurora", @deck2)
+
+    @turn = Turn.new(@player1, @player2)
+
+    assert_equal "No Winner", @turn.winner
+  end
 
   def test_pile_cards_method_sends_top_card_from_each_players_deck_to_spoils_of_war_when_turn_type_is_basic
     @turn.pile_cards
