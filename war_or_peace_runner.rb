@@ -27,9 +27,8 @@ values = (2..10).to_a
 values = values.map do |value|
   value.to_s
 end
-values.prepend("Ace")
 
-faces = ["Jack", "Queen", "King"]
+faces = ["Jack", "Queen", "King", "Ace"]
 faces.each do |face|
   values << face
 end
