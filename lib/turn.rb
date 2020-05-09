@@ -39,9 +39,11 @@ class Turn
     if self.type == :basic
       @spoils_of_war << @player1.deck.cards.shift
       @spoils_of_war << @player2.deck.cards.shift
-    # elsif self.type == :war
-        # @spoils_of_war << @player1.deck.cards.slice!(0..2)
-        # @spoils_of_war << @player2.deck.cards.slice!(0..2)
+    elsif self.type == :war
+      3.times do
+        @spoils_of_war << @player1.deck.cards.shift
+        @spoils_of_war << @player2.deck.cards.shift
+      end
     # elsif self.type == :mutually_assured_destruction
     #   @player1.deck.cards.shift(3)
     #   @player2.deck.cards.shift(3)

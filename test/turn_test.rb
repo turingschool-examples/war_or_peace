@@ -72,7 +72,7 @@ class TurnTest < Minitest::Test
   end
 
 
-  def test_pile_cards_method_sends_top_card_from_each_players_deck_to_spoils_of_war
+  def test_pile_cards_method_sends_top_card_from_each_players_deck_to_spoils_of_war_when_turn_type_is_basic
     @turn.pile_cards
     assert_equal [@card1, @card3], @turn.spoils_of_war
     assert_equal [@card2, @card5, @card8], @player1.deck.cards
@@ -80,8 +80,19 @@ class TurnTest < Minitest::Test
   end
 
   # add tests pile_cards for other turn types
+  def test_pile_cards_method_sends_top_three_cards_from_each_players_deck_to_spoils_of_war_when_turn_type_is_war
+    @deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    @deck2 = Deck.new([@card4, @card3, @card6, @card7])
+    @player1 = Player.new("Megan", @deck1)
+    @player2 = Player.new("Aurora", @deck2)
 
-  def test_it_awards_spoils_of_war_to_winner_of_bsaic_turn
+    @turn = Turn.new(@player1, @player2)
+
+    @turn.pile_cards
+    assert_equal [@card1, @card4, @card2, @card3, @card5, @card6], @turn.spoils_of_war
+  end
+
+  def test_it_awards_spoils_of_war_to_winner_of_basic_turn
     winner = @turn.winner
     @turn.pile_cards
     @turn.award_spoils(winner)
@@ -92,6 +103,5 @@ class TurnTest < Minitest::Test
     assert_equal [], @turn.spoils_of_war
   end
 end
-
 
 #try assert_empty for @spoils_of_war
