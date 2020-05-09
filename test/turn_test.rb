@@ -157,6 +157,9 @@ require "minitest/pride"
 
       assert_equal :war , turn.type
 
+      turn.pile_cards
+      assert_equal 6 , turn.spoils_of_war.size
+
    end
    def test_it_has_a_mutually_assured_destruction_type
       card1 = Card.new(:heart, 'Jack', 11)
