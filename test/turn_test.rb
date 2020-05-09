@@ -42,33 +42,34 @@ class TurnTest < Minitest::Test
     assert_equal :basic, @turn.type
   end
 
-  # add tests/assertions identifying other turn types
+  # add tests identifying other turn types
 
   def test_it_can_identify_a_turn_winner_when_basic
     assert_equal @player1, @turn.winner
   end
 
-  # add tests/assertions identifying winners with other turn types
+  # add tests identifying winners with other turn types
 
   def test_pile_cards_method_sends_top_card_from_each_players_deck_to_spoils_of_war
     @turn.pile_cards
     assert_equal [@card1, @card3], @turn.spoils_of_war
+    assert_equal [@card2, @card5, @card8], @player1.deck.cards
+    assert_equal [@card4, @card6, @card7], @player2.deck.cards
   end
 
-  # add tests/assertions pile_cards for other turn types
+  # add tests pile_cards for other turn types
 
   def test_it_awards_spoils_of_war_to_winner_of_bsaic_turn
-    @turn.pile_cards
     winner = @turn.winner
-    # require "pry"; binding.pry
+    @turn.pile_cards
     @turn.award_spoils(winner)
-
-    require "pry"; binding.pry
 
     assert_equal [@card2, @card5, @card8, @card1, @card3], @player1.deck.cards
     assert_equal [@card4, @card6, @card7], @player2.deck.cards
-    # assuming cards that went into spoils of war pile should
-    # automatically be removed from players' decks
-    # assert_equal [], @turn.spoils_of_war
+
+    assert_equal [], @turn.spoils_of_war
   end
 end
+
+
+#try assert_empty for @spoils_of_war
