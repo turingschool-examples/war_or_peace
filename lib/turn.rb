@@ -28,14 +28,14 @@ class Turn
 
   def same_first_rank?
     @players.each do |player|
-      player.nil_check(0)
+      player.zero_check(0)
     end
     player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
   end
 
   def same_third_rank?
     @players.each do |player|
-      player.nil_check(2)
+      player.zero_check(2)
     end
     player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
   end
@@ -69,7 +69,7 @@ class Turn
 
   def war_winner
     @players.max_by do |player|
-      player.deck.rank_of_card_at(2)
+      player.deck.rank_of_card_at(2) unless player.zero_check(2)
     end
   end
 

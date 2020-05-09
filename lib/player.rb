@@ -19,11 +19,11 @@ class Player
     @deck.cards
   end
 
-  def nil_check(i)
+  def zero_check(i)
     if @deck.rank_of_card_at(i) == nil
       you_lose
+      return true
     end
-
   end
 
 end
