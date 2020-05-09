@@ -7,6 +7,7 @@ class Turn
     @player1 = p1
     @player2 = p2
     @spoils_of_war = []
+    @players = [p1, p2]
   end
 
   def type
@@ -26,5 +27,16 @@ class Turn
   def same_third_rank?
     player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
   end
+
+  def winner
+    basic_winner
+  end
+
+  def basic_winner
+    @players.max_by do |player|
+      player.deck.rank_of_card_at(0)
+    end
+  end
+  
 
 end
