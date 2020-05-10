@@ -203,6 +203,7 @@ class CardGenerator
   end
 
   def shuffle
+    @shuffled = true
   end
 
 end
