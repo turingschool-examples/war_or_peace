@@ -85,6 +85,8 @@ class CardGeneratorTest < Minitest::Test
     assert_equal false, @card_generator.aces_high?
   end
 
-
+  def test_it_has_values_2_through_10
+    assert_equal [2, 3, 4, 5, 6, 7, 8, 9, 10], @card_generator.nums
+  end
 
 end
