@@ -60,7 +60,7 @@ class CardGeneratorTest < Minitest::Test
   end
 
   def test_it_has_a_standard_royal_family
-    assert_equal ["King", "Queen", "Jack"], @card_generator.royal
+    assert_equal ["Jack", "Queen", "King"], @card_generator.royal
   end
 
   def test_it_has_an_ace_in_the_hole
@@ -70,7 +70,7 @@ class CardGeneratorTest < Minitest::Test
   def test_it_has_a_royal_knight_when_tarot
     @card_generator.tarotize
 
-    assert_equal ["King", "Queen", "Jack", "Knight"], @card_generator.royal
+    assert_equal ["Knight", "Jack", "Queen", "King"], @card_generator.royal
   end
 
   def test_it_has_aces_high_in_standard
@@ -85,16 +85,30 @@ class CardGeneratorTest < Minitest::Test
     assert_equal false, @card_generator.aces_high?
   end
 
-  def test_it_has_values_2_through_10
-    assert_equal [2, 3, 4, 5, 6, 7, 8, 9, 10], @card_generator.nums
-  end
-
   def test_it_has_an_array_of_strings_representing_numbers
 
     expected = ["2", "3", "4", "5", "6", "7", "8", "9", "10"]
 
-    assert_equal expected, @card_generator.values
-    assert_equal true, @card_generator.values.all? {|value| value.class == String}
+    assert_equal expected, @card_generator.numbers
+    assert_equal true, @card_generator.numbers.all? {|number| number.class == String}
+  end
+
+  def test_it_has_aces_high_in_standard
+
+    expected = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Knight", "Jack", "Queen", "King", "Ace"]
+
+    assert_equal expected, @card_generator.pecking_order
+  end
+
+
+
+  def test_it_has_different_cards_in_tarot
+
+    expected = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Knight", "Jack", "Queen", "King"]
+
+    @card_generator.tarotize
+
+    assert_equal expected, @card_generator.pecking_order
   end
 
 end
