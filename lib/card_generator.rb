@@ -198,4 +198,11 @@ class CardGenerator
     @i * deck_size
   end
 
+  def shuffled?
+    @shuffle
+  end
+
+  def shuffle
+  end
+
 end
