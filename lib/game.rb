@@ -1,3 +1,3 @@
-class Start
-  
+class Game
+
 end

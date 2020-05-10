@@ -4,12 +4,12 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
-require './lib/start'
+require './lib/game'
 
-class StartTest < Minitest::Test
+class GameTest < Minitest::Test
   def test_it_exists
-    start = Start.new
-    assert_instance_of Start, start
+    game = Game.new
+    assert_instance_of Game, game
   end
 
   def test_it_
