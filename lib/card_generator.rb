@@ -27,7 +27,7 @@ class CardGenerator
 
   def tarotize
     @suits = tarot_suits
-    @royal << "Knight"
+    @royal.unshift "Knight"
   end
 
   def tarot_suits
@@ -46,6 +46,12 @@ class CardGenerator
     (2..10).to_a.map do |num|
       num.to_s
     end
+  end
+
+  def pecking_order
+    order = numbers << royal
+    order << ace
+    order.flatten!
   end
 
 end
