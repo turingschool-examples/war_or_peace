@@ -1,95 +1,143 @@
 class Turn
   attr_reader :player1,
               :player2,
-              :spoils_of_war
+              :spoils_of_war,
+              :players,
+              :counter,
+              :limit
 
   def initialize(p1, p2)
     @player1 = p1
     @player2 = p2
-    @players = [p1, p2]
     @spoils_of_war = []
+    @exile = []
+    @players = [p1, p2]
+    @counter = 0
+    @limit = 10**6 # one million
   end
 
   def type
-    if @player1.deck.first_card == @player2.deck.first_card && @player1.deck.third_card == @player2.deck.third_card
+    if same_first_rank? && same_third_rank?
       :mutually_assured_destruction
-    elsif @player1.deck.first_card == @player2.deck.first_card
+    elsif same_first_rank?
       :war
     else
       :basic
     end
   end
 
+  def same_first_rank?
+    player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+  end
+
+  def same_third_rank?
+    player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+  end
+
+  # a really weird getter method
   def winner
-    if type == :mutually_assured_destruction
-      "No Winner"
-    elsif type == :war
-      war_winner
-    elsif type == :basic
-      basic_winner
+    win_hash = {  basic: basic_winner,
+                  war: war_winner,
+                  mutually_assured_destruction: "No Winner"
+                }
+    win_hash[type]
+  end
+
+  def basic_winner
+    @players.max_by do |player|
+      player.deck.rank_of_card_at(0)
     end
   end
 
   def war_winner
-    winner = nil
-    card_rank = 0
-    @players.each do |player|
-      if player.deck.third_card > card_rank
-        card_rank = player.deck.third_card
-        winner = player
-      end
+    @players.max_by do |player|
+      player.deck.rank_of_card_at(2)
     end
-    winner
-  end
-
-  def basic_winner
-    winner = nil
-    card_rank = 0
-    @players.each do |player|
-      if player.deck.first_card > card_rank
-        card_rank = player.deck.first_card
-        winner = player
-      end
-    end
-    winner
   end
 
   def pile_cards
+    turn_winner = winner_name
     if type == :mutually_assured_destruction
-      mad_pile
+      mad_exile
+      "#{turn_winner} 6 cards removed from play"
     elsif type == :war
       war_pile
+      "WAR - #{turn_winner} won #{@spoils_of_war.size} cards"
     elsif type == :basic
       basic_pile
+      "#{turn_winner} won #{@spoils_of_war.size} cards"
     end
   end
 
-  def take_card(player)
-    player.deck.cards.shift
+  def winner_name
+    if winner.class == Player
+      winner.name
+    else
+      "*mutually assured destruction*"
+    end
   end
 
-  def mad_pile
+
+  def basic_pile
     @players.each do |player|
-      3.times { take_card(player) }
+      break if player.has_lost?
+      @spoils_of_war << player.deck.remove_card
     end
   end
 
   def war_pile
-    @players.each do |player|
-      3.times { @spoils_of_war << take_card(player) }
+    3.times { basic_pile }
+  end
+
+  def mad_exile
+    3.times do
+      @players.each do |player|
+        break if player.has_lost?
+        @exile << player.deck.remove_card
+      end
     end
   end
 
-  def basic_pile
-    @players.each do |player|
-      @spoils_of_war << take_card(player)
+  def award_spoils(turn_winner)
+    unless @spoils_of_war.empty?
+      @spoils_of_war.shuffle!
+      @spoils_of_war.each do |spoil|
+        turn_winner.hand << spoil
+      end
+      @spoils_of_war = []
     end
   end
 
-  def award_spoils(winner)
-    until @spoils_of_war.empty? do
-      winner.deck.cards << @spoils_of_war.shift
+  def count
+    @counter += 1
+  end
+
+  def game_over?
+    @counter == @limit || last_turn?
+  end
+
+  def last_turn?
+    # is this a closure?
+
+    def three_cards?
+      type == :mutually_assured_destruction || type == :war
     end
+
+    def one_card?
+      type == :basic
+    end
+
+    def player_short?
+      @players.any? { |player| player.short_hand? }
+    end
+
+    last_turn = false
+
+    if ( three_cards? || one_card? ) && player_short?
+      last_turn = true
+    end
+
+    last_turn
   end
 
 end
