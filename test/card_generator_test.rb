@@ -36,7 +36,7 @@ class CardGeneratorTest < Minitest::Test
   end
 
   def test_it_can_put_that_number_in_the_array
-    
+
     assert_empty @card_generator.arr
     @card_generator.move_it
     assert_equal [0], @card_generator.arr
@@ -45,6 +45,17 @@ class CardGeneratorTest < Minitest::Test
     diff.move_it
     assert_equal [2], diff.arr
 
+  end
+
+  def test_it_has_an_array_of_standard_suits
+
+
+    assert_equal [:club, :spade, :heart, :diamond], @card_generator.standard
+  end
+
+  def test_it_has_an_array_of_tarot_suits
+
+    assert_equal [:cup, :wand, :coin, :sword], @card_generator.tarot
   end
 
 end
