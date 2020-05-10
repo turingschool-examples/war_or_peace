@@ -135,20 +135,26 @@ class CardGeneratorTest < Minitest::Test
 
   def test_it_starts_with_a_style_attribute_nil
     assert_nil @card_generator.style
-
-    expected = nil
-
-    assert_equal expected, @card_generator.style
   end
 
   def test_it_can_change_its_style
-    assert_nil @card_generator.style
 
+    assert_nil @card_generator.style
     @card_generator.tarotize
 
     expected = "Tarotized"
 
     assert_equal expected, @card_generator.style
+
+    diff = CardGenerator.new(0)
+    diff.standardize
+
+    expected = "Standardized"
+    assert_equal expected, diff.style
+
+  end
+
+  def test_it_
   end
 
 end
