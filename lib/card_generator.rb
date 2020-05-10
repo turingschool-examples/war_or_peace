@@ -1,12 +1,12 @@
 class CardGenerator
-  attr_reader :suits, :i, :royal
+  attr_reader :suits, :i, :royal, :numbers
 
 
   def initialize(i)
     @i = i #gets.chomp
     @suits = []
-    @royal = ["King", "Queen", "Jack"]
-    @values = []
+    @royal = ["Jack", "Queen", "King"]
+    @numbers = str_arr
   end
 
   def hi
@@ -42,12 +42,8 @@ class CardGenerator
     ["Ace"]
   end
 
-  def nums
-    (2..10).to_a
-  end
-
-  def values
-    nums.map do |num|
+  def str_arr
+    (2..10).to_a.map do |num|
       num.to_s
     end
   end
