@@ -148,8 +148,6 @@ class TurnTest < Minitest::Test
     assert_equal 1, @turn_mad.player2.hand.size
   end
 
-  # award_spoils: this method will add each of the cards in the @spoils_of_war array to the winner of the turn.
-
   def test_it_awards_two_spoils_to_winner_basic
     assert_equal 0, @turn_basic.spoils_of_war.size
     assert_equal @player_const, @turn_basic.winner
@@ -184,17 +182,7 @@ class TurnTest < Minitest::Test
     assert_equal 0, @turn_war.spoils_of_war.size
   end
 
-  def test_it_can_count_to_a_million
-    skip
-    assert_equal 10**6, @turn_basic.count
-  end
+  ### helper method tests??
 
-  def test_it_knows_a_player_loses_when_they_are_out_of_cards
-    skip
-
-    @turn_basic.player1.hand = []
-
-    assert_equal true, @turn_basic.player_lost?
-  end
 
 end
