@@ -3,8 +3,17 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 
-# suits = [:heart, :spade, :diamond, :club]
-standard_deck = []
+
+
+
+@card1 = Card.new(:diamond, 'Queen', 12)
+@card2 = Card.new(:spade, '3', 3)
+@card3 = Card.new(:heart, 'Ace', 14)
+@cards = [@card1, @card2, @card3]
+@deck = Deck.new(@cards)
+
+cards = []
+standard_deck = Deck.new(cards)
 rank_and_values = {
   '2': 2,
   '3': 3,
@@ -22,17 +31,17 @@ rank_and_values = {
 }
 
 rank_and_values.map do |rank, value|
-  standard_deck << Card.new(:heart, rank, value)
+  standard_deck.add_card(Card.new(:heart, rank, value))
 end
 
 rank_and_values.map do |rank, value|
-  standard_deck << Card.new(:spade, rank, value)
+  standard_deck.add_card(Card.new(:spade, rank, value))
 end
 
 rank_and_values.map do |rank, value|
-  standard_deck << Card.new(:diamond, rank, value)
+  standard_deck.add_card(Card.new(:diamond, rank, value))
 end
 
 rank_and_values.map do |rank, value|
-  standard_deck << Card.new(:club, rank, value)
+  standard_deck.add_card(Card.new(:club, rank, value))
 end
