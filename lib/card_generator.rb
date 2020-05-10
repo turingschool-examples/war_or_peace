@@ -15,6 +15,22 @@ class CardGenerator
     @suits_arr << @i
   end
 
+  def standardize
+    @suits_arr = standard_suits
+  end
+
+  def standard_suits
+    [:club, :spade, :heart, :diamond]
+  end
+
+  def tarotize
+    @suits_arr = tarot_suits
+  end
+
+  def tarot_suits
+    [:cup, :wand, :coin, :sword]
+  end
+
 end
 
 
