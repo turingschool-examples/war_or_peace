@@ -30,6 +30,10 @@ class TurnTest < Minitest::Test
   def test_it_has_readable_attributes
     assert_equal @player1, @turn.player1
     assert_equal @player2, @turn.player2
-  end 
+  end
+
+  def test_spoils_of_war_is_empty
+    assert_equal [], @turn.spoils_of_war
+  end
 
 end
