@@ -194,6 +194,24 @@ class CardGeneratorTest < Minitest::Test
 
   end
 
+  def test_it_can_multiply_deck_size_by_an_integer
+    assert_equal 0, @card_generator.i
+    @card
+
+    expected = @card_generator.i * @card_generator.deck_size
+
+    assert_equal expected, @card_generator.cards_to_print
+  end
+
+  def test_it_can_multiply_deck_size_by_a_diff_integer
+    diff = CardGenerator.new(2)
+    assert_equal 2, diff.i
+
+    expected = diff.i * diff.deck_size
+
+    assert_equal expected, diff.cards_to_print
+  end
+
   def test_it_
   end
 
