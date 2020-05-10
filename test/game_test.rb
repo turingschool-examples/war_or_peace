@@ -42,6 +42,6 @@ class GameTest < Minitest::Test
     turn = Turn.new(player1, player2)
     game = Game.new(turn)
 
-    assert_equal turn, game.turn 
+    assert_equal turn, game.turn
   end
 end
