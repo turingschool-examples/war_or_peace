@@ -18,235 +18,171 @@ class TurnTest < Minitest::Test
     card7 = Card.new(:heart, "3", 3)
     card8 = Card.new(:diamond, "2", 2)
 
-    @basic_deck_1 = Deck.new([card1, card2, card5, card8])
-    @basic_deck_2 = Deck.new([card3, card4, card6, card7])
+    # player_1 has same deck for all turn types
+    @const_deck = Deck.new([card1, card2, card5, card8])
 
-    @war_deck_1 = Deck.new([card1, card2, card5, card8])
-    @war_deck_2 = Deck.new([card4, card3, card6, card7])
+    # player_2 deck will vary, esp in mad turn
+    @basic_deck = Deck.new([card3, card4, card6, card7])
+    @war_deck = Deck.new([card4, card3, card6, card7])
+    @mad_deck = Deck.new([card4, card3, Card.new(:diamond, "8", 8), card7])
 
-    @mad_deck_1 = Deck.new([card1, card2, card5, card8])
-    @mad_deck_2 = Deck.new([card4, card3, Card.new(:diamond, "8", 8), card7])
-  end
+    @player_const = Player.new("Megan", @const_deck)
 
-  def test_it_exists
-    player1 = Player.new("Megan", @basic_deck_1)
-    player2 = Player.new("Aurora", @basic_deck_2)
+    @player_basic = Player.new("Aurora", @basic_deck)
+    @player_war = Player.new("Aurora", @war_deck)
+    @player_mad = Player.new("Aurora", @mad_deck)
 
-    turn = Turn.new(player1, player2)
+    @turn_basic = Turn.new(@player_const, @player_basic)
+    @turn_war = Turn.new(@player_const, @player_war)
+    @turn_mad = Turn.new(@player_const, @player_mad)
 
-    assert_instance_of Turn, turn
-  end
-
-  def test_it_knows_both_players
-    player1 = Player.new("Megan", @basic_deck_1)
-    player2 = Player.new("Aurora", @basic_deck_2)
-
-    turn = Turn.new(player1, player2)
-
-    assert_equal player1, turn.player1
-    assert_equal player2, turn.player2
-  end
-
-  def test_it_initializes_with_no_spoils_of_war
-    player1 = Player.new("Megan", @basic_deck_1)
-    player2 = Player.new("Aurora", @basic_deck_2)
-
-    turn = Turn.new(player1, player2)
-
-    assert_empty turn.spoils_of_war
-  end
-
-  def test_it_has_basic_turn_type_when_first_cards_not_equal
-    player1 = Player.new("Megan", @basic_deck_1)
-    player2 = Player.new("Aurora", @basic_deck_2)
-
-    turn = Turn.new(player1, player2)
-
-    refute player1.deck.first_card == player2.deck.first_card
-
-    assert_equal :basic, turn.type
-  end
-
-  def test_it_has_war_turn_type_when_first_cards_are_equal
-    player1 = Player.new("Megan", @war_deck_1)
-    player2 = Player.new("Aurora", @war_deck_2)
-
-    turn = Turn.new(player1, player2)
-
-    assert player1.deck.first_card == player2.deck.first_card
-
-    assert_equal :war, turn.type
-  end
-
-  def test_it_has_mad_turn_type_when_first_and_third_cards_are_equal
-    player1 = Player.new("Megan", @mad_deck_1)
-    player2 = Player.new("Aurora", @mad_deck_2)
-
-    turn = Turn.new(player1, player2)
-
-    assert player1.deck.first_card == player2.deck.first_card
-    assert player1.deck.third_card == player2.deck.third_card
-
-    assert_equal :mutually_assured_destruction, turn.type
   end
 
 
-  def test_it_knows_basic_winner_has_higher_first_card
-    player1 = Player.new("Megan", @basic_deck_1)
-    player2 = Player.new("Aurora", @basic_deck_2)
-
-    turn = Turn.new(player1, player2)
-
-    assert_equal :basic, turn.type
-
-    assert player1.deck.first_card > player2.deck.first_card
-
-    assert_equal player1, turn.winner
+  def test_it_exists_in_setup
+    assert_instance_of Turn, @turn_basic
+    assert_instance_of Turn, @turn_war
+    assert_instance_of Turn, @turn_mad
   end
 
-  def test_it_knows_war_winner_has_higher_third_card
-    player1 = Player.new("Megan", @war_deck_1)
-    player2 = Player.new("Aurora", @war_deck_2)
-
-    turn = Turn.new(player1, player2)
-
-    assert_equal :war, turn.type
-
-    assert player1.deck.third_card < player2.deck.third_card
-
-    assert_equal player2, turn.winner
+  def test_it_has_readable_player1_attributes
+    assert_equal @player_const, @turn_basic.player1
+    assert_equal @player_const, @turn_war.player1
+    assert_equal @player_const, @turn_mad.player1
   end
 
-  def test_it_knows_mad_winner_when_first_and_third_cards_equal
-    player1 = Player.new("Megan", @mad_deck_1)
-    player2 = Player.new("Aurora", @mad_deck_2)
-
-    turn = Turn.new(player1, player2)
-
-    assert_equal :mutually_assured_destruction, turn.type
-
-    assert player1.deck.first_card == player2.deck.first_card
-    assert player1.deck.third_card == player2.deck.third_card
-
-    assert_equal "No Winner", turn.winner
+  def test_it_has_readable_player2_attributes
+    assert_equal @player_basic, @turn_basic.player2
+    assert_equal @player_war, @turn_war.player2
+    assert_equal @player_mad, @turn_mad.player2
   end
 
-  def test_it_piles_one_card_when_basic
-    player1 = Player.new("Megan", @basic_deck_1)
-    player2 = Player.new("Aurora", @basic_deck_2)
-
-    turn = Turn.new(player1, player2)
-
-    assert_equal :basic, turn.type
-    assert_empty turn.spoils_of_war
-
-    expected = [@basic_deck_1.cards[0], @basic_deck_2.cards[0]]
-
-    turn.pile_cards
-
-    assert_equal expected, turn.spoils_of_war
-
-    assert_equal 3, player1.deck.cards.size
-    assert_equal 3, player2.deck.cards.size
+  def test_it_inits_with_empty_spoils_array
+    assert_empty @turn_basic.spoils_of_war
+    assert_empty @turn_war.spoils_of_war
+    assert_empty @turn_mad.spoils_of_war
   end
 
-  def test_it_piles_three_cards_when_war
-    # skip
-    player1 = Player.new("Megan", @war_deck_1)
-    player2 = Player.new("Aurora", @war_deck_2)
-
-    turn = Turn.new(player1, player2)
-
-    assert_equal :war, turn.type
-
-    assert_empty turn.spoils_of_war
-
-    expected = [@war_deck_1.cards[0..2], @war_deck_2.cards[0..2]].flatten
-
-    turn.pile_cards
-
-    assert_equal expected, turn.spoils_of_war
-
-    assert_equal 1, player1.deck.cards.size
-    assert_equal 1, player2.deck.cards.size
+  def test_it_knows_when_the_first_cards_ranks_are_equal
+    assert_equal true, @turn_war.same_first_rank?
   end
 
-  def test_it_exiles_three_cards_when_mad
-    # skip
-    player1 = Player.new("Megan", @mad_deck_1)
-    player2 = Player.new("Aurora", @mad_deck_2)
-
-    turn = Turn.new(player1, player2)
-
-    assert_empty turn.spoils_of_war
-
-    expect1 = [player1.deck.cards.last]
-    expect2 = [player2.deck.cards.last]
-
-    turn.pile_cards
-
-    assert_empty turn.spoils_of_war
-
-    assert_equal expect1, player1.deck.cards
-    assert_equal expect2, player2.deck.cards
+  def test_it_knows_when_the_first_cards_ranks_are_not_equal
+    assert_equal false, @turn_basic.same_first_rank?
   end
 
-  def test_it_awards_spoils_to_the_basic_winner
-    player1 = Player.new("Megan", @basic_deck_1)
-    player2 = Player.new("Aurora", @basic_deck_2)
-
-    turn = Turn.new(player1, player2)
-
-    assert_equal :basic, turn.type
-    assert_equal player1, turn.winner
-
-    winner = turn.winner
-
-    pre_pile = winner.deck.cards
-
-    turn.pile_cards
-
-    pile = turn.spoils_of_war
-
-    expected = []
-    expected << pre_pile
-    expected << pile
-    expected.flatten!
-
-    turn.award_spoils(winner)
-
-    assert_empty turn.spoils_of_war
-
-    assert_equal expected, winner.deck.cards
+  def test_it_knows_when_the_third_cards_ranks_are_equal
+    assert_equal true, @turn_mad.same_third_rank?
   end
 
-  def test_it_awards_spoils_to_the_war_winner
-    player1 = Player.new("Megan", @war_deck_1)
-    player2 = Player.new("Aurora", @war_deck_2)
-
-    turn = Turn.new(player1, player2)
-
-    assert_equal :war, turn.type
-    assert_equal player2, turn.winner
-
-    winner = turn.winner
-
-    pre_pile = winner.deck.cards
-
-    turn.pile_cards
-
-    pile = turn.spoils_of_war
-
-    expected = []
-    expected << pre_pile
-    expected << pile
-    expected.flatten!
-
-    turn.award_spoils(winner)
-
-    assert_empty turn.spoils_of_war
-
-    assert_equal expected, winner.deck.cards
+  def test_it_knows_when_the_third_cards_ranks_are_not_equal
+    assert_equal false, @turn_war.same_third_rank?
   end
+
+  def test_it_is_type_basic_when_first_cards_rank_are_not_equal
+    assert_equal false, @turn_basic.same_first_rank?
+    assert_equal :basic, @turn_basic.type
+  end
+
+  def test_it_is_type_war_when_first_cards_rank_are_equal
+    assert_equal true, @turn_war.same_first_rank?
+    assert_equal :war, @turn_war.type
+  end
+
+  def test_it_is_type_mad_when_first_and_third_cards_rank_are_equal
+    assert_equal true, @turn_mad.same_first_rank? && @turn_mad.same_third_rank?
+    assert_equal :mutually_assured_destruction, @turn_mad.type
+  end
+
+  def test_it_picks_basic_winner_with_higher_first_card
+    assert_equal @player_const, @turn_basic.winner
+  end
+
+  def test_it_picks_war_winner_with_higher_third_card
+    assert_equal @player_war, @turn_war.winner
+  end
+
+  def test_it_picks_no_winner_when_type_mad
+    assert_equal "No Winner", @turn_mad.winner
+  end
+
+  def test_it_piles_one_card_each_to_spoils_when_type_basic
+    assert_equal 0, @turn_basic.spoils_of_war.size
+
+    assert_equal 4, @turn_basic.player1.hand.size
+    assert_equal 4, @turn_basic.player2.hand.size
+
+    @turn_basic.pile_cards
+
+    assert_equal 2, @turn_basic.spoils_of_war.size
+
+    assert_equal 3, @turn_basic.player1.hand.size
+    assert_equal 3, @turn_basic.player2.hand.size
+  end
+
+  def test_it_piles_three_cards_each_to_spoils_when_type_war
+    assert_equal 0, @turn_war.spoils_of_war.size
+
+    assert_equal 4, @turn_war.player1.hand.size
+    assert_equal 4, @turn_war.player2.hand.size
+
+    @turn_war.pile_cards
+
+    assert_equal 6, @turn_war.spoils_of_war.size
+
+    assert_equal 1, @turn_war.player1.hand.size
+    assert_equal 1, @turn_war.player2.hand.size
+  end
+
+  def test_it_exiles_away_three_cards_each_when_type_mad
+    assert_equal 0, @turn_mad.spoils_of_war.size
+
+    assert_equal 4, @turn_mad.player1.hand.size
+    assert_equal 4, @turn_mad.player2.hand.size
+
+    @turn_mad.pile_cards
+
+    assert_equal 0, @turn_mad.spoils_of_war.size
+
+    assert_equal 1, @turn_mad.player1.hand.size
+    assert_equal 1, @turn_mad.player2.hand.size
+  end
+
+  def test_it_awards_two_spoils_to_winner_basic
+    assert_equal 0, @turn_basic.spoils_of_war.size
+    assert_equal @player_const, @turn_basic.winner
+
+    turn_winner = @turn_basic.winner
+
+    @turn_basic.pile_cards
+    assert_equal 2, @turn_basic.spoils_of_war.size
+    @turn_basic.award_spoils(turn_winner)
+
+    # turn_winner == @player_const == @turn_basic.player1
+    assert_equal 5, @turn_basic.player1.hand.size
+    assert_equal 3, @turn_basic.player2.hand.size
+
+    assert_equal 0, @turn_basic.spoils_of_war.size
+  end
+
+  def test_it_awards_six_spoils_to_winner_war
+    assert_equal 0, @turn_basic.spoils_of_war.size
+    assert_equal @player_war, @turn_war.winner
+
+    turn_winner = @turn_war.winner
+
+    @turn_war.pile_cards
+    assert_equal 6, @turn_war.spoils_of_war.size
+    @turn_war.award_spoils(turn_winner)
+
+    # turn_winner == @player_war == @turn_war.player2
+    assert_equal 1, @turn_war.player1.hand.size
+    assert_equal 7, @turn_war.player2.hand.size
+
+    assert_equal 0, @turn_war.spoils_of_war.size
+  end
+
+  ### helper method tests??
+
 
 end
