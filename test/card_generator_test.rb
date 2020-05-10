@@ -218,13 +218,13 @@ class CardGeneratorTest < Minitest::Test
   end
 
   def test_it_will_not_be_shuffled_by_default
-    refute @card_generator.shuffled?
+    assert_equal false, @card_generator.shuffled?
   end
 
   def test_it_will_know_after_it_gets_shuffled
     @card_generator.shuffle
 
-    assert_equal true, @card_generator.shuffled?  
+    assert_equal true, @card_generator.shuffled?
   end
 
 end
