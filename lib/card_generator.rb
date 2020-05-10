@@ -41,6 +41,10 @@ class CardGenerator
     ["Ace"]
   end
 
+  def nums
+    (2..10).to_a
+  end
+
 end
 
 
