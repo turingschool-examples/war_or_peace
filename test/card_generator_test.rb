@@ -18,8 +18,8 @@ class CardGeneratorTest < Minitest::Test
   end
 
   def test_it_starts_with_an_empty_array
-    assert_instance_of Array, @card_generator.suits_arr
-    assert_empty @card_generator.suits_arr
+    assert_instance_of Array, @card_generator.suits
+    assert_empty @card_generator.suits
   end
 
   def test_it_has_an_integer_number
@@ -37,26 +37,40 @@ class CardGeneratorTest < Minitest::Test
 
   def test_it_can_put_that_number_in_the_array
 
-    assert_empty @card_generator.suits_arr
+    assert_empty @card_generator.suits
     @card_generator.move_it
-    assert_equal [0], @card_generator.suits_arr
+    assert_equal [0], @card_generator.suits
 
     diff = CardGenerator.new(2)
     diff.move_it
-    assert_equal [2], diff.suits_arr
+    assert_equal [2], diff.suits
 
   end
 
   def test_it_can_have_standard_suits
     @card_generator.standardize
 
-    assert_equal [:club, :spade, :heart, :diamond], @card_generator.suits_arr
+    assert_equal [:club, :spade, :heart, :diamond], @card_generator.suits
   end
 
   def test_it_can_have_tarot_suits
     @card_generator.tarotize
 
-    assert_equal [:cup, :wand, :coin, :sword], @card_generator.suits_arr
+    assert_equal [:cup, :wand, :coin, :sword], @card_generator.suits
+  end
+
+  def test_it_has_a_standard_royal_family
+    assert_equal ["King", "Queen", "Jack"], @card_generator.royal
+  end
+
+  def test_it_has_an_ace_in_the_hole
+    assert_equal ["Ace"], @card_generator.ace
+  end
+
+  def test_it_has_a_royal_knight_when_tarot
+    @card_generator.tarotize
+
+    assert_equal ["King", "Queen", "Jack", "Knight"], @card_generator.royal
   end
 
   def test_it_has_aces_high_in_standard
@@ -70,5 +84,7 @@ class CardGeneratorTest < Minitest::Test
 
     assert_equal false, @card_generator.aces_high?
   end
+
+
 
 end
