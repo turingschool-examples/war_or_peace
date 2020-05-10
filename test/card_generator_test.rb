@@ -203,20 +203,28 @@ class CardGeneratorTest < Minitest::Test
     expected = @card_generator.i * @card_generator.deck_size
 
     assert_equal expected, @card_generator.cards_to_print
+
+    assert_equal 0, @card_generator.cards_to_print
   end
 
   def test_it_can_multiply_deck_size_by_a_diff_integer
     diff = CardGenerator.new(2)
     diff.tarotize
-    
-    assert_equal 2, diff.i
 
+    assert_equal 2, diff.i
     expected = diff.i * diff.deck_size
 
     assert_equal expected, diff.cards_to_print
   end
 
-  def test_it_
+  def test_it_will_not_be_shuffled_by_default
+    refute @card_generator.shuffled?
+  end
+
+  def test_it_will_know_after_it_gets_shuffled
+    @card_generator.shuffle
+
+    assert_equal true, @card_generator.shuffled?  
   end
 
 end
