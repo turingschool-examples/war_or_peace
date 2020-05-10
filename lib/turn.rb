@@ -9,22 +9,24 @@ class Turn
     @spoils_of_war = []
   end
 
+
   def type
-    if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
-      :basic
+    if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) &&
+          player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+      :mutually_assured_destruction
 
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
       :war
 
-    # elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) &&
-    #       player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
-    #   :mutually_assured_destruction
+
+    elsif player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
+      :basic
+
     end
   end
 
 
   def winner
-
     if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
       player1
     elsif player1.deck.rank_of_card_at(0) < player2.deck.rank_of_card_at(0)
@@ -34,7 +36,7 @@ class Turn
     elsif player1.deck.rank_of_card_at(2) < player2.deck.rank_of_card_at(2)
       player2
     else
-      mutually_assured_destruction
+      "No Winner"
     end
 
   end
@@ -58,6 +60,16 @@ class Turn
     # into the @spoils_of_war based on these rules...
     #   for a :basic turn, each player will send one card (the top card) to the
     #   spoils pile
+    if type == :basic
+      # require "pry"; binding.pry
+      @spoils_of_war << player1.deck.cards[0]
+      @spoils_of_war << player2.deck.cards[0]
+    end
+
+    # elsif type == :war
+    #   @spoils_of_war << player1.deck.cards[0..2]
+    #   @spoils_of_war << player2.deck.cards[0..2]
+    # end
 
     #   for a :war turn, each player will send three cards (the top three cards)
     #   to the spoils pile
