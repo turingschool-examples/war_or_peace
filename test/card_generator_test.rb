@@ -26,8 +26,8 @@ class CardGeneratorTest < Minitest::Test
     assert_instance_of Integer, @card_generator.i
   end
 
-  def test_it_starts_at_number_2
-    assert_equal 2, @card_generator.i
+  def test_it_starts_at_number_0
+    assert_equal 0, @card_generator.i
   end
 
 end
