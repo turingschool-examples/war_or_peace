@@ -227,4 +227,15 @@ class CardGeneratorTest < Minitest::Test
     assert_equal true, @card_generator.shuffled?
   end
 
+  def test_it_shuffles
+    skip
+    deck_arr = @card_generator.deck
+
+    deck_shuffle = @card_generator.shuffle
+
+    assert_equal false, deck_arr == deck_shuffle
+    refute deck_arr == deck_shuffle
+  end
+
+
 end
