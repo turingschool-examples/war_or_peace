@@ -1,5 +1,5 @@
 class CardGenerator
-  attr_reader :suits, :i, :royal, :numbers
+  attr_reader :suits, :i, :royal, :numbers, :pecking_order
 
 
   def initialize(i)
@@ -7,6 +7,7 @@ class CardGenerator
     @suits = []
     @royal = ["Jack", "Queen", "King"]
     @numbers = str_arr
+    @pecking_order = standard_order
   end
 
   def hi
@@ -48,8 +49,10 @@ class CardGenerator
     end
   end
 
-  def pecking_order
-    order = numbers << royal
+  def standard_order
+    order = []
+    order << numbers
+    order << royal
     order << ace
     order.flatten!
   end
