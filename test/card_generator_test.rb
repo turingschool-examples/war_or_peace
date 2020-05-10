@@ -43,6 +43,7 @@ class CardGeneratorTest < Minitest::Test
   end
 
   def test_it_will_take_only_integer_input
+    skip
 
     assert_instance_of Integer, @card_generator.i
     assert_equal 0, @card_generator.i
@@ -136,30 +137,44 @@ class CardGeneratorTest < Minitest::Test
     assert_equal expected, @card_generator.pecking_order
   end
 
-  # It does a bunch of multiplication
-  def test_it_knows_how_many_cards_per_suit
+  def test_it_has_different_deck_size_for_different_styles
+
     @card_generator.standardize
 
     expected = @card_generator.pecking_order.size * @card_generator.suits.size
 
     assert_equal expected, @card_generator.deck_size
     assert_equal 52, @card_generator.deck_size
+
+
+    diff = CardGenerator.new(0)
+    diff.tarotize
+
+    expected = diff.pecking_order.size * diff.suits.size
+
+    assert_equal expected, diff.deck_size
+    assert_equal 56, diff.deck_size
+
   end
 
-  def test_it_knows_how_many_cards_per_suit_in_tarot
-    @card_generator.tarotize
+  def test_it_cannot_multiply_if_style_is_nil
+    skip
 
-    expected = @card_generator.pecking_order.size * @card_generator.suits.size
+    assert_nil @card_generator.style
 
-    assert_equal expected, @card_generator.deck_size
-    assert_equal 56, @card_generator.deck_size
-  end
+    # @card_generator.deck_size
+    # => NoMethodError
 
-  def test_it_can_multiply_size_of_pecking_order_and_suits_arrays
   end
 
   def test_it_starts_with_a_style_attribute_nil
+
     assert_nil @card_generator.style
+
+    diff = CardGenerator.new(0)
+
+    assert_nil diff.style
+
   end
 
   def test_it_can_change_its_style
