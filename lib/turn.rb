@@ -91,7 +91,7 @@ class Turn
 
   def mad_exile
     3.times do
-      @players.each do |player, i|
+      @players.each do |player|
         break if player.has_lost?
         @exile << player.deck.remove_card
       end
@@ -102,15 +102,6 @@ class Turn
     @players.any? { |player| player.short_hand? }
   end
 
-  def player_lost?
-    @players.any? { |player| player.has_lost? }
-  end
-
-  def get_loser
-    @players.select { |player| player.has_lost? }
-  end
-
-
   def award_spoils(turn_winner)
     unless @spoils_of_war.empty?
       @spoils_of_war.shuffle!
@@ -119,6 +110,14 @@ class Turn
       end
       @spoils_of_war = []
     end
+  end
+
+  def count
+    @counter += 1
+  end
+
+  def game_over?
+    @counter == @limit || last_turn?
   end
 
   def last_turn?
@@ -139,19 +138,6 @@ class Turn
     end
 
     last_turn
-
   end
-
-
- # for runner file
-
-  def count
-    @counter += 1
-  end
-
-  def game_over?
-    @counter == @limit || last_turn?
-  end
-
 
 end
