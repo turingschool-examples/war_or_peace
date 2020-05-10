@@ -7,7 +7,12 @@ require './lib/turn'
 require './lib/start'
 
 class StartTest < Minitest::Test
-  def method_name
+  def test_it_exists
+    start = Start.new
+    assert_instance_of Start, start
+  end
+
+  def test_it_
 
   end
 end
