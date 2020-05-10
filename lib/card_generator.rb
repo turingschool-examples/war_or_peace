@@ -6,6 +6,7 @@ class CardGenerator
     @i = i #gets.chomp
     @suits = []
     @royal = ["King", "Queen", "Jack"]
+    @values = []
   end
 
   def hi
@@ -43,6 +44,12 @@ class CardGenerator
 
   def nums
     (2..10).to_a
+  end
+
+  def values
+    nums.map do |num|
+      num.to_s
+    end
   end
 
 end
