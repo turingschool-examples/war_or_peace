@@ -1,6 +1,6 @@
 class Deck
 
-  attr_reader :cards
+  attr_reader :cards, :removed_cards
 
   def initialize(cards)
     @cards = cards
@@ -11,7 +11,7 @@ class Deck
   end
 
   def high_ranking_cards
-    cards.select { |card| card.rank >= 11 }
+    select_high_ranking
   end
 
   def add_card(new_card)
@@ -23,8 +23,12 @@ class Deck
   end
 
   def percent_high_ranking
-    high_cards = cards.select { |card| card.rank >= 11 }
-    (100*high_cards.length.to_f / cards.length.to_f).round(2)
+    (100*select_high_ranking.length.to_f / cards.length.to_f).round(2)
+  end
+
+  private
+  def select_high_ranking
+    cards.select { |card| card.rank >= 11 }
   end
 
 end

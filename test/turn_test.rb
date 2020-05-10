@@ -3,6 +3,7 @@ require '../lib/turn'
 require '../lib/player'
 require '../lib/deck'
 require '../lib/card'
+require 'pry'
 
 class TurnTest < Minitest::Test
 
@@ -51,10 +52,40 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_can_determine_winner
-    p @turn_mad.winner
     assert_equal @player1, @turn.winner
     assert_equal @player4, @turn_war.winner
     assert_equal "No Winner", @turn_mad.winner
   end
+
+  def test_it_can_pile_cards
+    @turn.pile_cards
+    assert_equal 2, @turn.spoils_of_war.count
+
+    @turn_war.pile_cards
+    assert_equal 6, @turn_war.spoils_of_war.count
+
+    @turn_mad.pile_cards
+    assert_equal 0, @turn_mad.spoils_of_war.count
+  end
+
+  def test_it_can_award_spoils
+
+    assert_equal @player1, @turn.winner
+    assert_equal 4, @player1.deck.cards.count
+
+    @turn.pile_cards
+
+    assert_equal 3, @player1.deck.cards.count
+    assert_equal 2, @turn.spoils_of_war.count
+
+    assert_equal 3, @turn.winner.deck.cards.count
+
+    @turn.award_cards
+
+    assert_equal 5, @turn.winner.deck.cards.count
+
+
+  end
+
 
 end
