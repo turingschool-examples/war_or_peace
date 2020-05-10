@@ -1,4 +1,4 @@
-require '/Users/litowhite/turing/practice/lib/card.rb'
+require '../lib/card'
 
 class Deck
 
