@@ -23,4 +23,8 @@ class TurnTest < Minitest::Test
     @turn = Turn.new(@player1, @player2)
   end
 
+  def test_it_exists
+    assert_instance_of Turn, @turn
+  end
+
 end
