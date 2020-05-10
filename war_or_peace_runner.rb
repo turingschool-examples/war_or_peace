@@ -1,9 +1,8 @@
-require 'minitest/autorun'
-require 'minitest/pride'
 require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/game'
 
 card1 = Card.new(:diamond, '2', 2)
 card2 = Card.new(:diamond, '3', 3)
@@ -73,3 +72,8 @@ deck2 = deck[26..52]
 
 player1 = Player.new("Tim", deck1)
 player2 = Player.new("Kat", deck2)
+
+turn = Turn.new(player1, player2)
+
+game = Game.new(turn)
+game.start
