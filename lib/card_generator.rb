@@ -15,24 +15,56 @@ class CardGenerator
     @numbers = str_arr
     @pecking_order = nil
     @style = nil
+    @shuffled = false
     # get_style
-    ## style determines pecking_order
-    ## take the pecking order array and 
+    # get_integer
+    #
     # print_msg
   end
 
+  def shuffle_prompt
+
+    puts "Do you want to shuffle the cards?"
+    puts "Continue? [Y]es / [N]o"
+    invalid_counter = 0
+
+    loop do
+
+      p = gets.chomp
+
+      if p == "Y"
+        puts "OK"
+        break
+      elsif p == "N"
+        puts "Goodbye"
+        exit
+      else
+        puts "Invalid input. Continue? [Y]es / [N]o"
+        invalid_counter += 1
+        if invalid_counter == 3
+          puts "Goodbye"
+          exit
+        end
+      end
+
+    end
+
+  end
+
+
+
   def print_msg
-    puts "Generating '#{@style}_deck.txt'"
+    puts "Generating #{deck_size} cards in '#{@style}_deck.txt'"
     puts "...."
     puts "Success!"
   end
 
   def get_style
     puts "Pick a deck style: [S]tandard / [T]arot Minor Arcana"
-    invalid_counter = 0
+    invalid_counter = 3
 
     loop do
-      style = gets.chomp
+      style = gets.upcase.chomp
       if style == "S"
         standardize
         break
@@ -40,16 +72,42 @@ class CardGenerator
         tarotize
         break
       else
+        puts "Invalid input. #{invalid_counter} attempts remaining!"
         puts "Pick a deck style: [S]tandard / [T]arot Minor Arcana"
-        invalid_counter += 1
-        if invalid_counter == 3
+        puts "Press "
+        invalid_counter -= 1
+        if invalid_counter.zero?
           puts "Goodbye"
           exit
         end
       end
     end
+  end
 
+  def get_integer
 
+    puts "Input an Integer number (Whole number): "
+    invalid_counter = 3
+
+    loop do
+      int = gets.chomp
+      if int.class == Integer && int.negative?
+        puts "Why so negative? We're gonna turn that frown upside down!"
+        @i = int * -1
+        break
+      elsif int.class == Integer && int.positive?
+        @i = int
+        break
+      else
+        puts "Invalid input. #{invalid_counter} attempts remaining!"
+        puts "Input an Integer number (Whole number, without decimals): "
+        invalid_counter -= 1
+        if invalid_counter.zero?
+          puts "Goodbye"
+          exit
+        end
+      end
+    end
   end
 
   def start
