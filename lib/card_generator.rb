@@ -199,7 +199,7 @@ class CardGenerator
   end
 
   def shuffled?
-    @shuffle
+    @shuffled
   end
 
   def shuffle
