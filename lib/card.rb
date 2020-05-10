@@ -6,5 +6,3 @@ attr_reader :suit, :value, :rank
     @rank = rank
   end
 end
-
-# require 'pry'; binding.pry
