@@ -6,7 +6,7 @@ require './lib/card_generator'
 class CardGeneratorTest < Minitest::Test
 
   def setup
-    @card_generator = CardGenerator.new
+    @card_generator = CardGenerator.new(0)
   end
 
   def test_it_exists
@@ -18,8 +18,8 @@ class CardGeneratorTest < Minitest::Test
   end
 
   def test_it_starts_with_an_empty_array
-    assert_instance_of Array, @card_generator.arr
-    assert_empty @card_generator.arr
+    assert_instance_of Array, @card_generator.suits_arr
+    assert_empty @card_generator.suits_arr
   end
 
   def test_it_has_an_integer_number
@@ -37,25 +37,25 @@ class CardGeneratorTest < Minitest::Test
 
   def test_it_can_put_that_number_in_the_array
 
-    assert_empty @card_generator.arr
+    assert_empty @card_generator.suits_arr
     @card_generator.move_it
-    assert_equal [0], @card_generator.arr
+    assert_equal [0], @card_generator.suits_arr
 
     diff = CardGenerator.new(2)
     diff.move_it
-    assert_equal [2], diff.arr
+    assert_equal [2], diff.suits_arr
 
   end
 
-  def test_it_has_an_array_of_standard_suits
+  def test_it_can_have_standard_suits
 
 
-    assert_equal [:club, :spade, :heart, :diamond], @card_generator.standard
+    assert_equal [:club, :spade, :heart, :diamond], @card_generator.suits_arr
   end
 
-  def test_it_has_an_array_of_tarot_suits
+  def test_it_can_have_tarot_suits
 
-    assert_equal [:cup, :wand, :coin, :sword], @card_generator.tarot
+    assert_equal [:cup, :wand, :coin, :sword], @card_generator.suits_arr
   end
 
 end
