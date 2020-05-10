@@ -59,4 +59,16 @@ class CardGeneratorTest < Minitest::Test
     assert_equal [:cup, :wand, :coin, :sword], @card_generator.suits_arr
   end
 
+  def test_it_has_aces_high_in_standard
+    @card_generator.standardize
+
+    assert_equal true, @card_generator.aces_high?
+  end
+
+  def test_it_has_aces_low_in_tarot
+    @card_generator.tarotize
+
+    assert_equal false, @card_generator.aces_high?
+  end
+
 end
