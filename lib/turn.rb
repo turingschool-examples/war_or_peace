@@ -24,27 +24,26 @@ class Turn
 
 
   def winner
-    # players = [player1, player2]
-    # players_rank = players.each {|player| player.deck.cards[0].rank}
-    p1_rank = player1.deck.rank_of_card_at(0)
-    p2_rank = player2.deck.rank_of_card_at(0)
-    players_rank = [p1_rank, p2_rank]
-    players_winner = players_rank.max
+
+    if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+      player1
+    elsif player1.deck.rank_of_card_at(0) < player2.deck.rank_of_card_at(0)
+      player2
+    elsif player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+      player1
+    elsif player1.deck.rank_of_card_at(2) < player2.deck.rank_of_card_at(2)
+      player2
+    else
+      mutually_assured_destruction
+    end
+
+  end
 
 
 
     #this method will determine the winner of the turn...
       # if the turn has a type of :basic, it will return whichever player
       # has a higher rank_of_card_at(0)
-    if :basic
-    require "pry"; binding.pry
-    #   #def method find method that compares int 9 and 11, but returns the winning
-    #   #player
-      # players_winner ==
-    end
-
-
-
 
 
       # if the turn has a type of :war the winner will be whichever player
@@ -52,7 +51,6 @@ class Turn
 
       # if the turn has a type of :mutually_assured_destruction the method
       # will return No Winner.
-  end
 
 
   def pile_cards

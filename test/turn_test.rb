@@ -26,12 +26,21 @@ class TurnTest < Minitest::Test
     @player2 = Player.new("Aurora", @deck2)
 
     @turn = Turn.new(@player1, @player2)
+    # require "pry"; binding.pry
   end
 
 
   def test_it_exists
 
     assert_instance_of Turn, @turn
+  end
+
+  def test_player1_exists
+    assert_equal @player1, @turn.player1
+  end
+
+  def test_player1_exists
+    assert_equal @player2, @turn.player2
   end
 
 
@@ -48,8 +57,9 @@ class TurnTest < Minitest::Test
   end
 
 
-  def test_for_winner
+  def test_for_winner_player
 
+    # require "pry"; binding.pry
     assert_equal @player1, @turn.winner
   end
 
