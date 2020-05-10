@@ -7,7 +7,8 @@ class CardGenerator
     @suits = []
     @royal = ["Jack", "Queen", "King"]
     @numbers = str_arr
-    @pecking_order = nil
+    # puts "Pick a deck style: [S]tandard / [T]arot Minor Arcana
+    @pecking_order = nil # gets.chomp
   end
 
   def hi
@@ -65,6 +66,10 @@ class CardGenerator
     order << numbers
     order << royal
     order.flatten!
+  end
+
+  def deck_size
+    @pecking_order.size * @suits.size
   end
 
 end
