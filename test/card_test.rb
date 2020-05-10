@@ -1,5 +1,5 @@
 require "minitest/autorun"
-require '/Users/litowhite/turing/practice/card.rb'
+require '../lib/card'
 
 
 class CardTest < Minitest::Test
