@@ -103,7 +103,6 @@ class CardGeneratorTest < Minitest::Test
   end
 
 
-
   def test_it_has_different_cards_in_tarot
 
     expected = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Knight", "Jack", "Queen", "King"]
@@ -111,6 +110,24 @@ class CardGeneratorTest < Minitest::Test
     @card_generator.tarotize
 
     assert_equal expected, @card_generator.pecking_order
+  end
+
+  def test_it_knows_how_many_cards_per_suit
+    @card_generator.standardize
+
+    expected = @card_generator.pecking_order.size * @card_generator.suits.size
+
+    assert_equal expected, @card_generator.deck_size
+    assert_equal 52, @card_generator.deck_size
+  end
+
+  def test_it_knows_how_many_cards_per_suit_in_tarot
+    @card_generator.tarotize
+
+    expected = @card_generator.pecking_order.size * @card_generator.suits.size
+
+    assert_equal expected, @card_generator.deck_size
+    assert_equal 56, @card_generator.deck_size
   end
 
 end
