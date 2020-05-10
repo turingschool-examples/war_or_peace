@@ -1,6 +1,6 @@
 require 'minitest/autorun'
-require '/Users/litowhite/turing/practice/lib/card.rb'
-require '/Users/litowhite/turing/practice/lib/deck.rb'
+require '../lib/card.rb'
+require '../lib/deck'
 
 class DeckTest < Minitest::Test
 
