@@ -40,5 +40,3 @@ class Deck
     @cards << new_card
   end
 end
-
-deck = Deck.new(cards)
