@@ -21,6 +21,16 @@ class PlayerTest < Minitest::Test
   def test_it_has_readable_attributes
     assert_equal "Clarisa", @player.name
     assert_equal @deck, @player.deck
-  end 
+  end
+
+  def test_it_has_lost
+    assert_equal false, @player.has_lost?
+    assert_equal @card1, @player.deck.remove_card
+    assert_equal false, @player.has_lost?
+    assert_equal @card2, @player.deck.remove_card
+    assert_equal false, @player.has_lost?
+    assert_equal @card3, @player.deck.remove_card
+    assert_equal true, @player.has_lost?
+  end
 
 end
