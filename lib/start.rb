@@ -8,10 +8,10 @@ class Start
 
   def initialize(turn)
     @turn = turn
-    play
+    start
   end
 
-  def play
+  def start
     until turn.game_over? do
       final_winner = turn.winner
       p "Turn #{turn.count}: #{turn.pile_cards}"
