@@ -2,15 +2,17 @@ class CardGenerator
   attr_reader :arr, :i
 
 
-  def initialize
+  def initialize(i=0)
     @arr = []
-    @i = 0
+    @i = i
   end
 
   def hi
     "hello"
   end
 
-
+  def move_it
+    @arr << @i
+  end
 
 end
