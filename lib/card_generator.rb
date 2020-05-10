@@ -13,10 +13,11 @@ class CardGenerator
     @suits = []
     @royal = ["Jack", "Queen", "King"]
     @numbers = str_arr
-    @pecking_order = nil # gets.chomp
+    @pecking_order = nil
     @style = nil
     # get_style
-    # # do it
+    ## style determines pecking_order
+    ## take the pecking order array and 
     # print_msg
   end
 
@@ -133,6 +134,10 @@ class CardGenerator
 
   def deck_size
     @pecking_order.size * @suits.size
+  end
+
+  def cards_to_print
+    @i * deck_size
   end
 
 end
