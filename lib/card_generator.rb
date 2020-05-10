@@ -7,7 +7,7 @@ class CardGenerator
     @suits = []
     @royal = ["Jack", "Queen", "King"]
     @numbers = str_arr
-    @pecking_order = standard_order
+    @pecking_order = nil
   end
 
   def hi
@@ -20,6 +20,7 @@ class CardGenerator
 
   def standardize
     @suits = standard_suits
+    @pecking_order = standard_order
   end
 
   def standard_suits
@@ -29,6 +30,7 @@ class CardGenerator
   def tarotize
     @suits = tarot_suits
     @royal.unshift "Knight"
+    @pecking_order = tarot_order
   end
 
   def tarot_suits
@@ -54,6 +56,14 @@ class CardGenerator
     order << numbers
     order << royal
     order << ace
+    order.flatten!
+  end
+
+  def tarot_order
+    order = []
+    order << ace
+    order << numbers
+    order << royal
     order.flatten!
   end
 
