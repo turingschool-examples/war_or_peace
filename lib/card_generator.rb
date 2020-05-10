@@ -1,10 +1,10 @@
 class CardGenerator
-  attr_reader :suits_arr, :i
+  attr_reader :suits, :i
 
 
   def initialize(i)
     @i = i #gets.chomp
-    @suits_arr = []
+    @suits = []
   end
 
   def hi
@@ -12,11 +12,11 @@ class CardGenerator
   end
 
   def move_it
-    @suits_arr << @i
+    @suits << @i
   end
 
   def standardize
-    @suits_arr = standard_suits
+    @suits = standard_suits
   end
 
   def standard_suits
@@ -24,11 +24,22 @@ class CardGenerator
   end
 
   def tarotize
-    @suits_arr = tarot_suits
+    @suits = tarot_suits
   end
 
   def tarot_suits
     [:cup, :wand, :coin, :sword]
+  end
+
+  def aces_high?
+    @suits == standard_suits
+  end
+
+  def royal
+  end
+
+  def ace
+    ["Ace"]
   end
 
 end
@@ -37,6 +48,6 @@ end
 # puts "Hello. Let's build a deck of cards.
 # puts "This program will generate a text file."
 # puts "Continue? [Y]es / [N]o"
-# puts "Pick a deck style: [S]tandard / [T]arot
+# puts "Pick a deck style: [S]tandard / [T]arot Minor Arcana
 # puts "What do you want to name this file?"
 # puts "Generated #{style} deck.... at #{name}.txt"
