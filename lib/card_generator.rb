@@ -85,6 +85,7 @@ class CardGenerator
     "hello"
   end
 
+  # make into method to choose multiples of decks?
   def move_it
     @suits << @i
   end
@@ -119,25 +120,15 @@ class CardGenerator
   end
 
   def str_arr
-    (2..10).to_a.map do |num|
-      num.to_s
-    end
+    (2..10).to_a.map { |num| num.to_s }
   end
 
   def standard_order
-    order = []
-    order << numbers
-    order << royal
-    order << ace
-    order.flatten!
+    [numbers, royal, ace].flatten!
   end
 
   def tarot_order
-    order = []
-    order << ace
-    order << numbers
-    order << royal
-    order.flatten!
+    [ace, numbers, royal].flatten!
   end
 
   def deck_size
