@@ -15,8 +15,7 @@ class Start
     until turn.game_over? do
       final_winner = turn.winner
       p "Turn #{turn.count}: #{turn.pile_cards}"
-      award_spoils(final_winner) unless final_winner == "No Winner"
-      # p "Turn #{count}"
+      turn.award_spoils(final_winner) unless final_winner == "No Winner"
         if turn.game_over?
           if turn.counter == turn.limit || final_winner == "No Winner"
             p "---- DRAW ----"
