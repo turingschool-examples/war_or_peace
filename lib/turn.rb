@@ -45,13 +45,13 @@ class Turn
 
   def basic_winner
     @players.max_by do |player|
-      player.deck.rank_of_card_at(0) unless player.zero_check(0)
+      player.deck.rank_of_card_at(0)
     end
   end
 
   def war_winner
     @players.max_by do |player|
-      player.deck.rank_of_card_at(2) unless player.zero_check(2)
+      player.deck.rank_of_card_at(2)
     end
   end
 
@@ -98,10 +98,6 @@ class Turn
     end
   end
 
-  def player_short?
-    @players.any? { |player| player.short_hand? }
-  end
-
   def award_spoils(turn_winner)
     unless @spoils_of_war.empty?
       @spoils_of_war.shuffle!
@@ -129,6 +125,10 @@ class Turn
 
     def one_card?
       type == :basic
+    end
+
+    def player_short?
+      @players.any? { |player| player.short_hand? }
     end
 
     last_turn = false
