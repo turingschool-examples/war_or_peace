@@ -7,4 +7,14 @@ class Turn
     @spoils_of_war = []
   end
 
+  def type
+    if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+      return :basic
+    elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
+      return :war
+    elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
+      return :mutually_assured_destruction
+    end
+  end
+
 end
