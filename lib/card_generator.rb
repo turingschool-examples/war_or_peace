@@ -1,10 +1,11 @@
 class CardGenerator
-  attr_reader :suits, :i
+  attr_reader :suits, :i, :royal
 
 
   def initialize(i)
     @i = i #gets.chomp
     @suits = []
+    @royal = ["King", "Queen", "Jack"]
   end
 
   def hi
@@ -25,6 +26,7 @@ class CardGenerator
 
   def tarotize
     @suits = tarot_suits
+    @royal << "Knight"
   end
 
   def tarot_suits
@@ -33,9 +35,6 @@ class CardGenerator
 
   def aces_high?
     @suits == standard_suits
-  end
-
-  def royal
   end
 
   def ace
