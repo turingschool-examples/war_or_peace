@@ -5,6 +5,7 @@ require './lib/card_generator'
 
 class CardGeneratorTest < Minitest::Test
 
+  # it is initialized with an integer argument
   def setup
     @card_generator = CardGenerator.new(0)
   end
@@ -13,29 +14,51 @@ class CardGeneratorTest < Minitest::Test
     assert_instance_of CardGenerator, @card_generator
   end
 
+  # it returns string data
   def test_it_says_hello
     assert_equal "hello", @card_generator.hi
   end
 
-  def test_it_starts_with_an_empty_array
+  def test_it_initializes_with_an_empty_array
+
     assert_instance_of Array, @card_generator.suits
     assert_empty @card_generator.suits
+
   end
 
-  def test_it_has_an_integer_number
+  def test_it_can_take_any_integer_input
+
     assert_instance_of Integer, @card_generator.i
-  end
-
-  def test_it_starts_at_number_0
     assert_equal 0, @card_generator.i
+
+    one = CardGenerator.new(1)
+    assert_equal 1, one.i
+
+    two = CardGenerator.new(2)
+    assert_equal 2, two.i
+
+    three = CardGenerator.new(3)
+    assert_equal 3, three.i
+
   end
 
-  def test_it_can_have_a_different_number
-    diff = CardGenerator.new(2)
-    assert_equal 2, diff.i
+  def test_it_will_take_only_integer_input
+
+    assert_instance_of Integer, @card_generator.i
+    assert_equal 0, @card_generator.i
+
+    one = CardGenerator.new(a)
+    assert_equal "Please enter an Integer number (a Whole number)", one.i
+
+    two = CardGenerator.new(2)
+    assert_equal nil, two.i
+
+    three = CardGenerator.new(3)
+    assert_equal 3, three.i
+
   end
 
-  def test_it_can_put_that_number_in_the_array
+  def test_it_has_a_method_to_move_input_into_array
 
     assert_empty @card_generator.suits
     @card_generator.move_it
@@ -59,6 +82,7 @@ class CardGeneratorTest < Minitest::Test
     assert_equal [:cup, :wand, :coin, :sword], @card_generator.suits
   end
 
+  # it manipulates arrays of strings
   def test_it_has_a_standard_royal_family
     assert_equal ["Jack", "Queen", "King"], @card_generator.royal
   end
@@ -112,6 +136,7 @@ class CardGeneratorTest < Minitest::Test
     assert_equal expected, @card_generator.pecking_order
   end
 
+  # It does a bunch of multiplication
   def test_it_knows_how_many_cards_per_suit
     @card_generator.standardize
 
