@@ -48,12 +48,13 @@ class CardGeneratorTest < Minitest::Test
   end
 
   def test_it_can_have_standard_suits
-
+    @card_generator.standardize
 
     assert_equal [:club, :spade, :heart, :diamond], @card_generator.suits_arr
   end
 
   def test_it_can_have_tarot_suits
+    @card_generator.tarotize
 
     assert_equal [:cup, :wand, :coin, :sword], @card_generator.suits_arr
   end
