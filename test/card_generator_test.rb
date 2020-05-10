@@ -6,12 +6,10 @@ require './lib/card_generator'
 class CardGeneratorTest < Minitest::Test
 
   def setup
-    @arr = []
+    @card_generator = CardGenerator.new
   end
 
   def test_it_exists
-    @card_generator = CardGenerator.new
-
     assert_instance_of CardGenerator, @card_generator
   end
 
@@ -19,5 +17,9 @@ class CardGeneratorTest < Minitest::Test
     assert_equal "hello", @card_generator.hi
   end
 
+  def test_it_has_an_array
+    assert_instance_of Array, @card_generator.arr
+    assert_empty @card_generator.arr
+  end
 
 end
