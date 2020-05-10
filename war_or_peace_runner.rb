@@ -47,3 +47,6 @@ shuffled_standard_deck_cards = standard_deck_cards.shuffle
 half_decks = standard_deck_cards.shuffle.each_slice((standard_deck_cards.size/2)).to_a
 deck1 = Deck.new(half_decks[0])
 deck2 = Deck.new(half_decks[1])
+
+player1 = Player.new("Player 1", deck1)
+player2 = Player.new("Player 2", deck2)
