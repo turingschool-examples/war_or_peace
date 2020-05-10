@@ -95,7 +95,7 @@ class CardGeneratorTest < Minitest::Test
 
   def test_it_has_aces_high_in_standard
 
-    expected = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Knight", "Jack", "Queen", "King", "Ace"]
+    expected = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
 
     assert_equal expected, @card_generator.pecking_order
   end
