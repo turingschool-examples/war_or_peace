@@ -89,4 +89,12 @@ class CardGeneratorTest < Minitest::Test
     assert_equal [2, 3, 4, 5, 6, 7, 8, 9, 10], @card_generator.nums
   end
 
+  def test_it_has_an_array_of_strings_representing_numbers
+
+    expected = [2, 3, 4, 5, 6, 7, 8, 9, 10].to_s
+
+    assert_equal expected, @card_generator.values
+    assert_equal true, @card_generator.values.all? {|value| value.class == String}
+  end
+
 end
