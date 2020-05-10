@@ -115,9 +115,6 @@ class CardGeneratorTest < Minitest::Test
   def test_it_knows_how_many_cards_per_suit
     @card_generator.standardize
 
-    expected = @card_generator.pecking_order.size * @card_generator.suits.size
-
-    assert_equal expected, @card_generator.deck_size
     assert_equal 52, @card_generator.deck_size
   end
 
