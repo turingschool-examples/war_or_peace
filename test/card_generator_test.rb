@@ -237,5 +237,12 @@ class CardGeneratorTest < Minitest::Test
     refute deck_arr == deck_shuffle
   end
 
+  def test_it_can_make_a_deck_array
+    skip
+    assert_instance_of Array, @card_generator.deck
+    assert_empty @card_generator.deck
+  end
+
+  def
 
 end
