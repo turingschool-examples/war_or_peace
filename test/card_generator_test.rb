@@ -195,6 +195,8 @@ class CardGeneratorTest < Minitest::Test
   end
 
   def test_it_can_multiply_deck_size_by_an_integer
+    @card_generator.standardize
+
     assert_equal 0, @card_generator.i
     @card
 
@@ -205,6 +207,8 @@ class CardGeneratorTest < Minitest::Test
 
   def test_it_can_multiply_deck_size_by_a_diff_integer
     diff = CardGenerator.new(2)
+    diff.tarotize
+    
     assert_equal 2, diff.i
 
     expected = diff.i * diff.deck_size
