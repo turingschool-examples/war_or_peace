@@ -2,7 +2,6 @@ require 'minitest/autorun'
 require '../lib/player'
 require '../lib/card'
 require '../lib/deck'
-require 'pry'
 
 class PlayerTest < Minitest::Test
 
@@ -14,7 +13,7 @@ class PlayerTest < Minitest::Test
     @deck = Deck.new(@cards)
     @player = Player.new('Clarisa', @deck)
   end
-binding.pry 
+
   def test_it_has_readable_attributes
     assert_equal "Clarisa", @player.name
     assert_equal @deck, @player.deck

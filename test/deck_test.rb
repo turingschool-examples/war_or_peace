@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require '../lib/card.rb'
+require '../lib/card'
 require '../lib/deck'
 
 class DeckTest < Minitest::Test

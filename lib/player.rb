@@ -1,6 +1,6 @@
-require '../lib/deck'
-
 class Player
+
+  attr_reader :name, :deck
 
   def initialize(name, deck)
     @name = name
@@ -13,14 +13,6 @@ class Player
     else
       return true
     end
-  end
-
-  def name
-    @name
-  end
-
-  def deck
-    @deck
   end
 
 end
