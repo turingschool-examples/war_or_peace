@@ -2,7 +2,9 @@ class Turn
   attr_reader :player1,
               :player2,
               :spoils_of_war,
-              :players
+              :players,
+              :counter,
+              :limit
 
   def initialize(p1, p2)
     @player1 = p1
@@ -11,7 +13,7 @@ class Turn
     @exile = []
     @players = [p1, p2]
     @counter = 0
-    @limit = 10**6
+    @limit = 10**6 # one million
   end
 
   def type
@@ -53,14 +55,6 @@ class Turn
     end
   end
 
-  def winner_name
-    if winner.class == Player
-      winner.name
-    else
-      "*mutually assured destruction*"
-    end
-  end
-
   def pile_cards
     turn_winner = winner_name
     if type == :mutually_assured_destruction
@@ -75,16 +69,12 @@ class Turn
     end
   end
 
-  def player_short?
-    @players.any? { |player| player.short_hand? }
-  end
-
-  def player_lost?
-    @players.any? { |player| player.has_lost? }
-  end
-
-  def get_loser
-    @players.select { |player| player.has_lost? }
+  def winner_name
+    if winner.class == Player
+      winner.name
+    else
+      "*mutually assured destruction*"
+    end
   end
 
 
@@ -107,6 +97,19 @@ class Turn
       end
     end
   end
+
+  def player_short?
+    @players.any? { |player| player.short_hand? }
+  end
+
+  def player_lost?
+    @players.any? { |player| player.has_lost? }
+  end
+
+  def get_loser
+    @players.select { |player| player.has_lost? }
+  end
+
 
   def award_spoils(turn_winner)
     unless @spoils_of_war.empty?
@@ -150,21 +153,5 @@ class Turn
     @counter == @limit || last_turn?
   end
 
-
-  def start
-  until game_over? do
-    turn_winner = winner
-    p "Turn #{count}: #{pile_cards}"
-    award_spoils(turn_winner) unless turn_winner == "No Winner"
-      if game_over?
-        if turn_winner == "No Winner"
-          p "---- DRAW ----"
-        else
-          p "*~*~*~* #{turn_winner.name} has won the game! *~*~*~*"
-        end
-        break
-      end
-    end
-  end
 
 end
