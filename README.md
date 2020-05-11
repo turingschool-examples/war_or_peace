@@ -6,7 +6,9 @@ To play: `$ ruby war_or_peace_runner.rb`
 
 ### There are some extra files so I will explain:
 
-#### TLDR: I used loops but didn't test them. So I did it again and wrote the tests first. [And then I realized I had a new, standalone program.](https://github.com/ajtran303/card_generator)
+#### TLDR: I used loops but didn't test them. So I did it again and wrote the tests first.
+
+[And then I realized I had a new, standalone program.](https://github.com/ajtran303/card_generator)
 
 ### ./lib/build.rb
 
