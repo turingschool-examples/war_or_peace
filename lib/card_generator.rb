@@ -31,7 +31,3 @@ class CardGenerator
   end
 
 end
-
-p cards = CardGenerator.new("cards.txt").cards
-# p cards = CardGenerator.new("cards.txt").cards.size
-# => 52
