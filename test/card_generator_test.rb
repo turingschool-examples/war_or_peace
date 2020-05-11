@@ -293,4 +293,22 @@ class CardGeneratorTest < Minitest::Test
 
   end
 
+  def test_it_initializes_with_an_empty_deck_array
+    assert_empty @card_generator.deck
+  end
+
+  def test_it_puts_a_deck_in_the_deck_array
+    @card_generator.standardize
+    @card_generator.generate_deck
+    assert_equal 52, @card_generator.deck.size
+  end
+
+  def test_it_puts_a_different_deck_in_the_deck_array
+    @card_generator.tarotize
+    @card_generator.generate_deck
+    assert_equal 56, @card_generator.deck.size
+  end
+
+
+
 end
