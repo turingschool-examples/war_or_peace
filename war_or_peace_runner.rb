@@ -16,18 +16,24 @@ input = gets.chomp
 
 class Runner
   attr_reader :deck_builder
-  def menu
+  def start
     @deck1 = Deck.new([@card1, @card3, @card5, @card7, @card9, @card11, @card13,
-      @card15, @card17, @card19, @card21, @card23, @card25, @card27, @card29,
-      @card31, @card33, @card35, @card37, @card39, @card41, @card43, @card45,
-      @card47, @card49, @card51])
+       @card15, @card17, @card19, @card21, @card23, @card25, @card27, @card29,
+       @card31, @card33, @card35, @card37, @card39, @card41, @card43, @card45,
+       @card47, @card49, @card51, @card53, @card55, @card57, @card59, @card61,
+       @card63, @card65, @card67, @card69, @card71, @card73, @card75, @card77,
+       @card79, @card81, @card83, @card85, @card87, @card89, @card91, @card93,
+       @card95, @card97, @card99, @card101, @card103])
     @deck2 = Deck.new([@card2, @card4, @card6, @card8, @card10, @card12,
-      @card14, @card16, @card18, @card20, @card22, @card24, @card26, @card28,
-      @card30, @card32, @card34, @card36, @card38, @card40, @card42, @card44,
-      @card46, @card48, @card50, @card52])
+       @card14, @card16, @card18, @card20, @card22, @card24, @card26, @card28,
+       @card30, @card32, @card34, @card36, @card38, @card40, @card42, @card44,
+       @card46, @card48, @card50, @card52, @card54, @card56, @card58, @card60,
+       @card62, @card64, @card66, @card68, @card70, @card72, @card74, @card76,
+       @card78, @card80, @card82, @card84, @card86, @card88, @card90, @card92,
+       @card94, @card96, @card98, @card100, @card102, @card104])
     @player1 = Player.new("Megan", @deck1)
     @player2 = Player.new("Aurora", @deck2)
-    # @turn = Turn.new(@player1, @player2)
+    @turn_number = 0
   end
 
   def build_deck
@@ -52,23 +58,39 @@ class Runner
         i = i + 1
       end
     end
+  @player1.deck.cards.compact!
+  @player2.deck.cards.compact!  # Remove nil from @card assignment
   end
 
-def turn
-  @turn = Turn.new(@player1, @player2)
-  @turn.type
-  @turn.winner
-  @turn.pile_cards
-  @turn.award_spoils(@winner)
-  binding.pry
+  def turn
+    @turn_number += 1
+    @turn = Turn.new(@player1, @player2)
+    if @turn.type == :mutually_assured_destruction
+      puts "*mutually assured destruction* 6 cards removed from play /n"
+    end
+    @turn.winner
+    @winner = @turn.winner
+    @turn.pile_cards
+    cards_won = @turn.spoils_of_war.size
+    @turn.award_spoils(@winner)
+    puts "Turn #{@turn_number}: #{@winner} won #{cards_won} cards, #{@player1.deck.cards.size} , #{@player2.deck.cards.size}, #{cards_won}"
 
-end
+    if @player2.deck.cards.size == 0 && @player1.deck.cards.size >= 1
+      puts "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+      exit  # Ends Game
+    elsif @player1.deck.cards.size == 0 && @player2.deck.cards.size >= 1
+      puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+      exit  # Ends Game
+    end
 
-
+  end
 end
 
 runner = Runner.new
-runner.menu
+runner.start  #starts game
 runner.build_deck
 runner.deal_cards
-runner.turn
+
+500.times do
+  runner.turn
+end

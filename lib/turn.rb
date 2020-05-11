@@ -24,23 +24,24 @@ class Turn
   def winner_helper
     if type == :basic
       if @player1.deck.cards[0].rank > @player2.deck.cards[0].rank
-        win = @player1
+        win = @player1.name
       elsif
         @player1.deck.cards[0].rank < @player2.deck.cards[0].rank
-        win = @player2
+        win = @player2.name
       end
     end
     if type == :war
       if @player1.deck.cards[2].rank > @player2.deck.cards[2].rank
-        win = @player1
+        win = @player1.name
       elsif
         @player1.deck.cards[2].rank < @player2.deck.cards[2].rank
-        win = @player2
+        win = @player2.name
       end
     end
     if type == :mutually_assured_destruction
       "No Winner"
     end
+    win
   end
 
   def pile_cards
@@ -50,11 +51,14 @@ class Turn
       @spoils_of_war.concat([@player2.deck.cards[0]])
       @player1.deck.cards.slice!(0)
       @player2.deck.cards.slice!(0)
+      @spoils_of_war.flatten! #Flattens array down to one level
     elsif type == :war
       @spoils_of_war.concat([@player1.deck.cards[0..2]])
       @spoils_of_war.concat([@player2.deck.cards[0..2]])
       @player1.deck.cards.slice!(0..2)
       @player2.deck.cards.slice!(0..2)
+      @spoils_of_war.flatten!
+      @spoils_of_war.size #Flattens array down to one level
     else type == :mutually_assured_destruction
       @player1.deck.cards.slice!(0..2)
       @player2.deck.cards.slice!(0..2)
@@ -63,12 +67,14 @@ class Turn
   end
 
   def award_spoils(winner)
-    if winner == @player1
+    if winner == @player1.name
       player_temp = @player1.deck.cards.concat(@spoils_of_war)
       @spoils_of_war = []
-    else
+    elsif winner == @player2.name
       player_temp = @player2.deck.cards.concat(@spoils_of_war)
       @spoils_of_war = []
+    else
+      "No Winner"
     end
     player_temp
   end

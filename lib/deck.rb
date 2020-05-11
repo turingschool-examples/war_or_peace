@@ -3,7 +3,7 @@ require 'pry'
 class Deck
   attr_reader :cards, :rank
 
-  def initialize(cards)
+  def initialize(cards = [])
     @cards = cards
     @rank = rank
   end
