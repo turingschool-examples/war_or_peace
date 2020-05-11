@@ -17,15 +17,23 @@ class Game
     puts "------------------------------------------------------------------"
     input = gets.chomp
 
-    play if input.upcase == "GO"
+    if input.upcase == "GO"
+      play
+    else
+      puts "You gotta type 'GO' to start the game!!!"
+      # figure out how to make this then go back to original 'input' gets method
+    end
   end
 
   def play
-    until @turn_count == 1000000
+    until @turn_count == 1000001
       turn = Turn.new(@player1, @player2)
 
-      if turn.type == :basic
-        require "pry"; binding.pry
+      if turn.type == :mutually_assured_destruction
+        turn.pile_cards
+
+        p "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
+      elsif turn.type == :basic
         winner = turn.winner
         turn.pile_cards
         cards_to_winner = turn.spoils_of_war.count
@@ -35,13 +43,10 @@ class Game
       elsif turn.type == :war
         winner = turn.winner
         turn.pile_cards
+        cards_to_winner = turn.spoils_of_war.count
         turn.award_spoils(winner)
 
-        p "Turn #{@turn_count}: WAR - #{winner.name} won #{turn.spoils_of_war.count} cards"
-      elsif turn.type == :mutually_assured_destruction
-        turn.pile_cards
-
-        p "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
+        p "Turn #{@turn_count}: WAR - #{winner.name} won #{cards_to_winner} cards"
       end
 
       @game_winner = @player1.name if @player2.has_lost?
