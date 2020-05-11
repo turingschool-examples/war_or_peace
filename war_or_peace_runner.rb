@@ -11,9 +11,11 @@ puts "Welcome to War! (or Peace) This game will be played with 52 cards."
 puts "The players today are Megan and Aurora."
 puts "Type 'GO' to start the game!"
 puts "------------------------------------------------------------------"
+input = gets.chomp
 
 
 class Runner
+  attr_reader :deck_builder
   def menu
     @deck1 = Deck.new([@card1, @card3, @card5, @card7, @card9, @card11, @card13,
       @card15, @card17, @card19, @card21, @card23, @card25, @card27, @card29,
@@ -25,47 +27,48 @@ class Runner
       @card46, @card48, @card50, @card52])
     @player1 = Player.new("Megan", @deck1)
     @player2 = Player.new("Aurora", @deck2)
+    # @turn = Turn.new(@player1, @player2)
+  end
 
-    deck_builder = DeckBuilder.new
-    deal_cards = Card.new
+  def build_deck
+    @deck_builder = DeckBuilder.new
+    @deck_builder.build_deck
+    @deck_builder.new_deck.shuffle!
+  end
 
-
-    input = gets.chomp
-
-    deck_builder = DeckBuilder.new
-    deck_builder.build_deck
-
+  def deal_cards
     #these counters are for indexing below
     counter = 0
     x = 0
     i = 0
-
-    deck_builder.new_deck.each do |card|
+    @deck_builder.new_deck.each do |card|
       counter += 1
       # Deals out to both players
       if counter.odd?
-        @player1.deck.cards[x] = deck_builder.new_deck[x]
+        @player1.deck.cards[x] = card
         x = x + 1
-      else
-        @player2.deck.cards[i] = deck_builder.new_deck[i]
+      elsif counter.even?
+        @player2.deck.cards[i] = card
         i = i + 1
       end
     end
-
-    # Shuffle player decks
-    @player1.deck.cards.shuffle!
-    @player2.deck.cards.shuffle!
-
-    # binding.pry
-    @turn = Turn.new(@player1, @player2)
-    @turn.type
-    @turn.winner
-    @turn.pile_cards
-    @turn.award_spoils(@winner)
-    binding.pry
-
-
   end
+
+def turn
+  @turn = Turn.new(@player1, @player2)
+  @turn.type
+  @turn.winner
+  @turn.pile_cards
+  @turn.award_spoils(@winner)
+  binding.pry
+
 end
+
+
+end
+
 runner = Runner.new
 runner.menu
+runner.build_deck
+runner.deal_cards
+runner.turn
