@@ -52,26 +52,6 @@ class Game
         p "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
       end
 
-      # if turn.type == :mutually_assured_destruction
-      #   turn.pile_cards
-      #
-      #   p "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
-      # elsif turn.type == :basic
-      #   winner = turn.winner
-      #   turn.pile_cards
-      #   cards_to_winner = turn.spoils_of_war.count
-      #   turn.award_spoils(winner)
-      #
-      #   p "Turn #{@turn_count}: #{winner.name} won #{cards_to_winner} cards"
-      # elsif turn.type == :war
-      #   winner = turn.winner
-      #   turn.pile_cards
-      #   cards_to_winner = turn.spoils_of_war.count
-      #   turn.award_spoils(winner)
-      #
-      #   p "Turn #{@turn_count}: WAR - #{winner.name} won #{cards_to_winner} cards"
-      # end
-
       @game_winner = @player1.name if @player2.has_lost?
       @game_winner = @player2.name if @player1.has_lost?
 
