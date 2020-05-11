@@ -230,8 +230,9 @@ class CardGeneratorTest < Minitest::Test
   end
 
   def test_it_shuffles
-    skip
-    deck_arr = @card_generator.deck
+    @card_generator.standardize
+
+    deck_arr = @card_generator.generate_deck
 
     deck_shuffle = @card_generator.shuffle
 
