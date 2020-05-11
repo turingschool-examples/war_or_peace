@@ -29,13 +29,10 @@ class Game
     until @turn_count == 1000001
       turn = Turn.new(@player1, @player2)
 
-      if turn.type == :mutually_assured_destruction
-        turn.pile_cards
-
-        p "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
-      elsif turn.type == :basic
+      if turn.type == :basic
         winner = turn.winner
         turn.pile_cards
+        # turn.spoils_of_war.shuffle
         cards_to_winner = turn.spoils_of_war.count
         turn.award_spoils(winner)
 
@@ -43,24 +40,52 @@ class Game
       elsif turn.type == :war
         winner = turn.winner
         turn.pile_cards
+        # turn.spoils_of_war.shuffle
         cards_to_winner = turn.spoils_of_war.count
         turn.award_spoils(winner)
 
         p "Turn #{@turn_count}: WAR - #{winner.name} won #{cards_to_winner} cards"
+
+      elsif turn.type == :mutually_assured_destruction
+        turn.pile_cards
+
+        p "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
       end
+
+      # if turn.type == :mutually_assured_destruction
+      #   turn.pile_cards
+      #
+      #   p "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
+      # elsif turn.type == :basic
+      #   winner = turn.winner
+      #   turn.pile_cards
+      #   cards_to_winner = turn.spoils_of_war.count
+      #   turn.award_spoils(winner)
+      #
+      #   p "Turn #{@turn_count}: #{winner.name} won #{cards_to_winner} cards"
+      # elsif turn.type == :war
+      #   winner = turn.winner
+      #   turn.pile_cards
+      #   cards_to_winner = turn.spoils_of_war.count
+      #   turn.award_spoils(winner)
+      #
+      #   p "Turn #{@turn_count}: WAR - #{winner.name} won #{cards_to_winner} cards"
+      # end
 
       @game_winner = @player1.name if @player2.has_lost?
       @game_winner = @player2.name if @player1.has_lost?
 
       @turn_count += 1
-      break if @player1.has_lost? || @player2.has_lost? || @turn_count == 1000000
+      if @player1.has_lost? || @player2.has_lost? || @turn_count == 1000000
+        break
+        p "---- DRAW ----"
+      end
     end
-
 
     display_game_result
   end
 
   def display_game_result
-
+    p "*~*~*~* #{@game_winner} has won the game! *~*~*~*"
   end
 end
