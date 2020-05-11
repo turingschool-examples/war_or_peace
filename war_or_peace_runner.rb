@@ -1,3 +1,5 @@
+require 'minitest/autorun'
+require 'minitest/pride'
 require './lib/card'
 require './lib/deck'
 require './lib/player'
@@ -67,8 +69,8 @@ deck = [card1, card2, card3, card4, card5, card6, card7,
 
 deck.shuffle!
 
-deck1 = deck[0..25]
-deck2 = deck[26..52]
+deck1 = Deck.new(deck[0..25])
+deck2 = Deck.new(deck[26..52])
 
 player1 = Player.new("Tim", deck1)
 player2 = Player.new("Kat", deck2)
