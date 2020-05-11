@@ -7,7 +7,7 @@ class Deck
 
   def rank_of_card_at(i)
     if (@cards[i] == nil) && last_card?
-      "LAST CARD NOT FOUND"
+      0
     elsif @cards[i] == nil
       @cards[-1].rank
     else
