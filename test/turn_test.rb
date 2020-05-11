@@ -77,11 +77,9 @@ class TurnTest < Minitest::Test
 
     assert_equal 3, @player1.deck.cards.count
     assert_equal 2, @turn.spoils_of_war.count
-
     assert_equal 3, @turn.winner.deck.cards.count
 
     @turn.award_cards
-
     assert_equal 5, @turn.winner.deck.cards.count
 
 
