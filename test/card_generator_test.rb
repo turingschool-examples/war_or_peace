@@ -298,17 +298,22 @@ class CardGeneratorTest < Minitest::Test
   end
 
   def test_it_puts_a_deck_in_the_deck_array
-    @card_generator.standardize
-    @card_generator.generate_deck
-    assert_equal 52, @card_generator.deck.size
+    deck = CardGenerator.new(1)
+
+    deck.standardize
+    deck.generate_deck
+
+    assert_equal 52, deck.deck.size
   end
 
   def test_it_puts_a_different_deck_in_the_deck_array
-    @card_generator.tarotize
-    @card_generator.generate_deck
-    assert_equal 56, @card_generator.deck.size
-  end
+    deck = CardGenerator.new(1)
 
+    deck.tarotize
+    deck.generate_deck
+
+    assert_equal 56, deck.deck.size
+  end
 
 
 end
