@@ -106,8 +106,19 @@ end
 
 # Example interaction pattern for standard deck
 
-# deck_stan = CardTextFileGenerator.new(1)
+# deck_stan = CardTextFileGenerator.new(2)
 # deck_stan.standardize
-# deck_stan.shuffle
 # deck_stan.generate_deck
 # deck_stan.write_it
+### this will create a new text file!
+# it will have two, ordered decks
+
+# Example interaction pattern for tarot deck
+
+# deck_taro = CardTextFileGenerator.new(1)
+# deck_taro.tarotize
+# deck_taro.shuffle # optional
+# deck_taro.generate_deck
+# deck_taro.write_it
+### this will create a new text file!
+# it will have one shuffled tarot deck
