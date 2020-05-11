@@ -12,7 +12,7 @@ class DeckBuilder
       "#{@number} of #{@suit}"
     end
 
-    def build_deck
+    # Inputs deck manually into new_deck array
       @new_deck << Card.new("Spades", "A", 1)
       @new_deck << Card.new("Spades", "2", 2)
       @new_deck << Card.new("Spades", "3", 3)
