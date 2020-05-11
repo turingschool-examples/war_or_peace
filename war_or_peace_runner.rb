@@ -2,8 +2,9 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
-require './lib/build'
+# require './lib/build'
 require './lib/start'
+require './lib/card_generator'
 
 
 @l1 = "Welcome to War! (or Peace) This game will be played with 52 cards."
@@ -21,12 +22,16 @@ puts l2
 puts l3
 dashes
 
-proto_arr = Build.new.proto_arr
-card_arr = []
+# proto_arr = Build.new.proto_arr
+# card_arr = []
+#
+# proto_arr.length.times do |i|
+#   card_arr << Card.new(proto_arr[i]["suit"], proto_arr[i]["value"], proto_arr[i]["rank"])
+# end
 
-proto_arr.length.times do |i|
-  card_arr << Card.new(proto_arr[i]["suit"], proto_arr[i]["value"], proto_arr[i]["rank"])
-end
+card_arr = CardGenerator.new("cards.txt").cards
+
+card_arr.shuffle!
 
 deck1 = Deck.new(card_arr[0..25])
 deck2 = Deck.new(card_arr[26..51])
