@@ -4,7 +4,8 @@ class CardGenerator
               :royal,
               :numbers,
               :pecking_order,
-              :style
+              :style,
+              :deck
 
   def initialize(i)
 
@@ -16,9 +17,11 @@ class CardGenerator
     @pecking_order = nil
     @style = nil
     @shuffled = false
+    @deck = []
     # get_style
     # get_integer
-    #
+    # shuffle_prompt # generates decks
+    # write file
     # print_msg
   end
 
@@ -26,7 +29,7 @@ class CardGenerator
 
     puts "Do you want to shuffle the cards?"
     puts "Continue? [Y]es / [N]o"
-    invalid_counter = 0
+    invalid_counter = 3
 
     loop do
 
@@ -34,14 +37,16 @@ class CardGenerator
 
       if p == "Y"
         shuffle
+        generate_deck
         break
       elsif p == "N"
-        puts "Goodbye"
-        exit
+        generate_deck
+        break
       else
-        puts "Invalid input. Continue? [Y]es / [N]o"
-        invalid_counter += 1
-        if invalid_counter == 3
+        puts "Invalid input. #{invalid_counter} attempts left."
+        puts "Shuffle the cards? [Y]es / [N]o"
+        invalid_counter -= 1
+        if invalid_counter == 0
           puts "Goodbye"
           exit
         end
@@ -116,7 +121,7 @@ class CardGenerator
     puts "Hello. Let's build a deck of cards."
     puts "This program will generate a text file."
     puts "Continue? [Y]es / [N]o"
-    invalid_counter = 0
+    invalid_counter = 3
 
     loop do
 
@@ -129,9 +134,9 @@ class CardGenerator
         puts "Goodbye"
         exit
       else
-        puts "Invalid input. Continue? [Y]es / [N]o"
-        invalid_counter += 1
-        if invalid_counter == 3
+        puts "Invalid input. #{invalid_counter} attempts left. Continue? [Y]es / [N]o"
+        invalid_counter -= 1
+        if invalid_counter.zero?
           puts "Goodbye"
           exit
         end
@@ -221,7 +226,7 @@ class CardGenerator
       end
     end
 
-    d_arr
+    @deck = d_arr
   end
 
 end
