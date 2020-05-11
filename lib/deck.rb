@@ -9,9 +9,7 @@ class Deck
   end
 
   def rank_of_card_at(index)
-    # binding.pry
     cards[index].rank
-    binding.pry
   end
 
   def high_ranking_cards

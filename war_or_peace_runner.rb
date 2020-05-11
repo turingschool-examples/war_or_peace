@@ -25,8 +25,7 @@ class Runner
       @card46, @card48, @card50, @card52])
     @player1 = Player.new("Megan", @deck1)
     @player2 = Player.new("Aurora", @deck2)
-    @turn = Turn.new(@player1, @player2)
-    @winner = @turn.winner
+
     deck_builder = DeckBuilder.new
     deal_cards = Card.new
 
@@ -54,11 +53,16 @@ class Runner
     end
 
     # Shuffle player decks
-    @player1.deck.cards.shuffle
-    @player2.deck.cards.shuffle
+    @player1.deck.cards.shuffle!
+    @player2.deck.cards.shuffle!
 
+    # binding.pry
+    @turn = Turn.new(@player1, @player2)
+    @turn.type
+    @turn.winner
+    @turn.pile_cards
+    @turn.award_spoils(@winner)
     binding.pry
-
 
 
   end
