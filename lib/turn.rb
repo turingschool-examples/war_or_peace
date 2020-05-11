@@ -77,10 +77,8 @@ class Turn
     end
   end
 
-
   def basic_pile
     @players.each do |player|
-      break if player.has_lost?
       @spoils_of_war << player.deck.remove_card
     end
   end
@@ -92,7 +90,6 @@ class Turn
   def mad_exile
     3.times do
       @players.each do |player|
-        break if player.has_lost?
         @exile << player.deck.remove_card
       end
     end
@@ -119,6 +116,10 @@ class Turn
   def last_turn?
     # is this a closure?
 
+    def player_short?
+      @players.any? { |player| player.short_hand? }
+    end
+
     def three_cards?
       type == :mutually_assured_destruction || type == :war
     end
@@ -127,13 +128,9 @@ class Turn
       type == :basic
     end
 
-    def player_short?
-      @players.any? { |player| player.short_hand? }
-    end
-
     last_turn = false
 
-    if ( three_cards? || one_card? ) && player_short?
+    if ( ( three_cards? || one_card? ) && player_short? )
       last_turn = true
     end
 

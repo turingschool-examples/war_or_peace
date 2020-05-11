@@ -21,8 +21,8 @@ class Build
     suits = [:club, :spade, :heart, :diamond]
 
     suits.each do |suit|
-      values.each_with_index do |value, i|
-        @proto_arr << {"suit" => suit, "value" => value, "rank" => i+1}
+      values.each.with_index(2) do |value, i|
+        @proto_arr << {"suit" => suit, "value" => value, "rank" => i}
       end
     end
 
