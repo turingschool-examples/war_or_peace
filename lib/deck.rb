@@ -44,7 +44,7 @@ class Deck
   end
 
   def add_card(new_card)
-    @cards << new_card
+    @cards.concat(new_card)
   end
 
 end

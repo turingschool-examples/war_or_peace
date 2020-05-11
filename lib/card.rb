@@ -7,8 +7,4 @@ class Card
     @rank = rank
   end
 
-  def deal_cards
-    p "hi"
-  end
-
 end

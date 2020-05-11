@@ -60,11 +60,17 @@ class Runner
     end
   @player1.deck.cards.compact!
   @player2.deck.cards.compact!  # Remove nil from @card assignment
+  @player1.deck.cards.shuffle!
+  @player2.deck.cards.shuffle!  # Shuffle each player deck
   end
 
   def turn
     @turn_number += 1
+    # if @turn_number == 1500
+    #   binding.pry
+    # end
     @turn = Turn.new(@player1, @player2)
+    @turn.type
     if @turn.type == :mutually_assured_destruction
       puts "*mutually assured destruction* 6 cards removed from play /n"
     end
@@ -73,8 +79,7 @@ class Runner
     @turn.pile_cards
     cards_won = @turn.spoils_of_war.size
     @turn.award_spoils(@winner)
-    puts "Turn #{@turn_number}: #{@winner} won #{cards_won} cards, #{@player1.deck.cards.size} , #{@player2.deck.cards.size}, #{cards_won}"
-
+    puts "Turn #{@turn_number}: #{@winner} won #{cards_won} cards, #{@player1.deck.cards.size} , #{@player2.deck.cards.size}, #{cards_won} turn type #{@turn.type} , p1 rank #{ @player1.deck.rank_of_card_at(0)} , p2 rank #{ @player2.deck.rank_of_card_at(0)}"
     if @player2.deck.cards.size == 0 && @player1.deck.cards.size >= 1
       puts "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
       exit  # Ends Game
@@ -90,7 +95,7 @@ runner = Runner.new
 runner.start  #starts game
 runner.build_deck
 runner.deal_cards
-
-500.times do
+ x = 0
+50.times do
   runner.turn
 end
