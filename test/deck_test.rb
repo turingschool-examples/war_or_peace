@@ -58,7 +58,7 @@ class DeckTest < Minitest::Test
     assert_empty deck.cards
     assert_nil deck.cards[0]
 
-    assert_equal "LAST CARD NOT FOUND", deck.rank_of_card_at(0)
+    assert_equal 0, deck.rank_of_card_at(0)
   end
 
 
