@@ -315,5 +315,14 @@ class CardGeneratorTest < Minitest::Test
     assert_equal 56, deck.deck.size
   end
 
+  def test_it_puts_many_decks_in_the_deck_array
+    deck = CardGenerator.new(3)
+
+    deck.standardize
+    deck.generate_deck
+
+    assert_equal 52*3, deck.deck.size
+  end
+
 
 end
