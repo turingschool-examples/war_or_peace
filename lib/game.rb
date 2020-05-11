@@ -1,16 +1,61 @@
-class Game
-  attr_reader :turn
+require './lib/turn'
 
-  def initialize(turn)
-    @turn = turn
+class Game
+  attr_reader :turn_count, :player1, :player2
+
+  def initialize(player1, player2)
+    @player1 = player1
+    @player2 = player2
+    @turn_count = 1
+    @game_winner = ""
   end
 
   def start
-    l1 = "Welcome to War! (or Peace). This game will be played with 52 cards."
-    l2 = "The players today are #{@turn.player1.name} and #{@turn.player2.name}."
-    l3 = "Type 'GO' to start the game!"
-    l4 = "------------------------------------------------------------------"
-    welcome_message = "#{l1} \n" + "#{l2} \n" + "#{l3} \n" + "#{l4}"
-    p welcome_message
+    puts "Welcome to War! (or Peace). This game will be played with 52 cards."
+    puts "The players today are #{@player1.name} and #{@player2.name}."
+    puts "Type 'GO' to start the game!"
+    puts "------------------------------------------------------------------"
+    input = gets.chomp
+
+    play if input.upcase == "GO"
+  end
+
+  def play
+    until @turn_count == 1000000
+      turn = Turn.new(@player1, @player2)
+
+      if turn.type == :basic
+        require "pry"; binding.pry
+        winner = turn.winner
+        turn.pile_cards
+        cards_to_winner = turn.spoils_of_war.count
+        turn.award_spoils(winner)
+
+        p "Turn #{@turn_count}: #{winner.name} won #{cards_to_winner} cards"
+      elsif turn.type == :war
+        winner = turn.winner
+        turn.pile_cards
+        turn.award_spoils(winner)
+
+        p "Turn #{@turn_count}: WAR - #{winner.name} won #{turn.spoils_of_war.count} cards"
+      elsif turn.type == :mutually_assured_destruction
+        turn.pile_cards
+
+        p "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
+      end
+
+      @game_winner = @player1.name if @player2.has_lost?
+      @game_winner = @player2.name if @player1.has_lost?
+
+      @turn_count += 1
+      break if @player1.has_lost? || @player2.has_lost? || @turn_count == 1000000
+    end
+
+
+    display_game_result
+  end
+
+  def display_game_result
+
   end
 end

@@ -2,12 +2,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
-
-@card1 = Card.new(:diamond, 'Queen', 12)
-@card2 = Card.new(:spade, '3', 3)
-@card3 = Card.new(:heart, 'Ace', 14)
-@cards = [@card1, @card2, @card3]
-@deck = Deck.new(@cards)
+require './lib/game'
 
 standard_deck_cards = []
 rank_and_values = {
@@ -50,3 +45,7 @@ deck2 = Deck.new(half_decks[1])
 
 player1 = Player.new("Player 1", deck1)
 player2 = Player.new("Player 2", deck2)
+
+game = Game.new(player1, player2)
+
+game.start
