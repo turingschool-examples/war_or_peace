@@ -30,10 +30,10 @@ class CardGenerator
 
     loop do
 
-      p = gets.chomp
+      p = gets.upcase.chomp
 
       if p == "Y"
-        puts "OK"
+        shuffle
         break
       elsif p == "N"
         puts "Goodbye"
@@ -54,7 +54,7 @@ class CardGenerator
 
 
   def print_msg
-    puts "Generating #{deck_size} cards in '#{@style}_deck.txt'"
+    puts "Generating #{deck_size} #{"shuffled" if shuffled?} cards in '#{@style}_deck.txt'"
     puts "...."
     puts "Success!"
   end
@@ -86,7 +86,8 @@ class CardGenerator
 
   def get_integer
 
-    puts "Input an Integer number (Whole number): "
+    puts "This program can generate multiples of decks to play games longer"
+    puts "Input an Integer number for how many you want (Whole number): "
     invalid_counter = 3
 
     loop do
@@ -204,6 +205,23 @@ class CardGenerator
 
   def shuffle
     @shuffled = true
+  end
+
+  def generate_deck
+    d_arr = Array.new
+
+    n = 2 if style == "Standardized"
+    n = 1 if style == "Tarotized"
+
+    @i.times do
+      suits.each do |suit|
+        pecking_order.each.with_index(n) do |peck, n|
+          d_arr << [peck, suit, n.to_s]
+        end
+      end
+    end
+
+    d_arr
   end
 
 end
