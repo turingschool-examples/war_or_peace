@@ -9,8 +9,6 @@ class Turn
     @winner = winner_helper
   end
 
-
-
   def type
     if (@player1.deck.rank_of_card_at(0) && @player2.deck.rank_of_card_at(0)) && (@player1.deck.rank_of_card_at(2) && @player2.deck.rank_of_card_at(2))
       :mutually_assured_destruction
@@ -22,16 +20,27 @@ class Turn
   end
 
 
+  # NEED TO FIX SO WINNER_HELPER TAKES `TYPE` INTO ACCOUNT!!!!
   def winner_helper
-    if @player1.deck.cards[0].rank > @player2.deck.cards[0].rank
-      win = @player1
-    elsif
-      @player1.deck.cards[0].rank < @player2.deck.cards[0].rank
-      win = @player2
-    else
-      win = "No Winner"
+    if type == :basic
+      if @player1.deck.cards[0].rank > @player2.deck.cards[0].rank
+        win = @player1
+      elsif
+        @player1.deck.cards[0].rank < @player2.deck.cards[0].rank
+        win = @player2
+      end
     end
-    win
+    if type == :war
+      if @player1.deck.cards[2].rank > @player2.deck.cards[2].rank
+        win = @player1
+      elsif
+        @player1.deck.cards[2].rank < @player2.deck.cards[2].rank
+        win = @player2
+      end
+    end
+    if type == :mutually_assured_destruction
+      "No Winner"
+    end
   end
 
   def pile_cards
@@ -50,7 +59,6 @@ class Turn
       @player2.deck.cards.slice!(0..2)
       @spoils_of_war = []
     end
-
   end
 
   def award_spoils(winner)
@@ -58,7 +66,6 @@ class Turn
       player_temp = @player1.deck.cards.concat(@spoils_of_war)
       @spoils_of_war = []
     else
-      # binding.pry
       player_temp = @player2.deck.cards.concat(@spoils_of_war)
       @spoils_of_war = []
     end

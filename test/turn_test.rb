@@ -59,11 +59,14 @@ class DeckTest < Minitest::Test
   end
 
   def test_if_spoils_are_given_to_winner_basic
+    # skip to test M.A.D.
+    skip
     @turn.pile_cards
     @turn.spoils_of_war
     @turn.award_spoils(@winner)
     @spoils_of_war = @turn.spoils_of_war
     assert_empty @spoils_of_war
+    @winner = @turn.winner
     assert_equal @player1.deck, @winner.deck
   end
 
