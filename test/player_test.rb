@@ -22,6 +22,8 @@ class DeckTest < Minitest::Test
     card3 = Card.new(:heart, 'Ace', 14)
     deck = Deck.new([card1, card2, card3])
     player = Player.new('Clarisa', deck)
+    require "pry"
+    binding.pry
     assert_equal false, player.has_lost?
     player.deck.remove_card
     assert_equal false, player.has_lost?

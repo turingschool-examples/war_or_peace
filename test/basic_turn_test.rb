@@ -95,8 +95,6 @@ class DeckTest < Minitest::Test
     turn.pile_cards
     winner = turn.winner
     turn.award_spoils(winner)
-    require "pry"
-    binding.pry
     assert_equal deck1, player1.deck
     assert_equal deck2, player2.deck
   end
