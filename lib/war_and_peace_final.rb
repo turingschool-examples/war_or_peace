@@ -58,10 +58,10 @@ class WarAndPeaceRunner
     #     puts 'Enter "GO" to start the game!'
     #   end
     # end
-
+    count = 0
     loop do
       turn = Turn.new(player1, player2)
-      count = 1
+      count += 1
       turn.pile_cards
       turn.winner
       turn.award_cards
@@ -84,7 +84,7 @@ class WarAndPeaceRunner
         puts "---- DRAW ----"
         break
       end
-      count += 1
+
     end
   end
 
