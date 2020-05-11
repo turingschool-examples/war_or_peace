@@ -9,5 +9,4 @@ class Player
     @deck.cards == []
   end
 
-
 end
