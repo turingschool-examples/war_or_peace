@@ -76,7 +76,8 @@ class Turn
   end
 
   def award_spoils
-    require "pry"; binding.pry
+    # require "pry"; binding.pry
+
     # this method will add each of the cards in the @spoils_of_war
     # array to the winner of the turn.
       winner.deck.cards << @spoils_of_war
