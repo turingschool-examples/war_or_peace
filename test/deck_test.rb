@@ -30,7 +30,7 @@ class DeckTest < Minitest::Test
   end
 
   def test_it_can_determine_high_ranking_cards
-    skip
+    # skip
     assert_equal [@card1, @card3], @deck.high_ranking_cards
 
   end

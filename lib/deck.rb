@@ -9,10 +9,10 @@ attr_reader  :cards
     @cards[position].rank
   end
 
-  # def high_ranking_cards
-  #   @cards.find_all do |card|
-  #     require "pry"; binding.pry
-  #   end
-  # end
+  def high_ranking_cards
+    @cards.find_all do |card|
+      card.rank >= 11
+    end
+  end
 
 end
