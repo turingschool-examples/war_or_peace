@@ -5,7 +5,7 @@ require "./lib/card"
 
 class CardTest < Minitest::Test
   def setup
-    @card = Card.new(:heat, 'Jack', 11)
+    @card = Card.new(:heart, 'Jack', 11)
   end
   def test_it_exists
     assert_instance_of Card, @card

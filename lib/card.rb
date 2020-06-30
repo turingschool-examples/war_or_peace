@@ -1,7 +1,7 @@
 class Card
  #attr_reader
-  #def initialize(*arg)
+  def initialize(rank, suit, value)
 
-  #end
+  end
 
 end
