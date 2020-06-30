@@ -15,4 +15,13 @@ attr_reader  :cards
     end
   end
 
+  def percent_high_ranking
+    initial_percent = (high_ranking_cards.count) / (@cards.count).to_f
+
+    secondary_percent = initial_percent * 100
+
+    percent = secondary_percent.round(2)
+
+  end
+
 end
