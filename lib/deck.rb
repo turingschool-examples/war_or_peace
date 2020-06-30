@@ -1,3 +1,5 @@
+require 'pry'
+
 class Deck
   attr_reader :cards
 
@@ -8,11 +10,14 @@ class Deck
   def rank_of_card_at(index)
     @cards[index].rank
   end
-  # 
-  # def high_ranking_cards
-  #
-  # end
-  #
-  #
-  #   : this method will return an array of cards in the deck that have a rank of 11 or above (face cards and aces)
+
+  def high_ranking_cards
+    @cards.select do |card|
+      card.high_ranking?
+    end
+  end
+
+  def percent_high_ranking
+    ((high_ranking_cards.length / @cards.length.to_f) * 100).round(2)
+  end
 end
