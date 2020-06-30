@@ -1,7 +1,7 @@
 
 class Person
 
-  attr_accessor :deck
+  attr_accessor :deck, :name
 
   def initialize(name, deck)
     @name = name
