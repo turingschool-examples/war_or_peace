@@ -5,6 +5,10 @@ attr_reader  :cards
     @cards = cards
   end
 
+  def rank_of_card_at(position)
+    @cards[position].rank
+  end
+
   # def high_ranking_cards
   #   @cards.find_all do |card|
   #     require "pry"; binding.pry
