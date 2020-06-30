@@ -16,4 +16,8 @@ class Deck
   def percent_high_ranking
     high_ranking_cards.length / @cards.length
   end
+
+  def remove_card
+    @cards.shift
+  end
 end
