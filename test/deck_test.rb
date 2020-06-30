@@ -42,7 +42,15 @@ class DeckTest < Minitest::Test
 # binding.pry
         assert_equal [card1, card2, card3], deck.cards
         assert_equal [card1, card3], deck.high_ranking_cards
-        
       end
     
+      def test_it_percentage_of_high_ranking_cards
+        deck = Deck.new
+  
+        deck.cards << card1 = Card.new(:diamond, 'Queen', 12)
+        deck.cards << card2 = Card.new(:spade, '3', 3)
+        deck.cards << card3 = Card.new(:heart, 'Ace', 14)
+# binding.pry
+        assert_equal 66.67, deck.percent_high_ranking
+      end
 end

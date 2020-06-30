@@ -13,5 +13,8 @@ class Deck
          card if card.rank >= 11   
     end.compact
   end
-
+  
+  def percent_high_ranking
+    ( ( high_ranking_cards.count * 100 ).to_f / @cards.count.to_f ).ceil(2)
+  end
 end
