@@ -21,6 +21,7 @@ class PlayerTest < Minitest::Test
 
   def test_it_has_attributes
     assert_equal "Clarisa", @player.name
+    assert_equal [@card1, @card2, @card3], @player.deck
   end
 
 end
