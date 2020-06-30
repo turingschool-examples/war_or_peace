@@ -1,5 +1,5 @@
 
-class Person
+class Player
 
   attr_accessor :deck, :name
 
@@ -9,7 +9,11 @@ class Person
   end
 
   def has_lost?
-    @cards=[] ? true : false
+    if @cards == []
+      true
+    else
+      false
+    end
   end
 
 end
