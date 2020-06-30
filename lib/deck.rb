@@ -24,6 +24,10 @@ attr_reader  :cards
 
   end
 
+  def remove_card
+    @cards.shift
+  end
+
 
 
 end
