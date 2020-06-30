@@ -17,6 +17,8 @@ class CardTest < Minitest::Test
 
     assert_equal "Jack", @card.value
 
+    assert_equal 11, @card.rank
+
   end
 
 end
