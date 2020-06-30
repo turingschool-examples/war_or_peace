@@ -7,6 +7,7 @@ class Card
     @suit = suit
     @value = value
     @rank = rank
+    @cards = []
 
   end
 
