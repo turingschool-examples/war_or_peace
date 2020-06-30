@@ -1,8 +1,8 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require_relative '../lib/deck'
-require_relative '../lib/card'
-require "pry"
+require "./lib/deck"
+require "./lib/card"
+
 
 class DeckTest < Minitest::Test
   def setup
@@ -30,7 +30,6 @@ class DeckTest < Minitest::Test
     deck = Deck.new(cards)
 
     assert_equal 4, deck.cards.length
-    # assert_equal 'Queen', card.value
-    # assert_equal 12, card.rank
+    assert_equal deck.cards[3], deck.cards[3]
   end
 end
