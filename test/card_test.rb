@@ -14,7 +14,9 @@ class CardTest < Minitest::Test
 
   def test_it_has_attributes
     assert_equal :heart, @card.suit
-    
+
+    assert_equal "Jack", @card.value
+
   end
 
 end
