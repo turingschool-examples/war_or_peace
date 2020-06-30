@@ -8,4 +8,8 @@ class Turn
     @player2 = player2
   end
 
+  def type
+
+  end
+
 end
