@@ -23,4 +23,8 @@ class DeckTest < Minitest::Test
   def test_it_returns_rank_of_card_at_given_index
     assert_equal @card1.rank, @deck.rank_of_card_at(0)
   end
+
+  def test_it_returns_high_ranking_cards
+    assert_equal [@card2, @card3], @deck.high_ranking_cards
+  end
 end
