@@ -61,6 +61,10 @@ class DeckTest < Minitest::Test
 
     assert_equal [card2, card3, card4], deck.cards
 
+    assert_equal 1, deck.high_ranking_cards.count
+
+    assert_equal 33.33, deck.percent_high_ranking
+
   end
 
 end
