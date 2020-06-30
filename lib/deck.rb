@@ -5,4 +5,9 @@ class Deck
   def inititalize(cards)
     @cards = cards
   end
+
+  def rank_of_card_at(location)
+
+  end
+
 end
