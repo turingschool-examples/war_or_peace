@@ -20,17 +20,23 @@ class DeckTest < Minitest::Test
     assert_equal @cards, @deck.cards
   end
 
-  def test_it_returns_rank_of_card_at_given_index
+  def test_rank_of_card_at_method
     assert_equal @card1.rank, @deck.rank_of_card_at(0)
   end
 
-  def test_it_returns_high_ranking_cards
+  def test_high_ranking_cards_method
     assert_equal [@card2, @card3], @deck.high_ranking_cards
   end
 
-  def test_it_returns_the_of_percent_high_ranking_cards
+  def test_percent_high_ranking_method
     num_high_ranking = @deck.high_ranking_cards.length
     expected = num_high_ranking / @cards.length
     assert_equal expected, @deck.percent_high_ranking
+  end
+
+  def test_remove_card_method
+    removed_card = @deck.remove_card
+    assert_equal @card1, removed_card
+    assert_equal [@card2, @card3], @deck.cards
   end
 end
