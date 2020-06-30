@@ -8,9 +8,10 @@ class Deck
     @cards[index].rank
   end
 
-#   def high_ranking_cards
-#     @cards.map do |card|
-#          card if card.rank >= 11   
-#     end
+  def high_ranking_cards
+    @cards.map do |card|
+         card if card.rank >= 11   
+    end.compact
+  end
 
 end
