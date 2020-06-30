@@ -49,4 +49,11 @@ class DeckTest < Minitest::Test
     assert_equal [@card3], @deck.high_ranking_cards
     assert_equal 100.0, @deck.percent_high_ranking
   end
+
+  def test_add_card_method
+    new_card = Card.new(:club, '5', 5)
+    @deck.add_card(new_card)
+
+    assert_equal [@card1, @card2, @card3, new_card], @deck.cards
+  end
 end
