@@ -53,4 +53,14 @@ class DeckTest < Minitest::Test
 # binding.pry
         assert_equal 66.67, deck.percent_high_ranking
       end
+
+      def test_it_can_remove_card
+        deck = Deck.new
+  
+        deck.cards << card1 = Card.new(:diamond, 'Queen', 12)
+        deck.cards << card2 = Card.new(:spade, '3', 3)
+        deck.cards << card3 = Card.new(:heart, 'Ace', 14)
+# binding.pry
+        assert_equal card1, deck.remove_card
+      end
 end
