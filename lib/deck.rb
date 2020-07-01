@@ -32,3 +32,8 @@ class Deck
   def remove_rcard
     @cards.shift
   end
+
+  def add_card
+    @cards.push(card)
+  end
+end
