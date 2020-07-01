@@ -134,6 +134,10 @@ class TurnTest < Minitest::Test
     winner = turn.winner
     assert_equal player2, turn.winner
 
+    turn.pile_cards
+
+    assert_equal 6, turn.spoils_of_war.count
+
   end
 
 end
