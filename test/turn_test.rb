@@ -44,4 +44,9 @@ class TurnTest < Minitest::Test
 
   end
 
+  def test_it_can_name_a_winner
+    assert_equal @player1, @turn.winner
+
+  end
+
 end
