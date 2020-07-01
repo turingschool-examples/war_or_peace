@@ -45,6 +45,7 @@ class Turn
     @spoils_of_war << @player2.deck.cards[0]
     @player2.deck.remove_card
   end
+  
 
 
 
