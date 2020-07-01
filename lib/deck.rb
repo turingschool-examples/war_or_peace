@@ -23,18 +23,18 @@ class Deck
 
   def high_ranking_cards
 
-    high_ranking_cards = []
+    output = []
 
     cards.each do|card|
       if card.rank >= 11
-        high_ranking_cards << card
+        output << card
       end
     end
     #below line is return value
-    high_ranking_cards
+    output
   end
 
   def percent_high_ranking
-      (high_ranking_cards.count / @cards.count).to_f * 100
+      (high_ranking_cards.count / @cards.count.to_f * 100).ceil(2)
   end
 end
