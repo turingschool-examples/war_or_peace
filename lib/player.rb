@@ -4,6 +4,11 @@ class Player
   def initialize(name, deck)
     @name = name
     @deck = deck
+    @has_lost = false
+  end
+
+  def has_lost?
+    @has_lost
   end
 
 end
