@@ -10,15 +10,15 @@ class Deck
     @cards[index].rank
   end
 
-  # def high_ranking_cards
-  #   high_card = []
-  #   cards.each do |card|
-  #     if card.rank >= 11
-  #       high_card << card
-  #     end
-  #   end
-  #   high_card
-  # end
+  def high_ranking_cards
+    high_card = []
+    cards.each do |card|
+      if card.rank >= 11
+        high_card << card
+      end
+    end
+    high_card
+  end
   #
   # def percent_high_ranking
   #   ((high_ranking_cards.length.to_f / cards.length.to_f) * 100).round(2)

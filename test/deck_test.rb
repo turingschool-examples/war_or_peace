@@ -62,18 +62,53 @@ class DeckTest < Minitest::Test
 
   # test class method high_ranking_cards
   def test_high_rank
+    card_1 = Card.new(:club, 'Jack', 11)
+    card_2 = Card.new(:heart, 'Seven', 7)
+    card_3 = Card.new(:spade, 'Two', 2)
+    card_4 = Card.new(:diamond, 'King', 13)
+    cards = [card_1, card_2, card_3, card_4]
+    deck = Deck.new(cards)
+
+    #Got confused here. Tried adding a pry, that didn't help.
+    #Tried talking out loud in 'human speak', super helped.
+    #Also looked at my Ind. Challenge from today and that guided me through
+    #as I talked the code out loud.
+
+    #attempted with array [11, 13], but that's not quite a printout of the card
+    #pulled the error information and tried again
+    #attempted with array [@suit=:club, @value="Jack", @rank=11>, @suit=:diamond, @value="King", @rank=13>], failed....
+    #researching to attempt again.
+    #Wow.... saying things out loud really helps...
+    #I assigned all those parameters to a variable, I can just call on the variable!
+    #Silly Priya
+    assert_equal [card_1, card_4], deck.high_ranking_cards
   end
 
   # test class method percent_high_ranking
-  def test_remove
-  end
+  # def test_remove
+  #   card_1 = Card.new(:club, 'Jack', 11)
+  #   card_2 = Card.new(:heart, 'Seven', 7)
+  #   card_3 = Card.new(:spade, 'Two', 2)
+  #   cards = [card_1, card_2, card_3]
+  #   deck = Deck.new(cards)
+  # end
 
   # test class method remove_card
-  def test_percentage
-  end
+  # def test_percentage
+  #   card_1 = Card.new(:club, 'Jack', 11)
+  #   card_2 = Card.new(:heart, 'Seven', 7)
+  #   card_3 = Card.new(:spade, 'Two', 2)
+  #   cards = [card_1, card_2, card_3]
+  #   deck = Deck.new(cards)
+  # end
 
   # test class method add_card(card)
-  def test_add
-  end
+  # def test_add
+  #   card_1 = Card.new(:club, 'Jack', 11)
+  #   card_2 = Card.new(:heart, 'Seven', 7)
+  #   card_3 = Card.new(:spade, 'Two', 2)
+  #   cards = [card_1, card_2, card_3]
+  #   deck = Deck.new(cards)
+  # end
 
 end
