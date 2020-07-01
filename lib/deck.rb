@@ -1,4 +1,4 @@
-require './lib/card'
+# require './lib/card'
 
 class Deck
   attr_reader :cards
@@ -26,7 +26,7 @@ class Deck
 
 
   def percent_high_ranking
-    ((high_ranking_cards.count).to_f / @cards.count))
+    (high_ranking_cards.count / @cards.count).to_f * 100
   end
 
   def remove_rcard
