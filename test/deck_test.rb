@@ -92,18 +92,24 @@ class DeckTest < Minitest::Test
     card_4 = Card.new(:diamond, 'King', 13)
     cards = [card_1, card_2, card_3, card_4]
     deck = Deck.new(cards)
-    require 'pry'; binding.pry
-    assert_equal 50, deck.percent_high_ranking
+    # require 'pry'; binding.pry
+    assert_equal "50.0 percent of the deck is high ranking cards.", deck.percent_high_ranking
   end
 
-  # test class method remove_card
-  # def test_remove
-  #   card_1 = Card.new(:club, 'Jack', 11)
-  #   card_2 = Card.new(:heart, 'Seven', 7)
-  #   card_3 = Card.new(:spade, 'Two', 2)
-  #   cards = [card_1, card_2, card_3]
-  #   deck = Deck.new(cards)
-  # end
+  #test class method remove_card
+  def test_remove
+    card_1 = Card.new(:club, 'Jack', 11)
+    card_2 = Card.new(:heart, 'Seven', 7)
+    card_3 = Card.new(:spade, 'Two', 2)
+    card_4 = Card.new(:diamond, 'King', 13)
+    cards = [card_1, card_2, card_3, card_4]
+    deck = Deck.new(cards)
+
+    assert_equal [card_2, card_3, card_4], deck.remove_card
+    #Failed... error is showing as if only card_1 is visible...
+    #Looked at class file, realized in method I never called cards again
+    #Fixed, ran again, SUCCESS!!
+  end
 
   # test class method add_card(card)
   # def test_add

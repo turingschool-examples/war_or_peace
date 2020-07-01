@@ -24,10 +24,11 @@ class Deck
     percent = ((high_ranking_cards.length.to_f / cards.length.to_f) * 100).round(2)
     p "#{percent} percent of the deck is high ranking cards."
   end
-  #
-  # def remove_card
-  #   cards.shift
-  # end
+
+  def remove_card
+    cards.shift
+    cards
+  end
   #
   # def add_card(card)
   #   cards << card
