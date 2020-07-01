@@ -22,21 +22,20 @@ class Turn
   end
 
   def winner
-    winner = "No Winner"
     if type == :basic
       if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
-        winner = @player1
+        @player1
       else
-        winner = @player2
+        @player2
       end
     elsif type == :war
       if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
-        winner = @player1
+        @player1
       else
-        winner = @player2
+        @player2
       end
     else
-      winner
+      "No Winner"
     end
   end
 
