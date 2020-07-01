@@ -40,10 +40,22 @@ class Turn
   end
 
   def pile_cards
-    @spoils_of_war << @player1.deck.cards[0]
-    @player1.deck.remove_card
-    @spoils_of_war << @player2.deck.cards[0]
-    @player2.deck.remove_card
+    if type == :basic
+      @spoils_of_war << @player1.deck.cards[0]
+        @player1.deck.remove_card
+      @spoils_of_war << @player2.deck.cards[0]
+        @player2.deck.remove_card
+    else type == :war
+
+      3.times do
+      @spoils_of_war << @player1.deck.cards[0]
+          @player1.deck.remove_card
+      @spoils_of_war << @player2.deck.cards[0]
+          @player1.deck.remove_card
+      end
+
+    end
+    @spoils_of_war
   end
 
   def award_spoils(winner)
