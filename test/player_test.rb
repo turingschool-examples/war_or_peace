@@ -34,10 +34,13 @@ class PlayerTest < Minitest::Test
 
     assert_equal false, player.has_lost?
     player.deck.remove_card
+
     assert_equal false, player.has_lost?
     player.deck.remove_card
+
     assert_equal false, player.has_lost?
     player.deck.remove_card
+
     assert_equal true, player.has_lost?
   end
 

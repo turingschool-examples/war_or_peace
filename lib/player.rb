@@ -7,7 +7,7 @@ class Player
   end
 
   def has_lost?
-    require "pry"; binding.pry
+    @deck.cards.count == 0
   end
 
 end
