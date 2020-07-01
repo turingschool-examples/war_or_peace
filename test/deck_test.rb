@@ -1,4 +1,5 @@
 require 'minitest/autorun'
+require 'minitest/nyan_cat'
 require './lib/deck'
 require './lib/card'
 
@@ -17,5 +18,20 @@ class DeckTest < Minitest::Test
     deck = Deck.new(cards)
     assert_instance_of(Deck, deck)
   end
+
+  def test_rank_of_card_at
+    cards = []
+    card1 = Card.new(:heart, "Jack", 11)
+    card2 = Card.new(:diamond, "two", 2)
+    card3 = Card.new(:spade, "three", 3)
+
+    cards << card1
+    cards << card2
+    cards << card3
+    deck = Deck.new(cards)
+
+  end
+
+  def test_cards_exist
 
 end
