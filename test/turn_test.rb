@@ -131,6 +131,9 @@ class TurnTest < Minitest::Test
 
     assert_equal :war, turn.type
 
+    winner = turn.winner
+    assert_equal player2, turn.winner
+
   end
 
 end
