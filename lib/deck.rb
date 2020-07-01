@@ -23,15 +23,16 @@ class Deck
        end
     end.compact
   end
-end
-#
-#   def percent_high_ranking
-#   end
-#
-#   def remove_rcard
-#   end
-#
-#   def add_card
-#   end
-#
-# end
+
+
+  def percent_high_ranking
+    ((high_ranking_cards.count).to_f / @cards.count))
+  end
+
+  def remove_rcard
+    @cards.shift
+  end
+
+  def add_card
+    @cards.push(card)
+  end
