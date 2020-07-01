@@ -10,20 +10,16 @@ class Deck
 
 
   def add_card(card)
-    @deck << card
+    @cards.push(card)
   end
 
   def remove_card
-    @deck.shift
+    @cards.shift
   end
 
-  # def rank_of_card_at
-  #
-  # end
-  #
-  # def percent_high_ranking
-  #
-  # end
+  def rank_of_card_at(index)
+    @cards[index].rank
+  end
 
   def high_ranking_cards
 
@@ -38,4 +34,7 @@ class Deck
     high_ranking_cards
   end
 
+  def percent_high_ranking
+      (high_ranking_cards.count / @cards.count).to_f * 100
+  end
 end
