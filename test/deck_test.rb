@@ -18,7 +18,7 @@ class DeckTest < Minitest::Test
     assert_instance_of Card, card
   end
 
-  #test assigned attributes from Card Class and connect to Deck Class
+  # test assigned attributes from Card Class and connect to Deck Class
   def test_it_has_readable_attributes
     # set three new instances
     card_1 = Card.new(:club, 'Jack', 11)
@@ -31,12 +31,33 @@ class DeckTest < Minitest::Test
     # check to see if cards (the expected) is equal to deck.cards (the result)
     assert_equal cards, deck.cards
     # Opens pry after this line of code so I can play with this attributes test
-    require 'pry'; binding.pry
+    # require 'pry'; binding.pry
   end
 
   # test class method rank_of_card_at(index)
   def test_rank
+    card_1 = Card.new(:club, 'Jack', 11)
+    card_2 = Card.new(:heart, 'Seven', 7)
+    card_3 = Card.new(:spade, 'Two', 2)
+    cards = [card_1, card_2, card_3]
+    deck = Deck.new(cards)
+    # These tests may start to look similar. I can copy the above
+    # to most tests below.
 
+    # This will check if my card assigned from array index 0 (the first
+    # value) is the correct rank of 11
+    assert_equal 11, deck.rank_of_card_at(0)
+    # Continue checking
+    assert_equal 7, deck.rank_of_card_at(1)
+    assert_equal 2, deck.rank_of_card_at(2)
+    # To test this in live action (so to speak), I create a pry
+    # require 'pry'; binding.pry
+
+    # RESULTS of the pry! Successsssssss!
+    # [1] pry(#<DeckTest>)> deck.rank_of_card_at(0)
+    # => 11
+    # [2] pry(#<DeckTest>)> deck.rank_of_card_at(1)
+    # => 7
   end
 
   # test class method high_ranking_cards
