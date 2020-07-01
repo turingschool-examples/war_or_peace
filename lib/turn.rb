@@ -45,8 +45,11 @@ class Turn
     @spoils_of_war << @player2.deck.cards[0]
     @player2.deck.remove_card
   end
-  
 
-
-
+  def award_spoils(winner)
+    @spoils_of_war.each do |spoil|
+      winner.deck.cards << spoil
+    end
+    @spoils_of_war = []
+  end
 end
