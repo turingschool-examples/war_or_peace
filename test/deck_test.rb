@@ -18,7 +18,7 @@ class DeckTest < Minitest::Test
       deck.cards << card2 = Card.new(:spade, '3', 3)
       deck.cards << card3 = Card.new(:heart, 'Ace', 14)
 
-    #   binding.pry
+# binding.pry
       assert_equal [card1, card2, card3], deck.cards
     end 
 
