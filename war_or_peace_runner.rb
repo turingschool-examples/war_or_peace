@@ -2,7 +2,9 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
-require './lib/turn'
+require './lib/war_or_peace_runner'
+
+
 
 suits = %i[spades hearts diamonds clubs]
 ranks = %i[Ace two three four five six seven eight nine ten Jack Queen King]
@@ -36,24 +38,29 @@ deck2 = Deck.new(shuffled_deck.drop(26))
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
 
+class Game
+  attr_accessor :player1, :player2, :turn_number, :turn
+  $turn_number = 0
+
+  def initialize
+    turn = Turn.new(player1, player2)
+  end
+
+  def start
+    $turn_number += 1
+  end
+
+  def type
+    turn.type
+  end
+end
 
 puts "Welcome to War! (or Peace) This game will be played with 52 cards. The players today are Megan and Aurora. Type 'GO' to start the game!"
 p '------------------------------------------------------------------'
+
 if gets.chomp! == 'GO'
-  Game.new
+  george = Game.new
+  george.start
+  turn = Turn.new(player1, player2)
+  p "Turn #{$turn_number}: #{turn.type} won"
 end
-
-class Game
-
-  def start
-
-  end
-
-end
-
-
-#
-# turn = Turn.new(player1, player2)
-#
-#
-# winner = turn.winner

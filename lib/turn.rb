@@ -58,6 +58,7 @@ class Turn
       @player2.deck.cards = @player2.deck.cards.drop(3)
     end
   end
+  
 end
 
 # **Set-up for mutually_assured_destruction currently**
