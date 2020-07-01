@@ -19,10 +19,11 @@ class Deck
     end
     high_card
   end
-  #
-  # def percent_high_ranking
-  #   ((high_ranking_cards.length.to_f / cards.length.to_f) * 100).round(2)
-  # end
+
+  def percent_high_ranking
+    percent = ((high_ranking_cards.length.to_f / cards.length.to_f) * 100).round(2)
+    p "#{percent} percent of the deck is high ranking cards."
+  end
   #
   # def remove_card
   #   cards.shift
