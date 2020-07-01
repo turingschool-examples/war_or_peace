@@ -3,6 +3,7 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 require './lib/turn'
+require './lib/war_or_peace_game'
 
 card1 = Card.new(:heart, 'Ace', 1)
 card2 = Card.new(:heart, '2', 2)
