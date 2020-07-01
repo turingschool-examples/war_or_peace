@@ -29,8 +29,8 @@ class Deck
     cards.shift
     cards
   end
-  #
-  # def add_card(card)
-  #   cards << card
-  # end
+
+  def add_card(card)
+    cards << card
+  end
 end

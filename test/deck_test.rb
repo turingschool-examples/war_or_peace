@@ -109,15 +109,41 @@ class DeckTest < Minitest::Test
     #Failed... error is showing as if only card_1 is visible...
     #Looked at class file, realized in method I never called cards again
     #Fixed, ran again, SUCCESS!!
+
+    #Tested edge cases by checking previous methods still work correctly
+    # require 'pry'; binding.pry
+    # Results
+    # [1] pry(#<DeckTest>)> deck
+    # => #<Deck:0x00007f80eb0ef5b0
+    #  @cards=
+    #   [#<Card:0x00007f80eb0ef6c8 @rank=7, @suit=:heart, @value="Seven">,
+    #    #<Card:0x00007f80eb0ef678 @rank=2, @suit=:spade, @value="Two">,
+    #    #<Card:0x00007f80eb0ef628
+    #     @rank=13,
+    #     @suit=:diamond,
+    #     @value="King">]>
+    # [2] pry(#<DeckTest>)> deck.high_ranking_cards
+    # => [#<Card:0x00007f80eb0ef628 @rank=13, @suit=:diamond, @value="King">]
+    # [3] pry(#<DeckTest>)> deck.percent_high_ranking
+    # "33.33 percent of the deck is high ranking cards."
+    # => "33.33 percent of the deck is high ranking cards."
+    # [4] pry(#<DeckTest>)>
   end
 
   # test class method add_card(card)
-  # def test_add
-  #   card_1 = Card.new(:club, 'Jack', 11)
-  #   card_2 = Card.new(:heart, 'Seven', 7)
-  #   card_3 = Card.new(:spade, 'Two', 2)
-  #   cards = [card_1, card_2, card_3]
-  #   deck = Deck.new(cards)
-  # end
+  def test_add
+    card_1 = Card.new(:club, 'Jack', 11)
+    card_2 = Card.new(:heart, 'Seven', 7)
+    card_3 = Card.new(:spade, 'Two', 2)
+    card_4 = Card.new(:diamond, 'King', 13)
+    cards = [card_1, card_2, card_3, card_4]
+    deck = Deck.new(cards)
+    card_5 = Card.new(:heart, 'Eight', 8)
+
+    assert_equal [card_1, card_2, card_3, card_4, card_5], deck.add_card(card_5)
+
+    #Tested edge cases by checking previous methods still work correctly
+    # require 'pry'; binding.pry
+  end
 
 end
