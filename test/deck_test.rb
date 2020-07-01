@@ -33,5 +33,14 @@ class DeckTest < Minitest::Test
   end
 
   def test_cards_exist
+    cards = []
+    card1 = Card.new(:diamond, "four", 4)
+    card2 = Card.new(:spade, "five", 5)
+
+    cards << card1
+    cards << card2
+
+    assert_instance_of Array, cards
+  end
 
 end
