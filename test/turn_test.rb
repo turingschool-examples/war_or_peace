@@ -49,4 +49,10 @@ class TurnTest < Minitest::Test
 
   end
 
+  def test_it_can_add_cards_to_spoils_of_war
+    assert_equal [], @turn.spoils_of_war
+    @turn.pile_cards
+    assert_equal [@card1, @card3], @turn.spoils_of_war
+  end
+
 end
