@@ -42,6 +42,5 @@ class PlayerTest < Minitest::Test
 
     assert_equal false, player1.has_lost?
     assert_equal true, player2.has_lost?
-    binding.pry
   end
 end
