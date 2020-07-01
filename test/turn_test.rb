@@ -25,10 +25,17 @@ class TurnTest < Minitest::Test
     @player2 = Player.new("Aurora", @deck2)
 
     @turn = Turn.new(@player1, @player2)
-    binding.pry
   end
 
   def test_it_initalize
     assert_instance_of Turn, @turn
   end
+
+  def test_type
+    assert_equal :basic, @turn.type(@turn.player_1.deck.cards[0].rank,
+                                    @turn.player_1.deck.cards[2].rank,
+                                    @turn.player_2.deck.cards[0].rank,
+                                    @turn.player_2.deck.cards[2].rank)
+  end
+
 end
