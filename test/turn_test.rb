@@ -28,6 +28,11 @@ class TurnTest < Minitest::Test
     deck3 = Deck.new([@card4, @card3, @card6, @card7])
     @player3 = Player.new("Harry", deck3)
 
+    # Mutually Assured Destruction (MAD) Turn
+    @card9 = Card.new(:diamond, '8', 8)
+    deck4 = Deck.new([@card4, @card3, @card9, @card7])
+    @player4 = Player.new("Charles", deck4)
+
   end
 
   def test_it_exists
@@ -48,7 +53,7 @@ class TurnTest < Minitest::Test
 
     assert_equal [], turn.spoils_of_war
   end
-
+  # Q: should I combine the following tests?
   # Basic Turn Tests
 
   def test_it_has_a_type_basic
@@ -85,7 +90,7 @@ class TurnTest < Minitest::Test
     assert_equal @player3, turn.winner
   end
 
-  # Can I make this assertion order independent? Wanted to use assert_includes
+  # Q: Can I make this assertion order independent? Wanted to use assert_includes
   def test_it_piles_the_cards_war
     turn = Turn.new(@player1, @player3)
 
@@ -94,7 +99,31 @@ class TurnTest < Minitest::Test
     assert_equal [@card1, @card4, @card2, @card3, @card5, @card6], turn.spoils_of_war
   end
 
+  # Mutually assured destruction tests
+
+  def test_it_has_a_type_MAD
+    turn = Turn.new(@player1, @player4)
+
+    assert_equal :mutually_assured_destruction, turn.type
+  end
+
+  def test_it_has_a_winner_MAD
+    turn = Turn.new(@player1, @player4)
+
+    assert_equal "No Winner", turn.winner
+  end
+
+  def test_it_piles_the_cards_and_doesnt_add_them_to_spoils_of_war
+    turn = Turn.new(@player1, @player4)
+
+    turn.pile_cards
+
+    assert_equal true, turn.spoils_of_war.empty?
+  end
+
   #add player 2
+  # Q: do i need to test this for each turn type
+  # Edge case when there are less than 3 cards in the deck
   def test_it_removes_the_piled_cards
     turn = Turn.new(@player1, @player2)
 
@@ -112,5 +141,4 @@ class TurnTest < Minitest::Test
 
     assert_equal [@card2, @card5, @card8, @card1, @card3], @player1.deck.cards
   end
-
 end
