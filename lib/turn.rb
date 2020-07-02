@@ -51,6 +51,6 @@ class Turn
 
     def award_spoils(winner)
         winner.deck.cards << spoils_of_war
-        winner.deck.cards.flatten
+        winner.deck.cards.flatten!
     end
 end
