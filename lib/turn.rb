@@ -9,9 +9,11 @@ class Turn
   end
 
   def type
-
+    #in this method, it is possible to only create one other condition to be met, then the last else could be the last turn type.
     if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
       :basic
+    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+      :war
     end
   end
 
@@ -38,7 +40,6 @@ class Turn
   def awards_spoils(winner)
     winner.deck.cards << spoils_of_war.shift(spoils_of_war.length)
     winner.deck.cards.flatten!
-
   end
 
 end
