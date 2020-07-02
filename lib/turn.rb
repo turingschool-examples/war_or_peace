@@ -53,15 +53,26 @@ class Turn
   end
 
   def award_spoils(winner)
-    @spoils_of_war = pile_cards
-    winner.deck.cards << @spoils_of_war
-    player1.deck.cards.flatten!
-    player2.deck.cards.flatten!
-    #Makes sure the cards played are removed from players deck
     if type == :basic
+      @spoils_of_war = pile_cards
+      winner.deck.cards << @spoils_of_war
+      player1.deck.cards.flatten!
+      player2.deck.cards.flatten!
+      #Makes sure the cards played are removed from players deck
       player2.deck.remove_card
       player1.deck.remove_card
-    elsif type == :war or type == :mutually_assured_destruction
+    elsif type == :war
+      @spoils_of_war = pile_cards
+      winner.deck.cards << @spoils_of_war
+      player1.deck.cards.flatten!
+      player2.deck.cards.flatten!
+      #Makes sure the cards played are removed from players deck
+      3.times do
+        player2.deck.remove_card
+        player1.deck.remove_card
+      end
+    else
+      #Makes sure the cards played are removed from players deck
       3.times do
         player2.deck.remove_card
         player1.deck.remove_card
