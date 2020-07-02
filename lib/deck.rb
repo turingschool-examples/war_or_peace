@@ -8,16 +8,18 @@ class Deck
   def rank_of_card_at(index_location_of_card)
     if index_location_of_card == 0
       rank = @cards[0].rank
+      #realized the below is not needed during 'war'
+      #since the second card will be facedown
     elsif index_location_of_card == 1
       rank = @cards[1].rank
     else rank = @cards[2].rank
-    end 
+    end
 
   end
 
   def high_ranking_cards
-    #return cards in the deck 11 or above
-  end
+    @cards.select { |card| card.rank > 10}
+  end 
 
   def percent_high_ranking
     #return percentage of cards which rank high
