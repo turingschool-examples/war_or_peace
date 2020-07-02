@@ -12,8 +12,8 @@ class Game
         @ranks = {2 => '2', 3 => '3', 4 =>'4', 5 =>'5', 6 =>'6', 7 =>'7', 8 =>'8', 9 =>'9', 10 =>'10', 11 =>'Jack', 12 =>'Queen', 13 =>'King', 14 =>'Ace'}
         @player1 = player1
         @player2 = player2
-        # generate_deck
-        # split_deck
+        generate_deck
+        split_deck
         end
 
     def generate_deck
@@ -35,20 +35,20 @@ class Game
         @player2 = Player.new(@player2, deck2)
     end
     
-    def start
-        generate_deck
-        split_deck
+    # def start
+    #     # generate_deck
+    #     # split_deck
 
-        until player1.has_lost? || player2.has_lost?
-        # binding.pry
-            turn = Turn.new(player1, player2)
-            turn.piles_cards
-            winner = turn.winner
-            puts "#{winner.name} has won!" 
-            turn.award_spoils(winner)
-        end
-        
-    end
+    #     until player1.has_lost? || player2.has_lost?
+    #     # binding.pry
+    #         turn = Turn.new(player1, player2)
+    #         turn.piles_cards
+    #         winner = turn.winner
+    #         puts "#{winner.name} has won!" 
+    #         turn.award_spoils(winner)
+    #     end
+
+    # end
 
 
 end

@@ -14,17 +14,15 @@ class GameTest < Minitest::Test
         assert_instance_of Game, game
     end
 
-    def test_it_has_a_standard_52_card_deck
-        game = Game.new("Megan", "Aurora")
-        game.generate_deck
-        assert_equal 52, game.deck.cards.count
-    end
+    # def test_it_has_a_standard_52_card_deck
+    #     game = Game.new("Megan", "Aurora")
+    #     # game.generate_deck
+    #     assert_equal 52, game.deck.cards.count
+    # end
 
     # Create two players with each of the decks created out of the main one.
     def test_it_splits_the_deck_and_creates_two_players
         game = Game.new("Megan", "Aurora")
-        game.generate_deck
-        game.split_deck
 
         assert_equal "Megan" , game.player1.name
         assert_equal 26 , game.player1.deck.cards.length
@@ -32,10 +30,10 @@ class GameTest < Minitest::Test
         assert_equal 26 , game.player2.deck.cards.length
     end
 
-    def test_game_starts
-        game = Game.new("Megan", "Aurora")
-        game.start
-    end
+    # def test_game_starts
+    #     game = Game.new("Megan", "Aurora")
+    #     game.start
+    # end
 
 end
 
