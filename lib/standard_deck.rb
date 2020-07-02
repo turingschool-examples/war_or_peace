@@ -1,6 +1,7 @@
 require_relative "./card"
 class StandardDeck
-attr_reader   :ranks_and_values
+attr_reader   :ranks_and_values,
+              :suits
   def initialize
     @ranks_and_values = {
         2 => "2",
@@ -17,6 +18,7 @@ attr_reader   :ranks_and_values
        13 => "King",
        14 => "Ace"
     }
+      @suits = [:heart, :club, :diamond, :spade]
 
 
 
