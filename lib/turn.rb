@@ -45,6 +45,11 @@ class Turn
         spoils_of_war << player1.deck.cards.shift(3)
         spoils_of_war << player2.deck.cards.shift(3)
       end
+
+      if type == :mutually_assured_destruction 
+        player1.deck.cards.shift(3)
+        player2.deck.cards.shift(3)
+      end
       spoils_of_war.flatten!
 
     end
