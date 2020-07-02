@@ -38,14 +38,14 @@ class Turn
   end
 
   def pile_cards
-    spoils = []
+    spoils_of_war = []
     lost_cards = []
     if type == :basic
-      spoils << player1.deck.cards[0]
-      spoils << player2.deck.cards[0]
+      spoils_of_war << player1.deck.cards[0]
+      spoils_of_war << player2.deck.cards[0]
     elsif type == :war
-      spoils << player1.deck.cards[0..2]
-      spoils << player2.deck.cards[0..2]
+      spoils_of_war << player1.deck.cards[0..2]
+      spoils_of_war << player2.deck.cards[0..2]
     elsif type == :mutually_assured_destruction
       lost_cards << player1.deck.cards[0..2]
       lost_cards << player2.deck.cards[0..2]
