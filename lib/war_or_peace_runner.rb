@@ -35,20 +35,26 @@ class Game
         @player2 = Player.new(@player2, deck2)
     end
     
-    # def start
-    #     # generate_deck
-    #     # split_deck
+    def start
 
-    #     until player1.has_lost? || player2.has_lost?
-    #     # binding.pry
-    #         turn = Turn.new(player1, player2)
-    #         turn.piles_cards
-    #         winner = turn.winner
-    #         puts "#{winner.name} has won!" 
-    #         turn.award_spoils(winner)
-    #     end
+       puts  "Welcome to War! (or Peace)"
+       puts "This game will be played with 52 cards."
+       puts "The players today are #{player1.name} and #{player2.name}."
+       puts "Type 'Go' to start the game!" 
+       x = gets.chomp.upcase
 
-    # end
+        turn_counter = 0
+        until player1.has_lost? || player2.has_lost?
+            turn = Turn.new(player1, player2)
+            turn_counter += 1
+            turn.piles_cards
+            winner = turn.winner
+            puts "Turn #{turn_counter}: #{winner.name} won #{turn.spoils_of_war.count} cards!" 
+            turn.award_spoils(winner)
+        end
+        puts "*-*-*-* #{winner.name.capitalize} has won the game! *-*-*-*"
+
+    end
 
 
 end
