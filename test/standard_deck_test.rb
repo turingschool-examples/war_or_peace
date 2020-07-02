@@ -26,20 +26,26 @@ class StandardDeckTest < Minitest::Test
 
   def test_it_has_attributes
     assert_equal [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], @standard_deck.ranks
+
     assert_equal ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"], @standard_deck.values
+
     assert_equal [:heart, :diamond, :spade, :club], @standard_deck.suits
 
+    assert_equal 52, @standard_deck.num_of_cards.count
+
+    assert_equal [], @standard_deck.all_cards
 
 
 
+
+
+  end
+
+  def test_it_can_create_a_deck
+    assert_equal [], @standard_deck.create_deck
 
   end
 
-  def test_it_has_52_cards
-    skip
-    assert
-
-  end
 
 
 
