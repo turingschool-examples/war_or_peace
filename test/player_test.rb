@@ -26,10 +26,14 @@ class PlayerTest < Minitest::Test
     cards = [card_1, card_2, card_3, card_4]
     deck = Deck.new(cards)
     player = Player.new('Priya', deck)
-
+    player.deck.remove_card
+    player.deck.remove_card
+    player.deck.remove_card
+    player.deck.remove_card
     assert_equal "Priya has lost the war.! The battle drums still call, perhaps your luck will be better next time.", player.has_lost?
     # Played with pry to ensure edge cases and it looks like no matter what my
     # deck size is, I get the has_lost message... something is wrong with my CLass file
 
+    # Tested numerous times and tested with pry. WORKS!
   end
 end

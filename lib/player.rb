@@ -19,13 +19,18 @@ class Player
     # I KNOW that these are array methods that should work,
     # So... something else is the issue
     # Taking a break to try again
+    # Okay... after reading through the project info pry session
+    # Thinking maybe I need to call a class like in 'player.deck.remove_card'
+    # WOOOOOO! It works!!!!
+
 
     # if deck == 0
     # if deck == []
     # if deck.length == 0
     # if deck !![]
     # if deck.size < 1
-    if deck.empty?
+    # if deck.empty?
+    if deck.cards.empty?
       p "#{name} has lost the war.! The battle drums still call, perhaps your luck will be better next time."
     else
       p "#{name} is still in the running for the war!"
