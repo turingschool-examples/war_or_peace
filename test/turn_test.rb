@@ -167,6 +167,9 @@ class TurnTest < Minitest::Test
 
     assert_equal :mutually_assured_destruction, turn.type
 
+    winner = turn.winner
+    assert_equal "No Winner", winner
+
 
   end
 
