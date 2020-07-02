@@ -7,23 +7,3 @@ class Card
     @value = value
   end
 end
-
-# try to create an instance in this file at first
-
-  # def cards
-  # end
-  #
-  # def rank_of_cards_at
-  # end
-  #
-  # def high_ranking_cards
-  # end
-  #
-  # def percent_high_ranking
-  # end
-  #
-  # def remove_card
-  # end
-  #
-  # def add_card
-  # end
