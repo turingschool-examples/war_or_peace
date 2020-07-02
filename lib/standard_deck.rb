@@ -1,8 +1,8 @@
 require_relative "./card"
 class StandardDeck
 attr_reader   :ranks_and_values,
-              :suits
-  def initialize
+              :hearts
+  def initialize(ranks_and_values_hash, value)
     @ranks_and_values = {
         2 => "2",
         3 => "3",
@@ -18,9 +18,7 @@ attr_reader   :ranks_and_values,
        13 => "King",
        14 => "Ace"
     }
-      @suits = [:heart, :club, :diamond, :spade]
-
-
+      @hearts = :hearts
 
   end
 

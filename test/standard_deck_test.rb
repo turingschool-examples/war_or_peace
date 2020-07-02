@@ -10,12 +10,41 @@ require "./lib/standard_deck"
 class StandardDeckTest < Minitest::Test
 
   def test_it_exists
-    standard_deck = StandardDeck.new
+    standard_deck = StandardDeck.new({
+        2 => "2",
+        3 => "3",
+        4 => "4",
+        5 => "5",
+        6 => "6",
+        7 => "7",
+        8 => "8",
+        9 => "9",
+       10 => "10",
+       11 => "Jack",
+       12 => "Queen",
+       13 => "King",
+       14 => "Ace"
+    }, [:heart, :spade, :diamond, :club])
     assert_instance_of StandardDeck, standard_deck
   end
 
   def test_it_has_attributes
-    standard_deck = StandardDeck.new
+    skip
+    standard_deck = StandardDeck.new({
+        2 => "2",
+        3 => "3",
+        4 => "4",
+        5 => "5",
+        6 => "6",
+        7 => "7",
+        8 => "8",
+        9 => "9",
+       10 => "10",
+       11 => "Jack",
+       12 => "Queen",
+       13 => "King",
+       14 => "Ace"
+    }, [hearts, spades, diamonds, clubs])
 
         expected = {
             2 => "2",
@@ -39,20 +68,11 @@ class StandardDeckTest < Minitest::Test
         assert_equal expected_2, standard_deck.suits
     #it should initialize with all 52 cards, and I still smell a hash!
 
-    # {
-      # :heart => [value, rank]
-      # #
-      #
-      # :diamonds
-      # :spades
-      # :clubs
-  # }
-
-
   end
 
   def test_it_has_52_cards
-
+    skip
+    assert
 
   end
 
