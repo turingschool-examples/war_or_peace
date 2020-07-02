@@ -20,17 +20,28 @@ class GameTest < Minitest::Test
         assert_equal 52, game.deck.cards.count
     end
 
-# Create two players with each of the decks created out of the main one.
-def test_it_splits_the_deck_and_creates_two_players
-    game = Game.new("Megan", "Aurora")
-    game.generate_deck
-    game.split_deck
+    # Create two players with each of the decks created out of the main one.
+    def test_it_splits_the_deck_and_creates_two_players
+        game = Game.new("Megan", "Aurora")
+        game.generate_deck
+        game.split_deck
 
-    assert_equal "Megan" , game.player1.name
-    assert_equal 26 , game.player1.deck.cards.length
-    assert_equal "Aurora" , game.player2.name
-    assert_equal 26 , game.player2.deck.cards.length
+        assert_equal "Megan" , game.player1.name
+        assert_equal 26 , game.player1.deck.cards.length
+        assert_equal "Aurora" , game.player2.name
+        assert_equal 26 , game.player2.deck.cards.length
+    end
+
+    def test_game_starts
+        game = Game.new("Megan", "Aurora")
+        game.start
+    end
+
 end
 
+# Create a method to "start" (maybe make a new game.rb class file for method start)
 
-end
+    # User types "Go" and sees: When we start the game by running ruby war_or_peace_runner.rb, it should produce the following interaction from the command line: Welcome to War! (or Peace) This game will be played with 52 cards. The players today are Megan and Aurora.Type 'GO' to start the game!
+    #User sees each turn info after playing
+    #show the winner
+    #it can be a draw
