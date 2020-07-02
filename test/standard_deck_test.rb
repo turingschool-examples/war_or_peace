@@ -34,7 +34,9 @@ class StandardDeckTest < Minitest::Test
         }
         assert_equal expected, standard_deck.ranks_and_values
 
-        @suits = [:heart, :club, :diamond, :spade]
+        expected_2 = [:heart, :club, :diamond, :spade]
+
+        assert_equal expected_2, standard_deck.suits
     #it should initialize with all 52 cards, and I still smell a hash!
 
     # {
