@@ -22,8 +22,18 @@ class PlayerTest < Minitest::Test
     assert_equal 'Clarisa', @player.name
   end
 
-  def test_has_lost
-    assert_equal !@cards.nil?, @player.has_lost?
+  def test_has_lost?
+    
+    assert_equal false, @player.has_lost?
+
+    @deck.remove_card
+    assert_equal false, @player.has_lost?
+
+    @deck.remove_card
+    assert_equal false, @player.has_lost?
+
+    @deck.remove_card
+    assert_equal true, @player.has_lost?
   end
 
 end # this is the end of the class!!!
