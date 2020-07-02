@@ -5,6 +5,7 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 require "pry"
+
 class TurnTest < Minitest::Test
   def test_basic_type
     card1 = Card.new(:heart, 'Jack', 11)
