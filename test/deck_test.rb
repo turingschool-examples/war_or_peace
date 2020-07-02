@@ -11,7 +11,19 @@ class DeckTest < Minitest::Test
   #   assert_instance_of Deck, deck
   # end
 
-  def test_it_has_attributes
+  # def test_it_has_attributes
+  #   card1 = Card.new(:diamond, 'Queen', 12)
+  #   card2 = Card.new(:spade, '3', 3)
+  #   card3 = Card.new(:heart, 'Ace', 14)
+  #
+  #   cards = [card1, card2, card3]
+  #
+  #   deck = Deck.new(cards)
+  #
+  #   assert_equal [card1, card2, card3], deck.cards
+  # end
+
+  def test_cards_have_rank
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
@@ -20,7 +32,7 @@ class DeckTest < Minitest::Test
 
     deck = Deck.new(cards)
 
-    assert_equal [card1, card2, card3], deck.cards
+    assert_equal 12, deck.rank_of_card_at(0)
   end
 
 
