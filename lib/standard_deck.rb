@@ -1,7 +1,7 @@
 class StandardDeck
  #attr_reader
-  #def initialize(*arg)
+  def initialize
 
-  #end
+  end
 
 end
