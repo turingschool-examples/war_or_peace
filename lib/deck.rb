@@ -6,6 +6,11 @@ class Deck
     @cards = []
   end
 
+  def nonsense(arg1, arg2)
+    code
+  end
+
+
   # def cards
   # end
 
