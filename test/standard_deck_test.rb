@@ -9,9 +9,10 @@ require "./lib/standard_deck"
 
 class StandardDeckTest < Minitest::Test
 
-  #def test_it_exists
-    #assert_instance_of <Class>,
-  #end
+  def test_it_exists
+    standard_deck = StandardDeck.new
+    assert_instance_of StandardDeck, standard_deck
+  end
 
   #def test_it_has_attributes
   #end
