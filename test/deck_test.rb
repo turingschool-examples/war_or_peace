@@ -7,4 +7,4 @@ class DeckTest < Minitest::Test
   def test_it_exists
 
 
-    assert_instance_of
+    assert_instance_of_nonsense_variables
