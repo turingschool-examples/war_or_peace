@@ -24,6 +24,8 @@ class Turn
       @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2) ? @player1.name : @player2.name
     elsif type == :mutually_assured_destruction
       'No Winner'
+    elsif @player1.deck.cards.length == 0 || @player1.deck.cards.length == 0
+      "Game Over"
     end
   end
 
@@ -32,7 +34,6 @@ class Turn
       @spoils_of_war << @player1.deck.cards.first && @spoils_of_war << @player2.deck.cards.first
     elsif type == :war
       @spoils_of_war << @player1.deck.cards[0] && @spoils_of_war << @player1.deck.cards[1] && @spoils_of_war << @player1.deck.cards[2] && @spoils_of_war << @player2.deck.cards[0] && @spoils_of_war << @player2.deck.cards[1] && @spoils_of_war << @player1.deck.cards[2]
-
     end
   end
 
@@ -58,39 +59,5 @@ class Turn
       @player2.deck.cards = @player2.deck.cards.drop(3)
     end
   end
-  
-end
 
-# **Set-up for mutually_assured_destruction currently**
-# card1 = Card.new(:heart, 'Jack', 11)
-# card2 = Card.new(:heart, '10', 10)
-# card3 = Card.new(:heart, '9', 9)
-# card4 = Card.new(:diamond, 'Jack', 11)
-# card5 = Card.new(:heart, '8', 8)
-# card6 = Card.new(:diamond, '8', 8)
-# card7 = Card.new(:heart, '3', 3)
-# card8 = Card.new(:diamond, '2', 2)
-#
-# deck1 = Deck.new([card1, card2, card5, card8])
-#
-# deck2 = Deck.new([card4, card3, card6, card7])
-#
-# player1 = Player.new("Megan", deck1)
-#
-# player2 = Player.new("Aurora", deck2)
-#
-# turn = Turn.new(player1, player2)
-#
-#
-# winner = turn.winner
-# turn.pile_cards
-# p 'type'
-# p turn.type
-#
-# turn.award_spoils(winner)
-# p '-----------------------------'
-# p 'player 1 deck'
-# p player1.deck
-# p '-----------------------------'
-# p 'player 2 deck'
-# p player2.deck
+end
