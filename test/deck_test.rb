@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/deck'
+require 'pry'
 
 class DeckTest < Minitest::Test
 
@@ -27,6 +28,7 @@ class DeckTest < Minitest::Test
 
   def test_high_ranking_cards
     assert_equal [@card1, @card3], @deck.high_ranking_cards
+    binding.pry
   end
 
   def test_percent_high_ranking

@@ -19,8 +19,8 @@ class Deck
 
     cards.select do |card|
     card.rank >= 11
-
     end
+
   end
 
   #calculates the percentage of cards with rank 11 or higher in cards array
