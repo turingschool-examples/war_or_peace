@@ -134,13 +134,14 @@ class TurnTest < Minitest::Test
         turn = Turn.new(player1, player2)
 
         assert_equal :war, turn.type
+        # binding.pry
         
         winner = turn.winner
-        binding.pry
         turn.piles_cards
+
        
 
-        assert_equal [card1, card3], turn.spoils_of_war
+        assert_equal [card1,card2, card5, card4, card3, card6], turn.spoils_of_war
         
         # turn.award_spoils(winner)
 

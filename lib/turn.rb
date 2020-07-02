@@ -27,11 +27,26 @@ class Turn
         else
             return player2
         end
+
+        if type == :war && player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+          return player1
+      else
+          return player2
+      end
     end
     
     def piles_cards
+      if type == :basic 
         spoils_of_war << player1.deck.cards.shift
         spoils_of_war << player2.deck.cards.shift
+      end
+
+      if type == :war 
+        spoils_of_war << player1.deck.cards.shift(3)
+        spoils_of_war << player2.deck.cards.shift(3)
+      end
+      spoils_of_war.flatten!
+
     end
 
     def award_spoils(winner)
