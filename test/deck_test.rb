@@ -31,16 +31,35 @@ class DeckTest < Minitest::Test
      cards = [card1, card2, card3]
      deck = Deck.new(cards)
 
-     cards << card4
-     assert_includes cards, card4
+
+     assert_equal [card1, card2, card3, card4], deck.add_card(card4)
    end
 
    def test_card_can_be_removed
-     skip
+     # skip
+     card1 = Card.new(:diamond, 'Queen', 12)
+     card2 = Card.new(:spade, '3', 3)
+     card3 = Card.new(:heart, "Ace", 14)
+     cards = [card1, card2, card3]
+     deck = Deck.new(cards)
+
+
+     assert_equal [card2, card3], deck.remove_card
+
    end
 
    def test_returns_rank_of_card_at_specified_index
-     skip
+     # skip
+     card1 = Card.new(:diamond, 'Queen', 12)
+     card2 = Card.new(:spade, '3', 3)
+     card3 = Card.new(:heart, "Ace", 14)
+     cards = [card1, card2, card3]
+     deck = Deck.new(cards)
+
+
+     assert_equal 12, deck.rank_of_card_at(0)
+     assert_equal 3, deck.rank_of_card_at(1)
+     assert_equal 14, deck.rank_of_card_at(2)
    end
 
    def test_returns_all_high_ranking_cards_in_deck
