@@ -16,8 +16,41 @@ class StandardDeckTest < Minitest::Test
 
   def test_it_has_attributes
     standard_deck = StandardDeck.new
-    assert_equal [], standard_deck.all_cards
-    # It should hold an empty array where the new initiated cards will be held.
+
+        expected = {
+            2 => "2",
+            3 => "3",
+            4 => "4",
+            5 => "5",
+            6 => "6",
+            7 => "7",
+            8 => "8",
+            9 => "9",
+           10 => "10",
+           11 => "Jack",
+           12 => "Queen",
+           13 => "King",
+           14 => "Ace"
+        }
+        assert_equal expected, standard_deck.ranks_and_values
+
+        @suits = [:heart, :club, :diamond, :spade]
+    #it should initialize with all 52 cards, and I still smell a hash!
+
+    # {
+      # :heart => [value, rank]
+      # #
+      #
+      # :diamonds
+      # :spades
+      # :clubs
+  # }
+
+
+  end
+
+  def test_it_has_52_cards
+
 
   end
 
