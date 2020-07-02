@@ -45,17 +45,28 @@ class Turn
         @player1.deck.remove_card
       @spoils_of_war << @player2.deck.cards[0]
         @player2.deck.remove_card
-    else type == :war
 
-      3.times do
-      @spoils_of_war << @player1.deck.cards[0]
-          @player1.deck.remove_card
-      @spoils_of_war << @player2.deck.cards[0]
-          @player1.deck.remove_card
-      end
+    elsif type == :war
+
+      @spoils_of_war << @player1.deck.remove_card
+      @spoils_of_war << @player1.deck.remove_card
+      @spoils_of_war << @player1.deck.remove_card
+
+      @spoils_of_war << @player2.deck.remove_card
+      @spoils_of_war << @player2.deck.remove_card
+      @spoils_of_war << @player2.deck.remove_card
+
+    else
+      @player1.deck.remove_card
+      @player1.deck.remove_card
+      @player1.deck.remove_card
+
+      @player2.deck.remove_card
+      @player2.deck.remove_card
+      @player2.deck.remove_card
 
     end
-    @spoils_of_war
+
   end
 
   def award_spoils(winner)

@@ -138,6 +138,11 @@ class TurnTest < Minitest::Test
 
     assert_equal 6, turn.spoils_of_war.count
 
+    turn.award_spoils(winner)
+    assert_equal 1, player1.deck.cards.count
+    assert_equal 7, player2.deck.cards.count
+
   end
+  
 
 end
