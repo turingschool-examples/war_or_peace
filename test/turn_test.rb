@@ -170,6 +170,9 @@ class TurnTest < Minitest::Test
     winner = turn.winner
     assert_equal "No Winner", winner
 
+    turn.pile_cards
+    assert_equal [], turn.spoils_of_war
+
 
   end
 
