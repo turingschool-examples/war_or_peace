@@ -20,7 +20,17 @@ class GameTest < Minitest::Test
         assert_equal 52, game.deck.cards.count
     end
 
+# Create two players with each of the decks created out of the main one.
+def test_it_splits_the_deck_and_creates_two_players
+    game = Game.new("Megan", "Aurora")
+    game.generate_deck
+    game.split_deck
 
+    assert_equal "Megan" , game.player1.name
+    assert_equal 26 , game.player1.deck.cards.length
+    assert_equal "Aurora" , game.player2.name
+    assert_equal 26 , game.player2.deck.cards.length
+end
 
 
 end

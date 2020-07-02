@@ -10,7 +10,9 @@ class Game
         @suits = [:heart, :diamond, :spade, :club]
         @values = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King']
         @ranks = {2 => '2', 3 => '3', 4 =>'4', 5 =>'5', 6 =>'6', 7 =>'7', 8 =>'8', 9 =>'9', 10 =>'10', 11 =>'Jack', 12 =>'Queen', 13 =>'King', 14 =>'Ace'}
-       
+        @player1 = player1
+        @player2 = player2
+        
         end
 
     def generate_deck
@@ -23,6 +25,14 @@ class Game
         @deck = Deck.new(@deck)
     end
 
+    def split_deck
+        @deck.cards.shuffle!
+        deck1 = Deck.new(deck.cards.slice!(0, 26))
+        @player1 = Player.new(@player1, deck1)
+
+        deck2 = Deck.new(deck.cards.slice!(0, 26))
+        @player2 = Player.new(@player2, deck2)
+    end
     
 
 
