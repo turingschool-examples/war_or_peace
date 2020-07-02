@@ -45,7 +45,7 @@ class Turn
 
   def pile_cards
     if type == :basic
-      @spoils_of_war << @player1.deck.cards.first + @spoils_of_war << @player2.deck.cards.first
+      @spoils_of_war << @player1.deck.cards.first && @spoils_of_war << @player2.deck.cards.first
     elsif type == :war
       @spoils_of_war << @player1.deck.cards[0] && @spoils_of_war << @player1.deck.cards[1] && @spoils_of_war << @player1.deck.cards[2] && @spoils_of_war << @player2.deck.cards[0] && @spoils_of_war << @player2.deck.cards[1] && @spoils_of_war << @player1.deck.cards[2]
     end

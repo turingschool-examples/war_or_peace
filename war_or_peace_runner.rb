@@ -45,21 +45,19 @@ class Game
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
 
-
-
-      if player1.deck.cards.length != 0 || player2.deck.cards.length != 0
-        10.times{
-          winner = turn.winner
-          turn.award_spoils(winner)
-          p "Turn #{$turn_number}: #{turn.winner} won #{turn.spoils_of_war.length} cards"
-          $turn_number += 1
-          p player1.deck.cards.length
-          p player2.deck.cards.length
-
-         }
-      else
-      puts "Draw"
-      end
+    100.times{
+      winner = turn.winner
+      turn.pile_cards
+      turn.award_spoils(winner)
+      p "Turn #{$turn_number}: #{turn.winner} won #{(turn.pile_cards.length)-2} cards"
+      $turn_number += 1
+      p player1.deck.cards.length
+      p player2.deck.cards.length
+        if player1.deck.cards.length == 0 || player2.deck.cards.length == 0
+          puts "Draw"
+          break
+        end
+     }
   end
 end
 
