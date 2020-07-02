@@ -1,5 +1,4 @@
 require './lib/player'
-require 'pry'
 
 class Turn
 
