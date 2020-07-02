@@ -9,8 +9,10 @@ cards = [card1, card2, card3]
 class Deck
   attr_reader :cards
 
-  def initialize(cards)
-    @cards = cards
+  def initialize(card_added_to_deck)
+    @cards = []
+    @cards >> card_added_to_deck
+
   end
 
   def rank_of_card_at(array_loc)
@@ -41,7 +43,7 @@ class Deck
     cards.shift
   end
 
-  def add_card(card4)
-    cards.push(card4)
+  def add_card(card_to_add)
+    cards.push(card_to_add)
   end
 end
