@@ -6,7 +6,7 @@ require './lib/player'
 require './lib/turn'
 
 class TurnTest < Minitest::Test
-  def setup # REDO THIS!!! ADD NEW PLAYERS MAKE IT PRETTIER HOE
+  def setup
     @card1 = Card.new(:heart, 'Jack', 11)
     @card2 = Card.new(:heart, '10', 10)
     @card3 = Card.new(:heart, '9', 9)
@@ -37,7 +37,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_turn
-    #skip
+    # skip
     @turn = Turn.new(@player1, @player2)
 
     assert_equal @player1, @turn.player1
@@ -45,14 +45,14 @@ class TurnTest < Minitest::Test
   end
 
   def test_basic_turn
-    #skip
+    # skip
     @turn = Turn.new(@player1, @player2)
 
     assert_equal :basic, @turn.type
   end
 
   def test_mutually_assured_destruction_turn
-    #skip
+    # skip
     @player2 = Player.new("Aurora", @deck3)
     @turn = Turn.new(@player1, @player2)
 
@@ -60,7 +60,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_war_turn
-    #skip
+    # skip
     @player2 = Player.new("Aurora", @deck4)
     @turn = Turn.new(@player1, @player2)
 
@@ -68,14 +68,14 @@ class TurnTest < Minitest::Test
   end
 
   def test_basic_winner
-    #skip
+    # skip
     @turn = Turn.new(@player1, @player2)
 
     assert_equal @player1, @turn.winner
   end
 
   def test_mutually_assured_destruction_winner
-    #skip
+    # skip
     @player2 = Player.new("Aurora", @deck3)
     @turn = Turn.new(@player1, @player2)
 
@@ -90,5 +90,34 @@ class TurnTest < Minitest::Test
     assert_equal @player2, @turn.winner
   end
 
+  def test_basic_pile
+    # skip
+    @turn = Turn.new(@player1, @player2)
+
+    assert_equal @turn.spoils_of_war, @turn.pile_cards
+  end
+
+  def test_war_pile
+    @player2 = Player.new("Aurora", @deck4)
+    @turn = Turn.new(@player1, @player2)
+
+    assert_equal @turn.spoils_of_war, @turn.pile_cards
+  end
+
+  def test_mutually_assured_destruction_pile
+    @player2 = Player.new("Aurora", @deck3)
+    @turn = Turn.new(@player1, @player2)
+    @turn.pile_cards
+
+    assert_equal [@card8], @player1.deck.cards
+    assert_equal [@card7], @player2.deck.cards
+  end
+
+  def test_award_spoils_basic
+    @turn = Turn.new(@player1, @player2)
+    @turn.award_spoils
+
+    assert_equal award_spoils, @player1.deck.cards
+  end
 
 end # this is the end of the class!!!
