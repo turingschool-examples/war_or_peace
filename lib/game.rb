@@ -22,18 +22,35 @@ class Game
     p "Type 'GO' to start the game!"
     p "---------------------------------------------"
 
+
     get_user_input
   end
 
+  # def standardize_entry
+  #   gets.chomp.upcase
+  # end
+
   def get_user_input
-    user_input = gets.chomp.upcase
-    if user_input == "GO"
-      start_game
-    else
-      p "Invalid entry, please type 'GO' to start"
-      get_user_input
+    ui_counter = 0
+
+    while ui_counter != 3 do
+      user_input = gets.chomp.upcase
+      if user_input != "GO"
+        p "Invalid entry, please type 'GO'."
+        ui_counter += 1
+      else
+        start_game
+        break
+      end
     end
+
+    if ui_counter == 3
+      p "Not today....GOODBYE!"
+    end
+
+
   end
+
 
   def start_game
     until winning_condition do
@@ -59,23 +76,6 @@ class Game
 
   def winning_condition
     @player1.has_lost? || @player2.has_lost? || counter == 1_000_000
-  end
-
-  def basic_turn(turn)
-    turn.pile_cards
-    turn.award_spoils(turn.winner)
-
-  end
-
-  def war_turn(turn)
-    turn.pile_cards
-    turn.award_spoils(turn.winner)
-
-  end
-
-  def mad_turn(turn)
-    turn.pile_cards
-    turn.award_spoils(turn.winner)
   end
 
   def game_completion
