@@ -6,12 +6,13 @@ require "./lib/standard_deck"
 
 
 standard_deck = StandardDeck.new
-@cards = standard_deck.cards.shuffle
-deck1 = Deck.new(@cards[0..25])
-deck2 = Deck.new(@cards[26..52])
+cards = standard_deck.cards.shuffle
+deck1 = Deck.new(cards[0..25])
+deck2 = Deck.new(cards[26..52])
 
 player1 = Player.new("Saryn", deck1)
 player2 = Player.new("Dan", deck2)
+require "pry"; binding.pry
 
 
 
