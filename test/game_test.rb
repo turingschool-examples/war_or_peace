@@ -26,7 +26,7 @@ class GameTest < Minitest::Test
      @player1 = Player.new("Megan", deck1)
      @player2 = Player.new("Aurora", deck2)
 
-    ## start here @greeting = "Welcome to War! (or Peace) This game will be played with 52 cards.\nThe players today are #{@player1.name} and #{@player2.name}.\nType 'GO' to start the game!\n------------------------------------------------------------------"
+    @greeting = "Welcome to War! (or Peace) This game will be played with 52 cards.\nThe players today are #{@player1.name} and #{@player2.name}.\nType 'GO' to start the game!\n------------------------------------------------------------------"
 
    end
 
@@ -36,11 +36,28 @@ class GameTest < Minitest::Test
     assert_instance_of Game, game
   end
 
-  # TODO: test start method
+  # def test_the_game_starts
+  #   game = Game.new(@player1, @player2)
+  #
+  #   assert_equal "Game starts", game.start
+  # end
 
   def test_it_gives_a_greeting
     game = Game.new(@player1, @player2)
 
-    assert_equal @greeting, game.greeting
+    assert_equal @greeting, game.display_greeting
+  end
+
+  # Deal with input verification
+  def test_it_gets_user_input
+    game = Game.new(@player1, @player2)
+
+    assert_instance_of String, game.get_user_input
+  end
+
+  def test_it_DRAWs_after_1mil_turn
+    game = Game.new(@player1, @player2)
+
+
   end
 end
