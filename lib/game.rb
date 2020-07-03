@@ -27,7 +27,7 @@ class Game
     counter = 0
     loop do
         if viewer == "GO"
-          #Start_game
+          start_game
         elsif counter < 3
           p "Invalid entry, please type 'GO' to start"
           get_info
@@ -37,6 +37,10 @@ class Game
           break
         end
     end
+  end
+
+  def start_game
+
   end
 
 
