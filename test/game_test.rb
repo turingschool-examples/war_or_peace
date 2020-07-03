@@ -4,10 +4,12 @@ require './lib/deck'
 require './lib/card'
 require './lib/player'
 require './lib/turn'
+require './lib/game'
 
-class TurnTest < Minitest::Test
+class GameTest < Minitest::Test
 
   def setup
+
     @card1 = Card.new('heart', '5', 5)
     @card2 = Card.new('spade', 'jack', 11)
     @card3 = Card.new('diamond', 'ace', 14)
@@ -22,34 +24,18 @@ class TurnTest < Minitest::Test
     @deck2 = Deck.new(@cards2)
     @player2 = Player.new('Aurora', @deck2)
     @turn = Turn.new(@player1, @player2)
+    @game = Game.new(@turn)
+
   end
 
-  def test_turn_exists
-    assert_instance_of Turn, @turn
+  def test_game_exits
+    assert_instance_of Game, @game
   end
 
-  def test_turn_has_players
-    assert_equal 'Aurora', @turn.player2.name
+  def test_welcome
+    @game.welcome
   end
 
-  def test_turn_type
-    assert_equal :war, @turn.type
-  end
 
-  def test_winner
-    assert_equal 'Megan', @turn.winner.name
-  end
-
-  def test_pile_cards
-    @turn.pile_cards
-    assert_equal [@card1, @card2, @card3, @card4, @card5, @card6], @turn.spoils_of_war
-  end
-
-  def test_award_spoils
-    victor = @turn.winner
-    @turn.pile_cards
-    @turn.award_spoils(victor)
-    assert_equal victor.deck.cards.count, 6
-  end
 
 end

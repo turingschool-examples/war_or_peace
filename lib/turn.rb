@@ -3,7 +3,7 @@ require './lib/card'
 require './lib/player'
 
 class Turn
-attr_reader :player1, :player2, :spoils_of_war, :type,:victor
+attr_reader :player1, :player2, :spoils_of_war, :type, :victor
 
   def initialize(player1_param, player2_param)
     @player1 = player1_param

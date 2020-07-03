@@ -2,8 +2,6 @@ require './lib/card'
 
 class Deck
   attr_reader :cards, :high_cards
-  # initialize: this method will take one argument - an array of cards.
-  # cards: an attr_reader to read the @cards attribute
 
   def initialize(cards_param)
     @cards = cards_param
