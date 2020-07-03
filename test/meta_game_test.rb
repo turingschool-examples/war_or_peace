@@ -16,7 +16,6 @@ class MetaGameTest < Minitest::Test
     assert_instance_of MetaGame, meta_game
   end
 
-  #def test_it_has_attributes
-  #end
+
 
 end
