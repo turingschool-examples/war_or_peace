@@ -22,20 +22,19 @@ attr_reader :player1, :player2, :spoils_of_war
 
   def winner
     if type == :war
-      if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-        player1
-      else player2
-      end
+      card_comparitor(2)
     elsif type == :mutually_assured_destruction
       "No Winner"
-    else
-      if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+    else card_comparitor(0)
+    end
+  end
+
+
+  def card_comparitor (index)
+    if player1.deck.rank_of_card_at(index) > player2.deck.rank_of_card_at(index)
       player1
     else player2
     end
   end
-end
-
-
 
 end
