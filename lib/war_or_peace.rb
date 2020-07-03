@@ -12,8 +12,8 @@ class WarOrPeace
   deck1 = Deck.new(cards[0..25])
   deck2 = Deck.new(cards[26..52])
 
-  player1 = Player.new("Saryn", deck1)
-  player2 = Player.new("Dan", deck2)
+  player1 = Player.new("Wilmer", deck1)
+  player2 = Player.new("Arique", deck2)
   game = Game.new(player1, player2)
   game.start
 
