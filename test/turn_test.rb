@@ -83,6 +83,8 @@ class TurnTest < Minitest::Test
     deck_2 = Deck.new([card_2, card_4, card_6, card_8])
     player_1 = Player.new('Priya', deck_1)
     player_2 = Player.new('Ricky', deck_2)
+
+
     turn = Turn.new(player_1, player_2)
 
     # assert_equal :basic, turn.type
@@ -104,10 +106,10 @@ class TurnTest < Minitest::Test
   # Write a test to check winner method
   def test_winner_returns_correct_player
     card_1 = Card.new(:club, 'Jack', 11)
-    card_2 = Card.new(:heart, 'Seven', 11)
+    card_2 = Card.new(:heart, 'Seven', 7)
     card_3 = Card.new(:spade, 'Two', 2)
     card_4 = Card.new(:diamond, 'King', 13)
-    card_5 = Card.new(:heart, 'Eight', 12)
+    card_5 = Card.new(:heart, 'Eight', 8)
     card_6 = Card.new(:club, 'Queen', 12)
     card_7 = Card.new(:spade, 'Ace', 14)
     card_8 = Card.new(:diamond, 'Three', 3)
@@ -117,7 +119,12 @@ class TurnTest < Minitest::Test
     player_2 = Player.new('Ricky', deck_2)
     turn = Turn.new(player_1, player_2)
 
-    assert_equal "No Winner. DUN DUN DUUUUUNNNN!", turn.winner
+    assert_equal "Priya won 2 cards :)", turn.winner
+    # assert_equal 'WAR! - Ricky won 6 cards. *\(^o^)/*', turn.winner
+    # assert_equal "No Winner. DUN DUN DUUUUUNNNN!", turn.winner
+    # Tested as many cases as I could think of
+    # (changed card numbers and tested for 'errors'),
+    # works :)
   end
 
   # Write a test to check pile_cards method

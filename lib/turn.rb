@@ -59,20 +59,20 @@ class Turn
         # gonna try a nested if statement
         # SUCCESS!!!
         if player_1.deck.rank_of_card_at(0) > player_2.deck.rank_of_card_at(0)
-          player_1
+          (player_1.name).to_s + ' won 2 cards :)'
         else
-          player_2
+          (player_2.name).to_s + ' won 2 cards :)'
         end
       elsif type == :war
         if player_1.deck.rank_of_card_at(2) > player_2.deck.rank_of_card_at(2)
-          player_1
+          'WAR! - ' + (player_1.name).to_s + ' won 6 cards. *\(^o^)/*'
         else
-          player_2
+          'WAR! - ' + (player_2.name).to_s + ' won 6 cards. *\(^o^)/*'
         end
       elsif type == :mutually_assured_destruction
-        p "No Winner. DUN DUN DUUUUUNNNN!"
+        'Mutually Assured Destruction! 6 cards removed from the deck. (;_;)'
       else
-        p "Oops"
+        "Oops"
       end
     end
 
