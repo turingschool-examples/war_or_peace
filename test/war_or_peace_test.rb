@@ -9,7 +9,7 @@ require "./lib/standard_deck"
 require "./lib/game"
 require "./lib/war_or_peace"
 
-class MetaGameTest < Minitest::Test
+class WarOrPeaceTest < Minitest::Test
 
   def test_it_exists
     meta_game = MetaGame.new
