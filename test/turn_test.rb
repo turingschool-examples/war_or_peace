@@ -35,6 +35,7 @@ class TurnTest < Minitest::Test
 
   def test_turn_type
     assert_equal :war, @turn.type
+    require 'pry'; binding.pry
   end
 
 
