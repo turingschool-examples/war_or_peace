@@ -37,4 +37,7 @@ class Deck
     @cards.shift
   end
 
+  def add_card(card)
+    @cards << card
+  end
 end
