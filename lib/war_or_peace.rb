@@ -1,4 +1,12 @@
+require "./lib/card"
+require "./lib/deck"
+require "./lib/player"
+require "./lib/turn"
+require "./lib/standard_deck"
+require "./lib/game"
+
 class WarOrPeace
+
   standard_deck = StandardDeck.new
   cards = standard_deck.cards.shuffle
   deck1 = Deck.new(cards[0..25])

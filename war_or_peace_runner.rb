@@ -1,3 +1,3 @@
-require "./lib/meta_game"
+require "./lib/war_or_peace"
 
-MetaGame.new
+WarOrPeace.new
