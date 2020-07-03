@@ -50,7 +50,7 @@ class GameTest < Minitest::Test
 
     game = Game.new(player1, player2)
 
-    assert_equal "cool", game.start_game
+    assert_equal "cool", game.start
   end
 
 
