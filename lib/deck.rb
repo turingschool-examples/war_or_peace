@@ -6,7 +6,6 @@ class Deck
 
   def initialize (cards)
     @cards = cards
-    @rank = rank
   end
 
   def rank_of_card_at(position)
