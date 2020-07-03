@@ -20,7 +20,9 @@ class DeckTest < Minitest::Test
     @card6 = Card.new('club', '8', 8)
     @cards2 = [@card4, @card5, @card6]
     @deck2 = Deck.new(@cards2)
+    @deck3 = Deck.new([])
     @player2 = Player.new('Aurora', @deck2)
+    @player3 = Player.new('Loser',@deck3)
 
   end
 
@@ -34,10 +36,17 @@ class DeckTest < Minitest::Test
 
     assert_instance_of Deck, @player1.deck
     assert_equal 'spade', @player1.deck.cards[1].suit
+
   end
 
-  # def player_has_lost
-  #   assert_equal 'false', player.has_lost?
-  # end
+  def test_player_has_lost_initial
+
+    assert_equal false, @player1.has_lost?
+    assert_equal false, @player2.has_lost?
+    assert_equal true, @player3.has_lost?
+
+  end
+
+
 
 end

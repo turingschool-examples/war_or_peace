@@ -31,7 +31,6 @@ end
 
     assert_equal 5, @deck.rank_of_card_at(0)
     assert_equal 14, @deck.rank_of_card_at(2)
-    assert_nil @deck.rank_of_card_at(1)
 
   end
 

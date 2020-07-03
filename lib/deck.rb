@@ -10,14 +10,7 @@ class Deck
   end
   #
   def rank_of_card_at (location)
-    if location == 0
-      card_rank = cards[0].rank
-    elsif location == 2
-      card_rank = cards[2].rank
-    else
-      card_rank = nil
-    end
-    card_rank
+      card_rank = cards[location].rank
   end
 
   def high_ranking_cards
