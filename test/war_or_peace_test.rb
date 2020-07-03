@@ -7,7 +7,7 @@ require "./lib/player"
 require "./lib/turn"
 require "./lib/standard_deck"
 require "./lib/game"
-require "./lib/meta_game"
+require "./lib/war_or_peace"
 
 class MetaGameTest < Minitest::Test
 
