@@ -33,6 +33,10 @@ class TurnTest < Minitest::Test
     assert_equal 'Aurora', @turn.player2.name
   end
 
+  def test_turn_type
+    assert_equal :war, @turn.type
+  end
+
 
 
 end
