@@ -1,5 +1,7 @@
 require './lib/card'
 require './lib/deck'
+require './lib/player'
+
 
 # Generating the standad deck
 card_ranks = (2..14).to_a
@@ -27,5 +29,8 @@ deck1 = Deck.new(cards1)
 deck2 = Deck.new(cards2)
 
 # Generate Players
+player1 = Player.new("Linda", deck1)
+player2 = Player.new("Bob", deck2)
+
 
 require 'pry'; binding.pry
