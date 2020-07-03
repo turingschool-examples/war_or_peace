@@ -38,27 +38,36 @@ class Game
     def start 
         turn_counter = 0
 
-        until player1.deck.cards.length == 0 || player2.deck.cards.length == 0
+        until player1.deck.cards.length == 0 || player2.deck.cards.length == 0 || turn_counter == 20
 
             turn = Turn.new(player1, player2)
             turn_counter += 1
-            winner = turn.winner
-            turn.piles_cards
             
             
                 if turn.type == :basic
-                    puts "Turn #{turn_counter}: #{winner.name} won #{turn.spoils_of_war.count} cards!" 
+                    winner = turn.winner
+                    turn.piles_cards
+                    turn.award_spoils(winner)
+                    puts "Turn #{turn_counter}: #{winner.name} won #{turn.spoils_of_war.count} cards!"
+                    next
                 end
     
                 if turn.type == :war
-                    puts "Turn #{turn_counter}: #{turn.type.upcase} - #{winner.name} won #{turn.spoils_of_war.count} cards!" 
+                    winner = turn.winner
+                    turn.piles_cards
+                    turn.award_spoils(winner)
+                    puts "Turn #{turn_counter}: WAR - #{winner.name} won #{turn.spoils_of_war.count} cards!" 
+                    next
                 end
     
                 if  turn.type == :mutually_assured_destruction
-                    puts "Turn #{turn_counter}: *#{turn.type}* cards #{turn.spoils_of_war.count} removed from play" 
+                    winner = turn.winner
+                    turn.piles_cards
+                    turn.award_spoils(winner)
+                    puts "Turn #{turn_counter}: *#Mutually Assured Destruction* #{turn.spoils_of_war.count} cards removed from play" 
+                    next
                 end
                 
-            turn.award_spoils(winner)
             # p player1.deck.cards.length
             # p player2.deck.cards.length
         end
