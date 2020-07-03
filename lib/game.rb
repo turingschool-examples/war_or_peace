@@ -75,6 +75,6 @@ class Game
   end
 
   def announce_winner(winner)
-    puts "*~*~*~* #{winner.name} has won the game! *~*~*~*"
+    puts "*~*~*~* ♠️ ♥️ ♣️ ♦️  #{winner.name} has won the game! ♠️ ♥️ ♣️ ♦️ *~*~*~*"
   end
 end
