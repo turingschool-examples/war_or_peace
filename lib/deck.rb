@@ -29,7 +29,7 @@ class Deck
 
   def remove_card
     #remove card from top of deck
-    @cards.drop(1)
+    @cards.shift
   end
 
   def add_card(card1)
