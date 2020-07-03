@@ -102,6 +102,24 @@ class TurnTest < Minitest::Test
     # TESTED EDGE CASE to ensure that mutually assured and war don't interfere
   end
 
+  # Had to go in and write another method to update winner method
+  def test_winner_players
+    card_1 = Card.new(:club, 'Jack', 11)
+    card_2 = Card.new(:heart, 'Seven', 7)
+    card_3 = Card.new(:spade, 'Two', 2)
+    card_4 = Card.new(:diamond, 'King', 13)
+    card_5 = Card.new(:heart, 'Eight', 8)
+    card_6 = Card.new(:club, 'Queen', 12)
+    card_7 = Card.new(:spade, 'Ace', 14)
+    card_8 = Card.new(:diamond, 'Three', 3)
+    deck_1 = Deck.new([card_1, card_3, card_5, card_7])
+    deck_2 = Deck.new([card_2, card_4, card_6, card_8])
+    player_1 = Player.new('Priya', deck_1)
+    player_2 = Player.new('Ricky', deck_2)
+    turn = Turn.new(player_1, player_2)
+
+    assert_equal :basic_player_1, turn.winner_players
+  end
 
   # Write a test to check winner method
   def test_winner_returns_correct_player
@@ -119,7 +137,8 @@ class TurnTest < Minitest::Test
     player_2 = Player.new('Ricky', deck_2)
     turn = Turn.new(player_1, player_2)
 
-    assert_equal "Priya won 2 cards :)", turn.winner
+    assert_equal player_1, turn.winner
+    # assert_equal "Priya won 2 cards :)", turn.winner
     # assert_equal 'WAR! - Ricky won 6 cards. *\(^o^)/*', turn.winner
     # assert_equal "No Winner. DUN DUN DUUUUUNNNN!", turn.winner
     # Tested as many cases as I could think of
@@ -146,7 +165,8 @@ class TurnTest < Minitest::Test
     # :basic will be card_1 = 11; card_2 = 7 ==> winner Priya
     # :basic will be card_1 = 7; card_2 = 11 ==> winner Ricky
     # assert_equal "type = :basic AND Priya won 2 cards :)", turn.pile_cards
-    assert_equal [card_1, card_2], turn.pile_cards
+    turn.pile_cards
+    assert_equal [card_1, card_2], turn.spoils_of_war
 
     # :war will be (card_1 = 7; card_2 = 7)
       #AND (card_5 = 8, card_6 = 12) ==> winner Ricky
@@ -160,22 +180,74 @@ class TurnTest < Minitest::Test
     # assert_equal 'type = :mutual AND Mutually Assured Destruction! 6 cards removed from the deck. (;_;)', turn.pile_cards
     # assert_equal [player_1.deck, player_2.deck], turn.pile_cards
   end
+
+
+
   # Write a test to check award_spoils method
+  # def test_award_spoils_awards_correct_winner
+  #   card_1 = Card.new(:club, 'Jack', 11)
+  #   card_2 = Card.new(:heart, 'Seven', 11)
+  #   card_3 = Card.new(:spade, 'Two', 2)
+  #   card_4 = Card.new(:diamond, 'King', 13)
+  #   card_5 = Card.new(:heart, 'Eight', 12)
+  #   card_6 = Card.new(:club, 'Queen', 8)
+  #   card_7 = Card.new(:spade, 'Ace', 14)
+  #   card_8 = Card.new(:diamond, 'Three', 3)
+  #   deck_1 = Deck.new([card_1, card_3, card_5, card_7])
+  #   deck_2 = Deck.new([card_2, card_4, card_6, card_8])
+  #   player_1 = Player.new('Priya', deck_1)
+  #   player_2 = Player.new('Ricky', deck_2)
+  #   turn = Turn.new(player_1, player_2)
+  #
+  #   turn.pile_cards
+  #   # assert_equal [card_1, card_2], turn.spoils_of_war
+  #   # assert_equal [], turn.spoils_of_war
+  #   # assert_equal player_1, turn.winner
+  #   # assert_equal [card_3, card_5, card_7, card_1, card_2], player_1.deck.cards
+  #   # assert_equal [], turn.spoils_of_war
+  #
+  #   # Test edge cases
+  #   # basic, player 1 - CHECK
+  #   # assert_equal [card_3, card_5, card_7, card_1, card_2], player_1.deck.cards
+  #   # assert_equal [card_4, card_6, card_8], player_2.deck.cards
+  #   # basic, player 2 - CHECK
+  #   # assert_equal [card_4, card_6, card_8, card_1, card_2], player_2.deck.cards
+  #   # assert_equal [card_3, card_5, card_7], player_1.deck.cards
+  #   # war, player 1
+  #   turn.award_spoils(turn.winner)
+  #   assert_equal [card_7, card_1, card_2, card_3, card_4, card_5, card_6], player_1.deck.cards
+  #   assert_equal [card_8], player_2.deck.cards
+  #   # war, player 2
+  #   # assert_equal [card_8, card_6, card_8, card_1, card_2], player_2.deck.cards
+  #   # assert_equal [card_3, card_5, card_7], player_1.deck.cards
+  #   # mutual
+  #   # assert_equal [card_4, card_6, card_8, card_1, card_2], player_2.deck.cards
+  #   # assert_equal [card_3, card_5, card_7], player_1.deck.cards
+  # end
+  # # assert_equal spoils_of_war = [card_1, card_2], turn.kkkkkkkk
 
-  # card_1 = Card.new(:club, 'Jack', 11)
-  # card_2 = Card.new(:heart, 'Seven', 7)
-  # card_3 = Card.new(:spade, 'Two', 2)
-  # card_4 = Card.new(:diamond, 'King', 13)
-  # card_5 = Card.new(:heart, 'Eight', 8)
-  # card_6 = Card.new(:club, 'Queen', 12)
-  # card_7 = Card.new(:spade, 'Ace', 14)
-  # card_8 = Card.new(:diamond, 'Three', 3)
-  # deck_1 = Deck.new([card_1, card_3, card_5, card_7])
-  # deck_2 = Deck.new([card_2, card_4, card_6, card_8])
-  # player_1 = Player.new('Priya', deck_1)
-  # player_2 = Player.new('Ricky', deck_2)
-  # turn = Turn.new(player_1, player_2)
+  # Had to nuke above, trying over. Realized there should be a parameter for award_spoils methos
 
-  # assert_equal spoils_of_war = [card_1, card_2], turn.kkkkkkkk
+
+  def test_award_spoils_awards_correct_winner
+    card_1 = Card.new(:club, 'Jack', 11)
+    card_2 = Card.new(:heart, 'Seven', 7)
+    card_3 = Card.new(:spade, 'Two', 2)
+    card_4 = Card.new(:diamond, 'King', 13)
+    card_5 = Card.new(:heart, 'Eight', 12)
+    card_6 = Card.new(:club, 'Queen', 8)
+    card_7 = Card.new(:spade, 'Ace', 14)
+    card_8 = Card.new(:diamond, 'Three', 3)
+    deck_1 = Deck.new([card_1, card_3, card_5, card_7])
+    deck_2 = Deck.new([card_2, card_4, card_6, card_8])
+    player_1 = Player.new('Priya', deck_1)
+    player_2 = Player.new('Ricky', deck_2)
+    turn = Turn.new(player_1, player_2)
+
+    turn.pile_cards
+    turn.award_spoils(player_1)
+    assert_equal [card_3, card_5, card_7, card_1, card_2], player_1.deck.cards
+    assert_equal [], turn.spoils_of_war
+  end
 
 end
