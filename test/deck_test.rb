@@ -48,11 +48,20 @@ end
 
   end
 
-  def test_add_card_method
+  def test_remove_card_method
     @deck.remove_card
 
     assert_equal 2, @cards.length
     assert_equal 'spade', @deck.cards[0].suit
+
+  end
+
+  def test_add_card_method
+
+    @deck.add_card('club', '7', 7)
+
+    assert_equal 4, @cards.length
+    assert_equal 'club', @deck.cards[3].suit
 
   end
 

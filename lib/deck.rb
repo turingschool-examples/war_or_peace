@@ -41,9 +41,9 @@ class Deck
     @cards.shift
   end
 
-  # def add_card (suit_param, value_param, rank_param)
-  #   new_card = Card.new
-  # end
-# add_card: this method will add one card to the bottom (end) of the deck
+  def add_card (suit_param, value_param, rank_param)
+    new_card = Card.new(suit_param, value_param, rank_param)
+    @cards << new_card
+  end
 
 end
