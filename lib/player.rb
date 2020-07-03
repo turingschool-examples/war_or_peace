@@ -10,7 +10,7 @@ attr_reader :name, :deck
   end
 
   def has_lost?
-    @deck.cards.length == 0
+    @deck.cards.empty?
   end
 
 end
