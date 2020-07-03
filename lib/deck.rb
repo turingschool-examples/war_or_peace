@@ -19,10 +19,12 @@ class Deck
 
   def high_ranking_cards
     @cards.select { |card| card.rank > 10}
-  end 
+  end
 
   def percent_high_ranking
     #return percentage of cards which rank high
+    percent = ((high_ranking_cards.count / @cards.count.to_f).round(2))
+    percent = percent * 100
   end
 
   def remove_card
