@@ -3,12 +3,11 @@ require './lib/deck'
 require './lib/player'
 
 class Turn
-  attr_reader :player1, :player2, :spoils_of_war, :turn_number
+  attr_reader :player1, :player2, :spoils_of_war
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
-    turn_number = 0
   end
 
   def type
@@ -64,16 +63,5 @@ class Turn
   def award_spoils(winner)
     winner.deck.cards.concat(spoils_of_war)
   end
-# If issues come up it may be this... ^
-# Do we need winner variable declared?
-  # def start
-  #     # turn_number += 1
-  #     turn.type
-  #     winner = turn.winner
-  #     turn.pile_cards
-  #     p "#{@winner} won #{turn.pile_cards.count} cards"
-  #     turn.award_spoils(winner)
-  #
-  #
-  # end
+
 end

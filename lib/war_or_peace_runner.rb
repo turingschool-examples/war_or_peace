@@ -2,10 +2,10 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/game'
+require 'pry'
 
 deck = []
-deck1 = []
-deck2 = []
 deck << card1 = Card.new(:diamond, '2', 2)
 deck << card2 = Card.new(:diamond, '3', 3)
 deck << card3 = Card.new(:diamond, '4', 4)
@@ -60,20 +60,26 @@ deck << card51 = Card.new(:club, 'King', 13)
 deck << card52 = Card.new(:club, 'Ace', 14)
 
 deck.shuffle!
-deck1 << deck[0..25]
-deck2 << deck[26..51]
-
+shuffled_deck1 = []
+shuffled_deck2 = []
+shuffled_deck1 << deck[0..25]
+shuffled_deck2 << deck[26..51]
+deck1 = Deck.new(shuffled_deck1)
+deck2 = Deck.new(shuffled_deck2)
+deck1.cards.flatten!
+deck2.cards.flatten!
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
 turn = Turn.new(player1, player2)
+game = Game.new(turn)
 
 p "Welcome to War! (or Peace) This game will be played with 52 cards."
 p "The players today are #{player1.name} and #{player2.name}."
 p "Type 'GO' to start the game!"
 start_command = gets.chomp
 if start_command == "GO"
-  turn.start
+  game.start
 elsif start_command != "GO"
   p "You are terrible at following directions, but let's start anyway"
-  turn.start
+  game.start
 end
