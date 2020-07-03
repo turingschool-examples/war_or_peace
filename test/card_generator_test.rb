@@ -3,21 +3,21 @@ require 'minitest/pride'
 require './lib/card_generator'
 
 class CardGeneratorTest < Minitest::Test
-  def setup
-    card = Card.new(:diamond, 'Queen', 12)
-  end
 
   def test_it_exists
-    card = Card.new(:diamond, 'Queen', 12)
+    new_cards = CardGenerator.new
 
-    assert_instance_of Card, card
+    assert_instance_of CardGenerator, new_cards
   end
 
-  def test_it_has_readable_attributes
-    card = Card.new(:diamond, 'Queen', 12)
+  def test_it_has_a_text_file_to_read
+    new_cards = CardGenerator.new
 
-    assert_equal :diamond, card.suit
-    assert_equal 'Queen', card.value
-    assert_equal 12, card.rank
+
+    assert_equal new_cards.show_text_file, 174
   end
+
+  def test_it_can_read_each_word_independently
+    new_cards = CardGenerator.new
+
 end
