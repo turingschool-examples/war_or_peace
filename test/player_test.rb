@@ -35,7 +35,7 @@ class PlayerTest < Minitest::Test
     deck = Deck.new([card1, card2, card3])
     player = Player.new('Clarisa', deck)
 
-    assert_equal [card1, card2, card3], player.deck.cards
+    assert_equal deck, player.deck
   end
 
   def test_it_has_lost
@@ -49,13 +49,13 @@ class PlayerTest < Minitest::Test
     refute player.has_lost?
 
     player.deck.remove_card
-    refute player.has_lost?
+    assert_equal false, player.has_lost?
 
     player.deck.remove_card
-    refute player.has_lost?
+    assert_equal false, player.has_lost?
 
     player.deck.remove_card
-    assert player.has_lost?
+    assert_equal true, player.has_lost?
 
     assert_equal [], player.deck.cards
   end
