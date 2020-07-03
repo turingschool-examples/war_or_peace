@@ -101,7 +101,8 @@ class TurnTest < Minitest::Test
     @player2 = Player.new("Aurora", @deck4)
     @turn = Turn.new(@player1, @player2)
 
-    assert_equal @turn.spoils_of_war, @turn.pile_cards
+    assert_equal [@card1, @card2, @card5, @card4, @card3, @card6], @turn.pile_cards
+    # assert_equal [[@card1, @card2, @card5], [@card4, @card3, @card6]], @turn.pile_cards
   end
 
   def test_mutually_assured_destruction_pile
@@ -115,9 +116,28 @@ class TurnTest < Minitest::Test
 
   def test_award_spoils_basic
     @turn = Turn.new(@player1, @player2)
-    @turn.award_spoils
+    @turn.pile_cards
+    assert_equal [@card1, @card3], @turn.spoils_of_war
 
-    assert_equal award_spoils, @player1.deck.cards
+    @turn.award_spoils(@player1)
+
+    assert_equal [@card2, @card5, @card8, @card1, @card3], @player1.deck.cards
+    assert_equal [@card4, @card6, @card7], @player2.deck.cards
   end
+
+  def test_award_spoils_war
+    @player2 = Player.new("Aurora", @deck4)
+    @turn = Turn.new(@player1, @player2)
+    @turn.pile_cards
+
+    assert_equal [@card1, @card2, @card5, @card4, @card3, @card6], @turn.spoils_of_war
+
+
+    @turn.award_spoils(@player2)
+
+    assert_equal [@card7, @card1, @card2, @card5, @card4, @card3, @card6], @player2.deck.cards
+    assert_equal [@card8], @player1.deck.cards
+  end
+  
 
 end # this is the end of the class!!!

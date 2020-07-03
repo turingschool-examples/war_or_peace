@@ -57,7 +57,7 @@ class Turn
         @player2.deck.remove_card
       end
 
-      return @spoils_of_war
+      return @spoils_of_war.flatten!
 
     else
       3.times do
@@ -73,15 +73,15 @@ class Turn
     end
   end
 
-def award_spoils
-  if type() == :basic
-    if @player1.winner == true
-      award_spoils = @player1.deck.cards << @spoils_of_war.pile_cards
-    else
-      award_spoils = @player2.deck.cards << @spoils_of_war.pile_cards
+def award_spoils(winner)
+  # @spoils_of_war.flatten!
+  if type() == :basic || :war
+    @spoils_of_war.each do |card|
+      winner.deck.add_card(card)
     end
   else
-    return "NOPEEEEE"
+    @player1.deck.cards
+    @player2.deck.cards
   end
 end
 
