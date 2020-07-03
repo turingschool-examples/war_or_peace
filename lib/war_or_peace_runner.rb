@@ -83,3 +83,4 @@ elsif start_command != "GO"
   p "You are terrible at following directions, but let's start anyway"
   game.start
 end
+game.win_game 

@@ -22,8 +22,9 @@ class Game
   end
 
   def start
-    until turn.player1.has_lost? || turn.player2.has_lost?
-      @turn_number += 1
+    # until  turn.player1.has_lost? || turn.player2.has_lost? do
+    #   @turn_number += 1
+    loop do
       if turn.type == :basic
         turn.pile_cards
         winner = turn.winner
