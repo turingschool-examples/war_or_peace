@@ -36,7 +36,7 @@ class Game
       elsif user_input != "GO"
         p "Invalid entry, please type 'GO'."
         ui_counter += 1
-      elsif user_input == "GO"
+      else user_input == "GO"
         start_game
         break
       end
