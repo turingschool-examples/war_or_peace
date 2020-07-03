@@ -48,4 +48,10 @@ class Turn
       player2.deck.cards.shift(3)
     end
   end
+# add each of the cards in @spoils_of_war to the winner of the turn
+  def award_spoils(winner)
+    spoils_of_war.each do |card|
+      winner.deck.cards.push(card)
+    end
+  end 
 end
