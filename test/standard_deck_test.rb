@@ -22,5 +22,4 @@ class StandardDeckTest < Minitest::Test
 
   end
 
-
 end

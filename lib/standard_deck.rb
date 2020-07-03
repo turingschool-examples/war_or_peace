@@ -5,6 +5,7 @@ class StandardDeck
 
   VALUES = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
   SUITS = [:heart, :diamond, :spade, :club]
+
   def initialize
     create_deck
   end
@@ -17,7 +18,7 @@ class StandardDeck
       ranks_and_values.each do |rank, value|
           @cards << Card.new(suit, value, rank)
       end
-      @cards.shuffle
     end
   end
+
 end
