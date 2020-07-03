@@ -4,19 +4,20 @@ require './lib/player'
 require './lib/turn'
 
 class Game
-  attr_reader :player1, :player2, :turn_number, :turn, :spoils_of_war
+  attr_reader :player1, :player2, :turn_number, :turn, :spoils_of_war, :cards_won
   $turn_number = 0
 
   def initialize
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
+    @cards_won = cards_won
   end
 
   def start
     suits = %i[spades hearts diamonds clubs]
-    ranks = %i[Ace two three four five six seven eight nine ten Jack Queen King]
-    values = {
+    values = %i[Ace two three four five six seven eight nine ten Jack Queen King]
+    ranks = {
       :Ace => 1,
       :two => 2,
       :three => 3,
@@ -32,31 +33,59 @@ class Game
       :King => 13
     }
 
-    fdeck = ranks.map {|rank| suits.map {|suit| values.map{ |rank, value| Card.new(suit, value, rank)  }  } }.flatten
+    fdeck = values.map {|value| suits.map {|suit| ranks.map{ |value, rank| Card.new(suit, value, rank)  }  } }.flatten
     full_deck = fdeck.take(52)
 
+
     shuffled_deck = full_deck.shuffle
-    #
+
     #
     deck1 = Deck.new(shuffled_deck.take(26))
     deck2 = Deck.new(shuffled_deck.drop(26))
 
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
+    cards_won = @spoils_of_war.length
     turn = Turn.new(player1, player2)
 
-    100.times{
+
+
+    70.times{
+
+      turn.type
       winner = turn.winner
+      turn.winner
       turn.pile_cards
+      turn.spoils_of_war
       turn.award_spoils(winner)
-      p "Turn #{$turn_number}: #{turn.winner} won #{(turn.pile_cards.length)-2} cards"
-      $turn_number += 1
+
+      if player1.deck.cards.length == 0 || player2.deck.cards.length == 0
+        puts "#{turn.winner} won!"
+        break
+      end
+
+      p "Turn #{$turn_number}: #{turn.type}-- #{turn.winner} won #{cards_won} cards."
+      # p '------------------------player 1'
+      # p turn.player1.deck.cards[0]
+      # p turn.player1.deck.rank_of_card_at(0)
+      # p '----------------------------player 2'
+      # p turn.player2.deck.cards[0]
+      # p turn.player2.deck.rank_of_card_at(0)
+      # p "type"
+      # p turn.type
+      # p "winner"
+      # p turn.winner
+      # p turn.pile_cards
+      # turn.award_spoils("Megan")
+      # p player1.deck.cards.length
+      # p 'Player 1 cards'
+      # p player1.deck.cards
+      # p 'Player 2 cards'
+      # p player2.deck.cards
       p player1.deck.cards.length
       p player2.deck.cards.length
-        if player1.deck.cards.length == 0 || player2.deck.cards.length == 0
-          puts "Draw"
-          break
-        end
+      # p player2.deck.cards
+      $turn_number += 1
      }
   end
 end

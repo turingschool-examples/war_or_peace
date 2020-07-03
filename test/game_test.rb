@@ -7,7 +7,7 @@ require './lib/player'
 require './war_or_peace_runner.rb'
 
 
-class DeckTest < Minitest::Test
+class GameTest < Minitest::Test
 
     def test_it_exists
       card1 = Card.new(:diamond, 'Queen', 12)
@@ -24,8 +24,9 @@ class DeckTest < Minitest::Test
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
       game1 = Game.new
+      require "pry"; binding.pry
       assert_instance_of Game, game1
     end
 
-    
+
   end
