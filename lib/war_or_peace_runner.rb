@@ -38,7 +38,13 @@ class Game
     def start 
         turn_counter = 0
 
-        until player1.deck.cards.length == 0 || player2.deck.cards.length == 0 || turn_counter == 20
+        puts  "Welcome to War! (or Peace). This game will be played with 52 cards."
+        puts "The players today are #{player1.name} and #{player2.name}."
+        puts "Type 'Go' to start the game!" 
+        x = gets.chomp.upcase
+        puts '-------------------------------------------------'
+
+        until player1.has_lost? || player2.has_lost? || turn_counter >= 1000000
 
             turn = Turn.new(player1, player2)
             turn_counter += 1
@@ -49,9 +55,17 @@ class Game
                     turn.piles_cards
                     turn.award_spoils(winner)
                     puts "Turn #{turn_counter}: #{winner.name} won #{turn.spoils_of_war.count} cards!"
-                    next
+                    next 
                 end
     
+                if  turn.type == :mutually_assured_destruction
+                    winner = turn.winner
+                    turn.piles_cards
+                    turn.award_spoils(winner)
+                    puts "Turn #{turn_counter}: *Mutually Assured Destruction* #{turn.spoils_of_war.count} cards removed from play" 
+                    next # without <next>, it returns 8 cards instead of 6 due to still using previous turn spoils_of_war count.
+                end
+
                 if turn.type == :war
                     winner = turn.winner
                     turn.piles_cards
@@ -59,29 +73,16 @@ class Game
                     puts "Turn #{turn_counter}: WAR - #{winner.name} won #{turn.spoils_of_war.count} cards!" 
                     next
                 end
-    
-                if  turn.type == :mutually_assured_destruction
-                    winner = turn.winner
-                    turn.piles_cards
-                    turn.award_spoils(winner)
-                    puts "Turn #{turn_counter}: *#Mutually Assured Destruction* #{turn.spoils_of_war.count} cards removed from play" 
-                    next
-                end
-                
-            # p player1.deck.cards.length
-            # p player2.deck.cards.length
+            
+        end
+
+        if turn_counter >= 1000000 
+            return puts "---- DRAW ----"
         end
         puts "*~*~*~* #{winner.name} has won the game *~*~*~*"
     end
 
 end
 
-# puts  "Welcome to War! (or Peace). This game will be played with 52 cards."
-#    puts "The players today are #{player1.name} and #{player2.name}."
-#    puts "Type 'Go' to start the game!" 
-#    x = gets.chomp.upcase
-#    puts '-------------------------------------------------'
 
-# :basic => Turn 1: Megan won 2 cards
-# :war => Turn 2: WAR - Aurora won 6 cards
-# Turn 3: *mutually assured destruction* 6 cards removed from play
+
