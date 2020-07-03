@@ -12,8 +12,8 @@ require "./lib/war_or_peace"
 class WarOrPeaceTest < Minitest::Test
 
   def test_it_exists
-    meta_game = MetaGame.new
-    assert_instance_of MetaGame, meta_game
+    war_or_peace = WarOrPeace.new
+    assert_instance_of WarOrPeace, war_or_peace
   end
 
 
