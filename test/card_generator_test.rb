@@ -19,9 +19,10 @@ class CardGeneratorTest < Minitest::Test
     assert_equal new_cards.show_text_file, 174
   end
 
-  def test_it_can_read_each_word_independently
+
+  def test_it_has_52_cards
     new_cards = CardGenerator.new
 
-    assert_equal new_cards.show_each_character, new_cards.show_text_file
+    assert_equal new_cards.all_cards.length, 52
   end
 end

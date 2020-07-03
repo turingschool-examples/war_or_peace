@@ -1,21 +1,19 @@
 class CardGenerator
 
   attr_reader :results, :file
+  attr_accessor :all_cards
 
   def initialize
     file = File.open("./lib/cards.txt")
     @results = file.read
+    @all_cards = @results.split("\n")
   end
 
   def show_text_file
     @results
   end
 
-  def show_each_character_by_type
-    all_cards = @results.split("\n")
-    p cards[0]
-  end
 end
 
-new_cards = CardGenerator.new
-new_cards.show_each_character_by_type
+# new_cards = CardGenerator.new
+# new_cards.show_each_card
