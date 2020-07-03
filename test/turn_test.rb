@@ -53,7 +53,7 @@ class TurnTest < Minitest::Test
 
     assert_equal [], turn.spoils_of_war
   end
-  # Q: should I combine the following tests?
+
   # Basic Turn Tests
 
   def test_it_has_a_type_basic
@@ -123,7 +123,7 @@ class TurnTest < Minitest::Test
 
   #add player 2
   # Q: do i need to test this for each turn type
-  # Edge case when there are less than 3 cards in the deck
+  # Edge cases when there are less than 3 cards in the deck
   def test_it_removes_the_piled_cards
     turn = Turn.new(@player1, @player2)
 
