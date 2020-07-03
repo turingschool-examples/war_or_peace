@@ -32,10 +32,12 @@ class CardGeneratorTest < Minitest::Test
     assert_equal new_cards.all_cards.uniq, new_cards.all_cards
   end
 
-  def test_it_can_suffle_deck
-    # skip
+
+  def test_it_can_make_2_decks
+
     new_cards = CardGenerator.new
 
-    refute_equal new_cards.shuffle_cards, new_cards.all_cards
+
   end
+
 end
