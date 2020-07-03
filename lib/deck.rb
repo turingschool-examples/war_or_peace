@@ -1,49 +1,38 @@
-require 'card.rb'
-card1 = Card.new(:diamond, "Queen", 12)
-card2 = Card.new(:spade, "3", 3)
-card3 = Card.new(:heart, "Ace", 14)
-card4 = Card.new(:club, "5", 5)
-
-cards = [card1, card2, card3]
+require './lib/card.rb'
+#reminder: Card class is suit, value, rank
 
 class Deck
   attr_reader :cards
 
-  def initialize(card_added_to_deck)
-    @cards = []
-    @cards >> card_added_to_deck
-
+  def initialize (cards)
+    @cards = cards
   end
 
   def rank_of_card_at(array_loc)
-    cards.[array_loc].rank
+    @cards.fetch(array_loc).rank
   end
 
   def high_ranking_cards
-    big_ones = []
-    cards.each do |card|
-      if card.rank >= 11
-        big_ones.append(card)
-      end
-    puts big_ones
+    @cards.delete_if {|high| high.rank < 11}
   end
 
   def percent_high_ranking
-    big_ones = []
-    cards.each do |card|
-      if card.rank >= 11
-        big_ones.append(card)
-      end
-    end
-    billionaire_index = (big_ones.count / cards.count) * 100
-    puts billionaire_index.round(2)
+    denom = @cards.count
+    @cards.delete_if {|high| high.rank < 11}
+    num = @cards.count
+    ((num.to_f / denom.to_f) * 100).to_i.to_s + "%"
   end
 
   def remove_card
-    cards.shift
+    @cards.shift
   end
 
   def add_card(card_to_add)
-    cards.push(card_to_add)
+    @cards << (card_to_add)
   end
 end
+
+card1 = Card.new(:diamond, "Queen", 12)
+card2 = Card.new(:spade, "3", 3)
+card3 = Card.new(:heart, "Ace", 14)
+card4 = Card.new(:club, "5", 5)
