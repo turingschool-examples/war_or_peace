@@ -24,11 +24,29 @@ class Turn
   end
 
   def winner_war
+    #If a player only has one or two cards left and it matches with the other player's
+    #delete the players last card
+    if player1.deck.cards.size < 3 || player2.deck.cards.size < 3
+      require "pry"; binding.pry
+      if player1.deck.rank_of_card_at(1) > player2.deck.rank_of_card_at(1)
+        player1
+      else
+        player2
+      end
+    elsif player1.deck.cards.size < 2 || player2.deck.cards.size < 2
+        require "pry"; binding.pry
+      if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+        player1
+      else
+        player2
+      end
+    elsif player1.deck.cards.size > 2 and player2.deck.cards.size > 2
       if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
         player1
       elsif player1.deck.rank_of_card_at(2) < player2.deck.rank_of_card_at(2)
         player2
       end
+    end
   end
 
   def winner_mad
@@ -42,8 +60,16 @@ class Turn
       spoils_of_war << player1.deck.cards[0]
       spoils_of_war << player2.deck.cards[0]
     elsif type == :war
-      spoils_of_war << player1.deck.cards[0..2]
-      spoils_of_war << player2.deck.cards[0..2]
+      if player1.deck.cards.size > 2 and player2.deck.cards.size > 2
+        spoils_of_war << player1.deck.cards[0..2]
+        spoils_of_war << player2.deck.cards[0..2]
+      elsif player1.deck.cards.size < 3 || player2.deck.cards.size < 3
+        spoils_of_war << player1.deck.cards[0..1]
+        spoils_of_war << player2.deck.cards[0..1]
+      elsif player1.deck.cards.size < 2 || player2.deck.cards.size < 2
+        spoils_of_war << player1.deck.cards[0]
+        spoils_of_war << player2.deck.cards[0]
+      end
     elsif type == :mutually_assured_destruction
       lost_cards << player1.deck.cards[0..2]
       lost_cards << player2.deck.cards[0..2]

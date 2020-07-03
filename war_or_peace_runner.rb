@@ -102,7 +102,10 @@ class Game
           require "pry"; binding.pry
           p "Megan won the game!"
         elsif turn_num == 1000001
+          # require "pry"; binding.pry
           p "--- DRAW ---"
+          p "Aurora has #{turn.player2.deck.cards.size} cards left."
+          p "Megan has #{turn.player1.deck.cards.size} cards left."
         end
       end
     end
