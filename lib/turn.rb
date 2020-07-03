@@ -37,7 +37,6 @@ class Turn
 
   def pile_cards
     if type() == :basic
-      # require "pry"; binding.pry
       @spoils_of_war << @player1.deck.cards[0]
       @spoils_of_war << @player2.deck.cards[0]
       @player1.deck.remove_card
@@ -60,28 +59,27 @@ class Turn
       return @spoils_of_war.flatten!
 
     else
+
+      @player1.deck.cards[0..2]
       3.times do
         @player1.deck.remove_card
       end
-
+      @player2.deck.cards[0..2]
       3.times do
         @player2.deck.remove_card
       end
+      return []
 
-      @player1.deck.cards
-      @player2.deck.cards
     end
   end
 
 def award_spoils(winner)
-  # @spoils_of_war.flatten!
   if type() == :basic || :war
     @spoils_of_war.each do |card|
       winner.deck.add_card(card)
     end
   else
-    @player1.deck.cards
-    @player2.deck.cards
+    @spoils_of_war.clear
   end
 end
 
