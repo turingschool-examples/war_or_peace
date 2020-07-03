@@ -1,4 +1,5 @@
 require './lib/card'
+require './lib/deck'
 
 # Generating the standad deck
 card_ranks = (2..14).to_a
@@ -14,3 +15,17 @@ standard_deck = card_ranks.map do |rank|
     end
   end
 end.flatten!
+
+# Generating Decks
+random_deck = standard_deck.shuffle!
+random_deck_split = random_deck.each_slice(26).map { |deck_half| deck_half }
+
+cards1 = random_deck_split[0]
+cards2 = random_deck_split[1]
+
+deck1 = Deck.new(cards1)
+deck2 = Deck.new(cards2)
+
+# Generate Players
+
+require 'pry'; binding.pry
