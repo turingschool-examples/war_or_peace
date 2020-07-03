@@ -60,5 +60,9 @@ class Turn
     end
   end
 
-
+  def award_spoils(winner)
+    winner.deck.cards.concat(spoils_of_war)
+  end
+# If issues come up it may be this... ^
+# Do we need winner variable declared?
 end
