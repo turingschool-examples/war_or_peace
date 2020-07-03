@@ -46,17 +46,19 @@ class Game
   end
 
   def start_game
-
     until winning_condition do
       turn = Turn.new(@player1, @player2)
       p "TURN TYPE: #{turn.type}"
-        if turn.type == :basic
-          basic_turn(turn)
-        elsif turn.type == :war
-          war_turn(turn)
-        else
-          mad_turn(turn)
-        end
+
+      case turn.type
+      when :basic
+        basic_turn(turn)
+      when :war
+        war_turn(turn)
+      when :mutually_assured_destruction
+        mad_turn(turn)
+      end
+
       print_turn_summary(turn)
       @counter += 1
     end
