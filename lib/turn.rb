@@ -64,9 +64,14 @@ class Turn
   end
 
   def award_spoils(winner)
-    @spoils_of_war.each do |spoil|
-      winner.deck.cards << spoil
+    if winner.is_a?(String)
+      @spoils_of_war = []
+    else
+      @spoils_of_war.each do |spoil|
+        winner.deck.cards << spoil
+      end
+      @spoils_of_war = []
     end
-    @spoils_of_war = []
   end
+
 end

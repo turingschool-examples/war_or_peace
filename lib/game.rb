@@ -2,11 +2,13 @@ require_relative "./turn"
 
 class Game
  attr_reader  :player1,
-              :player2
+              :player2,
+              :counter
 
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
+    @counter = 1
   end
 
   def start
@@ -44,62 +46,60 @@ class Game
   end
 
   def start_game
-    counter = 1
-    until winning_condition(counter) do
+
+    until winning_condition do
       turn = Turn.new(@player1, @player2)
       p "TURN TYPE: #{turn.type}"
-      # require "pry"; binding.pry
-      winner = turn.winner
         if turn.type == :basic
-          basic_turn(turn, winner, counter)
+          basic_turn(turn)
         elsif turn.type == :war
-          war_turn(turn, winner, counter)
+          war_turn(turn)
         else
-          mad_turn(turn, counter)
+          mad_turn(turn)
         end
-      print_turn_summary(turn, winner, counter)
-      counter += 1
+      print_turn_summary(turn)
+      @counter += 1
     end
     game_completion
   end
 
-  def print_turn_summary(turn, winner, counter)
+  def print_turn_summary(turn)
     # require "pry"; binding.pry if winner == "No Winner"
     case turn.type
     when :basic
-      p "Turn #{counter}: #{winner.name} won 2 cards"
+      p "Turn #{counter}: #{turn.winner.name} won 2 cards"
     when :war
-      p "Turn #{counter}: #{winner.name} won 6 cards"
+      p "Turn #{counter}: #{turn.winner.name} won 6 cards"
     when :mutually_assured_destruction
       p "Turn #{counter}: *mutally assured destruction* 6 cards removed from play"
     end
   end
 
-  def winning_condition(counter)
+  def winning_condition
     @player1.has_lost? || @player2.has_lost? || counter == 1_000_000
   end
 
-  def basic_turn(turn, winner, counter)
+  def basic_turn(turn)
     turn.pile_cards
-    turn.award_spoils(winner)
+    turn.award_spoils(turn.winner)
 
   end
 
-  def war_turn(turn, winner, counter)
+  def war_turn(turn)
     turn.pile_cards
-    turn.award_spoils(winner)
+    turn.award_spoils(turn.winner)
 
   end
 
-  def mad_turn(turn, counter)
+  def mad_turn(turn)
     turn.pile_cards
-
+    turn.award_spoils(turn.winner)
   end
 
   def game_completion
-    if @player1.deck.cards.count == 0
+    if @player1.has_lost?
       p "*~*~*~* #{@player2.name} won! *~*~*~*"
-    elsif @player2.deck.cards.count == 0
+    elsif @player2.has_lost?
       p "*~*~*~* Congrats #{@player1.name}! *~*~*~*"
     else
       p "It's a draw, Captain!"
