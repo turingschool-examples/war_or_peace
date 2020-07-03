@@ -190,5 +190,8 @@ class TurnTest < Minitest::Test
     turn.pile_cards
     assert_equal [], turn.spoils_of_war
   end
+
+  def test_it_awards_spoils
+  end
 end
 end
