@@ -1,7 +1,12 @@
 class WarOrPeace
- #attr_reader
-  #def initialize(*arg)
+  standard_deck = StandardDeck.new
+  cards = standard_deck.cards.shuffle
+  deck1 = Deck.new(cards[0..25])
+  deck2 = Deck.new(cards[26..52])
 
-  #end
+  player1 = Player.new("Saryn", deck1)
+  player2 = Player.new("Dan", deck2)
+  game = Game.new(player1, player2)
+  game.start
 
 end
