@@ -210,11 +210,12 @@ class TurnTest < Minitest::Test
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
 
+    turn.pile_cards
     assert_equal [], turn.spoils_of_war
   end
 
   def test_player_decks_have_one_card
-    skip
+    # skip
 
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
@@ -229,7 +230,10 @@ class TurnTest < Minitest::Test
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
+    turn.pile_cards
 
+    assert_equal [card8], player1.deck.cards
+    assert_equal [card7], player2.deck.cards
   end
 
 end
