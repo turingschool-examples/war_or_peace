@@ -1,6 +1,6 @@
 class CardGenerator
 
-  attr_reader :results, :file,
+  attr_reader :results, :file
 
   def initialize
     file = File.open("./lib/cards.txt")
@@ -12,11 +12,8 @@ class CardGenerator
   end
 
   def show_each_character_by_type
-    @results.split("\n").collect{|x| sep = x.split(" ")
-      values = sep[0]
-      ranks = sep[2]
-      suits = sep[1]
-}
+    all_cards = @results.split("\n")
+    p cards[0]
   end
 end
 
