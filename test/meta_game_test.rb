@@ -11,9 +11,10 @@ require "./lib/meta_game"
 
 class MetaGameTest < Minitest::Test
 
-  #def test_it_exists
-    #assert_instance_of <Class>,
-  #end
+  def test_it_exists
+    meta_game = MetaGame.new
+    assert_instance_of MetaGame, meta_game
+  end
 
   #def test_it_has_attributes
   #end
