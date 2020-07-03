@@ -13,36 +13,24 @@ class Turn
   def type
     if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
       :basic
-      # Q: can I eliminate the first half?
-    elsif (player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)) && (player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2))
+    elsif player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
       :mutually_assured_destruction
     else
       :war
     end
   end
 
-  # Q: refactor with max?
   def winner
+    players = [player1, player2]
     if type == :basic
-      if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-        player1
-      else
-        player2
-      end
+      players.max { |player1, player2|  player1.deck.rank_of_card_at(0) <=> player2.deck.rank_of_card_at(0) }
     elsif type == :war
-      if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-        player1
-      else
-        player2
-      end
-
-# Q: Should this be explicit?
-    else
+      players.max { |player1, player2|  player1.deck.rank_of_card_at(2) <=> player2.deck.rank_of_card_at(2) }
+    else # mutually assured destruction
       "No Winner"
     end
   end
 
-# Q: How do i supress the return valure from the times loop
   def pile_cards
     if type == :basic
       @spoils_of_war << player1.deck.remove_card
@@ -64,5 +52,4 @@ class Turn
     (winner.deck.cards << @spoils_of_war).flatten!
     @spoils_of_war = []
   end
-
 end
