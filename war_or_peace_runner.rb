@@ -1,6 +1,3 @@
-require "minitest/autorun"
-require "minitest/pride"
-require "mocha/minitest"
 require "./lib/card"
 require "./lib/deck"
 require "./lib/player"
