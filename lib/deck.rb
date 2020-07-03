@@ -5,7 +5,10 @@ class Deck
   end
 
   def rank_of_card_at(index)
-    @cards[index].rank
+    if  @cards.empty? == false
+      return @cards[index].rank
+    end
+    # binding.pry
   end
 
   def high_ranking_cards

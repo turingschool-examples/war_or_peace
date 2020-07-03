@@ -37,6 +37,8 @@ class TurnTest < Minitest::Test
 
     def test_it_starts_with_no_spoils_of_war
         
+        
+        
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
         card3 = Card.new(:heart, '9', 9)
@@ -60,6 +62,7 @@ class TurnTest < Minitest::Test
 
     def test_it_has_a_basic_turn_type
         
+        
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
         card3 = Card.new(:heart, '9', 9)
@@ -82,6 +85,7 @@ class TurnTest < Minitest::Test
     end
 
     def test_it_has_a_basic_turn_type_winner
+        
         
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
@@ -148,7 +152,7 @@ class TurnTest < Minitest::Test
         assert_equal 1, player1.deck.cards.length
     end
 
-    def test_it_has_a_mutually_assured_destruction_turn_type_winner
+    def test_mutually_assured_destruction_turn_type_has_no_winners
         
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
@@ -166,15 +170,12 @@ class TurnTest < Minitest::Test
         player2 = Player.new("Aurora", deck2)
 
         turn = Turn.new(player1, player2)
-
         assert_equal :mutually_assured_destruction, turn.type
         
         winner = turn.winner
         turn.piles_cards
-
         assert_equal [], turn.spoils_of_war
-        
-        # binding.pry
+#  binding.pry
         assert_equal 1, player1.deck.cards.count
         assert_equal 1, player2.deck.cards.count
     end

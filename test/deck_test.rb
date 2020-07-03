@@ -28,7 +28,7 @@ class DeckTest < Minitest::Test
       deck.cards << card1 = Card.new(:diamond, 'Queen', 12)
       deck.cards << card2 = Card.new(:spade, '3', 3)
       deck.cards << card3 = Card.new(:heart, 'Ace', 14)
-
+# binding.pry
       assert_equal 12, deck.rank_of_card_at(0)
       assert_equal 14, deck.rank_of_card_at(2)
     end

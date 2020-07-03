@@ -8,49 +8,60 @@ class Turn
     end
 
     def type
+      # I want to say: unless player1.deck == [] run the code below...
+      
+      if ( player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) ) &&
+         ( player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2) )
+        return :mutually_assured_destruction
+      end
+
+      if ( player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) ) &&
+        ( player1.deck.rank_of_card_at(2) != player2.deck.rank_of_card_at(2) )
+        return :war
+      end
+
       if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
         return :basic
       end
       
-      if (player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)) && (player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2))
-        return :mutually_assured_destruction
-      end
-
-      if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
-        return :war
-      end
     end
 
     def winner
-        if type == :basic && player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+        if type == :basic && ( player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0) )
             return player1
         else
             return player2
         end
 
-        if type == :war && player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+        if type == :war && ( player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2) )
           return player1
-      else
+        else
           return player2
-      end
+        end
+
+        if type == :mutually_assured_destruction && ( player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2) )
+          return player1
+
+        end
     end
     
     def piles_cards
       if type == :basic 
         spoils_of_war << player1.deck.cards.shift
         spoils_of_war << player2.deck.cards.shift
+        return spoils_of_war.flatten!
       end
 
       if type == :war 
         spoils_of_war << player1.deck.cards.shift(3)
         spoils_of_war << player2.deck.cards.shift(3)
+        return spoils_of_war.flatten!
       end
 
       if type == :mutually_assured_destruction 
         player1.deck.cards.shift(3)
         player2.deck.cards.shift(3)
       end
-      spoils_of_war.flatten!
 
     end
 

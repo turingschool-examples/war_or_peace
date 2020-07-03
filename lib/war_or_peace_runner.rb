@@ -35,26 +35,44 @@ class Game
         @player2 = Player.new(@player2, deck2)
     end
     
-    def start
-
-       puts  "Welcome to War! (or Peace)"
-       puts "This game will be played with 52 cards."
-       puts "The players today are #{player1.name} and #{player2.name}."
-       puts "Type 'Go' to start the game!" 
-       x = gets.chomp.upcase
-
+    def start 
         turn_counter = 0
-        until player1.has_lost? || player2.has_lost?
+
+        until player1.deck.cards.length == 0 || player2.deck.cards.length == 0
+
             turn = Turn.new(player1, player2)
             turn_counter += 1
-            turn.piles_cards
             winner = turn.winner
-            puts "Turn #{turn_counter}: #{winner.name} won #{turn.spoils_of_war.count} cards!" 
+            turn.piles_cards
+            
+            
+                if turn.type == :basic
+                    puts "Turn #{turn_counter}: #{winner.name} won #{turn.spoils_of_war.count} cards!" 
+                end
+    
+                if turn.type == :war
+                    puts "Turn #{turn_counter}: #{turn.type.upcase} - #{winner.name} won #{turn.spoils_of_war.count} cards!" 
+                end
+    
+                if  turn.type == :mutually_assured_destruction
+                    puts "Turn #{turn_counter}: *#{turn.type}* cards #{turn.spoils_of_war.count} removed from play" 
+                end
+                
             turn.award_spoils(winner)
+            # p player1.deck.cards.length
+            # p player2.deck.cards.length
         end
-        puts "*-*-*-* #{winner.name.capitalize} has won the game! *-*-*-*"
-
+        puts "*~*~*~* #{winner.name} has won the game *~*~*~*"
     end
 
-
 end
+
+# puts  "Welcome to War! (or Peace). This game will be played with 52 cards."
+#    puts "The players today are #{player1.name} and #{player2.name}."
+#    puts "Type 'Go' to start the game!" 
+#    x = gets.chomp.upcase
+#    puts '-------------------------------------------------'
+
+# :basic => Turn 1: Megan won 2 cards
+# :war => Turn 2: WAR - Aurora won 6 cards
+# Turn 3: *mutually assured destruction* 6 cards removed from play
