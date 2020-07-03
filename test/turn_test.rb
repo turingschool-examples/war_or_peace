@@ -128,21 +128,38 @@ class TurnTest < Minitest::Test
   end
 
   # Write a test to check pile_cards method
+  def test_pile_cards_sends_correct_cards
+    card_1 = Card.new(:club, 'Jack', 11)
+    card_2 = Card.new(:heart, 'Seven', 7)
+    card_3 = Card.new(:spade, 'Two', 2)
+    card_4 = Card.new(:diamond, 'King', 13)
+    card_5 = Card.new(:heart, 'Eight', 8)
+    card_6 = Card.new(:club, 'Queen', 12)
+    card_7 = Card.new(:spade, 'Ace', 14)
+    card_8 = Card.new(:diamond, 'Three', 3)
+    deck_1 = Deck.new([card_1, card_3, card_5, card_7])
+    deck_2 = Deck.new([card_2, card_4, card_6, card_8])
+    player_1 = Player.new('Priya', deck_1)
+    player_2 = Player.new('Ricky', deck_2)
+    turn = Turn.new(player_1, player_2)
 
-  # card_1 = Card.new(:club, 'Jack', 11)
-  # card_2 = Card.new(:heart, 'Seven', 7)
-  # card_3 = Card.new(:spade, 'Two', 2)
-  # card_4 = Card.new(:diamond, 'King', 13)
-  # card_5 = Card.new(:heart, 'Eight', 8)
-  # card_6 = Card.new(:club, 'Queen', 12)
-  # card_7 = Card.new(:spade, 'Ace', 14)
-  # card_8 = Card.new(:diamond, 'Three', 3)
-  # deck_1 = Deck.new([card_1, card_3, card_5, card_7])
-  # deck_2 = Deck.new([card_2, card_4, card_6, card_8])
-  # player_1 = Player.new('Priya', deck_1)
-  # player_2 = Player.new('Ricky', deck_2)
-  # turn = Turn.new(player_1, player_2)
+    # :basic will be card_1 = 11; card_2 = 7 ==> winner Priya
+    # :basic will be card_1 = 7; card_2 = 11 ==> winner Ricky
+    # assert_equal "type = :basic AND Priya won 2 cards :)", turn.pile_cards
+    assert_equal [card_1, card_2], turn.pile_cards
 
+    # :war will be (card_1 = 7; card_2 = 7)
+      #AND (card_5 = 8, card_6 = 12) ==> winner Ricky
+    # :war will be (card_1 = 7; card_2 = 7)
+      #AND (card_5 = 12, card_6 = 8) ==> winner Priya
+    # assert_equal 'type = :war AND WAR! - Ricky won 6 cards. *\(^o^)/*', turn.pile_cards
+    # assert_equal [card_1, card_2, card_3, card_4, card_5, card_6], turn.pile_cards
+
+    # :mutual will be (card_1 = 7; card_2 = 7)
+      #AND (card_5 = 12, card_6 = 12) ==> winner NONE
+    # assert_equal 'type = :mutual AND Mutually Assured Destruction! 6 cards removed from the deck. (;_;)', turn.pile_cards
+    # assert_equal [player_1.deck, player_2.deck], turn.pile_cards
+  end
   # Write a test to check award_spoils method
 
   # card_1 = Card.new(:club, 'Jack', 11)

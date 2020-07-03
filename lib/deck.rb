@@ -27,7 +27,8 @@ class Deck
 
   def remove_card
     cards.shift
-    cards
+    # removed return as I updated turn.rb
+    # cards
   end
 
   def add_card(card)

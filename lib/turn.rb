@@ -81,6 +81,29 @@ class Turn
     # :basic - both players send top card to spoils
     # :war - both players send top three to spoils
     # :mutually - both players send top three cards to REMOVE
+  def pile_cards
+    if type == :basic
+      # 'type = :basic' + ' AND '+ winner
+      spoils_of_war << player_1.deck.remove_card
+      spoils_of_war << player_2.deck.remove_card
+    elsif type == :war
+      # 'type = :war' + ' AND ' + winner
+      # There has to be an easier way to repeat this method
+      # Found it! .times and do block will do the trick
+      3.times do
+        spoils_of_war << player_1.deck.remove_card
+        spoils_of_war << player_2.deck.remove_card
+      end
+    elsif type == :mutually_assured_destruction
+      # 'type = :mutual' + ' AND ' + winner
+      3.times do
+        player_1.deck.remove_card
+        player_2.deck.remove_card
+      end
+      # Removed after testing
+      # [player_1.deck, player_2.deck]
+    end
+  end
 
   # Create award_spoils method
     # adds spoils array (IT IS AN ARRAY! I can update my initialize)
