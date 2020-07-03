@@ -1,6 +1,7 @@
 require './lib/card'
 require './lib/deck'
 require './lib/player'
+require './lib/game'
 
 
 # Generating the standad deck
@@ -32,5 +33,6 @@ deck2 = Deck.new(cards2)
 player1 = Player.new("Linda", deck1)
 player2 = Player.new("Bob", deck2)
 
-
-require 'pry'; binding.pry
+# Start Game
+game = Game.new(player1, player2)
+game.start
