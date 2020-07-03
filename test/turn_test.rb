@@ -68,9 +68,6 @@ class TurnTest < Minitest::Test
 
     turn = Turn.new(player1, player2)
 
-
-
-
     assert_equal [], turn.spoils_of_war
     assert_equal [card1, card2, card5, card8], player1.deck.cards
     assert_equal [card3, card4, card6, card7], player2.deck.cards
