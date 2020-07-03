@@ -1,6 +1,6 @@
 class CardGenerator
 
-  attr_reader :results, :file
+  attr_reader :results
   attr_accessor :all_cards
 
   def initialize
@@ -13,7 +13,11 @@ class CardGenerator
     @results
   end
 
+  def shuffle_cards
+    @all_cards.shuffle
+  end
+
 end
 
 # new_cards = CardGenerator.new
-# new_cards.show_each_card
+# p new_cards.all_cards == new_cards.shuffle_cards

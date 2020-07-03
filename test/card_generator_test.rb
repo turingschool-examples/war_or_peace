@@ -12,11 +12,11 @@ class CardGeneratorTest < Minitest::Test
 
 
   def test_it_has_a_text_file_to_read
-    skip
+    # skip
     new_cards = CardGenerator.new
 
 
-    assert_equal new_cards.show_text_file, 174
+    assert_equal new_cards.show_text_file.length, 748
   end
 
 
@@ -30,5 +30,12 @@ class CardGeneratorTest < Minitest::Test
     new_cards = CardGenerator.new
 
     assert_equal new_cards.all_cards.uniq, new_cards.all_cards
+  end
+
+  def test_it_can_suffle_deck
+    # skip
+    new_cards = CardGenerator.new
+
+    refute_equal new_cards.shuffle_cards, new_cards.all_cards
   end
 end
