@@ -11,7 +11,6 @@ class Player
 
   end
 
-#recommitting to master instead of main since it's messing things up
-# :(
 
-end # this is the end of the class!!!
+
+end 
