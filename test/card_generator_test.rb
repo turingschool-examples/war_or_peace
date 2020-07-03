@@ -25,4 +25,10 @@ class CardGeneratorTest < Minitest::Test
 
     assert_equal new_cards.all_cards.length, 52
   end
+
+  def test_it_has_no_duplicates
+    new_cards = CardGenerator.new
+
+    assert_equal new_cards.all_cards.uniq, new_cards.all_cards
+  end
 end
