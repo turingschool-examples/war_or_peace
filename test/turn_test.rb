@@ -43,10 +43,10 @@ class TurnTest < Minitest::Test
   def test_it_returns_winner_for_war
     assert_equal @player2, @turn.winner
   end
-  
+
 # Testing the M.A.D turn type
   def test_it_has_mutually_assured_destruction_turn_type
-    assert_equal :mutually_assured_destruction, @turn.winner
+    assert_equal :mutually_assured_destruction, @turn.type
   end
 
   def test_it_returns_winner_for_mutually_assured_destruction
