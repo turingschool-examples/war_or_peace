@@ -26,29 +26,21 @@ class Game
     get_user_input
   end
 
-  # def standardize_entry
-  #   gets.chomp.upcase
-  # end
-
   def get_user_input
     ui_counter = 0
-
     while ui_counter != 3 do
       user_input = gets.chomp.upcase
-      if user_input != "GO"
+      if ui_counter == 2
+        p "Not today....GOODBYE!"
+        break
+      elsif user_input != "GO"
         p "Invalid entry, please type 'GO'."
         ui_counter += 1
-      else
+      elsif user_input == "GO"
         start_game
         break
       end
     end
-
-    if ui_counter == 3
-      p "Not today....GOODBYE!"
-    end
-
-
   end
 
 
