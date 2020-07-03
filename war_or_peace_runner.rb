@@ -5,7 +5,7 @@ require './lib/turn'
 
 class Game
   attr_reader :player1, :player2, :turn_number, :turn, :spoils_of_war, :cards_won
-  $turn_number = 0
+  $turn_number = -1
 
   def initialize
     @player1 = player1
@@ -50,8 +50,8 @@ class Game
 
 
 
-    70.times{
-
+    10000.times{
+      turn = Turn.new(player1, player2)
       turn.type
       winner = turn.winner
       turn.winner
@@ -59,12 +59,15 @@ class Game
       turn.spoils_of_war
       turn.award_spoils(winner)
 
-      if player1.deck.cards.length == 0 || player2.deck.cards.length == 0
+      if player1.deck.cards.length < 3 || player2.deck.cards.length < 3
         puts "#{turn.winner} won!"
         break
       end
-
-      p "Turn #{$turn_number}: #{turn.type}-- #{turn.winner} won #{cards_won} cards."
+      if turn.winner == "Aurora" || turn.winner == "Megan"
+        p "Turn #{$turn_number}: #{turn.type} - #{turn.winner} won #{turn.spoils_of_war.count} cards."
+      else
+        p "Turn #{$turn_number}: *#{turn.type}* 6 cards removed from play."
+      end
       # p '------------------------player 1'
       # p turn.player1.deck.cards[0]
       # p turn.player1.deck.rank_of_card_at(0)
@@ -87,6 +90,9 @@ class Game
       # p player2.deck.cards
       $turn_number += 1
      }
+     if $turn_number == 999
+       puts "---DRAW---"
+     end
   end
 end
 

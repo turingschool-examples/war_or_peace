@@ -46,32 +46,38 @@ class Turn
 
   def pile_cards
     if type == :basic
-      @spoils_of_war.push(@player1.deck.cards[0], @player2.deck.cards[0])
+      (@spoils_of_war.push(@player1.deck.cards[0], @player2.deck.cards[0])).flatten!
     elsif type == :war
-      @spoils_of_war.push(@player1.deck.cards[0], @player1.deck.cards[1], @player1.deck.cards[2], @player2.deck.cards[0], @player2.deck.cards[1], @player2.deck.cards[2])
+      (@spoils_of_war.push(@player1.deck.cards[0], @player1.deck.cards[1], @player1.deck.cards[2], @player2.deck.cards[0], @player2.deck.cards[1], @player2.deck.cards[2])).flatten!
     end
   end
 
   def award_spoils(winner)
     if winner == "Megan"
       if type == :basic
-        @player1.deck.add_card(@spoils_of_war)
-        @player2.deck.remove_card
+        @player1.deck.cards.shift
+        @player2.deck.cards.shift
+        (@player1.deck.cards << @spoils_of_war).flatten!
       elsif type == :war
-        @player1.deck.add_card(@spoils_of_war)
-        3.times {@player1.deck.cards.delete_at(0)}
+        3.times {@player1.deck.cards.shift}
+        3.times{@player2.deck.cards.shift}
+        (@player1.deck.cards << @spoils_of_war).flatten!
       end
     elsif winner == 'Aurora'
       if type == :basic
-        @player2.deck.add_card(@player1.deck.cards[0])
-        @player1.deck.remove_card
+        @player1.deck.cards.shift
+        @player2.deck.cards.shift
+        (@player2.deck.cards << @spoils_of_war).flatten!
+        @player2.deck.cards.uniq!
+        @player1.deck.cards.shift
       elsif type == :war
-        @player2.deck.add_card(@spoils_of_war)
-        3.times {@player1.deck.cards.delete_at(0)}
+        3.times {@player1.deck.cards.shift}
+        3.times{@player2.deck.cards.shift}
+        (@player2.deck.cards << @spoils_of_war).flatten!
       end
-    elsif winner == "No Winner"
-      3.times {@player1.deck.cards.delete_at(0)}
-      3.times {@player2.deck.cards.delete_at(0)}
+    elsif type == :mutually_assured_destruction
+      3.times {@player1.deck.cards.shift}
+      3.times {@player2.deck.cards.shift}
     end
   end
 end
