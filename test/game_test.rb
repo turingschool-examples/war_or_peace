@@ -25,7 +25,18 @@ class GameTest < Minitest::Test
   end
 
   def test_it_has_attributes
-    assert_equal 
+    standard_deck = StandardDeck.new
+    cards = standard_deck.cards.shuffle
+    deck1 = Deck.new(cards[0..25])
+    deck2 = Deck.new(cards[26..52])
+
+    player1 = Player.new("Saryn", deck1)
+    player2 = Player.new("Dan", deck2)
+
+    game = Game.new(player1, player2)
+
+    assert_equal player1, game.player1
+    assert_equal player2, game.player2
   end
 
 end
