@@ -8,7 +8,7 @@ class Deck
   def initialize(cards_param)
     @cards = cards_param
   end
-  #
+  
   def rank_of_card_at (location)
       card_rank = cards[location].rank
   end
