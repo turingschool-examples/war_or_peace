@@ -23,7 +23,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_exists
-    skip
+    # skip
 
     @turn = Turn.new(@player1, @player2)
 
@@ -31,7 +31,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_has_players
-    skip
+    # skip
 
     @turn = Turn.new(@player1, @player2)
 
@@ -40,7 +40,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_has_spoils_of_war
-    skip
+    # skip
 
     @turn = Turn.new(@player1, @player2)
 
@@ -48,7 +48,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_the_turn_type
-    skip
+    # skip
 
     @turn = Turn.new(@player1, @player2)
 
@@ -56,7 +56,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_has_a_winner
-    skip
+    # skip
 
     @turn = Turn.new(@player1, @player2)
 
@@ -64,7 +64,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_can_pile_cards
-    skip
+    # skip
 
     @turn = Turn.new(@player1, @player2)
 
@@ -75,7 +75,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_winner_gets_the_spoils
-    skip
+    # skip
 
     @turn = Turn.new(@player1, @player2)
 
@@ -88,7 +88,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_deck_can_change
-    skip
+    # skip
 
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
     deck2 = Deck.new([@card4, @card3, @card6, @card7])
@@ -101,7 +101,7 @@ class TurnTest < Minitest::Test
     end
 
   def test_the_turn_type_is_war
-    skip
+    # skip
 
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
     deck2 = Deck.new([@card4, @card3, @card6, @card7])
@@ -113,7 +113,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_the_winner_is_player2
-    skip
+    # skip
 
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
     deck2 = Deck.new([@card4, @card3, @card6, @card7])
@@ -125,7 +125,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_has_more_spoils_of_war
-    skip
+    # skip
 
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
     deck2 = Deck.new([@card4, @card3, @card6, @card7])
@@ -138,7 +138,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_can_award_spoils_for_war
-    skip
+    # skip
 
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
     deck2 = Deck.new([@card4, @card3, @card6, @card7])
@@ -154,7 +154,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_mutually_assured_destruction_type
-    skip
+    # skip
 
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
@@ -174,7 +174,7 @@ class TurnTest < Minitest::Test
     end
 
   def test_that_there_is_not_a_winner
-    skip
+    # skip
 
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
@@ -194,7 +194,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_that_spoils_of_war_is_empty
-    skip
+    # skip
 
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
@@ -214,7 +214,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_player_decks_have_one_card
-    # skip
+    skip
 
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
@@ -230,7 +230,6 @@ class TurnTest < Minitest::Test
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
 
-    require "pry"; binding.pry
   end
 
 end
