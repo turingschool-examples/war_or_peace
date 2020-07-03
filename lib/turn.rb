@@ -15,26 +15,24 @@ class Turn
     end
   end
 
-  def winner
-    if type == :basic
+  def winner_basic
       if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
         player1
       else
         player2
       end
+  end
 
-    elsif type == :war
+  def winner_war
       if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
         player1
       elsif player1.deck.rank_of_card_at(2) < player2.deck.rank_of_card_at(2)
         player2
-      else
-        "No Winner"
       end
+  end
 
-    elsif type == :mutually_assured_destruction
-      "No Winner"
-    end
+  def winner_mad
+    "No Winner"
   end
 
   def pile_cards
@@ -56,23 +54,21 @@ class Turn
     if type == :basic
       @spoils_of_war = pile_cards
       winner.deck.cards << @spoils_of_war
-      player1.deck.cards.flatten!
-      player2.deck.cards.flatten!
-      #Makes sure the cards played are removed from players deck
-      player2.deck.remove_card
-      player1.deck.remove_card
+      winner.deck.cards.flatten!
+      # player2.deck.cards.flatten!
     elsif type == :war
       @spoils_of_war = pile_cards
       winner.deck.cards << @spoils_of_war
-      player1.deck.cards.flatten!
-      player2.deck.cards.flatten!
-      #Makes sure the cards played are removed from players deck
-      3.times do
-        player2.deck.remove_card
-        player1.deck.remove_card
-      end
-    else
-      #Makes sure the cards played are removed from players deck
+      winner.deck.cards.flatten!
+      # player2.deck.cards.flatten!
+    end
+  end
+
+  def remove_cards_from_player
+    if type == :basic
+      player2.deck.remove_card
+      player1.deck.remove_card
+    elsif type == :war || :mutually_assured_destruction
       3.times do
         player2.deck.remove_card
         player1.deck.remove_card

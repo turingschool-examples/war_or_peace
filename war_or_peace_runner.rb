@@ -76,24 +76,35 @@ class Game
     if starter == "GO"
       turn = create_turn
       turn_num = 1
-      while turn_num < 1000001 do
-        if turn.type == :mutually_assured_destruction
-          no_win = turn.winner
-          cards = turn.pile_cards.size
-          type = turn.type
+      while turn_num < 1000001 and turn.player1.deck.cards.empty? == false and turn.player2.deck.cards.empty? == false do
+        type = turn.type
+        if type == :war
+          winner = turn.winner_war
+          p "turn #{turn_num}: #{type.upcase} #{winner.name} won #{turn.pile_cards.flatten!.size} cards."
           turn.award_spoils(winner)
-          p "turn #{turn_num}: #{type} #{no_win}"
-        else
-          winner_name = turn.winner.name
-          winner = turn.winner
-          cards = turn.pile_cards.size
-          type = turn.type
+          turn.remove_cards_from_player
+        elsif type == :basic
+          # require "pry"; binding.pry
+          winner = turn.winner_basic
+          p "turn #{turn_num}: #{type} #{winner_name = turn.winner_basic.name} won #{cards = turn.pile_cards.size} cards."
           turn.award_spoils(winner)
-          p "turn #{turn_num}: #{type} #{winner_name} won #{cards} cards."
+          turn.remove_cards_from_player
+        elsif type == :mutually_assured_destruction
+          p "turn #{turn_num}: *#{type}* #{turn.pile_cards.flatten!.size} removed from play."
+          turn.remove_cards_from_player
         end
+        turn = Turn.new(turn.player1, turn.player2)
         turn_num += 1
+        if turn.player1.deck.cards.empty? == true
+          require "pry"; binding.pry
+          p "Aurora won the game!"
+        elsif turn.player2.deck.cards.empty? == true
+          require "pry"; binding.pry
+          p "Megan won the game!"
+        elsif turn_num == 1000001
+          p "--- DRAW ---"
+        end
       end
-
     end
   end
 end

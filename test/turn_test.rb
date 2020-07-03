@@ -39,7 +39,7 @@ class TurnTest < Minitest::Test
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
-    assert_equal player1, turn.winner
+    assert_equal player1, turn.winner_basic
   end
 
   def test_war_type
@@ -74,7 +74,7 @@ class TurnTest < Minitest::Test
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
-    assert_equal player2, turn.winner
+    assert_equal player2, turn.winner_war
   end
 
   def test_mad_type
@@ -110,7 +110,7 @@ class TurnTest < Minitest::Test
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
     turn.type
-    assert_equal "No Winner", turn.winner
+    assert_equal "No Winner", turn.winner_mad
   end
 
   def test_pile
@@ -144,8 +144,9 @@ class TurnTest < Minitest::Test
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
-    winner = turn.winner
+    winner = turn.winner_basic
     turn.award_spoils(winner)
+    turn.remove_cards_from_player
     assert_equal winner.deck.cards, [card2, card5, card8, card1, card3]
   end
 
@@ -163,8 +164,9 @@ class TurnTest < Minitest::Test
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
-    winner = turn.winner
+    winner = turn.winner_war
     turn.award_spoils(winner)
+    turn.remove_cards_from_player
     assert_equal player1.deck.cards, [card8]
   end
 
@@ -182,8 +184,9 @@ class TurnTest < Minitest::Test
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
-    winner = turn.winner
+    winner = turn.winner_mad
     turn.award_spoils(winner)
+    turn.remove_cards_from_player
     assert_equal "No Winner", winner
   end
 end
