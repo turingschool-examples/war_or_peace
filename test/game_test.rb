@@ -39,19 +39,4 @@ class GameTest < Minitest::Test
     assert_equal player2, game.player2
   end
 
-  def test_it_can_start_game
-    standard_deck = StandardDeck.new
-    cards = standard_deck.cards.shuffle
-    deck1 = Deck.new(cards[0..25])
-    deck2 = Deck.new(cards[26..52])
-
-    player1 = Player.new("Saryn", deck1)
-    player2 = Player.new("Dan", deck2)
-
-    game = Game.new(player1, player2)
-
-    assert_equal "cool", game.start
-  end
-
-
 end
