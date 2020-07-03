@@ -1,28 +1,23 @@
 require_relative "./card"
+
 class StandardDeck
- attr_reader  :ranks,
-              :values,
-              :suits,
-              :num_of_cards,
-              :all_cards
-  def initialize(all_cards_info)
-    @ranks = all_cards_info["ranks"]
-    @values = all_cards_info["values"]
-    @suits = all_cards_info["suits"]
-    @num_of_cards = (1..52).to_a
-    @all_cards = []
+  attr_reader :cards
+
+  VALUES = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
+  SUITS = [:heart, :diamond, :spade, :club]
+  def initialize
+    create_deck
   end
 
   def create_deck
-    card_names = @num_of_cards.map do |num|
-      @all_cards << "card#{num}"
+    @cards = []
+    rankings = (2..14).to_a
+    SUITS.each do |suit|
+      ranks_and_values = rankings.zip(VALUES)
+      ranks_and_values.each do |rank, value|
+          @cards << Card.new(suit, value, rank)
+      end
+      @cards.shuffle
     end
-
-    @all_cards.each do |card|
-      require "pry"; binding.pry
-    end
-
   end
-
-
 end
