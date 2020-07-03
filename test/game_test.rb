@@ -39,4 +39,23 @@ class GameTest < Minitest::Test
     assert_equal player2, game.player2
   end
 
+  def test_it_has_a_welcome_method
+    standard_deck = StandardDeck.new
+    cards = standard_deck.cards.shuffle
+    deck1 = Deck.new(cards[0..25])
+    deck2 = Deck.new(cards[26..52])
+
+    player1 = Player.new("Saryn", deck1)
+    player2 = Player.new("Dan", deck2)
+
+    game = Game.new(player1, player2)
+
+
+    expected = "Welcome to War! (or Peace) This game will be played with 52 cards.
+                The players today are Megan and Aurora.
+                Type 'GO' to start the game!
+                ------------------------------------------------------------------"
+    assert_equal expected, game.welcome_message
+  end
+
 end
