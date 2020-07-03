@@ -1,5 +1,3 @@
-require './lib/card'
-
 class Deck
   attr_reader :cards
 
@@ -37,7 +35,7 @@ class Deck
 
   def add_card(card)
     @cards << card
-  end 
+  end
 
 
 
