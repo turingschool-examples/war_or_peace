@@ -12,9 +12,8 @@ class Player
     "Clarisa"
   end
 
-
   def has_lost?
-    
+    @deck.cards.any?
   end
 
 end
