@@ -30,6 +30,7 @@ class GameTest < Minitest::Test
     player1 = game.create_players[0]
     player2 = game.create_players[1]
     assert_equal player1.name, "Megan"
+    assert_equal player2.name, "Aurora"
   end
 
   def test_create_turn

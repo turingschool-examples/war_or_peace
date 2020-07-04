@@ -25,7 +25,8 @@ class Turn
 
   def winner_war
     #If a player only has one or two cards left and it matches with the other player's
-    #delete the players last card
+    #delete the players last card/ last two cards
+    # otherwise the method acting on the non existent card will throw an error
     if player1.deck.cards.size < 3 || player2.deck.cards.size < 3
       require "pry"; binding.pry
       if player1.deck.rank_of_card_at(1) > player2.deck.rank_of_card_at(1)
@@ -78,7 +79,7 @@ class Turn
 
   def award_spoils(winner)
     if type == :basic
-      @spoils_of_war = pile_cards
+      @spoils_of_war = pile_cards.shuffle
       winner.deck.cards << @spoils_of_war
       winner.deck.cards.flatten!
       # player2.deck.cards.flatten!
