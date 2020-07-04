@@ -8,28 +8,21 @@ class Turn
     @spoils_of_war = []
   end
 
-  def start_game
-    if start_game == "GO"
-      game.start
-      elsif start_game != "GO"
-        p "Spelling error, please type 'GO'"
-          start_game = gets.chomp
-    end
-  end
+
+
 
   def type
-    if player1.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(0) && player2.deck.rank_of_card_at(2)
-      :mutually_assured_destruction
-    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+    if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
       :war
-    else
+    elsif player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
       :basic
+    elsif player1.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(0) && player2.deck.rank_of_card_at(2)
+        :mutually_assured_destruction
     end
   end
 
   def card_draw(x)
-    if type == :war
-       player1.deck.rank_of_card_at(x) > player2.deck.rank_of_card_at(x)
+    if  player1.deck.rank_of_card_at(x) > player2.deck.rank_of_card_at(x)
       player1
     else
       player2
@@ -41,9 +34,9 @@ class Turn
         card_draw(2)
       elsif type == :mutually_assured_destruction
         "No Winner"
-        return nil
-      else card_draw(0)
-      test_rank_of_card_at
+      else type == :basic
+        card_draw(0)
+
       end
     end
 
