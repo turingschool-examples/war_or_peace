@@ -1,5 +1,4 @@
 require './lib/player'
-require 'pry'
 
 class Turn
 
@@ -20,7 +19,11 @@ class Turn
     if @player_1.deck.cards[0].rank != @player_2.deck.cards[0].rank
       return @game_type = :basic
     else
-      if @player_1.deck.cards[2].rank == @player_2.deck.cards[2].rank
+      if (@player_1.deck.cards[2] == nil)
+        return :lost1
+      elsif (@player_2.deck.cards[2] == nil)
+        return :lost2
+      elsif @player_1.deck.cards[2].rank == @player_2.deck.cards[2].rank
         return @game_type = :mutually_assured_destruction
       else
         return @game_type = :war
@@ -31,7 +34,12 @@ class Turn
   #the 1st and 3rd card from both player's decks are compared. Based on their outcomes will determine the winner of the round.
   def winner
 
-    if @game_type == :basic
+    if (@player_1.deck.cards[2] == nil)
+      return @player_2
+    elsif (@player_2.deck.cards[2] == nil)
+      return @player_2
+
+    elsif @game_type == :basic
       if @player_1.deck.cards[0].rank > @player_2.deck.cards[0].rank
         @won_round = @player_1
         return @player_1
@@ -90,7 +98,9 @@ class Turn
   end
 
   def award_spoils
-    won_round.deck.cards.concat(spoils_of_war)
+    spoils = won_round.deck.cards.concat(spoils_of_war)
+    @spoils_of_war = []
+    spoils
   end
 
-end
+end #end of Turn class
