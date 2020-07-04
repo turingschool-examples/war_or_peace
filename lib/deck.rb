@@ -32,8 +32,8 @@ class Deck
     @cards.shift
   end
 
-  def add_card(card1)
-    @cards << card1
+  def add_card(card_array)
+    @cards.each {|card| @cards.push}
   end
 
 end
