@@ -13,10 +13,7 @@ class Deck
   end
 
   def high_ranking_cards
-#declare accumulator with []
-#loop through cards
-#if cards.rank >= 11
-#add card to accumulator (array)
+
     high_cards = []
     @cards.each do |card|
       if card.rank >= 11
@@ -29,19 +26,24 @@ class Deck
   def percent_high_ranking
 
     high_cards_2 = []
-    low_cards = []
+
     @cards.each do |card|
       if card.rank >= 11
         high_cards_2 << card
-      else
-        low_cards << card
+      
       end
     end
-    ((high_cards_2.count / (high_cards_2.count + low_cards.count).to_f)*100).round(2)
+
+    ((high_cards_2.count / (@cards.count).to_f)*100).round(2)
   end
 
   def remove_card
-    
+    @cards.shift
+    #require "pry"; binding.pry #does this include everything above it?
+  end
 
+  def add_card(card)
+    @cards << card
+  end
 
 end
