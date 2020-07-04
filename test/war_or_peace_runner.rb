@@ -71,7 +71,7 @@ p @player1.deck.cards.size
 p @player2.deck.cards.size
 def start
     p "Welcome to War! (or Peace) This game will be played with 52 cards."
-    p "The players today are Megan and Aurora."
+    p "The players today are #{@player1} and #{@player2}."
     p "Type 'GO' to start the game!"
     p "------------------------------------------------------------------"
     input = gets.chomp!
@@ -90,11 +90,12 @@ def start
           @turn.award_spoils(winner)
           #player1.deck
           #player2.deck
-          if @turn.type == :basic || @turn.type == :war
-            p "Turn #{turn_count}: #{@turn.type} - #{@turn.winner} won #{@turn.pile_cards.count} cards!"
+          if @turn.type == :basic
+            p "Turn #{turn_count}: #{@turn.type} - #{@turn.winner.name} won #{@turn.pile_cards.count} cards!"
           else
             p "*mutually assured destruction* 6 cards removed from play"
           end
+
           p "#{@player1.deck.cards.length} p1"
           p "#{@player2.deck.cards.length} p2"
           turn_count += 1
