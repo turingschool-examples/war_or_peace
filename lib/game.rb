@@ -4,7 +4,7 @@ require './lib/player'
 require './lib/turn'
 
 class Game
-attr_reader :player1, :player2, :turn, :starter
+attr_reader :player1, :player2, :turn, :starter, :deck1, :deck2
 
   def initialize(turn_param)
     @turn = turn_param
@@ -38,17 +38,10 @@ attr_reader :player1, :player2, :turn, :starter
   #   end
   #   @cards
   # end
-  
+
   #
-  def welcome
-  until @starter == "GO"
-    p "Welcome to War! (or Peace) This game will be played with 52 cards."
-    p "the players today are Megan and Aurora."
-    p "Type 'GO' to start the game!"
-    p "--------------------------------------------------------------------"
-    p ">"
-    @starter = gets.chomp.upcase
-    end
-  end
+  
+
+
 
 end

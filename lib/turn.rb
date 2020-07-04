@@ -11,6 +11,15 @@ attr_reader :player1, :player2, :spoils_of_war, :type, :victor
     @spoils_of_war = []
   end
 
+  def start
+    until @starter == "GO"
+      p "Type 'GO' to start the game!"
+      p "--------------------------------------------------------------------"
+      p ">"
+      @starter = gets.chomp.upcase
+    end
+  end
+
   def conditional_setup
     @equal_condition1 = @player1.deck.rank_of_card_at(0) ==  @player2.deck.rank_of_card_at(0)
     @equal_condition2 = @player1.deck.rank_of_card_at(2) ==  @player2.deck.rank_of_card_at(2)
