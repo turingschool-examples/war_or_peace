@@ -19,7 +19,7 @@ standard_deck = card_ranks.map do |rank|
   end
 end.flatten!
 
-# Generating Decks
+# Generating Player Decks
 random_deck = standard_deck.shuffle!
 random_deck_split = random_deck.each_slice(26).map { |deck_half| deck_half }
 
@@ -33,6 +33,8 @@ deck2 = Deck.new(cards2)
 player1 = Player.new("Linda", deck1)
 player2 = Player.new("Bob", deck2)
 
+
+# SMALL DECKS FOR TESTING
 # card1 = Card.new(:heart, 'Jack', 11)
 # card2 = Card.new(:heart, '10', 10)
 # card3 = Card.new(:heart, '9', 9)
