@@ -11,25 +11,22 @@ class CardGeneratorTest < Minitest::Test
   end
 
 
-  def test_it_has_a_text_file_to_read
-    # skip
-    new_cards = CardGenerator.new
-
-
-    assert_equal new_cards.show_text_file.length, 748
-  end
-
-
   def test_it_has_52_cards
     new_cards = CardGenerator.new
 
-    assert_equal new_cards.all_cards.length, 52
+    assert_equal new_cards.cards_split.length, 52
   end
 
   def test_it_has_no_duplicates
     new_cards = CardGenerator.new
 
-    assert_equal new_cards.all_cards.uniq, new_cards.all_cards
+    assert_equal new_cards.cards_split.uniq, new_cards.cards_split
+  end
+
+  def test_it_can_assign_values
+    new_cards = CardGenerator.new
+
+    assert_equal new_cards.assign_values, new_cards.card_values_split[0][2]
   end
 
 

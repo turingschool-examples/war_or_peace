@@ -1,29 +1,31 @@
 class CardGenerator
 
-  attr_reader :results
-  attr_accessor :all_cards, :suit, :value, :rank, :card_values_split
+  attr_reader :results, :rank
+  attr_accessor :cards_split, :suit, :value, :card_values_split, :card1, :number, :cards, :card
 
   def initialize
     file = File.open("./lib/cards.txt")
     @results = file.read
-    @all_cards = @results.split(/\n/)
-    @card_values_split = all_cards.collect{ |x| x.split(", ")}
-    @suit = @card_values_split.collect{ |x| x[1]}
-    @value = @all_cards.collect{ |x| x[0] }
-    @rank = @card_values_split.collect{ |x| x[2]}
-    # shuffled_deck = new_cards.all_cards.shuffle
-    # half_deck1 = shuffled_deck.pop(26)
-    # half_deck2 = shuffled_deck
+    @cards_split = @results.split(/\n/)
+    @card_values_split = @cards_split.collect{ |x| x.split(", ")}
+    @card = card
   end
 
-  def show_text_file
-    @results
+  def card_suit(number)
+    @card_values_split[number][1]
   end
 
+  def card_rank(number)
+    @card_values_split[number][0]
+  end
+
+  def card_value(number)
+    @card_values_split[number][2]
+  end
 end
 
 new_cards = CardGenerator.new
 # shuffled_deck = new_cards.all_cards.shuffle
 # half_deck1 = shuffled_deck.pop(26)
 # half_deck2 = shuffled_deck
-p new_cards.rank
+p new_cards.card_value(0)
