@@ -17,12 +17,46 @@ require './war_or_peace_runner'
 
 class GameTest < Minitest::Test
   def test_it_exists
-    Game
+    card_1 = Card.new(:club, 'Jack', 11)
+    card_2 = Card.new(:heart, 'Seven', 7)
+    card_3 = Card.new(:spade, 'Two', 2)
+    card_4 = Card.new(:diamond, 'King', 13)
+    card_5 = Card.new(:heart, 'Eight', 12)
+    card_6 = Card.new(:club, 'Queen', 8)
+    card_7 = Card.new(:spade, 'Ace', 14)
+    card_8 = Card.new(:diamond, 'Three', 3)
+    deck_1 = Deck.new([card_1, card_3, card_5, card_7])
+    deck_2 = Deck.new([card_2, card_4, card_6, card_8])
+    player_1 = Player.new('Priya', deck_1)
+    player_2 = Player.new('Ricky', deck_2)
+    turn = Turn.new(player_1, player_2)
+    # wrong initialization
+    # game = Game.new(turn, standard_deck)
+    game = Game.new('Priya', 'Ricky')
+    # So far, so good!!!
+    assert_instance_of Game, game
+    # Yay!!!
   end
 
   # Create 52 cards - standard_deck
   def test_it_has_a_full_deck
-    skip
+    card_1 = Card.new(:club, 'Jack', 11)
+    card_2 = Card.new(:heart, 'Seven', 7)
+    card_3 = Card.new(:spade, 'Two', 2)
+    card_4 = Card.new(:diamond, 'King', 13)
+    card_5 = Card.new(:heart, 'Eight', 12)
+    card_6 = Card.new(:club, 'Queen', 8)
+    card_7 = Card.new(:spade, 'Ace', 14)
+    card_8 = Card.new(:diamond, 'Three', 3)
+    deck_1 = Deck.new([card_1, card_3, card_5, card_7])
+    deck_2 = Deck.new([card_2, card_4, card_6, card_8])
+    player_1 = Player.new('Priya', deck_1)
+    player_2 = Player.new('Ricky', deck_2)
+    turn = Turn.new(player_1, player_2)
+    game = Game.new('Priya', 'Ricky')
+
+    assert_equal [], game.standard_deck
+    # Tested, full deck created!!
   end
 
   def test_deck_can_shuffle
