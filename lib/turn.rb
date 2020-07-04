@@ -5,7 +5,6 @@ attr_reader :player1, :player2, :spoils_of_war
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
-    #@winner = nil
   end
 
   def type
@@ -23,28 +22,25 @@ attr_reader :player1, :player2, :spoils_of_war
       p "No winner"
     elsif type() == :basic
         if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
-          # @winner =
           @player1
         else @player1.deck.rank_of_card_at(0) < @player2.deck.rank_of_card_at(0)
-          # @winner =
           @player2
          end
     elsif type() == :war
         if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
-          # @winner =
           @player1
         else @player1.deck.rank_of_card_at(2) < @player2.deck.rank_of_card_at(2)
-          # @winner =
           @player2
         end
       end
      end
 
    def pile_cards
-
       if type() == :basic
         @spoils_of_war << @player1.deck.cards.slice!(0)
         @spoils_of_war << @player2.deck.cards.slice!(0)
+        #@spoils_of_war.concat(player1.deck.cards.slice!(0))
+        #@spoils_of_war.concat(player2.deck.cards.slice!(0))
       elsif type() == :war
         @spoils_of_war.concat(player1.deck.cards.slice!(0..2))
         @spoils_of_war.concat(player2.deck.cards.slice!(0..2))
@@ -59,7 +55,9 @@ attr_reader :player1, :player2, :spoils_of_war
    end
 
    def award_spoils(winner)
+     @spoils_of_war.shuffle!
      winner.deck.cards.concat(@spoils_of_war)
+     @spoils_of_war = []
    end
 end
 
