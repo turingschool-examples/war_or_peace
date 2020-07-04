@@ -14,6 +14,7 @@ class Turn
   end
 
   #the 1st and 3rd card from both player's decks and compares them. Based on their outcome will determine the game type
+  #note if the player needs more than 2 cards to play but doesn't have enough will return :lost for whichever player lost
   def type
 
     if @player_1.deck.cards[0].rank != @player_2.deck.cards[0].rank
