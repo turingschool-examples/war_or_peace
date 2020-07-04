@@ -25,17 +25,15 @@ class Turn
 
   def winner_war
     #If a player only has one or two cards left and it matches with the other player's
-    #delete the players last card/ last two cards
+    #delete the players last card or compare the second card instead of third
     # otherwise the method acting on the non existent card will throw an error
     if player1.deck.cards.size < 3 || player2.deck.cards.size < 3
-      require "pry"; binding.pry
       if player1.deck.rank_of_card_at(1) > player2.deck.rank_of_card_at(1)
         player1
       else
         player2
       end
     elsif player1.deck.cards.size < 2 || player2.deck.cards.size < 2
-        require "pry"; binding.pry
       if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
         player1
       else
