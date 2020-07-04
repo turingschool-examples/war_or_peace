@@ -18,4 +18,23 @@ attr_reader :player1, :player2, :spoils_of_war
     end
   end
 
+  def winner
+    if type == :basic && player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+      then player1
+
+    elsif type == :basic &&  player1.deck.rank_of_card_at(0) < player2.deck.rank_of_card_at(0)
+      then player2
+
+    elsif type == :war && player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+      then player1
+
+    elsif type == :war && player1.deck.rank_of_card_at(2) < player2.deck.rank_of_card_at(2)
+      then player2
+
+    else type == :mutually_assured_destruction
+      "No winner"
+    end
+
+  end
+
 end
