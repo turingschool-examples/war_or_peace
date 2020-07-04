@@ -1,3 +1,4 @@
+require 'pry'
 class Turn
 attr_reader :player1, :player2, :spoils_of_war
 
@@ -36,30 +37,40 @@ attr_reader :player1, :player2, :spoils_of_war
      end
 
    def pile_cards
-      if type() == :basic
+      if type() == :mutually_assured_destruction
+        # @player1.deck.cards.delete_at(0..2)
+        # @player2.deck.cards.delete_at(0..2)
+        @player1.deck.cards.shift(3)
+        @player2.deck.cards.shift(3)
+
+        # 3.times do
+        #   @player1.deck.cards.remove_card
+        #
+        # end
+        # 3.times do
+        #   @player2.deck.cards.remove_card
+        # end
+      elsif type() == :war
+        @spoils_of_war.concat(player1.deck.cards.slice!(0..2))
+        @spoils_of_war.concat(player2.deck.cards.slice!(0..2))
+      else type() == :basic
         @spoils_of_war << @player1.deck.cards.slice!(0)
         @spoils_of_war << @player2.deck.cards.slice!(0)
         #@spoils_of_war.concat(player1.deck.cards.slice!(0))
         #@spoils_of_war.concat(player2.deck.cards.slice!(0))
-      elsif type() == :war
-        @spoils_of_war.concat(player1.deck.cards.slice!(0..2))
-        @spoils_of_war.concat(player2.deck.cards.slice!(0..2))
-      else :mutually_assured_destruction
-        3.times do
-          @player1.deck.remove_card
-        end
-        3.times do
-          @player2.deck.remove_card
-        end
       end
    end
 
    def award_spoils(winner)
-     @spoils_of_war.shuffle!
-     winner.deck.cards.concat(@spoils_of_war)
-     @spoils_of_war = []
-   end
-end
+     if type() == :basic || type() == :war
+       @spoils_of_war.shuffle!
+       winner.deck.cards.concat(@spoils_of_war)
+       @spoils_of_war = []
+     else
+       nil
+     end
+   end #method award_spoils
+end #class
 
 
 

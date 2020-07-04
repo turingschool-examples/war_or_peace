@@ -77,8 +77,8 @@ def start
     input = gets.chomp!
       if input == "Go" ||input == "GO" ||input == "go"
         turn_count = 1
-         while turn_count < 100
-        # while @player1.has_lost? == false || @player2.has_lost? == false || turn_count < 100
+         #while turn_count < 100
+         while @player1.has_lost? == false || @player2.has_lost? == false || turn_count < 100
         #  binding.pry
           @turn.player1
           @turn.player2
@@ -107,5 +107,5 @@ def start
 
 p start
 
-#   #   "#{turn.type} - #{turn.winner} won #{turn.spoils_pf_war.count} cards!
+
 #   #until @player1.has_lost? || @player2.has_lost? || turn_count == 0
