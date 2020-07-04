@@ -67,8 +67,8 @@ deck2.concat(deck.slice!(0..25))
 @player1 = Player.new("Megan", @deck1)
 @player2 = Player.new("Aurora",@deck2)
 @turn = Turn.new(@player1, @player2)
-#p @player1.deck.cards.size
-
+p @player1.deck.cards.size
+p @player2.deck.cards.size
 def start
     p "Welcome to War! (or Peace) This game will be played with 52 cards."
     p "The players today are Megan and Aurora."
@@ -77,7 +77,8 @@ def start
     input = gets.chomp!
       if input == "Go" ||input == "GO" ||input == "go"
         turn_count = 1
-        while turn_count < 10
+         while turn_count < 100
+        # while @player1.has_lost? == false || @player2.has_lost? == false || turn_count < 100
         #  binding.pry
           @turn.player1
           @turn.player2
@@ -89,7 +90,13 @@ def start
           @turn.award_spoils(winner)
           #player1.deck
           #player2.deck
-          p "#{@turn.type} - #{@turn.winner} won #{@turn.spoils_of_war.count} cards!"
+          if @turn.type == :basic || @turn.type == :war
+            p "Turn #{turn_count}: #{@turn.type} - #{@turn.winner} won #{@turn.pile_cards.count} cards!"
+          else
+            p "*mutually assured destruction* 6 cards removed from play"
+          end
+          p "#{@player1.deck.cards.length} p1"
+          p "#{@player2.deck.cards.length} p2"
           turn_count += 1
         end
         p "#{@player1.deck.cards.length} p1"
@@ -98,11 +105,6 @@ def start
     end
 
 p start
-#
-#
 
 #   #   "#{turn.type} - #{turn.winner} won #{turn.spoils_pf_war.count} cards!
 #   #until @player1.has_lost? || @player2.has_lost? || turn_count == 0
-
-#
-# start.war_or_peace_runner
