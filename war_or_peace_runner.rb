@@ -2,6 +2,8 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/card_generator'
+
 
 class Game
   attr_reader :player1, :player2, :turn_number, :turn, :spoils_of_war, :cards_won
@@ -15,42 +17,43 @@ class Game
   end
 
   def start
-    suits = %i[spades hearts diamonds clubs]
-    values = %i[Ace two three four five six seven eight nine ten Jack Queen King]
-    ranks = {
-      :Ace => 1,
-      :two => 2,
-      :three => 3,
-      :four => 4,
-      :five => 5,
-      :six => 6,
-      :seven => 7,
-      :eight => 8,
-      :nine => 9,
-      :ten => 10,
-      :Jack => 11,
-      :Queen => 12,
-      :King => 13
-    }
+    # suits = %i[spades hearts diamonds clubs]
+    # values = %i[Ace two three four five six seven eight nine ten Jack Queen King]
+    # ranks = {
+    #   :Ace => 1,
+    #   :two => 2,
+    #   :three => 3,
+    #   :four => 4,
+    #   :five => 5,
+    #   :six => 6,
+    #   :seven => 7,
+    #   :eight => 8,
+    #   :nine => 9,
+    #   :ten => 10,
+    #   :Jack => 11,
+    #   :Queen => 12,
+    #   :King => 13
+    # }
 
-    fdeck = values.map {|value| suits.map {|suit| ranks.map{ |value, rank| Card.new(suit, value, rank)  }  } }.flatten
-    full_deck = fdeck.take(52)
-
-
-    shuffled_deck = full_deck.shuffle
+    # fdeck = values.map {|value| suits.map {|suit| ranks.map{ |value, rank| Card.new(suit, value, rank)  }  } }.flatten
+    # full_deck = fdeck.take(52)
+    #
+    #
+    # shuffled_deck = full_deck.shuffle
 
     #
-    deck1 = Deck.new(shuffled_deck.take(26))
-    deck2 = Deck.new(shuffled_deck.drop(26))
+    new_cards = CardGenerator.new("./lib/cards.txt")
+
+    deck1 = Deck.new(new_cards.half_deck1)
+    deck2 = Deck.new(new_cards.half_deck2)
 
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
-    cards_won = @spoils_of_war.length
     turn = Turn.new(player1, player2)
 
 
 
-    10000.times{
+    1000.times{
       turn = Turn.new(player1, player2)
       turn.type
       winner = turn.winner

@@ -33,11 +33,4 @@ class CardGeneratorTest < Minitest::Test
   end
 
 
-  def test_it_can_make_2_decks
-
-    new_cards = CardGenerator.new
-
-
-  end
-
 end
