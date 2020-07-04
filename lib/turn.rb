@@ -11,15 +11,6 @@ attr_reader :player1, :player2, :spoils_of_war, :type, :victor
     @spoils_of_war = []
   end
 
-  def start
-    until @starter == "GO"
-      p "Type 'GO' to start the game!"
-      p "--------------------------------------------------------------------"
-      p ">"
-      @starter = gets.chomp.upcase
-    end
-  end
-
   def conditional_setup
     @equal_condition1 = @player1.deck.rank_of_card_at(0) ==  @player2.deck.rank_of_card_at(0)
     @equal_condition2 = @player1.deck.rank_of_card_at(2) ==  @player2.deck.rank_of_card_at(2)
@@ -55,19 +46,22 @@ attr_reader :player1, :player2, :spoils_of_war, :type, :victor
 
 
   def card_comparitor (index)
-    if player1.deck.rank_of_card_at(index) > player2.deck.rank_of_card_at(index)
-      player1
-    else player2
+    if @player1.deck.rank_of_card_at(index) > player2.deck.rank_of_card_at(index)
+      @player1
+    elsif @player1.deck.rank_of_card_at(index) < player2.deck.rank_of_card_at(index)
+      @player2
+    else
+      "No Winner"
     end
   end
 
   def winner
     if type == :war
-      card_comparitor(2)
+      @winner = card_comparitor(2)
     elsif type == :mutually_assured_destruction
-      puts "No Winner"
+      "No Winner"
       return nil
-    else card_comparitor(0)
+    else @winner = card_comparitor(0)
     end
   end
 
@@ -90,9 +84,8 @@ attr_reader :player1, :player2, :spoils_of_war, :type, :victor
 
   end
 
-  def award_spoils(victor_param)
-    @victor = victor_param
-    @victor.deck.cards.concat(@spoils_of_war)
+  def award_spoils
+    @winner.deck.cards.concat(@spoils_of_war)
     @spoils_of_war = []
   end
 
