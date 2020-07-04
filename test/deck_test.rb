@@ -1,40 +1,69 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/deck'
 require './lib/card'
+require './lib/deck'
 
 class DeckTest < Minitest::Test
-  attr_reader :card1, :card2, :card3
-  def initialize(card1, card2, card3)
-    @card1 = card1
-    @card2 = card2
-    @card3 = card3
+  def setup
+    @card1 = Card.new(:diamond, 'Queen', 12)
+    @card2 = Card.new(:spade, '3', 3)
+    @card3 = Card.new(:heart, 'Ace', 14)
+    @cards = [@card1, @card2, @card3]
+    @deck = Deck.new(@cards)
   end
 
-  def setup
+  def test_it_exists
+    deck = Deck.new([])
+
+    assert_instance_of Deck, deck
+  end
+
+  def test_rank_of_card_at
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
   end
 
-  def rank_of_card_at
-    #something goes here
+  def cards
+    @cards = [card1, card2, card3]
+    assert_equal 12, @cards.rank_of_card_at(0)
+    assert_equal 14, @cards.rank_of_card_at(2)
   end
 
-  def high_ranking_cards
-    #something here
+  def test_high_ranking_cards
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+
+    assert_equal [card1, card3], deck.high_ranking_cards
   end
 
-  def percent_high_ranking
-    #something here
+  def test_percent_high_ranking
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+
+    assert_equal 66.67, deck.percent_high_ranking
   end
 
-  def remove_card()
-    #something
+  def test_remove_card
+    assert_equal [card1, card2], deck.remove_card
   end
 
-  def add_card
-    #something
-  end
+  def test_add_card
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+    card4 = Card.new(:heart, 'Jack', 11)
+    cardX = Card.new(:club, '9', 9)
 
+    assert_equal [card1, card2, card3, card4], card.add_card(card4)
+    assert_equal [card1, card2, card3, cardX], card.add_card(cardX)
+  end
 end
