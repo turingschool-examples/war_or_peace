@@ -7,22 +7,8 @@ require './lib/turn'
 require './lib/card_generator'
 
 class Game
+  # create_deck method was replaced by the card generator
 #   def create_deck
-#     # suits = [:heart, :diamond, :spades, :clubs]
-#     # values = [
-#     # '2' => 2,
-#     # '3' => 3,
-#     # '4' => 4,
-#     # '5' => 5,
-#     # '6' => 6,
-#     # '7' => 7,
-#     # '8' => 8,
-#     # '9' => 9,
-#     # '10' => 10,
-#     # 'Jack' => 11,
-#     # 'Queen' => 12,
-#     # 'King' => 13,
-#     # 'Ace' => 14]
 # # Create Hearts
 #     full_deck = []
 #     rank = 2
