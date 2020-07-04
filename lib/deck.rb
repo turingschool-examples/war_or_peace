@@ -29,7 +29,7 @@ class Deck
     (high_ranking_cards.count / @cards.count).to_f * 100
   end
 
-  def remove_rcard
+  def remove_card
     @cards.shift
   end
 
