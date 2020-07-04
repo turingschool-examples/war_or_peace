@@ -26,7 +26,6 @@ class CardGeneratorTest < Minitest::Test
     card_gen = CardGenerator.new(@filename)
 
     card_gen.generate_cards
-    require 'pry'; binding.pry
 
     assert_equal 52, card_gen.cards.length
   end
