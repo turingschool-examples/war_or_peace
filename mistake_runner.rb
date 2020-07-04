@@ -9,6 +9,7 @@
 
 # Needed to Nuke and start over
 # Old code way below
+
 require 'minitest/autorun'
 require 'minitest/nyan_cat'
 require './lib/card'
@@ -19,6 +20,12 @@ require './war_or_peace_runner'
 
 
 class GameTest < Minitest::Test
+
+  def setup
+
+  end
+
+
 end
 
 

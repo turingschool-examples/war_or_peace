@@ -3,7 +3,17 @@
 # This way, I can also practice SETUP method
 # See old code waaay down below
 
-
+# Now realizing if my class is game, my file should be game, so i
+# need to work this in a seperate file
+# class Game
+#
+#   def initialize(player_1, player_2)
+#     @player_1 = player_1
+#     @player_2 = player_2
+#   end
+#
+#
+# end
 
 
 
