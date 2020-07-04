@@ -32,13 +32,11 @@ class Deck
     results.round(2)
   end
 
-  def remove_card
-   @cards.shift
+  def remove_card(index)
+   @cards.delete_at(index)
   end
 
   def add_card(new_card)
     @cards << new_card
   end
 end
-
-# deck = Deck.new(card)
