@@ -1,48 +1,43 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/deck'
+require './lib/card'
+require "pry";
+class DeckTest < Minitest::Test
 
-class DeckTest < Minitest :: Tes
-
-  def test_it_exists
-    deck = Deck.new([])
-    assert_instance_of Deck, deck
+  def setup
+    @card_1 = Card.new(:heart, "Jack", 11)
+    @card_2 = Card.new(:diamond, "6", 6)
+    @card_3 = Card.new(:heart, "Queen", 12)
+    @cards = [@card_1, @card_2, @card_3]
+    @deck = Deck.new(@cards)
   end
 
-def test_it_has_cards
-  card_1 = Card.new(:heart, "Jack", 11)
-  card_1 = Card.new(:diamond, "6", 6)
-  card_1 = Card.new(:heart, "Queen", 12)
+  def test_it_exists
+    assert_instance_of Deck, @deck
+  end
 
-  deck = Deck.new([card_1, card_2, card_3])
-
-  assert_equal [card_1, card_2, card_3], deck.cards
-end
-
+  def test_it_has_cards
+    assert_equal @cards, @deck.cards
+  end
 
   def test_it_has_rank_of_cards_at
-    deck = Deck.new[index]
-    assert_equal 1, deck.rank_of_card_at(0)
+    assert_equal 11, @deck.rank_of_card_at(0)
   end
 
   def test_high_ranking_cards
-    deck = Deck.new
-    assert_equal Jack, deck.high_ranking_cards
+    assert_equal [@card_1, @card_3], @deck.high_ranking_cards
   end
 
-   def test_percent_of_high_ranking
-    card1 = Card.new(:heart, "2", 2)
-    card2 = Card.new(:spade, "Ace", 14)
-    card3 = Card.new(:heart, "King", 13)
-   assert_equal 66.67, deck.percent_of_high_ranking
+  def test_percent_of_high_ranking
+    assert_equal 66.67, @deck.percent_high_ranking
   end
 
-  def card_can_be_removed
-    deck = Deck.new
-    assert_equal (@cards - 1), @cards.shift
+  def test_if_card_can_be_removed
+    assert_equal @card_1, @deck.remove_card
   end
 
   def card_can_be_added
-    deck = Deck.new
-    assert_equal (@cards + 1), @cards.push
+    assert_equal @card_1, @deck.push
   end
+end
