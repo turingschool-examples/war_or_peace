@@ -79,6 +79,10 @@ def start
         turn_count = 1
          #while turn_count < 100
          while @player1.has_lost? == false || @player2.has_lost? == false || turn_count < 100
+           if turn_count == 1000000
+             p "---- DRAW ----"
+             break
+           end 
         #  binding.pry
           @turn.player1
           @turn.player2
@@ -107,5 +111,8 @@ def start
 
 p start
 
+
+"*~*~*~* #{@turn.winner.name} has won the game! *~*~*~*"
+"---- DRAW ----"
 
 #   #until @player1.has_lost? || @player2.has_lost? || turn_count == 0
