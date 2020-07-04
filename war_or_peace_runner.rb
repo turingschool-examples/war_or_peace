@@ -9,7 +9,7 @@ def setup_deck
 
   @deck1 = Deck.new(deck.slice(0, 26))
   @deck2 = Deck.new(deck.slice(27, 52))
-end
+end #end of setup_deck
 
 def setup_players
   @player1 = Player.new("Megan", @deck1)
