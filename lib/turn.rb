@@ -11,44 +11,35 @@ attr_reader :player1, :player2, :spoils_of_war, :type, :victor
     @spoils_of_war = []
   end
 
-  def conditional_setup
-    @equal_condition1 = @player1.deck.rank_of_card_at(0) ==  @player2.deck.rank_of_card_at(0)
-    @equal_condition2 = @player1.deck.rank_of_card_at(2) ==  @player2.deck.rank_of_card_at(2)
-    @p1_nil_condition2 = (@player1.deck.cards[2] == nil)
-    @p2_nil_condition2 = (@player2.deck.cards[2] == nil)
-    @p1_nil_deck = @player1.deck == []
-    @p2_nil_deck = @player2.deck == []
-  end
-
-  def type_no_win
-
-    conditional_setup
-
-    if (@equal_condition1 && @equal_condition2)
-      :mutually_assured_destruction
-    elsif @equal_condition1
-      :war
-    elsif @equal_condition1 && ( @p1_nil_condition2 || @p2_nil_condition1)
-      puts "Player #{winner} Wins the Game!"
-    else :basic
-    end
-  end
+  # def conditional_setup
+  #   @equal_condition1 = @player1.deck.rank_of_card_at(0) ==  @player2.deck.rank_of_card_at(0)
+  #   @equal_condition2 = @player1.deck.rank_of_card_at(2) ==  @player2.deck.rank_of_card_at(2)
+  #   @p1_nil_condition2 = (@player1.deck.cards[2] == nil)
+  #   @p2_nil_condition2 = (@player2.deck.cards[2] == nil)
+  #   @p1_nil_deck = @player1.deck == []
+  #   @p2_nil_deck = @player2.deck == []
+  # end
 
   def type
-    conditional_setup
 
-    if @p1_nil_deck || @p2_nil_deck
-      puts "Player #{winner} Wins the Game!"
-    else type_no_win
+    if @player1.deck.cards[0].rank ==  @player2.deck.cards[0].rank && @player1.deck.cards[2].rank ==  @player2.deck.cards[2].rank
+      :mutually_assured_destruction
+    elsif @player1.deck.cards[0].rank == @player2.deck.cards[0].rank
+      :war
+    elsif @player1.deck.cards[0].rank ==  @player2.deck.cards[0].rank && ((@player1.deck.cards[2] == nil) || (@player2.deck.cards[2]== nil))
+      if @player2.deck.cards[2] == nil
+        @player2.has_lost? == true
+      else @player1.has_lost? == true
+      end
+    else
+      :basic
     end
   end
 
-
-
   def card_comparitor (index)
-    if @player1.deck.rank_of_card_at(index) > player2.deck.rank_of_card_at(index)
+    if @player1.deck.cards[index].rank > player2.deck.cards[index].rank
       @player1
-    elsif @player1.deck.rank_of_card_at(index) < player2.deck.rank_of_card_at(index)
+    elsif @player1.deck.cards[index].rank < player2.deck.cards[index].rank
       @player2
     else
       "No Winner"
@@ -74,8 +65,8 @@ attr_reader :player1, :player2, :spoils_of_war, :type, :victor
 
 
     elsif type == :war
-        3.times {@spoils_of_war << @player1.deck.remove_card}
-        3.times {@spoils_of_war << @player2.deck.remove_card}
+      3.times {@spoils_of_war << @player1.deck.remove_card}
+      3.times {@spoils_of_war << @player2.deck.remove_card}
 
     else
       3.times {@player1.deck.cards.delete_at(0)}
@@ -87,6 +78,14 @@ attr_reader :player1, :player2, :spoils_of_war, :type, :victor
   def award_spoils
     @winner.deck.cards.concat(@spoils_of_war)
     @spoils_of_war = []
+  end
+
+  def game_over
+    if @player1.has_lost? == true || @player2.has_lost? == true
+      true
+    else
+      false
+    end
   end
 
 

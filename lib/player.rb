@@ -13,4 +13,6 @@ attr_reader :name, :deck
     @deck.cards.empty?
   end
 
+  
+
 end
