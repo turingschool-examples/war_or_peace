@@ -32,14 +32,14 @@ class TurnTest < Minitest::Test
     player2 = Player.new("Aurora", deck2)
 
     turn = Turn.new(player1, player2)
+      # binding.pry
 
     assert_equal "Megan", turn.player1.name
     assert_equal deck1, turn.player1.deck
 
     assert_equal "Aurora", turn.player2.name
     assert_equal deck2, turn.player2.deck
-
-
+    assert_equal [], turn.spoils_of_war
   end
 
 
