@@ -22,6 +22,7 @@ class GameTest < Minitest::Test
     deck_2 = Deck.new([card_2, card_4, card_6, card_8])
     player_1 = Player.new('Priya', deck_1)
     player_2 = Player.new('Ricky', deck_2)
+    turn = Turn.new(player_1, player_2)
     game = Game.new(player_1, player_2)
     # require 'pry'; binding.pry
     # Some functionality
@@ -43,7 +44,16 @@ class GameTest < Minitest::Test
     deck_2 = Deck.new([card_2, card_4, card_6, card_8])
     player_1 = Player.new('Priya', deck_1)
     player_2 = Player.new('Ricky', deck_2)
+    turn = Turn.new(player_1, player_2)
     game = Game.new(player_1, player_2)
-    game.start
+    require 'pry'; binding.pry
+    # game.start
+    # Welcome message working
+    # Player names working
+    # User input variable working
+    # If conditional working
+    # if else statement works and starts user over
+    # if statement needs a new method for playing the game
+    
   end
 end
