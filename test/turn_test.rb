@@ -17,9 +17,19 @@ class TurnTest < Minitest::Test
     @card8 = Card.new(:club, '3', 3)
     @basic_deck1 = Deck.new([@card1, @card2, @card3])
     @basic_deck2 = Deck.new([@card4, @card5, @card6])
+    @war_deck1 = Deck.new([@card3, @card2, @card4])
+    @war_deck2 = Deck.new([@card7, @card1, @card6])
+    @mad_deck1 = Deck.new([@card3, @card1, @card2])
+    @mad_deck2 = Deck.new([@card7, @card4, @card8])
     @player1 = Player.new('Ryan', @basic_deck1)
     @player2 = Player.new('Tim', @basic_deck2)
     @basic_turn = Turn.new(@player1, @player2)
+    @player3 = Player.new('Ryan', @war_deck1)
+    @player4 = Player.new('Tim', @war_deck2)
+    @war_turn = Turn.new(@player3, @player4)
+    @player5 = Player.new('Ryan', @mad_deck1)
+    @player6 = Player.new('Tim', @mad_deck2)
+    @mad_turn = Turn.new(@player5, @player6)
   end
 
   def test_it_exists
@@ -36,5 +46,21 @@ class TurnTest < Minitest::Test
 
   def test_it_has_a_spoils_of_war_attribute_that_defaults_to_an_empty_array
     assert_equal [], @basic_turn.spoils_of_war
+  end
+
+  def test_it_has_a_type
+    assert_equal :basic, @basic_turn.type
+  end
+
+  def test_the_type_is_basic_if_the_first_cards_in_each_players_decks_are_different
+    assert_equal :basic, @basic_turn.type
+  end
+
+  def test_the_type_is_war_if_the_first_cards_in_each_players_decks_are_equal
+    assert_equal :war, @war_turn.type
+  end
+
+  def test_the_type_is_mutually_assured_desctruction_if_the_
+    assert_equal :mutually_assured_destruction, @mad_turn.type
   end
 end
