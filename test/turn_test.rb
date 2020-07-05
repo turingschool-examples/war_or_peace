@@ -203,9 +203,9 @@ class TurnTest < Minitest::Test
     turn = Turn.new(player1, player2)
     turn.type
     winner = turn.winner
-    turn.pile_cards 
+    turn.pile_cards
     turn.award_spoils(winner)
-
+# need to un-shuffle spoils_of_war in turn.rb to run this test correctly
     assert_equal [card7, card2, card1, card5, card4, card3, card6], player2.deck.cards
   end
 
