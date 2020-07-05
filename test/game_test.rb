@@ -36,12 +36,6 @@ class GameTest < Minitest::Test
     assert_instance_of Game, game
   end
 
-  # def test_the_game_starts
-  #   game = Game.new(@player1, @player2)
-  #
-  #   assert_equal "Game starts", game.start
-  # end
-
   def test_it_gives_a_greeting
     game = Game.new(@player1, @player2)
 
@@ -55,9 +49,9 @@ class GameTest < Minitest::Test
     assert_instance_of String, game.get_user_input
   end
 
-  def test_it_DRAWs_after_1mil_turn
-    game = Game.new(@player1, @player2)
-
-
-  end
+  # def test_it_DRAWs_after_1mil_turn
+  #   game = Game.new(@player1, @player2)
+  #
+  #
+  # end
 end
