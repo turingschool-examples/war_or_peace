@@ -1,3 +1,5 @@
+require 'pry'
+
 class Turn
   attr_reader :player1, :player2, :spoils_of_war
 
@@ -21,12 +23,28 @@ class Turn
 
 
   def winner
-    if type() === :mutually_assured_destruction
+    if type() == :mutually_assured_destruction
       return 'No Winner'
     end
 
-    i = type() === :basic ? 0 : 2
+    i = type() == :basic ? 0 : 2
     who_won = @player1.deck.cards[i].rank > @player2.deck.cards[i].rank
     who_won ? @player1 : @player2
+  end
+
+  def pile_cards
+    if type() == :mutually_assured_destruction
+      @player1.deck.cards.slice!(0,3)
+      @player2.deck.cards.slice!(0,3)
+    elsif type() == :war
+      player1Cards = @player1.deck.cards.slice!(0,3)
+      player2Cards = @player2.deck.cards.slice!(0,3)
+
+      @spoils_of_war.concat(player1Cards)
+      @spoils_of_war.concat(player2Cards)
+    else
+      @spoils_of_war << @player1.deck.cards.shift
+      @spoils_of_war << @player2.deck.cards.shift
+    end
   end
 end
