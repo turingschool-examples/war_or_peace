@@ -4,6 +4,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require 'pry'
 
 class TurnTest < Minitest::Test
   def setup
@@ -26,7 +27,6 @@ class TurnTest < Minitest::Test
 
     @player1 = Player.new("Megan", @deck1)
     @player2 = Player.new("Aurora", @deck2)
-
   end
 
   def test_it_exists
@@ -90,6 +90,14 @@ class TurnTest < Minitest::Test
     assert_equal @player2, @turn.winner
   end
 
+  def test_basic_winner_when_player_deck_empty
+    @deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    @deck2 = Deck.new([])
+    @turn = Turn.new(@player1, @player2)
+
+    assert_equal @player1, @turn.winner
+  end
+  binding.pry
   def test_basic_pile
      #skip
     @turn = Turn.new(@player1, @player2)
@@ -143,5 +151,4 @@ class TurnTest < Minitest::Test
     assert_equal [@card7, @card1, @card2, @card5, @card4, @card3, @card6], @player2.deck.cards
     assert_equal [@card8], @player1.deck.cards
   end
-
-end # this is the end of the class!!!
+end

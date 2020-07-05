@@ -23,7 +23,7 @@ class PlayerTest < Minitest::Test
   end
 
   def test_has_lost?
-    
+
     assert_equal false, @player.has_lost?
 
     @deck.remove_card
@@ -35,5 +35,4 @@ class PlayerTest < Minitest::Test
     @deck.remove_card
     assert_equal true, @player.has_lost?
   end
-
-end # this is the end of the class!!!
+end

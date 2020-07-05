@@ -7,11 +7,10 @@ class Deck
 
   def rank_of_card_at(index)
     if !@cards[index].nil?
-      return @cards[index].rank
+       @cards[index].rank
     else
-      return @cards[index]
+       @cards[index]
     end
-
   end
 
   def high_ranking_cards
@@ -36,8 +35,4 @@ class Deck
   def add_card(card)
     @cards << card
   end
-
-
-
-
-end # this is the end of the class!!!
+end 
