@@ -20,7 +20,8 @@ attr_reader :player1, :player2, :spoils_of_war
 
    def winner
     if type() == :mutually_assured_destruction
-     "No winner"
+    p  "No winner-------------------------------------------------------"
+    #p "*mutually assured destruction* 6 cards removed from play"
 
     elsif type() == :basic
         if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
@@ -49,8 +50,11 @@ attr_reader :player1, :player2, :spoils_of_war
 
    def award_spoils(winner)
        if type() == :mutually_assured_destruction
-         @spoils_of_war.concat(player1.deck.cards.slice!(0..2))
-         @spoils_of_war.concat(player2.deck.cards.slice!(0..2))
+         3.times do
+           @player1.deck.remove_card
+           @player2.deck.remove_card
+         end
+
        elsif
          @spoils_of_war.shuffle!
          winner.deck.cards.concat(@spoils_of_war)
