@@ -73,9 +73,26 @@ class GameTest < Minitest::Test
     player_2 = Player.new('Ricky', deck_2)
     turn = Turn.new(player_1, player_2)
     game = Game.new(player_1, player_2)
-    require 'pry'; binding.pry
     # game.start
     # game.user_start
+    require 'pry'; binding.pry
+    # Hmmm... until method seems okay,
+    # however, the if conditional isn't quite working
+    # Figured it out, my if conditional is fine
+    # tested with test file and pry, it should work
+    # So, there must be something wrong with until
+    # Which means something might be wrong with my player class
+    # Realized w/ .has_lost? the return was simply a string
+    # The string was fine for testing, but it doesn't help
+    # the computer understand what i want
+    # Which is a boolean!!!
+    # Must go and update my player file.
+    # FIXED! Looks like it is working.
+    # Time to polish and test edge cases
+    # Also - better go test Player class since I made edits
+
+    # FOUND ISSUE: my user input for name isn't connecting to player class parameter
+    # May need to update get chomp to runner instead
   end
 
 end

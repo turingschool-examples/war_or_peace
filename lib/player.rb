@@ -31,9 +31,11 @@ class Player
     # if deck.size < 1
     # if deck.empty?
     if deck.cards.empty?
-      p "#{name} has lost the war.! The battle drums still call, perhaps your luck will be better next time."
+      # p "#{name} has lost the war.! The battle drums still call, perhaps your luck will be better next time."
+      true
     else
-      p "#{name} is still in the running for the war!"
+      # p "#{name} is still in the running for the war!"
+      false
     end
   end
 end

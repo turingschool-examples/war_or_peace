@@ -68,17 +68,32 @@ class Game
     # returns true.)
     # Tested! After closing it, it works!!
     until (player_1.has_lost? || player_2.has_lost?)
-      # if turn.type == :basic
-      #   p "basic turn testing"
-      #   turn_counter += 1
-      # elsif turn.type == :war
-      #   turn_counter += 1
-      # elsif turn.type == :mutually_assured_destruction
-      #   turn_counter += 1
-      # else
-      #   p "OOOOOOOPS! MISTAKE IN USER_START METHOD"
-      # end
-      
+      if turn.type == :basic
+        # Looking at my turn class for hints
+        # I can work with .type, .winner, .pile_cards, .award_spoils(winner)
+
+        # This will call method to return the winning player
+        winner = turn.winner
+        # This will call method to add to spoils_of_war array`
+        turn.pile_cards
+        # This will call method to add and remove correct cards to player decks
+        turn.award_spoils(winner)
+        turn_counter += 1
+        p "Turn ##{turn_counter}: #{winner.name} won 2 cards"
+      elsif turn.type == :war
+        winner = turn.winner
+        turn.pile_cards
+        turn.award_spoils(winner)
+        turn_counter += 1
+        p "Turn ##{turn_counter}: WAR - #{winner.name} won 6 cards"
+      elsif turn.type == :mutually_assured_destruction
+        turn.winner
+        turn.pile_cards
+        turn_counter += 1
+      else
+        p "OOOOOOOPS! MISTAKE IN USER_START METHOD"
+      end
+
       # every time the turn instance runs, it will add on a +1 to the turn_counter
       # This will cause the until to stop once turn_counter = 100000
       break if turn_counter == 100000
