@@ -18,4 +18,15 @@ class Turn
       return :basic
     end
   end
+
+
+  def winner
+    if type() === :mutually_assured_destruction
+      return 'No Winner'
+    end
+
+    i = type() === :basic ? 0 : 2
+    who_won = @player1.deck.cards[i].rank > @player2.deck.cards[i].rank
+    who_won ? @player1 : @player2
+  end
 end
