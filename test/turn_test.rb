@@ -75,7 +75,7 @@ class TurnTest < Minitest::Test
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
 
-    assert_equal , turn.pile_cards
+    assert_equal (deck1 = [card2, card5, card8]), turn.pile_cards
   end
 
   # def test_award_spoils
