@@ -16,21 +16,44 @@ class Game
     turn_counter = 0
     until (player_1.has_lost? || player_2.has_lost?)
       if turn.type == :basic
+        turn_counter += 1
+        puts "TURN ##{turn_counter}:"
+        p "#{player_1.name} plays #{player_1.deck.cards[0].value}."
+        p "#{player_2.name} plays #{player_2.deck.cards[0].value}."
         winner = turn.winner
         turn.pile_cards
         turn.award_spoils(winner)
-        turn_counter += 1
-        p "Turn ##{turn_counter}: #{winner.name} won 2 cards"
+        # turn_counter += 1
+        # p "Turn ##{turn_counter}: #{winner.name} won 2 cards"
+        p "#{winner.name} won 2 cards!"
+        puts "==NEXT TURN=="
       elsif turn.type == :war
+        turn_counter += 1
+        puts "TURN ##{turn_counter}:"
+        p "#{player_1.name} plays #{player_1.deck.cards[0].value}."
+        p "#{player_2.name} plays #{player_2.deck.cards[0].value}."
+        puts "WAR!"
+        p "#{player_1.name} flips two more. Final card is... #{player_1.deck.cards[2].value}."
+        p "#{player_2.name} flips two more. Final card is... #{player_2.deck.cards[2].value}."
         winner = turn.winner
         turn.pile_cards
         turn.award_spoils(winner)
-        turn_counter += 1
-        p "Turn ##{turn_counter}: WAR - #{winner.name} won 6 cards"
+        # turn_counter += 1
+        # p "Turn ##{turn_counter}: #{winner.name} won 6 cards"
+        p "#{winner.name} won 6 cards!"
+        puts "==NEXT TURN=="
       elsif turn.type == :mutually_assured_destruction
-        turn.winner
-        turn.pile_cards
         turn_counter += 1
+        puts "TURN ##{turn_counter}:"
+        p "#{player_1.name} plays #{player_1.deck.cards[0].value}."
+        p "#{player_2.name} plays #{player_2.deck.cards[0].value}."
+        puts "WAR!"
+        p "#{player_1.name} flips two more. Final card is... #{player_1.deck.cards[2].value}."
+        p "#{player_2.name} flips two more. Final card is... #{player_2.deck.cards[2].value}!!! OMG!"
+        p turn.winner
+        turn.pile_cards
+        # turn_counter += 1
+        puts "==NEXT TURN=="
       else
         p "OOOOOOOPS! MISTAKE IN START METHOD"
       end
@@ -38,11 +61,31 @@ class Game
       break if turn_counter == 100000
     end
 
-    if turn_counter == 100000
-      puts "~~~~~~~~~ DRAW ~~~~~~~~~~"
+    # if turn_counter == 10000
+    #   puts "~~~~~~~~~ DRAW ~~~~~~~~~~"
+    # else
+    #   puts "THANKS FOR PLAYING!"
+    # end
+
+    # The above doesn't end the game correctly...
+    if player_1.has_lost? == true
+      puts "GAME OVER! #{player_1.name} has #{player_1.deck.cards.length} cards!"
+      p "YAY! #{player_2.name} has won the game!"
+      exit
+    elsif player_2.has_lost? == true
+      puts "GAME OVER! #{player_2.name} has #{player_2.deck.cards.length} cards!"
+      p "YAY! #{player_1.name} has won the game!"
+      exit
     else
-      puts "THANKS FOR PLAYING!"
+      p "~~~~~~~~~~~~~~ DRAW ~~~~~~~~~~~~~~"
+      p "Ares: God of War, decrees your war can have no victor."
+      p "Determine your own justice."
+      puts "#{player_1.name} has #{player_1.deck.cards.length} cards left."
+      puts "#{player_2.name} has #{player_2.deck.cards.length} cards left."
+      exit
     end
+
+    # Woo!!! It works now!!!
 
   end
 end

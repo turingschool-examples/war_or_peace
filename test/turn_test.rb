@@ -39,7 +39,7 @@ class TurnTest < Minitest::Test
 
     turn = Turn.new(player_1, player_2)
     # SUCCESS!!!
-
+    assert_instance_of Turn, turn
     # require 'pry'; binding.pry
     # Write a test to check two players
       # Do I really need to write this as a seperate test?
@@ -87,7 +87,7 @@ class TurnTest < Minitest::Test
 
     turn = Turn.new(player_1, player_2)
 
-    # assert_equal :basic, turn.type
+    assert_equal :basic, turn.type
       # for basic, card_1 and card_2 are NOT the same
       # WORKS!
 

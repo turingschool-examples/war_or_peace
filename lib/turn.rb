@@ -25,15 +25,15 @@ class Turn
     # require 'pry'; binding.pry
     # got the if statement to work properly... it's the :basic that's the issue right now
     # Huh... it works now. Unsure what I fixed
-    if player_1.deck.rank_of_card_at(0) != player_2.deck.rank_of_card_at(0)
-      # p "x"
-      :basic
-    elsif (player_1.deck.rank_of_card_at(0) == player_2.deck.rank_of_card_at(0)) && (player_1.deck.rank_of_card_at(2) == player_2.deck.rank_of_card_at(2))
+    # Had to update order since mutually_assured breaks game
+    if player_1.deck.rank_of_card_at(0) == player_2.deck.rank_of_card_at(0) && player_1.deck.rank_of_card_at(2) == player_2.deck.rank_of_card_at(2)
       :mutually_assured_destruction
-    elsif player_1.deck.rank_of_card_at(0) == player_2.deck.rank_of_card_at(0)
-      :war
+    # elsif player_1.deck.rank_of_card_at(0) == player_2.deck.rank_of_card_at(0)
+    #   :war
+    elsif player_1.deck.rank_of_card_at(0) != player_2.deck.rank_of_card_at(0)
+      :basic
     else
-      p "Oops"
+      :war
     end
   end
 

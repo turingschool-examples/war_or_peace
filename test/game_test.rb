@@ -14,8 +14,8 @@ class GameTest < Minitest::Test
     card_2 = Card.new(:heart, 'Seven', 7)
     card_3 = Card.new(:spade, 'Two', 2)
     card_4 = Card.new(:diamond, 'King', 13)
-    card_5 = Card.new(:heart, 'Eight', 12)
-    card_6 = Card.new(:club, 'Queen', 8)
+    card_5 = Card.new(:heart, 'Eight', 8)
+    card_6 = Card.new(:club, 'Queen', 12)
     card_7 = Card.new(:spade, 'Ace', 14)
     card_8 = Card.new(:diamond, 'Three', 3)
     deck_1 = Deck.new([card_1, card_3, card_5, card_7])
@@ -63,8 +63,8 @@ class GameTest < Minitest::Test
     card_2 = Card.new(:heart, 'Seven', 7)
     card_3 = Card.new(:spade, 'Two', 2)
     card_4 = Card.new(:diamond, 'King', 13)
-    card_5 = Card.new(:heart, 'Eight', 12)
-    card_6 = Card.new(:club, 'Queen', 8)
+    card_5 = Card.new(:heart, 'Eight', 8)
+    card_6 = Card.new(:club, 'Queen', 12)
     card_7 = Card.new(:spade, 'Ace', 14)
     card_8 = Card.new(:diamond, 'Three', 3)
     deck_1 = Deck.new([card_1, card_3, card_5, card_7])
@@ -73,9 +73,8 @@ class GameTest < Minitest::Test
     player_2 = Player.new('Ricky', deck_2)
     # turn = Turn.new(player_1, player_2)
     game = Game.new(player_1, player_2)
-    game.start
-    # game.user_start
-    # require 'pry'; binding.pry
+    # game.start
+    require 'pry'; binding.pry
     # Hmmm... until method seems okay,
     # however, the if conditional isn't quite working
     # Figured it out, my if conditional is fine
