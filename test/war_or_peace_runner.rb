@@ -2,7 +2,7 @@ require './lib/deck'
 require './lib/card'
 require './lib/player'
 require './lib/turn'
-require 'pry'
+
 deck = []
 deck2 = []
 deck << card1 = Card.new(:diamond, '2', 2)
@@ -62,57 +62,82 @@ deck.shuffle!
 deck2.concat(deck.slice!(0..25))
 @deck1 = Deck.new(deck)
 @deck2 = Deck.new(deck2)
-
-
 @player1 = Player.new("Megan", @deck1)
 @player2 = Player.new("Aurora",@deck2)
 @turn = Turn.new(@player1, @player2)
 p @player1.deck.cards.size
 p @player2.deck.cards.size
+#
+# def over
+#   if @player1.has_lost? == true
+#     p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+#     p "#{@player1.deck.cards.length} p1"
+#     p "#{@player2.deck.cards.length} p2"
+#   elsif @player2.has_lost? == true
+#     p "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+#      p "#{@player1.deck.cards.length} p1"
+#      p "#{@player2.deck.cards.length} p2"
+#   end
+# end
+
 def start
     p "Welcome to War! (or Peace) This game will be played with 52 cards."
-    p "The players today are #{@player1} and #{@player2}."
+    p "The players today are #{@player1.name} and #{@player2.name}."
     p "Type 'GO' to start the game!"
     p "------------------------------------------------------------------"
     input = gets.chomp!
       if input == "Go" ||input == "GO" ||input == "go"
         turn_count = 1
-         #while turn_count < 100
-         while @player1.has_lost? == false || @player2.has_lost? == false || turn_count < 100
-           if turn_count == 1000000
-             p "---- DRAW ----"
-             break
-           end 
-        #  binding.pry
-          @turn.player1
-          @turn.player2
-          @turn.type
-          @turn.winner
-          winner = @turn.winner
-          @turn.pile_cards
-          @turn.spoils_of_war
-          @turn.award_spoils(winner)
-          #player1.deck
-          #player2.deck
-          if @turn.type == :basic
-            p "Turn #{turn_count}: #{@turn.type} - #{@turn.winner.name} won #{@turn.pile_cards.count} cards!"
-          else
-            p "*mutually assured destruction* 6 cards removed from play"
-          end
+         until @player1.has_lost? == true || @player2.has_lost? == true || @turn_count == 1000000
 
+           @turn.type
+           #if type is MAD or war and player has less than 3
+           #other player wins!
+            if (@turn.type == :mutually_assured_destruction || @turn.type == :war) &&
+              if @player1.deck.cards.length < 3
+                p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+              elsif @player2.deck.cards.length < 3
+                p "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+              end #nested
+              break
+            end #if type
+
+
+
+           @turn.winner
+           @turn.spoils_of_war
+           @turn.pile_cards
+           @turn.award_spoils(@turn.winner)
+            if @turn.type == :basic
+              p "Turn #{turn_count}: #{@turn.type} - #{@turn.winner.name} won #{@turn.pile_cards.count} cards!"
+            # p "#{@player1.deck.cards.length} p1"
+            # p "#{@player2.deck.cards.length} p2"
+            elsif @turn.type == :mutually_assured_destruction
+              p "Turn #{turn_count}: *mutually assured destruction* 6 cards removed from play"
+            elsif @turn.type == :war
+              p "Turn #{turn_count}: WAR - #{@turn.winner.name} won #{@turn.pile_cards.count} cards!"
+#check to see if in spoils of war
+            end #if turn type end
+
+          turn_count += 1
+
+        end #until
+        if @player1.has_lost? == true
+          p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
           p "#{@player1.deck.cards.length} p1"
           p "#{@player2.deck.cards.length} p2"
-          turn_count += 1
+        elsif @player2.has_lost? == true
+          p "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+          p "#{@player1.deck.cards.length} p1"
+          p "#{@player2.deck.cards.length} p2"
         end
-        p "#{@player1.deck.cards.length} p1"
-        p "#{@player2.deck.cards.length} p2"
-      end
-    end
+
+      end #if input end
+    end  #def start end
+
 
 p start
 
 
-"*~*~*~* #{@turn.winner.name} has won the game! *~*~*~*"
-"---- DRAW ----"
 
 #   #until @player1.has_lost? || @player2.has_lost? || turn_count == 0
