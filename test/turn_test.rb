@@ -17,10 +17,10 @@ class TurnTest < Minitest::Test
     @card8 = Card.new(:club, '3', 3)
     @basic_deck1 = Deck.new([@card1, @card2, @card3])
     @basic_deck2 = Deck.new([@card4, @card5, @card6])
-    @war_deck1 = Deck.new([@card3, @card2, @card4])
-    @war_deck2 = Deck.new([@card7, @card1, @card6])
-    @mad_deck1 = Deck.new([@card3, @card1, @card2])
-    @mad_deck2 = Deck.new([@card7, @card4, @card8])
+    @war_deck1 = Deck.new([@card3, @card2, @card4, @card5])
+    @war_deck2 = Deck.new([@card7, @card1, @card6, @card8])
+    @mad_deck1 = Deck.new([@card3, @card1, @card2, @card5])
+    @mad_deck2 = Deck.new([@card7, @card4, @card8, @card6])
     @player1 = Player.new('Ryan', @basic_deck1)
     @player2 = Player.new('Tim', @basic_deck2)
     @basic_turn = Turn.new(@player1, @player2)
@@ -71,5 +71,29 @@ class TurnTest < Minitest::Test
 
   def test_there_is_NOT_a_winner_if_the_type_is_mutually_assured_destruction
     assert_equal "No Winner", @mad_turn.winner
+  end
+
+  def test_pile_cards_sends_each_players_top_card_to_spoils_during_a_basic_turn
+    @basic_turn.pile_cards()
+
+    assert_equal [@card1, @card4], @basic_turn.spoils_of_war
+    assert_equal [@card2, @card3], @basic_turn.player1.deck.cards
+    assert_equal [@card5, @card6], @basic_turn.player2.deck.cards
+  end
+
+  def test_pile_cards_sends_each_players_top_three_cards_to_spoils_during_a_war_turn
+    @war_turn.pile_cards()
+
+    assert_equal [@card3, @card2, @card4, @card7, @card1, @card6], @war_turn.spoils_of_war
+    assert_equal [@card5], @war_turn.player1.deck.cards
+    assert_equal [@card8], @war_turn.player2.deck.cards
+  end
+
+  def test_pile_cards_deletes_each_players_top_three_cards_during_a_mad_turn_w_no_spoils
+    @mad_turn.pile_cards()
+
+    assert_equal [], @mad_turn.spoils_of_war
+    assert_equal [@card5], @mad_turn.player1.deck.cards
+    assert_equal [@card6], @mad_turn.player2.deck.cards
   end
 end
