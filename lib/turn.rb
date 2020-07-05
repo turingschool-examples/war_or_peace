@@ -84,4 +84,29 @@ class Turn
       @player2.deck.cards.flatten!
     end
   end
+  def generate_cards
+    suits = [:heart, :club, :diamond, :spade]
+    standard_deck = []
+    suits.each do |card_suit|
+      standard_deck << Card.new(card_suit, "2", 2)
+      standard_deck << Card.new(card_suit, "3", 3)
+      standard_deck << Card.new(card_suit, "4", 4)
+      standard_deck << Card.new(card_suit, "5", 5)
+      standard_deck << Card.new(card_suit, "6", 6)
+      standard_deck << Card.new(card_suit, "7", 7)
+      standard_deck << Card.new(card_suit, "8", 8)
+      standard_deck << Card.new(card_suit, "9", 9)
+      standard_deck << Card.new(card_suit, "10", 10)
+      standard_deck << Card.new(card_suit, "Jack", 11)
+      standard_deck << Card.new(card_suit, "Queen", 12)
+      standard_deck << Card.new(card_suit, "King", 13)
+      standard_deck << Card.new(card_suit, "Ace", 14)
+    end
+    standard_deck.shuffle
+    @player1.deck.cards << standard_deck.slice!(0..25)
+    @player1.deck.cards.flatten!
+
+    @player2.deck.cards << standard_deck.slice!(0..25)
+    @player2.deck.cards.flatten!
+  end
 end

@@ -162,4 +162,17 @@ class TurnTest < Minitest::Test
     assert_equal 5, turn.player1.deck.cards.count
   end
 
+  def test_it_can_generate_cards
+
+    deck1 = Deck.new([])
+    deck2 = Deck.new([])
+    player1 = Player.new("Caroline", deck1)
+    player2 = Player.new("Lucie", deck2)
+    turn = Turn.new(player1, player2)
+
+    turn.generate_cards
+
+    assert_equal 26, turn.player1.deck.cards.count
+    assert_equal 26, turn.player1.deck.cards.count
+  end
 end

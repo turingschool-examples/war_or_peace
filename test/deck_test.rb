@@ -62,5 +62,4 @@ class DeckTest < Minitest::Test
 
     assert_equal [], deck.cards
   end
-
 end

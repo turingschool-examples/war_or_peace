@@ -1,0 +1,3 @@
+class WarOrPeace
+
+  def initialize 
