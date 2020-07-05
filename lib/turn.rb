@@ -11,7 +11,9 @@ class Turn
 
   def type
     first_pair_matches = @player1.deck.cards[0].rank === @player2.deck.cards[0].rank
-    second_pair_matches = @player1.deck.cards[2].rank === @player2.deck.cards[2].rank
+    if (@player1.deck.cards[2] && @player2.deck.cards[2])
+      second_pair_matches = @player1.deck.cards[2].rank === @player2.deck.cards[2].rank
+    end
     if (first_pair_matches && second_pair_matches)
       return :mutually_assured_destruction
     elsif (first_pair_matches)
@@ -29,7 +31,7 @@ class Turn
 
     i = type() == :basic ? 0 : 2
     who_won = @player1.deck.cards[i].rank > @player2.deck.cards[i].rank
-    who_won ? @player1 : @player2
+    winner = who_won ? @player1 : @player2
   end
 
   def pile_cards
@@ -46,5 +48,9 @@ class Turn
       @spoils_of_war << @player1.deck.cards.shift
       @spoils_of_war << @player2.deck.cards.shift
     end
+  end
+
+  def award_spoils(winner)
+    winner.deck.cards.concat(@spoils_of_war)
   end
 end
