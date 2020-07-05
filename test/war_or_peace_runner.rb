@@ -65,18 +65,23 @@ def start
 
            @turn.winner
            @turn.spoils_of_war
-           @turn.award_spoils(@turn.winner)
+#           @turn.award_spoils(@turn.winner)
 
            # p "#{@player1.deck.cards.length} p1"
            # p "#{@player2.deck.cards.length} p2"
             if @turn.type == :basic
+              @turn.award_spoils(@turn.winner)
                p "Turn #{turn_count}: #{@turn.type} - #{@turn.winner.name} won #{@turn.pile_cards.count} cards!"
             elsif @turn.type == :mutually_assured_destruction
+              @turn.award_spoils(@turn.winner)
                p "Turn #{turn_count}: *mutually assured destruction* 6 cards removed from play"
             elsif @turn.type == :war
-               p "Turn #{turn_count}: WAR - #{@turn.winner.name} won #{@turn.pile_cards.count} cards!"
+              @turn.award_spoils(@turn.winner)
+              p "Turn #{turn_count}: WAR - #{@turn.winner.name} won #{@turn.pile_cards.count} cards!"
             end #if turn type end
+
           turn_count += 1
+
 
         end #until
 
@@ -91,4 +96,4 @@ def start
       end #if input end
     end  #def start end
 
-p start
+start
