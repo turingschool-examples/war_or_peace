@@ -77,10 +77,10 @@ class Turn
 
   def award_spoils
     if @winner == "player1"
-      @player1.deck.cards << @spoils_of_war
+      @player1.deck.cards << @spoils_of_war.shuffle
       @player1.deck.cards.flatten!
     elsif @winner = "player2"
-      @player2.deck.cards << @spoils_of_war
+      @player2.deck.cards << @spoils_of_war.shuffle
       @player2.deck.cards.flatten!
     end
   end
