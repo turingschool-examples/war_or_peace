@@ -7,8 +7,12 @@ class Deck
   end
 
   def rank_of_card_at(index)
+    if !@cards[index].nil?
     @cards[index].rank
+  else
+    0
   end
+end
 
   def high_ranking_cards
     high_cards = []
