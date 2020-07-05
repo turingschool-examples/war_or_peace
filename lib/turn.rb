@@ -21,7 +21,7 @@ attr_reader :player1, :player2, :spoils_of_war
 
 
   def winner
-    if type() == :basic
+  if type() == :basic
     if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
       @player1
     else
@@ -36,10 +36,9 @@ attr_reader :player1, :player2, :spoils_of_war
     end
 
     else
-        "No Winner."
+      "No Winner."
     end
   end
-
 
   def pile_cards
     if type() == :basic
@@ -69,8 +68,10 @@ attr_reader :player1, :player2, :spoils_of_war
 
 
   def award_spoils(winner)
+    if !winner.is_a? String
       winner.deck.cards << @spoils_of_war
-      winner.deck.cards.flatten
+      winner.deck.cards.flatten!
       winner
     end
   end
+end
