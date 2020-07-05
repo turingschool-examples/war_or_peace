@@ -90,7 +90,8 @@ class TurnTest < Minitest::Test
     assert_equal @player3, turn.winner
   end
 
-  # Q: Can I make this assertion order independent? Wanted to use assert_includes
+  # QUESTION: Can I make this assertion order independent?
+  # Wanted to use assert_includes (can it be used for multiple objs?)
   def test_it_piles_the_cards_war
     turn = Turn.new(@player1, @player3)
 
@@ -121,9 +122,9 @@ class TurnTest < Minitest::Test
     assert_equal true, turn.spoils_of_war.empty?
   end
 
-  #add player 2
-  # Q: do i need to test this for each turn type
-  # Edge cases when there are less than 3 cards in the deck
+  # QUESTION: do i need to test this for each turn type & each player?
+  # Edge cases when there are less than 3 cards in the deck. Accounted for
+  # this in start method instead
   def test_it_removes_the_piled_cards
     turn = Turn.new(@player1, @player2)
 
@@ -139,6 +140,6 @@ class TurnTest < Minitest::Test
     turn.pile_cards
     turn.award_spoils(winner)
 
-    assert_equal [@card2, @card5, @card8, @card1, @card3], @player1.deck.cards
+    assert_equal 5, @player1.deck.cards.length
   end
 end
