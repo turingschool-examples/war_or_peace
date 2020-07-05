@@ -45,7 +45,7 @@ while @counter <= 1000000
       p "*mutually assured destruction* 6 cards have been removed from play"
     end
 
-    ### TEST BLOCK
+    # ## TEST BLOCK
     # p "#{@turn.player1.name} with #{@turn.player1.deck.cards[0].rank} vs #{@turn.player2.name} with #{@turn.player2.deck.cards[0].rank}"
     # p "Deck 1 = #{@turn.player1.deck.cards.count}, Deck 2 = #{@turn.player2.deck.cards.count}"
     # p @turn.player1.deck.cards & @turn.player2.deck.cards
@@ -54,9 +54,8 @@ while @counter <= 1000000
     @turn.pile_cards
     @turn.award_spoils
     @counter = @counter + 1
-    require "pry"; binding.pry
 
-  else @player1.has_lost? == true || @player2.has_lost? == true
+  elsif @player1.has_lost? == true || @player2.has_lost? == true
     if @player1.has_lost? == true
       p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
       break
@@ -64,7 +63,6 @@ while @counter <= 1000000
       p "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
       break
     end
+  else p "----DRAW----"
   end
 end
-
-p "---- DRAW ----"

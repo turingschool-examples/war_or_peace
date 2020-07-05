@@ -37,7 +37,7 @@ attr_reader :player1, :player2, :spoils_of_war, :type, :victor
   end
 
   def card_comparitor (index)
-    if @player1.deck.cards[index].rank > player2.deck.cards[index].rank
+    if @player1.deck.rank_of_card_at(index) > player2.deck.rank_of_card_at(index)
       @player1
     elsif @player1.deck.cards[index].rank < player2.deck.cards[index].rank
       @player2
@@ -62,7 +62,7 @@ attr_reader :player1, :player2, :spoils_of_war, :type, :victor
     if type == :basic
       @spoils_of_war << @player1.deck.remove_card
       @spoils_of_war << @player2.deck.remove_card
-
+      @spoils_of_war = @spoils_of_war.shuffle!
 
     elsif type == :war
       3.times {@spoils_of_war << @player1.deck.remove_card}
