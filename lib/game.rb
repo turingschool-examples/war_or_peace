@@ -42,12 +42,12 @@ class Game
       turn_counter += 1
     end
 
-    if turn_counter == 100000
-      puts "---- DRAW ----"
-    elsif @player_1.has_lost?
-      puts  "*~*~*~* #{@player_2.name} has won the game! *~*~*~*"
-    else
-      puts  "*~*~*~* #{@player_1.name} has won the game! *~*~*~*"
+      if turn_counter == 100000
+        puts "---- DRAW ----"
+      elsif @player_1.has_lost?
+        puts  "*~*~*~* #{@player_2.name} has won the game! *~*~*~*"
+      else
+        puts  "*~*~*~* #{@player_1.name} has won the game! *~*~*~*"
     end
   end
 end
