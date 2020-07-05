@@ -5,13 +5,13 @@ require './lib/card'
 
 class DeckTest < Minitest::Test
 
-def setup
-  @card1 = Card.new('heart', '5', 5)
-  @card2 = Card.new('spade', 'jack', 11)
-  @card3 = Card.new('diamond', 'ace', 14)
-  @cards = [@card1, @card2, @card3]
-  @deck = Deck.new(@cards)
-end
+  def setup
+    @card1 = Card.new('heart', '5', 5)
+    @card2 = Card.new('spade', 'jack', 11)
+    @card3 = Card.new('diamond', 'ace', 14)
+    @cards = [@card1, @card2, @card3]
+    @deck = Deck.new(@cards)
+  end
 
 
 

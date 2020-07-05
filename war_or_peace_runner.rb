@@ -14,9 +14,9 @@ suits=['Hearts', 'Spades', 'Diamonds', 'Clubs']
 cards_array=['2','3','4','5','6','7','8','9','10','Jack','Queen','King','Ace']
 ## Create Cards
 suits.each do |suit|
-    (2..14).each do |number|
-      @deck << Card.new(suit, cards_array[number-2], number)
-    end
+  (2..14).each do |number|
+    @deck << Card.new(suit, cards_array[number-2], number)
+  end
 end
 
 @deck = @deck.shuffle!
@@ -42,14 +42,15 @@ while @counter <= 1000000
     elsif @turn.type == :war
       p "Turn #{@counter}: WAR - #{@turn.winner.name} won 6 cards"
     else
-      p "*mutually assured destruction* 6 cards have been removed from play"
+      p "Turn #{@counter}: *mutually assured destruction* 6 cards have been removed from play"
     end
 
-    # ## TEST BLOCK
+    ## TEST BLOCK
     # p "#{@turn.player1.name} with #{@turn.player1.deck.cards[0].rank} vs #{@turn.player2.name} with #{@turn.player2.deck.cards[0].rank}"
     # p "Deck 1 = #{@turn.player1.deck.cards.count}, Deck 2 = #{@turn.player2.deck.cards.count}"
+    # p "#{@turn.player1.name} with #{@turn.player1.deck.cards[2].rank} vs #{@turn.player2.name} with #{@turn.player2.deck.cards[2].rank}"
     # p @turn.player1.deck.cards & @turn.player2.deck.cards
-    # ##
+    ##
 
     @turn.pile_cards
     @turn.award_spoils
