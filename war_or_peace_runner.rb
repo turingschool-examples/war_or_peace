@@ -2,6 +2,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/game'
 
 @card1 = Card.new(:spade, '2', 2)
 @card2 = Card.new(:club, '2', 2)
@@ -56,39 +57,42 @@ require './lib/turn'
 @card51 = Card.new(:heart, 'Ace', 14)
 @card52 = Card.new(:diamond, 'Ace', 14)
 
-deck1 = Deck.new([@card11, @card40, @card5, @card8, @card7, @card1, @card14, @card51,
-  @card19, @card2, @card23, @card4, @card41, @card32, @card43, @card36, @card31,
+deck1 = Deck.new([@card11, @card6, @card5, @card8, @card7, @card1, @card14, @card51,
+  @card19, @card2, @card23, @card4, @card41, @card32, @card13, @card36, @card31,
   @card38, @card34, @card39, @card34, @card46, @card47, @card49, @card50, @card15])
 deck2 = Deck.new([@card10, @card22, @card9, @card29, @card26, @card52, @card25, @card42,
   @card17, @card43, @card21, @card27, @card24, @card48, @card45, @card28, @card30,
-  @card37, @card20, @card35, @card18, @card6, @card16, @card3, @card13, @card12])
+  @card37, @card20, @card35, @card18, @card40, @card16, @card3, @card43, @card12])
 
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
 
-
+game = Game.new
 
 puts "Welcome to War! (or Peace) This game will be played with 52 cards."
 puts "The players today are #{player1.name} and #{player2.name}."
 puts "Type 'GO' to start the game!"
 puts "------------------------------------------------------------------"
 
+  game.start
+
   counter = 0
   while !player1.has_lost? || !player2.has_lost?
 
     counter += 1
-    if counter >= 100
+    if counter >= 1000000
       puts "---- DRAW ----"
       break
     end
-    puts "#{player1.name} has #{deck1.cards.count} cards, and #{player2.name} has #{deck2.cards.count} cards."
+
+    # string to print total cards per players deck:
+    # puts "#{player1.name} has #{deck1.cards.count} cards, and #{player2.name} has #{deck2.cards.count} cards."
 
     turn = Turn.new(player1, player2)
     the_winner = turn.winner
     current_turn_type = turn.type
-
     turn.pile_cards
-    turn.award_spoils(the_winner)
+
 
     if player1.has_lost?
       puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
@@ -98,10 +102,12 @@ puts "------------------------------------------------------------------"
       break
     end
 
+    turn.award_spoils(the_winner)
+
     if current_turn_type == :war || current_turn_type == :basic
       puts "Turn: #{counter}: #{current_turn_type.upcase} - #{the_winner.name} won #{turn.spoils_of_war.length} cards."
      else
-      puts "Turn: #{counter}: *#{current_turn_type.upcase}* - 6 cards removed from play."
+      puts "Turn: #{counter}: *#{current_turn_type}* - 6 cards removed from play."
     end
 
   end
