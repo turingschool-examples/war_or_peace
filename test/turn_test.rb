@@ -63,4 +63,13 @@ class TurnTest < Minitest::Test
   def test_the_type_is_mutually_assured_desctruction_if_the_
     assert_equal :mutually_assured_destruction, @mad_turn.type
   end
+
+  def test_it_has_a_winner
+    assert_equal @player1, @basic_turn.winner
+    assert_equal @player3, @war_turn.winner
+  end
+
+  def test_there_is_NOT_a_winner_if_the_type_is_mutually_assured_destruction
+    assert_equal "No Winner", @mad_turn.winner
+  end
 end
