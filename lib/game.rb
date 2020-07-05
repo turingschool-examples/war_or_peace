@@ -15,13 +15,8 @@ class Game
       counter = 0
       turn = Turn.new(@player1, @player2)
       until @player1.has_lost? || @player2.has_lost?
-        break if end_game?(counter)
-        # Ends game when a player doesn't have enough cards to play
-        if (@player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)) && (@player1.deck.cards.length < 3 || @player2.deck.cards.length < 3)
-          loser = @players.min { |player1, player2| player1.deck.cards.length <=> player2.deck.cards.length }
-          loser.deck.cards = []
-          break
-        end
+        break if max_turns?(counter)
+        break if insufficient_cards?() # Ends game when a player doesn't have enough cards to play
         turn_winner = turn.winner
         current_turn_type = turn.type
         turn.pile_cards
@@ -41,12 +36,24 @@ class Game
 
   def get_user_input
     @signal = gets.chomp.upcase
+    unless @signal == "GO"
+      puts "Type 'GO' to start the game!\n------------------------------------------------------------------"
+      get_user_input
+    end
+    @signal
   end
 
-  def end_game?(counter)
+  def max_turns?(counter)
     if counter == 999_999
       puts "---- DRAW ----"
       true
+    end
+  end
+
+  def insufficient_cards?
+    if (@player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)) && (@player1.deck.cards.length < 3 || @player2.deck.cards.length < 3)
+      loser = @players.min { |player1, player2| player1.deck.cards.length <=> player2.deck.cards.length }
+      loser.deck.cards = []
     end
   end
 
