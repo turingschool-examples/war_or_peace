@@ -20,7 +20,7 @@ attr_reader :player1, :player2, :spoils_of_war
 
    def winner
     if type() == :mutually_assured_destruction
-      p "No winner"
+    #  p "No winner"
     elsif type() == :basic
         if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
         @player1
@@ -40,19 +40,15 @@ attr_reader :player1, :player2, :spoils_of_war
       if type() == :mutually_assured_destruction
         3.times do
           @player1.deck.remove_card
-        end
-        3.times do
           @player2.deck.remove_card
         end
       elsif type() == :war
-        # @spoils_of_war.concat(player1.deck.cards.slice!(0..2))
-        # @spoils_of_war.concat(player2.deck.cards.slice!(0..2))
-        3.times do
-          @spoils_of_war << player1.deck.remove_card
-        end
-        3.times do
-          @spoils_of_war << player2.deck.remove_card
-        end
+         @spoils_of_war.concat(player1.deck.cards.slice!(0..2))
+         @spoils_of_war.concat(player2.deck.cards.slice!(0..2))
+        # 3.times do
+        #   @spoils_of_war << player1.deck.remove_card
+        #   @spoils_of_war << player2.deck.remove_card
+        # end
       else type() == :basic
          @spoils_of_war << @player1.deck.remove_card
          @spoils_of_war << @player2.deck.remove_card
@@ -60,7 +56,7 @@ attr_reader :player1, :player2, :spoils_of_war
     end #class
 
    def award_spoils(winner)
-     if type() == :basic || type() == :war
+     #if type() == :basic || type() == :war
        @spoils_of_war.shuffle!
        #winner.deck.cards.concat(@spoils_of_war)
        until @spoils_of_war.empty? do
@@ -68,15 +64,8 @@ attr_reader :player1, :player2, :spoils_of_war
        end
 
        #@spoils_of_war = []
-     else
-       nil
-     end
+     #else
+      # nil
+    # end
    end #method award_spoils
 end #class
-
-
-
-# add an if to basic, if first cardvalue=
-
-#may be trouble with @winner as an instance variable
-#def winner use @player.name
