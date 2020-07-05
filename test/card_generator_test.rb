@@ -27,7 +27,7 @@ class CardGeneratorTest < Minitest::Test
     new_cards = CardGenerator.new
 
 
-    assert_equal new_cards.assign_values, new_cards.card_values_split[0][2]
+    assert_equal new_cards.suit(0), "Heart"
   end
 
 
