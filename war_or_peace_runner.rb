@@ -90,3 +90,9 @@ shuffle_deck = standard_deck.shuffle
 p shuffle_deck
 deck_1 = Deck.new(shuffle_deck[0..25])
 deck_2 = Deck.new(shuffle_deck[26..51])
+player_1 = Player.new('Priya', deck_1)
+player_2 = Player.new('Ricky', deck_2)
+
+# Call Start - from Class Game
+# game.start
+# Need to come back to this after writing Game (start method) and Test file

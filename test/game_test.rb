@@ -4,11 +4,46 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
-require './lib/game.rb'
+require './lib/game'
 
 class GameTest < Minitest::Test
 
   # Test game class
+  def test_it_exists
+    card_1 = Card.new(:club, 'Jack', 11)
+    card_2 = Card.new(:heart, 'Seven', 7)
+    card_3 = Card.new(:spade, 'Two', 2)
+    card_4 = Card.new(:diamond, 'King', 13)
+    card_5 = Card.new(:heart, 'Eight', 12)
+    card_6 = Card.new(:club, 'Queen', 8)
+    card_7 = Card.new(:spade, 'Ace', 14)
+    card_8 = Card.new(:diamond, 'Three', 3)
+    deck_1 = Deck.new([card_1, card_3, card_5, card_7])
+    deck_2 = Deck.new([card_2, card_4, card_6, card_8])
+    player_1 = Player.new('Priya', deck_1)
+    player_2 = Player.new('Ricky', deck_2)
+    game = Game.new(player_1, player_2)
+    # require 'pry'; binding.pry
+    # Some functionality
+    # Still trying to understand setup
+    # Can't get it....
+  end
 
   # Test start method
+  def test_start_initial_message
+    card_1 = Card.new(:club, 'Jack', 11)
+    card_2 = Card.new(:heart, 'Seven', 7)
+    card_3 = Card.new(:spade, 'Two', 2)
+    card_4 = Card.new(:diamond, 'King', 13)
+    card_5 = Card.new(:heart, 'Eight', 12)
+    card_6 = Card.new(:club, 'Queen', 8)
+    card_7 = Card.new(:spade, 'Ace', 14)
+    card_8 = Card.new(:diamond, 'Three', 3)
+    deck_1 = Deck.new([card_1, card_3, card_5, card_7])
+    deck_2 = Deck.new([card_2, card_4, card_6, card_8])
+    player_1 = Player.new('Priya', deck_1)
+    player_2 = Player.new('Ricky', deck_2)
+    game = Game.new(player_1, player_2)
+    game.start
+  end
 end
