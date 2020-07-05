@@ -32,7 +32,7 @@ attr_reader :player1, :player2, :spoils_of_war
       then player2
 
     else type == :mutually_assured_destruction
-      "No winner"
+      "No Winner"
     end
   end
 
@@ -42,17 +42,22 @@ attr_reader :player1, :player2, :spoils_of_war
         player1.deck.remove_card
         player2.deck.remove_card
       end
-      player1.deck.cards
-      player2.deck.cards
+      # Only used for test
+      # player1.deck.cards
+      # player2.deck.cards
 
     elsif type == :war
-      (@spoils_of_war << player1.deck.cards[0..2]).flatten!
-      (@spoils_of_war << player2.deck.cards[0..2]).flatten!
+      (@spoils_of_war << player1.deck.cards.slice!(0..2)).flatten!
+      (@spoils_of_war << player2.deck.cards.slice!(0..2)).flatten!
 
     elsif type == :basic
-      @spoils_of_war << player1.deck.cards[0]
-      @spoils_of_war << player2.deck.cards[0]
+      @spoils_of_war << player1.deck.cards.slice!(0)
+      @spoils_of_war << player2.deck.cards.slice!(0)
     end
+  end
+
+  def award_spoils(winner)
+    (winner.deck.cards << @spoils_of_war).flatten!
   end
 
 end
