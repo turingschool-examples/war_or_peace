@@ -20,14 +20,15 @@ class Turn
   end
 
   def winner
-    if type == :basic
-      basic_victory
+    if type == :mutually_assured_destruction
+      "No Winner"
     elsif
       type == :war
       war_victory
-    else
-      type == :mutually_assured_destruction
-      "No Winner"
+    elsif
+      type == :basic
+      basic_victory
+
     end
   end
 
@@ -65,7 +66,12 @@ class Turn
   end
 
   def award_spoils(winner)
-    (winner.deck.cards << @spoils_of_war).flatten!
+    if winner == player1 || winner == player1
+    winner.deck.cards.concat(@spoils_of_war)
+    end
+  end
+
+  def start
   end
 
 end
