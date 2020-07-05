@@ -32,31 +32,31 @@ class GameTest < Minitest::Test
   end
 
   # Test start method
-  def test_start_initial_message
-    card_1 = Card.new(:club, 'Jack', 11)
-    card_2 = Card.new(:heart, 'Seven', 7)
-    card_3 = Card.new(:spade, 'Two', 2)
-    card_4 = Card.new(:diamond, 'King', 13)
-    card_5 = Card.new(:heart, 'Eight', 12)
-    card_6 = Card.new(:club, 'Queen', 8)
-    card_7 = Card.new(:spade, 'Ace', 14)
-    card_8 = Card.new(:diamond, 'Three', 3)
-    deck_1 = Deck.new([card_1, card_3, card_5, card_7])
-    deck_2 = Deck.new([card_2, card_4, card_6, card_8])
-    player_1 = Player.new('Priya', deck_1)
-    player_2 = Player.new('Ricky', deck_2)
-    turn = Turn.new(player_1, player_2)
-    game = Game.new(player_1, player_2)
-    # game.start
-    # assert_equal [], game.start
-    # require 'pry'; binding.pry
-    # Welcome message working
-    # Player names working
-    # User input variable working
-    # If conditional working
-    # if else statement works and starts user over
-    # if statement needs a new method for playing the game
-  end
+  # def test_start_initial_message
+  #   card_1 = Card.new(:club, 'Jack', 11)
+  #   card_2 = Card.new(:heart, 'Seven', 7)
+  #   card_3 = Card.new(:spade, 'Two', 2)
+  #   card_4 = Card.new(:diamond, 'King', 13)
+  #   card_5 = Card.new(:heart, 'Eight', 12)
+  #   card_6 = Card.new(:club, 'Queen', 8)
+  #   card_7 = Card.new(:spade, 'Ace', 14)
+  #   card_8 = Card.new(:diamond, 'Three', 3)
+  #   deck_1 = Deck.new([card_1, card_3, card_5, card_7])
+  #   deck_2 = Deck.new([card_2, card_4, card_6, card_8])
+  #   player_1 = Player.new('Priya', deck_1)
+  #   player_2 = Player.new('Ricky', deck_2)
+  #   turn = Turn.new(player_1, player_2)
+  #   game = Game.new(player_1, player_2)
+  #   # game.start
+  #   # assert_equal [], game.start
+  #   # require 'pry'; binding.pry
+  #   # Welcome message working
+  #   # Player names working
+  #   # User input variable working
+  #   # If conditional working
+  #   # if else statement works and starts user over
+  #   # if statement needs a new method for playing the game
+  # end
 
   def test_user_start_plays_the_game
     card_1 = Card.new(:club, 'Jack', 11)
@@ -71,11 +71,11 @@ class GameTest < Minitest::Test
     deck_2 = Deck.new([card_2, card_4, card_6, card_8])
     player_1 = Player.new('Priya', deck_1)
     player_2 = Player.new('Ricky', deck_2)
-    turn = Turn.new(player_1, player_2)
+    # turn = Turn.new(player_1, player_2)
     game = Game.new(player_1, player_2)
-    # game.start
+    game.start
     # game.user_start
-    require 'pry'; binding.pry
+    # require 'pry'; binding.pry
     # Hmmm... until method seems okay,
     # however, the if conditional isn't quite working
     # Figured it out, my if conditional is fine
@@ -93,6 +93,12 @@ class GameTest < Minitest::Test
 
     # FOUND ISSUE: my user input for name isn't connecting to player class parameter
     # May need to update get chomp to runner instead
+
+    # FOUND SECOND ISSUE: Though - this could be due to lack of a full deck...
+    # You know what, let me add my full deck and go from there.
+
+    # After updating (nuking) game class
+    # Retesting!
   end
 
 end

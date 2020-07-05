@@ -87,12 +87,40 @@ standard_deck = [card_1, card_2, card_3, card_4, card_5, card_6, card_7,
 # Bigger question: how do I ensure both decks are non repeating
 # deck_1 = Deck.new(standard_deck.shuffle[0..25])
 shuffle_deck = standard_deck.shuffle
-p shuffle_deck
+# p shuffle_deck
 deck_1 = Deck.new(shuffle_deck[0..25])
 deck_2 = Deck.new(shuffle_deck[26..51])
-player_1 = Player.new('Priya', deck_1)
-player_2 = Player.new('Ricky', deck_2)
+
+p "Welcome to War! (or Peace). This game will be played with 52 cards."
+
+p "Player 1, enter your name"
+print "> "
+temp_player1 = $stdin.gets.chomp
+player_1 = Player.new(temp_player1.capitalize, deck_1)
+
+p "Player 2, enter your name"
+print "> "
+temp_player2 = $stdin.gets.chomp
+player_2 = Player.new(temp_player2.capitalize, deck_2)
+
+p "The players today are #{player_1.name} and #{player_2.name}"
+p "Type 'GO' to start the game!"
+p "-------------------------------------------------"
+print "> "
+user_input_start = ""
+user_input_start = gets.chomp
+if user_input_start.upcase == "GO"
+  # start game
+  p "#{player_1.name} and #{player_2.name} declare WAR!"
+  game = Game.new(player_1, player_2)
+  game.start
+else
+  p "Misfire... read the instructions next time :)"
+  exit
+end
 
 # Call Start - from Class Game
 # game.start
 # Need to come back to this after writing Game (start method) and Test file
+# Figured out lots after writing game class
+# Need to rewrite after updating runner file
