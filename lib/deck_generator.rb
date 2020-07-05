@@ -14,7 +14,7 @@ class DeckGenerator
 
   def print_cards
     52.times{
-    new_cards = CardGenerator.new
+    new_cards = CardGenerator.new("./lib/cards.txt")
     @cards_array.push(Card.new(new_cards.card_values_split[@counter][1], new_cards.card_values_split[@counter][0], new_cards.card_values_split[@counter][2]))
     @counter += 1
   }

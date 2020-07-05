@@ -72,7 +72,6 @@ class Turn
         (@player2.deck.cards << @spoils_of_war).flatten!
       end
     elsif type == :mutually_assured_destruction
-      require "pry"; binding.pry
       3.times {@player1.deck.cards.shift}
       3.times {@player2.deck.cards.shift}
     end

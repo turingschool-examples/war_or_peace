@@ -4,8 +4,10 @@ class CardGenerator
 
   attr_reader :results, :rank
   attr_accessor :cards_split, :suit, :value, :card_values_split, :card1, :number, :cards, :card, :counter
-  def initialize
-    file = File.open("./lib/cards.txt")
+
+  def initialize(filename)
+
+    file = File.open(filename)
     @results = file.read
     @cards_split = @results.split(/\n/)
     @card_values_split = @cards_split.collect{ |x| x.split(", ")}
@@ -13,7 +15,7 @@ class CardGenerator
     $counter = 0
   end
 
-  def all_cards
+  def cards
     @results.split(/\n/)
   end
 
