@@ -21,6 +21,8 @@ class Turn
     end
   end
 
+
+
   def card_draw(x)
     if  player1.deck.rank_of_card_at(x) > player2.deck.rank_of_card_at(x)
       player1
@@ -29,15 +31,18 @@ class Turn
     end
   end
 
+
     def winner
       if type == :war
         card_draw(2)
+
       elsif type == :mutually_assured_destruction
         "No Winner"
       else type == :basic
         card_draw(0)
-
       end
+
+
     end
 
     def pile_of_cards(type)
@@ -53,7 +58,7 @@ class Turn
     end
 
     def award_spoils(winner)
-      winner.deck.cards.concat(spoils_of_war)
+      winner.deck.cards.concat 
     end
 
 end

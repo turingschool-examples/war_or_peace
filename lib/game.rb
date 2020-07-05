@@ -74,6 +74,13 @@ def start
         p "* mutually assured destruction * #{turn.spoils_of_war.length} cards removed from play"
       end
 
+      # if  player1.has_lost?
+      #     puts "*-*-*-* #{player2.name} has won the game! *-*-*-*"
+      # elsif player2.has_lost?
+      #     puts "*-*-*-* #{player1.name} has won the game! *-*-*-*"
+      # else @turn_number ==52
+      #   p "-----Draw----"
+      # end
       if @turn_number == 52
           p "-----Draw-----"
       elsif player1.has_lost?
