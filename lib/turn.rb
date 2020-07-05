@@ -34,7 +34,25 @@ attr_reader :player1, :player2, :spoils_of_war
     else type == :mutually_assured_destruction
       "No winner"
     end
+  end
 
+  def pile_cards
+    if type == :mutually_assured_destruction
+      then 3.times do
+        player1.deck.remove_card
+        player2.deck.remove_card
+      end
+      player1.deck.cards
+      player2.deck.cards
+
+    elsif type == :war
+      (@spoils_of_war << player1.deck.cards[0..2]).flatten!
+      (@spoils_of_war << player2.deck.cards[0..2]).flatten!
+
+    elsif type == :basic
+      @spoils_of_war << player1.deck.cards[0]
+      @spoils_of_war << player2.deck.cards[0]
+    end
   end
 
 end
