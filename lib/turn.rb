@@ -9,13 +9,16 @@ class Turn
 
   def type
     if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
-      type = :mutually_assured_destruction
-    elsif
-      player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
-      type = :war
+      :mutually_assured_destruction
+    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+      :war
+    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && ((player1.deck.cards[2] == nil) || (player2.deck.cards[2] == nil))
+      if player2.deck.cards[2] == nil
+        player2.has_lost? == true
+      else player1.has_lost? == true
+      end
     else
-      player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
-      type = :basic
+      :basic
     end
   end
 
@@ -28,7 +31,6 @@ class Turn
     elsif
       type == :basic
       basic_victory
-
     end
   end
 
@@ -66,12 +68,9 @@ class Turn
   end
 
   def award_spoils(winner)
-    if winner == player1 || winner == player1
-    winner.deck.cards.concat(@spoils_of_war)
+    if winner == player1 || winner == player2
+    winner.deck.cards.concat(spoils_of_war).shuffle!
     end
-  end
-
-  def start
   end
 
 end
