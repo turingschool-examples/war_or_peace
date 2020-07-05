@@ -5,7 +5,7 @@ require './lib/deck'
 require './lib/player'
 
 class PlayerTest < Minitest::Test
-  # I'm again not sure how to utilize these things...
+  # I'm not yet sure how to utilize these things...
   # def setup
   #   @card1 = Card.new(:diamond, 'Queen', 12)
   #   @card2 = Card.new(:spade, '3', 3)
