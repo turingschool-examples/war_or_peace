@@ -22,31 +22,32 @@ class Game
 
   def game_play
     turn_counter = 1
-    until @player_1.has_lost? || @player_2.has_lost? || turn_counter == 1000000
+    until @player_1.has_lost? || @player_2.has_lost? || turn_counter == 100000
 
       turn = Turn.new(@player_1, @player_2)
 
       turn.pile_cards
       if turn.type == :basic
-        puts "#{turn.winner.name} won 2 cards"
+        puts "Turn #{turn_counter} #{turn.winner.name} won 2 cards"
+        turn.award_spoils(turn.winner)
 
       elsif turn.type == :war
-        puts "WAR - #{turn.winner.name} won 6 cards"
+        puts "Turn #{turn_counter} WAR - #{turn.winner.name} won 6 cards"
+        turn.award_spoils(turn.winner)
 
       elsif turn.type == :mutually_assured_destruction
-        puts "*mutually assured destruction* 6 cards removed from play"
+        puts "Turn #{turn_counter} *mutually assured destruction* 6 cards removed from play"
       end
 
-      turn.award_spoils(turn.winner)
       turn_counter += 1
     end
-     
-    if turn_counter == 1000000
+
+    if turn_counter == 100000
       puts "---- DRAW ----"
-    elsif @player1.has_lost?
-      puts  "*~*~*~* #{@player_2} has won the game! *~*~*~*"
+    elsif @player_1.has_lost?
+      puts  "*~*~*~* #{@player_2.name} has won the game! *~*~*~*"
     else
-      puts  "*~*~*~* #{@player_1} has won the game! *~*~*~*"
+      puts  "*~*~*~* #{@player_1.name} has won the game! *~*~*~*"
     end
   end
 end
