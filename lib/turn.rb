@@ -27,10 +27,10 @@ class Turn
     #If a player only has one or two cards left and it matches with the other player's
     #delete the players last card or compare the second card instead of third
     # otherwise the method acting on the non existent card will throw an error
-    if player1.deck.cards.size <= 2 || player2.deck.cards.size <= 2
-      if player1.deck.rank_of_card_at(1) > player2.deck.rank_of_card_at(1)
+    if player1.deck.cards.size > 2 and player2.deck.cards.size > 2
+      if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
         player1
-      else
+      elsif player1.deck.rank_of_card_at(2) < player2.deck.rank_of_card_at(2)
         player2
       end
     elsif player1.deck.cards.size < 2 || player2.deck.cards.size < 2
@@ -39,10 +39,10 @@ class Turn
       else
         player2
       end
-    elsif player1.deck.cards.size > 2 and player2.deck.cards.size > 2
-      if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+    elsif player1.deck.cards.size <= 2 || player2.deck.cards.size <= 2
+      if player1.deck.rank_of_card_at(1) > player2.deck.rank_of_card_at(1)
         player1
-      elsif player1.deck.rank_of_card_at(2) < player2.deck.rank_of_card_at(2)
+      else
         player2
       end
     end
@@ -76,16 +76,10 @@ class Turn
   end
 
   def award_spoils(winner)
-    if type == :basic
+    if type == :basic || type == :war
       @spoils_of_war = pile_cards.shuffle
       winner.deck.cards << @spoils_of_war
       winner.deck.cards.flatten!
-      # player2.deck.cards.flatten!
-    elsif type == :war
-      @spoils_of_war = pile_cards
-      winner.deck.cards << @spoils_of_war
-      winner.deck.cards.flatten!
-      # player2.deck.cards.flatten!
     end
   end
 

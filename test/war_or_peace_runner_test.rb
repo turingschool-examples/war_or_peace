@@ -5,6 +5,7 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 require './war_or_peace_runner'
+require './lib/card_generator'
 require "pry"
 
 class GameTest < Minitest::Test
@@ -14,23 +15,25 @@ class GameTest < Minitest::Test
   end
 
   def test_deck_creation
-    game = Game.new()
-    full_deck = game.create_deck
-    assert_equal 52, full_deck.size
+    filename = "cards.txt"
+    cards = CardGenerator.new(filename)
+    created_cards = cards.create_cards
+    assert_equal 52, created_cards.size
   end
 
   def test_split_and_create_decks
-    game = Game.new
+    game = Game.new()
     shuffled_deck = game.split_and_create_decks
-    refute_equal shuffled_deck, game.create_deck
+    # binding.pry
+    refute_equal 52, shuffled_deck.size
   end
 
   def test_players_created
     game = Game.new
     player1 = game.create_players[0]
     player2 = game.create_players[1]
-    assert_equal player1.name, "Megan"
-    assert_equal player2.name, "Aurora"
+    assert_equal "Megan", player1.name
+    assert_equal "Aurora", player2.name
   end
 
   def test_create_turn

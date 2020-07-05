@@ -127,7 +127,7 @@ class TurnTest < Minitest::Test
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
-    assert_equal turn.pile_cards, [card1, card3]
+    assert_equal [card1, card3], turn.pile_cards
   end
 
   def test_award_spoils_for_basic
@@ -147,7 +147,8 @@ class TurnTest < Minitest::Test
     winner = turn.winner_basic
     turn.award_spoils(winner)
     turn.remove_cards_from_player
-    assert_equal winner.deck.cards, [card2, card5, card8, card1, card3]
+    # Card 2 should be at the top of the deck after one play
+    assert_equal card2, winner.deck.cards[0]
   end
 
   def test_award_spoils_for_war

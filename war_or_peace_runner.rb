@@ -106,7 +106,6 @@ class Game
           p "turn #{turn_num}: *#{type}* #{turn.pile_cards.flatten!.size} removed from play."
           turn.remove_cards_from_player
         end
-        turn = Turn.new(turn.player1, turn.player2)
         turn_num += 1
         if turn.player1.deck.cards.empty? == true
           # require "pry"; binding.pry
