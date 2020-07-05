@@ -69,7 +69,7 @@ class Turn
 
   def award_spoils(winner)
     if winner == player1 || winner == player2
-    winner.deck.cards.concat(spoils_of_war).shuffle!
+    winner.deck.cards.concat(spoils_of_war)
     end
   end
 
