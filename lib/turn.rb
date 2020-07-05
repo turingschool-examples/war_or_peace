@@ -9,14 +9,15 @@ class Turn
 
     def type
       # I want to say: unless player1.deck == [] run the code below...
+      # if player1.deck.cards.count <= 1 || player1.deck.cards.count <= 1 skip this type
       
-      if ( player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) ) &&
-         ( player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2) )
+      if ( ( player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) ) &&
+         ( player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2) ) ) && !(player1.deck.cards.count <= 1 || player1.deck.cards.count <= 1 )
         return :mutually_assured_destruction
       end
-
-      if ( player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) ) &&
-        ( player1.deck.rank_of_card_at(2) != player2.deck.rank_of_card_at(2) )
+      
+      if( player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) ) &&
+        ( ( player1.deck.rank_of_card_at(2) != player2.deck.rank_of_card_at(2) ) ) && !(player1.deck.cards.count <= 1 || player1.deck.cards.count <= 1 )
         return :war
       end
 

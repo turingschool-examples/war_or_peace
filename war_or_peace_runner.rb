@@ -15,11 +15,11 @@ class Game
             @ranks = {2 => '2', 3 => '3', 4 =>'4', 5 =>'5', 6 =>'6', 7 =>'7', 8 =>'8', 9 =>'9', 10 =>'10', 11 =>'Jack', 12 =>'Queen', 13 =>'King', 14 =>'Ace'}
             @player1 = player1
             @player2 = player2
-            # generate_deck
+            # generate_deck ## => My original solution to generate cards without using text file.
             split_deck
         end
 
-    # def generate_deck
+    # def generate_deck ## => My original solution to generate cards without using text file.
     #     @suits.each do |suit|
     #         @values.each do |value|
     #           rank = @ranks.key(value)
@@ -41,8 +41,10 @@ class Game
     def start 
         turn_counter = 0
 
-        puts  "Welcome to War! (or Peace). This game will be played with 52 cards."
+        puts  "Welcome to War! (or Peace)"
+        puts "This game will be played with 52 cards."
         puts "The players today are #{player1.name} and #{player2.name}."
+        puts
         puts "Type 'Go' to start the game!" 
         x = gets.chomp.upcase
         puts '-------------------------------------------------'
@@ -65,8 +67,7 @@ class Game
                 if  turn.type == :mutually_assured_destruction
                     winner = turn.winner
                     turn.piles_cards
-                    
-                    # puts "Turn #{turn_counter}: *Mutually Assured Destruction* 6 cards removed from play" 
+
                     puts "Turn #{turn_counter}: *Mutually Assured Destruction* #{turn.cards_removed.count} cards removed from play" 
                     turn.award_spoils(winner)
                     next # without <next>, it returns 8 cards instead of 6 due to still using previous turn spoils_of_war count.
