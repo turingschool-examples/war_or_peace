@@ -26,6 +26,7 @@ class CardGeneratorTest < Minitest::Test
   def test_it_can_assign_values
     new_cards = CardGenerator.new
 
+
     assert_equal new_cards.assign_values, new_cards.card_values_split[0][2]
   end
 

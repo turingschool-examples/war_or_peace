@@ -2,9 +2,8 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 
-
 class Turn
-  attr_accessor :player1, :player2, :spoils_of_war, :cards_won
+  attr_accessor :player1, :player2, :spoils_of_war
 
   $turn_number = 0
   def initialize(player1, player2)
@@ -12,7 +11,6 @@ class Turn
     @player2 = player2
     @spoils_of_war = []
     $turn_number += 1
-
   end
 
   def type
@@ -68,14 +66,13 @@ class Turn
         @player1.deck.cards.shift
         @player2.deck.cards.shift
         (@player2.deck.cards << @spoils_of_war).flatten!
-        @player2.deck.cards.uniq!
-        @player1.deck.cards.shift
       elsif type == :war
         3.times {@player1.deck.cards.shift}
         3.times{@player2.deck.cards.shift}
         (@player2.deck.cards << @spoils_of_war).flatten!
       end
     elsif type == :mutually_assured_destruction
+      require "pry"; binding.pry
       3.times {@player1.deck.cards.shift}
       3.times {@player2.deck.cards.shift}
     end

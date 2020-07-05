@@ -1,3 +1,8 @@
+require './lib/card_generator'
+require './lib/player'
+require './lib/turn'
+require './lib/card'
+
 class Deck
 
   attr_accessor :cards
