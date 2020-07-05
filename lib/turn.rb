@@ -58,12 +58,12 @@ attr_reader :player1, :player2, :spoils_of_war
    def award_spoils(winner)
      #if type() == :basic || type() == :war
        @spoils_of_war.shuffle!
-       #winner.deck.cards.concat(@spoils_of_war)
-       until @spoils_of_war.empty? do
-         winner.deck.add_card(@spoils_of_war.shift)
-       end
+       winner.deck.cards.concat(@spoils_of_war)
+       # until @spoils_of_war.empty? do
+       #   winner.deck.add_card(@spoils_of_war.shift)
+       # end
 
-       #@spoils_of_war = []
+       @spoils_of_war = []
      #else
       # nil
     # end
