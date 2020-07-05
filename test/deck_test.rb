@@ -2,6 +2,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/deck'
 require './lib/card'
+require "pry"
 
 class DeckTest < Minitest::Test
 
@@ -9,7 +10,7 @@ class DeckTest < Minitest::Test
     @card_1 = Card.new(:heart, "Jack", 11)
     @card_2 = Card.new(:diamond, "6", 6)
     @card_3 = Card.new(:heart, "Queen", 12)
-    @cards = [@card_1, @card_2, @card_3]
+    @cards = [@card1, @card2, @card3]
     @deck = Deck.new(@cards)
   end
 
@@ -35,6 +36,7 @@ class DeckTest < Minitest::Test
 
   def test_if_card_can_be_removed
     assert_equal @card_1, @deck.remove_card
+    assert_equal 2, @deck.cards.length
   end
 
   def card_can_be_added
