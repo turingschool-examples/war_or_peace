@@ -1,11 +1,10 @@
 require 'pry'
 class Turn
-attr_reader :player1, :player2, :spoils_of_war, :discard_cards
-#attr_accessor :turn_count
-  def initialize(player1, player2, discard_cards)
+attr_reader :player1, :player2, :spoils_of_war
+
+  def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
-    @discard_cards = discard_cards
     @spoils_of_war = []
   end
 
@@ -21,10 +20,8 @@ attr_reader :player1, :player2, :spoils_of_war, :discard_cards
 
    def winner
     if type() == :mutually_assured_destruction
-    #@discard_cards
-       "No winner"
-       #meaning return an object or rerun the turn
-       #if you hit :mutually_assured_destruction
+     "No winner"
+
     elsif type() == :basic
         if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
         @player1
@@ -38,48 +35,26 @@ attr_reader :player1, :player2, :spoils_of_war, :discard_cards
          @player2
         end
       end
-     end
+    end #winner
 
    def pile_cards
-      # if type() == :mutually_assured_destruction
-        # 3.times do
-        #   @player1.deck.remove_card
-        #   @player2.deck.remove_card
-          # @spoils_of_war.concat(player1.deck.cards.slice!(0..2))
-          # @spoils_of_war.concat(player2.deck.cards.slice!(0..2))
-        #end
       if type() == :war
          @spoils_of_war.concat(player1.deck.cards.slice!(0..2))
          @spoils_of_war.concat(player2.deck.cards.slice!(0..2))
-        # 3.times do
-        #   @spoils_of_war << player1.deck.remove_card
-        #   @spoils_of_war << player2.deck.remove_card
-        # end
       else type() == :basic
          @spoils_of_war << @player1.deck.remove_card
          @spoils_of_war << @player2.deck.remove_card
-      end #og if statement
-    end #class
+      end
+    end
 
    def award_spoils(winner)
        if type() == :mutually_assured_destruction
          @spoils_of_war.concat(player1.deck.cards.slice!(0..2))
          @spoils_of_war.concat(player2.deck.cards.slice!(0..2))
        elsif
-
-     #if type() == :basic || type() == :war
-       @spoils_of_war.shuffle!
-       winner.deck.cards.concat(@spoils_of_war)
-       # until @spoils_of_war.empty? do
-       #   winner.deck.add_card(@spoils_of_war.shift)
-       @spoils_of_war = []
-     end
-
-
-
-
-     #else
-      # nil
-    # end
-   end #method award_spoils
+         @spoils_of_war.shuffle!
+         winner.deck.cards.concat(@spoils_of_war)
+         @spoils_of_war = []
+       end
+    end #method award_spoils
 end #class
