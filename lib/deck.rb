@@ -24,7 +24,7 @@ class Deck
   end
 
   def remove_card
-    @cards.shift
+    @cards.slice!(0)
   end
 
   def add_card(card_to_add)
