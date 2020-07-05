@@ -110,30 +110,30 @@
         #     # changed it and annoted it to match my files
         #     # testing
         #
-        #     # created accumulator to hold array of cards created
-        #     # created array of ranks
-        #     # %w is a shortcut for for writing an array of strings seperated by space vs comma
-        #     ranks = %w{Two Three Four Five Six Seven Eight Nine Ten Jack Queen King Ace}
-        #     # created array of suits
-        #     suits = %w{Clubs, Diamonds, Hearts, Spades}
-        #     # called array suits and applied .each (block variable = suit)
-        #     # .each will iterate through each suit
-        #     suits.each do |suit|
-        #       # called array ranks
-        #       # .size returns the number of elements in the array
-        #       # In this case the .size = 13
-        #       # .times will repeat
-        #       # So in combination, .size.times will now do this 13 times
-        #       # Or, one for every element in the array!
-        #       # block variable is integer (so will start at 0)
-        #       ranks.size.times do |i|
-        #         # my array will get added to by calling an instance of the Card Class
-        #         # New card created from suits array, ranks array, and then adding two to the index value of the integer from do block
-        #         deck_holder << Card.new(suit, ranks[i], i+2)
-        #       end
-        #     end
-        #     deck_holder
-        #   end
+            # created accumulator to hold array of cards created
+            # created array of ranks
+            # %w is a shortcut for for writing an array of strings seperated by space vs comma
+            ranks = %w{Two Three Four Five Six Seven Eight Nine Ten Jack Queen King Ace}
+            # created array of suits
+            suits = %w{Clubs, Diamonds, Hearts, Spades}
+            # called array suits and applied .each (block variable = suit)
+            # .each will iterate through each suit
+            suits.each do |suit|
+              # called array ranks
+              # .size returns the number of elements in the array
+              # In this case the .size = 13
+              # .times will repeat
+              # So in combination, .size.times will now do this 13 times
+              # Or, one for every element in the array!
+              # block variable is integer (so will start at 0)
+              ranks.size.times do |i|
+                # my array will get added to by calling an instance of the Card Class
+                # New card created from suits array, ranks array, and then adding two to the index value of the integer from do block
+                deck_holder << Card.new(suit, ranks[i], i+2)
+              end
+            end
+            deck_holder
+          end
         #
         #   # Looking ahead at iteration 4... I'm unsure about the hard coded deck
         #   # I don't think mine is a hard-coded deck

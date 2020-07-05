@@ -79,3 +79,14 @@ standard_deck = [card_1, card_2, card_3, card_4, card_5, card_6, card_7,
 # 52 elements!
 # p standard_deck
 # All cards accounted for
+
+# p standard_deck.shuffle
+# shuffle works!
+
+# NOW... how do I assign a shuffled standard_deck to deck_1 and deck_2 for players
+# Bigger question: how do I ensure both decks are non repeating
+# deck_1 = Deck.new(standard_deck.shuffle[0..25])
+shuffle_deck = standard_deck.shuffle
+p shuffle_deck
+deck_1 = Deck.new(shuffle_deck[0..25])
+deck_2 = Deck.new(shuffle_deck[26..51])
