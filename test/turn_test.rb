@@ -1,3 +1,5 @@
+require 'pry'
+
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/card'
@@ -24,8 +26,8 @@ class TurnTest < Minitest::Test
     @player1 = Player.new('Ryan', @basic_deck1)
     @player2 = Player.new('Tim', @basic_deck2)
     @basic_turn = Turn.new(@player1, @player2)
-    @player3 = Player.new('Ryan', @war_deck1)
-    @player4 = Player.new('Tim', @war_deck2)
+    @player3 = Player.new('Bob', @war_deck1)
+    @player4 = Player.new('Jim', @war_deck2)
     @war_turn = Turn.new(@player3, @player4)
     @player5 = Player.new('Ryan', @mad_deck1)
     @player6 = Player.new('Tim', @mad_deck2)
@@ -65,8 +67,8 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_has_a_winner
-    assert_equal @player1, @basic_turn.winner
-    assert_equal @player3, @war_turn.winner
+    assert_equal 'Ryan', @basic_turn.winner.name
+    assert_equal 'Bob', @war_turn.winner.name
   end
 
   def test_there_is_NOT_a_winner_if_the_type_is_mutually_assured_destruction
@@ -90,10 +92,16 @@ class TurnTest < Minitest::Test
   end
 
   def test_pile_cards_deletes_each_players_top_three_cards_during_a_mad_turn_w_no_spoils
-    @mad_turn.pile_cards()
+    @mad_turn.pile_cards
 
     assert_equal [], @mad_turn.spoils_of_war
     assert_equal [@card5], @mad_turn.player1.deck.cards
     assert_equal [@card6], @mad_turn.player2.deck.cards
+  end
+
+  def test_award_spoils
+    @basic_turn.pile_cards
+    @basic_turn.award_spoils(@player1)
+    assert_equal [@card2, @card3, @card1, @card4], @player1.deck.cards
   end
 end
