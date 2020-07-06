@@ -76,6 +76,7 @@ class Game
 
     # The above doesn't end the game correctly...
     if player_1.has_lost? == true && player_2.has_lost? == true
+      # fight_to_death
       p "~~~~~~~~~~~~~~ FIGHT TO THE DEATH ~~~~~~~~~~~~~~"
       p "Shiva: God of Destruction, decrees your wars have wiped out your armies."
       puts "#{player_1.name} has #{player_1.deck.cards.length} cards left."
@@ -83,14 +84,17 @@ class Game
       p "WOW...."
       exit
     elsif player_1.has_lost? == true
+      # player_2_wins
       puts "GAME OVER! #{player_1.name} has #{player_1.deck.cards.length} cards!"
       p "YAY! #{player_2.name} has won the game with #{player_2.deck.cards.length} cards!"
       exit
     elsif player_2.has_lost? == true
+      # player_1_wins
       puts "GAME OVER! #{player_2.name} has #{player_2.deck.cards.length} cards!"
       p "YAY! #{player_1.name} has won the game with #{player_1.deck.cards.length} cards!"
       exit
     else
+      # draw
       p "~~~~~~~~~~~~~~ DRAW ~~~~~~~~~~~~~~"
       p "Ares: God of War, decrees your war can have no victor."
       p "Determine your own justice."
