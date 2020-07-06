@@ -14,16 +14,34 @@ class Turn
   end
 
   def type
-    if (@player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0))  && (@player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2))
-      @type = ":mutually_assured_destruction"
-
-    elsif (@player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)) && (@player1.deck.rank_of_card_at(2) != @player2.deck.rank_of_card_at(2))
-      @type = ":war"
-
-    elsif (@player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0))
+    if (@player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0))
       @type = ":basic"
-    else
+    elsif (@player1.deck.rank_of_card_at(0) == nil) || (@player2.deck.rank_of_card_at(0) == nil)
       @type = "end"
+    else
+      if (@player1.deck.cards[2] == nil) && (@player2.deck.cards[2] == nil)
+        p1_drop = @player1.deck.cards.count
+        p2_drop = @player2.deck.cards.count
+        @player1.deck.cards.drop(p1_drop)
+        @player2.deck.cards.drop(p2_drop)
+        @player1.has_lost?
+        @player2.has_lost?
+      elsif @player2.deck.cards[2] == nil
+        p2_drop = @player2.deck.cards.count
+        @player2.deck.cards.drop(p2_drop)
+        @player2.has_lost?
+      elsif @player1.deck.cards[2] == nil
+        p1_drop = @player1.deck.cards.count
+        @player1.deck.cards.drop(p1_drop)
+        @player1.has_lost?
+      else
+        if (@player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0))  && (@player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2))
+          @type = ":mutually_assured_destruction"
+
+        elsif (@player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)) && (@player1.deck.rank_of_card_at(2) != @player2.deck.rank_of_card_at(2))
+          @type = ":war"
+        end
+      end
     end
   end
 
@@ -42,13 +60,13 @@ class Turn
       elsif @player1.deck.rank_of_card_at(2) < @player2.deck.rank_of_card_at(2)
         @winner = "player2"
       end
-
     elsif @type == ":mutually_assured_destruction"
       @winner = "No Winner"
     end
   end
 
   def pile_cards
+
     if @type == ":basic"
 
       @spoils_of_war << @player1.deck.remove_card
@@ -64,23 +82,22 @@ class Turn
       end
 
     elsif @type == ":mutually_assured_destruction"
-      pile = []
       3.times do
-        pile << @player1.deck.remove_card
+        @player1.deck.remove_card
       end
       3.times do
-        pile << @player2.deck.remove_card
+        @player2.deck.remove_card
       end
-      pile.drop(6)
     end
   end
 
   def award_spoils
+
     if @winner == "player1"
-      @player1.deck.cards << @spoils_of_war.shuffle
+      @player1.deck.cards << @spoils_of_war.shuffle!
       @player1.deck.cards.flatten!
-    elsif @winner = "player2"
-      @player2.deck.cards << @spoils_of_war.shuffle
+    elsif @winner == "player2"
+      @player2.deck.cards << @spoils_of_war.shuffle!
       @player2.deck.cards.flatten!
     end
   end
@@ -102,11 +119,11 @@ class Turn
       standard_deck << Card.new(card_suit, "King", 13)
       standard_deck << Card.new(card_suit, "Ace", 14)
     end
-    standard_deck.shuffle
-    @player1.deck.cards << standard_deck.slice!(0..25)
+    standard_deck.shuffle!
+    @player1.deck.cards << standard_deck[0..25]
     @player1.deck.cards.flatten!
 
-    @player2.deck.cards << standard_deck.slice!(0..25)
+    @player2.deck.cards << standard_deck[26..51]
     @player2.deck.cards.flatten!
   end
 end
