@@ -39,8 +39,4 @@ class GameTest < Minitest::Test
     assert_equal 4, @game.player1.deck.cards.length
     assert_equal 4, @game.player2.deck.cards.length
   end
-
-  def test_start
-    @game.start()
-  end
 end

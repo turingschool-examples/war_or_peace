@@ -1,7 +1,6 @@
 require './lib/deck'
 require './lib/turn'
 require './lib/player'
-require 'pry'
 
 class Game
   attr_reader :cards, :player1, :player2
@@ -24,17 +23,15 @@ class Game
     turn_count = 1
     loop do
       turn = Turn.new(@player1, @player2)
-      type = turn.type
-      winner = turn.winner
 
       if turn.player1.has_lost? || turn.player2.has_lost?
-        win_message(winner.name)
+        win_message(turn.winner)
         break
       end
 
       turn.pile_cards
 
-      turn_message(turn_count, type, winner)
+      turn_message(turn_count, turn.type, turn.winner)
 
       turn.award_spoils(turn.winner)
       turn_count += 1
@@ -65,8 +62,8 @@ class Game
     end
   end
 
-  def win_message(winner_name)
-    p "*~*~*~* #{winner_name} has won the game! *~*~*~*"
+  def win_message(winner)
+    p "*~*~*~* #{winner.name} has won the game! *~*~*~*"
   end
 
   def draw_message
