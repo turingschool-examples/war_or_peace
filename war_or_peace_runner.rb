@@ -1,4 +1,5 @@
-# require './lib/card' <-- For when I had a file to create each deck via enumeration
+require './lib/card'
+# <-- For when I had a file to create each deck via enumeration
 require './lib/deck'
 require './lib/player'
 require './lib/turn'

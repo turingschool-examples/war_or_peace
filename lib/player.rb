@@ -1,3 +1,8 @@
+require './lib/turn'
+require './lib/deck'
+require './lib/card'
+require './lib/card_generator'
+require './lib/deck_generator'
 
 class Player
 
