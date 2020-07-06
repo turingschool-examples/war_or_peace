@@ -12,7 +12,7 @@ class Player
     "Clarisa"
   end
 
-  def has_lost?
+  def has_lost?v
     @deck.cards.empty?
   end
 
