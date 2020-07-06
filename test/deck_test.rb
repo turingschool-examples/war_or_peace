@@ -67,11 +67,13 @@ class DeckTest < Minitest::Test
     card3 = Card.new(:heart, 'Ace', 14)
     card4 = Card.new(:heart, 'Jack', 11)
     card5 = Card.new(:club, '9', 9)
+    card6 = Card.new(:club, '10', 10)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
 
     # I wonder why only one of them can be here at a time...
-    # assert_equal [card1, card2, card3, card4], deck.add_card(card4)
-    assert_equal [card1, card2, card3, card5], deck.add_card(card5)
+    # assert_equal [card1, card2, card3, card4], deck.add_card([card4, card5])
+
+    assert_equal [card1, card2, card3, card5, card6], deck.add_card([card5, card6])
   end
 end
