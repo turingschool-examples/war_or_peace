@@ -11,8 +11,8 @@ p "The players today are Megan and Aurora."
 
 ### Build Deck
 
-
-@deck = CardGenerator.new.cards
+@filename = "lib/cards.txt"
+@deck = CardGenerator.new(@filename).cards
 
 # @deck = []
 # suits=['Hearts', 'Spades', 'Diamonds', 'Clubs']

@@ -7,11 +7,13 @@ class CardGenerator
 
   attr_reader :deck, :cards
 
-def initialize
+def initialize(filename)
+  @filename = filename
 end
 
 def cards
-  cards_import = IO.readlines("lib/cards.txt", chomp: true)
+
+  cards_import = IO.readlines(@filename, chomp: true)
 
   @cards_array = []
 
