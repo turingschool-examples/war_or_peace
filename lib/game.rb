@@ -14,7 +14,7 @@ class Game
   end
 
   def start
-    puts welcome_message
+    welcome_message
     if (gets.chomp.downcase == "go")
       play_game
     end
@@ -22,14 +22,13 @@ class Game
 
   def play_game
     turn_count = 1
-    winner_name = ""
     loop do
       turn = Turn.new(@player1, @player2)
-      winner = turn.winner
       type = turn.type
+      winner = turn.winner
 
       if turn.player1.has_lost? || turn.player2.has_lost?
-        winner_name = turn.winner.name
+        win_message(winner.name)
         break
       end
 
@@ -39,15 +38,21 @@ class Game
 
       turn.award_spoils(turn.winner)
       turn_count += 1
+
+      if (turn_count == 1000000)
+        draw_message
+        break
+      end
     end
-    p "*~*~*~* #{winner_name} has won the game! *~*~*~*"
   end
 
   def welcome_message
-    "Welcome to War! (or Peace) This game will be played with 52 cards.
+    puts "
+    Welcome to War! (or Peace) This game will be played with 52 cards.
     The players today are #{@player1.name} and #{@player2.name}.
     Type 'GO' to start the game!
-    ------------------------------------------------------------------"
+    ------------------------------------------------------------------
+    "
   end
 
   def turn_message(turn_count, type, winner)
@@ -58,5 +63,13 @@ class Game
     else
       p "Turn #{turn_count}: #{winner.name} won 2 cards"
     end
+  end
+
+  def win_message(winner_name)
+    p "*~*~*~* #{winner_name} has won the game! *~*~*~*"
+  end
+
+  def draw_message
+    p "---- DRAW ----"
   end
 end
