@@ -1,20 +1,16 @@
-# # f = File.open('cards.txt', "r")
-# File.foreach('cards.txt'){ |line|
-#   puts line
-# }
-# # f.close
+class CardGenerator
 
+attr_reader :filename, :cards
 
-# def run_cards
-#   File.readlines('cards.txt').each do |line|
-#   p line
-#   end
-# end
-#
-# # file='cards.txt'
-# # f = File.open(file, "r")
-# # f.each_line { |line|
-# #   p line
-# # }
-# # f.close
-# run_cards
+  def initialize(filename)
+    @filename = filename
+    @cards = create_cards
+  end
+
+  def create_cards
+    File.readlines('cards.txt').map do |line|
+      card_info = line.chomp.delete(" ").split(',')
+      Card.new(card_info[1], card_info[0], card_info[2].to_i)
+    end
+  end
+end
