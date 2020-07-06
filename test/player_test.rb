@@ -20,11 +20,6 @@ class PlayerTest < Minitest::Test
     assert_instance_of Player, @player1
   end
 
-  def test_it_has_readable_attributes
-    assert_equal @cards, @deck.cards
-    assert_equal @cards2, @deck2.cards
-  end
-
   def test_player_has_a_name
     assert_equal 'Clarisa', @player1.name
   end
