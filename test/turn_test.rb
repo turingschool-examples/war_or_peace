@@ -11,6 +11,7 @@ require "pry"
 class TurnTest < Minitest::Test
 
     def test_it_exist_and_has_two_players
+        skip
         
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
@@ -36,8 +37,7 @@ class TurnTest < Minitest::Test
     end
 
     def test_it_starts_with_no_spoils_of_war
-        
-        
+        skip        
         
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
@@ -61,8 +61,8 @@ class TurnTest < Minitest::Test
     end
 
     def test_it_has_a_basic_turn_type
-        
-        
+        skip
+                
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
         card3 = Card.new(:heart, '9', 9)
@@ -84,8 +84,50 @@ class TurnTest < Minitest::Test
         assert_equal :basic, turn.type
     end
 
+    def test_it_has_last_turn_type_if_a_player_has_only_1_card_left
+                
+        card1 = Card.new(:heart, 'Jack', 11)
+        card2 = Card.new(:heart, '10', 10)
+        card3 = Card.new(:heart, '9', 9)
+        card4 = Card.new(:diamond, 'Jack', 11)
+        card5 = Card.new(:heart, '8', 8)
+        card6 = Card.new(:diamond, 'Queen', 12)
+        card7 = Card.new(:heart, '3', 3)
+        card8 = Card.new(:diamond, '2', 2)
+
+        deck1 = Deck.new([card1, card2, card5, card8])
+        deck2 = Deck.new([card4])
+
+        player1 = Player.new("Megan", deck1)
+        player2 = Player.new("Aurora", deck2)
+
+        turn = Turn.new(player1, player2)  
+        assert_equal :last_turn, turn.type
+    end
+
+    def test_it_has_a_mad_turn_type
+                
+        card1 = Card.new(:heart, 'Jack', 11)
+        card2 = Card.new(:heart, '10', 10)
+        card3 = Card.new(:heart, '9', 9)
+        card4 = Card.new(:diamond, 'Jack', 11)
+        card5 = Card.new(:heart, '8', 8)
+        card6 = Card.new(:diamond, '8', 8)
+        card7 = Card.new(:heart, '3', 3)
+        card8 = Card.new(:diamond, '2', 2)
+
+        deck1 = Deck.new([card1, card2, card5, card8])
+        deck2 = Deck.new([card4, card3, card6, card7])
+
+        player1 = Player.new("Megan", deck1)
+        player2 = Player.new("Aurora", deck2)
+
+        turn = Turn.new(player1, player2)  
+        assert_equal :mutually_assured_destruction, turn.type
+    end
+
     def test_it_has_a_basic_turn_type_winner
-        
+        skip
         
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
@@ -119,6 +161,7 @@ class TurnTest < Minitest::Test
     end
 
     def test_it_has_a_war_turn_type_winner
+        skip
         
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
@@ -153,6 +196,7 @@ class TurnTest < Minitest::Test
     end
 
     def test_mutually_assured_destruction_turn_type_has_no_winners
+        skip
         
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
