@@ -83,6 +83,8 @@ class Turn
     end
   end
 
+# created different method to remove cards from player
+# It was breaking my pile_cards method
   def remove_cards_from_player
     if type == :basic
       player2.deck.remove_card
