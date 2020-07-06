@@ -14,7 +14,10 @@ class Turn
       first_pair_matches = player1_card1.rank == player2_card1.rank
     end
     if (first_pair_matches)
-      second_pair_matches = @player1.deck.cards[2].rank == @player2.deck.cards[2].rank || false
+      second_pair_matches = false
+      if (@player1.deck.cards[2] && @player2.deck.cards[2])
+        second_pair_matches = @player1.deck.cards[2].rank == @player2.deck.cards[2].rank
+      end
       if (second_pair_matches)
         return :mutually_assured_destruction
       end
