@@ -3,7 +3,7 @@ require './lib/card'
 class CardGenerator
 
   attr_reader :results
-  attr_accessor :cards_split, :card_values_split, :number, :counter
+  attr_accessor :cards_split, :card_values_split
 
   def initialize(filename)
 
@@ -11,11 +11,10 @@ class CardGenerator
     @results = file.read
     @cards_split = @results.split(/\n/)
     @card_values_split = @cards_split.collect{ |x| x.split(", ")}
-    $counter = 0
   end
 
   def cards_as_a_deck
-    @results.split(/\n/)
+    p @results.split(/\n/)
   end
 
   def suit_of_one_card(number)

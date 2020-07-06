@@ -55,8 +55,8 @@ class Game
       else
         p "Turn #{$turn_number}: *#{turn.type}* 6 cards removed from play."
       end
-      p "Megan's deck size: #{player1.deck.cards.length}"
-      p "Aurora's deck size: #{player2.deck.cards.length}"
+      # p "Megan's deck size: #{player1.deck.cards.length}"
+      # p "Aurora's deck size: #{player2.deck.cards.length}"
       # p player2.deck.cards
 
       $turn_number += 1
