@@ -84,11 +84,11 @@ class Game
       exit
     elsif player_1.has_lost? == true
       puts "GAME OVER! #{player_1.name} has #{player_1.deck.cards.length} cards!"
-      p "YAY! #{player_2.name} has won the game!"
+      p "YAY! #{player_2.name} has won the game with #{player_2.deck.cards.length} cards!"
       exit
     elsif player_2.has_lost? == true
       puts "GAME OVER! #{player_2.name} has #{player_2.deck.cards.length} cards!"
-      p "YAY! #{player_1.name} has won the game!"
+      p "YAY! #{player_1.name} has won the game with #{player_1.deck.cards.length} cards!"
       exit
     else
       p "~~~~~~~~~~~~~~ DRAW ~~~~~~~~~~~~~~"
