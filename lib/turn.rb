@@ -81,10 +81,11 @@ class Turn
       3.times {@player1.deck.cards.delete_at(0)}
       3.times {@player2.deck.cards.delete_at(0)}
     end
-    @spoils_of_war = @spoils_of_war.shuffle!
+
   end
 
   def award_spoils
+    @spoils_of_war = @spoils_of_war.shuffle!
     @winner.deck.cards.concat(@spoils_of_war)
     @spoils_of_war = []
   end

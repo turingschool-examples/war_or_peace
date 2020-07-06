@@ -48,7 +48,7 @@ class TurnTest < Minitest::Test
   def test_award_spoils
     victor = @turn.winner
     @turn.pile_cards
-    @turn.award_spoils(victor)
+    @turn.award_spoils
     assert_equal victor.deck.cards.count, 6
   end
 

@@ -22,7 +22,7 @@ def cards
   @cards = []
 
   @cards_array.each do |index|
-    @cards << Card.new(index[1], index[0], index[2])
+    @cards << Card.new(index[1], index[0], index[2].to_i)
   end
 
   @cards

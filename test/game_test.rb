@@ -28,13 +28,11 @@ class GameTest < Minitest::Test
 
   end
 
-  def test_game_exits
+  def test_game_exists
     assert_instance_of Game, @game
   end
 
-  def test_welcome
-    @game.welcome
-  end
+
 
 
 
