@@ -33,7 +33,13 @@ class Deck
   end
 
   def add_card(card_array)
-    @cards.each {|card| @cards.push}
+    #this method seems to insert arrarys into arrays.
+    @cards << card_array
+
+    #can't seem to get the follow to work.
+    # @cards.each {|card| @cards << card}
+
+    #card_array.each {|card| @cards << card}
   end
 
 end
