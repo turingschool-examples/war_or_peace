@@ -45,15 +45,30 @@ class CardGeneratorTest < Minitest::Test
   def test_random_lines
     filename = "deck_of_cards.txt"
     card_gen = CardGenerator.new(filename)
-    read_test = card_gen.read_generator
-    assert_equal ":club, 'Two', 2", read_test[0]
-    assert_equal ":diamond, 'Three', 3", read_test[14]
-    assert_equal ":heart, 'Four', 4", read_test[28]
+    generator = card_gen.read_generator
+    assert_equal "club, 'Two', 2", generator[0]
+    assert_equal "diamond, 'Three', 3", generator[14]
+    assert_equal "heart, 'Four', 4", generator[28]
+    assert_equal "spade, 'King', 13", generator[50]
   end
 
-  # def test
-  #   filename = "deck_of_cards.txt"
-  #   card_gen = CardGenerator.new(filename)
-  # end
-  #
+  # Now I need to test card class can create instance from file array
+  def test_turn_into_array
+    filename = "deck_of_cards.txt"
+    card_gen = CardGenerator.new(filename)
+    # assert_equal [], card_gen.turn_into_array
+  end
+
+  def test_cards_are_correct
+    filename = "deck_of_cards.txt"
+    card_gen = CardGenerator.new(filename)
+    card_gen.turn_into_array
+    #Line 10 - index 9
+    test_card1 = Card.new(:club, "Jack", 11)
+    #Line 26 - index 25
+    test_card2 = Card.new(:diamond, "Ace", 14)
+    assert_equal test_card1, card_gen.cards[9]
+    assert_equal test_card2, card_gen.cards[25]
+  end
+
 end

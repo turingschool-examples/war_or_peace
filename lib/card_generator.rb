@@ -24,4 +24,22 @@ class CardGenerator
     file.close
     file_data
   end
+
+  def turn_into_array
+    gen_array = read_generator
+    gen_array.each do |card|
+      split = card.split (", ")
+      suit = split[0].to_sym
+      value2 = split[1]
+      value1  = value2.slice(1..-1)
+      value = value1.slice(0..-2)
+      rank = split[2].to_i
+      cards << Card.new(suit, value, rank)
+      # error says wrong number of arguments...
+      # right, card class expects (suit, value, rank)
+    end
+    cards
+  end
+
+
 end
