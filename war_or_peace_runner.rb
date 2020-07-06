@@ -45,7 +45,7 @@ class Game
       turn.spoils_of_war
       turn.award_spoils(winner)
 
-      if player1.deck.cards.length <= 3 || player2.deck.cards.length <= 3
+      if player1.deck.cards.length <= 2 || player2.deck.cards.length <= 2
         puts "#{turn.winner} won!"
         break
       end

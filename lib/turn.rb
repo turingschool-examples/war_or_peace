@@ -56,21 +56,21 @@ class Turn
       if type == :basic
         @player1.deck.cards.shift
         @player2.deck.cards.shift
-        (@player1.deck.cards << @spoils_of_war).flatten!
+        (@player1.deck.cards << @spoils_of_war).flatten!.shuffle
       elsif type == :war
         3.times {@player1.deck.cards.shift}
         3.times{@player2.deck.cards.shift}
-        (@player1.deck.cards << @spoils_of_war).flatten!
+        (@player1.deck.cards << @spoils_of_war).flatten!.shuffle
       end
     elsif winner == 'Aurora'
       if type == :basic
         @player1.deck.cards.shift
         @player2.deck.cards.shift
-        (@player2.deck.cards << @spoils_of_war).flatten!
+        (@player2.deck.cards << @spoils_of_war).flatten!.shuffle
       elsif type == :war
         3.times {@player1.deck.cards.shift}
         3.times{@player2.deck.cards.shift}
-        (@player2.deck.cards << @spoils_of_war).flatten!
+        (@player2.deck.cards << @spoils_of_war).flatten!.shuffle
       end
     elsif type == :mutually_assured_destruction
       3.times {@player1.deck.cards.shift}
