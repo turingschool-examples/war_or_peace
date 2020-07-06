@@ -171,7 +171,7 @@ class TurnTest < Minitest::Test
     turn = Turn.new(player1, player2)
 
     turn.generate_cards
-
+    
     assert_equal 26, turn.player1.deck.cards.count
     assert_equal 26, turn.player1.deck.cards.count
   end
