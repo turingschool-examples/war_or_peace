@@ -62,31 +62,25 @@ def start
 
       if type == :basic
         turn.pile_of_cards(type)
-        p "#{winner.name} won #{turn.spoils_of_war.length}cards!"
+        p "Turn #{@turn_number}: #{winner.name} won #{turn.spoils_of_war.length}cards!"
         turn.award_spoils(winner)
 
       elsif type == :war
         turn.pile_of_cards(type)
-        p "War - #{winner.name} won #{turn.spoils_of_war.length}cards!"
+        p "Turn #{@turn_number}: War - #{winner.name} won #{turn.spoils_of_war.length}cards!"
         turn.award_spoils(winner)
       elsif type == :mutually_assured_destruction
         turn.pile_of_cards(type)
-        p "* mutually assured destruction * #{turn.spoils_of_war.length} cards removed from play"
+        p "Turn #{@turn_number}:* mutually assured destruction * #{turn.spoils_of_war.length} cards removed from play"
       end
 
-      # if  player1.has_lost?
-      #     puts "*-*-*-* #{player2.name} has won the game! *-*-*-*"
-      # elsif player2.has_lost?
-      #     puts "*-*-*-* #{player1.name} has won the game! *-*-*-*"
-      # else @turn_number ==52
-      #   p "-----Draw----"
-      # end
+
       if @turn_number == 52
           p "-----Draw-----"
       elsif player1.has_lost?
-          puts "*-*-*-* #{player2.name} has won the game! *-*-*-*"
+          puts "Turn #{@turn_number}:*-*-*-* #{player2.name} has won the game! *-*-*-*"
       elsif player2.has_lost?
-          puts "*-*-*-* #{player1.name} has won the game! *-*-*-*"
+          puts "Turn #{@turn_number}:*-*-*-* #{player1.name} has won the game! *-*-*-*"
       end
 
    end
