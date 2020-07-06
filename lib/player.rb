@@ -9,9 +9,9 @@ class Player
     @deck = deck
   end
 
-  #returns true if no cards in deck
+  #returns true if player has fewer than 4 cards
   def has_lost?
-    @deck.cards.length == 0
+    @deck.cards.length < 4
   end
 
 end

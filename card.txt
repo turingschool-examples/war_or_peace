@@ -32,7 +32,7 @@ spade,5,5
 spade,6,6
 spade,7,7
 spade,8,8
-spade	9,9
+spade,9,9
 spade,10,10
 spade,Jack,11
 spade,Queen,12

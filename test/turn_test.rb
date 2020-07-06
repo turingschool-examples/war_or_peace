@@ -252,10 +252,10 @@ class TurnTest < Minitest::Test
     turn = Turn.new(player1, player2)
 
     turn.type
-    turn.winner
+    winner = turn.winner
     turn.pile_cards
 
-    assert_equal [card2,card5,card8,card1,card3], turn.award_spoils
+    assert_equal [card2,card5,card8,card1,card3], turn.award_spoils(winner)
   end
 
   def test_award_spoils_war
@@ -277,10 +277,10 @@ class TurnTest < Minitest::Test
     turn = Turn.new(player1, player2)
 
     turn.type
-    turn.winner
+    winner = turn.winner
     turn.pile_cards
 
-    assert_equal [card7,card1,card2,card5,card3,card4,card6], turn.award_spoils
+    assert_equal [card7,card1,card2,card5,card3,card4,card6], turn.award_spoils(winner)
 
   end
 

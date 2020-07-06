@@ -28,37 +28,29 @@ def play_game
   turn_counter = 1
 
   until @player1.has_lost? || @player2.has_lost?
+
     if turn.type == :basic
-      turn.winner
+      won = turn.winner
       turn.pile_cards
-        puts "Turn #{turn_counter}: #{turn.winner.name} won #{turn.spoils_of_war.length} cards."
-      turn.award_spoils
+        puts "Turn #{turn_counter}: #{won.name} won #{turn.spoils_of_war.length} cards."
+      turn.award_spoils(won)
       turn_counter += 1
 
     elsif turn.type == :war
-      turn.winner
+      won = turn.winner
       turn.pile_cards
-        puts "Turn #{turn_counter}: WAR - #{turn.winner.name} won #{turn.spoils_of_war.length} cards."
-      turn.award_spoils
+        puts "Turn #{turn_counter}: WAR - #{won.name} won #{turn.spoils_of_war.length} cards."
+      turn.award_spoils(won)
       turn_counter += 1
 
     elsif turn.type == :mutually_assured_destruction
       turn.pile_cards
-      puts "Turn #{turn_counter}: *mutually assured destruction* - 6 cards removed from play"
+        puts "Turn #{turn_counter}: *mutually assured destruction* - 6 cards removed from play"
       turn_counter += 1
 
-    elsif turn.type == :lost1
-      puts "#{@player1.name} ran out of cards!"
-      puts "*~*~*~* #{@player2.name} has won the game *~*~*~*"
-      break
-
-    elsif turn.type == :lost2
-      puts "#{@player2.name} ran out of cards!"
-      puts "*~*~*~* #{@player1.name} has won the game *~*~*~*"
-      break
     end
     break if turn_counter == 1000000
-  end
+  end #end of until loop
 
   #print winner statement after player has won game
   if @player1.has_lost?
@@ -87,11 +79,13 @@ until exit_condition == true
     setup_deck
     setup_players
     play_game
+
   elsif user_input == "EXIT"
     puts "\nThanks for playing! Bye!"
     exit_condition == true
     break
+
   else
-    puts "\nInvalid input! Try again."
+    puts "\nInvalid input! Type either 'GO' or 'EXIT'"
   end
 end
