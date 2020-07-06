@@ -72,22 +72,33 @@ class TurnTest < Minitest::Test
   # Write a test to check type method
   def test_what_type_of_turn
     card_1 = Card.new(:club, 'Jack', 11)
-    card_2 = Card.new(:heart, 'Seven', 7)
+    card_2 = Card.new(:heart, 'Seven', 11)
     card_3 = Card.new(:spade, 'Two', 2)
     card_4 = Card.new(:diamond, 'King', 13)
     card_5 = Card.new(:heart, 'Eight', 8)
     card_6 = Card.new(:club, 'Queen', 12)
     card_7 = Card.new(:spade, 'Ace', 14)
     card_8 = Card.new(:diamond, 'Three', 3)
-    deck_1 = Deck.new([card_1, card_3, card_5, card_7])
-    deck_2 = Deck.new([card_2, card_4, card_6, card_8])
+    # Test A - :basic, :war, :mutual
+    # deck_1 = Deck.new([card_1, card_3, card_5, card_7])
+    # deck_2 = Deck.new([card_2, card_4, card_6, card_8])
+    # Test B - player_1 has 2 or less cards (:war_death_player_1)
+    # deck_1 = Deck.new([card_1, card_3])
+    # deck_2 = Deck.new([card_2, card_4, card_6, card_8])
+    # Test C - player_2 has 2 or less cards (:war_death_player_2)
+    # deck_1 = Deck.new([card_1, card_3, card_5, card_7])
+    # deck_2 = Deck.new([card_2, card_4])
+    # Test D - player_1 & 2 have 2 or less cards (:mutual_death)
+    deck_1 = Deck.new([card_1, card_3])
+    deck_2 = Deck.new([card_2, card_4])
     player_1 = Player.new('Priya', deck_1)
     player_2 = Player.new('Ricky', deck_2)
 
 
     turn = Turn.new(player_1, player_2)
+    # require 'pry'; binding.pry
 
-    assert_equal :basic, turn.type
+    assert_equal :mutual_death, turn.type
       # for basic, card_1 and card_2 are NOT the same
       # WORKS!
 

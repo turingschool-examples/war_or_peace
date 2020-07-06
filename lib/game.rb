@@ -54,6 +54,13 @@ class Game
         turn.pile_cards
         # turn_counter += 1
         puts "==NEXT TURN=="
+      elsif turn.type == :mutual_death
+        player_1.deck.cards.clear
+        player_2.deck.cards.clear
+      elsif turn.type == :war_death_player_1
+        player_1.deck.cards.clear
+      elsif turn.type == :war_death_player_2
+        player_2.deck.cards.clear
       else
         p "OOOOOOOPS! MISTAKE IN START METHOD"
       end
@@ -68,7 +75,14 @@ class Game
     # end
 
     # The above doesn't end the game correctly...
-    if player_1.has_lost? == true
+    if player_1.has_lost? == true && player_2.has_lost? == true
+      p "~~~~~~~~~~~~~~ FIGHT TO THE DEATH ~~~~~~~~~~~~~~"
+      p "Shiva: God of Destruction, decrees your wars have wiped out your armies."
+      puts "#{player_1.name} has #{player_1.deck.cards.length} cards left."
+      puts "#{player_2.name} has #{player_2.deck.cards.length} cards left."
+      p "WOW...."
+      exit
+    elsif player_1.has_lost? == true
       puts "GAME OVER! #{player_1.name} has #{player_1.deck.cards.length} cards!"
       p "YAY! #{player_2.name} has won the game!"
       exit

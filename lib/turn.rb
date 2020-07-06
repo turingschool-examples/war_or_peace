@@ -26,14 +26,43 @@ class Turn
     # got the if statement to work properly... it's the :basic that's the issue right now
     # Huh... it works now. Unsure what I fixed
     # Had to update order since mutually_assured breaks game
-    if player_1.deck.rank_of_card_at(0) == player_2.deck.rank_of_card_at(0) && player_1.deck.rank_of_card_at(2) == player_2.deck.rank_of_card_at(2)
-      :mutually_assured_destruction
-    # elsif player_1.deck.rank_of_card_at(0) == player_2.deck.rank_of_card_at(0)
-    #   :war
-    elsif player_1.deck.rank_of_card_at(0) != player_2.deck.rank_of_card_at(0)
+          # if player_1.deck.rank_of_card_at(0) != player_2.deck.rank_of_card_at(0)
+          #   :basic
+          # elsif player_1.deck.rank_of_card_at(0) == player_2.deck.rank_of_card_at(0)
+          #   if (player_1.deck.cards.length >= 3 && player_2.deck.cards.length >= 3) && (player_1.deck.rank_of_card_at(2) != player_2.deck.rank_of_card_at(2))
+          #     :war
+          #   elsif (player_1.deck.cards.length >= 3 && player_2.deck.cards.length >= 3) && (player_1.deck.rank_of_card_at(2) == player_2.deck.rank_of_card_at(2))
+          #     :mutually_assured_destruction
+          #   elsif player_1.deck.cards.length < 3
+          #     player_1.deck.cards.clear
+          #   elsif player_2.deck.cards.length < 3
+          #     player_2.deck.cards.clear
+          #   else
+          #     p "Oops in if conditional for war and mutual type"
+          #   end
+          # else
+          #   p "Oops in if conditional for type"
+          # end
+    if player_1.deck.rank_of_card_at(0) != player_2.deck.rank_of_card_at(0)
       :basic
+    elsif player_1.deck.rank_of_card_at(0) == player_2.deck.rank_of_card_at(0)
+      if player_1.deck.cards.length >= 3 && player_2.deck.cards.length >= 3
+        if player_1.deck.rank_of_card_at(2) == player_2.deck.rank_of_card_at(2)
+          :mutually_assured_destruction
+        else
+          :war
+        end
+      elsif player_1.deck.cards.length < 3 && player_2.deck.cards.length < 3
+        :mutual_death
+      elsif player_1.deck.cards.length < 3
+        :war_death_player_1
+      elsif player_2.deck.cards.length < 3
+        :war_death_player_2
+      else
+        p "issue with same first card"
+      end
     else
-      :war
+      p "issue in if-conditional for .type"
     end
   end
 
@@ -130,8 +159,8 @@ class Turn
     elsif type == :mutually_assured_destruction
       # 'type = :mutual' + ' AND ' + winner
       3.times do
-        player_1.deck.remove_card
-        player_2.deck.remove_card
+      player_1.deck.remove_card
+      player_2.deck.remove_card
       end
       # Removed after testing
       # [player_1.deck, player_2.deck]
