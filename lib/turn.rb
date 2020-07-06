@@ -24,16 +24,12 @@ class Turn
         p2_drop = @player2.deck.cards.count
         @player1.deck.cards.drop(p1_drop)
         @player2.deck.cards.drop(p2_drop)
-        @player1.has_lost?
-        @player2.has_lost?
       elsif @player2.deck.cards[2] == nil
         p2_drop = @player2.deck.cards.count
         @player2.deck.cards.drop(p2_drop)
-        @player2.has_lost?
       elsif @player1.deck.cards[2] == nil
         p1_drop = @player1.deck.cards.count
         @player1.deck.cards.drop(p1_drop)
-        @player1.has_lost?
       else
         if (@player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0))  && (@player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2))
           @type = ":mutually_assured_destruction"
