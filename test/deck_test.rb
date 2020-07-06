@@ -19,16 +19,15 @@ class DeckTest < Minitest::Test
     assert_instance_of Deck, deck
   end
 
-  # def test_rank_of_card_at
-  #   card1 = Card.new(:diamond, 'Queen', 12)
-  #   card2 = Card.new(:spade, '3', 3)
-  #   card3 = Card.new(:heart, 'Ace', 14)
-  # end
+  def test_rank_of_card_at
+    # no clue why this one isn't working...
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
 
-  def rank_of_card_at  #why is it that if I name this 'test_rank_of_card_at' it errors out, but otherwise works?
-    @cards = [card1, card2, card3]
-    assert_equal 12, @cards.rank_of_card_at(0)
-    assert_equal 14, @cards.rank_of_card_at(2)
+    assert_equal 12, cards.rank_of_card_at(0)
+    assert_equal 14, cards.rank_of_card_at(2)
   end
 
   def test_high_ranking_cards
@@ -70,10 +69,8 @@ class DeckTest < Minitest::Test
     card6 = Card.new(:club, '10', 10)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
+    @spoils_of_war = [card5, card6]
 
-    # I wonder why only one of them can be here at a time...
-    # assert_equal [card1, card2, card3, card4], deck.add_card([card4, card5])
-
-    assert_equal [card1, card2, card3, card5, card6], deck.add_card([card5, card6])
+    assert_equal [card1, card2, card3, card5, card6], deck.add_card(@spoils_of_war)
   end
 end

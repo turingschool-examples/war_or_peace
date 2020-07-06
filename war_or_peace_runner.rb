@@ -58,18 +58,14 @@ card52 = Card.new(:heart, 'Ace', 14)
 
 masterdeck = [card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20, card21, card22, card23, card24, card25, card26, card27, card28, card29, card30, card31, card32, card33, card34, card35, card36, card37, card38, card39, card40, card41, card42, card43, card44, card45, card46, card47, card48, card49, card50, card51, card52]
 
-def make_some_decks
-  masterdeck.shuffle
-  deck1 << masterdeck[0-25]
-  deck2 << masterdeck[26-51]
-end
+deck1 = masterdeck.shuffle[0-25]
+deck2 = masterdeck.shuffle[26-51]
 
 player1 = Player.new("Keith Flint", deck1)
 player2 = Player.new("Maxim", deck2)
 
-
-p "Welcome to War! (or Peace) This game will be played with 52 cards."
-p "The players today are Keith Flint and Maxim."
-p "Type 'GO' to start the game!""
-
-# Adding this to test github pull requests
+def start
+  p "Welcome to War! (or Peace) This game will be played with 52 cards."
+  p "The players today are Keith Flint and Maxim."
+  p "Type 'GO' to start the game!"
+end
