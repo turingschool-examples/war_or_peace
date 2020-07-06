@@ -2,8 +2,8 @@ require './lib/card'
 
 class CardGenerator
 
-  attr_reader :results, :rank
-  attr_accessor :cards_split, :suit, :value, :card_values_split, :card1, :number, :cards, :card, :counter
+  attr_reader :results
+  attr_accessor :cards_split, :card_values_split, :number, :counter
 
   def initialize(filename)
 
@@ -11,23 +11,22 @@ class CardGenerator
     @results = file.read
     @cards_split = @results.split(/\n/)
     @card_values_split = @cards_split.collect{ |x| x.split(", ")}
-    @card = card
     $counter = 0
   end
 
-  def cards
+  def cards_as_a_deck
     @results.split(/\n/)
   end
 
-  def suit(number)
+  def suit_of_one_card(number)
     @card_values_split[number][1]
   end
 
-  def rank(number)
+  def rank_of_one_card(number)
     @card_values_split[number][2].to_i
   end
 
-  def value(number)
+  def value_of_one_card(number)
     @card_values_split[number][0].downcase
   end
 end

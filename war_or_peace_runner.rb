@@ -1,26 +1,27 @@
-# require './lib/card'
+# require './lib/card' <-- For when I had a file to create each deck via enumeration
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
 require './lib/card_generator'
+# DeckGenerator is used to create a deck of 52 cards from the card_generator file,
+# which is used to create cards out of the cards.txt file
 require './lib/deck_generator'
 
 class Game
-  attr_reader :player1, :player2, :turn_number, :turn, :spoils_of_war, :cards_won
+  attr_reader :player1, :player2, :turn_number, :turn, :spoils_of_war
   $turn_number = -1
 
   def initialize
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
-    @cards_won = cards_won
   end
 
   def start
 
-    new_deck = DeckGenerator.new
-    new_deck.print_cards
-    full_deck = new_deck.cards_here
+    new_deck_of_cards = DeckGenerator.new
+    new_deck_of_cards.return_all_cards
+    full_deck = new_deck_of_cards.cards_stacked_here
     shuffled_deck = full_deck.shuffle
 
 
@@ -35,6 +36,8 @@ class Game
 
 
     10000.times{
+      # p "Megan's deck size: #{player1.deck.cards.length}"
+      # p "Aurora's deck size: #{player2.deck.cards.length}"
       turn = Turn.new(player1, player2)
       turn.type
       winner = turn.winner
@@ -51,26 +54,10 @@ class Game
       else
         p "Turn #{$turn_number}: *#{turn.type}* 6 cards removed from play."
       end
-      # p '------------------------player 1'
-      # p turn.player1.deck.cards[0]
-      # p turn.player1.deck.rank_of_card_at(0)
-      # p '----------------------------player 2'
-      # p turn.player2.deck.cards[0]
-      # p turn.player2.deck.rank_of_card_at(0)
-      # p "type"
-      # p turn.type
-      # p "winner"
-      # p turn.winner
-      # p turn.pile_cards
-      # turn.award_spoils("Megan")
-      # p player1.deck.cards.length
-      # p 'Player 1 cards'
-      # p player1.deck.cards
-      # p 'Player 2 cards'
+      p "Megan's deck size: #{player1.deck.cards.length}"
+      p "Aurora's deck size: #{player2.deck.cards.length}"
       # p player2.deck.cards
-      # p player1.deck.cards.length
-      # p player2.deck.cards.length
-      # p player2.deck.cards
+
       $turn_number += 1
       if $turn_number == 10000
         puts "---DRAW---"
@@ -90,5 +77,6 @@ if gets.chomp!.downcase == 'go'
   new_game = Game.new
   new_game.start
 else
+  # In case user input's something other than 'go' or 'GO'
   puts "Try putting 'go' or 'GO'."
 end

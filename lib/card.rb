@@ -1,4 +1,4 @@
-
+# Not using this file currently
 
 class Card
   attr_accessor :suit, :value, :rank

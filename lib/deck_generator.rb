@@ -4,23 +4,22 @@ require './lib/card'
 
 class DeckGenerator
 
-  attr_accessor :card1, :card, :cards_array
+  attr_accessor :counter, :cards_array
 
   def initialize
-    @card1 = card1
     @counter = 0
     @cards_array = []
   end
 
-  def print_cards
+  def return_all_cards
     52.times{
-    new_cards = CardGenerator.new("./lib/cards.txt")
-    @cards_array.push(Card.new(new_cards.card_values_split[@counter][1], new_cards.card_values_split[@counter][0], new_cards.card_values_split[@counter][2]))
+    new_deck_of_cards = CardGenerator.new("./lib/cards.txt")
+    @cards_array.push(Card.new(new_deck_of_cards.card_values_split[@counter][1], new_deck_of_cards.card_values_split[@counter][0], new_deck_of_cards.card_values_split[@counter][2]))
     @counter += 1
   }
     end
 
-    def cards_here
+    def cards_stacked_here
       @cards_array
     end
 

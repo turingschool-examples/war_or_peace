@@ -20,4 +20,12 @@ class CardTest < Minitest::Test
     assert_equal 'Queen', card.value
     assert_equal 12, card.rank
   end
+
+  def test_it_can_have_multiple_cards
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:heart, '10', 10)
+
+    assert_instance_of Card, card1
+    assert_instance_of Card, card2
+  end
 end
