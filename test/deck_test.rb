@@ -6,8 +6,7 @@ require "./lib/card"
 class DeckTest < Minitest::Test
 
   def test_it_exists
-    card1 = Card.new(:diamond, "Queen", 12)
-    deck = Deck.new([card1])
+    deck = Deck.new([])
     assert_instance_of Deck, deck
   end
 
@@ -25,6 +24,8 @@ class DeckTest < Minitest::Test
     deck = Deck.new([card1, card2])
 
     assert_equal 10, deck.rank_of_card_at(1)
+    assert_equal :heart, deck.cards[0].suit
+    assert_equal "10", deck.cards[1].value
   end
 
   def test_face_cards
@@ -56,10 +57,11 @@ class DeckTest < Minitest::Test
   end
 
   def it_can_remove_cards
-    deck = Deck.new(card1)
+    deck = Deck.new([card1, card2])
     card1 = Card.new(:diamond, "Queen", 12)
+    card2 = Card.new(:spade, "3", 3)
     deck.remove_card
 
-    assert_equal [], deck.cards
+    assert_equal [card2], deck.cards
   end
 end
