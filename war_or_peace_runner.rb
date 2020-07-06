@@ -3,21 +3,26 @@ require './lib/card'
 require './lib/player'
 require './lib/turn'
 require './lib/game'
+require './lib/card_generator'
 
 ## Welcome
 p "Welcome to War! (or Peace) This game will be played with 52 cards."
 p "The players today are Megan and Aurora."
 
 ### Build Deck
-@deck = []
-suits=['Hearts', 'Spades', 'Diamonds', 'Clubs']
-cards_array=['2','3','4','5','6','7','8','9','10','Jack','Queen','King','Ace']
-## Create Cards
-suits.each do |suit|
-  (2..14).each do |number|
-    @deck << Card.new(suit, cards_array[number-2], number)
-  end
-end
+
+
+@deck = CardGenerator.new.cards
+
+# @deck = []
+# suits=['Hearts', 'Spades', 'Diamonds', 'Clubs']
+# cards_array=['2','3','4','5','6','7','8','9','10','Jack','Queen','King','Ace']
+# ## Create Cards
+# suits.each do |suit|
+#   (2..14).each do |number|
+#     @deck << Card.new(suit, cards_array[number-2], number)
+#   end
+# end
 
 @deck = @deck.shuffle!
 @deck1 = Deck.new(@deck[0..25])

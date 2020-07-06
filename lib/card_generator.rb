@@ -3,20 +3,28 @@ require './lib/card'
 require './lib/game'
 
 
-cards_import = IO.readlines("lib/cards.txt", chomp: true)
+class CardGenerator
 
-@cards_array = []
+  attr_reader :deck, :cards
 
-cards_import.each do |card|
-  @cards_array << card.split(/, /)
+def initialize
 end
 
-@cards = []
+def cards
+  cards_import = IO.readlines("lib/cards.txt", chomp: true)
 
-@cards_array.each do |index|
-     @cards << Card.new(index[1], index[0], index[2])
+  @cards_array = []
+
+  cards_import.each do |card|
+    @cards_array << card.split(/, /)
+  end
+
+  @cards = []
+
+  @cards_array.each do |index|
+    @cards << Card.new(index[1], index[0], index[2])
+  end
+
+  @cards
 end
-
-@deck = Deck.new(@cards)
-
-p @deck
+end
