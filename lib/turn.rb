@@ -1,5 +1,3 @@
-require 'pry'
-
 class Turn
   attr_reader :player1, :player2, :spoils_of_war
 
@@ -10,13 +8,16 @@ class Turn
   end
 
   def type
-    first_pair_matches = @player1.deck.cards[0].rank === @player2.deck.cards[0].rank
-    if (@player1.deck.cards[2] && @player2.deck.cards[2])
-      second_pair_matches = @player1.deck.cards[2].rank === @player2.deck.cards[2].rank
+    player1_card1 = @player1.deck.cards[0]
+    player2_card1 = @player2.deck.cards[0]
+    if (player1_card1 && player2_card1)
+      first_pair_matches = player1_card1.rank == player2_card1.rank
     end
-    if (first_pair_matches && second_pair_matches)
-      return :mutually_assured_destruction
-    elsif (first_pair_matches)
+    if (first_pair_matches)
+      second_pair_matches = @player1.deck.cards[2].rank == @player2.deck.cards[2].rank || false
+      if (second_pair_matches)
+        return :mutually_assured_destruction
+      end
       return :war
     else
       return :basic
@@ -27,30 +28,37 @@ class Turn
   def winner
     if type() == :mutually_assured_destruction
       return 'No Winner'
+    else
+      i = type() == :basic ? 0 : 2
+      if (!@player1.deck.cards[i])
+        return @player2
+      elsif (!@player2.deck.cards[i])
+        return @player1
+      else
+        who_won = @player1.deck.cards[i].rank > @player2.deck.cards[i].rank
+        return who_won ? @player1 : @player2
+      end
     end
-
-    i = type() == :basic ? 0 : 2
-    who_won = @player1.deck.cards[i].rank > @player2.deck.cards[i].rank
-    winner = who_won ? @player1 : @player2
   end
 
   def pile_cards
     if type() == :mutually_assured_destruction
       @player1.deck.cards.slice!(0,3)
       @player2.deck.cards.slice!(0,3)
-    elsif type() == :war
-      player1Cards = @player1.deck.cards.slice!(0,3)
-      player2Cards = @player2.deck.cards.slice!(0,3)
+    else
+      num_cards_to_remove = type() == :war ? 3 : 1
+      player1Cards = @player1.deck.cards.slice!(0,num_cards_to_remove)
+      player2Cards = @player2.deck.cards.slice!(0,num_cards_to_remove)
 
       @spoils_of_war.concat(player1Cards)
       @spoils_of_war.concat(player2Cards)
-    else
-      @spoils_of_war << @player1.deck.cards.shift
-      @spoils_of_war << @player2.deck.cards.shift
     end
   end
 
   def award_spoils(winner)
-    winner.deck.cards.concat(@spoils_of_war)
+    if (winner != 'No Winner')
+      winner.deck.cards.concat(@spoils_of_war)
+    end
+    @spoils_of_war = []
   end
 end
