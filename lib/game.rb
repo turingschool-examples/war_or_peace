@@ -53,32 +53,27 @@ class Game
 
             turn = Turn.new(player1, player2)
             turn_counter += 1
-            
-            
+
                 if turn.type == :basic
                     winner = turn.winner
                     turn.piles_cards
                     
                     puts "Turn #{turn_counter}: #{winner.name} won #{turn.spoils_of_war.count} cards!"
                     turn.award_spoils(winner)
-                    next 
-                end
-    
-                if  turn.type == :mutually_assured_destruction
+                
+                elsif turn.type == :mutually_assured_destruction
                     winner = turn.winner
                     turn.piles_cards
 
                     puts "Turn #{turn_counter}: *Mutually Assured Destruction* #{turn.cards_removed.count} cards removed from play" 
-                    turn.award_spoils(winner)
-                    next # without <next>, it returns 8 cards instead of 6 due to still using previous turn spoils_of_war count.
-                end
 
-                if turn.type == :war
+                elsif turn.type == :war
                     winner = turn.winner
                     turn.piles_cards
                     puts "Turn #{turn_counter}: WAR - #{winner.name} won #{turn.spoils_of_war.count} cards!" 
                     turn.award_spoils(winner)
-                    next
+                else 
+                    turn.piles_cards
                 end
         end
         p "#{player1.name}: #{player1.deck.cards.count}, #{player2.name}: #{player2.deck.cards.count}"

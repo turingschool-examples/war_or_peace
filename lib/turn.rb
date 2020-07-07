@@ -8,28 +8,16 @@ class Turn
     end
 
     def type
-      # I want to say: unless player1.deck == [] run the code below...
-      # if player1.deck.cards.count <= 1 || player1.deck.cards.count <= 1 skip this type
-      
-      if player1.deck.cards.count <= 1 || player2.deck.cards.count <= 1
+      if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
+        :basic
+      elsif player1.deck.cards.count <= 1 || player2.deck.cards.count <= 1 # => This before war or mad so it doesn't check when there aren't enough.
         :last_turn
-        
-      elsif ( ( player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) ) &&
-        ( player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2) ) ) && !(player1.deck.cards.count <= 1 || player2.deck.cards.count <= 1 )
-       return :mutually_assured_destruction
-      
-      elsif  ( player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) ) &&
-        ( ( player1.deck.rank_of_card_at(2) != player2.deck.rank_of_card_at(2) ) ) && !(player1.deck.cards.count <= 1 || player2.deck.cards.count <= 1 )
-        return :war
-      
-      elsif player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
-        return :basic
-  # Here i need to write code to express the turn is a draw and the game it's ended. The player with most cards wins.
-      
-      # else player1.deck.cards.count <= 1 || player2.deck.cards.count <= 1
-      #   :last_turn  
+      elsif ( player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) ) &&
+        ( player1.deck.rank_of_card_at(2) != player2.deck.rank_of_card_at(2) )
+        :war
+      else  
+      :mutually_assured_destruction
       end
-
     end
 
     def winner
@@ -46,16 +34,9 @@ class Turn
         end
 
         if type == :mutually_assured_destruction && ( player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2) )
-          return "No Winner"
+          return 
+          "No Winner"
         end
-
-        if type == :last_turn && player1.deck.cards.count <= 1
-           player1.deck.cards.clear
-        end 
-        if type == :last_turn && player2.deck.cards.count <= 1
-          player2.deck.cards.clear
-        end
-
     end
     
     def piles_cards
@@ -76,6 +57,16 @@ class Turn
         cards_removed << player1.deck.cards.shift(3)
         cards_removed << player2.deck.cards.shift(3)
         return cards_removed.flatten!
+      end
+      # ****** New line of code July 7th 2020 *******
+      # when type is last turn the deck with one card should clear to triger has_lost? method.
+
+      if type == :last_turn && player1.deck.cards.count <= 1
+        player1.deck.cards.clear
+      end 
+      
+      if type == :last_turn && player2.deck.cards.count <= 1
+        player2.deck.cards.clear
       end
 
     end

@@ -6,9 +6,8 @@ class Deck
 
   def rank_of_card_at(index)
     if  @cards.empty? == false
-      return @cards[index].rank
+      return @cards[index].rank unless @cards[index] == nil
     end
-    # binding.pry
   end
 
   def high_ranking_cards
