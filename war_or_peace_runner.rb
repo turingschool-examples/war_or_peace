@@ -103,11 +103,12 @@ end
 
 if turn.player1.has_lost == true || turn.player2.has_lost == true
   puts "* * * * GAME OVER * * * *"
-  if turn.player1.has_lost == true
-    puts "#{turn.player2.name} has won!"
-  else
-    puts "#{turn.player1.name} has won!"
-  end
+  # if turn.player1.has_lost == true
+  #   puts "#{turn.player2.name} has won!"
+  # else
+  #   puts "#{turn.player1.name} has won!"
+  # end
+  puts "#{turn.winner.name} has won the war!"
 else
   puts "-----DRAW-----"
 end

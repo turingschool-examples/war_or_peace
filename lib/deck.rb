@@ -7,10 +7,10 @@ class Deck
   end
 
   def rank_of_card_at(index)
-    if @cards.length >= (index - 1)
-      @cards[index].rank
-    else
+    if @cards[index].nil?
       0
+    else
+      @cards[index].rank
     end
   end
 
