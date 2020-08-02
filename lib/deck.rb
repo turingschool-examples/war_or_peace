@@ -2,8 +2,7 @@ class Deck
   attr_reader :cards
 
   def initialize(*cards)
-    cards = cards.flatten
-    @cards = cards
+    @cards = cards.flatten
   end
 
   def rank_of_card_at(index)
