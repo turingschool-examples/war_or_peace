@@ -10,13 +10,21 @@ class Turn
   end
 
   def type
+    # refactor the line below into a clearly-named method that checks for something similar like:
+    # if both_cards_same_at?(0) && both_cards_same_at?(2)
     if @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
       @turn_type = :mutually_assured_destruction
+      
+      # reuse same method below
     elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) # && @player1.deck.rank_of_card_at(2) != @player2.deck.rank_of_card_at(2)
       @turn_type = :war
     else
       @turn_type = :basic
     end
+  end
+  
+  def both_cards_same_at?(index)
+    # 
   end
 
   def winner?
