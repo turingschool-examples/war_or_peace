@@ -19,10 +19,10 @@ class DeckTest < Minitest::Test
     assert_equal 0, deck.rank_of_card_at(0)
   end
 
-  def test_high_ranking_cards
-    deck = Deck.new[cards]
-
-    assert_equal [11..13], deck.high_ranking_cards
+  def high_ranking_cards
+    ranks = [11, 12, 13]
+    ranks.find_all do |rank|
+      rank.count >= 11
   end
 
   def test_remove_card
@@ -38,3 +38,5 @@ class DeckTest < Minitest::Test
   end
 
 end
+
+p high_ranking_cards
