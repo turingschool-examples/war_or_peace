@@ -22,13 +22,11 @@ class DeckTest < Minitest::Test
   end
 
   def test_rank_of_card_at
-    # skip
     assert_equal 12, @deck.rank_of_card_at(0)
     assert_equal 14, @deck.rank_of_card_at(2)
   end
 
   def test_high_ranking_cards
-    # skip
     assert_equal [@card1, @card3], @deck.high_ranking_cards
   end
 
