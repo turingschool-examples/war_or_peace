@@ -5,3 +5,4 @@ class Deck
     @cards = cards
 
   end
+end
