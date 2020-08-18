@@ -8,7 +8,7 @@ class Turn
   end
 
   def type
-    return :basic if @player1.deck.rank_of_card_at(0) <> @player2.deck.rank_of_card_at(0)
+    return :basic if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
 
     @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2) ? :mutually_assured_destruction : :war
   end
@@ -17,7 +17,6 @@ class Turn
     case self.type
       when :basic
         @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0) ? @player1 : @player2
-
       when :war
         @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2) ? @player1 : @player2
       when :mutually_assured_destruction
