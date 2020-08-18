@@ -37,7 +37,25 @@ class DeckTest < Minitest::Test
   end
 
   def test_it_can_remove_a_card
-    assert_equal @card1, @deck.remove_card 
+    assert_equal @card1, @deck.remove_card
+  end
+
+  def test_card_has_been_removed_from_deck
+    @deck.remove_card
+
+    assert_equal [@card2, @card3], @deck.cards
+    assert_equal [@card3], @deck.high_ranking_cards
+    assert_equal 50.0, @deck.percent_high_ranking
+  end
+
+  def test_card_can_be_added_to_deck
+    @deck.remove_card
+    card4 = Card.new(:club, '5', 5)
+    @deck.add_card(card4)
+
+    assert_equal [@card2, @card3, card4], @deck.cards
+    assert_equal [@card3], @deck.high_ranking_cards
+    assert_equal 33.33, @deck.percent_high_ranking
   end
 
 end
