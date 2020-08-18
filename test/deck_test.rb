@@ -4,11 +4,11 @@ require './lib/deck'
 
 class DeckTest < Minitest::Test
   def setup
-    deck = Deck.new([cards])
+    deck = Deck.new[cards]
   end
 
   def test_it_exists
-    deck = Deck.new([cards])
+    deck = Deck.new[cards]
 
     assert_instance_of Deck, deck
   end
@@ -20,21 +20,21 @@ class DeckTest < Minitest::Test
   end
 
   def test_high_ranking_cards
-    deck = Deck.new([cards])
+    deck = Deck.new[cards]
 
-    assert_equal = >10, deck.high_ranking_cards
+    assert_equal [11..13], deck.high_ranking_cards
   end
 
   def test_remove_card
-    deck = Deck.new([cards])
+    deck = Deck.new[cards]
 
-    assert_equal 12, deck.remove
+    assert deck.remove_card
   end
 
   def test_add_card
-    deck = Deck.new([cards])
+    deck = Deck.new[cards]
 
-    assert_equal 12, card.add
+    assert deck.add_card
   end
 
 end
