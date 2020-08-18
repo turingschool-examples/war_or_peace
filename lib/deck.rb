@@ -23,4 +23,8 @@ class Deck
     end
     high_rank
   end
+
+  def remove_card
+    @cards.shift
+  end
 end
