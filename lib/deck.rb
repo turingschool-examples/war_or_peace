@@ -24,6 +24,16 @@ class Deck
     high_rank
   end
 
+  def percent_high_ranking
+    percent = 0.0
+    @cards.each do |card|
+      if card.rank >= 11
+        percent += 1.0
+      end
+    end
+    (percent / @cards.count.to_f).round(4) * 100.0
+  end
+
   def remove_card
     @cards.shift
   end
