@@ -11,9 +11,7 @@ class Deck
 
 
   def high_ranking_cards
-    @cards.find_all do |card|
-      card.rank >= 11
-    end
+    @cards.find_all {|card| card.rank >= 11}
   end
 
   def percent_high_ranking
@@ -25,7 +23,7 @@ class Deck
   end
 
   def add_card(card)
-    @cards << card 
+    @cards << card
   end
 
 end
