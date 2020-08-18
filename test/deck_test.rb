@@ -15,8 +15,7 @@ class DeckTest < Minitest::Test
 
   def test_rank_of_card_at
     deck = Deck.new([cards])
-
-    assert_equal 0, deck.rank_of_card_at(0)
+    deck.index()
   end
 
   def high_ranking_cards
@@ -27,8 +26,7 @@ class DeckTest < Minitest::Test
 
   def test_remove_card
     deck = Deck.new[cards]
-
-    assert deck.remove_card
+    deck.push
   end
 
   def test_add_card
@@ -39,4 +37,7 @@ class DeckTest < Minitest::Test
 
 end
 
+p test_rank_of_card_at
 p high_ranking_cards
+p test_remove_card
+p test_add_card
