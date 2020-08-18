@@ -18,6 +18,6 @@ class PlayerTest <  Minitest::Test
 
     assert_instance_of Player, @player
     assert_equal 'Clarisa', @player.name
-    assert_equal [@card1, @card2, @card3], @player.deck
+    assert_equal @deck, @player.deck
   end
 end
