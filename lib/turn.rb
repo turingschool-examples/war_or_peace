@@ -14,7 +14,7 @@ class Turn
   end
 
   def winner
-    case self.type
+    return case self.type
       when :basic
         @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0) ? @player1 : @player2
       when :war
@@ -42,8 +42,8 @@ class Turn
     end
   end
 
-  def award_spoils
-    self.winner.deck.cards + @spoils_of_war if @spoils_of_war != []
+  def award_spoils(winner)
+    winner.deck.cards.concat(@spoils_of_war)
   end
 
 end

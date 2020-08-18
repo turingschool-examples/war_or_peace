@@ -35,4 +35,26 @@ class PlayerTest < Minitest::Test
   def test_spoils_of_war_defaults_as_empty_array
     assert_equal [], @turn.spoils_of_war
   end
+
+  def test_turn_type
+    assert_equal :basic, @turn.type
+  end
+
+  def test_turn_winner
+    assert_equal @player1, @turn.winner
+  end
+
+  def test_pile_cards_and_spoils_of_war
+    @turn.pile_cards
+    assert_equal [@card1, @card3], @turn.spoils_of_war
+  end
+
+  def test_award_spoils
+    @turn.pile_cards
+    @turn.award_spoils(@player1)
+    assert_equal [@card2, @card5, @card8, @card1, @card3], @player1.deck.cards
+  end
+
+
+
 end
