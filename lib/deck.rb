@@ -13,4 +13,14 @@ class Deck
       @cards[index].rank
     end
   end
+
+  def high_ranking_cards
+    high_rank = []
+    @cards.map do |card|
+      if card.rank >= 11
+        high_rank << card
+      end
+    end
+    high_rank
+  end
 end
