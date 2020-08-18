@@ -2,6 +2,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/deck'
 
+
 class DeckTest < Minitest::Test
   def setup
     cards = Deck.new[2..14]
@@ -23,23 +24,20 @@ class DeckTest < Minitest::Test
   def test_high_ranking_cards
     deck = Deck.new[2..14]
     deck.find_all do |rank|
-      rank.count >= 11
+      rank >= 11
   end
 
   def test_remove_card
     deck = Deck.new[2..14]
     deck.push
+
+    #or should remove_card be the method?
   end
 
-  def test_add_card
-    deck = Deck.new[2..14]
+  def test_add_card(card)
+    @deck << card
 
-    assert deck.add_card
+    @deck + 1
   end
 
 end
-
-p rank(0)
-p test_high_ranking_cards
-p test_remove_card
-p test_add_card
