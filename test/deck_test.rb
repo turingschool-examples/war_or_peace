@@ -52,6 +52,17 @@ class DeckTest <Minitest::Test
     assert_in_delta 66.67, expected, 0.01
   end
 
-  
+  def remove_card
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    cardremoved = [card2, card3]
+    deck = Deck.new(cards)
+    expected = deck.remove_card
+    assert_equal cardremoved, expected
+    
+
+
 
 end
