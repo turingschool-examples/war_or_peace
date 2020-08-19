@@ -57,6 +57,26 @@ class PlayerTest < Minitest::Test
     assert_equal "No Winner", @mad_turn.winner
   end
 
+  def test_basic_turn_moves_cards_to_spoils
+    @turn.type
+    @turn.pile_cards
+    assert_equal [@card1, @card3], @turn.spoils_of_war
+  end
+
+  def test_war_turn_moves_six_cards_to_spoils
+    war_turn_setup
+    @war_turn.type
+    @war_turn.pile_cards
+    assert_equal 6, @war_turn.spoils_of_war.length
+  end
+
+  def test_no_cards_in_spoils_when_mad
+    mad_turn_setup
+    @mad_turn.type
+    @mad_turn.pile_cards
+    assert_equal 0, @mad_turn.spoils_of_war.length
+  end
+
   def war_turn_setup
     war_deck_1 = Deck.new([@card1, @card2, @card3])
     war_deck_2 = Deck.new([@card4, @card5, @card6])
