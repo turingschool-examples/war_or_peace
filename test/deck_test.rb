@@ -29,7 +29,6 @@ class DeckTest <Minitest::Test
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
-    deck.rank_of_card(0)
     assert_equal 12, deck.rank_of_card(0)
   end
 
@@ -40,7 +39,6 @@ class DeckTest <Minitest::Test
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
     highcards = [card1,card3]
-    deck.high_ranking_cards
     assert_equal highcards, deck.high_ranking_cards
   end
 
@@ -50,6 +48,10 @@ class DeckTest <Minitest::Test
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
-    deck.percent_high_ranking
-    assert_in_delta 2/3 66.67
+    expected = deck.percent_high_ranking
+    assert_in_delta 66.67, expected, 0.01
   end
+
+  
+
+end
