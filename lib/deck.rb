@@ -17,14 +17,7 @@ class Deck
   end
 
   def percent_high_ranking
-    high_cards = Array.new
-    @cards.each do |card|
-      if card.rank >= 11
-        high_cards << card
-      end
-    end
-    percent_high = high_cards.count / @cards.count
-    percent_high
+    percent = ((high_ranking_cards.count.to_f.round(2) / @cards.count.to_f.round(2)) * 100)
   end
 
   def rank_of_card_at(index)
@@ -33,12 +26,11 @@ class Deck
 
   def remove_card
     @cards.delete_at(0)
-    @cards
   end
 
   def add_card(new_card)
     @cards << new_card
     @cards
   end
-  
+
 end

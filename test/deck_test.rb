@@ -30,9 +30,10 @@ class DeckTest < Minitest::Test
   end
 
   def test_percent_high_ranking
-    percent_high_ranking = 2 / 3
+    high_ranking_cards = [@card1, @card3]
+    percent_high = (high_ranking_cards.count.to_f.round(2) / @cards.count.to_f.round(2)) * 100
 
-    assert_equal percent_high_ranking, @deck.percent_high_ranking
+    assert_equal percent_high, @deck.percent_high_ranking
   end
 
   def test_rank_of_card_at
@@ -42,7 +43,7 @@ class DeckTest < Minitest::Test
   end
 
   def test_remove_card
-    remove_card = [@card2, @card3]
+    remove_card = @card1
 
     assert_equal remove_card, @deck.remove_card
   end
