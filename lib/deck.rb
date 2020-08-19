@@ -15,7 +15,6 @@ class Deck
   end
 
   def percent_high_ranking
-    # require "pry"; binding.pry
     high_card_count = self.high_ranking_cards.count.to_f
     card_count = @cards.count.to_f
     ((high_card_count / card_count).round(4)) * 100
