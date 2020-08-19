@@ -42,20 +42,21 @@ class Turn
     end
   end
 
-  def pile_cards
-    if @turn_type == :basic
+  def move_cards_to_spoils(number)
+    number.times do
       @spoils_of_war << @player1.deck.remove_card
       @spoils_of_war << @player2.deck.remove_card
+    end
+  end
+
+  def pile_cards
+    if @turn_type == :basic
+      move_cards_to_spoils(1)
     elsif @turn_type == :war
-      3.times do
-        @spoils_of_war << @player1.deck.remove_card
-        @spoils_of_war << @player2.deck.remove_card
-      end
+      move_cards_to_spoils(3)
     else
-      3.times do
-        @player1.deck.remove_card
-        @player2.deck.remove_card
-      end
+      move_cards_to_spoils(3)
+      @spoils_of_war.clear
     end
   end
 
