@@ -29,5 +29,16 @@ class DeckTest < Minitest::Test
     assert_equal high_ranking_cards, @deck.high_ranking_cards
   end
 
+  def test_percent_high_ranking
+    percent_high_ranking = 2 / 3
+
+    assert_equal percent_high_ranking, @deck.percent_high_ranking
+  end
+
+  def test_rank_of_card_at
+    @card1.rank == 12
+
+    assert_equal @card1.rank, @deck.rank_of_card_at(0)
+  end
 
 end
