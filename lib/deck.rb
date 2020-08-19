@@ -15,4 +15,8 @@ class Deck
     end
   end
 
+  def percent_high_ranking
+    (high_ranking_cards.size.to_f / cards.size * 100).round(2)
+  end
+
 end
