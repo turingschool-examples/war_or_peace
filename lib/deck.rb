@@ -11,7 +11,7 @@ class Deck
 
   def high_ranking_cards
     cards.select do |card|
-      card.rank > 11
+      card.rank >= 11
     end
   end
 
