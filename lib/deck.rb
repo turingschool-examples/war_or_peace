@@ -22,4 +22,12 @@ class Deck
     ((high_ranking_cards.length.to_f / cards.length.to_f) * 100).round(2)
   end
 
+  def remove_card
+    @cards.shift
+  end
+
+  def add_card(card)
+    @cards.push(card)
+  end
+
 end
