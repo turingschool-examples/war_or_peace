@@ -1,4 +1,5 @@
 require "pry"
+
 class Card
   attr_reader :suit, :value, :rank
 
