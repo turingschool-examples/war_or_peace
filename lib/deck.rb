@@ -13,4 +13,8 @@ class Deck
     @cards.select {|card| card.rank >= 11}
   end
 
+  def percent_high_ranking
+    100 * (self.high_ranking_cards.length / @cards.length.to_f)
+  end
+
 end
