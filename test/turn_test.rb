@@ -63,6 +63,6 @@ class TurnTest < Minitest::Test
     @player2 = Player.new("Aurora", @war_deck)
     @turn = Turn.new(@player1, @player2)
 
-    assert_equal @player2, @turn.winner 
+    assert_equal @player2, @turn.winner
   end
 end
