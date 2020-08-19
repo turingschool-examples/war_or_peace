@@ -16,9 +16,11 @@ class TurnTest < Minitest::Test
     @card6 = Card.new(:diamond, 'Queen', 12)
     @card7 = Card.new(:heart, '3', 3)
     @card8 = Card.new(:diamond, '2', 2)
+    @card9 = Card.new(:diamond, '8', 8)
     @deck1 = Deck.new([@card1, @card2, @card5, @card8])
     @deck2 = Deck.new([@card3, @card4, @card6, @card7])
     @war_deck = Deck.new([@card4, @card3, @card6, @card7])
+    @mad_deck = Deck.new([@card4, @card3, @card9, @card7])
     @player1 = Player.new("Megan", @deck1)
     @player2 = Player.new("Aurora", @deck2)
     @turn = Turn.new(@player1, @player2)
@@ -50,6 +52,8 @@ class TurnTest < Minitest::Test
 
   def test_it_can_award_spoils_to_winner
     assert_equal @turn.winner, @turn.award_spoils(@turn.winner)
+    assert_equal @deck1, @player1.deck
+    assert_equal @deck2, @player2.deck
   end
 
   def test_it_can_check_war_type
@@ -66,12 +70,21 @@ class TurnTest < Minitest::Test
     assert_equal @player2, @turn.winner
   end
 
-  def test_it_can_send_cards_to_spoils_of_war_for_basic
+  def test_it_can_send_cards_to_spoils_of_war_for_war
     @player2 = Player.new("Aurora", @war_deck)
     @turn = Turn.new(@player1, @player2)
 
     @turn.pile_cards
     expected = [@card1, @card2, @card5, @card4, @card3, @card6]
     assert_equal expected, @turn.spoils_of_war
+    assert_equal @deck1, @player1.deck
+    assert_equal @war_deck, @player2.deck
+  end
+
+  def test_it_can_check_mutually_assured_destruction_type
+    @player2 = Player.new("Aurora", @mad_deck)
+    @turn = Turn.new(@player1, @player2)
+
+    assert_equal :mutually_assured_destruction, @turn.type
   end
 end
