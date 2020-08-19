@@ -16,18 +16,19 @@ class Deck
         high_cards << card
       end
     end
-    p high_cards
+    high_cards
   end
 
   def percent_high_ranking
-    self.high_ranking_cards.count % cards * 100
+    ((high_ranking_cards.count.to_f / cards.count) * 100).round(2)
   end
 
   def remove_card
     @cards.shift
   end
 
-  def add_card
+  def add_card(card)
+    @cards << card
   end
 
 end
