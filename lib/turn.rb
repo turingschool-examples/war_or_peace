@@ -37,4 +37,14 @@ class Turn
       "No Winner"
     end
   end
+
+  def pile_cards
+    if type() == :mutually_assured_destruction
+      @player1.deck.cards.drop(3) && @player2.deck.cards.drop(3)
+    elsif type() == :basic
+      @spoils_of_war << @player1.deck.cards[0] && @spoils_of_war << @player2.deck.cards[0]
+    elsif type() == :war
+      @spoils_of_war << @player1.deck.cards[0..2] && @spoils_of_war << @player2.deck.cards[0..2]
+    end
+  end
 end
