@@ -24,19 +24,19 @@ class Turn
     @turn_type
   end
 
+  def compare_cards_at(index)
+    if @player1.deck.rank_of_card_at(index) > @player2.deck.rank_of_card_at(index)
+      @winner = @player1
+    else
+      @winner = @player2
+    end
+  end
+
   def determine_winner
     if @turn_type == :basic
-      if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
-        @winner = @player1
-      else
-        @winner = @player2
-      end
+      compare_cards_at(0)
     elsif @turn_type == :war
-      if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
-        @winner = @player1
-      else
-        @winner = @player2
-      end
+      compare_cards_at(2)
     else
       @winner = "No Winner"
     end
