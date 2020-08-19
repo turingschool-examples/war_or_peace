@@ -95,4 +95,14 @@ class TurnTest < Minitest::Test
     assert_equal "No Winner", @turn.winner
   end
 
+  def test_it_can_send_cards_to_spoils_of_war_for_mutual_destruction
+    @player2 = Player.new("Aurora", @mad_deck)
+    @turn = Turn.new(@player1, @player2)
+
+    @turn.pile_cards
+
+    assert_equal [], @turn.spoils_of_war
+    assert_equal @deck1, @player1.deck
+    assert_equal @mad_deck, @player2.deck
+  end
 end
