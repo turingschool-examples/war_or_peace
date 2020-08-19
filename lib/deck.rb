@@ -9,25 +9,24 @@ class Deck
   end
 
   def high_ranking_cards
-    high_cards = []
-    @cards.each do |card|
-      # return if card.rank >= 11
-      if card.rank >= 11
-        high_cards << card
-      end
+    @cards.select do |card|
+      card.rank >= 11
     end
-    # high_cards
   end
 
   def percent_high_ranking
-
+    # require "pry"; binding.pry
+    high_card_count = self.high_ranking_cards.count.to_f
+    card_count = @cards.count.to_f
+    ((high_card_count / card_count).round(4)) * 100
   end
 
   def remove_card
     @cards.shift
   end
 
-  def add_card
+  def add_card(card)
+    @cards << card
   end
 
 end
