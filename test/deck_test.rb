@@ -122,7 +122,7 @@ class DeckTest < Minitest::Test
     cards << card4
     deck = Deck.new(cards)
 
-    deck.remove_card #first element of the array
+    deck.remove_card 
 
     assert_equal [card2, card3, card4], deck.cards
   end
