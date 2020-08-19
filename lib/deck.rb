@@ -1,5 +1,3 @@
-
-
 class Deck
   attr_reader :cards
 
@@ -12,10 +10,7 @@ class Deck
   end
 
   def high_ranking_cards
-    #iterate over the deck to find rank above 11
-    #move cards rank above 11 into a new array
     high_cards = []
-
     cards.each do |card|
       if card.rank >= 11
         high_cards << card
@@ -25,11 +20,11 @@ class Deck
   end
 
   def percent_high_ranking
-    percent = high_ranking_cards.count / cards
-    puts percent
+    self.high_ranking_cards.count % cards * 100
   end
 
   def remove_card
+    @cards.shift
   end
 
   def add_card
