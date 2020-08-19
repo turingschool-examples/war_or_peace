@@ -19,8 +19,8 @@ class TurnTest < Minitest::Test
     @deck1 = Deck.new([@card1, @card2, @card5, @card8])
     @deck2 = Deck.new([@card3, @card4, @card6, @card7])
 
-    @player1 = Player.new("Megan", @deck1)
-    @player2 = Player.new("Aurora", @deck2)
+    @player1 = Player.new('Megan', @deck1)
+    @player2 = Player.new('Aurora', @deck2)
 
     @turn = Turn.new(@player1, @player2)
   end
@@ -39,5 +39,14 @@ class TurnTest < Minitest::Test
 
   def test_winner
     assert_equal @player1, @turn.winner
+  end
+
+  def test_pile_cards
+    @turn.pile_cards
+
+    assert_equal 3, @player1.deck.cards.length
+    assert_equal 3, @player2.deck.cards.length
+
+    assert_equal [@card1, @card3], @turn.spoils_of_war
   end
 end
