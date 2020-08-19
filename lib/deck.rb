@@ -8,4 +8,24 @@ class Deck
     @cards[location].rank
   end
 
+  def high_ranking_cards
+    @cards.select do |card|
+      card.rank >= 11
+    end
+
+  end
+
+  def percent_high_ranking
+    
+
+  end
+
+  def remove_card
+    @cards.shift
+  end
+
+  def add_card(card)
+    @cards << card
+  end
+
 end
