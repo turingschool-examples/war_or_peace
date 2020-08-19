@@ -85,12 +85,14 @@ class TurnTest < Minitest::Test
     deck1 = Deck.new([card1, card2, card5, card8])
     deck2 = Deck.new([card4, card3, card6, card7])
 
+
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
 
     assert_equal :mutually_assured_destruction, turn.type
   end
+
 
   def test_it_returns_winner_in_war_type
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
@@ -132,6 +134,10 @@ class TurnTest < Minitest::Test
 
     deck1 = Deck.new([card1, card2, card5, card8])
     deck2 = Deck.new([card4, card3, card6, card7])
+    
+  def test_spoils_of_war
+    deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    deck2 = Deck.new([@card3, @card4, @card6, @card7])
 
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
