@@ -25,9 +25,7 @@ class DeckTest < Minitest::Test
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
 
-    assert_instance_of Card, deck.cards[0]
-    assert_instance_of Card, deck.cards[1]
-    assert_instance_of Card, deck.cards[2]
+    assert_equal cards, deck.cards
   end
 
   def test_its_cards_have_a_rank
