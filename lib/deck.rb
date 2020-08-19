@@ -35,4 +35,10 @@ class Deck
     @cards.delete_at(0)
     @cards
   end
+
+  def add_card(new_card)
+    @cards << new_card
+    @cards
+  end
+  
 end
