@@ -26,4 +26,39 @@ class PlayerTest < Minitest::Test
     assert_equal @player2, @turn.player2
   end
 
+  def test_spoils_of_war_is_an_array
+    assert_equal Array.new, @turn.spoils_of_war
+  end
+
+  def test_can_determine_type_of_turn
+    assert_equal :basic, @turn.type
+  end
+
+  def test_can_determine_turn_is_war
+    war_turn_setup
+    assert_equal :war, @war_turn.type
+  end
+
+  def test_can_determine_is_mad
+    mad_turn_setup
+    assert_equal :mutually_assured_destruction, @mad_turn.type
+  end
+
+  def war_turn_setup
+    war_deck_1 = Deck.new([@card1, @card2, @card3])
+    war_deck_2 = Deck.new([@card4, @card5, @card6])
+    war_player_1 = Player.new("Sun Tzu", war_deck_1)
+    war_player_2 = Player.new("Napoleon", war_deck_2)
+    @war_turn = Turn.new(war_player_1, war_player_2)
+  end
+
+  def mad_turn_setup
+    card9 = Card.new(:club, "9", 9)
+    mad_deck_1 = Deck.new([@card1, @card2, @card3])
+    mad_deck_2 = Deck.new([@card4, @card5, card9])
+    mad_player_1 = Player.new("Joker", mad_deck_1)
+    mad_player_2 = Player.new("River", mad_deck_2)
+    @mad_turn = Turn.new(mad_player_1, mad_player_2)
+  end
+
 end
