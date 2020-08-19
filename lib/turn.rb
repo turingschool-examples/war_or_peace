@@ -53,9 +53,15 @@ class Turn
       3.times{@player1.deck.remove_card}
       3.times{@player2.deck.remove_card}
 
-    else
+    elsif type() == :mutually_assured_destruction
       3.times{@player1.deck.remove_card}
       3.times{@player2.deck.remove_card}
     end
+  end
+
+  def award_spoils(winner)
+    winner.deck.cards << @spoils_of_war
+    winner.deck.cards.flatten
+    winner
   end
 end

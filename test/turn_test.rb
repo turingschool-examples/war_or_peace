@@ -18,6 +18,7 @@ class TurnTest < Minitest::Test
     @card8 = Card.new(:diamond, '2', 2)
     @deck1 = Deck.new([@card1, @card2, @card5, @card8])
     @deck2 = Deck.new([@card3, @card4, @card6, @card7])
+    @war_deck = Deck.new([@card4, @card3, @card6, @card7])
     @player1 = Player.new("Megan", @deck1)
     @player2 = Player.new("Aurora", @deck2)
     @turn = Turn.new(@player1, @player2)
@@ -36,7 +37,7 @@ class TurnTest < Minitest::Test
     assert_equal :basic, @turn.type
   end
 
-  def test_it_can_get_winner
+  def test_it_can_get_winner_for_basic
 
     assert_equal @player1, @turn.winner
   end
@@ -49,5 +50,19 @@ class TurnTest < Minitest::Test
 
   def test_it_can_award_spoils_to_winner
     assert_equal @turn.winner, @turn.award_spoils(@turn.winner)
+  end
+
+  def test_it_can_check_war_type
+    @player2 = Player.new("Aurora", @war_deck)
+    @turn = Turn.new(@player1, @player2)
+
+    assert_equal :war, @turn.type
+  end
+
+  def test_it_can_get_winner_for_war
+    @player2 = Player.new("Aurora", @war_deck)
+    @turn = Turn.new(@player1, @player2)
+
+    assert_equal @player2, @turn.winner 
   end
 end
