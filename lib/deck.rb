@@ -21,7 +21,15 @@ class Deck
 end
 
   def percent_high_ranking
-    pecent = cards.high_ranking_cards.count / cards
+    cards.high_ranking_cards.to_f / cards.count.to_f * 100
+    end
+
+  def remove_card
+    @cards.shift
+    p cards
   end
-  p percent
+
+  def add_card(card)
+    @cards.push
+  end
 end
