@@ -9,10 +9,14 @@ class Turn
     @winner = nil
   end
 
+  def both_cards_same_at(index)
+    @player1.deck.rank_of_card_at(index) == @player2.deck.rank_of_card_at(index)
+  end
+
   def type
-    if @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
+    if both_cards_same_at(0) && both_cards_same_at(2)
       @turn_type = :mutually_assured_destruction
-    elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
+    elsif both_cards_same_at(0)
       @turn_type = :war
     else
       @turn_type = :basic
