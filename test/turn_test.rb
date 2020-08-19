@@ -42,7 +42,7 @@ class TurnTest < Minitest::Test
     assert_equal @player1, @turn.winner
   end
 
-  def test_it_can_send_cards_to_spoils_of_war
+  def test_it_can_send_cards_to_spoils_of_war_for_basic
 
     @turn.pile_cards
     assert_equal [@card1, @card3], @turn.spoils_of_war
@@ -64,5 +64,14 @@ class TurnTest < Minitest::Test
     @turn = Turn.new(@player1, @player2)
 
     assert_equal @player2, @turn.winner
+  end
+
+  def test_it_can_send_cards_to_spoils_of_war_for_basic
+    @player2 = Player.new("Aurora", @war_deck)
+    @turn = Turn.new(@player1, @player2)
+
+    @turn.pile_cards
+    expected = [@card1, @card2, @card5, @card4, @card3, @card6]
+    assert_equal expected, @turn.spoils_of_war
   end
 end

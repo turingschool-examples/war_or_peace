@@ -52,6 +52,8 @@ class Turn
 
       3.times{@player1.deck.remove_card}
       3.times{@player2.deck.remove_card}
+      
+      @spoils_of_war.flatten!
 
     elsif type() == :mutually_assured_destruction
       3.times{@player1.deck.remove_card}
