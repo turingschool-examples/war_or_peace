@@ -74,4 +74,14 @@ class Turn
     end
   end
 
+  def display_type
+    if @turn_type == :mutually_assured_destruction
+      "*mutually assured destruction*"
+    elsif @turn_type == :war
+      "WAR -"
+    else
+      nil
+    end
+  end
+
 end

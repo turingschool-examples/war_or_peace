@@ -103,6 +103,23 @@ class PlayerTest < Minitest::Test
     assert_equal 6, @war_turn.player2.deck.cards.length
   end
 
+  def test_can_display_turn_type
+    @turn.type
+    assert_nil @turn.display_type
+  end
+
+  def test_can_display_war_turn_type
+    war_turn_setup
+    @war_turn.type
+    assert_equal "WAR -", @war_turn.display_type
+  end
+
+  def test_can_display_mad_turn_type
+    mad_turn_setup
+    @mad_turn.type
+    assert_equal "*mutually assured destruction*", @mad_turn.display_type
+  end
+
   def war_turn_setup
     war_deck_1 = Deck.new([@card1, @card2, @card3])
     war_deck_2 = Deck.new([@card4, @card5, @card6])

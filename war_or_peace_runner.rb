@@ -82,7 +82,7 @@ until turn.player1.has_lost? || turn.player2.has_lost?
   turn.type
   turn.determine_winner
   turn.pile_cards
-  puts "Turn #{turn_counter} : #{turn.turn_type} #{turn.winner.name} won #{turn.spoils_of_war.length} cards."
+  puts "Turn #{turn_counter} : #{turn.display_type} #{turn.winner.name} won #{turn.spoils_of_war.length} cards."
   turn.award_spoils(turn.winner)
 
   turn_counter += 1
