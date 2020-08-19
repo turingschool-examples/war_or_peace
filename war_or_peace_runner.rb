@@ -62,11 +62,29 @@ card23, card24, card25, card26, card27, card28, card29, card30, card31, card32, 
 card34, card35, card36, card37, card38, card39, card40, card41, card42, card43, card44,
 card45, card46, card47, card48, card49, card50]
 
-shuffled_deck = full_deck.each_slice(full_deck.length / 2)
-deck_1 = shuffled_deck[0]
-deck_2 = shuffled_deck[1]
+shuffled_deck = full_deck.shuffle.each_slice(full_deck.length / 2).to_a
+deck_1 = Deck.new(shuffled_deck[0])
+deck_2 = Deck.new(shuffled_deck[1])
 
 player_1 = Player.new("Geordie", deck_1)
 player_2 = Player.new("Riker", deck_2)
 
 turn = Turn.new(player_1, player_2)
+
+puts "Welcome to War! (or Peace) This game will be played with #{full_deck.length} cards."
+puts "The players today are #{turn.player1.name} and #{turn.player2.name}."
+puts "Type 'GO' to start the game!"
+puts "------------------------------------------------------"
+turn.start
+
+turn_counter = 0
+until turn.player1.has_lost? || turn.player2.has_lost?
+  turn.type
+  turn.determine_winner
+  turn.pile_cards
+  puts "Turn #{turn_counter} : #{turn.turn_type} #{turn.winner.name} won #{turn.spoils_of_war.length} cards."
+  turn.award_spoils(turn.winner)
+
+  turn_counter += 1
+  break if turn_counter == 1000000
+end
