@@ -9,4 +9,8 @@ class Deck
     @cards[index].rank
   end
 
+  def high_ranking_cards
+    @cards.select {|card| card.rank >= 11}
+  end
+
 end
