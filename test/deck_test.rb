@@ -25,4 +25,49 @@ class DeckTest < Minitest::Test
     assert_equal 12, deck.rank_of_card_at(0)
   end
 
+  def test_high_ranking_cards_returns_array_of_cards_with_rank_over_ten
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+
+    assert_equal [card1, card3], deck.high_ranking_cards
+  end
+
+  def test_percent_high_ranking_gives_total_percentage_of_high_ranking_cardskip
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+
+    assert_equal 66.67, deck.percent_high_ranking
+  end
+
+  def test_remove_card_removes_card
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+
+    assert_equal card1, deck.remove_card
+    assert_equal [card2, card3], deck.cards
+  end
+
+  def test_add_card_adds_new_card
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+
+
+
+  end
+
+
+# You might have 3 setups. One for basic turn, one for war turn, and one for MAD turn. I personally, just copy paste.
+
 end
