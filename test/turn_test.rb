@@ -38,7 +38,9 @@ class TurnTest < Minitest::Test
   end
 
   def test_winner
-    assert_equal @player1, @turn.winner
+    @winner = @turn.winner
+
+    assert_equal @player1, @winner
   end
 
   def test_pile_cards
@@ -48,5 +50,15 @@ class TurnTest < Minitest::Test
     assert_equal 3, @player2.deck.cards.length
 
     assert_equal [@card1, @card3], @turn.spoils_of_war
+  end
+
+  def test_award_spoils
+    @winner = @turn.winner
+
+    @turn.pile_cards
+
+    @turn.award_spoils(@winner)
+
+    assert_equal [@card2, @card5, @card8, @card1, @card3], @player1.deck.cards
   end
 end
