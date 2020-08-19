@@ -59,4 +59,8 @@ class Turn
     end
   end
 
+  def award_spoils(recipient)
+    @spoils_of_war.shuffle.each {|card| recipient.deck.add_card(card)}
+  end
+
 end
