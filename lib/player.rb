@@ -1,6 +1,3 @@
-require './card'
-require './deck'
-
 class Player
   attr_reader :deck, :name
 
@@ -9,7 +6,7 @@ class Player
     @name = name
   end
 
-  def has_lost?
-    return deck.cards.length == 0
+  def lost?
+    deck.cards.length.zero?
   end
 end
