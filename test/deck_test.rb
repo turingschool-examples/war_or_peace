@@ -37,4 +37,10 @@ class DeckTest < Minitest::Test
     assert_equal [@card2, @card3, @card4], @deck.cards
   end
 
+  def test_can_add_card_to_deck
+    card5 = Card.new(:spade, "Ace", 14)
+    @deck.add_card(card5)
+    assert_equal [@card1, @card2, @card3, @card4, card5], @deck.cards
+  end
+
 end
