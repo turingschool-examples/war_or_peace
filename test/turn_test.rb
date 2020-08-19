@@ -44,6 +44,19 @@ class PlayerTest < Minitest::Test
     assert_equal :mutually_assured_destruction, @mad_turn.type
   end
 
+  def test_can_determine_winner
+    @turn.type
+    @turn.determine_winner
+    assert_equal @player1, @turn.winner
+  end
+
+  def test_nobody_wins_mad_turn
+    mad_turn_setup
+    @mad_turn.type
+    @mad_turn.determine_winner
+    assert_equal "No Winner", @mad_turn.winner
+  end
+
   def war_turn_setup
     war_deck_1 = Deck.new([@card1, @card2, @card3])
     war_deck_2 = Deck.new([@card4, @card5, @card6])
