@@ -56,8 +56,8 @@ class Turn
 
       @spoils_of_war.flatten!
     else
-      "NO"
-
+      3.times {@player1.deck.remove_card}
+      3.times {@player2.deck.remove_card}
     end
   end
 

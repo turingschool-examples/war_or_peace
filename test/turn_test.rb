@@ -118,4 +118,21 @@ class TurnTest < Minitest::Test
     assert_equal "No Winner", @turn.winner
   end
 
+  def test_m_a_d_spoils_of_war
+    @player2 = Player.new("Aurora", @m_a_d_deck)
+    @turn = Turn.new(@player1, @player2)
+    @turn.pile_cards
+
+    assert_equal [], @turn.spoils_of_war
+  end
+
+  def test_cards_are_not_awarded
+    @player2 = Player.new("Aurora", @m_a_d_deck)
+    @turn = Turn.new(@player1, @player2)
+    @turn.pile_cards
+
+    assert_equal [@card8], @player1.deck.cards
+    assert_equal [@card7], @player2.deck.cards 
+  end
+
 end
