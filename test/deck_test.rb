@@ -32,4 +32,9 @@ class DeckTest < Minitest::Test
     assert_equal 50.0, @deck.percent_high_ranking
   end
 
+  def test_can_remove_card_from_deck
+    @deck.remove_card
+    assert_equal [@card2, @card3, @card4], @deck.cards
+  end
+
 end
