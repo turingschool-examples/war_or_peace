@@ -10,7 +10,7 @@ class Turn
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
-    @spoils_of_war = []
+    @spoils_of_war = Array.new
   end
 
   def type
@@ -40,8 +40,21 @@ class Turn
     when :mutually_assured_destruction
       "No Winner"
     else
-      "Invalid card"
+      "Invalid game type"
     end
   end
 
+  def pile_of_cards
+    if type == :mutually_assured_destruction
+      3.times {player1.deck.remove_card}
+      3.times {player2.deck.remove_card}
+    elseif type == :war
+      spoils_of_war << player1.deck.cards.shift(3)
+      spoils_of_war << player2.deck.cards.shift(3)
+    else
+      spoils_of_war << player1.deck.cards.shift
+      spoils_of_war << player2.deck.cards.shift
+    end
+    spoils_of_war
+  end
 end

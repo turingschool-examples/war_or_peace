@@ -20,7 +20,7 @@ class TestTurn <Minitest::Test
     @card7 = Card.new(:spade, '3', 3)
     @card8 = Card.new(:diamond, '2', 2)
     @deck1 = Deck.new([@card1, @card2, @card5, @card8])
-    @deck2 = Deck.new([@card3, @card4, @card7, @card8])
+    @deck2 = Deck.new([@card3, @card4, @card6, @card7])
     @player1 = Player.new("Megan", deck1)
     @player2 = Player.new("Aurora", deck2)
     @turn = Turn.new(player1, player2)
@@ -41,7 +41,19 @@ class TestTurn <Minitest::Test
   end
 
   def test_winner_of_turn
+    turn.type
+
     assert_equal player1, turn.winner
   end
-  
+
+  def test_pile_of_cards
+    turn.type
+    turn.pile_of_cards
+    assert_equal [@card1, @card3], turn.spoils_of_war
+    assert_equal [@card2,@card5,@card8], player1.deck.cards
+    assert_equal [@card4,@card6,@card7], player2.deck.cards
+  end
+
+
+
 end
