@@ -1,6 +1,6 @@
-require './card'
-require './deck'
-require './player'
+require './lib/card'
+require './lib/deck'
+require './lib/player'
 
 class Init
   def display_start_message(player1, player2)
@@ -14,9 +14,12 @@ class Init
   end
 
   def new_shuffled_deck
-    card_values = 2..10.map { |num| [num.to_s, num] }
+    card_values = Array(2..10).map { |num| [num.to_s, num] }
 
-    card_values.concat(['Jack', 11], ['Queen', 12], ['King', 13], ['Ace', 14])
+    card_values << ['Jack', 11]
+    card_values << ['Queen', 12]
+    card_values << ['King', 13]
+    card_values << ['Ace', 14]
 
     suits = %i[diamond heart spade club]
     whole_deck = Deck.new([])
@@ -25,7 +28,7 @@ class Init
       suits.each { |suit| whole_deck.add_card(Card.new(suit, value[0], value[1])) }
     end
 
-    whole_deck.cards.shuffle
+    Deck.new(whole_deck.cards.shuffle)
   end
 
   def create_players(names)
