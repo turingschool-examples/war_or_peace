@@ -130,7 +130,7 @@ class TurnTest < Minitest::Test
     assert_equal player2_expected , turn.player2.deck.cards
   end
 
-  def test_pile_cards_and_rewarding_them_for_war
+  def test_pile_cards_for_war
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
     deck2 = Deck.new([@card4, @card3, @card6, @card7])
     player1 = Player.new("Megan", deck1)
@@ -143,11 +143,20 @@ class TurnTest < Minitest::Test
     assert_equal spoils_of_war_expected, turn.spoils_of_war
     assert_equal [@card8], turn.player1.deck.cards
     assert_equal [@card7], turn.player2.deck.cards
+  end
 
+  def test_award_spoils_for_war
+    deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    deck2 = Deck.new([@card4, @card3, @card6, @card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    winner = turn.winner
+    turn.pile_cards
     turn.award_spoils(winner)
+
     player1_expected = [@card8]
     player2_expected = [@card7,@card1,@card2,@card5,@card4,@card3,@card6]
-
     assert_equal player1_expected, turn.player1.deck.cards
     assert_equal player2_expected, turn.player2.deck.cards
   end
