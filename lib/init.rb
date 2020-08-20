@@ -7,6 +7,7 @@ class Init
     puts 'Welcome to War! (or Peace) This game will be played with 52 cards.'
     puts "The players today are #{player1.name} and #{player2.name}."
     puts "Type 'GO' to start the game!"
+    puts '------------------------------------------------------------------'
   end
 
   def start
@@ -41,7 +42,7 @@ class Init
     deck1 = Deck.new([])
     deck2 = Deck.new([])
 
-    new_shuffled_deck.each_with_index do |card, idx|
+    new_shuffled_deck.cards.each_with_index do |card, idx|
       case idx.even?
       when true
         deck1.add_card(card)

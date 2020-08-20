@@ -12,6 +12,7 @@ class InitTest < Minitest::Test
 
     deck = @init.new_shuffled_deck
 
+    assert_instance_of Deck, deck
     assert_equal 52, deck.cards.length
     assert deck.cards.is_a?(Array)
     deck.cards.each do |card|
@@ -21,5 +22,14 @@ class InitTest < Minitest::Test
       assert card.rank.is_a?(Integer)
       
     end
+  end
+
+  def test_deal_cards
+    decks = @init.deal_cards
+    
+    assert_instance_of Array, decks
+    assert_instance_of Deck, decks[0]
+    assert decks[0].cards.length == decks[1].cards.length
+    assert_equal 26, decks[1].cards.length
   end
 end
