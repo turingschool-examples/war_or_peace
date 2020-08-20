@@ -1,5 +1,6 @@
 require './card'
 require './deck'
+require './player'
 
 class Init
   def display_start_message(player1, player2)
@@ -13,18 +14,39 @@ class Init
   end
 
   def new_shuffled_deck
-    card_values = []
-    2..10.each do |num|
-      card_values << [num.to_s, num]
-    end
+    card_values = 2..10.map { |num| [num.to_s, num] }
 
-    card_values << ['Jack', 11], ['Queen', 12], ['King', 13], ['Ace', 14]
+    card_values.concat(['Jack', 11], ['Queen', 12], ['King', 13], ['Ace', 14])
 
-    suits = [:diamond, :heart, :spade, :club]
+    suits = %i[diamond heart spade club]
     whole_deck = Deck.new([])
 
     card_values.each do |value|
-      suits.each { |suit| whole_deck.add_card(Card.new(suit, value[0], value[1]))}
+      suits.each { |suit| whole_deck.add_card(Card.new(suit, value[0], value[1])) }
     end
+
+    whole_deck.cards.shuffle
+  end
+
+  def create_players(names)
+    decks = deal_cards
+
+    [Player.new(names[0], decks[0]), Player.new(names[1], decks[1])]
+  end
+
+  def deal_cards
+    deck1 = Deck.new([])
+    deck2 = Deck.new([])
+
+    new_shuffled_deck.each_with_index do |card, idx|
+      case idx.even?
+      when true
+        deck1.add_card(card)
+      when false
+        deck2.add_card(card)
+      end
+    end
+
+    [deck1, deck2]
   end
 end
