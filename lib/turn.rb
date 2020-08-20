@@ -48,10 +48,17 @@ class Turn
     elsif type == :war
       @spoils_of_war << @player1.deck.cards.shift(3)
       @spoils_of_war << @player2.deck.cards.shift(3)
-    else
+    elsif type == :mutually_assured_destruction
       @player1.deck.cards.shift(3)
       @player2.deck.cards.shift(3)
     end
     @spoils_of_war.flatten!
+  end
+
+  def award_spoils(winner)
+    if winner == @player1 || winner == @player2
+      winner.deck.cards.append(@spoils_of_war)
+      winner.deck.cards.flatten!
+    end
   end
 end
