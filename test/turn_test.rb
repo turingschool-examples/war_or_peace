@@ -161,19 +161,28 @@ class TurnTest < Minitest::Test
     assert_equal player2_expected, turn.player2.deck.cards
   end
 
-  def test_pilecards_and_spoils_of_war_for_mutaully_assured_destruction
+  def test_pilecards_for_mutaully_assured_destruction
     card6 = Card.new(:diamond, '8', 8)
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
     deck2 = Deck.new([@card4, @card3, card6, @card7])
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
-
     turn.pile_cards
-
-    assert_equal [], turn.spoils_of_war
 
     assert_equal [@card8], turn.player1.deck.cards
     assert_equal [@card7], turn.player2.deck.cards
+  end
+
+  def test_award_spoils_for_war_is_empty_after_mutually_assured_destruction
+    card6 = Card.new(:diamond, '8', 8)
+    deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    deck2 = Deck.new([@card4, @card3, card6, @card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    turn.pile_cards
+
+    assert_equal [], turn.spoils_of_war
   end
 end
