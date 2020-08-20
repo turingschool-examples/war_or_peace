@@ -22,4 +22,26 @@ class Turn
       :basic
     end
   end
+
+  def winner
+    case type
+    when :basic
+      if player1.deck.rank_of_card(0) > player2.deck.rank_of_card(0)
+        player1
+      else
+        player2
+      end
+    when :war
+      if player1.deck.rank_of_card(2) > player2.deck.rank_of_card(2)
+        player1
+      else
+        player2
+      end
+    when :mutually_assured_destruction
+      "No Winner"
+    else
+      "Invalid card"
+    end
+  end
+
 end
