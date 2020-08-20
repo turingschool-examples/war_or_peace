@@ -390,9 +390,10 @@ class TurnTest < Minitest::Test
     turn.type
     turn.winner?
     turn.pile_cards
-    turn.award_spoils
+    turn.award_spoils(turn.winner)
 
     assert_includes turn.winner.deck.cards, turn.spoils_of_war
+    assert_equal "August", turn.winner.name
   end
 
   def test_it_can_award_the_spoils_to_the_winner_of_a_war_turn
@@ -424,10 +425,12 @@ class TurnTest < Minitest::Test
     turn = Turn.new(player1, player2)
     turn.type
     turn.winner?
+    # require 'pry';binding.pry
     turn.pile_cards
-    turn.award_spoils
+    turn.award_spoils(turn.winner)
 
     assert_includes turn.winner.deck.cards, turn.spoils_of_war
+    assert_equal "August", turn.winner.name
   end
 
   def test_it_can_tosses_six_cards_after_a_mutally_assured_destruction_turn
@@ -460,7 +463,7 @@ class TurnTest < Minitest::Test
     turn.type
     turn.winner?
     turn.pile_cards
-    turn.award_spoils
+    turn.award_spoils(turn.winner)
 
     assert turn.spoils_of_war.empty?
   end
