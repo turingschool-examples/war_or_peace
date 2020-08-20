@@ -2,6 +2,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/card_generator'
 
 card1 = Card.new(:diamond, "2", 2)
 card2 = Card.new(:heart, "2", 2)
