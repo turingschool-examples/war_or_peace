@@ -1,8 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/deck'
 require './lib/card'
-
+require './lib/deck'
 
 class DeckTest < Minitest::Test
   def test_it_exists
@@ -53,7 +52,6 @@ class DeckTest < Minitest::Test
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
-    require "pry"; binding.pry
 
     assert_equal 66.67, deck.percent_high_ranking
 
@@ -66,7 +64,7 @@ class DeckTest < Minitest::Test
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
 
-    assert_equal [card2, card3], deck.remove_card
+    assert_equal card1, deck.remove_card
     assert_equal [card2, card3], deck.cards
     assert_equal [card3], deck.high_ranking_cards
     assert_equal 50.0, deck.percent_high_ranking
@@ -77,12 +75,12 @@ class DeckTest < Minitest::Test
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
     card4 = Card.new(:club, '5', 5)
-    cards = [card1, card2, card3]
+    cards = [card2, card3]
     deck = Deck.new(cards)
 
-    assert_equal [card1, card2, card3, card4], deck.add_card(card4)
-    assert_equal [card1, card2, card3, card4], deck.cards
-    assert_equal [card1, card3], deck.high_ranking_cards
+    assert_equal [card2, card3, card4], deck.add_card(card4)
+    assert_equal [card2, card3, card4], deck.cards
+    assert_equal card3, deck.high_ranking_cards
     assert_equal 33.33, deck.percent_high_ranking
   end
 
