@@ -2,12 +2,10 @@ class Deck
   attr_reader :cards
   def initialize(cards)
     @cards = cards
-    #change from [] to 'cards' - want to have state defining attribute
-    # represent the argument that is being passed through the method.
   end
 
-  def rank_of_card_at(index)
-    card_rank = cards[index].rank
+  def rank_of_card_at(i)
+    cards[i].rank
   end
 
   def high_ranking_cards
