@@ -23,14 +23,27 @@ attr_reader :player1, :player2, :spoils_of_war
   end
 
   def winner
-    #:basic -
-    #when basic will return whichever player has the higher rank_of_card_at(0)
+    case type
+    when :basic
+      if (player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0))
+        return player1
 
-    #:war -
-    #winner is whichever player has higher rank_of_card_at(2)
+      elsif (player2.deck.rank_of_card_at(0) > player1.deck.rank_of_card_at(0))
+        return player2
+      end
 
-    #:mutually_assured_destruction -
-    #returns No Winner
+    when :war
+      if (player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2))
+        return player1
+
+      elsif (player2.deck.rank_of_card_at(2) > player1.deck.rank_of_card_at(2))
+        return player2
+      end
+
+    when :mutually_assured_destruction
+      return "No Winner"
+      
+    end
   end
 
 
