@@ -79,12 +79,18 @@ turn.start
 
 turn_counter = 0
 until turn.player1.has_lost? || turn.player2.has_lost?
+  turn_counter += 1
   turn.type
   turn.determine_winner
   turn.pile_cards
-  puts "Turn #{turn_counter} : #{turn.display_type} #{turn.winner.name} won #{turn.spoils_of_war.length} cards."
+  puts "Turn #{turn_counter} : #{turn.display_type} #{turn.show_cards_won}"
   turn.award_spoils(turn.winner)
 
-  turn_counter += 1
   break if turn_counter == 1000000
+end
+
+if turn.player1.has_lost? || turn.player2.has_lost?
+  puts "*~*~*~* #{turn.winner.name} has won the game! *~*~*~*"
+else
+  puts "---- DRAW ----"
 end

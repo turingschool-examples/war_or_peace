@@ -21,7 +21,6 @@ class Turn
     else
       @turn_type = :basic
     end
-    @turn_type
   end
 
   def compare_cards_at(index)
@@ -76,11 +75,19 @@ class Turn
 
   def display_type
     if @turn_type == :mutually_assured_destruction
-      "*mutually assured destruction*"
+      " *mutually assured destruction*"
     elsif @turn_type == :war
-      "WAR -"
+      " WAR -"
     else
       nil
+    end
+  end
+
+  def show_cards_won
+    if @turn_type == :mutually_assured_destruction
+      "6 cards removed from play"
+    else
+      "#{@winner.name} won #{@spoils_of_war.count {|spoil| spoil.kind_of?(Card) }} cards"
     end
   end
 

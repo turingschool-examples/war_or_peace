@@ -82,7 +82,7 @@ class PlayerTest < Minitest::Test
     @turn.determine_winner
     @turn.pile_cards
     @turn.award_spoils(@turn.winner)
-    assert_equal 5 , @turn.player1.deck.cards.length
+    assert_equal 5, @turn.player1.deck.cards.length
   end
 
   def test_no_cards_in_spoils_when_turn_is_mad
@@ -111,13 +111,35 @@ class PlayerTest < Minitest::Test
   def test_can_display_war_turn_type
     war_turn_setup
     @war_turn.type
-    assert_equal "WAR -", @war_turn.display_type
+    assert_equal " WAR -", @war_turn.display_type
   end
 
   def test_can_display_mad_turn_type
     mad_turn_setup
     @mad_turn.type
-    assert_equal "*mutually assured destruction*", @mad_turn.display_type
+    assert_equal " *mutually assured destruction*", @mad_turn.display_type
+  end
+
+  def test_can_show_cards_to_be_won
+    @turn.type
+    @turn.determine_winner
+    @turn.pile_cards
+    assert_equal "Megan won 2 cards", @turn.show_cards_won
+  end
+
+  def test_show_cards_won_in_war_turn
+    war_turn_setup
+    @war_turn.type
+    @war_turn.determine_winner
+    @war_turn.pile_cards
+    assert_equal "Napoleon won 6 cards", @war_turn.show_cards_won
+  end
+
+  def test_shows_no_cards_in_mad_turn
+    mad_turn_setup
+    @mad_turn.type
+    @mad_turn.pile_cards
+    assert_equal "6 cards removed from play", @mad_turn.show_cards_won
   end
 
   def war_turn_setup
