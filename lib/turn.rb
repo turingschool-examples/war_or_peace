@@ -11,12 +11,14 @@ class Turn
   end
 
   def type
-    if @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
+    if @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) &&
+      @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
       return :mutually_assured_destruction
     end
     if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
       return :basic
-    elsif player1.deck.rank_of_card_at(2) == nil || player2.deck.rank_of_card_at(2) == nil
+    elsif player1.deck.rank_of_card_at(2) == nil ||
+      player2.deck.rank_of_card_at(2) == nil
       return :war
     else
       return :war
@@ -28,13 +30,17 @@ class Turn
       winner = @player2
     elsif @player2.deck.rank_of_card_at(2) == nil
       winner = @player1
-    elsif type == :basic && @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
+    elsif type == :basic && @player1.deck.rank_of_card_at(0) >
+      @player2.deck.rank_of_card_at(0)
       @player1
-    elsif type == :basic && @player1.deck.rank_of_card_at(0) < @player2.deck.rank_of_card_at(0)
+    elsif type == :basic && @player1.deck.rank_of_card_at(0) <
+      @player2.deck.rank_of_card_at(0)
       @player2
-    elsif type == :war && @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
+    elsif type == :war && @player1.deck.rank_of_card_at(2) >
+      @player2.deck.rank_of_card_at(2)
       @player1
-    elsif type == :war && @player1.deck.rank_of_card_at(2) < @player2.deck.rank_of_card_at(2)
+    elsif type == :war && @player1.deck.rank_of_card_at(2) <
+      @player2.deck.rank_of_card_at(2)
       @player2
     else
       "No Winner"
@@ -86,7 +92,8 @@ class Turn
         @spoils_of_war.clear
       end
       award_spoils(winner)
-      if @player2.has_lost? && @player1.has_lost? || count == 100000 && !@player1.has_lost? && !@player2.has_lost?
+      if @player2.has_lost? && @player1.has_lost? ||
+        count == 100000 && !@player1.has_lost? && !@player2.has_lost?
         p "-----DRAW-----"
       elsif @player1.has_lost?
         p "*~*~*~* #{@player2.name} has won! *~*~*~*"
