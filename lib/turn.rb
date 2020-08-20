@@ -8,8 +8,8 @@ class Turn
   end
 
   def type
-    if @player1.deck.cards[0].rank == @player2.deck.cards[0].rank
-      if @player1.deck.cards[2].rank == @player2.deck.cards[2].rank
+    if player1.deck.cards[0].rank == player2.deck.cards[0].rank
+      if player1.deck.cards[2].rank == player2.deck.cards[2].rank
         :mutually_assured_destruction
       else
         :war
@@ -21,16 +21,16 @@ class Turn
 
   def winner
     if type == :basic
-      if @player1.deck.cards[0].rank > @player2.deck.cards[0].rank
-        @winner = @player1
+      if player1.deck.cards[0].rank > player2.deck.cards[0].rank
+        winner = player1
       else
-        @winner = @player2
+        winner = player2
       end
     elsif type == :war
-      if @player1.deck.cards[2].rank > @player2.deck.cards[2].rank
-        @winner = @player1
+      if player1.deck.cards[2].rank > player2.deck.cards[2].rank
+        winner = player1
       else
-        @winner = @player2
+        winner = player2
       end
     else
       "No Winner"
@@ -39,30 +39,32 @@ class Turn
 
   def pile_cards
     if type == :basic
-      @spoils_of_war << @player1.deck.remove_card
-      @spoils_of_war << @player2.deck.remove_card
+      spoils_of_war << player1.deck.remove_card
+      spoils_of_war << player2.deck.remove_card
     elsif type == :war
       3.times do
-        @spoils_of_war << @player1.deck.remove_card
+        spoils_of_war << player1.deck.remove_card
       end
       3.times do
-        @spoils_of_war << @player2.deck.remove_card
+        spoils_of_war << player2.deck.remove_card
       end
     else
       3.times do
-        @player1.deck.remove_card
+        player1.deck.remove_card
       end
       3.times do
-        @player2.deck.remove_card
+        player2.deck.remove_card
       end
     end
   end
 
   def award_spoils(winner)
-    if winner == @player1
-      @player1.deck << @spoils_of_war
-    elsif winner == @player2
-      @player2.deck << @spoils_of_war
+    if winner == player1
+      player1.deck.cards << spoils_of_war
+      player1.deck.cards.flatten!
+    elsif winner == player2
+      player2.deck.cards << spoils_of_war
+      player2.deck.cards.flatten!
     else
 
     end
