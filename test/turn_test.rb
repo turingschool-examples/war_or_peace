@@ -154,7 +154,7 @@ class PlayerTest < Minitest::Test
     card9 = Card.new(:club, "9", 9)
     mad_deck_1 = Deck.new([@card1, @card2, @card3])
     mad_deck_2 = Deck.new([@card4, @card5, card9])
-    mad_player_1 = Player.new("Joker", mad_deck_1)
+    mad_player_1 = Player.new("Johnny", mad_deck_1)
     mad_player_2 = Player.new("River", mad_deck_2)
     @mad_turn = Turn.new(mad_player_1, mad_player_2)
   end
