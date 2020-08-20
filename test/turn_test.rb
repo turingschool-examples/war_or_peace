@@ -27,17 +27,21 @@ class TurnTest < MiniTest::Test
     assert_instance_of Turn, @turn
   end
 
-   def test_turn
+  def test_turn
 
      assert_equal @player1, @turn.player1
      assert_equal @player2, @turn.player2
-   end
+  end
 
-   def test_type
+  def test_type
 
-     assert_equal :basic, @turn.type 
+     assert_equal :basic, @turn.type
+  end
 
-   end
+  def test_winner
+
+    assert_equal @player1, @turn.winner
+  end
 
 
 
