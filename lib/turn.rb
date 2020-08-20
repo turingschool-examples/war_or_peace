@@ -24,6 +24,8 @@ class Turn
     elsif type == :war
       return player1.name if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
       return player2.name if player1.deck.rank_of_card_at(2) < player2.deck.rank_of_card_at(2)
+    else
+      "No Winner"
     end
   end
 
@@ -35,7 +37,11 @@ class Turn
       @spoils_of_war << player1.deck.cards[0..2]
       @spoils_of_war << player2.deck.cards[0..2]
       @spoils_of_war.flatten!
+      3.times {player1.deck.cards.shift}
+      3.times {player2.deck.cards.shift}
     else
+      3.times {player1.deck.cards.shift}
+      3.times {player2.deck.cards.shift}
     end
   end
 
