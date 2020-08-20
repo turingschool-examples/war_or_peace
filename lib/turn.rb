@@ -39,7 +39,7 @@ class Turn
       card_rank2[-1]
     elsif self.type == :mutually_assured_destruction
       "No Winner"
-    else
+    else           # REMOVE THIS ELSE STATEMENT BEFORE SUBMITTING
       "WINNER ERROR"
     end
   end
@@ -51,6 +51,6 @@ class Turn
   end
 
   def award_spoils(winner)
-    
+    winner.deck.cards = winner.deck.add_card(@spoils_of_war).flatten
   end
 end

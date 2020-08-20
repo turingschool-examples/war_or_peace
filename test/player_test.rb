@@ -31,7 +31,7 @@ class PlayerTest < Minitest::Test
     card3 = Card.new(:heart, "Ace", 14)
     deck = Deck.new([card1, card2, card3])
     player = Player.new("Clarisa", deck)
-    assert_equal deck, player.deck
+    assert_equal 3, player.deck.cards.count
   end
 
   def test_a_player_has_not_lost_with_cards_left
