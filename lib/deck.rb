@@ -1,6 +1,6 @@
 require './lib/Card.rb'
 
-class Deck 
+class Deck < Card
   attr_reader :cards
   def initialize(cards)
     @cards = cards
@@ -36,7 +36,7 @@ class Deck
   end
 
   def add_card(card)
-    @cards += [card]
+    @cards += card
   end
 
 end
