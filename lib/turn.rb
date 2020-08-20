@@ -26,7 +26,6 @@ class Turn
       end
     elsif type == :war
       if @player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-        # require 'pry';binding.pry
         @winner = @player1
       else
         @winner = @player2
