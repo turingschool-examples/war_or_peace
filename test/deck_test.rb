@@ -56,6 +56,7 @@ class DeckTest < Minitest::Test
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
 
+    #refactor to check to make sure type of card is checked 
     assert_equal 66.67, deck.percent_high_ranking
   end
 

@@ -140,12 +140,12 @@ class TurnTest < Minitest::Test
 
     player1_cards = [card2, card5, card8, card1, card3]
     player2_cards = [card4, card6, card7]
+
     assert_equal player1_cards, player1.deck.cards
     assert_equal player2_cards, player2.deck.cards
   end
 
   def test_it_determines_type_is_war
-    skip
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -167,7 +167,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_determines_winner_in_war
-    skip
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -189,8 +188,7 @@ class TurnTest < Minitest::Test
     assert_equal "Aurora", winner
   end
 
-  def test_it_returns_top_three_cards_to_spoils_in_war
-    skip
+  def test_pile_cards_returns_top_three_cards_to_spoils_in_war
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -210,7 +208,7 @@ class TurnTest < Minitest::Test
 
     winner = turn.winner
     turn.pile_cards
-    each_top_three = [card1, card2, card5, card3, card4, card6]
+    each_top_three = [card1, card2, card5, card4, card3, card6]
 
     assert_equal each_top_three, turn.spoils_of_war
   end
