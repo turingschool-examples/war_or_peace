@@ -47,16 +47,17 @@ class DeckTest < Minitest::Test
     assert_equal [card1, card3], deck.high_ranking_cards
   end
 
-  # def test_percent_high_ranking
-  #   card1 = Card.new(:diamond, 'Queen', 12)
-  #   card2 = Card.new(:spade, '3', 3)
-  #   card3 = Card.new(:heart, 'Ace', 14)
-  #   cards = [card1, card2, card3]
-  #   deck = Deck.new(cards)
-  #   require "pry"; binding.pry
-  #   assert_equal 66.67, deck.percent_high_ranking
-  #   require "pry"; binding.pry
-  # end
+  def test_percent_high_ranking
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+    require "pry"; binding.pry
+
+    assert_equal 66.67, deck.percent_high_ranking
+
+  end
 
   def test_it_can_remove_card
     card1 = Card.new(:diamond, 'Queen', 12)
