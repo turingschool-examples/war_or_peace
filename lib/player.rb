@@ -5,4 +5,17 @@ class Player
     @name = name
     @deck = deck
   end
-end 
+
+  # def player_has_lost?
+  #   has_lost == false
+  #   @cards.shift
+  #   p "Keep Going!"
+  # end
+  #
+  # def remove_card_from_deck
+  #   if has_lost == false
+  #     @cards.shift
+  #     p cards
+  #   end
+  # end
+end
