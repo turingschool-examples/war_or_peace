@@ -32,4 +32,11 @@ class InitTest < Minitest::Test
     assert decks[0].cards.length == decks[1].cards.length
     assert_equal 26, decks[1].cards.length
   end
+
+  def test_create_players
+    players = @init.create_players(["Michael", "Aidan"])
+
+    assert_instance_of Player, players[0]
+    assert_instance_of Deck, players[1].deck
+  end
 end
