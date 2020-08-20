@@ -31,6 +31,12 @@ class Deck < Card
   end
 
   def remove_card
-    @cards = @cards[1..-1]
+    @cards.delete_at(0)
+    @cards
   end
+
+  def add_card(card)
+    @cards += [card]
+  end
+
 end
