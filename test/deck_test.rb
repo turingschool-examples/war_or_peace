@@ -29,8 +29,8 @@ class DeckTest <Minitest::Test
   end
 
   def test_high_rank_cards
-    highcards = [card1,card3]
-    assert_equal highcards, deck.high_ranking_cards
+    high_cards = [card1,card3]
+    assert_equal high_cards, deck.high_ranking_cards
   end
 
   def test_percent_high_rank
@@ -39,22 +39,22 @@ class DeckTest <Minitest::Test
   end
 
   def test_remove_card
-    cardremoved = [card2, card3]
+    card_removed = [card2, card3]
     expected = deck.remove_card
-    highcards = [card3]
-    assert_equal cardremoved, expected
+    high_cards = [card3]
+    assert_equal card_removed, expected
     assert_in_delta 50, deck.percent_high_ranking, 0.01
-    assert_equal highcards, deck.high_ranking_cards
+    assert_equal high_cards, deck.high_ranking_cards
   end
 
   def test_add_card
-    cardadded = [card2, card3, card4]
-    highcards = [card3]
+    card_added = [card2, card3, card4]
+    high_cards = [card3]
     deck.remove_card
     expected = deck.add_card(card4)
-    assert_equal cardadded, expected
+    assert_equal card_added, expected
     assert_in_delta 33.33, deck.percent_high_ranking, 0.01
-    assert_equal highcards, deck.high_ranking_cards
+    assert_equal high_cards, deck.high_ranking_cards
   end
 
 end
