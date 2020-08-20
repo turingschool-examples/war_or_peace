@@ -5,6 +5,9 @@ class Turn
     @player2 = player2
   end
 
+  def turn
+
+  end 
 
 
 end
