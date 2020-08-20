@@ -6,13 +6,10 @@ class Player
     end
 
     def has_lost?
-      if self.deck.cards == []
-        true
-      else
-        false
-      end
+      empty_deck?
     end
 
-
-
+    def empty_deck?
+      @deck.cards == []
+    end
 end
