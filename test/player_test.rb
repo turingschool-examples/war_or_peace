@@ -25,5 +25,9 @@ class PlayerTest < MiniTest::Test
     assert_equal 'Clarisa', player.name
   end
 
+  def test_player_has_lost?
+
+    assert_equal false, @player.has_lost?
+  end
 
 end

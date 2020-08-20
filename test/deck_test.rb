@@ -30,8 +30,7 @@ class DeckTest < Minitest::Test
   end
 
   def test_percent_high_ranking
-    high_ranking_cards = [@card1, @card3]
-    percent_high = (high_ranking_cards.count.to_f.round(2) / @cards.count.to_f.round(2)) * 100
+    percent_high = (2.0/3.0)*100
 
     assert_equal percent_high, @deck.percent_high_ranking
   end
