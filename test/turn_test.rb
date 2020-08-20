@@ -26,7 +26,7 @@ class TurnTest < MiniTest::Test
     assert_instance_of Turn, turn
   end
 
-  def test_players_have_names
+  def test_that_turn_has_players
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -42,7 +42,7 @@ class TurnTest < MiniTest::Test
 
     turn = Turn.new(player1, player2)
 
-    assert_equal "Megan", player1.name
-    assert_equal "Aurora", player2.name
+    assert_equal player1, turn.player1
+    assert_equal player2, turn.player2
   end
 end
