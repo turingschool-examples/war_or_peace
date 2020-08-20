@@ -61,4 +61,38 @@ class Turn
       winner.deck.cards.flatten!
     end
   end
+
+  def start
+    p "Welcome to War! (or Peace) This game will be played with 52 cards."
+    p "The players today are #{@player1.name} and #{@player2.name}."
+    p "Type 'GO' to start the game!"
+    p '---------------------------------------------------------------------'
+
+    input = gets.chomp.upcase
+    if input == 'GO'
+      p "The game has started!"
+      count = 0
+      until @player1.has_lost? || @player2.has_lost? || count == 1000000 do
+        count += 1
+        pile_cards
+        award_spoils(winner)
+        if type == :basic
+          p "Turn #{count}: #{winner.name} won #{@spoils_of_war.count / 2} cards"
+        elsif type == :war
+          p "Turn #{count}: WAR - #{winner.name} won #{@spoils_of_war.count / 2} cards"
+        else
+          p "Turn #{count}: *mutually_assured_destruction* 6 cards removed from play."
+        end
+        @spoils_of_war.clear
+      end
+      award_spoils(winner)
+      if @player2.has_lost? && @player1.has_lost? || count == 100000 && !@player1.has_lost? && !@player2.has_lost?
+        p "-----DRAW-----"
+      elsif @player1.has_lost?
+        p "*~*~*~* #{@player2.name} has won! *~*~*~*"
+      else
+        p "*~*~*~* #{@player1.name} has won! *~*~*~*"
+      end
+    end
+  end
 end
