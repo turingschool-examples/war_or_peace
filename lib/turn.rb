@@ -4,7 +4,7 @@ class Turn
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
-    @winner
+    @winner = winner
   end
 
   def type
@@ -19,16 +19,17 @@ class Turn
 
   def winner?
     if type == :basic
-      if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-        @winner = player1
+      if @player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+        @winner = @player1
       else
-        @winner = player2
+        @winner = @player2
       end
     elsif type == :war
-      if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-        @winner = player1
+      if @player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+        # require 'pry';binding.pry
+        @winner = @player1
       else
-        @winner = player2
+        @winner = @player2
       end
     elsif type == :mutally_assured_destruction
       "No Winner"
@@ -52,9 +53,9 @@ class Turn
     end
   end
 
-  def award_spoils
+  def award_spoils(winner)
     if @spoils_of_war.length != 0
-      (@winner.deck.cards << @spoils_of_war).flatten
+      (winner.deck.cards << @spoils_of_war).flatten
       @spoils_of_war.clear
     else
       @spoils_of_war.clear
