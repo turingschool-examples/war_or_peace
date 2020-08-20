@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/card'
-require './lib/deck'
+require './lib/card.rb'
+require './lib/deck.rb'
 
 
 
