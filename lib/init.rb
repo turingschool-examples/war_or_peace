@@ -10,9 +10,7 @@ class Init
     puts '------------------------------------------------------------------'
   end
 
-  def start
-
-  end
+  
 
   def new_shuffled_deck
     card_values = Array(2..10).map { |num| [num.to_s, num] }
@@ -32,10 +30,10 @@ class Init
     Deck.new(whole_deck.cards.shuffle)
   end
 
-  def create_players(names)
+  def create_players(player1, player2)
     decks = deal_cards
 
-    [Player.new(names[0], decks[0]), Player.new(names[1], decks[1])]
+    [Player.new(player1, decks[0]), Player.new(player2, decks[1])]
   end
 
   def deal_cards
@@ -52,5 +50,26 @@ class Init
     end
 
     [deck1, deck2]
+  end
+
+  def start
+    players = create_players('Megan', 'Aurora')
+    display_start_message
+    run(wait_for_go(players))
+  end
+
+  def wait_for_go(players)
+    loop do
+      return players if gets.chomp == 'GO'
+
+      puts "Please enter 'GO' to continue"
+    end
+  end
+
+  def run(players)
+    someone_lost = false
+    until someone_lost
+
+    end
   end
 end

@@ -34,9 +34,15 @@ class InitTest < Minitest::Test
   end
 
   def test_create_players
-    players = @init.create_players(["Michael", "Aidan"])
+    players = @init.create_players("Michael", "Aidan")
 
     assert_instance_of Player, players[0]
     assert_instance_of Deck, players[1].deck
+  end
+
+  def test_wait_for_go
+    output = @init.wait_for_go(true)
+
+    assert output
   end
 end
