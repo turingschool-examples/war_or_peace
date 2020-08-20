@@ -6,6 +6,7 @@ class Player
   end
 
 #need to fix this method
+#deck.rank_of_card_at(0) > deck.rank_of_card_at(1)
   def has_lost?
     if @deck == []
       true
