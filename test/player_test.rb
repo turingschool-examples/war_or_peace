@@ -27,4 +27,13 @@ class TestPlayer <Minitest::Test
     assert_equal "Clarisa", player.name
     assert_equal deck, player.deck
   end
+
+  def test_player_has_lost?
+    player.deck.remove_card
+    assert_equal false, player.has_lost?
+    player.deck.remove_card
+    assert_equal false, player.has_lost?
+    player.deck.remove_card
+    assert_equal true, player.has_lost?
+  end
 end
