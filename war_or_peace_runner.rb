@@ -21,7 +21,7 @@ end
 #shuffle the cards
 full_deck.shuffle!
 
-#divide the deck into equal decks
+#divide the 52 card deck into equal decks
 deck1 = Deck.new(full_deck.shift(26))
 deck2 = Deck.new(full_deck)
 

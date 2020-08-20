@@ -1,6 +1,7 @@
 class Deck
   attr_reader :cards
 
+  #initialize takes an array of Cards
   def initialize(cards)
     @cards = cards
   end
