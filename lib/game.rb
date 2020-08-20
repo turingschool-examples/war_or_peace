@@ -33,9 +33,6 @@ class Game
       hand_winner = turn.winner
 
       #print the outcome of the turn (need to print outcome before removing cards from deck because turn.type determined by current deck)
-      if turn.player1.deck.cards[0] == turn.player1.deck.cards[0] && 
-
-
       if turn.type == :war
         print "WAR - #{hand_winner.name} won 6 cards\n"
       elsif turn.type == :mutually_assured_destruction
@@ -51,7 +48,7 @@ class Game
       turn.award_spoils(hand_winner)
 
 
-    end
+    end #end until loop
 
     if turn_count == 1000000
       print "---- DRAW ----"
