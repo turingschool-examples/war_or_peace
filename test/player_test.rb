@@ -22,4 +22,9 @@ class TestPlayer <Minitest::Test
   def test_player_exists
     assert_instance_of Player, player
   end
+
+  def test_player_has_attributes
+    assert_equal "Clarisa", player.name
+    assert_equal deck, player.deck
+  end
 end
