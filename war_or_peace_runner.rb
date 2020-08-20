@@ -15,3 +15,6 @@ require "pry"
   standard_deck << Card.new(:suit, "Queen", 12)
   standard_deck << Card.new(:suit, "King", 13)
   standard_deck << Card.new(:suit, "Ace", 14)
+end
+
+@standard_deck.shuffle!
