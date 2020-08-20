@@ -29,7 +29,8 @@ class Deck < Card
     end
     return percent = (count.to_f/@cards.count().to_f)*100
   end
+
+  def remove_card
+    @cards = @cards[1..-1]
+  end
 end
-  # def high_ranking_cards
-  #   return @cards if @cards.rank >=10
-  # end
