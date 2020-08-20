@@ -103,7 +103,7 @@ class TurnTest < Minitest::Test
     assert_equal "No Winner", turn.winner
   end
 
-  def test_pile_cards_and_rewarding_them_for_basic
+  def test_pile_cards_for_basic
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
     deck2 = Deck.new([@card3, @card4, @card6, @card7])
     player1 = Player.new("Megan", deck1)
@@ -112,7 +112,16 @@ class TurnTest < Minitest::Test
     winner = turn.winner
     turn.pile_cards
     assert_equal [@card1, @card3], turn.spoils_of_war
+  end
 
+  def test_award_spoils_for_basic
+    deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    deck2 = Deck.new([@card3, @card4, @card6, @card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    winner = turn.winner
+    turn.pile_cards
     turn.award_spoils(winner)
 
     player1_expected = [@card2,@card5,@card8,@card1,@card3]
