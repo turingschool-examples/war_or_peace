@@ -158,7 +158,18 @@ class TurnTest < MiniTest::Test
     winner = turn.winner
 
     #Test to check player2 is winner
-    assert_equal player2, turn.winner 
+    assert_equal player2, turn.winner
+
+    turn.pile_cards
+
+    #Test that spoils are collected
+    assert_equal [card1, card4, card2, card3, card5, card6], turn.spoils_of_war
+
+    turn.award_spoils(winner)
+
+    #Test that spoils go to winner
+    assert_equal [card8], player1.deck.cards
+    assert_equal [card7, card1, card4, card2, card3, card5, card6], player2.deck.cards 
   end
 
 end
