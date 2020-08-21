@@ -1,6 +1,7 @@
 require './lib/card'
 require './lib/deck'
 require './lib/player'
+require './lib/turn'
 
 class Init
   def display_start_message(player1, player2)
@@ -54,7 +55,7 @@ class Init
 
   def start
     players = create_players('Megan', 'Aurora')
-    display_start_message
+    display_start_message(players[0], players[1])
     run(wait_for_go(players))
   end
 
@@ -68,8 +69,40 @@ class Init
 
   def run(players)
     someone_lost = false
+    turn_number = 0
     until someone_lost
+      turn_number += 1
+      turn = Turn.new(players[0], players[1])
 
+      winner = turn.winner
+      turn.pile_cards
+      card_amount = turn.spoils_of_war.length
+      turn.award_spoils(winner)
+
+      turn_description =
+        case turn.type
+        when :basic
+          "#{winner.name} won #{card_amount} cards"
+        when :war
+          "WAR - #{winner.name} won #{card_amount} cards"
+        when :mutually_assured_destruction
+          "*mutually assured destruction* #{card_amount} cards removed from play"
+        end
+
+      puts "Turn #{turn_number}: " + turn_description
+
+      someone_lost = players[0].lost? || players[1].lost?
+      break if turn_number >= 1_000_000
     end
+
+    if someone_lost
+      puts "*~*~*~* #{(players.sort do |first, second|
+        first.deck.cards.length <=> second.deck.cards.length
+      end)[0].name} has won the game! *~*~*~*"
+
+      return
+    end
+
+    puts '---- DRAW ----'
   end
 end
