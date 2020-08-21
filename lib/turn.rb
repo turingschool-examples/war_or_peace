@@ -50,10 +50,10 @@ class Turn
       end
     else
       3.times do
-        player1.deck.remove_card
+        spoils_of_war << player1.deck.remove_card
       end
       3.times do
-        player2.deck.remove_card
+        spoils_of_war << player2.deck.remove_card
       end
     end
   end
@@ -66,7 +66,7 @@ class Turn
       player2.deck.cards << spoils_of_war
       player2.deck.cards.flatten!
     else
-
+      spoils_of_war = []
     end
   end
 
