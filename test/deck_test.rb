@@ -72,13 +72,16 @@ class DeckTest < Minitest::Test
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:spade, 'Ace', 14)
     card4 = Card.new(:club, '5', 5)
-    cards = [card1, card2, card3, card4]
+    cards = [card2, card3]
 
     deck = Deck.new(cards)
 
     deck.add_card(card4)
 
-    assert_equal [card2, card3, card4], deck.cards
+    assert_equal [card2, card3, card4], deck.cards # failure
+                                                   # expected card2, card3, card4
+                                                   # actual card1, card2, card3, card4
+                                                   # However, works when testing with pry
     assert_equal [card3], deck.high_ranking_cards
     assert_equal 33.33, deck.percent_high_ranking
   end
