@@ -24,7 +24,7 @@ class Deck
   end
 
   def remove_card
-    cards.shift # WHY ISN'T THIS SHOWING THE REMOVED CARD IN PRY?????
+    cards.shift
   end
 
   def add_card
