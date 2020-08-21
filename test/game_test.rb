@@ -21,12 +21,18 @@ class GameTest < Minitest::Test
   end
 
   def test_it_exists
-    skip 
+    skip
     assert_instance_of Game, @game
   end
 
   def test_welcome_message
-
+    skip
     assert_equal "GO", @game.welcome_message
+  end
+
+  def test_turn_message
+    @turn.type = :basic
+
+    assert_equal "Turn 1: Megan won 2 cards"
   end
 end

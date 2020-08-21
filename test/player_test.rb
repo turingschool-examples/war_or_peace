@@ -27,15 +27,19 @@ class PlayerTest < Minitest::Test
   end
 
   def test_player_has_lost
+
     refute @player.has_lost?
+
     @player.deck.remove_card
     refute @player.has_lost?
+
     @player.deck.remove_card
     refute @player.has_lost?
+
     @player.deck.remove_card
     assert @player.has_lost?
 
-    assert_equal [], @player.deck.cards 
+    assert_equal [], @player.deck.cards
   end
 
 end

@@ -25,6 +25,7 @@ class Game
 
     @player1 = Player.new("Megan", deck1)
     @player2 = Player.new("Aurora", deck2)
+
   end
 
   def welcome_message
@@ -33,14 +34,17 @@ class Game
     p "Type 'GO' to start the game!"
     p "------------------------------------------------------------------"
     print "--->  "
+  end
 
+  def winner_name
+    @turn.winner.name
   end
 
   def turn_message(turn)
     if turn.type == :basic
-      p "Turn #{@turn_count}: #{@turn.winner.name} won 2 cards"
+      p "Turn #{@turn_count}: #{winner_name} won 2 cards"
     elsif turn.type == :war
-      p "Turn #{@turn_count}: WAR - #{@turn.winner.name} won 6 cards"
+      p "Turn #{@turn_count}: WAR - #{winner_name} won 6 cards"
     else
       p "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
     end
@@ -48,13 +52,11 @@ class Game
 
   def start
     create_decks
-    # require "pry"; binding.pry
     welcome_message
     start = gets.chomp.upcase
 
     if start == "GO"
       @turn_count = 1
-      require "pry"; binding.pry
       until @player1.has_lost? || @player2.has_lost? do
         @turn = Turn.new(@player1, @player2)
 
@@ -63,7 +65,12 @@ class Game
         turn_message(@turn)
 
         @turn_count += 1
+        if @turn_count == 1000000
+          p "---- DRAW ----"
+          break
+        end
       end
+      p "*~*~*~* #{winner_name} has won the game! *~*~*~*"
     end
   end
 
