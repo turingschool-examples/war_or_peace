@@ -52,16 +52,20 @@ attr_reader :player1, :player2, :spoils_of_war
     when :basic
       spoils_of_war << player1.deck.remove_card
       spoils_of_war << player2.deck.remove_card
+
+
+    when :war
+      3.times do
+        spoils_of_war << player1.deck.remove_card
+        spoils_of_war << player2.deck.remove_card
+      end
+
+    when :mutually_assured_destruction
+      3.times do
+        player1.deck.remove_card
+        player2.deck.remove_card
+      end
     end
-
-
-    #for :war - each player will send 3 cards (top 3) to spoils pile
-    #for :mutually_assured_destruction - each player will remove 3 cards --
-    #... for mad - not sent to spoils pile, but removed from players decks
-
-    #we want the cards removed from the top of the deck during a turn to pile
-    #then shovel those cards into spoils_of_war (not for mad)
-    #then award the winner the spoils (not for mad)
     end
 
   def award_spoils(winner)
