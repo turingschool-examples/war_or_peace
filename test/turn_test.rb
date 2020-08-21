@@ -190,5 +190,19 @@ class TurnTest < MiniTest::Test
 
     #Test to check turn type is mad
     assert_equal :mutually_assured_destruction, turn.type
+
+    winner = turn.winner
+
+    #Test to check there is no winner
+    assert_equal "No Winner", turn.winner
+
+    turn.pile_cards
+
+    #Test to check spoils of war is empty
+    assert_equal [], turn.spoils_of_war
+
+    #Test that no one gets the spoils
+    assert_equal [card8], player1.deck.cards
+    assert_equal [card7], player2.deck.cards
   end
 end
