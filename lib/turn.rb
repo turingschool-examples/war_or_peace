@@ -1,6 +1,3 @@
-
-
-
 class Turn
 attr_reader :player1, :player2, :spoils_of_war
 
@@ -42,7 +39,6 @@ attr_reader :player1, :player2, :spoils_of_war
 
     when :mutually_assured_destruction
       return "No Winner"
-
     end
   end
 
@@ -66,13 +62,11 @@ attr_reader :player1, :player2, :spoils_of_war
         player2.deck.remove_card
       end
     end
-    end
+  end
 
   def award_spoils(winner)
     spoils_of_war.each do |card|
       winner.deck.add_card(card)
     end
   end
-
-
-  end
+end
