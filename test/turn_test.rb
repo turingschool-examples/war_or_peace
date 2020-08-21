@@ -220,6 +220,8 @@ class TurnTest < MiniTest::Test
     player6 = Player.new("Paul", deck6)
     turn3 = Turn.new(player5, player6)
 
+# require "pry"; binding.pry
+
     winner = turn.winner
     turn.pile_cards
     assert_equal [card1, card3], turn.spoils_of_war
@@ -231,10 +233,15 @@ class TurnTest < MiniTest::Test
     winner = turn2.winner
     turn2.pile_cards
     assert_equal [card9, card10, card11, card13, card14, card15], turn2.spoils_of_war
+    turn.award_spoils(winner)
+
+    assert_equal deck3, player3.deck
+    assert_equal deck4, player4.deck
 
     winner = turn3.winner
     turn3.pile_cards
     assert_equal [], turn3.spoils_of_war
+
     assert_equal [card12], player5.deck.cards
     assert_equal [card4], player6.deck.cards
   end
