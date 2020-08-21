@@ -130,14 +130,25 @@ class TurnTest < MiniTest::Test
     mut_player2 = Player.new("Aurora", mut_deck2)
     mutually_assured_destruction_turn = Turn.new(mut_player1, mut_player2)
 
-    assert_equal @spoils_of_war = [war_card1, war_card3, war_card2, war_card4, war_card5, war_card6], war_turn.pile_cards
-    assert_equal @spoils_of_war = [], mutually_assured_destruction_turn.pile_cards
-    assert_equal @spoils_of_war = [@card1, @card3], @turn.pile_cards
+    assert_equal [war_card1, war_card3, war_card2, war_card4, war_card5, war_card6], war_turn.pile_cards
+    assert_equal [], mutually_assured_destruction_turn.pile_cards
+    assert_equal [@card1, @card3], @turn.pile_cards
   end
 
   def test_award_spoils
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10)
+    card3 = Card.new(:heart, '9', 9)
+    card4 = Card.new(:diamond, 'Jack', 11)
+    deck1 = Deck.new([card3, card2])
+    deck2 = Deck.new([card1, card4])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    the_winner = turn.winner
 
-#    assert_equal [@card2, @card5, @card8, @card1, @card3], @turn.winner.deck
+    assert_equal [card4, card3, card1], turn.award_spoils(the_winner)
+    assert_equal [@card2, @card5, @card8, @card1, @card3], @turn.award_spoils(@player1)
   end
 
 end

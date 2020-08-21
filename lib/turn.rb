@@ -50,13 +50,8 @@ class Turn
     end
   end
 
-  def award_spoils
-    if @turn.winner == @player1
-      @player1.deck.concat(@turn.pile_cards)
-    elsif @turn.winner == @player2
-      @player2.deck.concat(@turn.pile_cards)
-    else
-    end
+  def award_spoils(winner)
+    (winner.deck.add_card(pile_cards)).flatten
   end
 
   private
@@ -68,5 +63,4 @@ class Turn
   def war?
     @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
   end
-
 end
