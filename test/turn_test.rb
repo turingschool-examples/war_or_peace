@@ -106,7 +106,7 @@ class TurnTest < MiniTest::Test
     assert_equal player1, turn.winner
   end
 
-  def test_to_pile_cards_and_get_spoils
+  def test_to_pile_cards_and_get_spoils_basic
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -122,6 +122,8 @@ class TurnTest < MiniTest::Test
 
     turn = Turn.new(player1, player2)
     winner = turn.winner
+
+    turn.pile_cards
 
     assert_equal [card1, card3], turn.spoils_of_war
   end
