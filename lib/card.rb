@@ -4,7 +4,7 @@ class Card
   def initialize(*args)
     args = args.flatten
     @suit = args[0].to_sym
-    @value = args[1]
+    @value = args[1].to_s
     @rank = args[2].to_i
   end
 

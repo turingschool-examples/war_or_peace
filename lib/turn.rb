@@ -87,7 +87,7 @@ class Turn
     if @turn_type == :mutually_assured_destruction
       "6 cards removed from play"
     else
-      "#{@winner.name} won #{@spoils_of_war.count {|spoil| spoil.kind_of?(Card) }} cards"
+      "#{@winner.name} won #{@spoils_of_war.count {|spoil| spoil.kind_of?(Card)} } cards"
     end
   end
 
