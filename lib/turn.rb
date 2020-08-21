@@ -40,23 +40,34 @@ class Turn
   end
 
   def pile_cards
-  # require "pry"; binding.pry
     if type == :basic
       # each player will send one card (the top card) to the spoils pile
-      player1.deck.cards.shift(1) << @spoils_of_war
-      player2.deck.cards.shift(1) << @spoils_of_war
+      @spoils_of_war << player1.deck.remove_card
+      @spoils_of_war << player2.deck.remove_card
 
     elsif type == :war
       # each player will send three cards (the top three cards) to the spoils pile
-       player1.deck.cards.shift(3) << @spoils_of_war
-       player2.deck.cards.shift(3) << @spoils_of_war
+      3.times do
+        @spoils_of_war << player1.deck.remove_card
+      end
+
+      3.times do
+        @spoils_of_war << player2.deck.remove_card
+      end
 
     elsif type == :mutually_assured_destruction
       # each player will remove three cards from play (the top three cards in their deck). These cards are not sent to the spoils pile, they are simply removed from each players’ deck.
-      player1.deck.cards.shift(3)
-      player2.deck.cards.shift(3)
+      3.times {player1.deck.remove_card}
 
+      3.times {player2.deck.remove_card}
     end
   end
 
+  def award_spoils(winner)
+  # will add each of the cards in the @spoils_of_war array to the winner of the turn.
+
+    @spoils_of_war.each do |card|
+      winner.deck.add_card(card)
+    end
+  end
 end
