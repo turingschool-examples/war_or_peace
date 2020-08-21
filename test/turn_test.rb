@@ -126,6 +126,8 @@ class TurnTest < MiniTest::Test
     turn.pile_cards
 
     assert_equal [card1, card3], turn.spoils_of_war
+    assert_equal [card1, card2, card3, card5, card8], player1.deck
+    assert_equal [card4, card6, card7], player2.deck
   end
 
 end
