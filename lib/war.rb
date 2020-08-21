@@ -3,12 +3,17 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 require './lib/card_generator'
+require './lib/alt_card_generator'
 
 class War
   attr_reader :full_deck, :turn
 
   def initialize
     @full_deck = CardGenerator.new("cards.txt").cards
+  end
+
+  def create_full_deck_without_text_file
+    @full_deck = AltCardGenerator.new.cards
   end
 
   def create_decks_for_players

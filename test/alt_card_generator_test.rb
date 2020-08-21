@@ -3,7 +3,6 @@ require './test/test_helper'
 class CardGeneratorTest < Minitest::Test
   def setup
     @alt_card_generator = AltCardGenerator.new
-    @alt_card_generator.generate_cards
   end
 
   def test_it_exists
