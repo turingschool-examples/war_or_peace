@@ -10,15 +10,14 @@ class Game
 
   def create_decks
     suits = [:heart, :diamond, :club, :spade]
-
     suits.each do |suit|
       2.upto(10) do |number|
-        @standard_deck << Card.new(:suit, "#{number}", number)
+        @standard_deck << Card.new(suit, "#{number}", number)
       end
-      @standard_deck << Card.new(:suit, "Jack", 11)
-      @standard_deck << Card.new(:suit, "Queen", 12)
-      @standard_deck << Card.new(:suit, "King", 13)
-      @standard_deck << Card.new(:suit, "Ace", 14)
+      @standard_deck << Card.new(suit, "Jack", 11)
+      @standard_deck << Card.new(suit, "Queen", 12)
+      @standard_deck << Card.new(suit, "King", 13)
+      @standard_deck << Card.new(suit, "Ace", 14)
     end
     @standard_deck.shuffle!
     deck1 = @standard_deck[0..25]
@@ -34,20 +33,38 @@ class Game
     p "Type 'GO' to start the game!"
     p "------------------------------------------------------------------"
     print "--->  "
-    start = gets.chomp.upcase
 
   end
 
-  def turn_message
-    @turn_count + 1
-
+  def turn_message(turn)
+    if turn.type == :basic
+      p "Turn #{@turn_count}: #{@turn.winner.name} won 2 cards"
+    elsif turn.type == :war
+      p "Turn #{@turn_count}: WAR - #{@turn.winner.name} won 6 cards"
+    else
+      p "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
+    end
   end
 
   def start
     create_decks
     # require "pry"; binding.pry
     welcome_message
+    start = gets.chomp.upcase
 
+    if start == "GO"
+      @turn_count = 1
+      require "pry"; binding.pry
+      until @player1.has_lost? || @player2.has_lost? do
+        @turn = Turn.new(@player1, @player2)
+
+        @turn.pile_cards
+        @turn.award_spoils(@turn.winner)
+        turn_message(@turn)
+
+        @turn_count += 1
+      end
+    end
   end
 
 
