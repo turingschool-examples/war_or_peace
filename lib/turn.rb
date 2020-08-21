@@ -82,18 +82,34 @@ class Turn
     end
   end
 
+  def collect_spoils(player)
+    @spoils_of_war << player.deck.remove_card
+  end
+
   def pile_cards
-    if @og_type == :war
-      @spoils_of_war << @player1.deck.remove_card
-      @spoils_of_war << @player1.deck.remove_card
-      @spoils_of_war << @player1.deck.remove_card
-      @spoils_of_war << @player2.deck.remove_card
-      @spoils_of_war << @player2.deck.remove_card
-      @spoils_of_war << @player2.deck.remove_card
-    elsif @og_type == :basic
-      @spoils_of_war << @player1.deck.remove_card
-      @spoils_of_war << @player2.deck.remove_card
+    if type == :war
+      [@player1, @player2].each do |player|
+        3.times { collect_spoils(player) }
+      end
+    elsif type == :basic
+      [@player1, @player2].each do |player|
+        collect_spoils(player)
+      end
     end
+  end
+
+  # def pile_cards
+  #   if @og_type == :war
+  #     @spoils_of_war << @player1.deck.remove_card
+  #     @spoils_of_war << @player1.deck.remove_card
+  #     @spoils_of_war << @player1.deck.remove_card
+  #     @spoils_of_war << @player2.deck.remove_card
+  #     @spoils_of_war << @player2.deck.remove_card
+  #     @spoils_of_war << @player2.deck.remove_card
+  #   elsif @og_type == :basic
+  #     @spoils_of_war << @player1.deck.remove_card
+  #     @spoils_of_war << @player2.deck.remove_card
+  #   end
 
     # if @og_type == :basic
     #   @spoils_of_war = [@player1, @player2].map do |player|
@@ -106,7 +122,7 @@ class Turn
     #     player.deck.remove_card
     #   end
     # end
-  end
+  # end
 
   def award_spoils(winner)
     winner.deck.cards = winner.deck.add_card(@spoils_of_war).flatten
