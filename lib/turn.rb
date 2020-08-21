@@ -93,7 +93,7 @@ class Turn
       end
       award_spoils(winner)
       if @player2.has_lost? && @player1.has_lost? ||
-        count == 100000 && !@player1.has_lost? && !@player2.has_lost?
+        count == 1000000 && !@player1.has_lost? && !@player2.has_lost?
         p "-----DRAW-----"
       elsif @player1.has_lost?
         p "*~*~*~* #{@player2.name} has won! *~*~*~*"
