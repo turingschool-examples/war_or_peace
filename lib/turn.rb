@@ -10,7 +10,7 @@ class Turn
 # if you want things calculated dynamically, you want use to use a method, to keep it dynamic.
 # an instance attribute is set. Not as dynamic as its fixed.
   def type
-    if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card(2)
+    if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
       :mutually_assured_destruction
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
      :war
@@ -20,12 +20,20 @@ class Turn
   end
 
   def winner # will determine the winner of the turn, compare the types, to determine the winner (look @ structure of code)
-    if self.type == :mutually_assured_destruction
-      winner = 0# no winner
-    elsif turn :war
-      winner = 0# player with higher rank_of_card_at(2)
-    else turn :basic
-      winner = 0# player with the higher rank_of_card_at(0)
+    if type == :mutually_assured_destruction
+      winner = nil
+    elsif type == :war
+      if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+        winner = player1.name
+      else
+        winner = player2.name
+      end
+    else type == :basic
+      if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+        winner = player1.name
+      else
+        winner = player2.name
+      end
     end
   end
 

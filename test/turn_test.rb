@@ -51,10 +51,10 @@ class TurnTest < MiniTest::Test
   def test_type_mutually_assured_destruction
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
-    card3 = Card.new(:heart, '9', 9)
+    card3 = Card.new(:heart, 'Jack', 11)
     card4 = Card.new(:diamond, 'Jack', 11)
     card5 = Card.new(:heart, '8', 8)
-    card6 = Card.new(:diamond, 'Queen', 12)
+    card6 = Card.new(:heart, '8', 8)
     card7 = Card.new(:heart, '3', 3)
     card8 = Card.new(:diamond, '2', 2)
 
@@ -65,13 +65,13 @@ class TurnTest < MiniTest::Test
     player2 = Player.new('Aurora', deck2)
     turn = Turn.new(player1, player2)
 
-    assert_equal player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2), false
+    assert_equal player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2), true
   end
 
   def test_type_war
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
-    card3 = Card.new(:heart, '9', 9)
+    card3 = Card.new(:heart, 'Jack', 11)
     card4 = Card.new(:diamond, 'Jack', 11)
     card5 = Card.new(:heart, '8', 8)
     card6 = Card.new(:diamond, 'Queen', 12)
@@ -89,7 +89,6 @@ class TurnTest < MiniTest::Test
   end
 
   def test_type_basic
-    skip
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -105,8 +104,68 @@ class TurnTest < MiniTest::Test
     player1 = Player.new('Megan', deck1)
     player2 = Player.new('Aurora', deck2)
     turn = Turn.new(player1, player2)
-    
+
     assert_equal player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0), true
+  end
+
+  def test_winner_mutually_assured_destruction
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10)
+    card3 = Card.new(:heart, 'Jack', 11)
+    card4 = Card.new(:diamond, 'Jack', 11)
+    card5 = Card.new(:heart, '8', 8)
+    card6 = Card.new(:heart, '8', 8)
+    card7 = Card.new(:heart, '3', 3)
+    card8 = Card.new(:diamond, '2', 2)
+
+    deck1 = Deck.new([card1, card2, card5, card8])
+    deck2 = Deck.new([card3, card4, card6, card7])
+
+    player1 = Player.new('Megan', deck1)
+    player2 = Player.new('Aurora', deck2)
+    turn = Turn.new(player1, player2)
+
+    assert_nil turn.winner, true
+  end
+
+  def test_winner_war
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10)
+    card3 = Card.new(:heart, 'Jack', 11)
+    card4 = Card.new(:diamond, 'Jack', 11)
+    card5 = Card.new(:heart, '8', 8)
+    card6 = Card.new(:diamond, 'Queen', 12)
+    card7 = Card.new(:heart, '3', 3)
+    card8 = Card.new(:diamond, '2', 2)
+
+    deck1 = Deck.new([card1, card2, card5, card8])
+    deck2 = Deck.new([card3, card4, card6, card7])
+
+    player1 = Player.new('Megan', deck1)
+    player2 = Player.new('Aurora', deck2)
+    turn = Turn.new(player1, player2)
+
+    assert_equal turn.winner, player2.name
+  end
+
+  def test_winner_basic
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10)
+    card3 = Card.new(:heart, '9', 9)
+    card4 = Card.new(:diamond, 'Jack', 11)
+    card5 = Card.new(:heart, '8', 8)
+    card6 = Card.new(:diamond, 'Queen', 12)
+    card7 = Card.new(:heart, '3', 3)
+    card8 = Card.new(:diamond, '2', 2)
+
+    deck1 = Deck.new([card1, card2, card5, card8])
+    deck2 = Deck.new([card3, card4, card6, card7])
+
+    player1 = Player.new('Megan', deck1)
+    player2 = Player.new('Aurora', deck2)
+    turn = Turn.new(player1, player2)
+
+    assert_equal turn.winner, player1.name
   end
 
 end
