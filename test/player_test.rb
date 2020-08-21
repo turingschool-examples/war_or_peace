@@ -26,7 +26,13 @@ class PlayerTest < MiniTest::Test
   end
 
   def test_player_has_lost?
+    cards = []
+    deck = Deck.new(cards)
+    player = Player.new('Clarisa', deck)
 
+
+#add more tests here
+    assert_equal true, player.has_lost?
     assert_equal false, @player.has_lost?
   end
 
