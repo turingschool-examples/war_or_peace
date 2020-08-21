@@ -52,9 +52,7 @@ attr_reader :player1, :player2, :spoils_of_war
     when :basic
       spoils_of_war << player1.deck.remove_card
       spoils_of_war << player2.deck.remove_card
-
-
-    #for :basic - each player will send one card (top) to spoils pile
+    end
 
 
     #for :war - each player will send 3 cards (top 3) to spoils pile
@@ -65,4 +63,12 @@ attr_reader :player1, :player2, :spoils_of_war
     #then shovel those cards into spoils_of_war (not for mad)
     #then award the winner the spoils (not for mad)
     end
+
+  def award_spoils(winner)
+    spoils_of_war.each do |card|
+      winner.deck.add_card(card)
+    end
+  end
+
+
   end
