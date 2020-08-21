@@ -50,9 +50,9 @@ class Turn
     end
   end
 
-#  def award_spoils
-
-#  end
+  def award_spoils(winner)
+    (winner.deck.add_card(pile_cards)).flatten
+  end
 
   private
 
@@ -63,5 +63,4 @@ class Turn
   def war?
     @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
   end
-
 end
