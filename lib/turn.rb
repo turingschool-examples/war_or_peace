@@ -61,6 +61,7 @@ class Turn
 
   def award_spoils(recipient)
     @spoils_of_war.shuffle.each {|card| recipient.deck.add_card(card)}
+    @spoils_of_war.clear
   end
 
   def start
