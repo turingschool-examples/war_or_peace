@@ -172,17 +172,17 @@ class TurnTest < MiniTest::Test
     turn3 = Turn.new(player5, player6)
 
     turn.pile_cards
-    assert_equal @spoils_of_war = [card1, card3], @spoils_of_war
+    assert_equal [card1, card3], turn.spoils_of_war
     assert_equal [card2, card5, card8], player1.deck.cards
     assert_equal [card4, card6, card7], player2.deck.cards
 
     turn2.pile_cards
-    assert_equal @spoils_of_war = [card9, card10, card11, card13, card14, card15], @spoils_of_war
+    assert_equal [card9, card10, card11, card13, card14, card15], turn2.spoils_of_war
     assert_equal [card12], player3.deck.cards
     assert_equal [card16], player4.deck.cards
 
     turn3.pile_cards
-    assert_equal @spoils_of_war = [], @spoils_of_war
+    assert_equal [], turn3.spoils_of_war
     assert_equal [card12], player5.deck.cards
     assert_equal [card4], player6.deck.cards
   end
