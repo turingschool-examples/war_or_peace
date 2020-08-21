@@ -21,34 +21,50 @@ class Turn
 
   def winner # will determine the winner of the turn, compare the types, to determine the winner (look @ structure of code)
     if type == :mutually_assured_destruction
-      winner = nil
+      nil
     elsif type == :war
       if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-        winner = player1.name
+        player1.name
       else
-        winner = player2.name
+        player2.name
       end
-    else type == :basic
+    else
       if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-        winner = player1.name
+        player1.name
       else
-        winner = player2.name
+        player2.name
       end
     end
   end
 
-  def pile_cards # sends cards from players decks into spoils_of_war array (issue here. look @ turn, not a thing)
-    if turn :mutually_assured_destruction
-      # both players remove top 3 cards in their deck, removed from deck. Not sent to spoils_of_war array
-    elsif turn :war
-      # each player will send top 3 cards to spoils_of_war array
-    else  turn :basic
-      # each player sends top card to spoils_of_war array
+# sends cards from players decks into spoils_of_war array
+  def pile_cards
+    # both players remove top 3 cards in their deck, removed from deck.
+    # Not sent to spoils_of_war array(simply removed)
+    if type == :mutually_assured_destruction && winner == nil
+      3.times do
+        player1.deck.remove_card
+        player2.deck.remove_card
+      end
+    elsif type == :war
+      if turn.winner = player1.name
+        spoils_of_war << 3.times {player1.deck.cards.pop}
+      else turn.winner = player2.name
+        spoils_of_war << 3.times {player2.deck.cards.pop}
+      end
+    else
+      spoils_of_war << player1.deck.pop
+      spoils_of_war << player2.deck.pop
     end
   end
 
   def award_spoils
-    # adds cards from spoils_of_war array to winners deck array
+    if turn.winner = player1.name
+      player1.deck << spoils_of_war.slice!(0..-1)
+    elsif turn.winner = player2.name
+      player2.deck << spoils_of_war.slic!(0..-1)
+    else
+      'no winners in mutually_assured_destruction'
+    end
   end
-
 end
