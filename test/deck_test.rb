@@ -30,6 +30,12 @@ class DeckTest < Minitest::Test
 
   def test_can_find_percent_of_cards_that_are_high_ranking
     assert_equal 50.0, @deck.percent_high_ranking
+    @deck.remove_card
+    assert_equal 33.33, @deck.percent_high_ranking
+    @deck.remove_card
+    assert_equal 50.0, @deck.percent_high_ranking
+    @deck.remove_card
+    assert_equal 0.0, @deck.percent_high_ranking
   end
 
   def test_can_remove_card_from_deck
