@@ -27,14 +27,11 @@ class Deck
     cards.shift
   end
 
-  def add_card
+  def add_card(card)
+    cards << card
+
   end
 
 
-  #def high_ranking_cards
-    #@cards.find_all do |card|
-      #card.rank > 11
-    #end
-  #end
 
 end
