@@ -50,9 +50,14 @@ class Turn
     end
   end
 
-#  def award_spoils
-
-#  end
+  def award_spoils
+    if @turn.winner == @player1
+      @player1.deck.concat(@turn.pile_cards)
+    elsif @turn.winner == @player2
+      @player2.deck.concat(@turn.pile_cards)
+    else
+    end
+  end
 
   private
 
