@@ -29,42 +29,24 @@ class CardGeneratorTest < Minitest::Test
   end
 
   def test_there_are_four_of_each_value
-    assert_equal 4, @card_generator.cards.count {|card| card.value == "Ace"}
-    assert_equal 4, @card_generator.cards.count {|card| card.value == "King"}
-    assert_equal 4, @card_generator.cards.count {|card| card.value == "Queen"}
-    assert_equal 4, @card_generator.cards.count {|card| card.value == "Jack"}
-    assert_equal 4, @card_generator.cards.count {|card| card.value == "10"}
-    assert_equal 4, @card_generator.cards.count {|card| card.value == "9"}
-    assert_equal 4, @card_generator.cards.count {|card| card.value == "8"}
-    assert_equal 4, @card_generator.cards.count {|card| card.value == "7"}
-    assert_equal 4, @card_generator.cards.count {|card| card.value == "6"}
-    assert_equal 4, @card_generator.cards.count {|card| card.value == "5"}
-    assert_equal 4, @card_generator.cards.count {|card| card.value == "4"}
-    assert_equal 4, @card_generator.cards.count {|card| card.value == "3"}
-    assert_equal 4, @card_generator.cards.count {|card| card.value == "2"}
+    values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack",
+    "Queen", "King", "Ace"]
+    values.each do |value|
+      assert_equal 4, @card_generator.cards.count {|card| card.value == value}
+    end
   end
 
   def test_there_are_four_of_each_rank
-    assert_equal 4, @card_generator.cards.count {|card| card.rank == 14}
-    assert_equal 4, @card_generator.cards.count {|card| card.rank == 13}
-    assert_equal 4, @card_generator.cards.count {|card| card.rank == 12}
-    assert_equal 4, @card_generator.cards.count {|card| card.rank == 11}
-    assert_equal 4, @card_generator.cards.count {|card| card.rank == 10}
-    assert_equal 4, @card_generator.cards.count {|card| card.rank == 9}
-    assert_equal 4, @card_generator.cards.count {|card| card.rank == 8}
-    assert_equal 4, @card_generator.cards.count {|card| card.rank == 7}
-    assert_equal 4, @card_generator.cards.count {|card| card.rank == 6}
-    assert_equal 4, @card_generator.cards.count {|card| card.rank == 5}
-    assert_equal 4, @card_generator.cards.count {|card| card.rank == 4}
-    assert_equal 4, @card_generator.cards.count {|card| card.rank == 3}
-    assert_equal 4, @card_generator.cards.count {|card| card.rank == 2}
+    (2..14).each do |number|
+      assert_equal 4, @card_generator.cards.count {|card| card.rank == number}
+    end
   end
 
   def test_there_are_thirteen_of_each_suit
-    assert_equal 13, @card_generator.cards.count {|card| card.suit == :diamond}
-    assert_equal 13, @card_generator.cards.count {|card| card.suit == :club}
-    assert_equal 13, @card_generator.cards.count {|card| card.suit == :heart}
-    assert_equal 13, @card_generator.cards.count {|card| card.suit == :spade}
+    symbols = [:heart, :diamond, :club, :spade]
+    symbols.each do |symbol|
+      assert_equal 13, @card_generator.cards.count {|card| card.suit == symbol}
+    end
   end
 
 
