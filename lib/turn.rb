@@ -95,6 +95,12 @@ class Turn
       [@player1, @player2].each do |player|
         collect_spoils(player)
       end
+    elsif type == :mutually_assured_destruction
+      [@player1, @player2].each do |player|
+        3.times { player.deck.remove_card }
+      end
+    else
+      "PILING ERROR"   ### REMOVE THIS STATEMENT BEFORE SUBMITTING
     end
   end
 
