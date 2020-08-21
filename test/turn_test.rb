@@ -46,6 +46,7 @@ class TurnTest < Minitest::Test
     turn = Turn.new(player1, player2)
 
     assert_equal player1, turn.player1
+
     assert_equal player2, turn.player2
   end
 
@@ -92,6 +93,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_a_winner_is_declared
+
     card1 = Card.new(:heart, "Jack", 11)
     card2 = Card.new(:heart, "10", 10)
     card3 = Card.new(:heart, "9", 9)
@@ -113,6 +115,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_after_a_winner_declared_the_spoils_appear
+
     card1 = Card.new(:heart, "Jack", 11)
     card2 = Card.new(:heart, "10", 10)
     card3 = Card.new(:heart, "9", 9)
@@ -135,6 +138,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_spoils_awarded_to_winner_in_basic
+
     card1 = Card.new(:heart, "Jack", 11)
     card2 = Card.new(:heart, "10", 10)
     card3 = Card.new(:heart, "9", 9)
@@ -208,7 +212,6 @@ class TurnTest < Minitest::Test
 
     assert_equal "No Winner", winner = turn.winner
 
-    # require "pry"; binding.pry
     turn.pile_cards
     assert_equal [], turn.spoils_of_war
     assert_equal [card8], player1.deck.cards
