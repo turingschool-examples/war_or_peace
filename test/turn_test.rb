@@ -187,5 +187,8 @@ class TurnTest < MiniTest::Test
     player2 = Player.new("Aurora", deck2)
 
     turn = Turn.new(player1, player2)
-  end 
+
+    #Test to check turn type is mad
+    assert_equal :mutually_assured_destruction, turn.type
+  end
 end
