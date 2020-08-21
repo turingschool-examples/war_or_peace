@@ -12,6 +12,8 @@ class Turn
   def determine_type
     return :basic unless player1.deck.cards[0].rank == player2.deck.cards[0].rank
 
+    return :loss if player1.deck.cards.length < 3 || player2.deck.cards.length < 3
+
     return :war unless player1.deck.cards[2].rank == player2.deck.cards[2].rank
 
     :mutually_assured_destruction
