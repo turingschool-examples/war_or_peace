@@ -83,6 +83,9 @@ class Init
         case turn.type
         when :basic
           "#{winner.name} won #{card_amount} cards"
+        when :loss
+          someone_lost = true
+          "#{(players.sort_by { |player| player.deck.cards.length })[0].name} did not have enough cards"
         when :war
           "WAR - #{winner.name} won #{card_amount} cards"
         when :mutually_assured_destruction
@@ -91,6 +94,7 @@ class Init
 
       puts "Turn #{turn_number}: " + turn_description
 
+      break if someone_lost
       someone_lost = players[0].lost? || players[1].lost?
       break if turn_number >= 1_000_000
     end
