@@ -106,7 +106,6 @@ class TurnTest < Minitest::Test
     turn.award_spoils(winner)
     assert_equal [card2, card5, card8, card1, card3], player1.deck.cards
     assert_equal [card4, card6, card7], player2.deck.cards
-
   end
 
   def test_it_has_a_war_turn
@@ -142,8 +141,6 @@ class TurnTest < Minitest::Test
     turn.award_spoils(winner)
     assert_equal [card8], player1.deck.cards
     assert_equal [card7, card1, card4, card2, card3, card5, card6], player2.deck.cards
-
-
   end
 
   def test_it_has_a_mutual_destruction_turn
