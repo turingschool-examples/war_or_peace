@@ -96,9 +96,7 @@ class Init
     end
 
     if someone_lost
-      puts "*~*~*~* #{(players.sort do |first, second|
-        first.deck.cards.length <=> second.deck.cards.length
-      end)[0].name} has won the game! *~*~*~*"
+      puts "*~*~*~* #{(players.sort_by { |player| player.deck.cards.length })[1].name} has won the game! *~*~*~*"
 
       return
     end
