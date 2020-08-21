@@ -7,11 +7,10 @@ class Player
   end
 
   def has_lost?
-    deck_hand = @deck.size
-    if deck_hand > 0
-      false
-    else
+    if deck == []
       true
+    else
+      false
     end
   end
 

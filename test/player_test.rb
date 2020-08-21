@@ -11,11 +11,12 @@ class PlayerTest < Minitest::Test
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
-    deck = Deck.new([card1, card2, card3])
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
   end
 
 
-  def test_it_exists
+  def test_it_exists_and_has_attributes
 
     player = Player.new('Clarisa', @deck)
 
