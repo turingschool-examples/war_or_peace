@@ -5,16 +5,28 @@ class Turn
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
-    @player1_top_card = @player1.deck.rank_of_card_at(0)
-    @player2_top_card = @player2.deck.rank_of_card_at(0)
-    @player1_third_card = @player1.deck.rank_of_card_at(2)
-    @player2_third_card = @player2.deck.rank_of_card_at(2)
+  end
+
+  def top_card(player)
+    if player == @player1
+      @player1.deck.rank_of_card_at(0)
+    else
+      @player2.deck.rank_of_card_at(0)
+    end
+  end
+
+  def third_card(player)
+    if player == @player1
+      @player1.deck.rank_of_card_at(2)
+    else
+      @player2.deck.rank_of_card_at(2)
+    end
   end
 
   def type
-    if @player1_top_card == @player2_top_card && @player1_third_card == @player2_third_card
+    if top_card(@player1) == top_card(@player2) && third_card(@player1) == third_card(@player2)
       :mutually_assured_destruction
-    elsif @player1_top_card == @player2_top_card
+    elsif top_card(@player1) == top_card(@player2)
       :war
     else
       :basic
@@ -23,13 +35,13 @@ class Turn
 
   def winner
     if self.type == :basic
-      if (@player1_top_card > @player2_top_card)
+      if (top_card(@player1) > top_card(@player2))
          @player1
       else
         @player2
       end
     elsif self.type == :war
-      if (@player1_third_card > @player2_third_card)
+      if (third_card(@player1) > third_card(@player2))
         @player1
       else
         @player2

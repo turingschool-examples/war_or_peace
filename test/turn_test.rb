@@ -52,16 +52,11 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_can_award_spoils_basic
-    # skip
-    #Iteration pattern asks for player.deck instead of player.deck.cards ---> ask why it won't work
     @turn.pile_cards
     @turn.award_spoils(@turn.winner)
 
-    expected1 = [@card2, @card5, @card8, @card1, @card3]
-    expected2 = [@card4, @card6, @card7]
-
-    assert_equal expected1, @player1.deck.cards
-    assert_equal expected2, @player2.deck.cards
+    assert_equal @deck1, @player1.deck
+    assert_equal @deck2, @player2.deck
   end
 
   #Turn type war:
@@ -95,11 +90,8 @@ class TurnTest < Minitest::Test
     @turn.pile_cards
     @turn.award_spoils(@turn.winner)
 
-    expected1 = [@card8]
-    expected2 = [@card7, @card1, @card2, @card5, @card4, @card3, @card6]
-
-    assert_equal expected1, @player1.deck.cards
-    assert_equal expected2, @player2.deck.cards
+    assert_equal @deck1, @player1.deck
+    assert_equal @war_deck, @player2.deck
   end
 
   #Turn type mutually_assured_destruction:
@@ -131,8 +123,8 @@ class TurnTest < Minitest::Test
     @turn = Turn.new(@player1, @player2)
     @turn.pile_cards
 
-    assert_equal [@card8], @player1.deck.cards
-    assert_equal [@card7], @player2.deck.cards 
+    assert_equal @deck1, @player1.deck
+    assert_equal @m_a_d_deck, @player2.deck
   end
 
 end
