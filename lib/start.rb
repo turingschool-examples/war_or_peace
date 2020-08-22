@@ -5,8 +5,8 @@ class Start
   end
 
   def start
-    while @deck != []
+    while @deck != [] ||
       @turn(@player1, @player2)
-
+    end
   end
 end
