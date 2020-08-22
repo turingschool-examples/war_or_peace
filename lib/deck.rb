@@ -7,7 +7,6 @@ class Deck
   def initialize(cards)
     @cards = cards
     @high_ranking_cards = []
-    @percent = percent
   end
 
   def rank_of_card_at(position)
@@ -20,14 +19,14 @@ class Deck
 
   def percent_high_ranking
       high_ranking_cards
-    @percent =  (((@high_ranking_cards.count.to_f) / (@cards.count.to_f)) *100).round(2)
+    (((@high_ranking_cards.count.to_f) / (@cards.count.to_f)) *100).round(2)
   end
 
   def remove_card
-      cards.shift
+    cards.shift
   end
 
   def add_card(card_to_add)
-      @cards.append(card_to_add)
+   @cards.append(card_to_add)
   end
 end
