@@ -72,6 +72,13 @@ class PlayerTest < Minitest::Test
     assert_equal "No Winner", @mad_turn.winner
   end
 
+  def test_can_move_cards_to_spoils
+    @turn.move_cards_to_spoils(1)
+    assert_equal 2, @turn.spoils_of_war.length
+    @turn.move_cards_to_spoils(3)
+    assert_equal 8, @turn.spoils_of_war.length
+  end
+
   def test_basic_turn_moves_cards_to_spoils
     @turn.type
     @turn.pile_cards
