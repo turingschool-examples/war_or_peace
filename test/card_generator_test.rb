@@ -49,5 +49,4 @@ class CardGeneratorTest < Minitest::Test
     end
   end
 
-
 end

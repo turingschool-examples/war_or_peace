@@ -10,30 +10,21 @@ class War
 
   def initialize
     @full_deck = CardGenerator.new("cards.txt").cards
+    shuffled_deck = @full_deck.shuffle.each_slice(@full_deck.length / 2).to_a
+    deck_1 = Deck.new(shuffled_deck[0])
+    deck_2 = Deck.new(shuffled_deck[1])
+    player_1 = Player.new("Geordie", deck_1)
+    player_2 = Player.new("Riker", deck_2)
+    @turn = Turn.new(player_1, player_2)
   end
 
   def create_full_deck_without_text_file
     @full_deck = AltCardGenerator.new.cards
   end
 
-  def create_decks_for_players
-    shuffled_deck = @full_deck.shuffle.each_slice(@full_deck.length / 2).to_a
-    @deck_1 = Deck.new(shuffled_deck[0])
-    @deck_2 = Deck.new(shuffled_deck[1])
-  end
-
-  def create_players
-    @player_1 = Player.new("Geordie", @deck_1)
-    @player_2 = Player.new("Riker", @deck_2)
-  end
-
-  def create_turn
-    @turn = Turn.new(@player_1, @player_2)
-  end
-
   def show_prompt
     puts "Welcome to War! (or Peace) This game will be played with #{@full_deck.length} cards."
-    puts "The players today are #{@player_1.name} and #{@player_2.name}."
+    puts "The players today are #{@turn.player1.name} and #{@turn.player2.name}."
     puts "Type 'GO' to start the game!"
     puts "------------------------------------------------------"
     input = gets.chomp
@@ -67,9 +58,6 @@ class War
   end
 
   def start
-    create_decks_for_players
-    create_players
-    create_turn
     show_prompt
     run_game_loop
     show_winner
