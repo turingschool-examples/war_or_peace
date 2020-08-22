@@ -44,6 +44,14 @@ class PlayerTest < Minitest::Test
     assert_equal :mutually_assured_destruction, @mad_turn.type
   end
 
+  def test_can_check_if_cards_are_same
+    war_turn_setup
+    mad_turn_setup
+    assert @war_turn.both_cards_same_at(0)
+    assert @mad_turn.both_cards_same_at(2)
+    assert_equal false, @turn.both_cards_same_at(0)
+  end
+
   def test_can_determine_winner
     @turn.type
     @turn.determine_winner
