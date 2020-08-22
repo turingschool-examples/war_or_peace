@@ -2,6 +2,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/card_generator'
 
 class Init
   def display_start_message(player1, player2)
@@ -31,6 +32,10 @@ class Init
     Deck.new(whole_deck.cards.shuffle)
   end
 
+  def new_shuffled_deck_from_file
+    Deck.new(CardGenerator.new.generate_cards('./lib/card_data.txt').shuffle)
+  end
+
   def create_players(player1, player2)
     decks = deal_cards
 
@@ -41,7 +46,7 @@ class Init
     deck1 = Deck.new([])
     deck2 = Deck.new([])
 
-    new_shuffled_deck.cards.each_with_index do |card, idx|
+    new_shuffled_deck_from_file.cards.each_with_index do |card, idx|
       case idx.even?
       when true
         deck1.add_card(card)
@@ -61,7 +66,7 @@ class Init
 
   def wait_for_go(players)
     loop do
-      return players if gets.chomp == 'GO'
+      return players if gets.chomp.upcase == 'GO'
 
       puts "Please enter 'GO' to continue"
     end
@@ -95,6 +100,7 @@ class Init
       puts "Turn #{turn_number}: " + turn_description
 
       break if someone_lost
+      
       someone_lost = players[0].lost? || players[1].lost?
       break if turn_number >= 1_000_000
     end
