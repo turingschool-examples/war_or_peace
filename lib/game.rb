@@ -4,7 +4,7 @@ class Game
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
-    @turn_count = 0
+    @turn_count = 1
   end
 
   def start
@@ -14,22 +14,16 @@ class Game
 
   def game_loop
     until game_over?
-      turn = Turn.new(player1, player2) #don't really need a new turn object every time. Pile_cards advances the turn.
-      @turn_count += 1
-      #do turn stuff
+      turn = Turn.new(player1, player2)
       turn_winner = turn.winner
       turn_type = turn.type
+
       turn.pile_cards
-
-      if turn_type == :basic
-        p "Turn #{turn_count}: #{turn_winner.name} has won #{turn.spoils_of_war.count} cards"
-      elsif turn_type == :war
-        p "Turn #{turn_count}: WAR - #{turn_winner.name} has won #{turn.spoils_of_war.count} cards"
-      else #mutually_assured_destruction
-        p "Turn #{turn_count}: *mutually assured destruction* - #{turn.cards_removed_from_play.count} cards removed from play"
-      end
-
       turn.award_spoils(turn_winner)
+
+      puts display_turn_result(turn, turn_winner, turn_type)
+
+      @turn_count += 1
     end
   end
 
@@ -44,6 +38,16 @@ class Game
       puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
     else
       puts "---- DRAW ----"
+    end
+  end
+
+  def display_turn_result(turn, turn_winner, turn_type)
+    if turn_type == :basic
+      "Turn #{turn_count}: #{turn_winner.name} has won #{turn.spoils_of_war.count} cards"
+    elsif turn_type == :war
+      "Turn #{turn_count}: WAR - #{turn_winner.name} has won #{turn.spoils_of_war.count} cards"
+    else #mutually_assured_destruction
+      "Turn #{turn_count}: *mutually assured destruction* - #{turn.cards_removed_from_play.count} cards removed from play"
     end
   end
 
