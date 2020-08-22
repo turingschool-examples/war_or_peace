@@ -64,15 +64,6 @@ class Turn
     @spoils_of_war.clear
   end
 
-  def start
-    input = gets.chomp
-    if input.upcase == "GO"
-      puts "The game begins!"
-    else
-      abort "Okay Bye!"
-    end
-  end
-
   def display_type
     if @turn_type == :mutually_assured_destruction
       " *mutually assured destruction*"
