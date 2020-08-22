@@ -33,7 +33,7 @@ class Turn
         winner = player2
       end
     elsif type == :mutually_assured_destruction
-      return "No Winner"
+      winner = "No Winner"
     end
   end # def winner
 
@@ -62,6 +62,8 @@ class Turn
     elsif winner == player2
       player2.deck.cards << spoils_of_war
       player2.deck.cards.flatten!
+    else
+      return "No Winner"
     end
   end
 
