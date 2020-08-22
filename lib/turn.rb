@@ -22,6 +22,7 @@ class Turn
   def winner # will determine the winner of the turn, compare the types, to determine the winner (look @ structure of code)
     if type == :mutually_assured_destruction
       nil
+      return 'No Winner'
     elsif type == :war
       if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
         player1.name
@@ -47,24 +48,24 @@ class Turn
         player2.deck.remove_card
       end
     elsif type == :war
-      if turn.winner = player1.name
-        spoils_of_war << 3.times {player1.deck.cards.pop}
-      else turn.winner = player2.name
-        spoils_of_war << 3.times {player2.deck.cards.pop}
+      if winner == player1.name
+        spoils_of_war << 3.times {player1.deck.remove_card}
+      else winner == player2.name
+        spoils_of_war << 3.times {player2.deck.remove_card}
       end
     else
-      spoils_of_war << player1.deck.pop
-      spoils_of_war << player2.deck.pop
+      spoils_of_war << player1.deck.remove_card
+      spoils_of_war << player2.deck.remove_card
     end
   end
 
   def award_spoils
-    if turn.winner = player1.name
+    if turn.winner == player1.name
       player1.deck << spoils_of_war.slice!(0..-1)
-    elsif turn.winner = player2.name
-      player2.deck << spoils_of_war.slic!(0..-1)
+    elsif turn.winner == player2.name
+      player2.deck << spoils_of_war.slice!(0..-1)
     else
-      'no winners in mutually_assured_destruction'
+      'No Winner'
     end
   end
 end

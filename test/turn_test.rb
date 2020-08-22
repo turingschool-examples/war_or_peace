@@ -124,8 +124,8 @@ class TurnTest < MiniTest::Test
     player1 = Player.new('Megan', deck1)
     player2 = Player.new('Aurora', deck2)
     turn = Turn.new(player1, player2)
-
-    assert_nil turn.winner, true
+    
+    assert_equal turn.winner, "No Winner"
   end
 
   def test_winner_war
@@ -207,10 +207,10 @@ class TurnTest < MiniTest::Test
     player1 = Player.new('Megan', deck1)
     player2 = Player.new('Aurora', deck2)
     turn = Turn.new(player1, player2)
-
     turn.pile_cards
+    # require "pry"; binding.pry
 
-
+    assert_equal player2.deck.cards, [card7]
   end
 
 
