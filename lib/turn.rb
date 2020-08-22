@@ -37,4 +37,18 @@ class Turn
     end
   end # def winner
 
+  def pile_cards
+    if type == :basic
+      spoils_of_war << player1.deck.remove_card
+      spoils_of_war << player2.deck.remove_card # shovel top card from deck into spoils_of_war array for both players
+    elsif type == :war
+      spoils_of_war << player1.deck.cards[0..2]
+      spoils_of_war << player2.deck.cards[0..2]
+      spoils_of_war.flatten! # shovel top three cards from deck to the spoils_of_war array
+    elsif type == :mutually_assured_destruction
+      player1.deck.cards.slice!(0, 3)
+      player2.deck.cards.slice!(0, 3) # remove top three cards from deck
+    end
+  end # def pile_cards
+
 end

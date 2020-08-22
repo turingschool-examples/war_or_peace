@@ -131,7 +131,7 @@ class TurnTest < Minitest::Test
 
     turn = Turn.new(player1, player2)
 
-
+    assert_equal spoils_of_war, turn.pile_cards
 
   end
 
