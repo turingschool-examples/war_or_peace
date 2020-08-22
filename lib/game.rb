@@ -26,7 +26,7 @@ class Game
       elsif turn_type == :war
         p "Turn #{turn_count}: WAR - #{turn_winner.name} has won #{turn.spoils_of_war.count} cards"
       else #mutually_assured_destruction
-        p "Turn #{turn_count}: *mutually assured destruction* - 6 cards removed from play"
+        p "Turn #{turn_count}: *mutually assured destruction* - #{turn.cards_removed_from_play.count} cards removed from play"
       end
 
       turn.award_spoils(turn_winner)
