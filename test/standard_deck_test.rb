@@ -23,11 +23,11 @@ class StandardDeckTest < Minitest::Test
 
   def test_it_can_populate_deck
     @standard_deck.populate_deck
-
+# How do I test this?
     assert_equal [], @standard_deck.cards
   end
 
   def test_it_can_shuffle
-
+# How do I test this?
   end
 end
