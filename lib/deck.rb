@@ -56,4 +56,16 @@ class Deck
     cards.shuffle
   end
 
+  def cut_deck
+    half_of_deck = (cards.length / 2)
+    cut_deck1 = []
+    cut_deck2 = []
+    half_of_deck.times do
+      cut_deck1 << cards[0]
+    end
+    half_of_deck.times do
+      cut_deck2 << cards[0]
+    end
+  end
+
 end

@@ -70,4 +70,12 @@ class DeckTest < Minitest::Test
     refute deck.cards, shuffled_deck
   end
 
+  def test_it_can_cut_deck
+    skip
+    deck = Deck.new
+    deck.populate_standard_deck
+    deck.cut_deck
+
+    assert equal deck.cards, cut_deck1 << cut_deck2
+  end
 end
