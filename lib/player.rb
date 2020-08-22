@@ -6,8 +6,6 @@ class Player
     @deck = deck
   end
 
-  # def can_player_lose?
-
   def player_has_lost?
     if player_has_lost == false
     cards.shift
