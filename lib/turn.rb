@@ -40,18 +40,14 @@ class Turn
 
 # sends cards from players decks into spoils_of_war array
   def pile_cards
-    # both players remove top 3 cards in their deck, removed from deck.
-    # Not sent to spoils_of_war array(simply removed)
-    if type == :mutually_assured_destruction && winner == nil
-      3.times do
-        player1.deck.remove_card
-        player2.deck.remove_card
-      end
+    if type == :mutually_assured_destruction && winner == "No Winner"
+        3.times {player1.deck.remove_card}
+        3.times {player2.deck.remove_card}
     elsif type == :war
       if winner == player1.name
-        spoils_of_war << 3.times {player1.deck.remove_card}
+        @spoils_of_war << 3.times {player1.deck.remove_card}
       else winner == player2.name
-        spoils_of_war << 3.times {player2.deck.remove_card}
+        @spoils_of_war << 3.times {player2.deck.remove_card}
       end
     else
       spoils_of_war << player1.deck.remove_card
@@ -59,13 +55,13 @@ class Turn
     end
   end
 
-  def award_spoils
-    if turn.winner == player1.name
-      player1.deck << spoils_of_war.slice!(0..-1)
-    elsif turn.winner == player2.name
-      player2.deck << spoils_of_war.slice!(0..-1)
-    else
-      'No Winner'
-    end
-  end
+  # def award_spoils
+  #   if turn.winner == player1.name
+  #     player1.deck << spoils_of_war.slice!(0..-1)
+  #   elsif turn.winner == player2.name
+  #     player2.deck << spoils_of_war.slice!(0..-1)
+  #   else
+  #     'No Winner'
+  #   end
+  # end
 end
