@@ -11,30 +11,30 @@ class Turn
     @type = type
   end
 
-  def type
+  def turn_type
     if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
-      @type = :basic
+      @turn_type = :basic
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
-      @type = :war
+      @turn_type = :war
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
-      @type = :mutually_assured_destruction
+      @turn_type = :mutually_assured_destruction
     end
   end
 
   def winner
-    if type == :basic
+    if @turn_type == :basic
       if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
         @winner = player1
       elsif player2.deck.rank_of_card_at(0) > player1.deck.rank_of_card_at(0)
         @winner = player2
       end
-    elsif type == :war
+    elsif @turn_type == :war
       if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
         @winner = player1
       elsif player2.deck.rank_of_card_at(2) > player1.deck.rank_of_card_at(2)
         @winner = player2
       end
-    elsif type == :mutually_assured_destruction
+    elsif @turn_type == :mutually_assured_destruction
       @winner = "No Winner"
     end
   end
