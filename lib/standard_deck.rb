@@ -4,23 +4,29 @@ class StandardDeck
   def initialize
     @cards = []
     @suit_array = [:club, :diamond, :heart, :spade]
-    @value_array = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']
-    @rank_array = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    @rank_values = {
+      2 => '2',
+      3 => '3',
+      4 => '4',
+      5 => '5',
+      6 => '6',
+      7 => '7',
+      8 => '8',
+      9 => '9',
+      10 => '10',
+      11 => 'Jack',
+      12 => 'Queen',
+      13 => 'King',
+      14 => 'Ace'
+    }
   end
 
   def populate_deck
-    suit_counter = 0
-    rank_counter = 0
-    52.times do |counter|
-      if counter % 13 == 0 && counter != 0
-        rank_counter = 0
-        suit_counter += 1
-      elsif counter == 0
-      else
-        rank_counter += 1
+    @suit_array.each do |suit|
+      @rank_values.each do |rank, value|
+        new_card = Card.new(suit, value, rank)
+        @cards << new_card
       end
-      new_card = Card.new(@suit_array[suit_counter], @value_array[rank_counter], @rank_array[rank_counter])
-      @cards << new_card
     end
   end
 
