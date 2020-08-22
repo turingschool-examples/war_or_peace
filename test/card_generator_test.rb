@@ -18,14 +18,9 @@ class CardGeneratorTest < Minitest::Test
   end
 
   def test_cards_are_instances_of_card_class
-    assert_instance_of Card, @card_generator.cards[0]
     assert @card_generator.cards.all? {|card| card.kind_of?(Card)}
-    assert_equal false, @card_generator.cards.any? {|card| card.rank.kind_of?(Integer) == false}
-    assert_equal false, @card_generator.cards.any? {|card| card.suit.kind_of?(Symbol) == false}
-    assert_equal 14, @card_generator.cards[51].rank
-    assert_equal "Ace", @card_generator.cards[51].value
-    assert_equal :spade, @card_generator.cards[51].suit
-    refute_equal :diamond, @card_generator.cards[51].suit
+    assert @card_generator.cards.all? {|card| card.rank.kind_of?(Integer)}
+    assert @card_generator.cards.all? {|card| card.suit.kind_of?(Symbol)}
   end
 
   def test_there_are_four_of_each_value

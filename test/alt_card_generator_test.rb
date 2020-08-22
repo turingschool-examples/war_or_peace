@@ -9,7 +9,7 @@ class AltCardGeneratorTest < Minitest::Test
     assert_instance_of AltCardGenerator, @alt_card_generator
   end
 
-  def test_alt_cards_attributes_is_array
+  def test_alt_cards_attribute_is_array
     assert @alt_card_generator.cards.kind_of?(Array)
   end
 
@@ -18,14 +18,9 @@ class AltCardGeneratorTest < Minitest::Test
   end
 
   def test_alt_cards_are_instances_of_card_class
-    assert_instance_of Card, @alt_card_generator.cards[0]
     assert @alt_card_generator.cards.all? {|card| card.kind_of?(Card)}
-    assert_equal false, @alt_card_generator.cards.any? {|card| card.rank.kind_of?(Integer) == false}
-    assert_equal false, @alt_card_generator.cards.any? {|card| card.suit.kind_of?(Symbol) == false}
-    assert_equal 14, @alt_card_generator.cards[51].rank
-    assert_equal "Ace", @alt_card_generator.cards[51].value
-    assert_equal :spade, @alt_card_generator.cards[51].suit
-    refute_equal :diamond, @alt_card_generator.cards[51].suit
+    assert @alt_card_generator.cards.all? {|card| card.rank.kind_of?(Integer)}
+    assert @alt_card_generator.cards.all? {|card| card.suit.kind_of?(Symbol)}
   end
 
   def test_alt_there_are_four_of_each_value
