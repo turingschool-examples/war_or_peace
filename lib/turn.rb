@@ -83,9 +83,9 @@ class Turn
         pile_cards
         award_spoils(winner)
         if type == :basic
-          p "Turn #{count}: #{winner.name} won #{@spoils_of_war.count / 2} cards"
+          p "Turn #{count}: #{winner.name} won 2 cards"
         elsif type == :war
-          p "Turn #{count}: WAR - #{winner.name} won #{@spoils_of_war.count / 2} cards"
+          p "Turn #{count}: WAR - #{winner.name} won 6 cards"
         else
           p "Turn #{count}: *mutually_assured_destruction* 6 cards removed from play."
         end
