@@ -9,7 +9,7 @@ def create_standard_deck
   values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
 
   cards =[]
-  suits.map do |suit|
+  suits.each do |suit|
     values.each_with_index do |value, index|
       cards << Card.new(suit, value, index + 2)
     end
@@ -17,8 +17,9 @@ def create_standard_deck
   cards
 end
 
-deck1 = Deck.new(create_standard_deck.shuffle)
-deck2 = Deck.new(create_standard_deck.shuffle)
+standard_deck = create_standard_deck.shuffle
+deck1 = Deck.new(standard_deck[0..25])
+deck2 = Deck.new(standard_deck[26..51])
 
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
