@@ -105,5 +105,6 @@ assert_equal cards, deck.cards
     assert_equal cards, deck.cards
     assert_equal [cards[1]], deck.high_ranking_cards
     assert_equal 33.33, deck.percent_high_ranking
+require "pry";binding.pry
   end
 end
