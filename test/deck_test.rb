@@ -52,4 +52,22 @@ class DeckTest < Minitest::Test
     assert_equal [@card1, @card2, @card3, card4], @deck.cards
   end
 
+  def test_it_can_populate_deck
+    deck = Deck.new
+
+    deck.populate_standard_deck
+# How do I test this? Also test no duplicates.
+    assert_equal 52, deck.cards.length
+  end
+
+  def test_it_can_shuffle
+    skip
+    deck = Deck.new
+    deck.populate_standard_deck
+    shuffled_deck = deck.shuffle_deck
+
+# This test doesn't work, but the method does what I want it to
+    refute deck.cards, shuffled_deck
+  end
+
 end
