@@ -21,10 +21,10 @@ class StandardDeckTest < Minitest::Test
     assert_equal [], @standard_deck.cards
   end
 
-  def test_it_can_create_suit_array
-    @standard_deck.create_suit_array
+  def test_it_can_populate_deck
+    @standard_deck.populate_deck
 
-    assert_equal [], @standard_deck.suit_array
+    assert_equal [], @standard_deck.cards
   end
 
   def test_it_can_shuffle
