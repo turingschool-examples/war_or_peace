@@ -31,6 +31,8 @@ class Turn
       else
         return player2
       end
+    elsif turn.type == :mutually_assured_destruction
+      return "No Winner"
     end
 
   end
