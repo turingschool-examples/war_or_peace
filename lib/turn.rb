@@ -1,9 +1,10 @@
 class Turn
-  attr_reader :player1, :player2, :spoils_of_war
+  attr_reader :player1, :player2, :spoils_of_war, :turn_counter
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
+    @turn_counter = 0
   end
 
   def type
@@ -40,6 +41,7 @@ class Turn
   end
 
   def pile_cards
+    @turn_counter += 1
     if type == :basic
       # each player will send one card (the top card) to the spoils pile
       @spoils_of_war << player1.deck.remove_card

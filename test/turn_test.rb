@@ -220,8 +220,6 @@ class TurnTest < MiniTest::Test
     player6 = Player.new("Paul", deck6)
     turn3 = Turn.new(player5, player6)
 
-# require "pry"; binding.pry
-
     winner = turn.winner
     turn.pile_cards
     assert_equal [card1, card3], turn.spoils_of_war
@@ -244,6 +242,61 @@ class TurnTest < MiniTest::Test
 
     assert_equal [card12], player5.deck.cards
     assert_equal [card4], player6.deck.cards
+  end
+
+  def test_turn_counter_adds_turn
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10)
+    card3 = Card.new(:heart, '9', 9)
+    card4 = Card.new(:diamond, 'Jack', 11)
+    card5 = Card.new(:heart, '8', 8)
+    card6 = Card.new(:diamond, 'Queen', 12)
+    card7 = Card.new(:heart, '3', 3)
+    card8 = Card.new(:diamond, '2', 2)
+    deck1 = Deck.new([card1, card2, card5, card8])
+    deck2 = Deck.new([card3, card4, card6, card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    card9 = Card.new(:spades, '8', 8)
+    card10 = Card.new(:spades, '7', 7)
+    card11 = Card.new(:heart, 'Queen', 12)
+    card12 = Card.new(:diamond, 'Jack', 11)
+    card13 = Card.new(:spades, '8', 8)
+    card14 = Card.new(:diamond, 'Queen', 12)
+    card15 = Card.new(:spades, 'Ace', 14)
+    card16 = Card.new(:diamond, '5', 5)
+    deck3 = Deck.new([card9, card10, card11, card12])
+    deck4 = Deck.new([card13, card14, card15, card16])
+    player3 = Player.new("Sally", deck3)
+    player4 = Player.new("Paul", deck4)
+    turn2 = Turn.new(player3, player4)
+    deck5 = Deck.new([card9, card10, card4, card12])
+    deck6 = Deck.new([card13, card14, card12, card4])
+    player5 = Player.new("Sally", deck5)
+    player6 = Player.new("Paul", deck6)
+    turn3 = Turn.new(player5, player6)
+
+# require "pry"; binding.pry
+
+    winner = turn.winner
+    turn.pile_cards
+    assert_equal [card1, card3], turn.spoils_of_war
+    turn.award_spoils(winner)
+
+    assert_equal deck1, player1.deck
+    assert_equal deck2, player2.deck
+    assert_equal 1, turn.turn_counter
+
+    winner = turn.winner
+    turn.pile_cards
+
+    assert_equal 2, turn.turn_counter
+
+    winner = turn.winner
+    turn.pile_cards
+
+    assert_equal 3, turn.turn_counter
   end
 
 end
