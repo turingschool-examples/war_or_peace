@@ -15,6 +15,23 @@ suits.select do |suit|
   end
 end
 
-deck = Deck.new(@full_deck_of_cards)
+deck = Deck.new(@full_deck_of_cards.shuffle)
 
 p deck
+
+deck1 = []
+deck2 =[]
+
+deck.cards.each do |card|
+  if deck1.length < 26
+    deck1 << card
+  else
+    deck2 << card
+  end
+end
+
+p deck1.length
+p deck2.length
+
+player1 = Player.new("Megan", deck1)
+player2 = Player.new("Aurora", deck2)
