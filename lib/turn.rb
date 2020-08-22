@@ -42,9 +42,13 @@ class Turn
       spoils_of_war << player1.deck.remove_card
       spoils_of_war << player2.deck.remove_card
     elsif type == :war
-      spoils_of_war << player1.deck.cards[0..2]
-      spoils_of_war << player2.deck.cards[0..2]
-      spoils_of_war.flatten!
+      3.times do
+        spoils_of_war << player1.deck.remove_card
+      end
+      3.times do
+        spoils_of_war << player2.deck.remove_card
+      end
+
     elsif type == :mutually_assured_destruction
       player1.deck.cards.slice!(0, 3)
       player2.deck.cards.slice!(0, 3)
@@ -52,10 +56,10 @@ class Turn
   end # def pile_cards
 
   def award_spoils(winner)
-    if winner = player1
+    if winner == player1
       player1.deck.cards << spoils_of_war
       player1.deck.cards.flatten!
-    elsif winner = player2
+    elsif winner == player2
       player2.deck.cards << spoils_of_war
       player2.deck.cards.flatten!
     end
