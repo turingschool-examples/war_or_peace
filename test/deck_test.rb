@@ -56,7 +56,7 @@ class DeckTest < Minitest::Test
     deck = Deck.new
 
     deck.populate_standard_deck
-# How do I test this? Also test no duplicates.
+# How do I test this? Also test no duplicates?
     assert_equal 52, deck.cards.length
   end
 
@@ -71,11 +71,12 @@ class DeckTest < Minitest::Test
   end
 
   def test_it_can_cut_deck
-    skip
     deck = Deck.new
     deck.populate_standard_deck
     deck.cut_deck
 
-    assert equal deck.cards, cut_deck1 << cut_deck2
+
+    assert assert_equal 26, deck.cut_cards[0].length
+    assert assert_equal 26, deck.cut_cards[1].length
   end
 end

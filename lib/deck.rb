@@ -1,5 +1,5 @@
 class Deck
-  attr_reader :cards
+  attr_reader :cards, :cut_cards
 
   def initialize(cards = [])
     @cards = cards
@@ -19,6 +19,7 @@ class Deck
       13 => 'King',
       14 => 'Ace'
     }
+    @cut_cards = []
   end
 
   def rank_of_card_at(index)
@@ -53,19 +54,10 @@ class Deck
   end
 
   def shuffle_deck
-    cards.shuffle
+    cards.shuffle!
   end
 
   def cut_deck
-    half_of_deck = (cards.length / 2)
-    cut_deck1 = []
-    cut_deck2 = []
-    half_of_deck.times do
-      cut_deck1 << cards[0]
-    end
-    half_of_deck.times do
-      cut_deck2 << cards[0]
-    end
+    @cut_cards = cards.each_slice(cards.length / 2).to_a
   end
-
 end
