@@ -9,7 +9,7 @@ class Game
 
   def start
     game_loop
-    display_game_result
+    puts display_game_result
   end
 
   def game_loop
@@ -33,11 +33,11 @@ class Game
 
   def display_game_result
     if player1.has_lost?
-      puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
+      "*~*~*~* #{player2.name} has won the game! *~*~*~*"
     elsif player2.has_lost?
-      puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
+      "*~*~*~* #{player1.name} has won the game! *~*~*~*"
     else
-      puts "---- DRAW ----"
+      "---- DRAW ----"
     end
   end
 
