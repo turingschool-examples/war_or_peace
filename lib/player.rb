@@ -12,10 +12,10 @@ class Player
     end
   end
 
-  # def remove_card_from_deck
-  #   if has_lost == false
-  #     @cards.shift
-  #     p cards
-  #   end
-  # end
+  def remove_card_from_deck
+    if has_lost == false
+      @cards.shift
+      p cards
+    end
+  end
 end
