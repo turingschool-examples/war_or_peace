@@ -5,7 +5,7 @@ require './lib/card'
 
 class CardGeneratorTest < Minitest::Test
   def test_exists
-    CardGenerator.new.generate_cards('./test_cards.txt')
+    CardGenerator.new.generate_cards('./test/test_cards.txt')
   end
 
   def test_cards
@@ -16,8 +16,7 @@ class CardGeneratorTest < Minitest::Test
         Card.new(:heart, '4', 4),
         Card.new(:heart, '5', 5)
       ]
-    require 'pry'; binding.pry
 
-    assert_equal test_cards, CardGenerator.new.generate_cards('./test_cards.txt')
+    assert_equal test_cards, CardGenerator.new.generate_cards('./test/test_cards.txt')
   end
 end
