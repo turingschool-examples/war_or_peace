@@ -16,8 +16,15 @@ class Game
     "*~*~*~* #{game_winner.name} has won the game! *~*~*~*"
   end
 
-  def start
+  def round
     turn = Turn.new(player1, player2)
+    winner = turn.winner
+    turn.pile_cards
+    turn.award_spoils(winner)
+  end
+
+  def start
+    round
   end
 
 end

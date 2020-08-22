@@ -50,14 +50,13 @@ class GameTest < Minitest::Test
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
 
-    turn = Turn.new(player1, player2)
-    winner = turn.winner
-
-    turn.pile_cards
-    turn.award_spoils(winner)
-
     game = Game.new(player1, player2)
+    game.start
     assert_equal player2, game.game_winner
     assert_equal "*~*~*~* Aurora has won the game! *~*~*~*", game.game_ended
+  end
+
+  def test_
+
   end
 end
