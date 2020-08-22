@@ -12,13 +12,10 @@ class StandardDeck
     suit_counter = 0
     rank_counter = 0
     52.times do |counter|
-      if counter.to_f % 4 == 0
-        suit_counter = 0
-      else
-        suit_counter += 1
-      end
-      if counter.to_f % 13 == 0
+      if counter % 13 == 0 && counter != 0
         rank_counter = 0
+        suit_counter += 1
+      elsif counter == 0
       else
         rank_counter += 1
       end
