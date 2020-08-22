@@ -46,13 +46,17 @@ class Turn
       end
     when :mutually_assured_destruction
       3.times do
-        player1.deck.remove_card
-        player2.deck.remove_card
+        spoils_of_war << player1.deck.remove_card
+        spoils_of_war << player2.deck.remove_card
       end
     end
   end
 
   def award_spoils(winner)
-    spoils_of_war.each { |card| winner.deck.add_card(card) }
+    
+      spoils_of_war.each { |card| winner.deck.add_card(card) } unless type == :mutually_assured_destruction
+    
+    
+    
   end
 end
