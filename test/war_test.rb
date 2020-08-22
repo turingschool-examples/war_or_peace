@@ -33,6 +33,12 @@ class WarTest < Minitest::Test
     assert_instance_of Deck, @war.turn.player2.deck
   end
 
+  def test_no_two_decks_are_the_same
+    war_2 = War.new
+    refute_equal war_2.turn.player1.deck.cards, @war.turn.player1.deck.cards
+    refute_equal war_2.turn.player2.deck.cards, @war.turn.player2.deck.cards
+  end
+
   def test_can_show_winner
     assert_equal "---- DRAW ----", @war.show_winner
     @war.turn.player2.deck.cards.clear
