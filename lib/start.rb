@@ -4,4 +4,7 @@ class Start
     @turn = turn
   end
 
+  def run_program
+
+  end
 end
