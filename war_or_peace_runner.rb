@@ -41,4 +41,8 @@ require "pry"; binding.pry
   shuffled1 << shuffled_standard_deck.shift
   shuffled2 << shuffled_standard_deck.shift
 end
-deck1 = Deck.new
+deck1 = Deck.new(shuffled1)
+deck2 = Deck.new(shuffled2)
+
+player1 = Player.new("Megan", deck1)
+player2 = Player.new("Aurora", deck2)
