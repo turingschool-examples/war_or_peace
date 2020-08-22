@@ -57,9 +57,6 @@ class Turn
     spoils_of_war.each do |card|
       winner.deck.add_card(card)
     end
-
-    #reset spoils
-    @spoils = []
   end
 
 end
