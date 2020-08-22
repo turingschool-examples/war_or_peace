@@ -4,7 +4,9 @@ class Start
     @turn = turn
   end
 
-  def run_program
+  def start
+    while @deck != []
+      @turn(@player1, @player2)
 
   end
 end
