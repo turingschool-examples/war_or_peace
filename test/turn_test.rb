@@ -58,6 +58,13 @@ class PlayerTest < Minitest::Test
     assert_equal @player1, @turn.winner
   end
 
+  def test_can_assign_winner_by_comparing_cards 
+    @turn.compare_cards_at(0)
+    assert_equal @player1, @turn.winner
+    @turn.compare_cards_at(2)
+    assert_equal @player2, @turn.winner
+  end
+
   def test_nobody_wins_mad_turn
     mad_turn_setup
     @mad_turn.type
