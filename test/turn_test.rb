@@ -104,8 +104,35 @@ class TurnTest < Minitest::Test
     turn.type
     winner = turn.winner
 
-    assert_equal winner, turn.winner
+    assert_equal player2, winner
   end
+
+  def test_war_when_player_has_one_card
+   deck1 = Deck.new([@card1,])
+   deck2 = Deck.new([@card4, @card3, @card6, @card7])
+
+   player1 = Player.new("Megan", deck1)
+   player2 = Player.new("Aurora", deck2)
+   turn = Turn.new(player1, player2)
+
+   turn.type
+   winner = turn.winner
+
+   assert_equal player2, winner
+
+   deck1 = Deck.new([@card1, @card2, @card5, @card8])
+   deck2 = Deck.new([@card1,])
+
+   player1 = Player.new("Megan", deck1)
+   player2 = Player.new("Aurora", deck2)
+   turn = Turn.new(player1, player2)
+
+   turn.type
+   winner = turn.winner
+
+   assert_equal player1, winner
+  end
+
 
   def test_it_return_winner_in_basic_type
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
@@ -118,7 +145,7 @@ class TurnTest < Minitest::Test
     turn.type
     winner = turn.winner
 
-    assert_equal winner, turn.winner
+    assert_equal player1, winner
   end
 
   def test_it_returns_no_winner
@@ -209,6 +236,7 @@ class TurnTest < Minitest::Test
     turn.type
     winner = turn.winner
     turn.pile_cards
+    turn.spoils_of_war
     turn.award_spoils(winner)
 
     assert_equal [@card2, @card5, @card8, @card1, @card3], player1.deck.cards
@@ -226,6 +254,7 @@ class TurnTest < Minitest::Test
     turn.type
     winner = turn.winner
     turn.pile_cards
+    turn.spoils_of_war
     turn.award_spoils(winner)
 
     assert_equal [@card8], player1.deck.cards
