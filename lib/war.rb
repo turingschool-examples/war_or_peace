@@ -51,16 +51,16 @@ class War
 
   def show_winner
     if @turn.player1.has_lost? || @turn.player2.has_lost?
-      puts "*~*~*~* #{@turn.winner.name} has won the game! *~*~*~*"
+      "*~*~*~* #{@turn.winner.name} has won the game! *~*~*~*"
     else
-      puts "---- DRAW ----"
+      "---- DRAW ----"
     end
   end
 
   def start
     show_prompt
     run_game_loop
-    show_winner
+    puts show_winner
   end
 
 end
