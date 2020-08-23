@@ -20,12 +20,19 @@ class War
     puts ------------------------------------------------------------------
 
       if gets.chomp == 'GO'
-        war.go
+        #war.go
       elsif gets.chomp == 'go'
-        war.go
+        #war.go
       else
         "Please enter go!"
       end
-
   end
+
+  def go
+    
+    if turn.type == :basic
+
+    elsif turn.type == :war
+    elsif turn.type == :mutually_assured_destruction
+
 end
