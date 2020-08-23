@@ -4,27 +4,25 @@ class Turn
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
-    # @turn_winner
   end
 
   def type
-    if(self.player1.deck.rank_of_card_at(0) == self.player2.deck.rank_of_card_at(0)) &&
-      (self.player1.deck.rank_of_card_at(2) == self.player2.deck.rank_of_card_at(2))
+    if(player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)) &&
+      (player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2))
       :mutually_assured_destruction
-    elsif self.player1.deck.rank_of_card_at(0) == self.player2.deck.rank_of_card_at(0)
+    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
       :war
-    elsif self.player1.deck.rank_of_card_at(0) != self.player2.deck.rank_of_card_at(0)
+    elsif player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
       :basic
     end
   end
-# this has to be ran through each time to reset @turn_winner, otherwise award_spoils
-#will keep shoveling spoils_of_war into original @turn_winner
+
   def winner
-    if self.type == :basic && self.player1.deck.rank_of_card_at(0) > self.player2.deck.rank_of_card_at(0) ||
-      self.type == :war && self.player1.deck.rank_of_card_at(2) > self.player2.deck.rank_of_card_at(2)
+    if self.type == :basic && player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0) ||
+      self.type == :war && player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
       player1
-    elsif self.type == :basic && self.player2.deck.rank_of_card_at(0) > self.player1.deck.rank_of_card_at(0) ||
-    self.type == :war && self.player2.deck.rank_of_card_at(2) > self.player1.deck.rank_of_card_at(2)
+    elsif self.type == :basic && player2.deck.rank_of_card_at(0) > player1.deck.rank_of_card_at(0) ||
+      self.type == :war && player2.deck.rank_of_card_at(2) > player1.deck.rank_of_card_at(2)
       player2
     elsif self.type == :mutually_assured_destruction
       "No Winner"
