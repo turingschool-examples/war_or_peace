@@ -12,13 +12,7 @@ class Turn
     @player2_top_card = @player2.deck.rank_of_card_at(0)
     @player1_third_card = @player1.deck.rank_of_card_at(2)
     @player2_third_card = @player2.deck.rank_of_card_at(2)
-
   end
-
-  def less_than_3
-
-  end
-
 
   def type
     if @player1_top_card == @player2_top_card && @player1_third_card == @player2_third_card

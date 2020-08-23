@@ -4,7 +4,6 @@ require './lib/card'
 require './lib/deck'
 require "./lib/player"
 require "./lib/turn"
-require "./lib/small_turn"
 require "./lib/game"
 
 class GameTest < Minitest::Test
@@ -201,6 +200,7 @@ class GameTest < Minitest::Test
     player2 = Player.new("Aurora", deck2)
 
     game = Game.new(player1, player2)
+    
     game.start
     refute_equal nil, game.game_winner
   end

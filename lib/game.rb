@@ -34,12 +34,6 @@ class Game
   def start
     until game_winner || @turn_count == 1000000
       turn = Turn.new(player1, player2)
-      # p @player1.deck.cards.length
-      # p turn.player1.deck.cards[0]
-      # p @player2.deck.cards.length
-      # p turn.player2.deck.cards[0]
-      current_turn = turn.type  ### try something like this if you find your turn
-      ###   type is changing after you pile cards
       @turn_count += 1
       if turn.type == :mutually_assured_destruction
         turn.pile_cards
