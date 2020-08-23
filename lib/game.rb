@@ -21,7 +21,7 @@ class Game
     end
   end
 
-  def message(turn, winner)
+  def message(turn, winner = "")
     if turn.type == :mutually_assured_destruction
       puts "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
     elsif turn.type == :war
@@ -43,7 +43,7 @@ class Game
       @turn_count += 1
       if turn.type == :mutually_assured_destruction
         turn.pile_cards
-        "No Winner"
+        message(turn)
       else
         winner = turn.winner
         turn.pile_cards
@@ -51,6 +51,7 @@ class Game
         turn.award_spoils(winner)
       end
     end
-    self.game_ended
+    game_ended
+    puts "Thanks for playing!"
   end
 end

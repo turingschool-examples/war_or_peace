@@ -97,8 +97,8 @@ class GameTest < Minitest::Test
     000
   end
 
-  def test_all_the_cards
-    skip
+  def test_a_game_has_a_winner
+    # skip
     standard_deck = [
       card1 = Card.new(:diamond, "2", 2),
       card2 = Card.new(:diamond, "3", 3),
@@ -170,7 +170,7 @@ class GameTest < Minitest::Test
     game.start
     # game.game_ended
     # puts game.game_winner
-    assert_equal @player1 || @player2, game.game_winner
+    refute_equal nil, game.game_winner
   end
 
   def test_a_MAD_ending_gives_draw
@@ -190,9 +190,6 @@ class GameTest < Minitest::Test
     game = Game.new(player1, player2)
 
     game.start
-    # require "pry"; binding.pry
-    000
     assert_equal "---- DRAW ----", game.game_winner
-    # assert_nil player1.deck.cards
   end
 end
