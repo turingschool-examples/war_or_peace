@@ -94,4 +94,11 @@ class DeckTest < Minitest::Test
 
     assert_equal deck.cards, [card2, card3, card4]
   end
+
+  def test_generate_standard_deck
+    deck = Deck.new
+    deck.generate_standard_deck
+
+    assert_equal 52,  deck.cards.length
+  end
 end
