@@ -33,8 +33,7 @@ class Turn
         winner = player2
       end
     else
-      winner = nil
-      p "No Winner"
+      winner = "No Winner"
     end
   end
 
@@ -67,8 +66,9 @@ class Turn
       player2.deck.cards << spoils_of_war
       player2.deck.cards.flatten!
     else
-      spoils_of_war = []
+      @spoils_of_war = []
     end
+    @spoils_of_war = []
   end
 
 end

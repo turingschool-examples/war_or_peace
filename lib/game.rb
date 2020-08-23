@@ -1,3 +1,4 @@
+require 'pry'
 class Game
   attr_reader :standard_deck, :deck1, :deck2, :player1, :player2, :turn
   def initialize
@@ -33,34 +34,6 @@ class Game
       puts "Whoops! We were looking for 'GO', not #{go}. Try again!"
     end
   end
-
-  # def turn_loop
-  #   loop do |turn_number|
-  #     if @player1.has_lost?
-  #       p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
-  #       break
-  #     end
-  #     if @player2.has_lost?
-  #       p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
-  #       break
-  #     end
-  #     if turn_number == 1000000
-  #       p "---- DRAW ----"
-  #       break
-  #     end
-  #     @turn = Turn.new(@player1, @player2)
-  #     winner = turn.winner
-  #     winner_name = winner.name
-  #     turn.pile_cards
-  #     turn.award_spoils(winner)
-  #     if @turn.type == :basic
-  #       p "Turn #{turn_number}: #{winner_name} won 2 cards"
-  #     elsif @turn.type == :war
-  #       p "Turn #{turn_number}: WAR - #{winner_name} won 6 cards"
-  #     else
-  #       "Turn #{turn_number}: *mutually assured destruction* 6 cards removed from play"
-  #     end
-  #   end
 
     def turn_loop
       turn_number = 1
