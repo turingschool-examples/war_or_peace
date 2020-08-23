@@ -30,7 +30,7 @@ class Game
         turn.award_spoils(winner)
         @turn_counter += 1
       elsif turn.type == :mutually_assured_destruction
-        p "*mutually assured destruction* 6 cards removed from play"
+        p "Turn #{@turn_counter}: *mutually assured destruction* 6 cards removed from play"
         turn.pile_cards
         @turn_counter += 1
       end
