@@ -3,7 +3,6 @@ class Game
   def initialize(turn)
     @turn = turn
     @turn_counter = 1
-    # @game_winner = game_winner
   end
 
   def start
