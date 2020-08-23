@@ -44,6 +44,6 @@ game = Game.new(turn)
 game.start
 
 reply = gets.chomp.upcase
-if reply = "GO"
+if reply == "GO"
   game.play
 end
