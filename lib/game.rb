@@ -23,3 +23,6 @@ def start
     # an empty hand, declare it a draw.
   end
 end
+# how do I get the start method to kickoff? From the input from user?
+# How do I connect the user to the flow of the program? How do I take
+# the output of user, 'GO', and use that as input to kick off game.start?
