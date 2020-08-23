@@ -30,18 +30,44 @@ standard_deck = [
   card23 = Card.new(:heart, "Jack", 11),
   card24 = Card.new(:heart, "Queen", 12),
   card25 = Card.new(:heart, "King", 13),
-  card26 = Card.new(:heart, "Ace", 14)
+  card26 = Card.new(:heart, "Ace", 14),
+  card27 = Card.new(:club, "2", 2),
+  card28 = Card.new(:club, "3", 3),
+  card29 = Card.new(:club, "4", 4),
+  card30 = Card.new(:club, "5", 5),
+  card31 = Card.new(:club, "6", 6),
+  card32 = Card.new(:club, "7", 7),
+  card33 = Card.new(:club, "8", 8),
+  card34 = Card.new(:club, "9", 9),
+  card35 = Card.new(:club, "10", 10),
+  card36 = Card.new(:club, "Jack", 11),
+  card37 = Card.new(:club, "Queen", 12),
+  card38 = Card.new(:club, "King", 13),
+  card39 = Card.new(:club, "Ace", 14),
+  card40 = Card.new(:spade, "2", 2),
+  card41 = Card.new(:spade, "3", 3),
+  card42 = Card.new(:spade, "4", 4),
+  card43 = Card.new(:spade, "5", 5),
+  card44 = Card.new(:spade, "6", 6),
+  card45 = Card.new(:spade, "7", 7),
+  card46 = Card.new(:spade, "8", 8),
+  card47 = Card.new(:spade, "9", 9),
+  card48 = Card.new(:spade, "10", 10),
+  card49 = Card.new(:spade, "Jack", 11),
+  card50 = Card.new(:spade, "Queen", 12),
+  card51 = Card.new(:spade, "King", 13),
+  card52 = Card.new(:spade, "Ace", 14)
 ]
-
 
 shuffled_standard_deck = standard_deck.shuffle
 shuffled1 = []
 shuffled2 = []
-# require "pry"; binding.pry
-13.times do   ###CHANGE TO 26 WHEN MOVING TO FULL DECK
+
+26.times do
   shuffled1 << shuffled_standard_deck.shift
   shuffled2 << shuffled_standard_deck.shift
 end
+
 deck1 = Deck.new(shuffled1)
 deck2 = Deck.new(shuffled2)
 
