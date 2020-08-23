@@ -13,10 +13,13 @@ class TurnTest < Minitest::Test
 
 
     assert_instance_of StandardDeck, standard_deck
-    assert_equal standard_deck, standard_deck.initialize
-
-
   end
 
+  def test_shuffle_deck
+    standard_deck = StandardDeck.new
+
+    assert_equal shuffle_deck, standard_deck.randomize
+      # why assert_not_equal not working?
+  end
 
 end

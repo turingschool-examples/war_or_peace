@@ -58,18 +58,29 @@ class StandardDeck
 
       card_values.each do |value, rank|
 
-        
+
         @standard_deck << Card.new(suit, value, rank)
+
 
       end
     end
+
+
+
+  end
+
+  def randomize
+    shuffle_deck = []
+    shuffle_deck << @standard_deck.shuffle!
+    shuffle_deck.flatten!
+    return shuffle_deck
   end
 
 
 end
 
-standard_deck = StandardDeck.new
-p standard_deck
+#standard_deck = StandardDeck.new
+#p standard_deck.randomize
 
 
     #p value
