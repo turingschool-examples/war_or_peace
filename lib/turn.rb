@@ -16,7 +16,8 @@ class Turn
       @turn_type = :basic
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
       @turn_type = :war
-    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+    elsif (player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)) &&
+          (player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2))
       @turn_type = :mutually_assured_destruction
     end
   end
