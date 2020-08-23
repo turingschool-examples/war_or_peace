@@ -200,9 +200,9 @@ class GameTest < Minitest::Test
     player2 = Player.new("Aurora", deck2)
 
     game = Game.new(player1, player2)
-    
+
     game.start
-    refute_equal nil, game.game_winner
+    assert [player1, player2].include?(game.game_winner)
   end
 
   def test_a_MAD_ending_gives_draw
