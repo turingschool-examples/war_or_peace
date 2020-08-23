@@ -31,25 +31,19 @@ class Turn
 
   def pile_cards
     if self.type == :basic
-      @spoils_of_war << self.player1.deck.cards.shift
-      @spoils_of_war << self.player2.deck.cards.shift
+      @spoils_of_war << player1.deck.cards.shift
+      @spoils_of_war << player2.deck.cards.shift
     elsif self.type == :war
-      @spoils_of_war << self.player1.deck.cards.shift(3)
-      @spoils_of_war << self.player2.deck.cards.shift(3)
+      @spoils_of_war << player1.deck.cards.shift(3)
+      @spoils_of_war << player2.deck.cards.shift(3)
     elsif self.type == :mutually_assured_destruction
-      self.player1.deck.cards.shift(3)
-      self.player2.deck.cards.shift(3)
+      player1.deck.cards.shift(3)
+      player2.deck.cards.shift(3)
     end
   end
 
   def award_spoils(winner)
     winner.deck.cards << @spoils_of_war.shift(3)
     winner.deck.cards.flatten!
-    # flatten_card_array
   end
-
-  # def flatten_card_array
-  #   winner.deck.cards.flatten!
-  # end
-
 end
