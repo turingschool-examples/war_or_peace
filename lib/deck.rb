@@ -14,7 +14,6 @@ class Deck
 
   def high_ranking_cards
     @cards.find_all do |card|
-      # @cards.select do |card|
         card.rank >= 11
     end
   end
