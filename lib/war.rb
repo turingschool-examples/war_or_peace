@@ -29,10 +29,14 @@ class War
   end
 
   def go
-    
+
     if turn.type == :basic
-
+      puts "Turn 1: #{player1.name} won 2 cards"
     elsif turn.type == :war
-    elsif turn.type == :mutually_assured_destruction
+      puts "Turn 2: #{player2.name} won 6 cards"
 
+    elsif turn.type == :mutually_assured_destruction
+      puts "Turn 3: *mutually assured destruction* 6 cards removed from play"
+    end
+  end
 end
