@@ -49,4 +49,14 @@ class Deck
       end
     end
   end
+
+  def randomize_deck
+    @cards = @cards.shuffle
+  end
+
+  def split_deck(deck1, deck2)
+    deck1 << @cards[0..24]
+    deck2 << @cards[25..51]
+  end
+
 end

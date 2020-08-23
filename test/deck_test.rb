@@ -101,4 +101,36 @@ class DeckTest < Minitest::Test
 
     assert_equal 52,  deck.cards.length
   end
+
+  def test_randomize_deck
+    deck = Deck.new
+    deck.generate_standard_deck
+
+    assert_equal deck.cards[0].suit, :heart
+    assert_equal deck.cards[0].value, '2'
+    assert_equal deck.cards[1].suit, :heart
+    assert_equal deck.cards[1].value, '3'
+    assert_equal deck.cards[2].suit, :heart
+    assert_equal deck.cards[2].value, '4'
+
+    deck.randomize_deck
+
+    card1_match = deck.cards[0].suit == :heart && deck.cards[0].value == '2'
+    card2_match = deck.cards[1].suit == :heart && deck.cards[1].value == '3'
+    card3_match = deck.cards[2].suit == :heart && deck.cards[2].value == '4'
+
+    refute card1_match && card2_match && card3_match
+  end
+
+  def test_split_decks
+    deck1 = []
+    deck2 = []
+    deck = Deck.new
+    deck.generate_standard_deck
+    deck.randomize_deck
+    deck.split_deck(deck1, deck2)
+    require "pry"; binding.pry
+
+  end
+
 end
