@@ -10,7 +10,7 @@ class PlayerTest < MiniTest::Test
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
 
-    deck = Deck.new([card1, card2, card3])
+    deck  = Deck.new([card1, card2, card3])
 
     player = Player.new('Clarisa', deck)
     assert_instance_of Player, player
@@ -21,7 +21,7 @@ class PlayerTest < MiniTest::Test
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
 
-    deck = Deck.new([card1, card2, card3])
+    deck   = Deck.new([card1, card2, card3])
     player = Player.new('Clarisa', deck)
 
     player.name
@@ -35,7 +35,7 @@ class PlayerTest < MiniTest::Test
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
 
-    deck = Deck.new([card1, card2, card3])
+    deck   = Deck.new([card1, card2, card3])
     player = Player.new('Clarisa', deck)
 
     assert_equal player.has_lost?, false
@@ -48,6 +48,25 @@ class PlayerTest < MiniTest::Test
 
     player.deck.remove_card
     assert_equal player.has_lost?, true
+  end
+
+  def test_create_player1_and_player2_with_generate_standard_deck
+    deck1 = []
+    deck2 = []
+    deck  = Deck.new
+    deck.generate_standard_deck
+    deck.randomize_deck
+    deck.split_deck(deck1, deck2)
+
+    player1 = Player.new('Megan', deck1)
+
+    assert_equal player1.name, 'Megan'
+    assert_equal player1.deck.length, 26
+
+    player2 = Player.new('Aurora', deck2)
+
+    assert_equal player1.name, 'Megan'
+    assert_equal player1.deck.length, 26
   end
 
 end
