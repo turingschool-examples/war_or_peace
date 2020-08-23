@@ -5,6 +5,7 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 require './lib/game'
+require 'pry'
 
 class GameTest < Minitest::Test
   def setup
@@ -27,7 +28,7 @@ class GameTest < Minitest::Test
   end
 
   def test_turn_loop_works
-    # skip
+    skip
     @game.prepare_deck
     @game.deal_cards("Nick", "Arnold Schwarzenegger")
     @game.turn_loop
@@ -59,5 +60,9 @@ class GameTest < Minitest::Test
 
   def test_turn_loop_works_for_mutually_assured_destruction
 
+  end
+
+  def test_start_starts_game
+    @game.start("Nick", "Arnold Schwarzenegger")
   end
 end

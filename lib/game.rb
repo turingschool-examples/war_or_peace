@@ -1,6 +1,7 @@
 require 'pry'
 class Game
   attr_reader :standard_deck, :deck1, :deck2, :player1, :player2, :turn
+
   def initialize
     @standard_deck = Deck.new
     @deck1 = Deck.new
@@ -27,46 +28,44 @@ class Game
     The players today are Megan and Aurora.
     Type 'GO' to start the game!
     ------------------------------------------------------------------"
-    go = gets.chomp
-    if go == 'GO'
-      # go?
+    go = gets.chomp!
+    if go == 'GO' || go == "'GO'"
+      turn_loop
     else
       puts "Whoops! We were looking for 'GO', not #{go}. Try again!"
     end
   end
 
-    def turn_loop
-      turn_number = 1
-      until @player1.has_lost? || @player2.has_lost? || turn_number == 1000000
-        @turn = Turn.new(@player1, @player2)
-        winner = turn.winner
-        winner_name = winner.name
-        turn.pile_cards
-        turn.award_spoils(winner)
-        if @turn.type == :basic
-          puts "Turn #{turn_number}: #{winner_name} won 2 cards"
-        elsif @turn.type == :war
-          puts "Turn #{turn_number}: WAR - #{winner_name} won 6 cards"
-        else
-          puts "Turn #{turn_number}: *mutually assured destruction* 6 cards removed from play"
-        end
-        turn_number += 1
-      end
-      if @player1.has_lost?
-        puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
-      elsif @player2.has_lost?
-        puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+  def turn_loop
+    turn_number = 1
+    until @player1.has_lost? || @player2.has_lost? || turn_number == 1000000
+      @turn = Turn.new(@player1, @player2)
+      winner = turn.winner
+      turn.pile_cards
+      turn.award_spoils(winner)
+      if @turn.type == :basic
+        puts "Turn #{turn_number}: #{winner.name} won 2 cards"
+      elsif @turn.type == :war
+        puts "Turn #{turn_number}: WAR - #{winner.name} won 6 cards"
       else
-        puts "---- DRAW ----"
+        puts "Turn #{turn_number}: *mutually assured destruction* 6 cards removed from play"
       end
+      turn_number += 1
     end
+    if @player1.has_lost?
+      puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+    elsif @player2.has_lost?
+      puts "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+    else
+      puts "---- DRAW ----"
+    end
+  end
 
-# Start method
-# def start(player1, player2)
-# prepare deck
-# deal cards(player1, player2)
-# print intro
-# start turn_loop
+  def start(player1, player2)
+    prepare_deck
+    deal_cards(player1, player2)
+    intro
+  end
 
 
 end
