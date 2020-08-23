@@ -94,10 +94,16 @@ class TurnTest < MiniTest::Test
     player5 = Player.new("Sally", deck5)
     player6 = Player.new("Paul", deck6)
     turn3 = Turn.new(player5, player6)
+    deck7 = Deck.new([card9, card10])
+    deck8 = Deck.new([card13, card14, card12, card4])
+    player7 = Player.new("Sally", deck7)
+    player8 = Player.new("Paul", deck8)
+    turn4 = Turn.new(player7, player8)
 
     assert_equal :basic, turn.type
     assert_equal :war, turn2.type
     assert_equal :mutually_assured_destruction, turn3.type
+    assert_equal :not_enough_cards, turn4.type
   end
 
   def test_turn_has_a_winner
@@ -132,10 +138,16 @@ class TurnTest < MiniTest::Test
     player5 = Player.new("Sally", deck5)
     player6 = Player.new("Paul", deck6)
     turn3 = Turn.new(player5, player6)
+    deck7 = Deck.new([card9, card10])
+    deck8 = Deck.new([card13, card14, card12, card4])
+    player7 = Player.new("Sally", deck7)
+    player8 = Player.new("Paul", deck8)
+    turn4 = Turn.new(player7, player8)
 
     assert_equal player1, turn.winner
     assert_equal player4, turn2.winner
     assert_equal "No Winner", turn3.winner
+    assert_equal player8, turn4.winner
   end
 
   def test_pile_cards_collects_cards
@@ -170,6 +182,11 @@ class TurnTest < MiniTest::Test
     player5 = Player.new("Sally", deck5)
     player6 = Player.new("Paul", deck6)
     turn3 = Turn.new(player5, player6)
+    deck7 = Deck.new([card9, card10])
+    deck8 = Deck.new([card13, card14, card12, card4])
+    player7 = Player.new("Sally", deck7)
+    player8 = Player.new("Paul", deck8)
+    turn4 = Turn.new(player7, player8)
 
     turn.pile_cards
     assert_equal [card1, card3], turn.spoils_of_war
@@ -185,6 +202,11 @@ class TurnTest < MiniTest::Test
     assert_equal [], turn3.spoils_of_war
     assert_equal [card12], player5.deck.cards
     assert_equal [card4], player6.deck.cards
+
+    turn4.pile_cards
+    assert_equal [card9, card10], turn4.spoils_of_war
+    assert_equal [], player7.deck.cards
+
   end
 
   def test_awards_spoils_gives_spoil_cards_to_winner
@@ -219,29 +241,48 @@ class TurnTest < MiniTest::Test
     player5 = Player.new("Sally", deck5)
     player6 = Player.new("Paul", deck6)
     turn3 = Turn.new(player5, player6)
+    deck7 = Deck.new([card9, card10])
+    deck8 = Deck.new([card13, card14, card12, card4])
+    player7 = Player.new("Sally", deck7)
+    player8 = Player.new("Paul", deck8)
+    turn4 = Turn.new(player7, player8)
 
     winner = turn.winner
+    type = turn.type
     turn.pile_cards
     assert_equal [card1, card3], turn.spoils_of_war
-    turn.award_spoils(winner)
+    turn.award_spoils(winner, type)
 
-    assert_equal deck1, player1.deck
-    assert_equal deck2, player2.deck
+    assert_equal [card2, card5, card8, card1, card3], player1.deck.cards
+    assert_equal [card4, card6, card7], player2.deck.cards
 
-    winner = turn2.winner
+    winner2 = turn2.winner
+    type2 = turn2.type
     turn2.pile_cards
     assert_equal [card9, card10, card11, card13, card14, card15], turn2.spoils_of_war
-    turn.award_spoils(winner)
+    turn2.award_spoils(winner2, type2)
 
-    assert_equal deck3, player3.deck
-    assert_equal deck4, player4.deck
+    assert_equal [card12], player3.deck.cards
+    assert_equal [card16, card9, card10, card11, card13, card14, card15], player4.deck.cards
 
-    winner = turn3.winner
+    winner3 = turn3.winner
+    type3 = turn3.type
     turn3.pile_cards
     assert_equal [], turn3.spoils_of_war
+    turn3.spoils_of_war
+    turn3.award_spoils(winner3, type3)
 
     assert_equal [card12], player5.deck.cards
     assert_equal [card4], player6.deck.cards
+
+    winner4 = turn4.winner
+    type4 = turn4.type
+    turn4.pile_cards
+    assert_equal [card9, card10], turn4.spoils_of_war
+    turn4.award_spoils(winner4, type4)
+
+    assert_equal [], player7.deck.cards
+    assert_equal [card13, card14, card12, card4, card9, card10], player8.deck.cards
   end
 
 end

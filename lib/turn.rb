@@ -1,5 +1,5 @@
 class Turn
-  attr_reader :spoils_of_war
+  attr_reader :spoils_of_war, :player1, :player2
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
@@ -58,6 +58,17 @@ class Turn
     elsif type == :mutually_assured_destruction
       3.times {@player1.deck.remove_card}
       3.times {@player2.deck.remove_card}
+
+    elsif type == :not_enough_cards
+      if winner == @player1
+        until @player2.deck.cards.length == 0
+          @spoils_of_war << @player2.deck.remove_card
+        end
+      elsif winner == @player2
+        until @player1.deck.cards.length == 0
+          @spoils_of_war << @player1.deck.remove_card
+        end
+      end
     end
   end
 

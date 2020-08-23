@@ -66,7 +66,5 @@ class PlayerTest < MiniTest::Test
     assert_equal card2, player.remove_card
     assert_equal [card3], player.deck.cards
   end
-
-
-
+  
 end
