@@ -5,18 +5,12 @@ class Start
 
   end
 
-  def will_this_work
-    p "did it print?"
-  end
-
 
   def start
-    p "anything?"
     counter = 0
-    until @deck != []
-      @turn.winner
+    until player1.has_lost? == true || player2.has_lost? == true do
+      @turn
       counter += 1
-
       if @turn.type == :basic
         puts "Turn #{counter}: #{@turn.winner.name} won 2 cards"
       elsif @turn.type == :war
