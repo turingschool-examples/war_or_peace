@@ -2,8 +2,6 @@ class Deck
   attr_reader :cards
   def initialize(cards = [])
     @cards = cards
-    # @deck1 = deck1
-    # @deck2 = deck2
   end
 
   def rank_of_card_at(i)

@@ -235,6 +235,7 @@ class TurnTest < MiniTest::Test
 
   player1 = Player.new('Megan', deck1)
   player2 = Player.new('Aurora', deck2)
+
   turn = Turn.new(player1, player2)
   winner = turn.winner
   turn.pile_cards
@@ -286,7 +287,7 @@ class TurnTest < MiniTest::Test
     winner = turn.winner
     turn.pile_cards
     turn.award_spoils(winner)
-
+    # TODO order of the cards is not tested here.
     assert_equal player1.deck.cards.include?(card8), true
     assert_equal player2.deck.cards.include?(card1), true
     assert_equal player2.deck.cards.include?(card2), true

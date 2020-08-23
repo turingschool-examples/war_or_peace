@@ -114,7 +114,7 @@ class DeckTest < Minitest::Test
     assert_equal deck.cards[2].value, '4'
 
     deck.randomize_deck
-
+    # Does not account for all possibilities, but serves its purpose
     card1_match = deck.cards[0].suit == :heart && deck.cards[0].value == '2'
     card2_match = deck.cards[1].suit == :heart && deck.cards[1].value == '3'
     card3_match = deck.cards[2].suit == :heart && deck.cards[2].value == '4'
