@@ -34,9 +34,11 @@ class StandardDeck
 
 
 
-
+  attr_reader :player1, :player2
   def initialize
     @standard_deck = []
+    @shuffle_deck = []
+    @deal = []
     card_suits = [:diamond, :heart, :club, :spade]
     card_values = {
       '2' => 2,
@@ -70,17 +72,21 @@ class StandardDeck
   end
 
   def randomize
-    shuffle_deck = []
-    shuffle_deck << @standard_deck.shuffle!
-    shuffle_deck.flatten!
-    return shuffle_deck
+    @shuffle_deck << @standard_deck.shuffle!
+    @shuffle_deck.flatten!
+    @deal = @shuffle_deck.each_slice( (@shuffle_deck.size / 2.0).round ).to_a
+    #player1 << deal.shift
   end
 
+  #def deal
+    #player1, player2 = @shuffle_deck.each_slice( (@shuffle_deck.size / 2.0).round ).to_a
+  #end
 
 end
 
-#standard_deck = StandardDeck.new
-#p standard_deck.randomize
+standard_deck = StandardDeck.new
+p standard_deck.randomize
+
 
 
     #p value
