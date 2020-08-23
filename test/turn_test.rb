@@ -93,7 +93,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_a_winner_is_declared
-
     card1 = Card.new(:heart, "Jack", 11)
     card2 = Card.new(:heart, "10", 10)
     card3 = Card.new(:heart, "9", 9)
@@ -114,8 +113,7 @@ class TurnTest < Minitest::Test
     assert player1, turn.winner
   end
 
-  def test_after_a_winner_declared_the_spoils_appear
-
+  def test_after_pile_cards_the_spoils_appear
     card1 = Card.new(:heart, "Jack", 11)
     card2 = Card.new(:heart, "10", 10)
     card3 = Card.new(:heart, "9", 9)
@@ -134,11 +132,11 @@ class TurnTest < Minitest::Test
     turn = Turn.new(player1, player2)
 
     turn.pile_cards
-    assert_equal [card1, card3], turn.spoils_of_war
+    assert_includes(turn.spoils_of_war, card1)
+    assert_includes(turn.spoils_of_war, card3)
   end
 
   def test_spoils_awarded_to_winner_in_basic
-
     card1 = Card.new(:heart, "Jack", 11)
     card2 = Card.new(:heart, "10", 10)
     card3 = Card.new(:heart, "9", 9)
@@ -159,8 +157,10 @@ class TurnTest < Minitest::Test
 
     turn.pile_cards
     turn.award_spoils(winner)
-    assert_equal [card2, card5, card8, card1, card3], player1.deck.cards
-    assert_equal [card4, card6, card7], player2.deck.cards
+    assert_includes(player1.deck.cards, card1)
+    assert_includes(player1.deck.cards, card3)
+    refute_includes(player2.deck.cards, card1)
+    refute_includes(player2.deck.cards, card3)
   end
 
   def test_spoils_awarded_in_war
@@ -184,11 +184,17 @@ class TurnTest < Minitest::Test
     assert_equal :war, turn.type
 
     winner = turn.winner
+
     turn.pile_cards
-    assert_equal [card1, card2, card5, card4, card3, card6], turn.spoils_of_war
+    assert_includes(turn.spoils_of_war, card1, card2)
+    assert_includes(turn.spoils_of_war, card5, card4)
+    assert_includes(turn.spoils_of_war, card3, card6)
     turn.award_spoils(winner)
     assert_equal [card8], player1.deck.cards
-    assert_equal [card7,card1, card2, card5, card4, card3, card6], player2.deck.cards
+    assert_includes(player2.deck.cards, card7, card1)
+    assert_includes(player2.deck.cards, card2, card5)
+    assert_includes(player2.deck.cards, card4, card3)
+    assert_includes(player2.deck.cards, card6)
   end
 
   def test_for_mutually_assured_destruction
@@ -217,5 +223,4 @@ class TurnTest < Minitest::Test
     assert_equal [card8], player1.deck.cards
     assert_equal [card7], player2.deck.cards
   end
-
 end
