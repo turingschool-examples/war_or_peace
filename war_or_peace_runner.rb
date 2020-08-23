@@ -111,12 +111,12 @@ require "pry"
     card51,
     card52
 ]
-  all_cards.shuffle
+  all_cards = all_cards.shuffle
   deck1 = Deck.new(all_cards[0..25])
   deck2 = Deck.new(all_cards[26..51])
   player1 = Player.new("Megan", deck1)
   player2 = Player.new("Aurora", deck2)
   turn = Turn.new(player1, player2)
-  game = Game.new
+  game = Game.new(player1, player2)
 
 game.start
