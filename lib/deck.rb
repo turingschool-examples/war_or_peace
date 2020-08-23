@@ -64,8 +64,6 @@ class Deck
     @cards[26..51].each do |card|
       deck2 << card
     end
-    deck1 = deck1.flatten
-    deck2 = deck2.flatten
   end
 
 end
