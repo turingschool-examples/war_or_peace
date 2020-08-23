@@ -33,7 +33,8 @@ class Turn
         winner = player2
       end
     else
-      "No Winner"
+      winner = nil
+      p "No Winner"
     end
   end
 
