@@ -9,12 +9,12 @@ class Turn
 
   def type
     if  @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) &&
-        @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
-        :mutually_assured_destruction
+      @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
+      :mutually_assured_destruction
     elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
-        :basic
+      :basic
     elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
-        :war
+      :war
     end
   end
 
@@ -28,9 +28,9 @@ class Turn
 
     elsif type() == :war
       if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
-         @player1
+        @player1
       else
-         @player2
+        @player2
       end
 
     elsif type() == :mutually_assured_destruction
@@ -52,7 +52,7 @@ class Turn
 
       3.times{@player1.deck.remove_card}
       3.times{@player2.deck.remove_card}
-      
+
       @spoils_of_war.flatten!
 
     elsif type() == :mutually_assured_destruction
@@ -62,8 +62,10 @@ class Turn
   end
 
   def award_spoils(winner)
-    winner.deck.cards << @spoils_of_war
-    winner.deck.cards.flatten
-    winner
+    if !winner.is_a? String
+      winner.deck.cards << @spoils_of_war
+      winner.deck.cards.flatten!
+      winner
+    end
   end
 end
