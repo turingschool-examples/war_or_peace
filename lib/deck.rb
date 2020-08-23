@@ -2,6 +2,8 @@ class Deck
   attr_reader :cards
   def initialize(cards = [])
     @cards = cards
+    # @deck1 = deck1
+    # @deck2 = deck2
   end
 
   def rank_of_card_at(i)
@@ -54,9 +56,16 @@ class Deck
     @cards = @cards.shuffle
   end
 
+
   def split_deck(deck1, deck2)
-    deck1 << @cards[0..24]
-    deck2 << @cards[25..51]
+    @cards[0..25].each do |card|
+      deck1 << card
+    end
+    @cards[26..51].each do |card|
+      deck2 << card
+    end
+    deck1 = deck1.flatten
+    deck2 = deck2.flatten
   end
 
 end

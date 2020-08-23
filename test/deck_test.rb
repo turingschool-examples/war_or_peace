@@ -99,7 +99,7 @@ class DeckTest < Minitest::Test
     deck = Deck.new
     deck.generate_standard_deck
 
-    assert_equal 52,  deck.cards.length
+    assert_equal deck.cards.length,  52
   end
 
   def test_randomize_deck
@@ -129,8 +129,9 @@ class DeckTest < Minitest::Test
     deck.generate_standard_deck
     deck.randomize_deck
     deck.split_deck(deck1, deck2)
-    require "pry"; binding.pry
 
+    assert_equal deck1.length, 26
+    assert_equal deck2.length, 26
   end
 
 end
