@@ -77,7 +77,7 @@ class DeckTest < Minitest::Test
     card4 = Card.new(:club, '5', 5)
     cards = [card2, card3]
     deck = Deck.new(cards)
-
+binding.pry
     assert_equal [card2, card3, card4], deck.add_card(card4)
     assert_equal [card2, card3, card4], deck.cards
     assert_equal [card3], deck.high_ranking_cards
