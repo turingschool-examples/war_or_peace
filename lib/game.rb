@@ -20,14 +20,25 @@ class Game
     end
   end
 
+  def message(turn, winner)
+    if turn.type == :mutually_assured_destruction
+      puts "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
+    elsif turn.type == :war
+      puts "Turn #{@turn_count}: WAR - #{winner.name} won #{turn.spoils_of_war.count} cards"
+    elsif turn.type == :basic
+      puts "Turn #{@turn_count}: #{winner.name} won #{turn.spoils_of_war.count} cards"
+    end
+  end
+
   def start
     until game_winner || @turn_count == 1000000
       turn = Turn.new(player1, player2)
       p @player1.deck.cards.length
+      p turn.player1.deck.cards[0]
       p @player2.deck.cards.length
-      if turn.type == :mutually_assured_destruction
-        p "mutually_assured_destruction"
-      end
+      p turn.player2.deck.cards[0]
+      current_turn = turn.type  ### try something like this if you find your turn
+      ###   type is changing after you pile cards
       @turn_count += 1
       if turn.type == :mutually_assured_destruction
         "No Winner"
@@ -35,15 +46,7 @@ class Game
         winner = turn.winner
       end
       turn.pile_cards
-      ### might want to put an if statement below instead of what current puts statement.
-      ###   It might be more readable and also you need to add 'WAR - ' in for that type
-      ### UPDATE: must use if statement. Right now on MAD, the winner from previous
-      ###   hand is brought up and "wins 0 cards". This should probably be put into
-      ###   a method and called here rather than piling up methods in start method.
-      ###   I took a screenshot to show what I'm talking about.
-      puts "Turn #{@turn_count}: #{turn.type != :mutually_assured_destruction ?
-        "#{winner.name} won #{turn.spoils_of_war.count} cards" : "*mutually assured
-        destruction* 6 cards removed from play"}"
+      message(turn, winner)
       turn.award_spoils(winner)
     end
     game_ended
