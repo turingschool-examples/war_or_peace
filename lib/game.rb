@@ -15,19 +15,19 @@ class Game
 
   def game_ended
     if (@player1.has_lost? && @player2.has_lost?) || @turn_count == 1000000
-      puts "---- DRAW ----"
+      p "---- DRAW ----"
     elsif @player1.has_lost? || @player2.has_lost?
-      puts "*~*~*~* #{game_winner.name} has won the game! *~*~*~*"
+      p "*~*~*~* #{game_winner.name} has won the game! *~*~*~*"
     end
   end
 
   def message(turn, winner = "")
     if turn.type == :mutually_assured_destruction
-      puts "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
+      p "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
     elsif turn.type == :war
-      puts "Turn #{@turn_count}: WAR - #{winner.name} won #{turn.spoils_of_war.count} cards"
+      p "Turn #{@turn_count}: WAR - #{winner.name} won #{turn.spoils_of_war.count} cards"
     elsif turn.type == :basic
-      puts "Turn #{@turn_count}: #{winner.name} won #{turn.spoils_of_war.count} cards"
+      p "Turn #{@turn_count}: #{winner.name} won #{turn.spoils_of_war.count} cards"
     end
   end
 
