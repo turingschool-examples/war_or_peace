@@ -43,11 +43,15 @@ attr_reader :player1, :player2, :spoils_of_war, :winner, :type
 end
 end
   def pile_cards
-    if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+    if type == :mutually_assured_destruction
+      [@player1, @player2].each do |player|
+      3.times {player.deck.remove_card}
+      end
+    elsif type == :basic
       @spoils_of_war = [@player1, @player2].map do |player|
         player.deck.remove_card
       end
-    elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
+    elsif type == :war
           [@player1, @player2].each do |player|
           3.times {@spoils_of_war << player.deck.remove_card}
       end
