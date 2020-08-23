@@ -15,15 +15,24 @@ attr_reader :player1, :player2, :spoils_of_war, :winner, :type
   end
 
   def type_of_turn
-    if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
-      :basic
-    elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
+
+  if @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
+    :mutually_assured_destruction
+
+  elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
       :war
+
+  elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+      :basic
+
+      end
     end
-  end
+
 
   def winner_of_turn
-    if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
+    if @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
+     'No Winner'
+    elsif @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
       @player1
     elsif @player1.deck.rank_of_card_at(0) < @player2.deck.rank_of_card_at(0)
       @player2
@@ -31,9 +40,8 @@ attr_reader :player1, :player2, :spoils_of_war, :winner, :type
       @player1
     elsif @player1.deck.rank_of_card_at(2) < @player2.deck.rank_of_card_at(2)
       @player2
-    end
-  end
-
+end
+end
   def pile_cards
     if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
       @spoils_of_war = [@player1, @player2].map do |player|
@@ -44,8 +52,7 @@ attr_reader :player1, :player2, :spoils_of_war, :winner, :type
           3.times {@spoils_of_war << player.deck.remove_card}
       end
     end
-  end
-
+end
   def award_spoils(winner)
     winner.deck.add_card(@spoils_of_war)
     winner.deck.cards.flatten!
