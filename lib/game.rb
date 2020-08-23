@@ -31,13 +31,23 @@ class Game
             turn.awards_spoils(turn.winner)
           elsif turn.type == :war
             [@player1, @player2].each do |player|
-              3.times[@spoils_of_war << player.deck.remove_card]
+              3.times{@spoils_of_war << player.deck.remove_card}
             end
+            turn.type
+            turn.winner
+            turn.pile_cards
+            turn.spoils_of_war
+            turn.awards_spoils(turn.winner)
             puts "Turn #{count}: #{turn.winner} won #{turn.spoils_of_war.count} cards"
           elsif turn.type == :mutually_assured_destruction
-
+            puts "Turn #{count}: #{turn.winner} won #{turn.spoils_of_war.count} cards"
+            turn.type
+            turn.winner
+            turn.pile_cards
+            turn.spoils_of_war
+            turn.awards_spoils(turn.winner)
           end
-           #asking it to give the return value of the method turn.type
+
           count += 1
       end
     else
