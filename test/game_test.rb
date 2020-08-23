@@ -59,7 +59,7 @@ class GameTest < Minitest::Test
   end
 
   def test_a_longer_game
-    skip
+    # skip
     card1 = Card.new(:heart, "Jack", 11)
     card2 = Card.new(:heart, "10", 10)
     card3 = Card.new(:heart, "9", 9)
@@ -95,7 +95,7 @@ class GameTest < Minitest::Test
     game.start
     game.game_ended
     puts game.game_winner
-    require "pry"; binding.pry
+    # require "pry"; binding.pry
     000
   end
 
@@ -157,7 +157,7 @@ class GameTest < Minitest::Test
     shuffled1 = []
     shuffled2 = []
     shuffled_standard_deck = standard_deck.shuffle
-    13.times do
+    26.times do
       shuffled1 << shuffled_standard_deck.shift
       shuffled2 << shuffled_standard_deck.shift
     end
@@ -174,7 +174,7 @@ class GameTest < Minitest::Test
     game.start
     game.game_ended
     puts game.game_winner
-    require "pry"; binding.pry
+    # require "pry"; binding.pry
     000
   end
 end

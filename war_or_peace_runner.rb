@@ -2,6 +2,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/game'
 
 standard_deck = [
   card1 = Card.new(:diamond, "2", 2),
@@ -36,7 +37,7 @@ standard_deck = [
 shuffled_standard_deck = standard_deck.shuffle
 shuffled1 = []
 shuffled2 = []
-require "pry"; binding.pry
+# require "pry"; binding.pry
 13.times do   ###CHANGE TO 26 WHEN MOVING TO FULL DECK
   shuffled1 << shuffled_standard_deck.shift
   shuffled2 << shuffled_standard_deck.shift
@@ -46,3 +47,18 @@ deck2 = Deck.new(shuffled2)
 
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
+
+game = Game.new(player1, player2)
+
+puts "Welcome to War! (or Peace) This game will be played with 52 cards."
+puts "The players today are Megan and Aurora."
+puts "Type 'GO' to start the game!"
+25.times { print "-" }
+puts
+
+answer = gets.chomp
+if answer.upcase == "GO"
+  game.start
+else
+  puts "Fine, I'll find someone else to play with."
+end

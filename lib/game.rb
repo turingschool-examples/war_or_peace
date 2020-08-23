@@ -17,6 +17,8 @@ class Game
       "---- DRAW ----"
     elsif @player1.has_lost? || @player2.has_lost?
       "*~*~*~* #{game_winner.name} has won the game! *~*~*~*"
+    # else
+    #   "GAME_ENDED ERROR"
     end
   end
 
@@ -29,9 +31,13 @@ class Game
         p "mutually_assured_destruction"
       end
       @turn_count += 1
-      winner = turn.winner
+      if turn.type == :mutually_assured_destruction
+        "No Winner"
+      else
+        winner = turn.winner
+      end
       turn.pile_cards
-      puts "turn #{@turn_count} #{winner.name} won #{turn.spoils_of_war.count} cards"
+      puts "Turn #{@turn_count}: #{turn.type != :mutually_assured_destruction ? winner.name : "No Winner"} won #{turn.spoils_of_war.count} cards"
       turn.award_spoils(winner)
       #check for less than 3 cards in deck
       # if (@player1.deck.cards.count < 3 || @player2.deck.cards.count < 3)
@@ -49,6 +55,8 @@ class Game
   def start
     if game_ended == nil
       round
+    else
+      game_ended
     end
 
   end
