@@ -13,14 +13,6 @@ class Game
     return @player1 if @player2.has_lost?
   end
 
-  def game_ended
-    if (@player1.has_lost? && @player2.has_lost?) || @turn_count == 1000000
-      p "---- DRAW ----"
-    elsif @player1.has_lost? || @player2.has_lost?
-      p "*~*~*~* #{game_winner.name} has won the game! *~*~*~*"
-    end
-  end
-
   def message(turn, winner = "")
     if turn.type == :mutually_assured_destruction
       p "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
@@ -31,19 +23,31 @@ class Game
     end
   end
 
+  def handle_turn(turn)
+    if turn.type == :mutually_assured_destruction
+      turn.pile_cards
+      message(turn)
+    else
+      winner = turn.winner
+      turn.pile_cards
+      message(turn, winner)
+      turn.award_spoils(winner)
+    end
+  end
+  
+  def game_ended
+    if (@player1.has_lost? && @player2.has_lost?) || @turn_count == 1000000
+      p "---- DRAW ----"
+    elsif @player1.has_lost? || @player2.has_lost?
+      p "*~*~*~* #{game_winner.name} has won the game! *~*~*~*"
+    end
+  end
+
   def start
     until game_winner || @turn_count == 1000000
       turn = Turn.new(player1, player2)
       @turn_count += 1
-      if turn.type == :mutually_assured_destruction
-        turn.pile_cards
-        message(turn)
-      else
-        winner = turn.winner
-        turn.pile_cards
-        message(turn, winner)
-        turn.award_spoils(winner)
-      end
+      handle_turn(turn)
     end
     game_ended
     puts "Thanks for playing!"
