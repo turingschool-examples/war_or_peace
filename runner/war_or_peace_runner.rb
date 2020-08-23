@@ -1,29 +1,8 @@
-#require './lib/card'
-#require './lib/deck'
-#require './lib/player'
-#require './lib/turn'
-#require './lib/start'
-
-
-
-puts "Welcome to War! (or Peace) This game will be played with 52 cards.
-The players today are Megan and Aurora.
-Type 'GO' to start the game!
-------------------------------------------------------------------"
-
-puts "When you're ready type 'GO' to start the game"
-
-user_input = gets.chomp
-
-if user_input == "GO"
-  @start.start
-
-else
-  p "Sorry you don't want to play, maybe next time!"
-end
-
-
-
+require './lib/card'
+require './lib/deck'
+require './lib/player'
+require './lib/turn'
+require './lib/start'
 
 @card1 = Card.new(:spade, 'King', 13)
 @card2 = Card.new(:spade, 'Queen', 12)
@@ -81,7 +60,31 @@ full_deck = [@card1, @card2, @card3, @card4, @card5, @card6, @card7, @card8, @ca
 
 full_deck.shuffle!
 p1_deck = full_deck.slice(0..25)
-p2_deck = full_deck
+p2_deck = full_deck.slice(26..51)
 
-p p1_deck.count
-p p2_deck.count
+player1 = Player.new('Megan', p1_deck)
+player2 = Player.new('Aurora', p2_deck)
+
+puts "Welcome to War! (or Peace) This game will be played with 52 cards.
+The players today are Megan and Aurora.
+Type 'GO' to start the game!
+------------------------------------------------------------------"
+
+puts "When you're ready type 'GO' to start the game"
+
+user_input = gets.chomp
+
+@start = Start.new(@turn)
+
+if user_input == "GO"
+  @start.start 
+else
+  p "Sorry you don't want to play, maybe next time!"
+end
+
+
+
+
+
+#p p1_deck.count
+#p p2_deck

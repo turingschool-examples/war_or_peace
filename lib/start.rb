@@ -2,11 +2,38 @@ class Start
   attr_reader :turn
   def initialize(turn)
     @turn = turn
+
   end
 
+  def will_this_work
+    p "did it print?"
+  end
+
+
   def start
-    while @deck != [] ||
-      @turn(@player1, @player2)
+    p "anything?"
+    counter = 0
+    until @deck != []
+      @turn.winner
+      counter += 1
+
+      if @turn.type == :basic
+        puts "Turn #{counter}: #{@turn.winner.name} won 2 cards"
+      elsif @turn.type == :war
+        puts "Turn #{counter}: WAR - #{@turn.winner.name} won 6 cards"
+      elsif @turn.type == :mutually_assured_destruction
+        puts "Turn #{counter}: *mutually_assured_destruction* 6 cards removed from play"
+      elsif @turn.player1.deck == []
+        puts "*~*~*~* #{@player2} has won the game! *~*~*~*"
+      elsif @turn.player2.deck == []
+        puts "*~*~*~* #{@player1} has won the game! *~*~*~*"
+      elsif counter == 1000000
+        "---- DRAW ---"
+      else
+        puts "Uh oh! Something went wrong! Let's try again"
+      end
     end
   end
 end
+#player.has_lost?
+#@turn.player1.deck != [] || @turn.player2.deck != [] do
