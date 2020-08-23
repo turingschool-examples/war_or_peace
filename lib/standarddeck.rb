@@ -38,7 +38,7 @@ class StandardDeck
   def initialize
     @standard_deck = []
     @shuffle_deck = []
-    @deal = []
+    @randomize = []
     card_suits = [:diamond, :heart, :club, :spade]
     card_values = {
       '2' => 2,
@@ -84,8 +84,8 @@ class StandardDeck
 
 end
 
-standard_deck = StandardDeck.new
-p standard_deck.randomize
+#standard_deck = StandardDeck.new
+#p standard_deck.randomize
 
 
 
