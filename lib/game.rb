@@ -65,12 +65,6 @@ class Game
         p "Turn #{@turn_counter} : WAR - #{winner.name} won 6 cards"
       elsif type == :mutually_assured_destruction
         p "Turn #{@turn_counter} : *mutually assured destruction* 6 cards removed from play"
-      elsif type == :not_enough_cards
-        if player1.deck.cards.length < 3
-          p "*~*~*~* #{player2.name} has won the game! *~*~*~*"
-        elsif
-          p "*~*~*~* #{player1.name} has won the game! *~*~*~*"
-        end
       end
     end
 
