@@ -26,4 +26,22 @@ class Game
     @player2 = Player.new("Aurora", deck_2)
   end
 
+  def build_cards
+    all_cards = []
+    SUITS.each do |suit|
+      VALUES_TO_RANK.each do |value, rank|
+        all_cards << Card.new(value, suit, rank)
+      end
+    end
+    all_cards
+  end
+
+  def split_deck(all_cards)
+    all_cards.shuffle!
+    deck_1 = Deck.new(all_cards.first(26))
+    deck_2 = Deck.new(all_cards.last(26))
+
+    [deck_1, deck_2]
+  end
+
 end
