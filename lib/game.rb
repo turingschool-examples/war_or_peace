@@ -21,7 +21,7 @@ class Game
         full_deck_of_cards << card
       end
     end
-    deck = Deck.new(full_deck_of_cards.shuffle)
+    Deck.new(full_deck_of_cards.shuffle)
   end
 
   def create_pile_of_cards_for_each_player
@@ -49,48 +49,39 @@ class Game
     Turn.new(@player1, @player2)
   end
 
-
   def start
+    until (@player1.has_lost? == true || @player2.has_lost? == true) || @turn_counter >= 1000000
+      # @player1.deck.cards.shuffle!
+      # @player2.deck.cards.shuffle!
+      new_turn = player_turn()
+      winner = new_turn.winner
+      type = new_turn.type
+      new_turn.pile_cards
+      new_turn.award_spoils(winner, type)
 
-    p "Welcome to War! (or Peace) This game will be played with 52 cards.
-      The players today are Megan and Aurora.
-      Type 'GO' to start the game!
-      ------------------------------------------------------------------"
-
-    answer = gets.chomp
-
-    if answer == "GO"
-      until (@player1.deck.cards.length == 0 || @player2.deck.cards.length == 0) || @turn_counter >= 1000000
-        # require "pry"; binding.pry
-        new_turn = player_turn()
-        winner = new_turn.winner
-        new_turn.pile_cards
-        new_turn.award_spoils(winner)
-        if new_turn.type == :basic
-          p "Turn #{@turn_counter} : #{winner.name} won 2 cards"
-        elsif new_turn.type == :war
-          p "Turn #{@turn_counter} : WAR - #{winner.name} won 6 cards"
-        elsif new_turn.type == :mutually_assured_destruction
-          p "Turn #{@turn_counter} : *mutually assured destruction* 6 cards removed from play"
+      if type == :basic
+        p "Turn #{@turn_counter} : #{winner.name} won 2 cards"
+      elsif type == :war
+        p "Turn #{@turn_counter} : WAR - #{winner.name} won 6 cards"
+      elsif type == :mutually_assured_destruction
+        p "Turn #{@turn_counter} : *mutually assured destruction* 6 cards removed from play"
+      elsif type == :not_enough_cards
+        if player1.deck.cards.length < 3
+          p "*~*~*~* #{player2.name} has won the game! *~*~*~*"
+        elsif
+          p "*~*~*~* #{player1.name} has won the game! *~*~*~*"
         end
       end
-      if @player1.deck.cards.length == 0
-        p "*~*~*~* #{player2.name} has won the game! *~*~*~*"
-      elsif @player2.deck.cards.length == 0
-        p "*~*~*~* #{player1.name} has won the game! *~*~*~*"
-      elsif @turn_counter >= 1000000
-        p "---- DRAW ----"
-      else
-        p "error"
-      end
-
-    elsif answer != "GO"
-      p "Please type 'GO' to begin the game!"
-      # answer2 = gets.chomp
     end
 
+    if @player1.has_lost? == true
+      p "*~*~*~* #{player2.name} has won the game! *~*~*~*"
+    elsif @player2.has_lost? == true
+      p "*~*~*~* #{player1.name} has won the game! *~*~*~*"
+    elsif @turn_counter >= 1000000
+      p "---- DRAW ----"
+    else
+      p "error"
+    end
   end
-
-
-
 end
