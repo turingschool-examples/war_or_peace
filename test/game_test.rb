@@ -38,6 +38,7 @@ class GameTest < Minitest::Test
   end
 
   def test_a_short_game_will_end
+    skip
     card1 = Card.new(:heart, "Jack", 11)
     card2 = Card.new(:heart, "10", 10)
     card3 = Card.new(:heart, "9", 9)
@@ -53,13 +54,14 @@ class GameTest < Minitest::Test
 
     game = Game.new(player1, player2)
     game.start
+    game.game_ended
     # require "pry"; binding.pry
     assert_equal player2, game.game_winner
     assert_equal "*~*~*~* Aurora has won the game! *~*~*~*", game.game_ended
   end
 
   def test_a_longer_game
-    # skip
+    skip
     card1 = Card.new(:heart, "Jack", 11)
     card2 = Card.new(:heart, "10", 10)
     card3 = Card.new(:heart, "9", 9)
@@ -89,17 +91,14 @@ class GameTest < Minitest::Test
     player2 = Player.new("Aurora", deck2)
 
     game = Game.new(player1, player2)
-# require "pry"; binding.pry  ### No method error coming up because its calling
-    ##  on @player1_third_card in turn, which I'm guessing has been taken and
-    ##  doesn't exist (hence nil)
     game.start
     game.game_ended
     puts game.game_winner
-    # require "pry"; binding.pry
     000
   end
 
-  def test_a_lot_of_cards
+  def test_all_the_cards
+    skip
     standard_deck = [
       card1 = Card.new(:diamond, "2", 2),
       card2 = Card.new(:diamond, "3", 3),
@@ -168,13 +167,32 @@ class GameTest < Minitest::Test
     player2 = Player.new("Aurora", deck2)
 
     game = Game.new(player1, player2)
-# require "pry"; binding.pry  ### No method error coming up because its calling
-    ##  on @player1_third_card in turn, which I'm guessing has been taken and
-    ##  doesn't exist (hence nil)
     game.start
-    game.game_ended
-    puts game.game_winner
+    # game.game_ended
+    # puts game.game_winner
+    assert_equal @player1 || @player2, game.game_winner
+  end
+
+  def test_a_MAD_ending_gives_draw
+    card1 = Card.new(:heart, "Queen", 12)
+    card2 = Card.new(:spade, "4", 4)
+    card3 = Card.new(:heart, "10", 10)
+    card4 = Card.new(:club, "Queen", 12)
+    card5 = Card.new(:diamond, "5", 5)
+    card6 = Card.new(:diamond, "10", 10)
+
+    deck1 = Deck.new([card1, card2, card3])
+    deck2 = Deck.new([card4, card5, card6])
+
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+
+    game = Game.new(player1, player2)
+
+    game.start
     # require "pry"; binding.pry
     000
+    assert_equal "---- DRAW ----", game.game_winner
+    # assert_nil player1.deck.cards
   end
 end

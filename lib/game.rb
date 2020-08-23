@@ -8,6 +8,7 @@ class Game
   end
 
   def game_winner
+    return "---- DRAW ----" if @player1.deck.cards == [] && @player2.deck.cards == []
     return @player2 if @player1.has_lost?
     return @player1 if @player2.has_lost?
   end
@@ -33,22 +34,23 @@ class Game
   def start
     until game_winner || @turn_count == 1000000
       turn = Turn.new(player1, player2)
-      p @player1.deck.cards.length
-      p turn.player1.deck.cards[0]
-      p @player2.deck.cards.length
-      p turn.player2.deck.cards[0]
+      # p @player1.deck.cards.length
+      # p turn.player1.deck.cards[0]
+      # p @player2.deck.cards.length
+      # p turn.player2.deck.cards[0]
       current_turn = turn.type  ### try something like this if you find your turn
       ###   type is changing after you pile cards
       @turn_count += 1
       if turn.type == :mutually_assured_destruction
+        turn.pile_cards
         "No Winner"
       else
         winner = turn.winner
+        turn.pile_cards
+        message(turn, winner)
+        turn.award_spoils(winner)
       end
-      turn.pile_cards
-      message(turn, winner)
-      turn.award_spoils(winner)
     end
-    game_ended
+    self.game_ended
   end
 end
