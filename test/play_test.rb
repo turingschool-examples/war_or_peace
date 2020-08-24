@@ -15,11 +15,13 @@ class TurnTest <Minitest::Test
 
   end
 
-  def test_create_two_decks
+  def test_create_two_players
     play = Play.new
     play.create_big_deck
     play.randomize
-require "pry";binding.pry
-    assert_equal [@deck1, @deck2], play.create_two_decks
+    play.create_two_decks
+    play.create_player_one
+    play.create_player_two
+    require "pry";binding.pry
   end
 end

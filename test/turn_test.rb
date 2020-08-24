@@ -256,7 +256,7 @@ def test_turn_type_basic
    player2 = Player.new("Aurora", deck2)
 
    turn = Turn.new(player1, player2)
-
+require "pry";binding.pry
    assert_equal :mutually_assured_destruction, turn.type
 
  end
@@ -307,6 +307,6 @@ turn.pile_cards
    assert_equal [card8], player1.deck.cards
    assert_equal [card7], player2.deck.cards
    assert_equal [], turn.spoils_of_war
-   require "pry";binding.pry
+   
  end
 end

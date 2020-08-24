@@ -80,6 +80,14 @@ card52 = Card.new(:club, 'Ace', 14)
   end
 
   def create_two_decks
-  player_decks = ([Deck.new(@big_deck[0..25]), Deck.new(@big_deck[26..52])])
+  @player_decks = ([Deck.new(@big_deck[0..25]), Deck.new(@big_deck[26..52])])
+  end
+
+  def create_player_one
+    player1 = Player.new('Megan', @player_decks[0])
+  end
+
+  def create_player_two
+    player2 = Player.new('Aurora', @player_decks[1])
   end
 end
