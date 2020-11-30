@@ -1,2 +1,11 @@
 class Card
-end 
+  attr_accessor :suit, :value, :rank
+
+  def initialize (suit, value, rank)
+    @suit = suit
+    @value = value
+    @rank = rank
+  end
+end
+
+puts Card.new("heart", "Jack", 11)
