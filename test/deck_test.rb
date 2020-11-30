@@ -17,4 +17,9 @@ class DeckTest < Minitest::Test
 
     assert_equal @cards, @deck.cards 
   end
+
+  def test_rank_of_card
+    assert_equal 12, @deck.rank_of_card(0)
+    assert_equal 14, @deck.rank_of_card(2)
+  end
 end
