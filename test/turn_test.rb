@@ -5,7 +5,7 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 
-class PlayerTest < Minitest::Test
+class TurnTest < Minitest::Test
   def setup
     @card1 = Card.new(:heart, 'Jack', 11)
     @card2 = Card.new(:heart, '10', 10)
@@ -29,5 +29,9 @@ class PlayerTest < Minitest::Test
     assert_equal @player2, @turn.player2
 
     assert_equal [], @turn.spoils_of_war
+  end
+
+  def test_turn_type
+    assert_equal :basic, @turn.type 
   end
 end
