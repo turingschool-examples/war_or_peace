@@ -11,4 +11,3 @@ card = Card.new(:heart, 'Jack', 11)
 card.suit
 card.value
 card.rank
-require "pry"; binding.pry
