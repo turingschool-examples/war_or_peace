@@ -6,4 +6,30 @@ class Deck
     @cards = cards
   end
 
+  def rankings
+    cards.map do |card|
+      card.rank
+    end
+  end
+
+  def rank_of_card_at(index)
+    rankings[index]
+  end
+  #
+  # def high_ranking_cards
+  #
+  # end
+  #
+  # def percent_high_ranking
+  #
+  # end
+  #
+  # def remove_card
+  #
+  # end
+  #
+  # def add_card
+  #
+  # end
+  # end
 end
