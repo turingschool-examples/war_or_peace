@@ -33,5 +33,7 @@ class DeckTest < Minitest::Test
 
   def test_it_can_remove_cards
     assert_equal @card1, @deck.remove_card
+    assert_equal [@card2,@card3], @deck.cards
+    assert_equal [@card3], @deck.high_ranking_cards
   end
 end
