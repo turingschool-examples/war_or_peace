@@ -21,15 +21,17 @@ class Deck
   def percent_high_ranking
     # this method will return the percentage of cards that are high ranking
     value = (self.high_rank_cards.length.to_f / @cards.length.to_f) * 100
-    value.round
+    value.round(2)
   end
 
   def remove_card
     # this method will remove the top card from the deck
+    @cards.slice!(0)
   end
 
-  def add_card
+  def add_card(card)
     # this method will add one card to the bottom (end) of the deck
+    @cards << card
   end
 
 end
