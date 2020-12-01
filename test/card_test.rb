@@ -20,4 +20,12 @@ class CardTest < Minitest::Test
     assert_equal 'Queen', card.value
     assert_equal 12, card.rank
   end
+
+  def test_it_can_have_other_attributes
+    card_2 = Card.new(:heart, 'Jack', 11)
+
+    assert_equal :heart, card_2.suit
+    assert_equal 'Jack', card_2.value
+    assert_equal 11, card_2.rank
+  end
 end
