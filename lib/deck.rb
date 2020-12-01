@@ -30,6 +30,6 @@ class Deck
   end
 
   def add_card(card)
-    @cards.pop(card)
+    @cards.push(card)
   end
 end
