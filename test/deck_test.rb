@@ -76,7 +76,7 @@ class DeckTest < Minitest::Test
     assert_equal high_card, deck.remove_card
   end
 
-  def test_it_can_add_card_zzz
+  def test_it_can_add_card
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, "Ace", 14)
@@ -91,7 +91,7 @@ class DeckTest < Minitest::Test
 
     cards_with_new_card = [card1, card2, card3, card4]
 
-    assert_equal cards_with_new_card, deck.cards 
+    assert_equal cards_with_new_card, deck.cards
   end
 
 end
