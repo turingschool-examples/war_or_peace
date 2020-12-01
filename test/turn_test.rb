@@ -20,6 +20,7 @@ class TurnTest < Minitest::Test
     @player1 = Player.new("Megan", @deck1)
     @player2 = Player.new("Aurora", @deck2)
     @turn = Turn.new(@player1, @player2)
+    @winner = @turn.winner
   end
 
   def test_it_exists
@@ -33,5 +34,9 @@ class TurnTest < Minitest::Test
 
   def test_turn_type
     assert_equal :basic, @turn.type 
+  end
+
+  def test_which_player_wins_turn
+    assert_equal @player1, @winner 
   end
 end
