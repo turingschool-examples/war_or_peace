@@ -29,4 +29,17 @@ class TurnTest < MiniTest::Test
 
     assert_instance_of Turn, turn
   end
+
+  def test_award_spoils
+  end
+
+  def test_sending_player_cards_to_spoil_of_war
+  end
+
+  def test_type_of_turn
+  end
+
+  def test_winner_of_war
+  end
+  
 end
