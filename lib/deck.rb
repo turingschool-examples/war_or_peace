@@ -33,12 +33,12 @@ class Deck
 
   end
 
-  # def remove_card
-  #
-  # end
-  #
-  # def add_card
-  #
-  # end
-  # end
+  def remove_card
+    cards.shift
+  end
+
+  def add_card(x)
+    cards.push(x)
+  end
+
 end
