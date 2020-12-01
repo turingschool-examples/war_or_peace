@@ -1,3 +1,5 @@
+
+
 class Card
   attr_accessor :suit, :value, :rank
 
@@ -7,5 +9,3 @@ class Card
     @rank = rank
   end
 end
-
-puts Card.new("heart", "Jack", 11)
