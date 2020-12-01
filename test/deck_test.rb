@@ -75,7 +75,7 @@ class DeckTest < Minitest::Test
     deck = Deck.new(cards)
 
     card4 = Card.new(:club, '5', 5)
-    cards << card4
+    deck.add_card(card4)
     assert_equal card4, deck.cards.last
 
   end
