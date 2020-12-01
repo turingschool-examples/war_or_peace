@@ -71,8 +71,8 @@ class DeckTest < Minitest::Test
 
     deck = Deck.new(cards)
 
-    deck.remove_card
+    high_card = cards[0]
 
-    assert_equal cards.shift, deck.remove_card
+    assert_equal high_card, deck.remove_card
   end
 end
