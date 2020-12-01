@@ -23,11 +23,16 @@ class Deck
     end
     ranks
   end
-  #
-  # def percent_high_ranking
-  #
-  # end
-  #
+
+  def total_high_ranking
+    cards.count.to_f
+  end
+
+  def percent_high_ranking
+   ((high_ranking_cards.count / total_high_ranking) * 100).round(2)
+
+  end
+
   # def remove_card
   #
   # end

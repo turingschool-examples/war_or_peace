@@ -53,5 +53,6 @@ class DeckTest < Minitest::Test
     deck = Deck.new(cards)
 
     assert_equal [card1, card3], deck.high_ranking_cards
+    assert_equal 66.67, deck.percent_high_ranking
   end
 end
