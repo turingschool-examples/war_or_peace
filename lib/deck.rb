@@ -22,8 +22,15 @@ class Deck
     ranks
   end
 
+  def high_ranking_total
+    cards.count.to_f
+  end
+
   def percent_high_ranking
-    require "pry"; binding.pry
-    rankings.sum
+    ((high_ranking_cards.count / high_ranking_total) * 100).round(2)
+  end
+
+  def remove_card
+    cards.shift
   end
 end
