@@ -17,7 +17,6 @@ class DeckTest < Minitest::Test
   end
 
   def test_it_has_readable_attributes
-    # skip
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
@@ -29,7 +28,6 @@ class DeckTest < Minitest::Test
   end
 
   def test_rank_of_card_at
-    # skip
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
@@ -87,7 +85,6 @@ class DeckTest < Minitest::Test
   end
 
   def test_add_card
-
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
@@ -95,12 +92,8 @@ class DeckTest < Minitest::Test
     deck = Deck.new(cards)
     card4 = Card.new(:club, '5', 5)
     answer = [card1, card2, card3, card4]
-    #execution
+
     test = deck.add_card(card4)
     assert_equal answer, test
   end
-
-
-
-
 end
