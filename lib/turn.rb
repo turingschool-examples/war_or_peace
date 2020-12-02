@@ -15,6 +15,24 @@ class Turn
 
   #cards will be sent from player deck to spoils_of_war
   def pile_cards
+    #if :basic, send top card
+    if type ==  :basic
+      @spoils_of_war << player1.deck.cards.first
+      player1.deck.remove_card
+      @spoils_of_war << player2.deck.cards.first
+      player2.deck.remove_card
+    #if :war, send top 3 cards
+    elsif type == :war
+      3.times do
+        @spoils_of_war << player1.deck.cards.first
+        player1.deck.remove_card
+        @spoils_of_war << player2.deck.cards.first
+        player2.deck.remove_card
+      end
+    #if :destruction, get rid of top 3 cards
+    elsif type == :mutally_assured_destruction
+    end
+
   end
 
   #basic, war, of mutally_assured_destruction
