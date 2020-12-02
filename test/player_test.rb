@@ -23,4 +23,8 @@ class PlayerTest < Minitest::Test
     assert_equal 'Alex', @player.name
     assert_equal @deck, @player.deck
   end
+
+  def test_has_lost?
+    assert_equal false, @player.has_lost?
+  end
 end
