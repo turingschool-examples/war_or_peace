@@ -39,7 +39,7 @@ class Turn
         return player1
       else
         return player2
-      end 
+      end
     end
   end
 
@@ -48,6 +48,14 @@ class Turn
     if result_of_type == :basic
       @spoils_of_war << player1.deck.cards.shift
       @spoils_of_war << player2.deck.cards.shift
+    elsif result_of_type == :war
+      3.times do
+        @spoils_of_war << player1.deck.cards.shift
+      end
+
+      3.times do
+        @spoils_of_war << player2.deck.cards.shift
+      end
     end
   end
 
