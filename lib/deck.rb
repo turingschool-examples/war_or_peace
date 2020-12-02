@@ -13,4 +13,9 @@ class Deck
   def high_ranking_cards
     cards.select { |card| card.rank > 10 }
   end
+
+  def remove_card
+    cards.shift
+  end
+
 end
