@@ -75,7 +75,6 @@ class PlayerTest < Minitest::Test
     deck = Deck.new([card1, card2, card3])
     player = Player.new('Clarisa', deck)
     3.times { player.deck.remove_card }
-    # require "pry"; binding.pry
 
     assert_equal [], player.deck.cards
     assert player.has_lost?
