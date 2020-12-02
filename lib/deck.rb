@@ -6,6 +6,8 @@ class Deck
   end
 
   def rank_of_card_at(card)
+    # this method will take one argument that represents
+    # the index location of a card to be used
     @cards.slice(card).rank
   end
 
@@ -20,8 +22,7 @@ class Deck
 
   def percent_high_ranking
     # this method will return the percentage of cards that are high ranking
-    value = (self.high_rank_cards.length.to_f / @cards.length.to_f) * 100
-    value.round(2)
+    value = ((high_rank_cards.length.to_f / @cards.length.to_f) * 100).round(2)
   end
 
   def remove_card
