@@ -40,6 +40,8 @@ class Turn
       else
         return player2
       end
+    else
+      return "No Winner"
     end
   end
 
