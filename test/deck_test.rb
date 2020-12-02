@@ -2,15 +2,9 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/card'
 require './lib/deck'
+require 'pry'
 
 class DeckTest < Minitest::Test
-  def setup
-    card1 = Card.new(:diamond, 'Queen', 12)
-    card2 = Card.new(:spade, '3', 3)
-    card3 = Card.new(:heart, 'Ace', 14)
-    cards = [card1, card2, card3]
-    deck = Deck.new(cards)
-  end
 
   def test_it_exists
     card1 = Card.new(:diamond, 'Queen', 12)
@@ -57,7 +51,6 @@ class DeckTest < Minitest::Test
   end
 
   def test_high_ranking_cards
-
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
@@ -69,43 +62,42 @@ class DeckTest < Minitest::Test
     assert_equal answer, test
   end
 
-  def test_percent_high_ranking
 
+  def test_percent_high_ranking
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
 
-
     assert_equal deck.percent_high_ranking, 66.67
   end
 
 
-
   def test_remove_card
-    skip
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
     test = deck.remove_card
-    answer = [card2, card3]
+    answer = card1
 
     assert_equal answer, test
   end
 
   def test_add_card
-    skip
+
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
-    answer = [card1, card2, card3, x]
-
-    assert_equal deck.add_card(x), answer
+    card4 = Card.new(:club, '5', 5)
+    answer = [card1, card2, card3, card4]
+    #execution
+    test = deck.add_card(card4)
+    assert_equal answer, test
   end
 
 

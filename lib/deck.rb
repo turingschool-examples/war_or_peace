@@ -1,3 +1,5 @@
+require 'pry'
+
 class Deck
   attr_reader :cards
 
@@ -17,7 +19,8 @@ class Deck
   end
 
   def high_ranking_cards
-    cards.select {|card| card.rank >=12}
+    @cards.select {|card| card.rank >=12}
+
   end
 
   def percent_high_ranking
@@ -29,13 +32,13 @@ class Deck
   end
 
   def remove_card
-    new_deck = cards.delete_at(1)
-    return new_deck
+    cards.delete_at(0)
+    # cards
     #remove top card from deck
   end
 
-  def add_card
-    #add card to end of Deck
+  def add_card (new_card)
+    @cards << new_card#add card to end of Deck
   end
 
 end
