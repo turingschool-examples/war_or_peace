@@ -66,6 +66,9 @@ class TurnTest < MiniTest::Test
   end
 
   def test_award_spoils
+    turn = setup_for_basic
+    turn.award_spoils
+    #assert_equal ,
   end
 
   def test_sending_player_cards_to_spoil_of_war_for_basic

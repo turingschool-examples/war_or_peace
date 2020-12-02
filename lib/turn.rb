@@ -11,7 +11,13 @@ class Turn
   end
 
   #add cards in spoils_of_war to the winner of the turn
-  def award_spoils
+  def award_spoils(winner_of_turn)
+    if winner_of_turn == "No Winner"
+      return
+    end
+    @spoils_of_war.each do |card|
+      winner_of_turn.deck.cards << card
+    end
   end
 
   #cards will be sent from player deck to spoils_of_war
@@ -66,16 +72,16 @@ class Turn
     #if basic
     if type ==  :basic
       if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-        player1.name
+        player1
       else
-        player2.name
+        player2
       end
     #elsif war
     elsif type == :war
       if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-        player1.name
+        player1
       else
-        player2.name
+        player2
       end
     #elsif mutally_assured_destruction
     elsif type == :mutally_assured_destruction
