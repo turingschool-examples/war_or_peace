@@ -1,23 +1,18 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/deck'
+require './lib/card'
 
 class DeckTest < Minitest::Test
   def setup
-    # card = Card.new(:diamond, 'Queen', 12)
+    card_1 = Card.new(:diamond, 'Queen', 12)
+    card_2 = Card.new(:heart, 'Jack', 11)
+    cards = [card_1, card_2]
+
+    @deck = Deck.new(cards)
   end
 
   def test_it_exists
-    # card = Card.new(:diamond, 'Queen', 12)
-
-    # assert_instance_of Card, card
-  end
-
-  def test_it_has_readable_attributes
-    # card = Card.new(:diamond, 'Queen', 12)
-
-    # assert_equal :diamond, card.suit
-    # assert_equal 'Queen', card.value
-    # assert_equal 12, card.rank
+    assert_instance_of Deck, @deck
   end
 end
