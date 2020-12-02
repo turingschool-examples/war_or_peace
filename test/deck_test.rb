@@ -8,4 +8,10 @@ class DeckTest < Minitest::Test
 
     assert_instance_of Deck, deck
   end
+
+  def test_it_has_a_readable_attribute
+    deck = Deck.new([])
+
+    assert_equal [], deck.cards
+  end
 end
