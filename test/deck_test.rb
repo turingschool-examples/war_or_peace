@@ -42,6 +42,16 @@ class DeckTest < Minitest::Test
     assert_equal [card1, card2], deck.high_ranking_cards
   end
 
+  def test_it_returns_the_percent_of_cards_with_a_rank_above_10
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:diamond, 'King', 13)
+    card3 = Card.new(:spade, '7', 7)
+
+    deck = Deck.new([card1, card2, card3])
+
+    assert_equal 66.67, deck.percent_high_ranking
+  end
+
   def test_remove_top_card_from_deck
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:diamond, 'King', 13)
