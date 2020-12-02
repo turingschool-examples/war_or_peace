@@ -20,33 +20,38 @@ class Turn
   end
 
   def winner
-    if self.type == :basic
+    # require "pry"; binding.pry
+
+    if type == :basic
       if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-        return player1
+        player1
       else
-        return player2
+        player2
       end
-    elseif self.type == :war
+    elsif type == :war
       if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-        return player1
+        player1
       else
-        return player2
+        player2
       end
-    else self.type == :mutually_assured_destruction
-      return "No Winner"
+    else type == :mutually_assured_destruction
+      "No Winner"
     end
   end
 
   def pile_cards
-    #depending on the type of war, cards are moved into spoils of war array
-    #if self.type == :basic, @spoils_of_war.push(player1.remove_card, player2.remove_card)
-    #if self.type == :war, @spoils_of_war.push()
+    if type == :basic
+      @spoils_of_war.push(player1.deck.cards.first, player2.deck.cards.first)
+    elsif type == :war
+      @spoils_of_war.push(player1.deck.cards[0..2], player2.deck.cards[0..2])
+    else type == :mutually_assured_destruction
+      return
+      #deletes all 6 cards. doesn't push them into spoils
+    end
   end
 
   def award_spoils(winner)
-    #push the entire contents of the array into the winners deck- winner.deck.push(@spoils_of_war)
-    #array should be empty after push
-
+    winner.deck.cards.push(@spoils_of_war)
   end
 
 
