@@ -11,16 +11,16 @@ class TurnTest < MiniTest::Test
     @card2 = Card.new(:spade, '3', 3)
     @card3 = Card.new(:heart, 'Ace', 14)
     @cards = [@card1, @card2, @card3]
-    deck = Deck.new(@cards)
-    @player1 = Player.new("Jenny", deck)
+    @deck = Deck.new(@cards)
+    @player1 = Player.new("Jenny", @deck)
 
     @card4 = Card.new(:diamond, '10', 10)
     @card5 = Card.new(:spade, '5', 5)
     @card6 = Card.new(:heart, 'King', 13)
     @cards2 = [@card4, @card5, @card6]
-    deck2 = Deck.new(@cards2)
-    @player2 = Player.new("Marisa", deck2)
-    turn = Turn.new(@player1, @player2)
+    @deck2 = Deck.new(@cards2)
+    @player2 = Player.new("Marisa", @deck2)
+    turn_basic = Turn.new(@player1, @player2)
   end
 
   def setup_for_war
@@ -34,11 +34,11 @@ class TurnTest < MiniTest::Test
     @card10 = Card.new(:diamond, '10', 12)
     @card11 = Card.new(:spade, '5', 5)
     @card12 = Card.new(:heart, 'Ace', 14)
-    cards4 = [@card10, @card11, @card12]
-    @deck4 = Deck.new(cards4)
+    @cards4 = [@card10, @card11, @card12]
+    @deck4 = Deck.new(@cards4)
     @player6 = Player.new("Marisa", @deck4)
 
-    turn = Turn.new(@player5,@player6)
+    @turn_war = Turn.new(@player5,@player6)
   end
 
   def setup_for_destruction
@@ -56,27 +56,23 @@ class TurnTest < MiniTest::Test
     @deck6 = Deck.new(@cards2)
     @player4 = Player.new("Marisa", @deck6)
 
-    turn = Turn.new(@player3, @player4)
+    @turn_destruction = Turn.new(@player3, @player4)
   end
 
   def test_it_exists
-    turn = setup_for_basic
-
-    assert_instance_of Turn, turn
+    assert_instance_of Turn, @turn
   end
 
   def test_award_spoils_for_basic
-    turn = setup_for_basic
-    winner = turn.winner
-    turn.pile_cards
-    turn.award_spoils(winner)
+    winner = @turn.winner
+    @turn.pile_cards
+    @turn.award_spoils(winner)
     award_array = [@card2, @card3, @card1, @card4]
     #assert_equal award_array, turn.winner.deck.cards
-    assert_equal [@card5, @card6], turn.player2.deck.cards
+    assert_equal [@card5, @card6], @turn.player2.deck.cards
   end
 
   def test_award_spoils_for_war
-    turn = setup_for_war
     winner = turn.winner
     turn.pile_cards
     turn.award_spoils(winner)
