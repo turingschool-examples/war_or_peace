@@ -21,7 +21,7 @@ class Deck
 
   def percent_high_ranking
     #this method will return the percentage of cards that are high ranking
-    ((high_ranking_cards.length.to_f / @cards.length.to_f) = 100).round(2)
+    ((high_ranking_cards.length.to_f / @cards.length.to_f) * 100).round(2)
   end
 
   def remove_card
