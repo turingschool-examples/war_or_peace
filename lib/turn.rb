@@ -27,4 +27,16 @@ class Turn
       end
     end
   end
+
+  def pile_cards
+    result_of_type = self.type
+    if result_of_type == :basic
+      @spoils_of_war << player1.deck.cards.shift
+      @spoils_of_war << player2.deck.cards.shift
+    end
+  end
+
+  def award_spoils
+    require "pry"; binding.pry
+  end
 end
