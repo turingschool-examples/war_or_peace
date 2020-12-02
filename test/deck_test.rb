@@ -19,4 +19,10 @@ class DeckTest < Minitest::Test
   def test_it_has_readable_attributes
     assert_equal @cards, @deck.cards
   end
+
+  def test_rank_of_card_at
+    # TODO (alex schwartz): which one of these is the better Expected param for this test?
+    # assert_equal 12, @deck.rank_of_card_at(1)
+    assert_equal @deck.cards.first.rank, @deck.rank_of_card_at(0)
+  end
 end
