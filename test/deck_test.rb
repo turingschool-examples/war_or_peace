@@ -52,4 +52,20 @@ class DeckTest < Minitest::Test
     assert_equal card1, deck.remove_card
   end
 
+  def test_add_card_to_end_of_deck
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:diamond, 'King', 13)
+    card3 = Card.new(:spade, '7', 7)
+    card4 = Card.new(:club, '5', 5)
+
+    deck = Deck.new([card1, card2, card3])
+
+    assert_equal 3, deck.cards.length
+    assert_equal card3, deck.cards.last
+
+    deck.add_card(card4)
+
+    assert_equal 4, deck.cards.length
+    assert_equal card4, deck.cards.last
+  end
 end
