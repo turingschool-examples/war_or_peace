@@ -7,7 +7,7 @@ class Deck
     @cards = cards
   end
 
-  def high_ranking_cards()
+  def high_ranking_cards
     high_ranking_cards = []
     @cards.each do |card|
       if card.rank >= 11
@@ -15,5 +15,9 @@ class Deck
       end
     end
     return high_ranking_cards
+  end
+
+  def percent_high_ranking
+    return high_ranking_cards().length / @cards.length.to_f
   end
 end
