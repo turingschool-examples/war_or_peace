@@ -85,11 +85,10 @@ class TurnTest < MiniTest::Test
     assert_equal [], turn.player2.deck.cards
   end
 
-  def test_sending_player_cards_to_spoil_of_war_for_destruction
-    turn = setup_for_war
+  def test_pile_cards_for_destruction
+    turn = setup_for_destruction
     turn.pile_cards
-    pile_array = [@card7, @card10, @card8, @card11, @card9, @card12]
-    assert_equal pile_array, turn.spoils_of_war
+    assert_equal [], turn.spoils_of_war
     assert_equal [], turn.player1.deck.cards
     assert_equal [], turn.player2.deck.cards
   end

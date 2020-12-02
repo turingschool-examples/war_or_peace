@@ -1,3 +1,4 @@
+require 'pry'
 class Turn
   attr_reader  :player1,
   :player2,
@@ -31,6 +32,10 @@ class Turn
       end
     #if :destruction, get rid of top 3 cards
     elsif type == :mutally_assured_destruction
+      3.times do
+        player1.deck.remove_card
+        player2.deck.remove_card
+      end
     end
 
   end
