@@ -1,5 +1,6 @@
 class Deck
   attr_reader :cards
+
   def initialize(cards)
     @cards = cards
   end
@@ -21,5 +22,9 @@ class Deck
 
   def remove_card
     @cards.shift
+  end
+
+  def add_card(card_obj)
+    @cards << card_obj
   end
 end
