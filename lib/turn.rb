@@ -58,6 +58,14 @@ class Turn
       3.times do
         @spoils_of_war << player2.deck.cards.shift
       end
+    else
+      3.times do
+        player1.deck.cards.shift
+      end
+
+      3.times do
+        player2.deck.cards.shift
+      end
     end
   end
 
