@@ -8,20 +8,33 @@ class Turn
   end
 
   def type
+    # require "pry"; binding.pry
     if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
-      return :basic
-    elsif (player1.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)) && (player1.rank_of_card_at(2) != player2.deck.rank_of_card_at(2))
-      return :war
-    else (player1.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)) && (player1.rank_of_card_at(2) == player2.deck.rank_of_card_at(2))
-      return :mutually_assured_destruction
+      :basic
+    elsif (player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)) && (player1.deck.rank_of_card_at(2) != player2.deck.rank_of_card_at(2))
+      :war
+    else (player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)) && (player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2))
+      :mutually_assured_destruction
     end
 
   end
 
   def winner
-    #if self.type == :basic, then highest rank_of_card_at(0), return that player object
-    #elseif self.type == :war, then highest rank_of_card_at(2), return that player object
-    #else self.type == :mutually_assured_destruction, return "No Winner"
+    if self.type == :basic
+      if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+        return player1
+      else
+        return player2
+      end
+    elseif self.type == :war
+      if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+        return player1
+      else
+        return player2
+      end
+    else self.type == :mutually_assured_destruction
+      return "No Winner"
+    end
   end
 
   def pile_cards
