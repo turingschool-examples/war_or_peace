@@ -65,7 +65,7 @@ class TurnTest < MiniTest::Test
     @turn_basic.pile_cards
     @turn_basic.award_spoils(winner)
     award_array = [@card2, @card3, @card1, @card4]
-    #assert_equal award_array, turn.winner.deck.cards
+    assert_equal award_array, winner.deck.cards
     assert_equal [@card5, @card6], @turn_basic.player2.deck.cards
   end
 
