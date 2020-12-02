@@ -7,7 +7,3 @@ class Card
     @rank = rank
   end
 end
-
-card = Card.new(:heart, "Queen", 12)
-
-p card
