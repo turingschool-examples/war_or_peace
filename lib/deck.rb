@@ -21,5 +21,13 @@ class Deck
 
     (high_ranking.to_f / total_cards.to_f).round(2)
   end
+
+  def remove_card
+    @cards.shift
+  end
+
+  def add_card(card)
+    @cards.push(card)
+  end
 end
 

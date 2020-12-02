@@ -36,4 +36,15 @@ class DeckTest < Minitest::Test
   def test_percent_high_ranking
     assert_equal 0.67, @deck.percent_high_ranking
   end
+
+  def test_remove_card
+    assert_equal @card_1, @deck.remove_card
+  end
+
+  def test_add_card
+    new_card = Card.new(:spade, 'Four', 4)
+    @deck.add_card(new_card)
+
+    assert_equal new_card, @deck.cards.last
+  end
 end
