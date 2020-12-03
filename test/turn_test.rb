@@ -95,6 +95,13 @@ class TurnTest < MiniTest::Test
     assert_equal [@card5, @card6], @player2.deck.cards
   end
 
+  def test_basic_pile
+    @turn_basic.basic_pile
+    assert_equal [@card1, @card4], @turn_basic.spoils_of_war
+    assert_equal [@card2, @card3], @player1.deck.cards
+    assert_equal [@card5, @card6], @player2.deck.cards
+  end
+
   def test_sending_player_cards_to_spoil_of_war_for_war
     @turn_war.pile_cards
     pile_array = [@card7, @card10, @card8, @card11, @card9, @card12]
@@ -103,8 +110,23 @@ class TurnTest < MiniTest::Test
     assert_equal [], @turn_war.player2.deck.cards
   end
 
+  def test_war_pile
+    @turn_war.war_pile
+    pile_array = [@card7, @card10, @card8, @card11, @card9, @card12]
+    assert_equal pile_array, @turn_war.spoils_of_war
+    assert_equal [], @turn_war.player1.deck.cards
+    assert_equal [], @turn_war.player2.deck.cards
+  end
+
   def test_pile_cards_for_destruction
     @turn_destruction.pile_cards
+    assert_equal [], @turn_destruction.spoils_of_war
+    assert_equal [], @turn_destruction.player1.deck.cards
+    assert_equal [], @turn_destruction.player2.deck.cards
+  end
+
+  def test_destruction_pile
+    @turn_destruction.destruction_pile
     assert_equal [], @turn_destruction.spoils_of_war
     assert_equal [], @turn_destruction.player1.deck.cards
     assert_equal [], @turn_destruction.player2.deck.cards
@@ -122,6 +144,13 @@ class TurnTest < MiniTest::Test
     assert_equal :mutally_assured_destruction, @turn_destruction.type
   end
 
+  def test_get_player_ranks
+    @turn_basic.get_ranks
+    assert_equal @card1.rank, @turn_basic.player_1_rank_0
+    assert_equal @card3.rank, @turn_basic.player_1_rank_2
+    assert_equal @card4.rank, @turn_basic.player_2_rank_0
+    assert_equal @card6.rank, @turn_basic.player_2_rank_2
+  end
   def test_basic_winner_of_war
     assert_equal @player1, @turn_basic.winner
   end

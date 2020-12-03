@@ -2,7 +2,9 @@ require_relative 'card'
 require_relative 'deck'
 
 class CardGenerator
-  attr_reader :deck1, :deck2, :main_deck
+  attr_reader :deck1,
+              :deck2,
+              :main_deck
 
   def initialize
     @main_deck =  []
