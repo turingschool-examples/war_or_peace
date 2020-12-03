@@ -88,4 +88,19 @@ class TurnTest < Minitest::Test
     expected = [@card1,@card4,@card2,@card3,@card5,@card6]
     assert_equal expected, turn.spoils_of_war
   end
+
+  def test_it_gives_spoils_to_winner_war_type
+    deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    deck2 = Deck.new([@card4, @card3, @card6, @card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    winner = turn.winner
+
+    turn.pile_cards
+    turn.award_spoils(winner)
+
+    assert_equal player1.deck, player1.deck
+    assert_equal player2.deck, player2.deck
+  end
 end
