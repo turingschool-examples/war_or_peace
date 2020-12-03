@@ -15,10 +15,6 @@ class PlayerTest < Minitest::Test
   end
 
   def test_it_exists
-    assert_instance_of Card, @card1
-    assert_instance_of Card, @card2
-    assert_instance_of Card, @card3
-    assert_instance_of Deck, @deck
     assert_instance_of Player, @player
   end
 
