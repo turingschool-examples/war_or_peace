@@ -103,4 +103,54 @@ class TurnTest < Minitest::Test
     assert_equal player1.deck, player1.deck
     assert_equal player2.deck, player2.deck
   end
+
+  def test_turn_type_mutual_assured_destruction
+    deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    deck2 = Deck.new([@card4, @card3, @card5, @card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    winner = turn.winner
+
+    assert_equal :mutually_assured_destruction, turn.type
+  end
+  
+  def test_which_player_wins_mutual_assured_destruction
+    deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    deck2 = Deck.new([@card4, @card3, @card5, @card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    winner = turn.winner
+
+    assert_equal "No Winner", winner
+  end
+
+  def test_if_it_piles_cards_in_spoils_of_war_type_mutual_assured_destruction
+    deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    deck2 = Deck.new([@card4, @card3, @card5, @card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    winner = turn.winner
+
+    turn.pile_cards
+
+    assert_equal [], turn.spoils_of_war
+  end
+
+  def test_it_gives_spoils_to_winner_mutual_assured_destruction
+    deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    deck2 = Deck.new([@card4, @card3, @card5, @card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    winner = turn.winner
+
+    turn.pile_cards
+    turn.award_spoils(winner)
+
+    assert_equal player1.deck, player1.deck
+    assert_equal player2.deck, player2.deck
+  end
 end
