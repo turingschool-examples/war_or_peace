@@ -32,7 +32,7 @@ class TurnTest < Minitest::Test
     assert_equal [], @turn.spoils_of_war
   end
 
-  def test_turn_type
+  def test_turn_type_basic
     assert_equal :basic, @turn.type
   end
 
@@ -51,5 +51,16 @@ class TurnTest < Minitest::Test
 
     assert_equal @player1.deck, @player1.deck
     assert_equal @player2.deck, @player2.deck
+  end
+
+  def test_turn_type_war
+    deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    deck2 = Deck.new([@card4, @card3, @card6, @card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    winner = turn.winner
+
+    assert_equal :war, turn.type
   end
 end
