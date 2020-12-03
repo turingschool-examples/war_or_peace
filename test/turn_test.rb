@@ -64,7 +64,7 @@ class TurnTest < Minitest::Test
     assert_equal :war, turn.type
   end
   
-  def test_which_player_wins_turn
+  def test_which_player_wins_turn_war_type
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
     deck2 = Deck.new([@card4, @card3, @card6, @card7])
     player1 = Player.new("Megan", deck1)
@@ -75,15 +75,17 @@ class TurnTest < Minitest::Test
     assert_equal player2, winner
   end
 
-  # def test_if_it_piles_cards_in_spoils_of_war_type_war
-  #   deck1 = Deck.new([@card1, @card2, @card5, @card8])
-  #   deck2 = Deck.new([@card4, @card3, @card6, @card7])
-  #   player1 = Player.new("Megan", deck1)
-  #   player2 = Player.new("Aurora", deck2)
-  #   turn = Turn.new(player1, player2)
-  #   winner = turn.winner
+  def test_if_it_piles_cards_in_spoils_of_war_type_war
+    deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    deck2 = Deck.new([@card4, @card3, @card6, @card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    winner = turn.winner
 
-  #   turn.pile_cards
-  #   assert_equal [@card1,@card3], @turn.spoils_of_war
-  # end
+    turn.pile_cards
+
+    expected = [@card1,@card4,@card2,@card3,@card5,@card6]
+    assert_equal expected, turn.spoils_of_war
+  end
 end
