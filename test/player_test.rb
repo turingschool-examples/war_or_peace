@@ -16,8 +16,18 @@ class PlayerTest < Minitest::Test
     @deck = Deck.new(@cards)
     @player = Player.new('Solah', @deck)
   end
-  
+
   def test_it_exists
     assert_instance_of Player, @player
   end
+
+  def test_player_loses_when_deck_is_empty
+    2.times do
+      @player.deck.remove_card
+    end
+    refute @player.has_lost?
+    @player.deck.remove_card
+    assert @player.has_lost
+  end
+
 end
