@@ -18,4 +18,18 @@ class Turn
       :basic
     end
   end
+
+  def winner
+    if self.type == :basic && (player1.deck.rank_of_card_at(0)) >
+    (player2.deck.rank_of_card_at(0)) || self.type == :war &&
+    (player1.deck.rank_of_card_at(2)) > (player2.deck.rank_of_card_at(2))
+      player1
+    elsif self.type == :basic && (player2.deck.rank_of_card_at(0)) >
+    (player1.deck.rank_of_card_at(0)) || self.type == :war &&
+    (player2.deck.rank_of_card_at(2)) == (player1.deck.rank_of_card_at(2))
+      player2
+    else self.type == :mutually_assured_destruction
+      "nobody wins this round!"
+    end
+  end
 end
