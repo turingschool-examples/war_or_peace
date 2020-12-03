@@ -43,15 +43,21 @@ class Turn
     if type == :basic
       @spoils_of_war.push(player1.deck.cards.first, player2.deck.cards.first)
     elsif type == :war
-      @spoils_of_war.push(player1.deck.cards[0..2], player2.deck.cards[0..2])
+      @spoils_of_war.push(player1.deck.cards[0])
+      @spoils_of_war.push(player1.deck.cards[1])
+      @spoils_of_war.push(player1.deck.cards[2])
+      @spoils_of_war.push(player2.deck.cards[0])
+      @spoils_of_war.push(player2.deck.cards[1])
+      @spoils_of_war.push(player2.deck.cards[2])
     else type == :mutually_assured_destruction
-      return
-      #deletes all 6 cards. doesn't push them into spoils
+      player1.deck.cards.slice(0, 2)
+      player2.deck.cards.slice(0, 2)
     end
   end
 
   def award_spoils(winner)
-    winner.deck.cards.push(@spoils_of_war)
+    winner.deck.cards.push(@spoils_of_war).flatten
+    
   end
 
 
