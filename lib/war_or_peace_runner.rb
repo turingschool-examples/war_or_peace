@@ -1,29 +1,55 @@
-require_relative 'turn'
-require_relative 'player'
-require_relative 'deck'
-require_relative 'card'
 require_relative 'card_generator'
+require_relative 'player'
+require_relative 'turn'
 require 'pry'
 
+def start_game
+  puts "Welcome to War! (or Peace) This game will be played with 52 cards."
+  puts "The players today are #{@player1.name} and #{@player2.name}."
+  puts "Type 'GO' to start the game!"
+  puts "------------------------------------------------------------------"
+  answer = gets.chomp
+  if answer.upcase.gsub(" ", "") == "GO"
+    x = 1
+    while x <= 1000001 do
+      take_turn(x)
+      x += 1
+    end
+    
+  else
+    puts "You must type 'GO' in order to start the game."
+  end
+end
 
-def take_turn
-  turn = Turn.new(@Jenny, @Marisa)
-  binding.pry
+def take_turn(x)
+  turn = Turn.new(@player1, @player2)
   winner = turn.winner
-  #turn.pile_cards
+  turn.pile_cards
+  turn.award_spoils(winner)
+  turn_type = ""
+  if turn.type == :basic
+    turn_type = ""
+  elsif turn.type == :war
+    turn_type = "WAR - "
+  elsif turn.type == :mutally_assured_destruction
+    turn_type = "*mutally assured destruction* "
+  end
+  if turn.type == :mutally_assured_destruction
+    puts "Turn #{x}: #{turn_type}6 cards removed from play"
+  else
+    puts "Turn #{x}: #{turn_type}#{turn.winner.name} won cards."
+  end
 end
 
 card_generator = CardGenerator.new
 card_generator.create_cards
 card_generator.create_decks
-@player1 = Player.new("Jenny", @deck1)
-@player2 = Player.new("Marisa", @deck2)
-# start_game
-# x = 0
-#while x <= 1000 do
-#  take_turn
-#  x += 1
-#end
+@player1 = Player.new("Jenny", card_generator.deck1)
+@player2 = Player.new("Marisa", card_generator.deck2)
 
-@turn_basic = Turn.new(@player1, @player2)
-winner = @turn_basic.winner
+
+start_game
+
+
+#@turn_basic = Turn.new(@player1, @player2)
+#winner = @turn_basic.winner
