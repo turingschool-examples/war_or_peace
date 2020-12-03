@@ -28,8 +28,8 @@ card10 = Card.new('Jack', 'Heart', 11)
 card11= Card.new('Queen', 'Heart', 12)
 card12 = Card.new('King', 'Heart', 13)
 card13 = Card.new('Ace', 'Heart', 14)
-cards1 = [card1, card3, card5, card7, card11, card13]
-cards2 = [card2, card4, card6, card8, card10, card12]
+cards1 = [card12, card10, card6, card7, card11, card13]
+cards2 = [card2, card4, card5, card8, card3, card1]
 
 deck1 = Deck.new(cards1)
 deck2 = Deck.new(cards2)
@@ -45,8 +45,10 @@ def start
     turn.type
     turn.winner
     turn.pile_cards
-    require "pry"; binding.pry
-    puts "Turn #{counter}: #{turn.winner.name} won #{@spoils_of_war.length} cards"
+    winner = turn.winner
+
+    puts "Turn #{counter}: #{winner.name} won #{turn.spoils_of_war.length} cards"
+    turn.award_spoils(winner) 
     counter += 1
   end
 end

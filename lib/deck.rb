@@ -27,6 +27,4 @@ class Deck
   def add_card(card)
     @cards.unshift(card)
   end
-
-
 end
