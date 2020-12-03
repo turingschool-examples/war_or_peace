@@ -7,9 +7,11 @@ class DeckTest < Minitest::Test
   def setup
     cards = []
     card_1 = Card.new(:diamond, 'Queen', 12)
-    card_2 = Card.new(:heart, 'two', 2)
+    card_2 = Card.new(:spade, '3', 3)
+    card_3 = Card.new(:heart, 'Ace', 14)
     cards.push(card_1)
     cards.push(card_2)
+    cards.push(card_3)
     @deck = Deck.new(cards)
   end
 
@@ -25,6 +27,22 @@ class DeckTest < Minitest::Test
 
   def test_percent_high_ranking
 
-    assert_equal 0.5, @deck.percent_high_ranking
+    assert_equal 2.0/3, @deck.percent_high_ranking
+  end
+
+  def test_add
+    cards = []
+    card_1 = Card.new(:diamond, 'Queen', 12)
+    card_2 = Card.new(:spade, '3', 3)
+    card_3 = Card.new(:heart, 'Ace', 14)
+    cards.push(card_1)
+    cards.push(card_2)
+    cards.push(card_3)
+    deck = Deck.new(cards)
+
+    card_4 = Card.new(:club, '5', 5)
+    deck.add(card_4)
+
+    assert_equal [card_1, card_2, card_3, card_4], deck.cards
   end
 end

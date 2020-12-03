@@ -20,4 +20,8 @@ class Deck
   def percent_high_ranking
     return high_ranking_cards().length / @cards.length.to_f
   end
+
+  def add(card)
+    @cards.push(card)
+  end
 end
