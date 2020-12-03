@@ -251,20 +251,25 @@ class TurnTest < Minitest::Test
     cards = [card1, card2, card3, card4]
     deck = Deck.new(cards)
     player1 = Player.new('Clarisa', deck)
+
     card5 = Card.new(:club, 'Queen', 12)
     card6 = Card.new(:heart, '8', 8)
     card7 = Card.new(:diamond, 'Ace', 14)
     card8 = Card.new(:diamond, '5', 5)
 
-    cards2 = [card6, card6, card7, card7]
+    cards2 = [card5, card6, card7, card8]
     deck2 = Deck.new(cards2)
     player2 = Player.new('Aurora', deck2)
     turn = Turn.new(player1, player2)
     assert_equal :war, turn.type
     winner = turn.winner
     turn.pile_cards
+    assert_equal 1, player2.deck.cards.length
+    assert_equal 1, player1.deck.cards.length
     turn.award_spoils(winner)
-    assert_equal 6, turn.player2.deck.cards.length
+
+    assert_equal 1, player1.deck.cards.length
+    assert_equal 7, turn.player2.deck.cards.length
 
   end
 
