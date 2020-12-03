@@ -24,12 +24,13 @@ class PlayerTest < Minitest::Test
     assert_equal @deck, @player.deck
   end
 
-  def test_has_lost?
-    # Player hasn't lost as of our data setup
-    assert_equal false, @player.has_lost?
-
-    # Test actual lose condition
+  def test_has_lost_lose_condition
     @player.deck.cards.clear
     assert_equal true, @player.has_lost?
+  end
+
+  def test_has_lost_continue_condition
+    # As of data setup, player has NOT lost
+    assert_equal false, @player.has_lost?
   end
 end
