@@ -6,7 +6,7 @@ class Deck
   end
 
   def rank_of_card_at(index)
-    return nil if cards.empty?
+    return nil if cards[index].nil?
     cards[index].rank
   end
 
