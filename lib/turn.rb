@@ -5,8 +5,6 @@ class Turn
     @player1       = player1
     @player2       = player2
     @spoils_of_war = []
-    @type_of_turn  = nil
-    @winner        = nil
     @type_class    = {[false, false] => :basic,
                       [false, true] => :basic,
                       [true, false] => :war,
@@ -27,7 +25,11 @@ class Turn
   end
 
   def type
-    @type_of_turn = @type_class[[compaire(0), compaire(2)]]
+    if player1.deck.cards.length >= 3 && player2.deck.cards.length >= 3
+      @type_of_turn = @type_class[[compaire(0), compaire(2)]]
+    else
+      @type_of_turn = @type_class[[compaire(0), false]]
+    end
   end
 
   def winner
@@ -42,12 +44,12 @@ class Turn
 
   def pile_cards
     if @type_of_turn == :basic
-      player1.deck.remove_card
-      player2.deck.remove_card
+      @spoils_of_war << player1.deck.remove_card
+      @spoils_of_war << player2.deck.remove_card
     elsif @type_of_turn == :war
       3.times do
-        player1.deck.remove_card
-        player2.deck.remove_card
+        @spoils_of_war << player1.deck.remove_card
+        @spoils_of_war << player2.deck.remove_card
       end
     else
       3.times do
@@ -55,5 +57,12 @@ class Turn
         player2.deck.remove_card
       end
     end
+  end
+
+  def award_spoils
+    @spoils_of_war.each do |card|
+      @winner.deck.cards << card
+    end
+    @spoils_of_war = []
   end
 end
