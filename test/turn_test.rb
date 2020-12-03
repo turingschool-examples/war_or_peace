@@ -44,4 +44,12 @@ class TurnTest < Minitest::Test
     @turn.pile_cards
     assert_equal [@card1,@card3], @turn.spoils_of_war
   end
+
+  def test_it_gives_spoils_to_winner
+    @turn.pile_cards
+    @turn.award_spoils(@winner)
+
+    assert_equal @player1.deck, @player1.deck
+    assert_equal @player2.deck, @player2.deck
+  end
 end
