@@ -29,7 +29,7 @@ class Deck
     @cards.slice(0)
   end
 
-  def add_card
+  def add_card(card)
     #this method will add one card to the bottom (end) of the deck
     @cards << card
   end
