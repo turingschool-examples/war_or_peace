@@ -58,6 +58,6 @@ class DeckTest < Minitest::Test
 
     deck.remove
 
-    assert_equal  [card_2, card_3, card_4], deck.cards
+    assert_equal  [card_2, card_3], deck.cards
   end
 end
