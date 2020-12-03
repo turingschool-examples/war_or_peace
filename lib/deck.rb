@@ -11,12 +11,12 @@ class Deck
 
   def high_ranking_cards
     high_ranking_cards = []
-    @cards.map do |card|
+    @cards.each do |card| #use find_all
       if card.rank >= 11
         high_ranking_cards << card
       end
     end
-  return high_ranking_cards
+    return high_ranking_cards
   end
 
   def percent_high_ranking

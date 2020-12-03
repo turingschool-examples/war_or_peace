@@ -9,10 +9,7 @@ class Player
   end
 
   def lost?
-    if @deck.cards.count == 0
-      @lost = true
-    end
-    return @lost
+    @deck.cards.length == 0
   end
 
 end
