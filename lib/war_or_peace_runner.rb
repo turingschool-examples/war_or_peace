@@ -15,7 +15,7 @@ def start_game
       take_turn(x)
       x += 1
     end
-    
+
   else
     puts "You must type 'GO' in order to start the game."
   end
@@ -49,7 +49,3 @@ card_generator.create_decks
 
 
 start_game
-
-
-#@turn_basic = Turn.new(@player1, @player2)
-#winner = @turn_basic.winner
