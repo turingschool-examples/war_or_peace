@@ -8,13 +8,9 @@ class Deck
   end
 
   def high_ranking_cards
-    high_ranking_cards = []
-    @cards.each do |card|
-      if card.rank >= 11
-        high_ranking_cards.push(card)
-      end
+    @cards.find_all do |card|
+      card.rank >= 11
     end
-    return high_ranking_cards
   end
 
   def percent_high_ranking
