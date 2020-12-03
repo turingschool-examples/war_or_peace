@@ -9,7 +9,9 @@ class DeckTest < Minitest::Test
     @card2 = Card.new(:spade, '3', 3)
     @card3 = Card.new(:heart, 'Ace', 14)
     @cards = [@card1, @card2, @card3]
+    @cards2 = [@card2, @card3]
     @deck = Deck.new(@cards)
+    @deck2 = Deck.new(@cards2)
   end
 
   def test_it_exists
@@ -33,6 +35,7 @@ class DeckTest < Minitest::Test
 
   def test_percent_high_ranking
     assert_equal 66.67, @deck.percent_high_ranking
+    assert_equal 50.00, @deck2.percent_high_ranking
   end
 
   def test_remove_card
