@@ -11,8 +11,12 @@ class PlayerTest < Minitest::Test
     card3 = Card.new(:heart, 'Ace', 14)
     deck = Deck.new([card1, card2, card3])
 
-    player = Player.new(deck)
+    @player = Player.new("Clarisa", deck)
 
-    assert_instance_of Player, player
+    assert_instance_of Player, @player
+  end
+
+  def test_name
+    assert_equal "Clarisa", @player.name
   end
 end
