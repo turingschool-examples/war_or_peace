@@ -39,4 +39,18 @@ class TurnTest < Minitest::Test
   def test_it_can_have_basic_type
     assert_equal :basic, @turn.type
   end
+
+  def test_it_returns_war_when_both_players_first_cards_are_the_same
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:club, '10', 10)
+
+    deck = Deck.new([card1, card2])
+
+    player1 = Player.new('Clarissa', deck)
+    player2 = Player.new('Tracy', deck)
+
+    turn = Turn.new(player1, player2)
+
+    assert_equal :war, turn.type
+  end
 end
