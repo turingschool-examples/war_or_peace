@@ -45,4 +45,19 @@ class DeckTest < Minitest::Test
 
     assert_equal [card_1, card_2, card_3, card_4], deck.cards
   end
+
+  def test_remove
+    cards = []
+    card_1 = Card.new(:diamond, 'Queen', 12)
+    card_2 = Card.new(:spade, '3', 3)
+    card_3 = Card.new(:heart, 'Ace', 14)
+    cards.push(card_1)
+    cards.push(card_2)
+    cards.push(card_3)
+    deck = Deck.new(cards)
+
+    deck.remove
+
+    assert_equal  [card_2, card_3, card_4], deck.cards
+  end
 end
