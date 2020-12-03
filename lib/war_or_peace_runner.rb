@@ -21,3 +21,10 @@ Type 'GO' to start the game!
 HEREDOC
 
 puts text
+
+input = gets.chomp
+
+while input != "GO"
+  puts "Oops, your flipper must have slipped, please try again."
+  input = gets.chomp
+end
