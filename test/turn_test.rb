@@ -75,4 +75,22 @@ class TurnTest < Minitest::Test
     assert_equal :war, turn2.type
     assert_equal :mutually_assured_destruction, turn3.type
   end
+
+  def test_can_determine_winner
+    deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    deck2 = Deck.new([@card3, @card4, @card6, @card7])
+    deck3 = Deck.new([@card4, @card3, @card6, @card7])
+    deck4 = Deck.new([@card4, @card3, @card8, @card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    player3 = Player.new("Roy", deck3)
+    player4 = Player.new("Decker", deck4)
+    turn1 = Turn.new(player1, player2)
+    turn2 = Turn.new(player1, player3)
+    turn3 = Turn.new(player1, player4)
+
+    assert_equal player1, turn1.winner
+    assert_equal player3, turn2.winner
+    assert_equal "No Winner", turn3.winner
+  end
 end
