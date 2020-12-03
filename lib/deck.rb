@@ -2,7 +2,6 @@ require 'pry'
 
 class Deck
   attr_reader :cards
-  attr_accessor :high_ranking
 
   def initialize(card_array)
     @cards = card_array
@@ -24,4 +23,11 @@ class Deck
     face_percent = ((face_count / card_count) * 100).round(1)
   end
 
+  def remove_card
+    @cards.drop(1)
+  end
+
+  def add_card(card)
+    @cards << card
+  end
 end
