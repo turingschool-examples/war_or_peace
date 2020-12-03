@@ -92,4 +92,16 @@ class TurnTest < Minitest::Test
 
     assert_equal :mutually_assured_destruction, mutually_assured_destruction_turn.type
   end
+
+  def test_winner_basic
+
+  end
+
+  def test_winner_war
+    skip
+  end
+
+  def test_winner_mutually_assured_destruction
+    skip
+  end
 end
