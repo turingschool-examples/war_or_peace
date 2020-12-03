@@ -21,14 +21,15 @@ class Turn
 
   #cards will be sent from player deck to spoils_of_war
   def pile_cards
+    turn_type = type
     #if :basic, send top card
-    if type ==  :basic
+    if turn_type ==  :basic
       @spoils_of_war << player1.deck.cards.first
       player1.deck.remove_card
       @spoils_of_war << player2.deck.cards.first
       player2.deck.remove_card
     #if :war, send top 3 cards
-    elsif type == :war
+    elsif turn_type == :war
       3.times do
         @spoils_of_war << player1.deck.cards.first
         player1.deck.remove_card
@@ -36,7 +37,7 @@ class Turn
         player2.deck.remove_card
       end
     #if :destruction, get rid of top 3 cards
-    elsif type == :mutally_assured_destruction
+    elsif turn_type == :mutally_assured_destruction
       3.times do
         player1.deck.remove_card
         player2.deck.remove_card
@@ -68,15 +69,16 @@ class Turn
 
   #determines winner of war
   def winner
+    turn_type = type
     #if basic
-    if type ==  :basic
+    if turn_type ==  :basic
       if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
         @player1
       else
         @player2
       end
     #elsif war
-    elsif type == :war
+    elsif turn_type == :war
       if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
         @player1
       else

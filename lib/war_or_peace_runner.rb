@@ -22,22 +22,25 @@ def start_game
 end
 
 def take_turn(x)
+  #binding.pry
   turn = Turn.new(@player1, @player2)
   winner = turn.winner
   turn.pile_cards
+  turn_type = turn.type
+  num_cards = turn.spoils_of_war.count
   turn.award_spoils(winner)
-  turn_type = ""
-  if turn.type == :basic
-    turn_type = ""
-  elsif turn.type == :war
-    turn_type = "WAR - "
-  elsif turn.type == :mutally_assured_destruction
-    turn_type = "*mutally assured destruction* "
+  turn_string = ""
+  if turn_type == :basic
+    turn_string = ""
+  elsif turn_type == :war
+    turn_string = "WAR - "
+  elsif turn_type == :mutally_assured_destruction
+    turn_string = "*mutally assured destruction* "
   end
   if turn.type == :mutally_assured_destruction
     puts "Turn #{x}: #{turn_type}6 cards removed from play"
   else
-    puts "Turn #{x}: #{turn_type}#{turn.winner.name} won cards."
+    puts "Turn #{x}: #{turn_string}#{turn.winner.name} won #{num_cards} cards."
   end
 end
 
