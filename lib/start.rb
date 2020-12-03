@@ -16,11 +16,16 @@ class Start
     while counter < 1
       # require "pry"; binding.pry
       winner = turn.winner
-      turn.pile_cards
-      turn.award_spoils(winner)
+
       if turn.type == :basic
         p "Turn #{counter + 1}: #{winner.name} won 2 cards"
+      elsif turn.type == :war
+        p "Turn #{counter + 1}: WAR - #{winner.name} won 6 cards"
+      else
+        p "Turn #{counter + 1}: *mutually_assued_destruction* 6 cards removed from play"
       end
+      turn.pile_cards
+      turn.award_spoils(winner)
       # require "pry"; binding.pry
       counter += 1
     end

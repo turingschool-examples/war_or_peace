@@ -48,23 +48,23 @@ class Turn
   def pile_cards
     result_of_type = self.type
     if result_of_type == :basic
-      @spoils_of_war << player1.deck.cards.shift
-      @spoils_of_war << player2.deck.cards.shift
+      @spoils_of_war << player1.deck.remove_card
+      @spoils_of_war << player2.deck.remove_card
     elsif result_of_type == :war
       3.times do
-        @spoils_of_war << player1.deck.cards.shift
+        @spoils_of_war << player1.deck.remove_card
       end
 
       3.times do
-        @spoils_of_war << player2.deck.cards.shift
+        @spoils_of_war << player2.deck.remove_card
       end
     else
       3.times do
-        player1.deck.cards.shift
+        player1.deck.remove_card
       end
 
       3.times do
-        player2.deck.cards.shift
+        player2.deck.remove_card
       end
     end
   end
