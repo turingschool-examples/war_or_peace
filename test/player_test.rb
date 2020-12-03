@@ -7,22 +7,55 @@ require 'pry'
 
 class PlayerTest < Minitest::Test
 
-def test_it_exists
-end
+  def test_it_exists
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+    player = Player.new('Clarisa', deck)
+
+    assert_instance_of Player, player
+  end
 
 
-def test_name
-  #player.name
-end
+  def test_name
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+    player = Player.new('Clarisa', deck)
 
-def test_deck
-  #player.Deck
-end
+    test = player.name
 
-def test_has_lost?
-  #lose when deck empty, boolean
-end
+    assert_equal "Clarisa", test
+  end
 
-def test_deck.remove_card
-  #this shoudl already work from ./deck
+  def test_deck
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+    player = Player.new('Clarisa', deck)
+
+    test = player.deck
+
+    assert_equal deck, test
+  end
+
+  def test_has_lost?
+    #lose when deck empty, boolean
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+    player = Player.new('Clarisa', deck)
+
+    test = player.has_lost?
+
+    assert_equal false, test
+  end
 end
