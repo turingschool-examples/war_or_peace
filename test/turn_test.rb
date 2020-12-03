@@ -197,8 +197,6 @@ class TurnTest < Minitest::Test
     turn.pile_cards
 
     assert_equal [card1, card2, card3, card4, card5, card6], turn.spoils_of_war
-
-
   end
 
   def test_cards_cannot_be_piled_MAD
@@ -219,15 +217,9 @@ class TurnTest < Minitest::Test
     turn.pile_cards
 
     assert_equal [], turn.spoils_of_war
-
-
-
   end
 
-
-
-  def test_spoils_can_be_awarded
-
+  def test_spoils_can_be_awarded_basic
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
@@ -248,6 +240,31 @@ class TurnTest < Minitest::Test
     winner_deck = [card1, card2, card3, card4,]
 
     assert_equal 4, turn.winner.deck.cards.length
+  end
+
+  def test_spoils_can_be_awarded_war
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:spade, 'Queen', 12)
+    card4 = Card.new(:diamond, '4', 4)
+
+    cards = [card1, card2, card3, card4]
+    deck = Deck.new(cards)
+    player1 = Player.new('Clarisa', deck)
+    card5 = Card.new(:club, 'Queen', 12)
+    card6 = Card.new(:heart, '8', 8)
+    card7 = Card.new(:diamond, 'Ace', 14)
+    card8 = Card.new(:diamond, '5', 5)
+
+    cards2 = [card6, card6, card7, card7]
+    deck2 = Deck.new(cards2)
+    player2 = Player.new('Aurora', deck2)
+    turn = Turn.new(player1, player2)
+    assert_equal :war, turn.type
+    winner = turn.winner
+    turn.pile_cards
+    turn.award_spoils(winner)
+    assert_equal 6, turn.player2.deck.cards.length
 
   end
 
