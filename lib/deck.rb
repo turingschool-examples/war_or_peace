@@ -2,6 +2,7 @@ require 'pry'
 
 class Deck
   attr_reader :cards
+  attr_accessor :high_ranking
 
   def initialize(card_array)
     @cards = card_array
@@ -17,6 +18,10 @@ class Deck
     end
   end
 
-
+  def percent_high_ranking
+    card_count = @cards.length.to_f
+    face_count = high_ranking_cards.length.to_f
+    face_percent = ((face_count / card_count) * 100).round(1)
+  end
 
 end
