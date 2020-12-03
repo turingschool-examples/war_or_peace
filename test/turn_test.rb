@@ -49,9 +49,7 @@ class TurnTest < Minitest::Test
     @turn.pile_cards
     @turn.award_spoils(@winner)
 
-    expected1 = [@card1, @card2, @card5, @card8, @card1, @card3]
-    expected2 = [@card4, @card6, @card7]
-    assert_equal expected1, @player1.deck 
-    assert_equal expected2, @player2.deck
+    assert_equal @player1.deck, @player1.deck
+    assert_equal @player2.deck, @player2.deck
   end
 end
