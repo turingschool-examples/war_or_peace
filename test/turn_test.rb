@@ -36,7 +36,7 @@ class TurnTest < Minitest::Test
     assert_equal [], @turn.spoils_of_war
   end
 
-  def test_it_can_have_basic_type
+  def test_it_returns_basic_when_both_players_first_cards_are_different
     assert_equal :basic, @turn.type
   end
 
@@ -71,4 +71,20 @@ class TurnTest < Minitest::Test
 
     assert_equal :mutually_assured_destruction, turn.type
   end
+
+  def test_it_returns_the_winner_of_basic_type_who_has_a_higher_rank_of_card_at_0
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:club, '10', 10)
+
+    deck1 = Deck.new([card1, card2])
+    deck2 = Deck.new([card2, card1])
+
+    player1 = Player.new('Clarissa', deck1)
+    player2 = Player.new('Tracy', deck2)
+
+    turn = Turn.new(player1, player2)
+
+    assert_equal player1, turn.winner
+  end
+
 end
