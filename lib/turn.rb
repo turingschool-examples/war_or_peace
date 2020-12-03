@@ -1,4 +1,3 @@
-require 'pry'
 class Turn
   attr_reader  :player1,
   :player2,
@@ -48,10 +47,10 @@ class Turn
 
   #basic, war, of mutally_assured_destruction
   def type
-    player_1_rank_0 = player1.deck.rank_of_card_at(0)
-    player_2_rank_0 = player2.deck.rank_of_card_at(0)
-    player_1_rank_2 = player1.deck.rank_of_card_at(2)
-    player_2_rank_2 = player2.deck.rank_of_card_at(2)
+    player_1_rank_0 = @player1.deck.rank_of_card_at(0)
+    player_2_rank_0 = @player2.deck.rank_of_card_at(0)
+    player_1_rank_2 = @player1.deck.rank_of_card_at(2)
+    player_2_rank_2 = @player2.deck.rank_of_card_at(2)
 
     #if rank_of_card_at(0) are not the same, then basic
     if player_1_rank_0 != player_2_rank_0
@@ -71,17 +70,17 @@ class Turn
   def winner
     #if basic
     if type ==  :basic
-      if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-        player1
+      if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
+        @player1
       else
-        player2
+        @player2
       end
     #elsif war
     elsif type == :war
-      if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-        player1
+      if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
+        @player1
       else
-        player2
+        @player2
       end
     #elsif mutally_assured_destruction
     elsif type == :mutally_assured_destruction
