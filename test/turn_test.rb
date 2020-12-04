@@ -19,6 +19,13 @@ class TurnTest < Minitest::Test
     @card5 = Card.new(:heart, '8', 8)
     @card6 = Card.new(:diamond, 'Queen', 12)
 
+    @queen_of_hearts = Card.new(:heart, 'Queen', 12)
+    @queen_of_diamonds = Card.new(:diamond, 'Queen', 12)
+    @queen_of_spades = Card.new(:spade, 'Queen', 12)
+    @queen_of_clubs = Card.new(:club, 'Queen', 12)
+    @ten_of_diamonds = Card.new(:diamond, '10', 10)
+    @five_of_clubs = Card.new(:club, '5', 5)
+
     deck1 = Deck.new([])
     deck2 = Deck.new([])
 
@@ -42,12 +49,9 @@ class TurnTest < Minitest::Test
   end
 
   def test_type_basic
-    # each player's card at index 0 is not the same
-    queen_of_hearts = Card.new(:heart, 'Queen', 12)
-    ten_of_diamonds = Card.new(:diamond, '10', 10)
-
-    margaret_deck = Deck.new([queen_of_hearts])
-    jose_deck = Deck.new([ten_of_diamonds])
+    # Each player's card at index 0 is not the same
+    margaret_deck = Deck.new([@queen_of_hearts])
+    jose_deck = Deck.new([@ten_of_diamonds])
 
     margaret = Player.new('Margaret', margaret_deck)
     jose = Player.new('Jose', jose_deck)
@@ -58,12 +62,10 @@ class TurnTest < Minitest::Test
   end
 
   def test_type_war
-    # each player's card at index 0 is the same
-    queen_of_hearts = Card.new(:heart, 'Queen', 12)
-    queen_of_spades = Card.new(:spade, 'Queen', 12)
+    # Each player's card at index 0 is the same
 
-    margaret_deck = Deck.new([queen_of_hearts])
-    jose_deck = Deck.new([queen_of_spades])
+    margaret_deck = Deck.new([@queen_of_hearts])
+    jose_deck = Deck.new([@queen_of_spades])
 
     margaret = Player.new('Margaret', margaret_deck)
     jose = Player.new('Jose', jose_deck)
@@ -74,16 +76,10 @@ class TurnTest < Minitest::Test
   end
 
   def test_type_mutually_assured_destruction
-    # each player's card at index 0 is the same and their cards at index 2 are also the same
-    queen_of_hearts = Card.new(:heart, 'Queen', 12)
-    queen_of_diamonds = Card.new(:diamond, 'Queen', 12)
-    queen_of_spades = Card.new(:spade, 'Queen', 12)
-    queen_of_clubs = Card.new(:club, 'Queen', 12)
-    ten_of_diamonds = Card.new(:diamond, '10', 10)
-    five_of_clubs = Card.new(:club, '5', 5)
+    # Each player's card at index 0 is the same and their cards at index 2 are also the same
 
-    margaret_deck = Deck.new([queen_of_hearts, ten_of_diamonds, queen_of_diamonds])
-    jose_deck = Deck.new([queen_of_spades, five_of_clubs, queen_of_clubs])
+    margaret_deck = Deck.new([@queen_of_hearts, @ten_of_diamonds, @queen_of_diamonds])
+    jose_deck = Deck.new([@queen_of_spades, @five_of_clubs, @queen_of_clubs])
 
     margaret = Player.new('Margaret', margaret_deck)
     jose = Player.new('Jose', jose_deck)
@@ -94,14 +90,44 @@ class TurnTest < Minitest::Test
   end
 
   def test_winner_basic
+    # Returns whichever player has the higher card at index 0
 
+    margaret_deck = Deck.new([@queen_of_hearts])
+    jose_deck = Deck.new([@ten_of_diamonds])
+
+    margaret = Player.new('Margaret', margaret_deck)
+    jose = Player.new('Jose', jose_deck)
+
+    basic_turn = Turn.new(margaret, jose)
+
+    assert_equal margaret, basic_turn.winner
   end
 
   def test_winner_war
-    skip
+    # Returns whichever player has the higher card at index 2
+
+    margaret_deck = Deck.new([@queen_of_hearts, @queen_of_diamonds, @ten_of_diamonds])
+    jose_deck = Deck.new([@queen_of_spades, @five_of_clubs, @queen_of_clubs])
+
+    margaret = Player.new('Margaret', margaret_deck)
+    jose = Player.new('Jose', jose_deck)
+
+    war_turn = Turn.new(margaret, jose)
+
+    assert_equal jose, war_turn.winner
   end
 
   def test_winner_mutually_assured_destruction
-    skip
+    # Returns "No Winner"
+
+    margaret_deck = Deck.new([@queen_of_hearts, @ten_of_diamonds, @queen_of_diamonds])
+    jose_deck = Deck.new([@queen_of_spades, @five_of_clubs, @queen_of_clubs])
+
+    margaret = Player.new('Margaret', margaret_deck)
+    jose = Player.new('Jose', jose_deck)
+
+    mutually_assured_destruction_turn = Turn.new(margaret, jose)
+
+    assert_equal "No Winner", mutually_assured_destruction_turn.winner
   end
 end

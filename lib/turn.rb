@@ -21,6 +21,18 @@ class Turn
     end
   end
 
+  def winner
+    if type == :basic
+      player_with_highest_card_at(0)
+    elsif type == :war
+      player_with_highest_card_at(2)
+    elsif type == :mutually_assured_destruction
+      "No Winner"
+    else
+      # ??
+    end
+  end
+
   private
 
   def basic?
@@ -36,6 +48,19 @@ class Turn
       @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
     else
       false
+    end
+  end
+
+  def player_with_highest_card_at(index)
+    player1_card_rank = @player1.deck.rank_of_card_at(index)
+    player2_card_rank = @player2.deck.rank_of_card_at(index)
+
+    if player1_card_rank == player2_card_rank
+      nil
+    elsif player1_card_rank > player2_card_rank
+      @player1
+    else
+      @player2
     end
   end
 end
