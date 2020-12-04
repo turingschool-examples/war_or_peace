@@ -14,4 +14,13 @@ class Turn
       :basic
     end
   end
+
+  def winner
+    if type == :basic && @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
+      @player1
+    else
+      @player2
+    end
+
+  end
 end
