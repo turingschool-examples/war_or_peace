@@ -3,9 +3,9 @@ class Turn
               :player2,
               :spoils_of_war
 
-  def initialize(p1, p2)
-    @player1       = p1
-    @player2       = p2
+  def initialize(player1, player2)
+    @player1       = player1
+    @player2       = player2
     @spoils_of_war = []
   end
 
@@ -19,38 +19,76 @@ class Turn
     end
   end
 
+  def winner_basic
+    if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
+      @player1
+    else @player1.deck.rank_of_card_at(0) < @player2.deck.rank_of_card_at(0)
+      @player2
+    end
+  end
+
+  def winner_war
+    if  @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
+        @player1
+    else @player1.deck.rank_of_card_at(2) < @player2.deck.rank_of_card_at(2)
+        @player2
+    end
+  end
+
   def winner
     if type   == :basic
-      if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
-        @player1
-      else
-        @player2
-      end
+      winner_basic
     elsif type == :war
-      if  @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
-          @player1
-      else
-          @player2
-        end
+    winner_war
     else
         puts "No Winner"
     end
   end
 
+
+  def pile_cards_basic
+    @spoils_of_war << @player1.deck.remove_card
+    @spoils_of_war << @player2.deck.remove_card
+  end
+
+  def player_1_spoils
+    @spoils_of_war << @player1.deck.remove_card
+    @spoils_of_war << @player1.deck.remove_card
+    @spoils_of_war << @player1.deck.remove_card
+  end
+
+  def player_2_spoils
+    @spoils_of_war << @player2.deck.remove_card
+    @spoils_of_war << @player2.deck.remove_card
+    @spoils_of_war << @player2.deck.remove_card
+  end
+
+  def player_1_mutual_destruction
+     @player1.deck.remove_card
+     @player1.deck.remove_card
+     @player1.deck.remove_card
+  end
+
+  def player_2_mutual_destruction
+    @player2.deck.remove_card
+    @player2.deck.remove_card
+    @player2.deck.remove_card
+  end
+
   def pile_cards
     if    type == :basic
-    a = @spoils_of_war << @player1.deck.remove_card
-    b = @spoils_of_war << @player2.deck.remove_card
-    a + b
+      pile_cards_basic
     elsif type == :war
-    a = @spoils_of_war << 3.times{@player1.deck.remove_card}
-    b = @spoils_of_war << 3.times{@player2.deck.remove_card}
-    a + b
+     @spoils_of_war << player_1_spoils
+     @spoils_of_war << player_2_spoils
     else
-      a = 3.times{@player1.deck.remove_card}
-      b = 3.times{@player2.deck.remove_card}
-      a + b
+    player_1_mutual_destruction
+    player_2_mutual_destruction
     end
   end
 
+  def award_spoils(winner)
+    winner.deck.cards << @spoils_of_war.shift
+    winner.deck.cards << @spoils_of_war.shift
+  end
 end
