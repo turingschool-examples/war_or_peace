@@ -43,24 +43,10 @@ class Game
     @turn = Turn.new(@player1, @player2)
     @turn_type = @turn.type
     @turn.pile_cards
-    # if !enough_cards
-    #   puts "Game over."
-    #   return true
-    # end
-
     @winner = @turn.winner
     @num_cards = @turn.spoils_of_war.count
     @turn.award_spoils(@turn.winner)
     output_turn_results(x)
-    #return false
-  end
-
-  def enough_cards
-    if @turn_type == :mutally_assured_destruction || @turn_type == :war
-      @player1.deck.cards.count > 2 && @player2.deck.cards.count > 2
-    elsif @turn_type == :basic
-      @player1.deck.cards.count > 0 && @player2.deck.cards.count > 0
-    end
   end
 
   def output_turn_results(turn_num)
