@@ -45,6 +45,8 @@ class Turn
     if type == :basic
       @spoils_of_war << @player1.deck.cards[0]
       @spoils_of_war << @player2.deck.cards[0]
+      @player1.deck.cards.shift
+      @player2.deck.cards.shift
     elsif type == :war
       @spoils_of_war << @player1.deck.cards[0]
       @spoils_of_war << @player1.deck.cards[1]
@@ -52,15 +54,24 @@ class Turn
       @spoils_of_war << @player2.deck.cards[0]
       @spoils_of_war << @player2.deck.cards[1]
       @spoils_of_war << @player2.deck.cards[2]
+
+      @player1.deck.cards.shift(3)
+      @player2.deck.cards.shift(3)
+
+    else type == :mutually_assured_destruction
+      @player1.deck.cards.shift(3)
+      @player2.deck.cards.shift(3)
     end
   end
 
   def award_spoils (winner)
     if type == :basic || type == :war
-      if turn.winner == @player1
+      if winner == @player1
         @player1.deck.cards << @spoils_of_war
+        @player1.deck.cards.flatten
       else
         @player2.deck.cards << @spoils_of_war
+        @player2.deck.cards.flatten
       end
     end
   end
