@@ -11,5 +11,4 @@ player1 = Player.new("Jenny", card_generator.deck1)
 player2 = Player.new("Marisa", card_generator.deck2)
 game = Game.new(player1, player2)
 game.intro
-got_answer = game.get_answer
-game.start_game if got_answer
+game.start_game if game.got_answer

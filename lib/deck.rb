@@ -23,10 +23,10 @@ class Deck
     ((@high_cards.count / @cards.count.to_f) * 100).round(2)
   end
 
+
   def rank_of_card_at(index)
     #return rank of card at index
-    card = @cards[index]
-    card.rank
+    cards[index].rank
   end
 
   def remove_card

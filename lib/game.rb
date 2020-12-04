@@ -1,12 +1,14 @@
 require_relative 'turn'
 require 'pry'
 class Game
-  attr_reader :player1
-              :player2
+  attr_reader :player1,
+              :player2,
+              :got_answer
 
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
+    @got_answer = false
   end
 
   def intro
@@ -14,29 +16,31 @@ class Game
     puts "The players today are #{@player1.name} and #{@player2.name}."
     puts "Type 'GO' to start the game!"
     puts "------------------------------------------------------------------"
+    answer = gets.chomp
+    if !get_answer(answer)
+      puts "You must type 'GO' in order to start the game."
+    end
   end
 
-  def get_answer
-    answer = gets.chomp
+  def get_answer(answer)
     if answer.upcase.gsub(" ", "") != "GO"
-      puts "You must type 'GO' in order to start the game."
-      false
+      @got_answer = false
     else
-      true
+      @got_answer = true
     end
   end
 
   def start_game
-    x = 1
-    while x <= 1000000 do
-      game_over = take_turn
-      output_turn_results(x)
+    turn = 1
+    while turn <= 1000000 do
+      take_turn
+      output_turn_results(turn)
       break if has_lost
-      if x == 100000
+      if turn == 100000
         puts "---- DRAW ----"
         return
       end
-      x += 1
+      turn += 1
     end
   end
 
@@ -54,9 +58,9 @@ class Game
     if @turn_type == :mutally_assured_destruction
       puts "Turn #{turn_num}: *mutally assured destruction* 6 cards removed from play"
     elsif @turn_type == :basic
-      puts "Turn #{turn_num}: #{@winner.name} won #{@num_cards} cards. #{@player1.deck.cards.count} #{@player2.deck.cards.count} "
+      puts "Turn #{turn_num}: #{@winner.name} won #{@num_cards} cards."
     elsif @turn_type == :war
-      puts "Turn #{turn_num}: WAR - #{@winner.name} won #{@num_cards} cards. #{@player1.deck.cards.count} #{@player2.deck.cards.count} "
+      puts "Turn #{turn_num}: WAR - #{@winner.name} won #{@num_cards} cards."
     end
   end
 
