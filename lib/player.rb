@@ -10,7 +10,6 @@ class Player
   end
 
   def has_lost?
-    #NoMethodError
-    @deck.length == 0
+    @deck.cards.length == 0
   end
 end

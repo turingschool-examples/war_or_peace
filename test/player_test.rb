@@ -25,9 +25,8 @@ class PlayerTest < Minitest::Test
     2.times do
       @player.deck.remove_card
     end
-    refute @player.has_lost?
+    assert_equal false, @player.has_lost?
     @player.deck.remove_card
-    assert @player.has_lost
+    assert_equal true, @player.has_lost?
   end
-
 end
