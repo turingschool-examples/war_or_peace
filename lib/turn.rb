@@ -5,7 +5,8 @@ class Turn
                :player_1_rank_0,
                :player_1_rank_2,
                :player_2_rank_0,
-               :player_2_rank_2
+               :player_2_rank_2,
+               :game_over
 
   def initialize(player1, player2)
     @player1 = player1
@@ -26,13 +27,10 @@ class Turn
   #cards will be sent from player deck to spoils_of_war
   def pile_cards
     turn_type = type
-    #if :basic, send top card
     if turn_type ==  :basic
       basic_pile
-    #if :war, send top 3 cards
     elsif turn_type == :war
       war_pile
-    #if :destruction, get rid of top 3 cards
     elsif turn_type == :mutally_assured_destruction
       destruction_pile
     end
@@ -64,17 +62,12 @@ class Turn
   #basic, war, of mutally_assured_destruction
   def type
     get_ranks
-    #if rank_of_card_at(0) are not the same, then basic
-    if @player_1_rank_0 != @player_2_rank_0
-      :basic
-    #if rank_of_card_at(0) and (2) are the same,
-    #then mutally_assured_destruction
-  elsif @player_1_rank_0 == @player_2_rank_0 &&
-      @player_1_rank_2 == @player_2_rank_2
+    if @player_1_rank_0 == @player_2_rank_0 && @player_1_rank_2 == @player_2_rank_2
       :mutally_assured_destruction
-    #if rank_of_card_at(0) are the same, then war
-  elsif @player_1_rank_0 == @player_2_rank_0
+    elsif @player_1_rank_0 == @player_2_rank_0
       :war
+    elsif @player_1_rank_0 != @player_2_rank_0
+      :basic
     end
   end
 
