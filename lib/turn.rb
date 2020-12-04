@@ -62,6 +62,7 @@ class Turn
         3.times do
           player.deck.remove_card
         end
+        @spoils_of_war.flatten!
       end
     elsif type == :mutually_assured_destruction
       players.each do |player|
