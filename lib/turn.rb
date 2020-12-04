@@ -9,12 +9,12 @@ class Turn
   end
 
   def type
-    if @player1.deck.cards[0].rank != @player2.deck.cards[0].rank
+    if @player1.deck.cards[0].rank == @player2.deck.cards[0].rank && @player1.deck.cards[2].rank == @player2.deck.cards[2].rank
+      :mutually_assured_destruction
+    elsif @player1.deck.cards[0].rank != @player2.deck.cards[0].rank
        :basic
     elsif @player1.deck.cards[0].rank == @player2.deck.cards[0].rank
        :war
-    elsif @player1.deck.cards[0].rank == @player2.deck.cards[2].rank
-       :mutually_assured_destruction
     end
   end
 
@@ -25,6 +25,16 @@ class Turn
       elsif @player1.deck.cards[0].rank < @player2.deck.cards[0].rank
         @player2
       end
+
+    elsif self.type == :war
+      if @player1.deck.cards[2].rank > @player2.deck.cards[2].rank
+        @player1
+      elsif @player1.deck.cards[2].rank < @player2.deck.cards[2].rank
+        @player2
+      end
+
+    elsif self.type == :mutually_assured_destruction
+      "No Winner"
     end
   end
 
@@ -32,9 +42,20 @@ class Turn
     if self.type == :basic
       @spoils_of_war << @player1.deck.cards[0]
       @spoils_of_war << @player2.deck.cards[0]
+
+      @player1.deck.cards.delete_at(0)
+      @player2.deck.cards.delete_at(0)
+    elsif self.type == :war
+      @spoils_of_war << @player1.deck.cards[0..2]
+      @spoils_of_war << @player2.deck.cards[0..2]
+
+      @player1.deck.cards.slice!(0..2)
+      @player2.deck.cards.slice!(0..2)
+
+    elsif self.type == :mutually_assured_destruction
+      @player1.deck.cards.slice!(0..2)
+      @player2.deck.cards.slice!(0..2)
     end
-    @player1.deck.cards.delete_at(0)
-    @player2.deck.cards.delete_at(0)
   end
 
   def award_spoils(winner)
