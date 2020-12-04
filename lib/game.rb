@@ -15,34 +15,51 @@ class Game
   def split_deck
     @standard_deck.create_standard_deck
     shuffled_deck = @standard_deck.cards.shuffle
-    @deck1 = Deck.new(shuffled_deck[0..25])
-    @deck2 = Deck.new(shuffled_deck[26..52])
+    create_first_deck(shuffled_deck[0..25])
+    create_second_deck(shuffled_deck[26..52])
+  end
+
+  def create_first_deck(shuffled_deck)
+    @deck1 = Deck.new(shuffled_deck)
+  end
+
+  def create_second_deck(shuffled_deck)
+    @deck2 = Deck.new(shuffled_deck)
   end
 
   def create_two_players(player1_name, player2_name)
     split_deck
-    @player1 = Player.new(player1_name, @deck1)
-    @player2 = Player.new(player2_name, @deck2)
+    create_first_player(player1_name, @deck1)
+    create_second_player(player2_name, @deck2)
   end
 
-  def take_turn
+  def create_first_player(name, deck)
+    @player1 = Player.new(name, deck)
+  end
+
+  def create_second_player(name, deck)
+    @player2 = Player.new(name, deck)
+  end
+
+  def add_turn
     @turns << Turn.new(@player1, @player2)
   end
 
-  def type_output(turn_number)
+  def turn_output(turn_number)
     print "Turn #{turn_number}: "
-    if @turns.last.type == :basic
+    type = @turns.last.type
+    if type == :basic
       print "#{@turns.last.winner.name} won "
       @turns.last.pile_cards
       puts "#{@turns.last.spoils_of_war.length} cards"
       @turns.last.award_spoils(@turns.last.winner)
-    elsif @turns.last.type == :war
-      print "#{@turns.last.type.upcase} - #{@turns.last.winner.name} won "
+    elsif type == :war
+      print "#{type.upcase} - #{@turns.last.winner.name} won "
       @turns.last.pile_cards
       puts "#{@turns.last.spoils_of_war.length} cards"
       @turns.last.award_spoils(@turns.last.winner)
-    elsif @turns.last.type == :mutually_assured_destruction
-      puts "*#{@turns.last.type}* 6 cards removed from play"
+    elsif type == :mutually_assured_destruction
+      puts "*#{type}* 6 cards removed from play"
       @turns.last.pile_cards
     end
   end
@@ -57,15 +74,15 @@ class Game
     end
     while !game_over?
       if @turns.length < 1000000
-        take_turn
+        add_turn
         if @turns.length > 0
-          type_output(@turns.length)
+          turn_output(@turns.length)
         end
       else
         puts "DRAW".center(14, "-")
       end
     end
-      display_winner
+      puts display_winner
   end
 
   def game_over?
@@ -84,9 +101,9 @@ class Game
 
   def display_winner
     if @player1.deck.cards.length > @player2.deck.cards.length
-      puts "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+      "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
     else
-      puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+      "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
     end
   end
 end
