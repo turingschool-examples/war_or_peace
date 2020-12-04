@@ -57,6 +57,31 @@ class PlayerTest < Minitest::Test
     assert_equal :mutually_assured_destruction, turn.type
   end
 
-  def test_winning
+  def test_winner_basic
+    assert_equal @player1, @turn.winner
+  end
+
+  def test_winner_war
+    deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    deck2 = Deck.new([@card4, @card3, @card7, @card6])
+
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+
+    turn = Turn.new(player1, player2)
+
+    assert_equal player1, turn.winner
+  end
+
+  def test_winner_mutual
+    deck1 = Deck.new([@card1, @card2, @card8, @card5])
+    deck2 = Deck.new([@card4, @card3, @card7, @card6])
+
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+
+    turn = Turn.new(player1, player2)
+
+    assert_nil turn.winner
   end
 end
