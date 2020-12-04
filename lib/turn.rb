@@ -5,11 +5,13 @@ class Turn
   attr_reader :player1,
               :player2,
               :spoils_of_war
+              :turn_winner
 
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
+    @turn_winner = winner
   end
 
   def rank_test(index)
@@ -48,8 +50,8 @@ class Turn
     end
   end
 
-  #refactor to .map? Might not work
   def pile_cards
+    @turn_winner = winner
     players = [@player1, @player2]
     if type == :basic
       players.each do |player|
@@ -71,5 +73,10 @@ class Turn
         end
       end
     end
+  end
+  #returning winner after 1st card removed (basic)
+  def award_spoils
+    @turn_winner.deck.cards << @spoils_of_war
+    @turn_winner.deck.cards.flatten!
   end
 end
