@@ -29,4 +29,10 @@ class Turn
       @spoils_of_war << player2.deck.cards.shift
     end
   end
+
+  def award_spoils(player_obj)
+    @spoils_of_war.each do |card|
+      player_obj.deck.cards << card
+    end
+  end
 end
