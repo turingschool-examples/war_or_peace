@@ -1,3 +1,5 @@
+require 'pry'
+
 class Turn
   attr_reader :player1,
               :player2,
@@ -36,6 +38,30 @@ class Turn
       end
     else type == :mutually_assured_destruction
       "No winner"
+    end
+  end
+
+  def pile_cards #ACTION METHOD
+    if type == :basic
+      @spoils_of_war << @player1.deck.cards[0]
+      @spoils_of_war << @player2.deck.cards[0]
+    elsif type == :war
+      @spoils_of_war << @player1.deck.cards[0]
+      @spoils_of_war << @player1.deck.cards[1]
+      @spoils_of_war << @player1.deck.cards[2]
+      @spoils_of_war << @player2.deck.cards[0]
+      @spoils_of_war << @player2.deck.cards[1]
+      @spoils_of_war << @player2.deck.cards[2]
+    end
+  end
+
+  def award_spoils (winner)
+    if type == :basic || type == :war
+      if turn.winner == @player1
+        @player1.deck.cards << @spoils_of_war
+      else
+        @player2.deck.cards << @spoils_of_war
+      end
     end
   end
 end
