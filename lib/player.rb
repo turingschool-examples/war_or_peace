@@ -10,7 +10,6 @@ class Player
   def has_lost?
    if deck.cards.count > 0
      @has_lost
-     deck.remove_card
    else
     @has_lost = true
    end

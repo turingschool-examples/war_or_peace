@@ -18,7 +18,7 @@ class Deck
 
   def high_ranking_cards
     ranks = []
-    cards.map do |card|
+    cards.each do |card|
       ranks << card if card.rank >= 11
     end
     ranks
