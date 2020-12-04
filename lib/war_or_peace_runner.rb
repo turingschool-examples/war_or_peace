@@ -4,7 +4,7 @@ require_relative 'game'
 require 'pry'
 
 
-card_generator = CardGenerator.new
+card_generator = CardGenerator.new("cards.txt")
 card_generator.create_cards
 card_generator.create_decks
 player1 = Player.new("Jenny", card_generator.deck1)
