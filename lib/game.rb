@@ -47,39 +47,48 @@ class Game
 
   def turn_output(turn_number)
     print "Turn #{turn_number}: "
-    type = @turns.last.type
-    if type == :basic
-      print "#{@turns.last.winner.name} won "
-      @turns.last.pile_cards
-      puts "#{@turns.last.spoils_of_war.length} cards"
-      @turns.last.award_spoils(@turns.last.winner)
-    elsif type == :war
-      print "#{type.upcase} - #{@turns.last.winner.name} won "
-      @turns.last.pile_cards
-      puts "#{@turns.last.spoils_of_war.length} cards"
-      @turns.last.award_spoils(@turns.last.winner)
-    elsif type == :mutually_assured_destruction
-      puts "*#{type}* 6 cards removed from play"
-      @turns.last.pile_cards
+    @type = @turns.last.type
+    if @type == :mutually_assured_destruction
+      mutually_assured_destruction_output
+    elsif @type == :war
+      war_output
+    elsif @type == :basic
+      basic_output
     end
   end
 
+  def basic_output
+    winner = @turns.last.winner
+    print "#{winner.name} won "
+    @turns.last.pile_cards
+    @turns.last.award_spoils(winner)
+    puts "#{@turns.last.spoils_of_war.length} cards"
+  end
+
+  def war_output
+    winner = @turns.last.winner
+    print "#{@type.upcase} - #{winner.name} won "
+    @turns.last.pile_cards
+    @turns.last.award_spoils(winner)
+    puts "#{@turns.last.spoils_of_war.length} cards"
+  end
+
+  def mutually_assured_destruction_output
+    puts "*#{@type}* 6 cards removed from play"
+    @turns.last.pile_cards
+  end
+
   def start
-    create_two_players("Angel", "Amber")
+    create_two_players("Angel", "Levi")
     greeting
-    user_input = gets.chomp
-    while user_input.upcase != "GO"
-      puts "Invalid Input. Try again: "
-      user_input = gets.chomp
-    end
     while !game_over?
-      if @turns.length < 1000000
-        add_turn
-        if @turns.length > 0
-          turn_output(@turns.length)
-        end
-      else
+      add_turn
+      if @turns.length > 0
+        turn_output(@turns.length)
+      end
+      if @turns.length == 1000000
         puts "DRAW".center(14, "-")
+        return
       end
     end
       puts display_winner
@@ -97,6 +106,11 @@ class Game
       print "-"
     end
     puts "\n"
+    user_input = gets.chomp
+    while user_input.upcase != "GO"
+      puts "Invalid Input. Try again: "
+      user_input = gets.chomp
+    end
   end
 
   def display_winner
