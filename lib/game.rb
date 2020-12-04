@@ -58,19 +58,17 @@ class Game
   end
 
   def basic_output
-    winner = @turns.last.winner
-    print "#{winner.name} won "
+    print "#{@turns.last.winner.name} won "
     @turns.last.pile_cards
-    @turns.last.award_spoils(winner)
     puts "#{@turns.last.spoils_of_war.length} cards"
+    @turns.last.award_spoils(@turns.last.winner)
   end
 
   def war_output
-    winner = @turns.last.winner
-    print "#{@type.upcase} - #{winner.name} won "
+    print "#{@type.upcase} - #{@turns.last.winner.name} won "
     @turns.last.pile_cards
-    @turns.last.award_spoils(winner)
     puts "#{@turns.last.spoils_of_war.length} cards"
+    @turns.last.award_spoils(@turns.last.winner)
   end
 
   def mutually_assured_destruction_output
