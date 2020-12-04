@@ -128,7 +128,24 @@ class TurnTest < Minitest::Test
     assert_equal [@card1, @card2, @card5, @card4, @card3, @card6], turn2.spoils_of_war
   end
 
-  def test_it_can_pile_cards_for_war
+  def test_it_can_pile_cards_for_mad
+    deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    deck2 = Deck.new([@card3, @card4, @card6, @card7])
+    deck3 = Deck.new([@card4, @card3, @card6, @card7])
+    deck4 = Deck.new([@card4, @card3, @card8, @card7])
+    p1 = Player.new("Megan", deck1)
+    p2 = Player.new("Aurora", deck2)
+    p3 = Player.new("Roy", deck3)
+    p4 = Player.new("Decker", deck4)
+    turn1 = Turn.new(p1, p2)
+    turn2 = Turn.new(p1, p3)
+    turn3 = Turn.new(p1, p4)
+    turn3.pile_cards
+
+    assert_equal [], turn3.spoils_of_war
+  end
+
+  def test_it_can_award_spoils
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
     deck2 = Deck.new([@card3, @card4, @card6, @card7])
     deck3 = Deck.new([@card4, @card3, @card6, @card7])
@@ -141,7 +158,8 @@ class TurnTest < Minitest::Test
     turn2 = Turn.new(p1, p3)
     turn3 = Turn.new(p1, p4)
     turn2.pile_cards
+    turn2.award_spoils
 
-    assert_equal [], turn3.spoils_of_war
+    assert_equal [@card8, @card1, @card2, @card5, @card4, @card3, @card6], p1.deck.cards
   end
 end
