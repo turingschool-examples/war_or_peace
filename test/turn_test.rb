@@ -130,4 +130,16 @@ class TurnTest < Minitest::Test
 
     assert_equal "No Winner", mutually_assured_destruction_turn.winner
   end
+
+  def test_pile_cards_basic
+
+  end
+
+  def test_pile_cards_war
+
+  end
+
+  def test_pile_cards_mutually_assured_destruction
+
+  end
 end
