@@ -10,12 +10,7 @@ class Turn
   end
 
   def type 
-    if (
-      @player1.deck.rank_of_card_at(0) ==
-      @player2.deck.rank_of_card_at(0) &&
-      @player1.deck.rank_of_card_at(2) ==
-      @player2.deck.rank_of_card_at(2)
-    )
+     if mutually_assured_destruction?
       :mutually_assured_destruction
     elsif (
       @player1.deck.rank_of_card_at(0) == 
@@ -28,6 +23,13 @@ class Turn
       )
         :basic
     end
+  end
+
+  def mutually_assured_destruction? 
+    @player1.deck.rank_of_card_at(0) ==
+    @player2.deck.rank_of_card_at(0) &&
+    @player1.deck.rank_of_card_at(2) ==
+    @player2.deck.rank_of_card_at(2)
   end
 
   def winner
