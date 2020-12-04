@@ -7,8 +7,8 @@ require './lib/card'
 require 'pry'
 
 class TurnTest < MiniTest::Test
-  def setup
-  end
+  def test_init
+
 
   def test_get_answer_from_user
   end
@@ -20,5 +20,8 @@ class TurnTest < MiniTest::Test
   end
 
   def test_enough_cards
+  end
+
+  def has_lost
   end
 end

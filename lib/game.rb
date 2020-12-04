@@ -20,16 +20,17 @@ class Game
     answer = gets.chomp
     if answer.upcase.gsub(" ", "") != "GO"
       puts "You must type 'GO' in order to start the game."
-      return false
+      false
     else
-      return true
+      true
     end
   end
 
   def start_game
     x = 1
     while x <= 1000000 do
-      game_over = take_turn(x)
+      game_over = take_turn
+      output_turn_results(x)
       break if has_lost
       if x == 100000
         puts "---- DRAW ----"
@@ -39,14 +40,13 @@ class Game
     end
   end
 
-  def take_turn(x)
-    @turn = Turn.new(@player1, @player2)
-    @turn_type = @turn.type
-    @turn.pile_cards
-    @winner = @turn.winner
-    @num_cards = @turn.spoils_of_war.count
-    @turn.award_spoils(@turn.winner)
-    output_turn_results(x)
+  def take_turn
+    turn = Turn.new(@player1, @player2)
+    @turn_type = turn.type
+    turn.pile_cards
+    @winner = turn.winner
+    @num_cards = turn.spoils_of_war.count
+    turn.award_spoils(turn.winner)
   end
 
   def output_turn_results(turn_num)
@@ -62,11 +62,11 @@ class Game
   def has_lost
     if @player1.has_lost?
       puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
-      return true
+      true
     elsif @player2.has_lost?
       puts "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
-      return true
+      true
     end
-    return false
+    false
   end
 end

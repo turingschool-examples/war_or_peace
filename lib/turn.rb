@@ -1,4 +1,3 @@
-require 'pry'
 class Turn
   attr_reader  :player1,
                :player2,
@@ -45,7 +44,6 @@ class Turn
 
   def war_pile
     3.times do
-      #binding.pry
       if !player1.deck.cards.empty?
         @spoils_of_war << player1.deck.cards.first
         player1.deck.remove_card
@@ -66,6 +64,10 @@ class Turn
 
   #basic, war, of mutally_assured_destruction
   def type
+    @type ||= calculate_type
+  end
+
+  def calculate_type
     get_ranks
     if @player_1_rank_0 == @player_2_rank_0 && @player_1_rank_2 == @player_2_rank_2
       :mutally_assured_destruction
@@ -101,22 +103,18 @@ class Turn
 
   #determines winner of war
   def winner
-    turn_type = type
-    #if basic
-    if turn_type ==  :basic
+    if type ==  :basic
       if @player_1_rank_0 > @player_2_rank_0
         @player1
       else
         @player2
       end
-    #elsif war
-    elsif turn_type == :war
+    elsif type == :war
       if @player_1_rank_2 > @player_2_rank_2
         @player1
       else
         @player2
       end
-    #elsif mutally_assured_destruction
     elsif type == :mutally_assured_destruction
       "No Winner"
     end

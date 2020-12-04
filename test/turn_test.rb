@@ -136,12 +136,24 @@ class TurnTest < MiniTest::Test
     assert_equal :basic, @turn_basic.type
   end
 
+  def test_calculate_basic_type_of_turn
+    assert_equal :basic, @turn_basic.calculate_type
+  end
+
   def test_war_type_of_turn
     assert_equal :war, @turn_war.type
   end
 
+  def test_calcuate_war_type_of_turn
+    assert_equal :war, @turn_war.calculate_type
+  end
+
   def test_mutally_assured_destruction_type_of_turn
     assert_equal :mutally_assured_destruction, @turn_destruction.type
+  end
+
+  def test_calculate_mutally_assured_destruction_type_of_turn
+    assert_equal :mutally_assured_destruction, @turn_destruction.calculate_type
   end
 
   def test_get_player_ranks
