@@ -162,4 +162,5 @@ class TurnTest < Minitest::Test
 
     assert_equal [@card8, @card1, @card2, @card5, @card4, @card3, @card6], p1.deck.cards
   end
+
 end
