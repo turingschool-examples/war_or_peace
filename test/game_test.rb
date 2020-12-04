@@ -8,7 +8,9 @@ require './lib/game'
 
 class GameTest < Minitest::Test
   def setup
-  @game = Game.new 
+  @game = Game.new
+  @player1 = Player.new('Clarisa', @game.deck)
+  @player2 = Player.new('Dom', @game.deck)
   end
 
   def test_it_exists_with_attributes
@@ -28,13 +30,18 @@ class GameTest < Minitest::Test
   def test_it_creates_new_deck
     @game.create_new_deck
 
-    assert_equal @game.deck[0], @game.deck[0]
+    assert_equal 52, @game.deck.length
   end
 
-  def test_deck_is_random
+  def test_deck_is_shuffled
     @game.create_new_deck
     @game.shuffle
 
-    assert_instance_of Card, @game.deck[0] 
+    assert_instance_of Card, @game.deck[0]
+  end
+
+  def test_it_makes_player_decks
+    assert_equal 26, @player1.deck.count
+    assert_equal 26, @player2.deck.count
   end
 end
