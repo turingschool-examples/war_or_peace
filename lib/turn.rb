@@ -47,17 +47,16 @@ class Turn
       @spoils_of_war << @player2.deck.cards[0]
       @player1.deck.cards.shift
       @player2.deck.cards.shift
+      "cards piled."
     elsif type == :war
-      @spoils_of_war << @player1.deck.cards[0]
-      @spoils_of_war << @player1.deck.cards[1]
-      @spoils_of_war << @player1.deck.cards[2]
-      @spoils_of_war << @player2.deck.cards[0]
-      @spoils_of_war << @player2.deck.cards[1]
-      @spoils_of_war << @player2.deck.cards[2]
-
+      @player1.deck.cards.first(3).map do |card|
+        @spoils_of_war << card
+      end
+      @player2.deck.cards.first(3).map do |card|
+        @spoils_of_war << card
+      end
       @player1.deck.cards.shift(3)
       @player2.deck.cards.shift(3)
-
     else type == :mutually_assured_destruction
       @player1.deck.cards.shift(3)
       @player2.deck.cards.shift(3)
