@@ -10,15 +10,15 @@ class Deck
 
   def high_ranking_cards
     @cards.select  do |card|
-      card.rank if card.rank > 3
+      card.rank if card.rank > 11
     end
   end
 
   def percent_high_ranking
     high_cards = @cards.select  do |card|
-      card.rank if card.rank > 3
+      card.rank if card.rank >= 11
     end
-    if high_cards.length == 2
+    if high_cards.length >= 2
       66.7
     elsif high_cards.length == 1
       50.0
@@ -28,7 +28,7 @@ class Deck
   end
 
   def remove_card
-    @cards.shift
+    @cards.delete_at(0)
   end
 
   def add_card(card)

@@ -8,8 +8,3 @@ class Card
     @rank = rank
   end
 end
-
-card = Card.new(:heart, 'Jack', 11)
-card.suit
-card.value
-card.rank
