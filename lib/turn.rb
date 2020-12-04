@@ -57,10 +57,8 @@ class Turn
   end
 
   def award_spoils(winner)
-    if winner != "No Winner"
-      @spoils_of_war.each do |spoil|
-        winner.deck.add_card(spoil)
-      end
+    @spoils_of_war.each do |spoil|
+      winner.deck.add_card(spoil)
     end
   end
 end
