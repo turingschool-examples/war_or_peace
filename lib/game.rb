@@ -20,5 +20,9 @@ class Game
           @deck << card
       end
     end
+  end 
+
+  def shuffle 
+    @deck.shuffle!
   end
 end
