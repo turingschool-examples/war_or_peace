@@ -33,6 +33,27 @@ class Turn
     end
   end
 
+  def pile_cards
+    # Move cards FROM players decks TO spoils_of_war (...or the void)
+
+    if type == :basic
+      @spoils_of_war << @player1.deck.cards.shift
+      @spoils_of_war << @player2.deck.cards.shift
+    elsif type == :war
+      3.times do
+        @spoils_of_war << @player1.deck.cards.shift
+        @spoils_of_war << @player2.deck.cards.shift
+      end
+    elsif type == :mutually_assured_destruction
+      3.times do
+        @player1.deck.cards.shift
+        @player2.deck.cards.shift
+      end
+    else
+      # ??
+    end
+  end
+
   private
 
   def basic?

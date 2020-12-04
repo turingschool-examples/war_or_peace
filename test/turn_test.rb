@@ -132,14 +132,56 @@ class TurnTest < Minitest::Test
   end
 
   def test_pile_cards_basic
+    margaret_deck = Deck.new([@queen_of_hearts])
+    jose_deck = Deck.new([@ten_of_diamonds])
 
+    margaret = Player.new('Margaret', margaret_deck)
+    jose = Player.new('Jose', jose_deck)
+
+    basic_turn = Turn.new(margaret, jose)
+    basic_turn.pile_cards
+
+    # Assert that spoils_of_war is filled and that each players Deck removed the cards
+    assert_equal 2, basic_turn.spoils_of_war.length
+    assert_includes basic_turn.spoils_of_war, @queen_of_hearts
+    assert_includes basic_turn.spoils_of_war, @ten_of_diamonds
+    assert_equal [], margaret.deck.cards
+    assert_equal [], jose.deck.cards
   end
 
   def test_pile_cards_war
+    margaret_deck = Deck.new([@queen_of_hearts, @queen_of_diamonds, @ten_of_diamonds])
+    jose_deck = Deck.new([@queen_of_spades, @five_of_clubs, @queen_of_clubs])
 
+    margaret = Player.new('Margaret', margaret_deck)
+    jose = Player.new('Jose', jose_deck)
+
+    war_turn = Turn.new(margaret, jose)
+    war_turn.pile_cards
+
+    assert_equal 6, war_turn.spoils_of_war.length
+    assert_includes war_turn.spoils_of_war, @queen_of_hearts
+    assert_includes war_turn.spoils_of_war, @queen_of_spades
+    assert_includes war_turn.spoils_of_war, @queen_of_diamonds
+    assert_includes war_turn.spoils_of_war, @five_of_clubs
+    assert_includes war_turn.spoils_of_war, @ten_of_diamonds
+    assert_includes war_turn.spoils_of_war, @queen_of_clubs
+    assert_equal [], margaret.deck.cards
+    assert_equal [], jose.deck.cards
   end
 
   def test_pile_cards_mutually_assured_destruction
+    margaret_deck = Deck.new([@queen_of_hearts, @ten_of_diamonds, @queen_of_diamonds])
+    jose_deck = Deck.new([@queen_of_spades, @five_of_clubs, @queen_of_clubs])
 
+    margaret = Player.new('Margaret', margaret_deck)
+    jose = Player.new('Jose', jose_deck)
+
+    mutually_assured_destruction_turn = Turn.new(margaret, jose)
+    mutually_assured_destruction_turn.pile_cards
+
+    assert_equal [], mutually_assured_destruction_turn.spoils_of_war
+    assert_equal [], margaret.deck.cards
+    assert_equal [], jose.deck.cards
   end
 end
