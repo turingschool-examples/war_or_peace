@@ -14,10 +14,10 @@ class Turn
   def type
     if @player1.deck.cards[0].rank != @player2.deck.cards[0].rank
         :basic
-    else #@player1.deck[0] == @player2.deck[0]
+    else
       if @player1.deck.cards[2].rank != @player2.deck.cards[2].rank
         :war
-      else #@player1.deck[2] == @player2.deck[2]
+      else
         :mutually_assured_destruction
       end
     end
@@ -47,7 +47,6 @@ class Turn
       @spoils_of_war << @player2.deck.cards[0]
       @player1.deck.cards.shift
       @player2.deck.cards.shift
-      "cards piled."
     elsif type == :war
       @player1.deck.cards.first(3).map do |card|
         @spoils_of_war << card
@@ -69,11 +68,12 @@ class Turn
         @spoils_of_war.map do |spoil|
           @player1.deck.cards << spoil
         end
-      else
+      elsif winner == @player2
         @spoils_of_war.map do |spoil|
           @player2.deck.cards << spoil
         end
       end
     end
+
   end
 end
