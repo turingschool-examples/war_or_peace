@@ -40,21 +40,20 @@ class Turn
 
   def pile_cards
     if self.type == :basic
-      @spoils_of_war << @player1.deck.cards[0]
-      @spoils_of_war << @player2.deck.cards[0]
+      @spoils_of_war << @player1.deck.remove_card
+      @spoils_of_war << @player2.deck.remove_card
 
-      @player1.deck.cards.delete_at(0)
-      @player2.deck.cards.delete_at(0)
     elsif self.type == :war
-      @spoils_of_war << @player1.deck.cards[0..2]
-      @spoils_of_war << @player2.deck.cards[0..2]
-
-      @player1.deck.cards.slice!(0..2)
-      @player2.deck.cards.slice!(0..2)
+      3.times do
+      @spoils_of_war << @player1.deck.remove_card
+      @spoils_of_war << @player2.deck.remove_card
+    end
 
     elsif self.type == :mutually_assured_destruction
-      @player1.deck.cards.slice!(0..2)
-      @player2.deck.cards.slice!(0..2)
+        3.times do
+        @spoils_of_war << @player1.deck.remove_card
+        @spoils_of_war << @player2.deck.remove_card
+      end
     end
   end
 

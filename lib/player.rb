@@ -8,7 +8,9 @@ class Player
   end
 
   def has_lost?
-    if @deck.cards.length >= 1
+    if @deck.cards.length == 52
+      "You Won!!!"
+    elsif @deck.cards.length >= 1
       false
     else
       true
