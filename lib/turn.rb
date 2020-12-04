@@ -7,8 +7,10 @@ class Turn
     @spoils_of_war = []
   end
 
-  def type()
-    if @player1.deck.cards[0] == @player2.deck.cards[0] && @player1.deck.cards[2] == @player2.deck.cards[2]
+  def type
+    puts player1.deck.cards[0].value
+    puts player1.deck.cards[0].value
+    if @player1.deck.cards[0].rank == @player2.deck.cards[0].rank && @player1.deck.cards[2].rank == @player2.deck.cards[2].rank
       return :mutually_assured_destruction
     elsif @player1.deck.cards[0] == @player2.deck.cards[0]
       return :war
