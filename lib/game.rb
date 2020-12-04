@@ -5,10 +5,7 @@ require './lib/turn'
 
 class Game
   attr_reader :standard_deck,
-              :deck1,
-              :deck2,
-              :player1,
-              :player2
+              :turns
 
   def initialize
     @standard_deck = StandardDeck.new
@@ -30,12 +27,9 @@ class Game
 
   def take_turn
     @turns << Turn.new(@player1, @player2)
-    if @turns.count > 0
-      turn_type_response(@turns.length)
-    end
   end
 
-  def turn_type_response(turn_number)
+  def type_output(turn_number)
     print "Turn #{turn_number}: "
     if @turns.last.type == :basic
       print "#{@turns.last.winner.name} won "
@@ -64,6 +58,9 @@ class Game
     while !game_over?
       if @turns.length < 1000000
         take_turn
+        if @turns.length > 0
+          type_output(@turns.length)
+        end
       else
         puts "DRAW".center(14, "-")
       end
