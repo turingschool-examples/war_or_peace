@@ -30,7 +30,7 @@ class Game
     x = 1
     while x <= 1000000 do
       game_over = take_turn(x)
-      break if game_over
+      break if has_lost
       if x == 100000
         puts "---- DRAW ----"
         return
@@ -43,16 +43,16 @@ class Game
     @turn = Turn.new(@player1, @player2)
     @turn_type = @turn.type
     @turn.pile_cards
-    if !enough_cards
-      puts "Game over."
-      return true
-    end
+    # if !enough_cards
+    #   puts "Game over."
+    #   return true
+    # end
 
     @winner = @turn.winner
     @num_cards = @turn.spoils_of_war.count
     @turn.award_spoils(@turn.winner)
     output_turn_results(x)
-    return false
+    #return false
   end
 
   def enough_cards
@@ -64,7 +64,6 @@ class Game
   end
 
   def output_turn_results(turn_num)
-    has_lost
     if @turn_type == :mutally_assured_destruction
       puts "Turn #{turn_num}: *mutally assured destruction* 6 cards removed from play"
     elsif @turn_type == :basic
@@ -77,10 +76,11 @@ class Game
   def has_lost
     if @player1.has_lost?
       puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
-      return
+      return true
     elsif @player2.has_lost?
       puts "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
-      return
+      return true
     end
+    return false
   end
 end
