@@ -184,4 +184,42 @@ class TurnTest < Minitest::Test
     assert_equal [], margaret.deck.cards
     assert_equal [], jose.deck.cards
   end
+
+  def test_award_spoils_has_winner
+    margaret_deck = Deck.new([@queen_of_hearts])
+    jose_deck = Deck.new([@ten_of_diamonds])
+
+    margaret = Player.new('Margaret', margaret_deck)
+    jose = Player.new('Jose', jose_deck)
+
+    turn = Turn.new(margaret, jose)
+    winner = turn.winner
+    turn.pile_cards
+    spoils_copy = turn.spoils_of_war
+
+    # award_spoils
+    turn.award_spoils(winner)
+
+    # assert winner's deck now includes spoils
+    spoils_copy.each do |card|
+      assert_includes winner.deck.cards, card
+    end
+  end
+
+  def test_award_spoils_no_winner
+    margaret_deck = Deck.new([@queen_of_hearts, @ten_of_diamonds, @queen_of_diamonds])
+    jose_deck = Deck.new([@queen_of_spades, @five_of_clubs, @queen_of_clubs])
+
+    margaret = Player.new('Margaret', margaret_deck)
+    jose = Player.new('Jose', jose_deck)
+
+    turn = Turn.new(margaret, jose)
+    winner = turn.winner
+    turn.pile_cards
+    spoils_copy = turn.spoils_of_war
+
+    turn.award_spoils(winner)
+
+    # Not sure what to assert here... wanting to make sure the method runs w/o throwing any errors.
+  end
 end

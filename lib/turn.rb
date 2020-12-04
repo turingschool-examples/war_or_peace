@@ -22,15 +22,7 @@ class Turn
   end
 
   def winner
-    if type == :basic
-      player_with_highest_card_at(0)
-    elsif type == :war
-      player_with_highest_card_at(2)
-    elsif type == :mutually_assured_destruction
-      "No Winner"
-    else
-      # ??
-    end
+    @winner ||= calculate_winner
   end
 
   def pile_cards
@@ -51,6 +43,14 @@ class Turn
       end
     else
       # ??
+    end
+  end
+
+  def award_spoils(winning_player)
+    if winning_player.instance_of? Player
+      @spoils_of_war.each do |card|
+        winning_player.deck.add_card(card)
+      end
     end
   end
 
@@ -82,6 +82,18 @@ class Turn
       @player1
     else
       @player2
+    end
+  end
+
+  def calculate_winner
+    if type == :basic
+      player_with_highest_card_at(0)
+    elsif type == :war
+      player_with_highest_card_at(2)
+    elsif type == :mutually_assured_destruction
+      "No Winner"
+    else
+      # ??
     end
   end
 end
