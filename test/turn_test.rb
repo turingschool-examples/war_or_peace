@@ -163,15 +163,27 @@ class TurnTest < MiniTest::Test
     assert_equal @card4.rank, @turn_basic.player_2_rank_0
     assert_equal @card6.rank, @turn_basic.player_2_rank_2
   end
-  def test_basic_winner_of_war
+  def test_basic_winner
     assert_equal @player1, @turn_basic.winner
+  end
+
+  def test_basic_winner_method
+    @turn_basic.type
+    assert_equal @player1, @turn_basic.basic_winner
+  end
+
+  def test_war_winner
+    assert_equal @player4, @turn_war.winner
+  end
+
+  def test_war_winner_method
+    @turn_war.type
+    assert_equal @player4, @turn_war.war_winner
   end
 
   def test_mutally_assured_destruction_winner
     assert_equal "No Winner", @turn_destruction.winner
   end
 
-  def test_war_winner
-    assert_equal @player4, @turn_war.winner
-  end
+
 end

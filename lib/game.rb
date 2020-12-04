@@ -51,7 +51,6 @@ class Game
     @winner = turn.winner
     @num_cards = turn.spoils_of_war.count
     turn.award_spoils(turn.winner)
-
   end
 
   def output_turn_results(turn_num)

@@ -16,9 +16,7 @@ class Turn
 
   #add cards in spoils_of_war to the winner of the turn
   def award_spoils(winner_of_turn)
-    if winner_of_turn == "No Winner"
-      return
-    end
+    return if winner_of_turn == "No Winner"
     @spoils_of_war.each do |card|
       winner_of_turn.deck.cards << card
     end
@@ -104,19 +102,27 @@ class Turn
   #determines winner of war
   def winner
     if type ==  :basic
-      if @player_1_rank_0 > @player_2_rank_0
-        @player1
-      else
-        @player2
-      end
+      basic_winner
     elsif type == :war
-      if @player_1_rank_2 > @player_2_rank_2
-        @player1
-      else
-        @player2
-      end
+      war_winner
     elsif type == :mutally_assured_destruction
       "No Winner"
+    end
+  end
+
+  def basic_winner
+    if @player_1_rank_0 > @player_2_rank_0
+      @player1
+    else
+      @player2
+    end
+  end
+
+  def war_winner
+    if @player_1_rank_2 > @player_2_rank_2
+      @player1
+    else
+      @player2
     end
   end
 end
