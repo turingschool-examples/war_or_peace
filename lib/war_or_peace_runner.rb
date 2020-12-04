@@ -48,8 +48,9 @@ def start
     winner = turn.winner
 
     puts "Turn #{counter}: #{winner.name} won #{turn.spoils_of_war.length} cards"
-    turn.award_spoils(winner) 
+    turn.award_spoils(winner)
     counter += 1
+    require "pry"; binding.pry
   end
 end
 
