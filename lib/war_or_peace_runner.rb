@@ -3,6 +3,7 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 require './lib/card_generator'
+require '.lib/interaction'
 #what method is actually called when turn.start happens?
 # turn.start
 #
@@ -20,7 +21,7 @@ card2 = Card.new('3', 'Heart', 3)
 card3 = Card.new('4', 'Heart', 4)
 card4 = Card.new('5', 'Heart', 5)
 card5= Card.new('6', 'Heart', 6)
-card6 = Card.new('7', 'Heart', 7)
+card6 = Card.new('7', 'Heart', 6)
 card7 = Card.new('8', 'Heart', 8)
 card8 = Card.new('9', 'Heart', 9)
 card9 = Card.new('0', 'Heart', 10)
@@ -39,18 +40,22 @@ deck2 = Deck.new(cards2)
 
 def start
   counter = 1
-
+  @interaction = Interaction.new
+  @interaction.intro
   while counter < 101
     turn = Turn.new(@player1, @player2)
-    turn.type
-    turn.winner
-    turn.pile_cards
+    type = turn.type
     winner = turn.winner
-
-    puts "Turn #{counter}: #{winner.name} won #{turn.spoils_of_war.length} cards"
+    turn.pile_cards
+    if type == :basic
+      @interaction.basic
+    elsif type == :war
+      @interaction.war
+    else type == :mad
+      @interaction.mutually_assured_destruction
+    end
     turn.award_spoils(winner)
     counter += 1
-    require "pry"; binding.pry
   end
 end
 

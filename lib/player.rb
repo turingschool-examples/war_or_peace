@@ -7,8 +7,14 @@ class Player
   end
 
   def has_lost?
-
+    if @losses != 0
+      true
+    else
+      false
+    end
   end
 
-
+  def lose
+    @losses += 1
+  end
 end
