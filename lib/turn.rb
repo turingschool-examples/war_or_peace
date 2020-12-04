@@ -53,4 +53,10 @@ class Turn
       end
     end
   end
+
+  def award_spoils(winner)
+    until @spoils_of_war.empty?
+      winner.deck.add_card(@spoils_of_war.pop)
+    end
+  end
 end
