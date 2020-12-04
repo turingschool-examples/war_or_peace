@@ -46,4 +46,10 @@ class Turn
       3.times{player2.deck.cards.shift}
     end
   end
+
+  def award_spoils(winner)
+    winner.deck.cards << spoils_of_war
+    winner.deck.cards.flatten!
+    spoils_of_war.clear
+  end
 end
