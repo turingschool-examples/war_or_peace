@@ -27,6 +27,14 @@ class GameTest < Minitest::Test
 
   def test_it_creates_new_deck
     @game.create_new_deck
+
     assert_equal @game.deck[0], @game.deck[0]
+  end
+
+  def test_deck_is_random
+    @game.create_new_deck
+    @game.shuffle
+
+    assert_instance_of Card, @game.deck[0] 
   end
 end
