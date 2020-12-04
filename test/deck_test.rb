@@ -6,7 +6,6 @@ require './lib/deck'
 class DeckTest < Minitest::Test
 
   def test_it_exists
-    # skip
     cards = []
     deck = Deck.new(cards)
 
@@ -14,21 +13,16 @@ class DeckTest < Minitest::Test
   end
 
   def test_it_holds_cards
-    # skip
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
 
-    # assert_includes(deck.cards, card1)
-    # assert_includes(deck.cards, card2)
-    # assert_includes(deck.cards, card3)
     assert_equal cards, deck.cards
   end
 
-  def test_it_can_return_the_card_rank
-    # skip
+  def test_it_can_return_the_rank_of_card_at
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
@@ -40,7 +34,6 @@ class DeckTest < Minitest::Test
   end
 
   def test_it_can_retun_high_rank_cards
-    # skip
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
@@ -53,18 +46,17 @@ class DeckTest < Minitest::Test
   end
 
   def test_it_can_return_percent_of_high_cards
-    # skip
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
+    require "pry"; binding.pry
 
     assert_equal 66.67, deck.percent_high_ranking
   end
 
   def test_it_can_remove_the_first_card
-    # skip
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
@@ -78,7 +70,6 @@ class DeckTest < Minitest::Test
   end
 
   def test_it_can_add_a_card
-    # skip
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)

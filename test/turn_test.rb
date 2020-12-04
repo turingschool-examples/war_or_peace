@@ -8,7 +8,6 @@ require './lib/turn'
 class TurnTest < Minitest::Test
 
   def test_turn_exists
-    # skip
     deck1 = Deck.new([])
     deck2 = Deck.new([])
     player1 = Player.new("Megan", deck1)
@@ -19,7 +18,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_there_are_two_players
-    # skip
     deck1 = Deck.new([])
     deck2 = Deck.new([])
     player1 = Player.new("Megan", deck1)
@@ -31,7 +29,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_turn_has_spoils_of_war
-    # skip
     deck1 = Deck.new([])
     deck2 = Deck.new([])
     player1 = Player.new("Megan", deck1)
@@ -42,7 +39,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_turns_are_basic
-    # skip
     card1 = Card.new(:heart, 'Queen', 12)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -59,7 +55,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_turns_are_war
-    # skip
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -76,7 +71,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_turns_are_mutually_assured_distruction
-    # skip
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '8', 8)
@@ -93,7 +87,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_there_is_a_winner
-    # skip
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -113,7 +106,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_MAD_turns_have_no_winner
-    # skip
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, 'Queen', 12)
@@ -132,7 +124,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_basic_turn_removes_1_card_from_each_player
-    # skip
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -156,7 +147,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_war_turn_removes_3_cards_from_each_palyer
-    # skip
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -180,7 +170,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_MAD_turn_removes_3_cards_from_each_player
-    # skip
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -204,7 +193,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_removed_cards_are_moved_to_spoils_of_war
-    # skip
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -229,7 +217,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_MAD_turns_dont_move_cards_to_spoils_of_war
-    # skip
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -254,7 +241,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_spoils_of_war_go_to_the_winner
-    # skip
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -278,4 +264,5 @@ class TurnTest < Minitest::Test
     assert_equal [card6, card7, card8], turn.player2.deck.cards
     assert_equal [], turn.spoils_of_war
   end
+
 end
