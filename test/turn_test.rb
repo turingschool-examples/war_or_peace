@@ -251,7 +251,7 @@ class TurnTest < Minitest::Test
     assert_equal [card7], player2.deck.cards
   end
 
-  def test_it_will_award_spoils_cards_from_basic_turn_to_winner
+  def test_it_will_award_spoils_cards_to_winner
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
