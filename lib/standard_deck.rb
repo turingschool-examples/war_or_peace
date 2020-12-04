@@ -1,5 +1,4 @@
 require './lib/card'
-require './lib/card'
 
 class StandardDeck
   attr_reader :cards,
@@ -14,7 +13,7 @@ class StandardDeck
   end
 
   def create_standard_deck
-    @suits.each_with_index do |suit, index|
+    @suits.each do |suit|
       13.times do |num|
         add_card(Card.new(suit.to_sym, @values_ranks[:values].at(num), @values_ranks[:ranks].at(num)))
       end
