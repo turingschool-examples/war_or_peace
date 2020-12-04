@@ -1,5 +1,5 @@
 class Turn
-  attr_reader :player1, :player2, :spoils_of_war, :type
+  attr_reader :player1, :player2, :spoils_of_war
 
   def initialize(player1, player2)
     @player1       = player1
@@ -11,34 +11,24 @@ class Turn
                       [true, true] => :mutually_assured_distruction}
   end
 
-  def compaire(index)
-    player1.deck.cards.slice(index).rank ==
-    player2.deck.cards.slice(index).rank
-  end
-
-  def check_winner(index)
-    if player1.deck.cards.slice(index).rank > player2.deck.cards.slice(index).rank
-      @winner = @player1
-    else
-      @winner = @player2
-    end
+  def compaire(index) #########
+    player1.deck.rank_of_card_at(index) ==
+    player2.deck.rank_of_card_at(index)
   end
 
   def type
-    if player1.deck.cards.length >= 3 && player2.deck.cards.length >= 3
       @type_of_turn = @type_class[[compaire(0), compaire(2)]]
-    else
-      @type_of_turn = @type_class[[compaire(0), false]]
-    end
   end
 
   def winner
-    if @type_of_turn == :basic
-      check_winner(0)
-    elsif @type_of_turn == :war
-      check_winner(2)
-    else
+    condition = {:basic => 0, :war => 2}
+    if condition[@type_of_turn] == nil
       "No Winner"
+    elsif player1.deck.rank_of_card_at(condition[@type_of_turn]) >
+          player2.deck.rank_of_card_at(condition[@type_of_turn])
+      @winner = @player1
+    else
+      @winner = @player2
     end
   end
 
@@ -65,4 +55,5 @@ class Turn
     end
     @spoils_of_war = []
   end
+
 end
