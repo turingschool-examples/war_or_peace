@@ -14,10 +14,11 @@ class GameTest < Minitest::Test
   assert_instance_of Game, new_game
   end
 
-  def test_that_instructions_appear_upon_start
-    skip
-    game = Game.new
+  def test_you_can_make_a_deck
 
+    game = Game.new
+    player1 = Player.new('Megan', deck1)
+    deck1 = Deck.new
 
   end
 end
