@@ -35,7 +35,7 @@ class Game
     while turn <= 1000000 do
       take_turn
       output_turn_results(turn)
-      break if has_lost
+      break if game_over
       if turn == 100000
         puts "---- DRAW ----"
         return
@@ -63,7 +63,7 @@ class Game
     end
   end
 
-  def has_lost
+  def game_over
     if @player1.has_lost?
       puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
       return true

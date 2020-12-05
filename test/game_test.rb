@@ -16,6 +16,7 @@ class GameTest < MiniTest::Test
 
     assert_instance_of Game, game
   end
+
   def test_get_wrong_answer_from_user
     card_generator = CardGenerator.new("cards.txt")
     card_generator.create_cards
@@ -37,7 +38,6 @@ class GameTest < MiniTest::Test
 
     output = true
     assert_equal output, game.get_answer("go")
-
   end
 
   def test_take_turn
@@ -63,16 +63,22 @@ class GameTest < MiniTest::Test
     assert_equal [card5, card6], game.player2.deck.cards
   end
 
-  def has_lost
+  def test_game_over
     card_generator = CardGenerator.new("cards.txt")
     card_generator.create_cards
     card_generator.create_decks
-    player1 = Player.new("Jenny", card_generator.deck1)
-    player2 = Player.new("Marisa", card_generator.deck2)
+    deck = Deck.new([])
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    deck2 = Deck.new(cards)
+    player1 = Player.new("Jenny", deck)
+    player2 = Player.new("Marisa", deck2)
     game = Game.new(player1, player2)
     game.start_game
 
-    assert_equal false, game.has_lost
+    assert_equal true, game.game_over
 
   end
 end
