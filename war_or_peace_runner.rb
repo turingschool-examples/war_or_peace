@@ -39,24 +39,50 @@ end
 deck1 = Deck.new(cards1)
 deck2 = Deck.new(cards2)
 
-#Player set up
+
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
-#Game set up
+  #Game set up
 turns = Turn.new(player1, player2)
-
 game = Game.new(turns)
-#GAME PLAY WITH TURN CLASS ONLY
 
 # game.start
-
-until game.turns.player1.deck.cards.empty? || game.turns.player2.deck.cards.empty?
-  winner = turns.winner
-      p turns.type
-      p turns.pile_cards
-      p turns.award_spoils(winner)
-      turns = Turn.new(player1, player2)
+  turn_index = 0
+5.times.map do
+  turn_index +=1
+  winner = game.turns.winner
+  win_name = winner.name
+  turns.pile_cards
+  turns.award_spoils(winner)
+    if turns.type == :basic
+        puts "Turn #{turn_index}: #{win_name} won 2 cards: #{turns.spoils_of_war[0]}. Megan has #{turns.player1.deck.cards.length}. Auroa has #{turns.player2.deck.cards.length}."
+    elsif turns.type == :war
+        puts "Turn #{turn_index}: WAR - #{win_name} won 6 cards"
+    else type == :mutually_assured_destruction
+        puts "Turn #{turn_index}: *mutually assured destruction* 6 cards removed from play"
     end
+
+    # while turn_index < 10 #|| game.turns.player1.deck.cards == [] || || game.turns.player2.deck.cards != []
+    # end
+  end
+
+
+  #   winner = game.turns.winner
+  #   win_name = winner.name
+  #   turns.award_spoils(winner)
+  #   turns = Turn.new(player1, player2)
+  #       if type == :basic
+  #         puts "#{win_name} won 2 cards"
+  #       elsif type == :war
+  #         puts "WAR - #{win_name} won 6 cards"
+  #       else type == :mutually_assured_destruction
+  #         puts "*mutually assured destruction* 6 cards removed from play"
+  #       end
+  #   until game.turns.player1.deck.cards != [] || game.turns.player2.deck.cards != []
+  #     break "GAME OVER"
+  #   end
+  # end
+
 
 
 
@@ -109,4 +135,3 @@ until game.turns.player1.deck.cards.empty? || game.turns.player2.deck.cards.empt
 #   turn.turn.winner = winner
 #   turn.turn.pile_cards
 #   turn.turn.award_spoils
-# end
