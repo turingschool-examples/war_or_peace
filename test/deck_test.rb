@@ -58,11 +58,28 @@ class DeckTest < Minitest::Test
   end
 
   def test_it_can_remove_cards
-    skip
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '5', 5)
+    card3 = Card.new(:club, '8', 8)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+    deck.remove_card
+
+    assert(deck.cards, card1)
+
   end
 
   def test_it_can_add_cards
-    skip
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '5', 5)
+    card3 = Card.new(:club, '8', 8)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+    card4 = Card.new(:spade, "Ace",14)
+    deck.add_card(card4)
+
+    assert(deck.cards, card1)
+    assert(deck.cards, card4)
   end
 
 end

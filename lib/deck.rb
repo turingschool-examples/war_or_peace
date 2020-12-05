@@ -29,8 +29,8 @@ class Deck
     cards.shift
   end
 
-  def add_card(new)
-    cards.push(new)
+  def add_card(new_card)
+    cards.push(new_card)
   end
 
 end
