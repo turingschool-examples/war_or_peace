@@ -32,4 +32,36 @@ class Turn
       end
     end
   end
+
+  def pile_cards
+    if type() == :basic
+      #@spoils_of_war << @player1.deck.cards[0]
+      #@spoils_of_war << @player2.deck.cards[0]
+      @spoils_of_war << @player1.deck.cards.shift
+      @spoils_of_war << @player2.deck.cards.shift
+    elsif type() == :war
+      # shoveling multiple items into the array at once
+      # eg. @spoils_of_war << @player1.deck.cards[0..2]
+      # was giving me problems. Should come back to this.
+      @spoils_of_war << @player1.deck.cards.shift
+      @spoils_of_war << @player1.deck.cards.shift
+      @spoils_of_war << @player1.deck.cards.shift
+      @spoils_of_war << @player2.deck.cards.shift
+      @spoils_of_war << @player2.deck.cards.shift
+      @spoils_of_war << @player2.deck.cards.shift
+    else
+      @player1.deck.cards.delete_at(0)
+      @player1.deck.cards.delete_at(0)
+      @player1.deck.cards.delete_at(0)
+      @player2.deck.cards.delete_at(0)
+      @player2.deck.cards.delete_at(0)
+      @player2.deck.cards.delete_at(0)
+    end
+  end
+
+  def reward_spoils(winner)
+    spoils_of_war.each do |card|
+      winner.deck.cards << card
+    end
+  end
 end
