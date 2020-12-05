@@ -1,20 +1,9 @@
-require './lib/card'
-require './lib/deck'
-require './lib/player'
-require './lib/turn'
-require './lib/card_generator'
-require '.lib/interaction'
-#what method is actually called when turn.start happens?
-# turn.start
-#
-#
-# puts "Welcome to War! (or Peace) This game will be played with 52 cards."
-# puts "The players today are Megan and Aurora."
-# puts "Type 'GO' to start the game!""
-# "------------------------------------------------------------------"
-#
-# input = gets.chomp.downcase
-# if input == 'go'
+require_relative './card'
+require_relative './deck'
+ require_relative './player'
+ require_relative './turn'
+ require_relative './card_generator'
+ require_relative './interaction'
 
 card1 = Card.new('2', 'Heart', 2)
 card2 = Card.new('3', 'Heart', 3)
@@ -36,17 +25,21 @@ deck1 = Deck.new(cards1)
 deck2 = Deck.new(cards2)
 @player1 = Player.new('clarisa', deck1)
 @player2 = Player.new('Aurora', deck2)
+@counter = 1
 
 
 def start
-  counter = 1
   @interaction = Interaction.new
   @interaction.intro
-  while counter < 101
+  while @counter < 101
     turn = Turn.new(@player1, @player2)
     type = turn.type
-    winner = turn.winner
+    @winner = turn.winner
     turn.pile_cards
+    #every time it checks type it also re-calculates
+    #use memoization stop querying and changing the value type.winner
+    #can be done by sperating out calculate_type and show_type methods.
+    #use memoization on show_type methods to assure you only call calculate_type once.
     if type == :basic
       @interaction.basic
     elsif type == :war
@@ -55,7 +48,7 @@ def start
       @interaction.mutually_assured_destruction
     end
     turn.award_spoils(winner)
-    counter += 1
+    @counter += 1
   end
 end
 

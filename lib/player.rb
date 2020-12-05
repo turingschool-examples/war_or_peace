@@ -7,14 +7,10 @@ class Player
   end
 
   def has_lost?
-    if @losses != 0
+    if deck.cards.length == 0
       true
     else
       false
-    end
-  end
-
-  def lose
-    @losses += 1
+    end 
   end
 end

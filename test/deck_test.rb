@@ -59,7 +59,7 @@ class DeckTest < Minitest::Test
     card4 = Card.new(:club, '5', 5)
     cards = [card1, card2, card3, card4]
     deck = Deck.new(cards)
-    assert_equal deck.percent_high_ranking, 0.5
+    assert_equal 50, deck.percent_high_ranking
   end
 
   def test_it_can_remove_cards
@@ -80,6 +80,7 @@ class DeckTest < Minitest::Test
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
     card4 = Card.new(:club, '5', 5)
+    assert_equal 3, deck.cards.length
     deck.add_card(card4)
 
     assert_equal deck.cards.length, 4

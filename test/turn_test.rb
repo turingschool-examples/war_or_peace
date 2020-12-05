@@ -139,7 +139,7 @@ class TurnTest < Minitest::Test
 
   end
 
-  def test_there_can_be_a_winner_of_MAD
+  def test_there_can_be_no_winner_of_MAD
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
@@ -261,16 +261,51 @@ class TurnTest < Minitest::Test
     deck2 = Deck.new(cards2)
     player2 = Player.new('Aurora', deck2)
     turn = Turn.new(player1, player2)
+
     assert_equal :war, turn.type
     winner = turn.winner
+    assert_equal 4, player2.deck.cards.length
+    assert_equal 4, player1.deck.cards.length
     turn.pile_cards
     assert_equal 1, player2.deck.cards.length
     assert_equal 1, player1.deck.cards.length
     turn.award_spoils(winner)
 
     assert_equal 1, player1.deck.cards.length
-    assert_equal 7, turn.player2.deck.cards.length
+    assert_equal 7, player2.deck.cards.length
 
   end
 
+  def test_cards_can_be_awarded_MAD
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:spade, 'Ace', 14)
+    card4 = Card.new(:diamond, '4', 4)
+
+    cards = [card1, card2, card3, card4]
+    deck = Deck.new(cards)
+    player1 = Player.new('Clarisa', deck)
+
+    card5 = Card.new(:club, 'Queen', 12)
+    card6 = Card.new(:heart, '8', 8)
+    card7 = Card.new(:diamond, 'Ace', 14)
+    card8 = Card.new(:diamond, '5', 5)
+
+    cards2 = [card5, card6, card7, card8]
+    deck2 = Deck.new(cards2)
+    player2 = Player.new('Aurora', deck2)
+    turn = Turn.new(player1, player2)
+
+    assert_equal :mutually_assured_destruction, turn.type
+    winner = turn.winner
+    assert_equal 4, player2.deck.cards.length
+    assert_equal 4, player1.deck.cards.length
+    turn.pile_cards
+    assert_equal 1, player2.deck.cards.length
+    assert_equal 1, player1.deck.cards.length
+    turn.award_spoils(winner)
+
+    assert_equal 1, player1.deck.cards.length
+    assert_equal 1, player2.deck.cards.length
+  end
 end
