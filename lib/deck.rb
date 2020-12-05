@@ -1,12 +1,9 @@
 class Deck
   attr_reader :cards,
-              # :high_ranking_cards,
               :face_cards
 
   def initialize(cards)
     @cards = cards
-    # @high_ranking_cards = high_ranking_cards
-    @face_cards = []
   end
 
   def rank_of_card_at(num)
@@ -18,7 +15,7 @@ class Deck
 
     cards.each do |card|
       if card.rank > 10
-      face_cards << card
+        face_cards << card
       end
     end
     face_cards
