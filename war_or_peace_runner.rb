@@ -24,21 +24,28 @@ suits.map do |suit|
     end
   end
 end
+
 shuffle_deck = standard_deck.shuffle
-p card_count = shuffle_deck.count / 2
-p shuffle_deck.slice(card_count)
-p shuffle_deck.slice(26)
+deck1 = []
+deck2 = []
+shuffle_deck.each_with_index do |card, index|
+  if index < 26
+    deck1 << card
+  else
+    deck2 << card
+  end
+end
 
-#game set up
-deck1 = Deck.new([card1, card2, card5, card8])
-deck2 = Deck.new([card3, card4, card6, card7])
-player1 = Player.new("Megan", deck1)
-player2 = Player.new("Aurora", deck2)
-
-turn = Turn.new(player1, player2)
-game = Game.new(turn)
-
-# game = Game.new(turns)
-p game.welcome
-
-gets chomp
+# game set up
+# deck1 = Deck.new([card1, card2, card5, card8])
+# deck2 = Deck.new([card3, card4, card6, card7])
+# player1 = Player.new("Megan", deck1)
+# player2 = Player.new("Aurora", deck2)
+#
+# turn = Turn.new(player1, player2)
+# game = Game.new(turn)
+#
+# # game = Game.new(turns)
+# p game.welcome
+#
+# gets chomp
