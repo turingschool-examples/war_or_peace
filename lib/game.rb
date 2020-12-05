@@ -8,10 +8,17 @@ class Game
     @turns = turns
   end
 
+  def welcome
+    p "Welcome to War! (or Peace) This game will be played with 52 cards.
+The players today are Megan and Aurora.
+Type 'GO' to start the game!
+------------------------------------------------------------------"
+  end
 
-
-  def play
-    if turns.player1.deck.cards  == []
+  def game_winner
+    if turns.player1.deck.cards  == [] && turns.player2.deck.cards == []
+      p "This is mathmatically near impossible, you have accomplished something rare! It is impressive, but everyone LOSES."
+    elsif turns.player1.deck.cards  == []
       p "*~*~*~* Aurora has won the game! *~*~*~*"
     elsif turns.player2.deck.cards == []
       p "*~*~*~* Megan has won the game! *~*~*~*"
