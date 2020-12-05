@@ -31,7 +31,7 @@ class Turn
     # p "=> (type 'GO' when you are ready for WAR!)"
     # p gets.chomp
   end
-  
+
   def winner
     if type == :basic
       if @player1.deck.cards[0].rank > @player2.deck.cards[0].rank
@@ -75,7 +75,10 @@ class Turn
     if type == :basic || type == :war
       @spoils_of_war.map do |spoil|
         winner.deck.cards << spoil
+        @spoils_of_war = []
       end
+
     end
+
   end
 end
