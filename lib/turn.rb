@@ -2,7 +2,7 @@ class Turn
 
   attr_reader :player1,
               :player2,
-              :spoils_of_war
+              :spoils_of_war,
               :turn_winner
 
   def initialize(player1, player2)
@@ -26,19 +26,19 @@ class Turn
     end
   end
 
-  def rank_get(player, index)
+  def get_rank(player, index)
     player.deck.rank_of_card_at(index)
   end
 
   def winner
     if type == :basic
-      if rank_get(@player1, 0) > rank_get(@player2, 0)
+      if get_rank(@player1, 0) > get_rank(@player2, 0)
         @player1
       else
         @player2
       end
     elsif type == :war
-      if rank_get(@player1, 2) > rank_get(@player2, 2)
+      if get_rank(@player1, 2) > get_rank(@player2, 2)
         @player1
       else
         @player2
@@ -69,11 +69,16 @@ class Turn
           player.deck.remove_card
         end
       end
+      # replace 'No Winner' with nil so it can be tested in award_spoils
+      @turn_winner = nil
     end
   end
 
+  # 'unless type == :mutually_assured_destruction' just wouldn't work for this
   def award_spoils
-    winner.deck.cards << @spoils_of_war
-    winner.deck.cards = winner.deck.cards.flatten
+    if @turn_winner
+      @turn_winner.deck.cards << @spoils_of_war
+      @turn_winner.deck.cards = @turn_winner.deck.cards.flatten
+    end
   end
 end

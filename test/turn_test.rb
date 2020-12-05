@@ -295,7 +295,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_awards_spoils_war
-    skip
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -323,7 +322,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_awards_nothing_mad
-    skip
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
