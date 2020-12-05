@@ -208,8 +208,12 @@ class TurnTest < Minitest::Test
     winner = turn.winner
 
     turn.pile_cards
+    turn.award_spoils(winner)
 
     assert_equal [card1, card3], turn.spoils_of_war
+    assert_equal turn.spoils_of_war, turn.award_spoils(winner)
+    assert_equal deck1, player1.deck
+    assert_equal deck2, player2.deck
   end
 
     def test_can_pile_cards_for_war_type
@@ -232,8 +236,12 @@ class TurnTest < Minitest::Test
       winner = turn.winner
 
       turn.pile_cards
+      turn.award_spoils(winner)
 
       assert_equal [card1, card4, card2, card3, card5, card6], turn.spoils_of_war
+      assert_equal turn.spoils_of_war, turn.award_spoils(winner)
+      assert_equal deck1, player1.deck
+      assert_equal deck2, player2.deck
     end
 
     def test_can_pile_cards_for_mutually_assured_type

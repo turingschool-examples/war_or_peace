@@ -79,24 +79,26 @@ class Turn
     end
   end
 
+  def spoils
+    player1_spoils = spoils_of_war << player1.deck.remove_card
+    player2_spoils = spoils_of_war << player2.deck.remove_card
+    (player1_spoils + player2_spoils)
+  end
+
   def pile_cards
     if (type == :basic)
-      spoils_of_war << player1.deck.remove_card
-      spoils_of_war << player2.deck.remove_card
+      spoils
     elsif (type == :war)
-      spoils_of_war << player1.deck.remove_card
-      spoils_of_war << player2.deck.remove_card
-      spoils_of_war << player1.deck.remove_card
-      spoils_of_war << player2.deck.remove_card
-      spoils_of_war << player1.deck.remove_card
-      spoils_of_war << player2.deck.remove_card
-    else (type == :mutually_assured_destruction)
-      player1.deck.remove_card
-      player2.deck.remove_card
-      player1.deck.remove_card
-      player2.deck.remove_card
+      3.times do
+        spoils
+      end
+    else (type == :mutually_assured)
       player1.deck.remove_card
       player2.deck.remove_card
     end
+  end
+
+  def award_spoils(winner)
+    @spoils_of_war
   end
 end
