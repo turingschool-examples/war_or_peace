@@ -66,19 +66,26 @@ class Turn
       @player1.deck.cards.shift(3)
       @player2.deck.cards.shift(3)
     else type == :mutually_assured_destruction
+      @spoils_of_war = []
       @player1.deck.cards.shift(3)
       @player2.deck.cards.shift(3)
     end
   end
 
   def award_spoils (winner)
-    if type == :basic || type == :war
+    if type == :basic
       @spoils_of_war.map do |spoil|
         winner.deck.cards << spoil
         @spoils_of_war = []
       end
-
+    elsif type == :war
+      @spoils_of_war.map do |spoil|
+        winner.deck.cards << spoil
+        @spoils_of_war = []
+    else type == :mutually_assured_destruction
+      @spoils_of_war = []
     end
+  end
 
   end
 end
