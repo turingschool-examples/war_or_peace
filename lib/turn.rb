@@ -64,16 +64,9 @@ class Turn
 
   def award_spoils (winner)
     if type == :basic || type == :war
-      if winner == @player1
-        @spoils_of_war.map do |spoil|
-          @player1.deck.cards << spoil
-        end
-      elsif winner == @player2
-        @spoils_of_war.map do |spoil|
-          @player2.deck.cards << spoil
-        end
+      @spoils_of_war.map do |spoil|
+        winner.deck.cards << spoil
       end
     end
-
   end
 end
