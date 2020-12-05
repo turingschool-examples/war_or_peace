@@ -15,7 +15,9 @@ class Deck
   end
 
   def percent_high_ranking
-
+    cards.find_all do |card|
+      card.rank > 10
+      
   end
 
   def remove_card

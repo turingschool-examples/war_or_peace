@@ -37,7 +37,15 @@ class DeckTest < Minitest::Test
   end
 
   def test_it_has_high_rank_cards
-    skip
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '5', 5)
+    card3 = Card.new(:club, '8', 8)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+
+    assert(deck.high_ranking_cards, card1)
+    assert(deck.high_ranking_cards, card2)
+    assert(deck.high_ranking_cards, card3)
   end
 
   def test_percentage_of_high_cards
