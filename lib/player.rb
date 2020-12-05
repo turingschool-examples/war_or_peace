@@ -4,6 +4,13 @@ class Player
 
   def initialize(name, deck)
     @name = name
-    @deck = []
+    @deck = deck
+  end
+
+  def has_lost?
+    # cards.each do |card|
+    # if card.rank = 14
+    # return false
+    # end
   end
 end
