@@ -131,6 +131,20 @@ class TurnTest < Minitest::Test
     assert_equal "No Winner", mutually_assured_destruction_turn.winner
   end
 
+  def test_cards_used
+    margaret_deck = Deck.new([@queen_of_hearts, @queen_of_diamonds, @ten_of_diamonds])
+    jose_deck = Deck.new([@queen_of_spades, @five_of_clubs, @queen_of_clubs])
+
+    margaret = Player.new('Margaret', margaret_deck)
+    jose = Player.new('Jose', jose_deck)
+
+    war_turn = Turn.new(margaret, jose)
+    war_turn.pile_cards
+    war_turn.award_spoils(war_turn.winner)
+
+    assert_equal 6, war_turn.cards_used
+  end
+
   def test_pile_cards_basic
     margaret_deck = Deck.new([@queen_of_hearts])
     jose_deck = Deck.new([@ten_of_diamonds])

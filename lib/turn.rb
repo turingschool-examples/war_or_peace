@@ -25,6 +25,10 @@ class Turn
     @winner ||= calculate_winner
   end
 
+  def cards_used
+    @spoils_of_war.length
+  end
+
   def pile_cards
     # Move cards FROM players decks TO spoils_of_war (...or the void)
 
