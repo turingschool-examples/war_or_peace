@@ -27,7 +27,12 @@ class GameTest < Minitest::Test
     assert_equal player2, game.player2
   end
 
-  def test_create_turn
+  def test_start
+    player1 = Player.new('Megan', Deck.new([]))
+    player2 = Player.new('Aurora', Deck.new([]))
 
+    game = Game.new(player1, player2)
+
+    assert_instance_of(String, game.start)
   end
 end
