@@ -7,6 +7,7 @@ class Deck
     @cards = cards
   end
 
+
   def rank_of_card_at(i) (cards)
     @cards[i].rank
   end
@@ -17,7 +18,7 @@ class Deck
         p card.class
       end
   end
-
+  
   def high_ranking_cards
     @cards.select {|card| card.rank >=12}
 
