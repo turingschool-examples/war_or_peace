@@ -1,3 +1,6 @@
+require './lib/card'
+require './lib/player'
+require './lib/deck'
 require 'pry'
 
 class Turn
@@ -23,7 +26,7 @@ class Turn
 
   def winner
     if type == :mutually_assured_destruction
-     "No Winner"
+     puts "No Winner"
    elsif type == :war
      return player1 if player1.deck.cards[2].rank > player2.deck.cards[2].rank
      return player2 if player1.deck.cards[2].rank < player2.deck.cards[2].rank
@@ -51,7 +54,9 @@ class Turn
   end
 
   def award_spoils
-    self.winner.deck.cards << @spoils_of_war
-    winner.deck.cards.flatten!
+    unless type == :mutually_assured_destruction
+      self.winner.deck.cards << @spoils_of_war
+      winner.deck.cards.flatten!
+    end
   end
 end

@@ -25,7 +25,21 @@ class GameTest < Minitest::Test
   end
 
   def test_it_exists
-    new_game = Game.new(@turn)
+    new_game = Game.new(@player1, @player2)
     assert_instance_of Game, new_game
+  end
+
+  def test_it_can_read_players
+    new_game = Game.new(@player1, @player2)
+
+    assert_equal @player1, new_game.player1
+    assert_equal @player2, new_game.player2
+  end
+
+  def test_it_can_start_game
+    new_game = Game.new(@player1, @player2)
+    new_game.start
+    binding.pry
+
   end
 end
