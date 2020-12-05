@@ -5,10 +5,14 @@ class Deck
     @cards = cards
   end
 
-  def rank_of_card_at(card)
+  def rank_of_card_at(index)
     # this method will take one argument that represents the index location of a
     # card to be used and will return the rank of that card.
-    @cards.slice(card).rank
+    # @cards.slice(index).rank
+    if @cards[index].nil?
+      return 0
+    end
+    @cards[index].rank
   end
 
   def high_ranking_cards

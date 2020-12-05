@@ -6,7 +6,20 @@ class Turn
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
-    @spoils_of_war = spoils_of_war
+    @spoils_of_war = []
+    @type = :basic,
+            :war,
+            :mutually_assured_destruction
+  end
+
+  def type
+    if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+      :basic
+    elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
+      :mutually_assured_destruction
+    else
+      :war
+    end
   end
 
 end
