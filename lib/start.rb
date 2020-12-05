@@ -12,22 +12,48 @@ class Start
   end
 
   def start
-    counter = 0
-    while counter < 1
-      # require "pry"; binding.pry
+    counter = 1
+    while counter < 10
+
       winner = turn.winner
 
       if turn.type == :basic
-        p "Turn #{counter + 1}: #{winner.name} won 2 cards"
+        p "Turn #{counter}: #{winner.name} won 2 cards"
       elsif turn.type == :war
-        p "Turn #{counter + 1}: WAR - #{winner.name} won 6 cards"
+        p "Turn #{counter}: WAR - #{winner.name} won 6 cards"
       else
-        p "Turn #{counter + 1}: *mutually_assued_destruction* 6 cards removed from play"
+        p "Turn #{counter}: *mutually_assued_destruction* 6 cards removed from play"
       end
       turn.pile_cards
       turn.award_spoils(winner)
-      # require "pry"; binding.pry
+      check_lost([turn.player1, turn.player2])
+      check_draw(counter)
       counter += 1
+    end
+  end
+
+
+
+  def check_draw(counter)
+    if counter == 10
+      p "---- DRAW ----"
+    end
+  end
+
+  def check_lost(players)
+    players.each do |player|
+      if player.lost? == true
+        player.lost = true
+        display_win(players)
+      end
+    end
+  end
+
+  def display_win(players)
+    players.each do |player|
+      if player.lost != true
+        p "#{player.name} has won the game"
+      end
     end
   end
 end

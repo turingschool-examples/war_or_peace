@@ -25,6 +25,8 @@ class Turn
     result_of_type = self.type
     player1_rank_0 = @player1.deck.rank_of_card_at(0)
     player2_rank_0 = @player2.deck.rank_of_card_at(0)
+
+    require "pry"; binding.pry
     player1_rank_2 = @player1.deck.rank_of_card_at(2)
     player2_rank_2 = @player2.deck.rank_of_card_at(2)
 
