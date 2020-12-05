@@ -1,7 +1,5 @@
-require 'pry'
-
 class Deck
-  attr_reader :cards
+  attr_accessor :cards
 
   def initialize(card_array)
     @cards = card_array

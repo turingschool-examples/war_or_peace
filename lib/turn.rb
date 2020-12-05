@@ -1,5 +1,3 @@
-require 'pry'
-
 class Turn
 
   attr_reader :player1,
@@ -40,7 +38,7 @@ class Turn
         @player2
       end
     elsif type == :war
-      if rank_get(@player1, 2) > rank_get(player2, 2)
+      if rank_get(@player1, 2) > rank_get(@player2, 2)
         @player1
       else
         @player2
@@ -51,7 +49,6 @@ class Turn
   end
 
   def pile_cards
-    @turn_winner = winner
     players = [@player1, @player2]
     if type == :basic
       players.each do |player|
@@ -64,7 +61,7 @@ class Turn
         3.times do
           player.deck.remove_card
         end
-        @spoils_of_war.flatten!
+        @spoils_of_war = @spoils_of_war.flatten
       end
     elsif type == :mutually_assured_destruction
       players.each do |player|
@@ -74,9 +71,9 @@ class Turn
       end
     end
   end
-  #returning winner after 1st card removed (basic)
+
   def award_spoils
-    @turn_winner.deck.cards << @spoils_of_war
-    @turn_winner.deck.cards.flatten!
+    winner.deck.cards << @spoils_of_war
+    winner.deck.cards = winner.deck.cards.flatten
   end
 end
