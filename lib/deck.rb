@@ -6,26 +6,24 @@ class Deck
     @suits = [:heart, :diamond, :spade, :club]
   end
 
-
   def new_deck
-        @suits.map do |suit|
-          (2..14).each do |card|
-            if card <= 10
-              @cards << Card.new(suit, card.to_s, card)
-            elsif card == 11
-              @cards << Card.new(suit, "Jack", card)
-            elsif card == 12
-              @cards << Card.new(suit, "Queen", card)
-            elsif card == 13
-              @cards << Card.new(suit, "King", card)
-            elsif card == 14
-              @cards << Card.new(suit, "Ace", card)
-            end
-          @cards = @cards.shuffle
-          end
+    @suits.map do |suit|
+      (2..14).map do |card|
+        if card <= 10
+          @cards << Card.new(suit, card.to_s, card)
+        elsif card == 11
+          @cards << Card.new(suit, "Jack", card)
+        elsif card == 12
+          @cards << Card.new(suit, "Queen", card)
+        elsif card == 13
+          @cards << Card.new(suit, "King", card)
+        elsif card == 14
+          @cards << Card.new(suit, "Ace", card)
         end
+      @cards = @cards.shuffle
+      end
+    end
   end
-
 
   def rank_of_card_at(number)
     @cards[number].rank

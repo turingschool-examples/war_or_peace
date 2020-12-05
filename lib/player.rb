@@ -7,6 +7,8 @@ class Player
     @deck = deck
   end
 
+  
+
   def has_lost?
     if @deck.cards.length == 52
       "You Won!!!"

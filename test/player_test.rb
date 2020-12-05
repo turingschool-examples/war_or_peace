@@ -72,13 +72,16 @@ class PlayerTest < Minitest::Test
     assert player.has_lost?
   end
 
-  def test_player_can_create_shuffled_deck
+  def test_players_can_create_shuffled_decks
 
-    deck = Deck.new
-    deck.new_deck
-    player = Player.new('Megan', deck)
-    # player.new_deck
-    # require "pry"; binding.pry
-    assert_equal 52, player.deck.cards.length
+    deck1 = Deck.new
+    deck2 = Deck.new
+    deck1.new_deck
+    deck2.new_deck
+    player1 = Player.new('Megan', deck1)
+    player2 = Player.new('Aurora', deck2)
+
+    assert_equal 52, player1.deck.cards.length
+    assert_equal 52, player2.deck.cards.length
   end
 end
