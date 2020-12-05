@@ -71,4 +71,14 @@ class PlayerTest < Minitest::Test
     player.deck.remove_card
     assert player.has_lost?
   end
+
+  def test_player_can_create_shuffled_deck
+
+    deck = Deck.new
+    deck.new_deck
+    player = Player.new('Megan', deck)
+    # player.new_deck
+    # require "pry"; binding.pry
+    assert_equal 52, player.deck.cards.length
+  end
 end

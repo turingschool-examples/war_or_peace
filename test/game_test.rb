@@ -17,8 +17,10 @@ class GameTest < Minitest::Test
   def test_you_can_make_a_deck
 
     game = Game.new
-    player1 = Player.new('Megan', deck1)
     deck1 = Deck.new
-
+    player1 = Player.new('Megan', deck1)
+    game.new_deck
+    require "pry"; binding.pry
+    assert_equal 52, game.deck.length
   end
 end
