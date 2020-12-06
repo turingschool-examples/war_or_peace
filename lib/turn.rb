@@ -20,28 +20,30 @@ class Turn
   end
 
   def winner
-    if self.type == :basic && (player1.deck.rank_of_card_at(0)) >
-    (player2.deck.rank_of_card_at(0)) || self.type == :war &&
+    if type == :mutually_assured_destruction
+    "nobody wins this round!"
+      player1 != winner
+      player2 != winner
+    elsif type == :basic && (player1.deck.rank_of_card_at(0)) >
+    (player2.deck.rank_of_card_at(0)) || type == :war &&
     (player1.deck.rank_of_card_at(2)) > (player2.deck.rank_of_card_at(2))
       player1
-    elsif self.type == :basic && (player2.deck.rank_of_card_at(0)) >
-    (player1.deck.rank_of_card_at(0)) || self.type == :war &&
+    elsif type == :basic && (player2.deck.rank_of_card_at(0)) >
+    (player1.deck.rank_of_card_at(0)) || type == :war &&
     (player2.deck.rank_of_card_at(2)) > (player1.deck.rank_of_card_at(2))
       player2
-    else self.type == :mutually_assured_destruction
-      "nobody wins this round!"
     end
   end
 
   def pile_cards
 
-    if self.type == :basic
+    if type == :basic
       spoils_of_war << player1.deck.cards.shift
       spoils_of_war << player2.deck.cards.shift
-    elsif self.type == :war
+    elsif type == :war
       3.times{spoils_of_war << player1.deck.cards.shift}
       3.times{spoils_of_war << player2.deck.cards.shift}
-    else self.type == :mutually_assured_destruction
+    else type == :mutually_assured_destruction
       3.times{player1.deck.cards.shift}
       3.times{player2.deck.cards.shift}
     end
@@ -49,12 +51,14 @@ class Turn
 
   def award_spoils
     if player1 == winner
-      self.pile_cards
+      pile_cards
+      spoils_of_war.shuffle!
       player1.deck.cards << spoils_of_war
       player1.deck.cards.flatten!
       spoils_of_war.clear
     elsif player2 == winner
-      self.pile_cards
+      pile_cards
+      spoils_of_war.shuffle!
       player2.deck.cards << spoils_of_war
       player2.deck.cards.flatten!
       spoils_of_war.clear
