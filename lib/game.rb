@@ -65,8 +65,6 @@ class Game
         turn.pile_cards
         turn.award_spoils(winner)
         turn.turn_result
-        puts @player1.deck.cards.length 
-        puts @player2.deck.cards.length
       end
       turn.end_result
     end
