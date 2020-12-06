@@ -61,9 +61,11 @@ class Game
       split_cards
       until Turn.turn_count == 1_000_000 ||(@player1.has_lost? || @player2.has_lost?) do
         turn = Turn.new(@player1, @player2)
-        winner = turn.winner
+        winner = turn.winner 
         turn.pile_cards
         turn.award_spoils(winner)
+        puts "Megan card count: #{@player1.deck.cards.length}"
+        puts "Aurora card count: #{@player2.deck.cards.length}"
         turn.turn_result
       end
       turn.end_result

@@ -40,6 +40,7 @@ class Turn
   end
 
   def mutually_assured_destruction?
+    return :loss if player1.deck.cards.length < 3 || player2.deck.cards.length < 3
     @player1.deck.rank_of_card_at(0) ==
     @player2.deck.rank_of_card_at(0) &&
     @player1.deck.rank_of_card_at(2) ==
@@ -103,6 +104,8 @@ class Turn
   def end_result
     if @@turn_count == 1_000_000
       puts "--- Draw ---"
+    elsif type == :mutually_assured_destruction
+        puts "Game Over"
     else
       puts "*~*~*~* #{winner.name} has won the game! *~*~*~*"
     end

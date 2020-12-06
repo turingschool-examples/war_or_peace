@@ -9,11 +9,11 @@ class Player
   end
 
   def card_count
-    @deck.cards.length 
+    @deck.cards.length
   end
 
   def has_lost?
-    if @deck.cards.length < 3
+    if @deck.cards.empty?
       @has_lost = true
     else
       @has_lost
