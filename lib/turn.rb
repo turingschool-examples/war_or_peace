@@ -42,7 +42,7 @@ class Turn
   def pile_cards
     #need to fix this method/winner. when war is called all cards get sent
       if type == :mutually_assured_destruction
-      2.times do
+      3.times do
       @spoils_of_war << @player1.deck.remove_card
       @spoils_of_war << @player2.deck.remove_card
     end

@@ -172,7 +172,7 @@ class TurnTest < Minitest::Test
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
       turn.pile_cards
-      require "pry"; binding.pry
+      # require "pry"; binding.pry
       turn.award_spoils(player2)
       assert_equal 8, player2.deck.cards.length
     end

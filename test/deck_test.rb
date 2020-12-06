@@ -93,12 +93,4 @@ class DeckTest < Minitest::Test
     deck.add_card(card2)
     assert_equal 50.0, deck.percent_high_ranking
   end
-
-  def test_you_can_split_a_deck
-    deck = Deck.new
-    deck.new_deck
-    deck.split_deck
-    assert_equal 26, deck.half_deck1.length
-    assert_equal 26, deck.half_deck2.length
-  end
 end
