@@ -51,7 +51,6 @@ class Game
   end
 
   def start 
-
     puts "Welcome to War! (or Peace)!\nThis game will be played with 52 cards.\nThe players today are Megan and Aurora.\nType 'GO' to start the game!\n----------------------------------------"
 
     print ">"
@@ -66,6 +65,8 @@ class Game
         turn.pile_cards
         turn.award_spoils(winner)
         turn.turn_result
+        puts @player1.deck.cards.length 
+        puts @player2.deck.cards.length
       end
       turn.end_result
     end

@@ -64,7 +64,7 @@ class TurnTest < Minitest::Test
 
     assert_equal :war, turn.type
   end
-  
+
   def test_which_player_wins_turn_war_type
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
     deck2 = Deck.new([@card4, @card3, @card6, @card7])
@@ -115,7 +115,7 @@ class TurnTest < Minitest::Test
 
     assert_equal :mutually_assured_destruction, turn.type
   end
-  
+
   def test_which_player_wins_mutual_assured_destruction
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
     deck2 = Deck.new([@card4, @card3, @card5, @card7])
@@ -159,7 +159,7 @@ class TurnTest < Minitest::Test
     @turn.pile_cards
     @turn.award_spoils(@winner)
 
-    assert_equal nil, @turn.turn_result
-    assert_equal nil, @turn.end_result
+    assert_nil @turn.turn_result
+    assert_nil @turn.end_result
   end
 end
