@@ -91,3 +91,61 @@ class TurnTest < Minitest::Test
     assert_equal p2, turn.player2
     assert_equal [], turn.spoils_of_war
   end
+
+  def test_type
+    deck1 = build_deck_basic("Megan")
+    deck2 = build_deck_basic("Aurora")
+    p1 = Player.new('Megan', deck1)
+    p2 = Player.new('Aurora', deck2)
+    turn = Turn.new(p1, p2)
+
+    assert_equal :basic, turn.type
+  end
+
+  def test_winner_basic
+    deck1 = build_deck_basic("Megan")
+    deck2 = build_deck_basic("Aurora")
+    p1 = Player.new('Megan', deck1)
+    p2 = Player.new('Aurora', deck2)
+    turn = Turn.new(p1, p2)
+    turn.type
+    assert_equal p1, turn.winner
+  end
+
+  def test_pile_cards_basic
+    card1 = Card.new(:heart, 'Jack', 11)
+    card3 = Card.new(:heart, '9', 9)
+    deck1 = build_deck_basic("Megan")
+    deck2 = build_deck_basic("Aurora")
+    p1 = Player.new('Megan', deck1)
+    p2 = Player.new('Aurora', deck2)
+    turn = Turn.new(p1, p2)
+    turn.type
+    winner = turn.winner
+    turn.pile_cards
+
+    assert_equal [card1,card3], turn.spoils_of_war
+  end
+
+  def test_award_spoils_basic
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10)
+    card3 = Card.new(:heart, '9', 9)
+    card4 = Card.new(:diamond, 'Jack', 11)
+    card5 = Card.new(:heart, '8', 8)
+    card6 = Card.new(:diamond, 'Queen', 12)
+    card7 = Card.new(:heart, '3', 3)
+    card8 = Card.new(:diamond, '2', 2)
+    deck1 = build_deck_basic("Megan")
+    deck2 = build_deck_basic("Aurora")
+    p1 = Player.new('Megan', deck1)
+    p2 = Player.new('Aurora', deck2)
+    turn = Turn.new(p1, p2)
+    turn.type
+    winner = turn.winner
+    turn.pile_cards
+    turn.award_spoils(winner)
+
+    assert_equal [card2,card5,card8,card1,card3] , p1.deck.cards
+    assert_equal [card4,card6,card7] , p2.deck.cards
+  end
