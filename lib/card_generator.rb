@@ -1,9 +1,10 @@
 require 'csv'
-require '.lib/card'
+require './card'
 
 
 class CardGenerator
-  attr_accessor :file_name, :cards
+  attr_reader :file_name
+  attr_accessor :cards
   def initialize(file_name)
     @file_name = file_name
     @cards = []
@@ -12,9 +13,3 @@ class CardGenerator
     end
   end
 end
-
-
-cards = CardGenerator.new('cards.csv').cards
-
-p cards
-p cards.length
