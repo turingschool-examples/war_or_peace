@@ -12,10 +12,12 @@ class Turn
     @turn_winner = winner
   end
 
+  # handle messy rank-fetching for type determination
   def rank_test(index)
     @player1.deck.rank_of_card_at(index) == @player2.deck.rank_of_card_at(index)
   end
 
+  # get turn type using helper method
   def type
     if rank_test(0) && rank_test(2)
       :mutually_assured_destruction
@@ -26,10 +28,12 @@ class Turn
     end
   end
 
+  # get player card rank at specified index
   def get_rank(player, index)
     player.deck.rank_of_card_at(index)
   end
 
+  # compare card ranks at specific indexes to determine winner
   def winner
     if type == :basic
       if get_rank(@player1, 0) > get_rank(@player2, 0)
@@ -48,6 +52,7 @@ class Turn
     end
   end
 
+  # collect forfeited cards for reassignment, remove same from player decks
   def pile_cards
     players = [@player1, @player2]
     if type == :basic
