@@ -31,6 +31,13 @@ class Turn
     if type == :basic
       @spoils_of_war << player1.deck.cards.shift
       @spoils_of_war << player2.deck.cards.shift
+    elsif type == :war
+      @spoils_of_war << player1.deck.cards.shift
+      @spoils_of_war << player1.deck.cards.shift
+      @spoils_of_war << player1.deck.cards.shift
+      @spoils_of_war << player2.deck.cards.shift
+      @spoils_of_war << player2.deck.cards.shift
+      @spoils_of_war << player2.deck.cards.shift
     end
   end
 
