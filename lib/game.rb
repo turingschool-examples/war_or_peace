@@ -28,9 +28,9 @@ class Game
         return p "---- DRAW ----"
       else
         if turns.type == :basic
-          if turns.player1.deck.cards.empty? == true
+          if turns.player1.has_lost? == true
             return print "*~*~*~* Aurora has won the game! *~*~*~*"
-          elsif turns.player2.deck.cards.empty? == true
+          elsif turns.player2.has_lost? == true
             return print "*~*~*~* Megan has won the game! *~*~*~*"
           else
             turns.winner
@@ -38,9 +38,7 @@ class Game
             turns.pile_cards
             turns.award_spoils (winner)
             win_name = winner.name
-            d1 = turns.player1.deck.cards.length
-            d2 = turns.player2.deck.cards.length
-            p "Turn #{turn_index}: #{win_name} won 2 cards. Megan has #{d1}. Aurora has #{d2}"
+            p "Turn #{turn_index}: #{win_name} won 2 cards."
           end
         elsif turns.type == :war
           if turns.player1.deck.cards.length < 3
@@ -52,9 +50,7 @@ class Game
             turns.pile_cards
             turns.award_spoils(winner)
             win_name = winner.name
-            d1 = turns.player1.deck.cards.length
-            d2 = turns.player2.deck.cards.length
-            puts "Turn #{turn_index}: WAR - #{win_name} won 6 cards. Megan has #{d1}. Aurora has #{d2}"
+            puts "Turn #{turn_index}: WAR - #{win_name} won 6 cards."
           end
         else turns.type == :mutually_assured_destruction
           if turns.player1.deck.cards.length < 3
