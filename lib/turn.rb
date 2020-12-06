@@ -43,11 +43,13 @@ attr_reader :player1,
       @player1.deck.remove_card
       @player2.deck.remove_card
     elsif type == :war
-      @spoils << player1.deck.remove_card
-      @spoils << player2.deck.remove_card
-      @spoils << player1.deck.remove_card
-      @spoils << player2.deck.remove_card
-    else type == :basic
+      @spoils_of_war << @player1.deck.remove_card
+      @spoils_of_war << @player2.deck.remove_card
+      @spoils_of_war << @player1.deck.remove_card
+      @spoils_of_war << @player2.deck.remove_card
+      @spoils_of_war << @player1.deck.remove_card
+      @spoils_of_war << @player2.deck.remove_card
+    else
       @spoils_of_war << @player1.deck.remove_card
       @spoils_of_war << @player2.deck.remove_card
     end
