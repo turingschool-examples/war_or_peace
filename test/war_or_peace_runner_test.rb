@@ -16,5 +16,6 @@ class RunnerTest < Minitest::Test
 
 end
 
-#check that deck1 and deck2 don't share cards
-# intersection (ar1 & ar2).any?
+# can't run these tests but intersection is a cool comparator
+# check that deck1 and deck2 don't share cards
+# intersection - assert_equal [], (deck1 & deck2)

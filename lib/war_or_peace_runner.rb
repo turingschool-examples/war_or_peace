@@ -4,8 +4,8 @@ require_relative 'player'
 require_relative 'turn'
 require_relative 'game'
 
-
-
+# method to convert rank values to value strings
+# for passing to Card constructor
 def normalize_value(rank)
   face_values = ['Jack', 'Queen', 'King']
   if rank == 1
@@ -17,6 +17,7 @@ def normalize_value(rank)
   end
 end
 
+# build a standard deck
 game_deck = []
 suits = [:diamond, :heart, :spade, :club]
 ranks = [1,2,3,4,5,6,7,8,9,10,11,12,13]
@@ -32,8 +33,9 @@ deck1 = shuffled_deck[0..25]
 deck2 = shuffled_deck[26..51]
 # Run commands to initialize state for game
 
-# player1 = Player.new('April', deck1)
-# player2 = Player.new('July', deck2)
-#
-# game = Game.new(player1, player2)
-#
+player1 = Player.new('April', deck1)
+player2 = Player.new('July', deck2)
+
+
+game = Game.new
+game.start 
