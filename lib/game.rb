@@ -23,42 +23,51 @@ end
 
 def game_play
   #method for game mechanics
-    until @counter == 10000 do
+    until @counter == 1000000 do
       @counter += 1
 
-        if turn.player1.has_lost?
+        #decide the winner
+        if turn.player1.has_lost? == true
           p "*~*~*~* Aurora has won the game! *~*~*~*"
-        elsif turn.player1.has_lost?
+        elsif turn.player2.has_lost? == true
           p "*~*~*~* Megan has won the game! *~*~*~*"
         end
+
         #mutual destruction
         if turn.type == :mutually_assured_destruction
           p "Turn #{@counter}: *mutually assured destruction* 6 cards removed from play"
           turn.pile_cards
+          turn.spoils_of_war.shuffle
 
         #war
       elsif turn.type == :war && turn.winner == turn.player1
-          p "Turn #{@counter}: WAR - Aurora won 6 cards"
-          turn.pile_cards
-          turn.award_spoils(turn.player1)
-        elsif turn.type == :war && turn.winner == turn.player2
           p "Turn #{@counter}: WAR - Megan won 6 cards"
           turn.pile_cards
+          turn.spoils_of_war.shuffle
+          turn.award_spoils(turn.player1)
+        elsif turn.type == :war && turn.winner == turn.player2
+          p "Turn #{@counter}: WAR - Aurora won 6 cards"
+          turn.pile_cards
+          turn.spoils_of_war.shuffle
           turn.award_spoils(turn.player2)
 
         #basic
       elsif turn.type == :basic && turn.winner == turn.player1
-          p "Turn #{@counter}: Aurora won 2 cards"
+          p "Turn #{@counter}: Megan won 2 cards"
           turn.pile_cards
+          turn.spoils_of_war.shuffle
           turn.award_spoils(turn.player1)
       elsif turn.type == :basic && turn.winner == turn.player2
-        p "Turn #{@counter}: Megan won 2 cards"
+        p "Turn #{@counter}: Aurora won 2 cards"
         turn.pile_cards
+        turn.spoils_of_war.shuffle
         turn.award_spoils(turn.player2)
       end
 
-        # require "pry";
-        return "---- DRAW ----" if @counter == 1000001
+        #if no winner
+        if @counter == 1000000
+        p "---- DRAW ----"
+      end
     end
   end
 end

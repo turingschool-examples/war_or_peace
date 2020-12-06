@@ -6,7 +6,7 @@ require './lib/player'
 require './lib/turn'
 
 class TurnTest < Minitest::Test
-  def test_that_it_exists
+  def test_that_turn_exists
 
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
@@ -172,7 +172,6 @@ class TurnTest < Minitest::Test
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
       turn.pile_cards
-      # require "pry"; binding.pry
       turn.award_spoils(player2)
       assert_equal 8, player2.deck.cards.length
     end
@@ -192,6 +191,7 @@ class TurnTest < Minitest::Test
           player1 = Player.new("Megan", deck1)
           player2 = Player.new("Aurora", deck2)
           turn = Turn.new(player1, player2)
+          require "pry"; binding.pry
           assert_equal :mutually_assured_destruction, turn.type
           assert_equal "No Winner", turn.winner
         end
