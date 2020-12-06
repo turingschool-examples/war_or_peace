@@ -46,7 +46,7 @@ card7 = Card.new(:club, "10", 10)
 card8 = Card.new(:spade, "10", 10)
 
 card_winner_test = [card3, card3]
-card_mad_test = [card3, card3]
+card_mad_test = [card8, card8]
 
 
 
@@ -67,18 +67,6 @@ turn_index = 0
     turn_index +=1
     turns = Turn.new(player1, player2)
     game = Game.new(turns)
-#   if turns.player1.deck.cards.empty? == true
-#     return print "1*~*~*~* Aurora has won the game! *~*~*~*"
-#   # if turns.player1.deck.cards.length < 2 && turns.player1.deck.cards[0].rank < turns.player2.deck.cards[0].rank
-#   #   return print "2*~*~*~* Aurora has won the game! *~*~*~*"
-#   # elsif turns.player1.deck.cards.length < 2 && turns.player1.deck.cards[0].rank > turns.player2.deck.cards[0].rank
-#   #   return print "*~*~*~* Megan has won the game! *~*~*~*"
-# elsif turns.player2.deck.cards.empty? == true
-#     return print "*~*~*~* Megan has won the game! *~*~*~*"
-#   # elsif turns.player2.deck.cards.length < 2 && turns.player2.deck.cards[0].rank < turns.player1.deck.cards[0].rank
-#   #   return print "*~*~*~* Megan has won the game! *~*~*~*"
-#   # elsif turns.player2.deck.cards.length < 2 && turns.player2.deck.cards[0].rank > turns.player1.deck.cards[0].rank
-#   #   return print "3*~*~*~* Aurora has won the game! *~*~*~*"
   if turn_index > 1000000
     return p "---- DRAW ----"
   else
@@ -122,7 +110,7 @@ turn_index = 0
         d1 = turns.player1.deck.cards.length
         d2 = turns.player2.deck.cards.length
         puts "Turn #{turn_index}: *mutually assured destruction* 6 cards removed from play. Megan has #{d1}. Aurora has #{d2}"
-      end 
+      end
     end
   end
 end
