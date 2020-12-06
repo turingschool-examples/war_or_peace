@@ -2,6 +2,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/game'
 
 suits = [:hearts, :diamonds, :spades, :clubs]
 
@@ -17,17 +18,20 @@ suits.map do |suit|
   end
 end
 
-#p cards
+3.times{cards.shuffle!}
 
-cards.shuffle!
+deck1 = Deck.new(cards.shift(26))
+deck2 = Deck.new(cards.shift(26))
 
-deck1 = cards.shift(26)
-deck2 = cards.shift(26)
+player1 = Player.new("Rick", deck1)
+player2 = Player.new("Morty", deck2)
 
-player1 = Player.new("Dwight", deck1)
-player2 = Player.new("Jim", deck2)
+turn = Turn.new(player1, player2)
+game = Game.new(turn)
 
-p player1
-p player1.deck.count
-p player2
-p player2.deck.count
+game.start
+
+reply = gets
+if reply == "GO" || "Go" || "go"
+  game.play
+end
