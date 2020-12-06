@@ -16,6 +16,9 @@ class Turn
   def calculate_type
     if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
       :basic
+      #This is where I would code out the logic for the edge case where
+      #rank_of_card_at is called on an array that doesn't have a card at
+      #index 2 and throws a method on nil class error.
     elsif (player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)) && (player1.deck.rank_of_card_at(2) != player2.deck.rank_of_card_at(2))
       :war
     else (player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)) && (player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2))
