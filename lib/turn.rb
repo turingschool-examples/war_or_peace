@@ -36,7 +36,6 @@ class Turn
   end
 
   def pile_cards
-
     if type == :basic
       spoils_of_war << player1.deck.cards.shift
       spoils_of_war << player2.deck.cards.shift
