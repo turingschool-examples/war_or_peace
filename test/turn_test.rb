@@ -316,7 +316,7 @@ class TurnTest < Minitest::Test
     turn.award_spoils
 
     winner_deck = [card7, card1, card2, card5, card4, card3, card6]
-
+    # assertions allow for shuffled @spoils_of_war
     assert_equal winner_deck, player2.deck.cards
     assert_equal [card8], player1.deck.cards
   end

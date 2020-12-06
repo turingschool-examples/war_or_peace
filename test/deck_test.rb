@@ -29,7 +29,7 @@ class DeckTest < Minitest::Test
     assert_equal 10, @deck.rank_of_card_at(2)
   end
 
-  def test_high_ranking_cards_will_only_be_returned
+  def test_only_high_ranking_cards_will_be_returned
     assert [@card1], @deck.high_ranking_cards
     refute_equal [@card2, @card3], @deck.high_ranking_cards
   end
