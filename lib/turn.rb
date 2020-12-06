@@ -20,7 +20,9 @@ class Turn
   end
 
   def set_type
-    if mutually_assured_destruction?
+    if player1.deck.cards.length < 3 || player2.deck.cards.length < 3
+      :loss
+    elsif mutually_assured_destruction?
       :mutually_assured_destruction
     elsif war?
       :war 
@@ -33,20 +35,19 @@ class Turn
     @player1.deck.rank_of_card_at(0) !=
     @player2.deck.rank_of_card_at(0)
   end
-
+  
   def war?
     @player1.deck.rank_of_card_at(0) == 
     @player2.deck.rank_of_card_at(0)
   end
-
+  
   def mutually_assured_destruction?
-    return :loss if player1.deck.cards.length < 3 || player2.deck.cards.length < 3
     @player1.deck.rank_of_card_at(0) ==
     @player2.deck.rank_of_card_at(0) &&
     @player1.deck.rank_of_card_at(2) ==
     @player2.deck.rank_of_card_at(2)
   end
-
+  
   def set_winner
     if type == :basic
       if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
@@ -60,8 +61,14 @@ class Turn
       else 
         @player2
       end
-    else type == :mutually_assured_destruction 
-      return 'No Winner'
+    elsif type == :mutually_assured_destruction 
+      puts "No Winner"
+    elsif type == :loss 
+      if player1.deck.cards.length < 3
+        @player2 
+      elsif player2.deck.cards.length < 3
+        @player1
+      end
     end
   end
 
@@ -77,14 +84,19 @@ class Turn
         @spoils_of_war << player1.deck.remove_card
         @spoils_of_war << player2.deck.remove_card
       end
-    else
+    elsif type == :basic
       @spoils_of_war << player1.deck.remove_card
       @spoils_of_war << player2.deck.remove_card
+    else
+      2.times do
+        @player1.deck.remove_card
+        @player2.deck.remove_card
+      end
     end
   end
 
   def award_spoils(winner)
-    unless :mutually_assured_destruction == type
+    unless :mutually_assured_destruction == type 
       @spoils_of_war.each do |card|
         winner.deck.add_card(card)
       end
@@ -96,16 +108,16 @@ class Turn
       puts "Turn #{@@turn_count}: #{winner.name} won #{spoils_of_war.length} cards"
     elsif type == :war 
       puts "Turn #{@@turn_count}: WAR - #{winner.name} won #{spoils_of_war.length} cards"
+    elsif type == :mutually_assured_destruction
+      puts "Turn #{@@turn_count}: *mutually assured destruction* 6 cards removed from play"
     else
-      puts "Turn #{@@turn_count}: *mutually assured destruction* #{spoils_of_war.length} cards removed from play"
+      puts "Player has run out of cards!"
     end
   end
 
   def end_result
     if @@turn_count == 1_000_000
       puts "--- Draw ---"
-    elsif type == :mutually_assured_destruction
-        puts "Game Over"
     else
       puts "*~*~*~* #{winner.name} has won the game! *~*~*~*"
     end

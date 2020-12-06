@@ -159,7 +159,7 @@ class TurnTest < Minitest::Test
     @turn.pile_cards
     @turn.award_spoils(@winner)
 
-    assert_equal nil, @turn.turn_result
-    assert_equal nil, @turn.end_result
+    assert_nil @turn.turn_result
+    assert_nil @turn.end_result
   end
 end
