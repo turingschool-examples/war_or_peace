@@ -3,7 +3,6 @@ require 'minitest/pride'
 require './lib/deck'
 require './lib/card'
 require './lib/player'
-require './lib/turn'
 require './lib/game'
 
 class GameTest < Minitest::Test
@@ -19,8 +18,8 @@ class GameTest < Minitest::Test
     card3 = Card.new(:heart, '9', 9)
     card4 = Card.new(:diamond, 'Jack', 11)
 
-    deck1 = [card1, card3]
-    deck2 = [card2, card4]
+    deck1 = Deck.new([card1, card3])
+    deck2 = Deck.new([card2, card4])
 
     player1 = Player.new('April', deck1)
     player2 = Player.new('July', deck2)
@@ -29,8 +28,8 @@ class GameTest < Minitest::Test
 
     assert_equal 'April', game.player1.name
     assert_equal 'July', game.player2.name
-    assert_equal [card1, card3], game.player1.deck
-    assert_equal [card2, card4], game.player2.deck
+    assert_equal [card1, card3], game.player1.deck.cards
+    assert_equal [card2, card4], game.player2.deck.cards 
   end
 
   def test_it_returns_player_name_in_win_output
