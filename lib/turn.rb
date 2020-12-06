@@ -19,41 +19,43 @@ class Turn
   end
 
   def winner
-    if self.type == :basic
+    if type == :basic
       if @player1.deck.cards[0].rank > @player2.deck.cards[0].rank
-        @player1
+        player1
       elsif @player1.deck.cards[0].rank < @player2.deck.cards[0].rank
-        @player2
+        player2
       end
 
-    elsif self.type == :war
+    elsif type == :war
       if @player1.deck.cards[2].rank > @player2.deck.cards[2].rank
-        @player1
+          # if @player1.deck.cards[2].rank > @player2.deck.cards[2].rank
+        player1
       elsif @player1.deck.cards[2].rank < @player2.deck.cards[2].rank
-        @player2
+        player2
       end
 
-    elsif self.type == :mutually_assured_destruction
-      "No Winner"
-    end
+    elsif type == :mutually_assured_destruction
+        "No Winner"
+      end
   end
 
   def pile_cards
-    if self.type == :basic
+    #need to fix this method/winner. when war is called all cards get sent
+      if type == :mutually_assured_destruction
+      2.times do
       @spoils_of_war << @player1.deck.remove_card
       @spoils_of_war << @player2.deck.remove_card
-
-    elsif self.type == :war
+    end
+  end
+      if type == :war
       3.times do
       @spoils_of_war << @player1.deck.remove_card
       @spoils_of_war << @player2.deck.remove_card
     end
-
-    elsif self.type == :mutually_assured_destruction
-        3.times do
-        @spoils_of_war << @player1.deck.remove_card
-        @spoils_of_war << @player2.deck.remove_card
-      end
+  end
+      if type == :basic
+      @spoils_of_war << @player1.deck.remove_card
+      @spoils_of_war << @player2.deck.remove_card
     end
   end
 

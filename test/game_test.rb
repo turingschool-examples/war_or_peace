@@ -15,10 +15,9 @@ class GameTest < Minitest::Test
     player2 = Player.new('Aurora', deck2)
     turn = Turn.new(player1, player2)
     new_game = Game.new(turn)
-
   assert_instance_of Game, new_game
   end
-#
+
   def test_you_can_return_a_winner
     skip
     deck1 = Deck.new

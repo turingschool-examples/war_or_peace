@@ -1,7 +1,9 @@
 class Game
-  attr_reader :turn
+  attr_reader :turn,
+              :counter
   def initialize(turn)
     @turn = turn
+    @counter = 0
   end
 
   def start
@@ -13,33 +15,50 @@ Type 'GO' to start the game!
   input = gets.chomp
   #gets users input and checks for lowercase
   if input.upcase != 'GO'
-    welcome
+    start
   elsif input.upcase == 'GO'
     game_play
   end
 end
 
-  #method for game mechanics
 def game_play
-    count = 0
-    while count < 10 do
-      count += 1
+  #method for game mechanics
+    until @counter == 10000 do
+      @counter += 1
 
-        if turn.type == :war
-          p "Turn #{count}: WAR - #{turn.winner.name} won 6 cards"
-
-        elsif turn.type == :basic
-            p "Turn #{count}: #{turn.winner.name} won 2 cards"
-
-          elsif turn.type == :mutually_assured_destruction
-            p "Turn #{count} *mutually assured destruction* 6 cards removed from play"
+        if turn.player1.has_lost?
+          p "*~*~*~* Aurora has won the game! *~*~*~*"
+        elsif turn.player1.has_lost?
+          p "*~*~*~* Megan has won the game! *~*~*~*"
         end
+        #mutual destruction
+        if turn.type == :mutually_assured_destruction
+          p "Turn #{@counter}: *mutually assured destruction* 6 cards removed from play"
+          turn.pile_cards
 
-        # break if player1.has_lost? || player2.has_lost?
-        # require "pry"; binding.pry
+        #war
+      elsif turn.type == :war && turn.winner == turn.player1
+          p "Turn #{@counter}: WAR - Aurora won 6 cards"
+          turn.pile_cards
+          turn.award_spoils(turn.player1)
+        elsif turn.type == :war && turn.winner == turn.player2
+          p "Turn #{@counter}: WAR - Megan won 6 cards"
+          turn.pile_cards
+          turn.award_spoils(turn.player2)
+
+        #basic
+      elsif turn.type == :basic && turn.winner == turn.player1
+          p "Turn #{@counter}: Aurora won 2 cards"
+          turn.pile_cards
+          turn.award_spoils(turn.player1)
+      elsif turn.type == :basic && turn.winner == turn.player2
+        p "Turn #{@counter}: Megan won 2 cards"
+        turn.pile_cards
+        turn.award_spoils(turn.player2)
       end
-    # counter = 0
-    #
-    #   while counter <= 100000
+
+        # require "pry";
+        return "---- DRAW ----" if @counter == 1000001
+    end
   end
 end
