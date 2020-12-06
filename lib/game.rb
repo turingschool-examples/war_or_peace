@@ -49,18 +49,9 @@ def game_play
           turn.pile_cards
           turn.spoils_of_war.shuffle
           turn.award_spoils(turn.winner)
-        # elsif turn.type == :basic && turn.winner == turn.player1
-        #     p "Turn #{@counter}: Megan won 2 cards"
-        #     turn.pile_cards
-        #     turn.spoils_of_war.shuffle
-        #     turn.award_spoils(turn.player1)
-      # elsif turn.type == :basic && turn.winner == turn.player2
-      #     p "Turn #{@counter}: Aurora won 2 cards"
-      #     turn.pile_cards
-      #     turn.spoils_of_war.shuffle
-      #     turn.award_spoils(turn.player2)
       end
 
+      #determine winner
       if turn.player1.has_lost? == true
        return puts "*~*~*~* Aurora has won the game! *~*~*~*"
      elsif turn.player2.has_lost? == true
