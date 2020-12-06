@@ -9,8 +9,8 @@ def start
 
   cards = CardGenerator.new(file_name).cards
   cards = cards.shuffle
-  cards1 = cards[0..26]
-  cards2 = cards[27..-1]
+  cards1 = cards[0..25]
+  cards2 = cards[26..-1]
   deck1 = Deck.new(cards1)
   deck2 = Deck.new(cards2)
   player1 = Player.new('clarisa', deck1)
@@ -23,7 +23,7 @@ def start
        ------------------------------------------------------------------"
   input = gets.chomp
   if input == "GO"
-    while counter < 100000 do
+    while counter < 1000001 do
       turn = Turn.new(player1, player2)
       type = turn.type
       winner = turn.winner
@@ -39,6 +39,11 @@ def start
       end
 
       counter += 1
+
+      if counter == 1000001
+        puts "---- DRAW ----"
+      end
+
 
       if player1.has_lost? || player2.has_lost?
         puts "*~*~*~* #{winner.name} has won the game! *~*~*~*"
