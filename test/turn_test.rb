@@ -30,6 +30,7 @@ class TurnTest < Minitest::Test
     assert_equal @player2, @turn.player2
 
     assert_equal [], @turn.spoils_of_war
+    assert_instance_of Integer, Turn.turn_count
   end
 
   def test_turn_type_basic
@@ -152,5 +153,13 @@ class TurnTest < Minitest::Test
 
     assert_equal player1.deck, player1.deck
     assert_equal player2.deck, player2.deck
+  end
+
+  def test_turn_result
+    @turn.pile_cards
+    @turn.award_spoils(@winner)
+
+    assert_equal nil, @turn.turn_result
+    assert_equal nil, @turn.end_result
   end
 end
