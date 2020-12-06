@@ -30,29 +30,29 @@ class Game
       turn.pile_cards
 
       if @player1.has_lost?
-        puts " *~*~*~* #{@player2.name} has won the game! *~*~*~*"
+        p " *~*~*~* #{@player2.name} has won the game! *~*~*~*"
         break
       elsif @player2.has_lost?
-        puts "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+        p "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
         break
       end
 
       if turn.type == :basic
          winner = turn.winner
-         puts "Turn #{turn_counter}: #{winner.name} won 2 cards"
+         p "Turn #{turn_counter}: #{winner.name} won 2 cards"
          turn.award_spoils(winner)
       elsif turn.type == :war
         winner = turn.winner
-        puts "Turn #{turn_counter}: WAR - #{winner.name} won 6 cards"
+        p "Turn #{turn_counter}: WAR - #{winner.name} won 6 cards"
         turn.award_spoils(winner)
       elsif turn.type == :mutually_assured_destruction
-        puts "Turn #{turn_counter}: *mutually assured destruction 6 cards removed from play"
+        p "Turn #{turn_counter}: *mutually assured destruction 6 cards removed from play"
       end
 
       turn_counter += 1
 
       if turn_counter == 1000000
-        puts "---- DRAW ----"
+        p "---- DRAW ----"
         break
       end
     end
