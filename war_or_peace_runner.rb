@@ -7,4 +7,4 @@ deck = CardGenerator.new(filename).cards
 
 new_game = Game.new(deck)
 
-new_game.start
+new_game.start("Angel", "Amber")

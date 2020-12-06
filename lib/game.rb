@@ -74,8 +74,8 @@ class Game
     @turns.last.pile_cards
   end
 
-  def start
-    create_two_players("Angel", "Levi")
+  def start(player1_name, player2_name)
+    create_two_players(player1_name, player2_name)
     greeting
     while !game_over?
       add_turn
@@ -95,7 +95,7 @@ class Game
   end
 
   def greeting
-    puts "Welcome to War! (or Peace) This game will be played with 52 cards."
+    puts "Welcome to War! (or Peace) This game will be played with #{@deck.length} cards."
     puts "The players today are #{@player1.name} and #{@player2.name}."
     puts "Type 'GO' to start the game!"
     50.times do
