@@ -75,7 +75,7 @@ class GameTest < Minitest::Test
 
     assert_equal false, game.game_over?
 
-    23.times do
+    24.times do
       deck1.remove_card
     end
 
