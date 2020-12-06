@@ -75,6 +75,9 @@ class Game
   end
 
   def start(player1_name, player2_name)
+    if @deck.length < 52
+      return puts "**Error** You only have #{@deck.length} card(s). Need a full deck (52 cards) to play."
+    end
     create_two_players(player1_name, player2_name)
     greeting
     while !game_over?
