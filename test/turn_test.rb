@@ -276,10 +276,10 @@ class TurnTest < Minitest::Test
     turn.award_spoils(winner)
 
     assert_equal [], turn.spoils_of_war
-    assert winner.deck.cards.include?(card4)
-    assert winner.deck.cards.include?(card6)
-    assert winner.deck.cards.include?(card7)
-    assert winner.deck.cards.include?(card1)
-    assert winner.deck.cards.include?(card3)
+    assert_equal true, winner.deck.cards.include?(card4)
+    assert_equal true, winner.deck.cards.include?(card6)
+    assert_equal true, winner.deck.cards.include?(card7)
+    assert_equal true, winner.deck.cards.include?(card1)
+    assert_equal true, winner.deck.cards.include?(card3)
   end
 end
