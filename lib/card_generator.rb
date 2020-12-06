@@ -30,4 +30,12 @@ class CardGenerator
       'Ace' => 14
     }
   end
+
+  def make_standard_deck
+    suits.each do |suit|
+      ranks.each do |value, rank|
+        full_card_deck << Card.new(suit, "#{value}", rank)
+      end
+    end
+  end
 end
