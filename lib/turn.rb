@@ -1,3 +1,7 @@
+require './lib/deck'
+require './lib/card'
+require './lib/player'
+
 class Turn
 attr_reader :player1,
             :player2,
@@ -7,6 +11,7 @@ attr_reader :player1,
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
+    @winner = ""
   end
 
   def type
@@ -24,12 +29,13 @@ attr_reader :player1,
       @winner = @player2
     elsif @player2.has_lost? == true
       @winner = @player1
-    elsif type == :basic
+    elsif self.type == :basic
       if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
         @winner = @player1
-      else @winner = @player2
+      else
+        @winner = @player2
       end
-    elsif type == :war
+    elsif self.type == :war
       if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
         @winner = @player1
       else @winner = @player2
@@ -39,6 +45,7 @@ attr_reader :player1,
   end
 
   def pile_cards
+    @winner = self.winner
     if type == :mutually_assured_destruction
       @player1.deck.remove_card
       @player2.deck.remove_card
@@ -60,10 +67,12 @@ attr_reader :player1,
   end
 
   def award_spoils(winner)
-    @winner = winner
-    @spoils_of_war.map do |spoil|
-      winner.deck.cards << spoil
+    if @winner == player2 || @winner == player1
+      @winner.deck.cards.concat @spoils_of_war
+    else
+      p "No spoils to award"
     end
     @spoils_of_war.clear
   end
+
 end
