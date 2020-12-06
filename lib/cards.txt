@@ -11,7 +11,6 @@ Jack, Heart, 11
 Queen, Heart, 12
 King, Heart, 13
 Ace, Heart, 14
-
 2, Diamond, 2
 3, Diamond, 3
 4, Diamond, 4
@@ -25,7 +24,6 @@ Jack, Diamond, 11
 Queen, Diamond, 12
 King, Diamond, 13
 Ace, Diamond, 14
-
 2, Spade, 2
 3, Spade, 3
 4, Spade, 4
@@ -39,7 +37,6 @@ Jack, Spade, 11
 Queen, Spade, 12
 King, Spade, 13
 Ace, Spade, 14
-
 2, Club, 2
 3, Club, 3
 4, Club, 4

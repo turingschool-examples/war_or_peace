@@ -1,12 +1,14 @@
-
 class CardGenerator
-  attr_reader :filename
+  attr_reader :filename,
+              :array
   def initialize(filename)
-    @file_name = filename
+    @filename = filename
+    @array = []
   end
 
-  def read_files
-    # @filename = File.new "cards.txt"
-    # @filename = File.open("cards.txt", "r")
+  def cards
+    filename.each do |file|
+      @array << file
+    end
   end
 end

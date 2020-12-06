@@ -12,6 +12,7 @@
  end
 
  def test_for_file
+   # skip
    filename = File.new "cards.txt"
    filename = File.open("cards.txt", "r")
    card_generator = CardGenerator.new(filename)
@@ -19,11 +20,10 @@
  end
 
  def test_for_cards_in_file
-   # skip
+   skip
    filename = File.new "cards.txt"
-   filename = File.open("cards.txt", "r")
-   card_generator = CardGenerator.new(filename)
+   filename = File.open("cards.txt", 'r')
    cards = CardGenerator.new(filename).cards
- assert_equal 52, cards.length
+   assert_equal 52, cards.length
  end
 end
