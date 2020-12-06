@@ -29,6 +29,6 @@ class Deck
   end
 
   def remove_card
-    remove_card = cards.delete_at(0)
+    cards.delete_at(0)
   end
 end
