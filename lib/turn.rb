@@ -66,7 +66,7 @@ attr_reader :player1,
     end
   end
 
-  def award_spoils(winner)
+  def award_spoils
     if @winner == player2 || @winner == player1
       @winner.deck.cards.concat @spoils_of_war
     else

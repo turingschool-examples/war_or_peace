@@ -241,13 +241,13 @@ class TurnTest < Minitest::Test
     turn = Turn.new(player1, player2)
     winner = turn.winner
     turn.pile_cards
-    turn.award_spoils(winner)
+    turn.award_spoils
 
     assert_equal [card2, card5, card8, card1, card3], turn.player1.deck.cards
     # assert_equal [card4, card6, card7], turn.player2.deck.cards
   end
 
-  def test_winner_when_type_is_war
+  def test_award_spoils_when_type_is_war
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -264,7 +264,7 @@ class TurnTest < Minitest::Test
     turn = Turn.new(player1, player2)
     winner = turn.winner
     turn.pile_cards
-    turn.award_spoils(winner)
+    turn.award_spoils
 
     assert_equal [card7, card1, card4, card2, card3, card5, card6], turn.player2.deck.cards
   end
@@ -286,7 +286,7 @@ class TurnTest < Minitest::Test
     turn = Turn.new(player1, player2)
     winner = turn.winner
     turn.pile_cards
-    turn.award_spoils(winner)
+    turn.award_spoils
 
     assert_equal [], turn.spoils_of_war
   end
