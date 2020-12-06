@@ -28,18 +28,14 @@ class GameTest < Minitest::Test
 
   end
 
-  def test_start_game
+  def test_game_can_take_turns
     game = Game.new
-    game.start
+    game.deal
+    game.take_turn
+    game.take_turn
+    game.take_turn
 
-    assert_equal 26, game.player1.deck.cards.count
-    assert_equal 26, game.player2.deck.cards.count
-  end
-
-  def test_game_can_take_turn
-    game = Game.new
-
-
+    assert_equal 3, game.round_count
   end
 
 

@@ -24,8 +24,9 @@ class Game
   end
 
   def start
-    # make_deck
-    deal
+    until gets.chomp.upcase == 'GO'
+      puts "Please type 'go' to start"
+    end
   end
 
   def take_turn

@@ -8,11 +8,9 @@ The players today are #{game.player1.name} and #{game.player2.name}.
 Type 'GO' to start the game!
 ------------------------------------------------------------------
 """
-until gets.chomp.upcase == 'GO'
-  puts "Please type 'go' to start"
-end
 
 game.start
+game.deal
 
 loop do
   game.take_turn
