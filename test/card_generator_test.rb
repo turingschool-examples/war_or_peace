@@ -11,12 +11,11 @@ class CardGeneratorTest < Minitest::Test
   end
 
   def test_it_can_make_full_deck
-    file_name = 'card_list.csv'
+    file_name = './lib/cards.csv'
     cards = CardGenerator.new(file_name).cards
 
     assert_equal 52, cards.count
   end
-
 
 
 end

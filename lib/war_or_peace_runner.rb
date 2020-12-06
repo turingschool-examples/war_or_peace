@@ -5,7 +5,7 @@ require_relative './turn'
 require_relative './card_generator'
 
 def start
-  file_name = 'card_list.csv'
+  file_name = './lib/cards.csv'
 
   cards = CardGenerator.new(file_name).cards
   cards = cards.shuffle
@@ -17,14 +17,13 @@ def start
   player2 = Player.new('Aurora', deck2)
   counter = 1
 
-
   puts "Welcome to War! (or Peace) This game will be played with 52 cards.
        The players today are Megan and Aurora.
        Type 'GO' to start the game!
        ------------------------------------------------------------------"
   input = gets.chomp
   if input == "GO"
-    while counter < 10000 do
+    while counter < 100000 do
       turn = Turn.new(player1, player2)
       type = turn.type
       winner = turn.winner
@@ -44,7 +43,6 @@ def start
       if player1.has_lost? || player2.has_lost?
         puts "*~*~*~* #{winner.name} has won the game! *~*~*~*"
       end
-
     end
   else
     puts "Okay, lets player agon another time!"

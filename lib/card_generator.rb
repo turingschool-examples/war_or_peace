@@ -1,5 +1,5 @@
 require 'csv'
-require './card'
+require_relative './card'
 
 
 class CardGenerator
@@ -13,3 +13,9 @@ class CardGenerator
     end
   end
 end
+
+
+# file_name = 'cards.csv'
+# cards = CardGenerator.new(file_name).cards
+#
+# p cards
