@@ -23,7 +23,6 @@ class Deck
   end
 
   def high_ranking_total
-    require "pry"; binding.pry
     cards.count.to_f
   end
 

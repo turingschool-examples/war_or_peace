@@ -20,7 +20,7 @@ class Turn
 
   def type_mutually_assured?
     if ((card_rank(player1, 0) == card_rank(player2, 0)) &&
-       (card_rank(player1, 2) == card_rank(player2, 2)))
+        (card_rank(player1, 2) == card_rank(player2, 2)))
        true
     end
   end
@@ -99,6 +99,6 @@ class Turn
   end
 
   def award_spoils(winner)
-    @spoils_of_war
+    winner.deck.cards << spoils_of_war
   end
 end

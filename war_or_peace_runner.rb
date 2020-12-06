@@ -2,6 +2,7 @@ require './lib/turn'
 require './lib/player'
 require './lib/deck'
 require './lib/card'
+require './lib/game'
 
 deck = Deck.new ([card1 = Card.new(:heart, '2', 2),
                   card2 = Card.new(:heart, '3', 3),
@@ -56,18 +57,22 @@ deck = Deck.new ([card1 = Card.new(:heart, '2', 2),
                   card51 = Card.new(:diamond, 'King', 13),
                   card52 = Card.new(:diamond, 'Ace', 14)])
 
-deck1 = Deck.new([card1, card2, card5, card8])
-deck2 = Deck.new([card3, card4, card6, card7])
+shuffle_deck = deck.cards.shuffle
+
+deck1 = Deck.new(shuffle_deck[0..25])
+deck2 = Deck.new(shuffle_deck[26..51])
 
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
-# Inside of this file, write the code to do the following:
-# - Create 52 Cards (A standard deck)
-# - Put those cards into two Decks (some randomness would be nice here!)
-# - Create two players with the Decks you created
-# - Start the game using a new method called start
-# - This method will need to be included in a class - it is up to you which
-#   class to include it in - either existing or new
-p "Welcome to War! (or Peace) This game will be played with 52 cards."
-p "The players today are #{player1.name} and #{player2.name}."
-p "Type 'GO' to start the game!"
+
+start_game = Game.new(player1, player2)
+
+start_game.start_welcome
+
+go = $stdin.gets.chomp.upcase
+
+if go == 'GO'
+  start_game.start
+else
+  p "Type GO to start!"
+end
