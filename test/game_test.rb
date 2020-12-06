@@ -24,4 +24,7 @@ class GameTest < Minitest::Test
 
     assert_instance_of Game, new_game
   end
+
+  def test_each_player_has_cards
+
 end
