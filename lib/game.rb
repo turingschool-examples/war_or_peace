@@ -9,15 +9,16 @@ class Game
   def start
     #this method receives user input to 'start' game
     puts "Welcome to War! (or Peace) This game will be played with 52 cards.
-The players today are Megan and Aurora.
-Type 'GO' to start the game!
-------------------------------------------------------------------"
-  input = gets.chomp
-  #gets users input and checks for lowercase
-  if input.upcase != 'GO'
-    start
-  elsif input.upcase == 'GO'
-    game_play
+    The players today are Megan and Aurora.
+    Type 'GO' to start the game!
+    ------------------------------------------------------------------"
+
+    #gets users input and checks for lowercase
+    input = gets.chomp
+    if input.upcase != 'GO'
+      start
+    elsif input.upcase == 'GO'
+      game_play
   end
 end
 

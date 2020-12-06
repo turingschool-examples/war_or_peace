@@ -20,7 +20,7 @@ class Deck
         elsif card == 14
           @cards << Card.new(suit, "Ace", card)
         end
-      @cards = @cards.shuffle
+        @cards = @cards.shuffle
       end
     end
   end

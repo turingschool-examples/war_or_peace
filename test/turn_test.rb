@@ -173,7 +173,7 @@ class TurnTest < Minitest::Test
       turn = Turn.new(player1, player2)
       turn.pile_cards
       turn.award_spoils(player2)
-      assert_equal 8, player2.deck.cards.length
+      assert_equal 7, player2.deck.cards.length
     end
 
         def test_mutually_assured_destruction
@@ -191,7 +191,8 @@ class TurnTest < Minitest::Test
           player1 = Player.new("Megan", deck1)
           player2 = Player.new("Aurora", deck2)
           turn = Turn.new(player1, player2)
-          assert_equal :mutually_assured_destruction, turn.type
-          assert_equal "No Winner", turn.winner
+          turn.pile_cards
+          assert_equal 1, player1.deck.cards.length
+          assert_equal 1, player2.deck.cards.length
         end
       end
