@@ -9,31 +9,28 @@ class Turn
   end
 
   def type
-    if @player1.deck.cards[0].rank == @player2.deck.cards[0].rank && @player1.deck.cards[2].rank == @player2.deck.cards[2].rank
+    if @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
       :mutually_assured_destruction
-    elsif @player1.deck.cards[0].rank != @player2.deck.cards[0].rank
-       :basic
-    elsif @player1.deck.cards[0].rank == @player2.deck.cards[0].rank
+    elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
        :war
-    # elsif @player1.deck.cards[0].rank == nil || @player2.deck.cards[0].rank == nil
-    #    :game_over
+    elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+       :basic
     end
   end
 
   def winner
     if type == :basic
-      if @player1.deck.cards[0].rank > @player2.deck.cards[0].rank
-        player1
-      elsif @player1.deck.cards[0].rank < @player2.deck.cards[0].rank
-        player2
+      if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
+        @player1
+      elsif @player1.deck.rank_of_card_at(0) < @player2.deck.rank_of_card_at(0)
+        @player2
       end
 
     elsif type == :war
-      if @player1.deck.cards[2].rank > @player2.deck.cards[2].rank
-          # if @player1.deck.cards[2].rank > @player2.deck.cards[2].rank
-        player1
-      elsif @player1.deck.cards[2].rank < @player2.deck.cards[2].rank
-        player2
+      if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
+        @player1
+      elsif @player1.deck.rank_of_card_at(2) < @player2.deck.rank_of_card_at(2)
+        @player2
       end
 
     elsif type == :mutually_assured_destruction
@@ -42,7 +39,6 @@ class Turn
   end
 
   def pile_cards
-    #need to fix this method/winner. when war is called all cards get sent
       if type == :mutually_assured_destruction
       3.times do
       @spoils_of_war << @player1.deck.remove_card
@@ -62,6 +58,9 @@ class Turn
   end
 
   def award_spoils(winner)
+    if type == :mutually_assured_destruction
+      return
+    end
     winner.deck.cards << @spoils_of_war
     winner.deck.cards = winner.deck.cards.flatten
     @spoils_of_war.clear

@@ -26,7 +26,11 @@ class Deck
   end
 
   def rank_of_card_at(number)
-    @cards[number].rank
+    if @cards[number].nil?
+      return 0
+    else
+      @cards[number].rank
+    end
   end
 
   def high_ranking_cards
