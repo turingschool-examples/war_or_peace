@@ -31,6 +31,19 @@ class Game
     start
   end
 
+  def turn_output(turn_type, turn_counter, turn_winner)
+    if turn_type == :basic
+      p "Turn #{turn_counter}: #{turn_winner} won 2 cards"
+    elsif turn_type == :war
+      p "Turn #{turn_counter}: WAR - #{turn_winner} won 6 cards"
+    else
+      p "Turn #{turn_counter}: *mutually assured destruction* 6 cards removed from play"
+  end
+
+  def win_output(player)
+    p "*~*~*~* #{player} has won the game! *~*~*~*"
+  end
+
   def game_loop
     turn_counter = 1
     while turn_counter <= 1000000
@@ -57,18 +70,5 @@ class Game
       end
       turn_counter += 1
     end
-  end
-
-  def turn_output(turn_type, turn_counter, turn_winner)
-    if turn_type == :basic
-      p "Turn #{turn_counter}: #{turn_winner} won 2 cards"
-    elsif turn_type == :war
-      p "Turn #{turn_counter}: WAR - #{turn_winner} won 6 cards"
-    else
-      p "Turn #{turn_counter}: *mutually assured destruction* 6 cards removed from play"
-  end
-
-  def win_output(player)
-    p "*~*~*~* #{player} has won the game! *~*~*~*"
   end
 end
