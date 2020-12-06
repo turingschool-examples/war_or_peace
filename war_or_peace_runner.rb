@@ -83,11 +83,4 @@ player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
 require "pry"; binding.pry
 
-# def start
-  p "Welcome to War! (or Peace) This game will be played with 52 cards."
-  p "The players today are #{player1.name} and #{player2.name}."
-  p "Type 'GO' to start the game!"
-  p "------------------------------------------------------------------"
-# end
-#
-# start
+turn.start
