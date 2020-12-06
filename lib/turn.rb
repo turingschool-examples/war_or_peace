@@ -1,3 +1,4 @@
+require './lib/card'
 require './lib/deck'
 require './lib/player'
 class Turn
@@ -55,4 +56,8 @@ def winner
       end
     end
   end
+
+  def award_spoils(winner)
+    winner.deck.cards << spoils_of_war
+end
 end
