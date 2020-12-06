@@ -38,7 +38,7 @@ class TurnTest < Minitest::Test
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
-    require "pry"; binding.pry
+    # require "pry"; binding.pry
     assert_equal :basic, turn.type
   end
 end
