@@ -73,7 +73,7 @@ def winner
       end
     end
   end
-  def award_spoils(winner)
-    winner.deck.cards << spoils_of_war
+  def award_spoils_of_war(winner)
+    turn.winner.deck.cards << spoils_of_war
   end
 end

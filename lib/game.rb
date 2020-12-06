@@ -54,7 +54,7 @@ class Game
       counter +=1
       type = turn.type
       determine_winner = turn.winner
-      turn.award_spoils(determine_winner)
+      turn.award_spoils_of_war(determine_winner)
 
       if turn.player1.has_lost == true || turn.loser == turn.player1.name
          p "*~*~*~* Aurora has won the game! *~*~*~*"
