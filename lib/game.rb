@@ -33,4 +33,8 @@ class Game
   def initialize(turn)
     @turn = turn
   end
-  
+
+  def start_message
+    p "Welcome to War! (or Peace) This game will be played with 52 cards."
+  end
+end

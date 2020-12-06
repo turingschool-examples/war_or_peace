@@ -155,7 +155,7 @@ class TurnTest < Minitest::Test
   turn.type
   turn.winner
   turn.pile_cards
-  turn.award_spoils
-  assert_equal 1, turn.player1.deck.cards.count
+
+  assert_equal 3, turn.player1.deck.cards.count
   end
 end
