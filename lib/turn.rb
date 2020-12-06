@@ -41,7 +41,7 @@ class Turn
     elsif type == :war
       winner_war
     else  type == :mutually_assured_destruction
-       No Winner
+       p "No Winner"
     end
   end
 
