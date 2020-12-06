@@ -13,6 +13,8 @@ class RunnerTest < Minitest::Test
     assert_equal '5', normalize_value(5)
     assert_equal 'Queen', normalize_value(12)
   end
+
 end
 
-# test player decks don't share any cards?
+#check that deck1 and deck2 don't share cards
+# intersection (ar1 & ar2).any?

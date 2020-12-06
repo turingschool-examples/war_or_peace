@@ -1,5 +1,3 @@
-require 'pry'
-
 class Player
   attr_reader :name
   attr_accessor :deck
