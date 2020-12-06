@@ -33,15 +33,16 @@ class Game
 
   def turn_output(turn_type, turn_counter, turn_winner)
     if turn_type == :basic
-      p "Turn #{turn_counter}: #{turn_winner} won 2 cards"
+      p "Turn #{turn_counter}: #{turn_winner.name} won 2 cards"
     elsif turn_type == :war
-      p "Turn #{turn_counter}: WAR - #{turn_winner} won 6 cards"
-    else
+      p "Turn #{turn_counter}: WAR - #{turn_winner.name} won 6 cards"
+    elsif turn_type == :mutually_assured_destruction
       p "Turn #{turn_counter}: *mutually assured destruction* 6 cards removed from play"
+    end
   end
 
   def win_output(player)
-    p "*~*~*~* #{player} has won the game! *~*~*~*"
+    p "*~*~*~* #{player.name} has won the game! *~*~*~*"
   end
 
   def game_loop
@@ -53,7 +54,7 @@ class Game
       elsif @player2.has_lost?
         win_output(@player1)
         break
-      elsif turn_counter = 1000000
+      elsif turn_counter == 1000000
         turn = Turn.new(@player1, @player2)
         turn_type = turn.type
         turn.pile_cards

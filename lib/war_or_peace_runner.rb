@@ -37,4 +37,5 @@ deck2 = Deck.new(shuffled_deck[26..51])
 player1 = Player.new('April', deck1)
 player2 = Player.new('July', deck2)
 game = Game.new(player1, player2)
+
 game.start

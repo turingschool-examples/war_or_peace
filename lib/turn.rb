@@ -82,7 +82,7 @@ class Turn
   # 'unless type == :mutually_assured_destruction' just wouldn't work for this
   def award_spoils
     if @turn_winner
-      @turn_winner.deck.cards << @spoils_of_war
+      @turn_winner.deck.cards << @spoils_of_war.shuffle 
       @turn_winner.deck.cards = @turn_winner.deck.cards.flatten
     end
   end
