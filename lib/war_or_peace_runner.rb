@@ -30,13 +30,11 @@ end
 
 # shuffle full deck, then distribute to player decks
 shuffled_deck = game_deck.shuffle
-deck1 = shuffled_deck[0..25]
-deck2 = shuffled_deck[26..51]
+deck1 = Deck.new(shuffled_deck[0..25])
+deck2 = Deck.new(shuffled_deck[26..51])
 
 # initialize game state
 player1 = Player.new('April', deck1)
 player2 = Player.new('July', deck2)
-
-
 game = Game.new(player1, player2)
 game.start
