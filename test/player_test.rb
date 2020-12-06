@@ -55,7 +55,8 @@ class PlayerTest < Minitest::Test
       cards = [card1, card2, card3]
       deck = Deck.new(cards)
       player = Player.new('Clarissa', deck)
-      player.deck.remove_card
+      deck.remove_card
 
+      assert_includes(deck.remove_card)
     end
 end
