@@ -40,3 +40,5 @@ player2 = Player.new('July', deck2)
 
 game = Game.new
 game.start
+# $$$ MAKE START AND PRINTOUT METHODS
+# MAKE LOOP
