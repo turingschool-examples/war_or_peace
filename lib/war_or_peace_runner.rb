@@ -1,17 +1,13 @@
+require './lib/turn'
 require './lib/card'
 require './lib/deck'
 require './lib/player'
 
-class Game
-
-  attr_reader
-
-  def initialize
-
-
-  end
-  suits = %i[heart club diamond spade]
-  values = { "2" => 2,
+full_deck = []
+deck1 = []
+deck2 = []
+suits = %i[heart club diamond spade]
+ ranks = {"2" => 2,
              "3" => 3,
              "4" => 4,
              "5" => 5,
@@ -20,34 +16,21 @@ class Game
              "8" => 8,
              "9" => 9,
             "10" => 10,
-          "Jack" => 11,
-         "Queen" => 12,
-          "King" => 13,
-           "Ace" => 14}
+          "jack" => 11,
+         "queen" => 12,
+          "king" => 13,
+           "ace" => 14}
 
-  def card_values
-    values.map do |value|
-      Card.new(suit, value)
-    end
-  end
-
-  def add_rank
-    suits.map do |suit|
-        card_values
+deck = suits.flat_map do |suit|
+        ranks.map do |rank, i|
+          Card.new(suit, rank, i)
+        end
       end
-  end
+deck
 
-require "pry"; binding.pry
-
-
-
-
+shuffled = deck.shuffle
+player_1_deck = deck1 << shuffled.slice!(0..25)
+player_2_deck = deck2 << shuffled.slice!(0..25)
 
 
-
-
-
-
-
-
-end
+ require "pry"; binding.pry
