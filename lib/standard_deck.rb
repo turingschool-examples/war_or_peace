@@ -1,9 +1,7 @@
 require './lib/card'
 
 class StandardDeck
-  attr_reader :cards,
-              :deck1,
-              :deck2
+  attr_reader :cards
 
   def initialize
     @cards = []

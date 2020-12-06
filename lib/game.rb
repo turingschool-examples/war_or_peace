@@ -1,20 +1,18 @@
-require './lib/standard_deck'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
 
 class Game
-  attr_reader :standard_deck,
+  attr_reader :deck,
               :turns
 
-  def initialize
-    @standard_deck = StandardDeck.new
+  def initialize(deck)
+    @deck = deck
     @turns = []
   end
 
   def split_deck
-    @standard_deck.create_standard_deck
-    shuffled_deck = @standard_deck.cards.shuffle
+    shuffled_deck = @deck.shuffle
     create_first_deck(shuffled_deck[0..25])
     create_second_deck(shuffled_deck[26..52])
   end

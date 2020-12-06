@@ -1,21 +1,26 @@
 require 'minitest/autorun'
 require 'minitest/pride'
+require './lib/card_generator'
 require './lib/game'
 
 class GameTest < Minitest::Test
   def test_it_exists
-    game = Game.new
+    deck = CardGenerator.new("cards.txt").cards
+    game = Game.new(deck)
     assert_instance_of Game, game
   end
 
   def test_it_has_readable_attributes
-    game = Game.new
-    assert_instance_of StandardDeck, game.standard_deck
+    deck = CardGenerator.new("cards.txt")
+    game = Game.new(deck)
+
+    assert_instance_of CardGenerator, game.deck
     assert_equal [], game.turns
   end
 
   def test_add_turn
-    game = Game.new
+    deck = CardGenerator.new("cards.txt").cards
+    game = Game.new(deck)
     game.create_two_players("Angel", "Chris")
     game.add_turn
 
@@ -26,25 +31,25 @@ class GameTest < Minitest::Test
   end
 
   def test_create_first_deck
-    game = Game.new
-    game.standard_deck.create_standard_deck
-    shuffled_deck = game.standard_deck.cards.shuffle
+    deck = CardGenerator.new("cards.txt").cards
+    game = Game.new(deck)
+    shuffled_deck = deck.shuffle
 
     assert_instance_of Deck, game.create_first_deck(shuffled_deck[0..25])
   end
 
   def test_create_second_deck
-    game = Game.new
-    game.standard_deck.create_standard_deck
-    shuffled_deck = game.standard_deck.cards.shuffle
+    deck = CardGenerator.new("cards.txt").cards
+    game = Game.new(deck)
+    shuffled_deck = deck.shuffle
 
     assert_instance_of Deck, game.create_second_deck(shuffled_deck[26..52])
   end
 
   def test_create_first_player
-    game = Game.new
-    game.standard_deck.create_standard_deck
-    shuffled_deck = game.standard_deck.cards.shuffle
+    deck = CardGenerator.new("cards.txt").cards
+    game = Game.new(deck)
+    shuffled_deck = deck.shuffle
     deck = game.create_first_deck(shuffled_deck[0..25])
 
     assert_instance_of Player, game.create_first_player("Angel", deck)
@@ -53,9 +58,9 @@ class GameTest < Minitest::Test
   end
 
   def test_create_second_player
-    game = Game.new
-    game.standard_deck.create_standard_deck
-    shuffled_deck = game.standard_deck.cards.shuffle
+    deck = CardGenerator.new("cards.txt").cards
+    game = Game.new(deck)
+    shuffled_deck = deck.shuffle
     deck = game.create_first_deck(shuffled_deck[26..52])
 
     assert_instance_of Player, game.create_second_player("Amber", deck)
@@ -64,10 +69,9 @@ class GameTest < Minitest::Test
   end
 
   def test_game_over
-    game = Game.new
-
-    game.standard_deck.create_standard_deck
-    shuffled_deck = game.standard_deck.cards.shuffle
+    deck = CardGenerator.new("cards.txt").cards
+    game = Game.new(deck)
+    shuffled_deck = deck.shuffle
     deck1 = game.create_first_deck(shuffled_deck[0..25])
     deck2 = game.create_second_deck(shuffled_deck[26..52])
     player1 = game.create_first_player("Angel", deck1)
@@ -83,9 +87,9 @@ class GameTest < Minitest::Test
   end
 
   def test_display_winner
-    game = Game.new
-    game.standard_deck.create_standard_deck
-    shuffled_deck = game.standard_deck.cards.shuffle
+    deck = CardGenerator.new("cards.txt").cards
+    game = Game.new(deck)
+    shuffled_deck = deck.shuffle
     deck1 = game.create_first_deck(shuffled_deck[0..25])
     deck2 = game.create_second_deck(shuffled_deck[26..52])
     player1 = game.create_first_player("Angel", deck1)

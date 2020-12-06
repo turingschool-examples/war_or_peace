@@ -1,5 +1,10 @@
+require './lib/card_generator'
 require './lib/game'
 
-new_game = Game.new
+
+filename = "cards.txt"
+deck = CardGenerator.new(filename).cards
+
+new_game = Game.new(deck)
 
 new_game.start

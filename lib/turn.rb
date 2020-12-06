@@ -27,7 +27,13 @@ class Turn
     if type == :mutually_assured_destruction
       "No Winner"
     elsif type == :war
-      if @player1.deck.cards.length <= 1 || @player2.deck.cards.length <= 1
+      if @player1.has_lost? || @player2.has_lost?
+        if @player1.has_lost?
+          @player2
+        else
+          @player1
+        end
+      elsif @player1.deck.cards.length == 1 || @player2.deck.cards.length == 1
         if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
           @player1
         else
