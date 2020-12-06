@@ -38,3 +38,35 @@ def split_deck_randomly(deck)
   end
   half_deck
 end
+
+puts "Welcome to War! (or Peace) This game will be played with 52 cards."
+puts "The players today are Megan and Aurora."
+puts "Type 'GO' to start the game!"
+puts "------------------------------------------------------------------"
+input = gets.chomp
+if input == "GO"
+  deck = create_deck
+  deck1 = split_deck_randomly(deck)
+  deck2 = deck
+  p1 = Player.new("Megan", Deck.new(deck1))
+  p2 = Player.new("Aurora", Deck.new(deck2))
+
+  (1..20).each do |turn_num|
+    if turn_num == 1000000
+      puts "---- DRAW ----"
+      break
+    end
+    turn = Turn.new(p1, p2)
+    turn_type = turn.type
+    winner = turn.winner
+    turn.pile_cards
+    print "Turn "+turn_num.to_s+": "
+    if turn_type == :basic
+      puts winner.name+ " won "+turn.spoils_of_war.length.to_s+" cards"
+      turn.award_spoils(winner)
+    elsif turn_type == :war
+      puts "WAR - "+winner.name+ " won "+turn.spoils_of_war.length.to_s+" cards"
+      turn.award_spoils(winner)
+    elsif turn_type == :mutually_assured_destruction
+      puts "*mutually assured destruction* 6 cards removed from play"
+    end
