@@ -38,7 +38,5 @@ player1 = Player.new('April', deck1)
 player2 = Player.new('July', deck2)
 
 
-game = Game.new
+game = Game.new(player1, player2)
 game.start
-# $$$ MAKE START AND PRINTOUT METHODS
-# MAKE LOOP

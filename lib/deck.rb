@@ -23,6 +23,7 @@ class Deck
 
   def remove_card
     @cards.delete_at(0)
+    @cards
   end
 
   def add_card(card)
