@@ -51,7 +51,6 @@ class Game
   end
 
   def start 
-
     puts "Welcome to War! (or Peace)!\nThis game will be played with 52 cards.\nThe players today are Megan and Aurora.\nType 'GO' to start the game!\n----------------------------------------"
 
     print ">"

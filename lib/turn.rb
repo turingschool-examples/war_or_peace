@@ -20,19 +20,23 @@ class Turn
   end
 
   def set_type
-     if mutually_assured_destruction?
+    if mutually_assured_destruction?
       :mutually_assured_destruction
-    elsif (
-      @player1.deck.rank_of_card_at(0) == 
-      @player2.deck.rank_of_card_at(0)
-    )
+    elsif war?
       :war 
-    elsif(
-        @player1.deck.rank_of_card_at(0) != 
-        @player2.deck.rank_of_card_at(0)
-      )
-        :basic
+    elsif basic?
+      :basic
     end
+  end
+
+  def basic?
+    @player1.deck.rank_of_card_at(0) !=
+    @player2.deck.rank_of_card_at(0)
+  end
+
+  def war?
+    @player1.deck.rank_of_card_at(0) == 
+    @player2.deck.rank_of_card_at(0)
   end
 
   def mutually_assured_destruction?
@@ -43,17 +47,13 @@ class Turn
   end
 
   def set_winner
-    if type == :basic 
+    if type == :basic
       if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
         @player1
       else
         @player2
       end
-    elsif @player1.card_count < 3
-      @player2
-    elsif (@player2.card_count < 3)
-      @player1
-    elsif type == :war 
+    elsif type == :war
       if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
         @player1
       else 
@@ -67,10 +67,10 @@ class Turn
 
   def pile_cards
     if type == :mutually_assured_destruction && winner == "No Winner"
-        3.times do
-          player1.deck.remove_card
-          player2.deck.remove_card
-          end
+      3.times do
+        player1.deck.remove_card
+        player2.deck.remove_card
+      end
     elsif type == :war
       3.times do
         @spoils_of_war << player1.deck.remove_card
@@ -94,7 +94,7 @@ class Turn
     if type == :basic
       puts "Turn #{@@turn_count}: #{winner.name} won #{spoils_of_war.length} cards"
     elsif type == :war 
-      puts "Turn #{@@turn_count}: WAR - Aurora won #{spoils_of_war.length} cards"
+      puts "Turn #{@@turn_count}: WAR - #{winner.name} won #{spoils_of_war.length} cards"
     else
       puts "Turn #{@@turn_count}: *mutually assured destruction* #{spoils_of_war.length} cards removed from play"
     end
