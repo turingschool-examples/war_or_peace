@@ -31,15 +31,6 @@ class Turn
     end
   end
 
-  def start
-    p "Welcome to War! (or Peace) This game will be played with 52 cards.
-      The players today are Megan and Aurora.
-      Type 'GO' to start the game!
-      ------------------------------------------------------------------"
-    p "=> (type 'GO' when you are ready for WAR!)"
-    p gets.chomp
-  end
-
   def winner
     if type == :basic
       if @player1.deck.cards[0].rank > @player2.deck.cards[0].rank
