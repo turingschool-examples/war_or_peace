@@ -12,6 +12,7 @@ class Game
     @player2 = player2
   end
 
+  # print out initial prompt to user, flow control for game logic start
   def start
     p "Welcome to War! (or Peace) This game will be played with 52 cards."
     p "The players today are #{@player1.name} and #{@player2.name}."
