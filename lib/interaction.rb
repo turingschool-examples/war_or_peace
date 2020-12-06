@@ -1,7 +1,14 @@
-
+require './lib/card'
+require './lib/deck'
+require './lib/player'
+require './lib/turn'
+require './lib/war_or_peace_runner'
 
 class Interaction
-  def initialize
+  attr_reader :player1, :player2
+  def initialize(player1, player2)
+    @player1 = player1
+    @player2 = player2
   end
 
   def intro
@@ -12,11 +19,11 @@ class Interaction
   end
 
   def basic
-    puts "Turn #{@counter}: #{@winner.name} won #{turn.spoils_of_war.length} cards"
+    puts "Turn #{@counter}: #{winner.name} won #{turn.spoils_of_war.length} cards"
   end
 
   def war
-    puts "Turn #{@counter}: WAR - #{@winner.name} won #{turn.spoils_of_war.length} cards"
+    puts "Turn #{@counter}: WAR - #{winner.name} won #{turn.spoils_of_war.length} cards"
   end
 
   def mutually_assured_destruction
@@ -24,12 +31,11 @@ class Interaction
   end
 
   def win_game
-    puts "Turn #{@counter}: #{@winner.name} won #{turn.spoils_of_war.length} cards
-         *~*~*~* #{@winner.name} has won the game! *~*~*~*"
+    puts "*~*~*~* #{winner.name} has won the game! *~*~*~*"
   end
 
   def draw
-    puts "Turn #{@counter}: #{@winner.name} won #{turn.spoils_of_war.length} cards
+    puts "Turn #{@counter}: #{winner.name} won #{turn.spoils_of_war.length} cards
          ---- Draw ----"
   end
 end

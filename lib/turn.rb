@@ -7,10 +7,13 @@ class Turn
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
-
   end
 
   def type
+    @type ||= calculate_type
+  end
+
+  def calculate_type
     if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
       :basic
     elsif (player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)) && (player1.deck.rank_of_card_at(2) != player2.deck.rank_of_card_at(2))
@@ -22,6 +25,10 @@ class Turn
   end
 
   def winner
+    @winner ||= calculate_winner
+  end
+
+  def calculate_winner
     if type == :basic
       if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
         player1
@@ -44,12 +51,10 @@ class Turn
       @spoils_of_war << (player1.deck.remove_card)
       @spoils_of_war << (player2.deck.remove_card)
     elsif type == :war
-      @spoils_of_war << (player1.deck.remove_card)
-      @spoils_of_war << (player1.deck.remove_card)
-      @spoils_of_war << (player1.deck.remove_card)
-      @spoils_of_war << (player2.deck.remove_card)
-      @spoils_of_war << (player2.deck.remove_card)
-      @spoils_of_war << (player2.deck.remove_card)
+      3.times do @spoils_of_war << (player1.deck.remove_card)
+      end
+      3.times do @spoils_of_war << (player2.deck.remove_card)
+      end
     else type == :mutually_assured_destruction
       player1.deck.cards.slice!(0, 3)
       player2.deck.cards.slice!(0, 3)
