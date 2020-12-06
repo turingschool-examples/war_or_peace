@@ -12,7 +12,7 @@ class Turn
   def type
     @type ||= find_type
   end
-  
+
   def find_type
     if @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
       :mutually_assured_destruction
@@ -27,7 +27,19 @@ class Turn
     if type == :mutually_assured_destruction
       "No Winner"
     elsif type == :war
-      if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
+      if @player1.deck.cards.length <= 1 || @player2.deck.cards.length <= 1
+        if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
+          @player1
+        else
+          @player2
+        end
+      elsif @player1.deck.cards.length <= 2 || @player2.deck.cards.length <= 2
+        if @player1.deck.rank_of_card_at(1) > @player2.deck.rank_of_card_at(1)
+          @player1
+        else
+          @player2
+        end
+      elsif @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
         @player1
       else
         @player2
