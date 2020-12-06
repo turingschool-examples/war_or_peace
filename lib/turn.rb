@@ -34,28 +34,22 @@ class Turn
           @player1
         end
       elsif @player1.deck.cards.length == 1 || @player2.deck.cards.length == 1
-        if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
-          @player1
-        else
-          @player2
-        end
+        winner_from_rank(0)
       elsif @player1.deck.cards.length <= 2 || @player2.deck.cards.length <= 2
-        if @player1.deck.rank_of_card_at(1) > @player2.deck.rank_of_card_at(1)
-          @player1
-        else
-          @player2
-        end
-      elsif @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
-        @player1
+        winner_from_rank(1)
       else
-        @player2
+        winner_from_rank(2)
       end
     elsif type == :basic
-      if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
-        @player1
-      else
-        @player2
-      end
+      winner_from_rank(0)
+    end
+  end
+
+  def winner_from_rank(index)
+    if @player1.deck.rank_of_card_at(index) > @player2.deck.rank_of_card_at(index)
+      @player1
+    else
+      @player2
     end
   end
 
