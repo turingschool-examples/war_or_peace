@@ -28,10 +28,9 @@ player2 = Player.new("Morty", deck2)
 
 turn = Turn.new(player1, player2)
 game = Game.new(turn)
-
 game.start
 
-reply = gets
-if reply == "GO" || "Go" || "go"
+reply = gets.chomp.upcase
+if reply == "GO"
   game.play
 end
