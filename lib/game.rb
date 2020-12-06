@@ -93,7 +93,7 @@ class Game
   end
 
   def game_over?
-    @player1.deck.cards.length <= 3 || @player2.deck.cards.length <= 3
+    @player1.deck.cards.length <= 2 || @player2.deck.cards.length <= 2
   end
 
   def greeting
