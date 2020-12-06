@@ -6,6 +6,7 @@ class Deck
   end
 
   def rank_of_card_at(index)
+    # ensure round is lost to player if that player's deck runs out
     if index > (@cards.length - 1)
       0
     else
