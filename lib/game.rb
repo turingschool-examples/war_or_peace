@@ -26,3 +26,11 @@ def make_deck
     end
     deck = shuffled_deck[0..51]
 end
+
+class Game
+  attr_reader :turn
+
+  def initialize(turn)
+    @turn = turn
+  end
+  
