@@ -21,4 +21,40 @@ class Game
     end
     play_turns
   end
+
+  def play_turns
+    turn_counter = 1
+    turn = Turn.new(player1, player2)
+
+    while turn_counter >= 1
+      turn.pile_cards
+
+      if @player1.has_lost?
+        puts " *~*~*~* #{@player2.name} has won the game! *~*~*~*"
+        break
+      elsif @player2.has_lost?
+        puts "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+        break
+      end
+
+      if turn.type == :basic
+         winner = turn.winner
+         puts "Turn #{turn_counter}: #{winner.name} won 2 cards"
+         turn.award_spoils(winner)
+      elsif turn.type == :war
+        winner = turn.winner
+        puts "Turn #{turn_counter}: WAR - #{winner.name} won 6 cards"
+        turn.award_spoils(winner)
+      elsif turn.type == :mutually_assured_destruction
+        puts "Turn #{turn_counter}: *mutually assured destruction 6 cards removed from play"
+      end
+
+      turn_counter += 1
+
+      if turn_counter == 1000000
+        puts "---- DRAW ----"
+        break
+      end
+    end
+  end
 end
