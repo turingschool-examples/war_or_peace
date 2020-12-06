@@ -291,7 +291,10 @@ class TurnTest < Minitest::Test
     turn.pile_cards
     turn.award_spoils
 
-    assert_equal [card2, card5, card8, card1, card3], player1.deck.cards
+    winner_deck = [card1, card2, card5, card8, card3]
+
+    # checking intersection and length allows shuffled spoils
+    assert_equal winner_deck.length, (player1.deck.cards & winner_deck).length
   end
 
   def test_it_awards_spoils_war
@@ -316,8 +319,9 @@ class TurnTest < Minitest::Test
     turn.award_spoils
 
     winner_deck = [card7, card1, card2, card5, card4, card3, card6]
+
     # assertions allow for shuffled @spoils_of_war
-    assert_equal winner_deck, player2.deck.cards
+    assert_equal winner_deck.length, (player2.deck.cards & winner_deck).length
     assert_equal [card8], player1.deck.cards
   end
 
