@@ -32,5 +32,22 @@ shuffled = deck.shuffle
 player_1_deck = deck1 << shuffled.slice!(0..25)
 player_2_deck = deck2 << shuffled.slice!(0..25)
 
+player_1 = Player.new("Dmytri", player_1_deck)
+player_2 = Player.new("Lana", player_2_deck)
 
- require "pry"; binding.pry
+class Game
+  attr_reader :start
+  def initialize(player_1, player_2)
+    @start = start
+  end
+end
+
+start_game = Game.new(player_1, player_2)
+
+go = $stdin.gets.chomp.upcase
+
+if go == "Go"
+  start_game.start
+else
+  p "Type Go to start!"
+end
