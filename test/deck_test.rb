@@ -29,8 +29,8 @@ class DeckTest < Minitest::Test
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
 
-    assert_equal card1, deck.rank_of_card_at(0)
-    assert_equal card3, deck.rank_of_card_at(2)
+    assert_equal card1.rank, deck.rank_of_card_at(0)
+    assert_equal card3.rank, deck.rank_of_card_at(2)
   end
 
   def test_it_can_retun_high_rank_cards
@@ -51,7 +51,6 @@ class DeckTest < Minitest::Test
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
-    require "pry"; binding.pry
 
     assert_equal 66.67, deck.percent_high_ranking
   end
