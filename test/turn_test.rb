@@ -148,7 +148,7 @@ class PlayerTest < Minitest::Test
     winner = turn.winner
     turn.pile_cards
     turn.reward_spoils(winner)
-
+    #[card8, card1, card2, card5, card4, card3, card7]
     assert_equal [card8, card1, card2, card5, card4, card3, card7], player1.deck.cards
     assert_equal [card6], player2.deck.cards
   end

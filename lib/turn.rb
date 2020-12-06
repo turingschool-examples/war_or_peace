@@ -7,17 +7,21 @@ class Turn
     @spoils_of_war = []
   end
 
-  def type
-    if @player1.deck.cards[0].rank == @player2.deck.cards[0].rank && @player1.deck.cards[2].rank == @player2.deck.cards[2].rank
+  def type()
+    if @player1.deck.cards[2] == nil || @player2.deck.cards[2] == nil
       return :mutually_assured_destruction
-    elsif @player1.deck.cards[0].rank == @player2.deck.cards[0].rank
-      return :war
     else
-      return :basic
+      if @player1.deck.cards[0].rank == @player2.deck.cards[0].rank && @player1.deck.cards[2].rank == @player2.deck.cards[2].rank
+        return :mutually_assured_destruction
+      elsif @player1.deck.cards[0].rank == @player2.deck.cards[0].rank
+        return :war
+      else
+        return :basic
+      end
     end
   end
 
-  def winner
+  def winner()
     if type() == :basic
       if @player1.deck.cards[0].rank > @player2.deck.cards[0].rank
         return @player1
@@ -33,10 +37,8 @@ class Turn
     end
   end
 
-  def pile_cards
+  def pile_cards()
     if type() == :basic
-      #@spoils_of_war << @player1.deck.cards[0]
-      #@spoils_of_war << @player2.deck.cards[0]
       @spoils_of_war << @player1.deck.cards.shift
       @spoils_of_war << @player2.deck.cards.shift
     elsif type() == :war
@@ -60,8 +62,9 @@ class Turn
   end
 
   def reward_spoils(winner)
-    spoils_of_war.each do |card|
+    @spoils_of_war.each do |card|
       winner.deck.cards << card
     end
+    @spoils_of_war = []
   end
 end
