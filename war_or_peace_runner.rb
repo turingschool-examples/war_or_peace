@@ -5,6 +5,7 @@ require './lib/turn'
 require './lib/game'
 require 'pry'
 
+
 #deck set up
 standard_deck = []
 suits = [:club, :diamond, :heart, :spade]
@@ -37,43 +38,48 @@ shuffle_deck.each_with_index do |card, index|
 end
 
 deck1 = Deck.new(cards1)
-deck2 = Deck.new(cards2)
+deck2 = Deck.new(cards1)
 
 
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
-  #Game set up
+#Game set up
 # turns = Turn.new(player1, player2)
 # game = Game.new(turns)
+turns = Turn.new(player1, player2)
+game = Game.new(turns)
 
+
+game.start
+game.play
 # game.start
-  turn_index = 0
-# while turns.player1.deck.cards.empty? == true || turns.player2.deck.cards.empty? == false || turn_index < 10
-  500.times do
-    turn_index +=1
-    turns = Turn.new(player1, player2)
-    game = Game.new(turns)
-
-
-      if turns.type == :basic
-          winner = game.turns.winner
-        turns.pile_cards
-        turns.award_spoils(winner)
-            win_name = winner.name
-          puts "Turn #{turn_index}: #{win_name} won 2 cards. Megan has #{turns.player1.deck.cards.length}. Auroa has #{turns.player2.deck.cards.length}."
-      elsif turns.type == :war
-          winner = game.turns.winner
-        turns.pile_cards
-        turns.award_spoils(winner)
-            win_name = winner.name
-          puts "Turn #{turn_index}: WAR - #{win_name} won 6 cards. Megan has #{turns.player1.deck.cards.length}. Auroa has #{turns.player2.deck.cards.length}."
-      elsif turns.type == :mutually_assured_destruction
-        turns.pile_cards
-        # turns.award_spoils(winner)
-          puts "Turn #{turn_index}: *mutually assured destruction* 6 cards removed from play"
-      end
-    # end
-
-    # while turn_index < 10 #|| game.turns.player1.deck.cards == [] || || game.turns.player2.deck.cards != []
-    # end
-  end
+# turn_index = 0
+# 10000000.times do
+#     turn_index +=1
+#     turns = Turn.new(player1, player2)
+#     game = Game.new(turns)
+#   if turns.player1.deck.cards == []
+#     puts "*~*~*~* Aurora has won the game! *~*~*~*"
+#   elsif turns.player2.deck.cards == []
+#     puts "*~*~*~* Megan has won the game! *~*~*~*"
+#   elsif turn_index > 1000000
+#     return p "---- DRAW ----"
+#   else
+#     if turns.type == :basic
+#       winner = game.turns.winner
+#       turns.pile_cards
+#       turns.award_spoils(winner)
+#       win_name = winner.name
+#       puts "Turn #{turn_index}: #{win_name} won 2 cards. Megan has #{turns.player1.deck.cards.length}. Auroa has #{turns.player2.deck.cards.length}."
+#     elsif turns.type == :war
+#       winner = game.turns.winner
+#       turns.pile_cards
+#       turns.award_spoils(winner)
+#       win_name = winner.name
+#       puts "Turn #{turn_index}: WAR - #{win_name} won 6 cards. Megan has #{turns.player1.deck.cards.length}. Auroa has #{turns.player2.deck.cards.length}."
+#     elsif turns.type == :mutually_assured_destruction
+#       turns.pile_cards
+#       puts "Turn #{turn_index}: *mutually assured destruction* 6 cards removed from play"
+#     end
+#   end
+# end
