@@ -52,6 +52,34 @@ class Game
     counter =0
     while counter <1000000
       counter +=1
+      type = turn.type
+      determine_winner = turn.winner
+      turn.award_spoils(determine_winner)
+
+      if turn.player1.has_lost == true || turn.loser == turn.player1.name
+         p "*~*~*~* Aurora has won the game! *~*~*~*"
+         break
+      elsif turn.player2.has_lost == true || turn.loser == turn.player2.name
+        p "*~*~*~* Megan has won the game! *~*~*~*"
+        break
+      end
+
+
+
+        if determine_winner == turn.player1.name && type == :basic
+            p "Turn#{counter}: #{turn.player1.name} has won 2 Cards"
+        elsif determine_winner == turn.player2.name && type == :basic
+            p "Turn#{counter}: #{turn.player2.name} has won 2 Cards"
+        elsif determine_winner == turn.player1.name && type == :war
+            p "Turn#{counter}: WAR - #{turn.player1.name} has won 6 Cards"
+        elsif determine_winner == turn.player2.name && type == :war
+                p "Turn#{counter}: WAR - #{turn.player2.name} has won 6 Cards"
+        else p "Turn#{counter}: *mutually assured destruction* 6 cards removed from play"
+        end
+
+      if counter == 1000000
+        return puts "---- DRAW ----"
+      end
     end
   end
 end
