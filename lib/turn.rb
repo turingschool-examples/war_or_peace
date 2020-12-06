@@ -47,9 +47,17 @@ class Turn
     end
   end
 
-  def award_spoils(winner)
-    winner.deck.cards << spoils_of_war
-    winner.deck.cards.flatten!
-    spoils_of_war.clear
+  def award_spoils
+    if player1 == winner
+      self.pile_cards
+      player1.deck.cards << spoils_of_war
+      player1.deck.cards.flatten!
+      spoils_of_war.clear
+    elsif player2 == winner
+      self.pile_cards
+      player2.deck.cards << spoils_of_war
+      player2.deck.cards.flatten!
+      spoils_of_war.clear
+    end
   end
 end

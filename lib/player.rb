@@ -1,6 +1,6 @@
 class Player
 
-attr_reader :name, :deck
+attr_reader :name, :deck, :cards
 
   def initialize (name, deck)
     @name = name
@@ -9,13 +9,10 @@ attr_reader :name, :deck
   end
 
   def has_lost?
-
-    if self.deck.cards == []
-      return true
-
+    if self.deck.cards.count == 0
+      true
     else
-      return false
-
+      false
     end
   end
 end

@@ -60,16 +60,12 @@ class TurnTest < Minitest::Test
 
     assert_equal :basic, turn.type
     assert_equal player1, turn.winner
-    turn.pile_cards
-    assert_equal 2, turn.spoils_of_war.count
-    turn.award_spoils(player1)
+    turn.award_spoils
     assert_equal 8, turn.player1.deck.cards.count
 
     assert_equal :war, turn.type
     assert_equal player2, turn.winner
-    turn.pile_cards
-    assert_equal 6, turn.spoils_of_war.count
-    turn.award_spoils(player2)
+    turn.award_spoils
     assert_equal 9, turn.player2.deck.cards.count
 
 
