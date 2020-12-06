@@ -198,8 +198,9 @@ class TurnTest < Minitest::Test
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
+    turn.pile_cards
 
-    # assert_equal [card1, card3], turn.spoils_of_war
+    assert_equal [card1, card4, card2, card3, card5, card6], turn.spoils_of_war
   end
 
   def test_pile_cards_when_type_is_mututally_assured_destruction
@@ -217,7 +218,11 @@ class TurnTest < Minitest::Test
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
+    turn.pile_cards
+    # require "pry"; binding.pry
 
-    # assert_equal [card1, card3], turn.spoils_of_war
+    assert_equal [card8], turn.player1.deck.cards
+    assert_equal [card7], turn.player2.deck.cards
+
   end
 end
