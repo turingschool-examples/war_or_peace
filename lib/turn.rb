@@ -20,15 +20,19 @@ attr_reader :player1,
   end
 
   def winner
-    if type == :basic
-      if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-        player1
-      else player2
+    if @player1.has_lost? == true
+      @winner = @player2
+    elsif @player2.has_lost? == true
+      @winner = @player1
+    elsif type == :basic
+      if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
+        @winner = @player1
+      else @winner = @player2
       end
     elsif type == :war
-      if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-        player1
-      else player2
+      if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
+        @winner = @player1
+      else @winner = @player2
       end
     else "No Winner"
     end
@@ -53,5 +57,13 @@ attr_reader :player1,
       @spoils_of_war << @player1.deck.remove_card
       @spoils_of_war << @player2.deck.remove_card
     end
+  end
+
+  def award_spoils(winner)
+    @winner = winner
+    @spoils_of_war.map do |spoil|
+      winner.deck.cards << spoil
+    end
+    @spoils_of_war.clear
   end
 end
