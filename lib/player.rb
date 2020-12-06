@@ -9,7 +9,7 @@ attr_reader :name, :deck, :cards
   end
 
   def has_lost?
-    if self.deck.cards.count == 0
+    if @deck.cards == []
       true
     else
       false
