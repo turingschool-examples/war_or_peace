@@ -7,8 +7,10 @@ class CardGenerator
   end
 
   def cards
-    filename.each do |file|
-      @array << file
+    #left off here, couldn't get file to open :(
+    file = File.open(@filename, 'r')
+    file.map do |line|
+      @array << line
     end
   end
 end

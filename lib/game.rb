@@ -33,16 +33,11 @@ def game_play
           turn.pile_cards
 
         #war
-      elsif turn.type == :war && turn.winner == turn.player1
-          p "Turn #{@counter}: WAR - Megan won 6 cards"
+      elsif turn.type == :war 
+          p "Turn #{@counter}: WAR - #{turn.winner.name} won 6 cards"
           turn.pile_cards
           turn.spoils_of_war.shuffle
-          turn.award_spoils(turn.player1)
-      elsif turn.type == :war && turn.winner == turn.player2
-          p "Turn #{@counter}: WAR - Aurora won 6 cards"
-          turn.pile_cards
-          turn.spoils_of_war.shuffle
-          turn.award_spoils(turn.player2)
+          turn.award_spoils(turn.winner)
 
         #basic
       elsif turn.type == :basic
