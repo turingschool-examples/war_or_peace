@@ -2,6 +2,7 @@ require './lib/deck'
 require './lib/card'
 require './lib/player'
 require './lib/turn'
+require './lib/play_game'
 
 card1 = Card.new(:spades, 'Ace', 14)
 card2 = Card.new(:spades, '2', 2)
@@ -81,6 +82,11 @@ deck2 = Deck.new([card2, card3, card13, card52, card9, card10,
 
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
-require "pry"; binding.pry
+turn = Turn.new(player1, player2)
+game1 = PlayGame.new(turn)
 
-turn.start
+# winner = turn.winner
+
+# require "pry"; binding.pry
+
+game1.start
