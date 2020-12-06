@@ -18,16 +18,16 @@ end
 
 def card_value(rank)
     case rank
-      when 14
-        "Ace"
-      when 13
-        "King"
-      when 12
-        "Queen"
-      when 11
-        "Jack"
-      else
-        rank.to_s
+    when 14
+      "Ace"
+    when 13
+      "King"
+    when 12
+      "Queen"
+    when 11
+      "Jack"
+    else
+      rank.to_s
     end
 end
 
@@ -46,7 +46,6 @@ full_deck = create_deck
 full_deck.shuffle
 
 # Assign it evenly among 2 players
-# TODO perhaps make Deck respond to `middle`
 middle_of_deck = full_deck.cards.length / 2
 end_of_deck = full_deck.cards.length
 
@@ -60,12 +59,14 @@ player2 = Player.new("Aurora", p2_deck)
 print_welcome(player1, player2)
 input = gets.chomp
 
-# # Create a game
-# # Let's play!
-# if (input == "GO")
-#   puts "playing"
-# else
-#   puts "goodbye"
-# end
+# Let's play!
+if (input == "GO")
+  game = Game.new(player1, player2)
+  game_over_message = game.start
+  puts game_over_message
+else
+  puts "Maybe next time, then."
+end
 
-game = Game.new(player1, player2)
+
+
