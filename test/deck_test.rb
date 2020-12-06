@@ -45,4 +45,14 @@ class DeckTest < Minitest::Test
 
     assert_equal new_card, @deck.cards.last
   end
+
+  def test_shuffle
+    @deck.shuffle
+
+    # Not sure how to test if elements got randomly shuffled,
+    # so I'm just making sure no card got lost in the shuffle
+    @cards.each do |card|
+      assert_includes @deck.cards, card
+    end
+  end
 end

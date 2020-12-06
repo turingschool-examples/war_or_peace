@@ -6,7 +6,7 @@ class Deck
   end
 
   def rank_of_card_at(index)
-    (@cards.length > index) ? @cards[index].rank : nil
+    (@cards.length > index) ? @cards[index].rank : 0
   end
 
   def high_ranking_cards
@@ -28,6 +28,10 @@ class Deck
 
   def add_card(card)
     @cards.push(card)
+  end
+
+  def shuffle
+    @cards.shuffle!
   end
 end
 

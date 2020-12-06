@@ -7,27 +7,28 @@ class Turn
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
+    @removed_from_play = []
   end
 
   def type
-    if mutually_assured_destruction?
-      :mutually_assured_destruction
-    elsif war?
-      :war
-    elsif basic?
-      :basic
-    else
-      # ??
-    end
+    @type ||= calculate_type
   end
+
 
   def winner
     @winner ||= calculate_winner
   end
 
+  def cards_used
+    if type == :mutually_assured_destruction
+      @removed_from_play.length
+    else
+      @spoils_of_war.length
+    end
+  end
+
   def pile_cards
     # Move cards FROM players decks TO spoils_of_war (...or the void)
-
     if type == :basic
       @spoils_of_war << @player1.deck.cards.shift
       @spoils_of_war << @player2.deck.cards.shift
@@ -38,8 +39,8 @@ class Turn
       end
     elsif type == :mutually_assured_destruction
       3.times do
-        @player1.deck.cards.shift
-        @player2.deck.cards.shift
+        @removed_from_play << @player1.deck.cards.shift
+        @removed_from_play << @player2.deck.cards.shift
       end
     else
       # ??
@@ -48,6 +49,7 @@ class Turn
 
   def award_spoils(winning_player)
     if winning_player.instance_of? Player
+      @spoils_of_war.shuffle! # Shuffling the spoils helps the game end in a draw FAR less
       @spoils_of_war.each do |card|
         winning_player.deck.add_card(card)
       end
@@ -76,12 +78,26 @@ class Turn
     player1_card_rank = @player1.deck.rank_of_card_at(index)
     player2_card_rank = @player2.deck.rank_of_card_at(index)
 
+    require "pry"; binding.pry if player1_card_rank == nil || player2_card_rank == nil
+
     if player1_card_rank == player2_card_rank
       nil
     elsif player1_card_rank > player2_card_rank
       @player1
     else
       @player2
+    end
+  end
+
+  def calculate_type
+    if mutually_assured_destruction?
+      :mutually_assured_destruction
+    elsif war?
+      :war
+    elsif basic?
+      :basic
+    else
+      # ??
     end
   end
 
