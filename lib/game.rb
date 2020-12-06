@@ -5,11 +5,11 @@ require './lib/turn'
 
 class Game
 
-  attr_reader :player1, :player2
+  attr_reader :player1, :player2, :round_count, :deck
 
   def initialize
     @deck = []
-    @round_count = 1
+    @round_count = 0
     @deck1 = Deck.new([])
     @deck2 = Deck.new([])
     @player1 = Player.new('Megan', @deck1)
@@ -57,92 +57,26 @@ class Game
   def start
     make_deck
     deal
-    begin_game
   end
 
-  def begin_game
-    loop do
-      @turn = Turn.new(@player1, @player2)
-      @turn.type
-      @winner = @turn.winner
-      print_to_screen
-      @turn.pile_cards
-      @turn.award_spoils
-      @round_count += 1
-
-      if @player1.has_lost? == true
-        p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
-        break
-      elsif @player2.has_lost? == true
-        p "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
-        break
-      elsif @round_count == 1000001
-        p "---- DRAW ----"
-        break
-      else
-      end
-    end
+  def take_turn
+    @round_count += 1
+    @turn = Turn.new(@player1, @player2)
+    @turn.type
+    @winner = @turn.winner
+    print_to_screen
+    @turn.pile_cards
+    @turn.award_spoils
   end
-
-  # def end_of_game
-  #   if player1.has_lost? == true
-  #     p "*~*~*~* #{player2.name} has won the game! *~*~*~*"
-  #     break
-  #   elsif player2.has_lost? == true
-  #     p "*~*~*~* #{player1.name} has won the game! *~*~*~*"
-  #     break
-  #   elsif round_count == 100000
-  #     p "---- DRAW ----"
-  #     break
-  #   else
-  #   end
-  # end
 
   def print_to_screen
     if @turn.type == :basic
-      p "Turn #{@round_count}: #{@winner.name} won 2 cards. #{@player1.deck.cards.length} + #{@player2.deck.cards.length}"
+      p "Turn #{@round_count}: #{@winner.name} won 2 cards."
     elsif @turn.type == :war
-      p "Turn #{@round_count}: War - #{@winner.name} won 6 cards. #{@player1.deck.cards.length} + #{@player2.deck.cards.length}"
+      p "Turn #{@round_count}: War - #{@winner.name} won 6 cards."
     else
-      p "*mutually assured destruction* 6 cards removed from play #{@player1.deck.cards.length} + #{@player2.deck.cards.length}"
+      p "*mutually assured destruction* 6 cards removed from play."
     end
   end
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  # puts """
-  # Welcome to War! (or Peace) This game will be played with 52 cards.
-  # The players today are #{player1.name} and #{player2.name}.
-  # Type 'GO' to start the game!
-  # ------------------------------------------------------------------
-  # """
-  #
-  #
-  #
-  #
-  #
-  #
-  # tern = Turn.new(player1, player2)
-  # turn.type
-  # winner = turn.winner
-  # turn.pile_cards
-  # turn.award_spoils
-  # round_count += 1
-
-
-
-
 
 end

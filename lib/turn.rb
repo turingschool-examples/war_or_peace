@@ -11,13 +11,13 @@ class Turn
                       [true, true] => :mutually_assured_distruction}
   end
 
-  def compaire(index) #########
+  def compare(index)
     player1.deck.rank_of_card_at(index) ==
     player2.deck.rank_of_card_at(index)
   end
 
   def type
-      @type_of_turn = @type_class[[compaire(0), compaire(2)]]
+      @type_of_turn = @type_class[[compare(0), compare(2)]]
   end
 
   def winner
@@ -50,7 +50,7 @@ class Turn
   end
 
   def award_spoils
-    @spoils_of_war.each do |card|
+    @spoils_of_war.shuffle.each do |card|
       @winner.deck.cards << card
     end
     @spoils_of_war = []
