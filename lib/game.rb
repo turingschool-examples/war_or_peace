@@ -9,9 +9,9 @@ def make_deck
   suits = [:diamond, :heart, :spade, :club]
   #Use to_a() to use all numbers in given range
   value = (2..14).to_a
-    suits.collect do |value|
-      rank.collect do |num|
-        if x > 1 && x < 11
+    suits.collect do |suit|
+      value.collect do |num|
+        if num > 1 && num < 11
           shuffled_deck << Card.new(suit, "#{num}", num)
         elsif num == 11
           shuffled_deck << Card.new(suit, "Jack", num)
@@ -45,6 +45,13 @@ class Game
       start_game
     else
       start_message
+    end
+  end
+
+  def start_game
+    counter =0
+    while counter <1000000
+      counter +=1
     end
   end
 end
