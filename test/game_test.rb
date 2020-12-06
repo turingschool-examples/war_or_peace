@@ -12,7 +12,7 @@ class GameTest < Minitest::Test
 
   def test_the_game_generates_a_deck
     game = Game.new
-    game.make_deck
+    # game.make_deck
 
     assert_equal 52, game.deck.count
 
@@ -20,7 +20,7 @@ class GameTest < Minitest::Test
 
   def test_the_game_deals_26_cards_to_each_player
     game = Game.new
-    game.make_deck
+    # game.make_deck
     game.deal
 
     assert_equal 26, game.player1.deck.cards.count
