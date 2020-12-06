@@ -49,6 +49,7 @@ class Turn
 
   def award_spoils(winning_player)
     if winning_player.instance_of? Player
+      @spoils_of_war.shuffle! # Shuffling the spoils helps the game end in a draw FAR less
       @spoils_of_war.each do |card|
         winning_player.deck.add_card(card)
       end
