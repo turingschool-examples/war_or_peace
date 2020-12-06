@@ -35,6 +35,16 @@ class Game
   end
 
   def start_message
-    p "Welcome to War! (or Peace) This game will be played with 52 cards."
+    puts "Welcome to War! (or Peace) This game will be played with 52 cards."
+    puts "The players today are Megan and Aurora."
+    puts "Type 'GO' to start the game!"
+    puts "------------------------------------------------------------------"
+    user_input = gets.chomp
+
+    if user_input == "GO"
+      start_game
+    else
+      start_message
+    end
   end
 end
