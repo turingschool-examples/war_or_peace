@@ -76,7 +76,7 @@ class GameTest < MiniTest::Test
     player1 = Player.new("Jenny", deck)
     player2 = Player.new("Marisa", deck2)
     game = Game.new(player1, player2)
-    game.start_game
+    game.start
 
     assert_equal true, game.game_over
 

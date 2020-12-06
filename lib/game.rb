@@ -30,7 +30,7 @@ class Game
     end
   end
 
-  def start_game
+  def start
     turn = 1
     while turn <= 1000000 do
       take_turn
