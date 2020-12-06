@@ -10,7 +10,7 @@ class Player
     @lost = false
   end
 
-  def lost?
+  def has_lost?
     @deck.cards.length == 0
   end
 

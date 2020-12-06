@@ -22,25 +22,22 @@ class Turn
   end
 
   def winner
-    result_of_type = self.type
     player1_rank_0 = @player1.deck.rank_of_card_at(0)
     player2_rank_0 = @player2.deck.rank_of_card_at(0)
-
-    require "pry"; binding.pry
     player1_rank_2 = @player1.deck.rank_of_card_at(2)
     player2_rank_2 = @player2.deck.rank_of_card_at(2)
 
-    if result_of_type == :basic
+    if self.type == :basic
       if player1_rank_0 > player2_rank_0
-        return player1
+        return @player1
       else
-        return player2
+        return @player2
       end
-    elsif result_of_type == :war
+    elsif self.type == :war
       if player1_rank_2 > player2_rank_2
-        return player1
+        return @player1
       else
-        return player2
+        return @player2
       end
     else
       return "No Winner"
@@ -48,26 +45,16 @@ class Turn
   end
 
   def pile_cards
-    result_of_type = self.type
-    if result_of_type == :basic
-      @spoils_of_war << player1.deck.remove_card
-      @spoils_of_war << player2.deck.remove_card
-    elsif result_of_type == :war
-      3.times do
-        @spoils_of_war << player1.deck.remove_card
-      end
-
-      3.times do
-        @spoils_of_war << player2.deck.remove_card
-      end
+    if self.type == :basic
+      @spoils_of_war << @player1.deck.remove_card(:basic)
+      @spoils_of_war << @player2.deck.remove_card(:basic)
+    elsif self.type == :war
+      @spoils_of_war << player1.deck.remove_card(:war)
+      @spoils_of_war << player2.deck.remove_card(:war)
+      @spoils_of_war = @spoils_of_war.flatten
     else
-      3.times do
-        player1.deck.remove_card
-      end
-
-      3.times do
-        player2.deck.remove_card
-      end
+      @player1.deck.remove_card(:mutually_assued_destruction)
+      @player2.deck.remove_card(:mutually_assued_destruction)
     end
   end
 

@@ -13,8 +13,7 @@ class Start
 
   def start
     counter = 1
-    while counter < 10
-
+    while counter < 30
       winner = turn.winner
 
       if turn.type == :basic
@@ -32,28 +31,28 @@ class Start
     end
   end
 
-
-
   def check_draw(counter)
     if counter == 10
       p "---- DRAW ----"
+      exit!
     end
   end
 
   def check_lost(players)
     players.each do |player|
-      if player.lost? == true
+      if player.has_lost? == true
         player.lost = true
-        display_win(players)
+      end
+
+      if players[0].lost == true
+        display_win(players[1])
+      else
+        display_win(players[0])
       end
     end
   end
 
-  def display_win(players)
-    players.each do |player|
-      if player.lost != true
-        p "#{player.name} has won the game"
-      end
-    end
+  def display_win(player)
+    p "#{player.name} has won the game"
   end
 end

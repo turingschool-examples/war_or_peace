@@ -25,8 +25,12 @@ class Deck
     percent_high_ranking = (dividend / divisor).round(4) * 100
   end
 
-  def remove_card
-    @cards.shift
+  def remove_card(type)
+    if type == :basic
+      @cards.shift
+    else
+      @cards.shift(3)
+    end 
   end
 
   def add_card(card)
