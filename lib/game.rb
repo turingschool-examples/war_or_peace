@@ -9,39 +9,44 @@ class Game
   end
 
   def start
-    # p "Welcome to War! (or Peace) This game will be played with 52 cards.
-    #   The players today are Megan and Aurora.
-    #   Type 'GO' to start the game!
-    #   ------------------------------------------------------------------"
-    # p "=> (type 'GO' when you are ready for WAR!)"
-    # p gets.chomp
+    p "Welcome to War! (or Peace) This game will be played with 52 cards.
+      The players today are Megan and Aurora.
+      Type 'GO' to start the game!
+      ------------------------------------------------------------------"
+    p "=> (type 'GO' when you are ready for WAR!)"
+    p gets.chomp
+  end
+
+  def play
+    turn_index = 0
+    10000000.times do
+        turn_index +=1
+        # turns = Turn.new(player1, player2)
+        game = Game.new(turns)
+      if turns.player1.deck.cards == []
+        return print "*~*~*~* Aurora has won the game! *~*~*~*"
+      elsif turns.player2.deck.cards == []
+        return print "*~*~*~* Megan has won the game! *~*~*~*"
+      elsif turn_index > 1000
+        return print "---- DRAW ----"
+      else
+        if turns.type == :basic
+          winner = game.turns.winner
+          turns.pile_cards
+          turns.award_spoils(winner)
+          win_name = winner.name
+          puts "Turn #{turn_index}: #{win_name} won 2 cards. Megan has #{turns.player1.deck.cards.length}. Auroa has #{turns.player2.deck.cards.length}."
+        elsif turns.type == :war
+          winner = game.turns.winner
+          turns.pile_cards
+          turns.award_spoils(winner)
+          win_name = winner.name
+          puts "Turn #{turn_index}: WAR - #{win_name} won 6 cards. Megan has #{turns.player1.deck.cards.length}. Auroa has #{turns.player2.deck.cards.length}."
+        elsif turns.type == :mutually_assured_destruction
+          turns.pile_cards
+          puts "Turn #{turn_index}: *mutually assured destruction* 6 cards removed from play"
+        end
+      end
+    end
   end
 end
-
-#   def winner
-#     # @turns.each do |turn|
-#     if turns.player1.deck.cards  == [] && turns.player2.deck.cards == []
-#       p "This is mathmatically near impossible, you have accomplished something rare! It is impressive, but everyone LOSES."
-#     elsif turns.player1.deck.cards  == []
-#       p "*~*~*~* Aurora has won the game! *~*~*~*"
-#     elsif turns.player2.deck.cards == []
-#       p "*~*~*~* Megan has won the game! *~*~*~*"
-#     # elsif
-#       # Turn.type
-#       # Turn.pile_cards
-#       # Turn.award_spoils(player)
-#     end
-#   end
-# end
-
-
-  # if    turn.player1.deck == []
-      #   "*~*~*~* Aurora has won the game! *~*~*~*"
-      # elsif turn.player2.deck == []
-      #   "*~*~*~* Aurora has won the game! *~*~*~*"
-      # # elsif
-      # #  determine type, determine winner, pile cards, award spoils, play another turn
-#       end
-#     end
-#   end
-# end
