@@ -70,3 +70,17 @@ if input == "GO"
     elsif turn_type == :mutually_assured_destruction
       puts "*mutually assured destruction* 6 cards removed from play"
     end
+
+
+    if p1.has_lost?
+      puts "*~*~*~* "+p2+" has won the game! *~*~*~*"
+      break
+    elsif p2.has_lost?
+      puts "*~*~*~* "+p1+" has won the game! *~*~*~*"
+      break
+    end
+
+  end
+else
+  puts "Uncrecognized input, please try again"
+end
