@@ -23,18 +23,18 @@ end
 
 def game_play
   #method for game mechanics
-    until @counter == 1000000 do
+    while @counter < 1000000 do
       @counter += 1
 
-        #decide the winner
-        if turn.player1.has_lost? == true
-          p "*~*~*~* Aurora has won the game! *~*~*~*"
-        elsif turn.player2.has_lost? == true
-          p "*~*~*~* Megan has won the game! *~*~*~*"
-        end
+        # # #decide the winner
+        # break if turn.player1.has_lost? == true
+        #   p "*~*~*~* Aurora has won the game! *~*~*~*"
+        # break if turn.player2.has_lost? == true
+        #   p "*~*~*~* Megan has won the game! *~*~*~*"
+        # end
 
         #mutual destruction
-        if turn.type == :mutually_assured_destruction
+      if turn.type == :mutually_assured_destruction
           p "Turn #{@counter}: *mutually assured destruction* 6 cards removed from play"
           turn.pile_cards
           turn.spoils_of_war.shuffle
@@ -45,7 +45,7 @@ def game_play
           turn.pile_cards
           turn.spoils_of_war.shuffle
           turn.award_spoils(turn.player1)
-        elsif turn.type == :war && turn.winner == turn.player2
+      elsif turn.type == :war && turn.winner == turn.player2
           p "Turn #{@counter}: WAR - Aurora won 6 cards"
           turn.pile_cards
           turn.spoils_of_war.shuffle
@@ -58,10 +58,17 @@ def game_play
           turn.spoils_of_war.shuffle
           turn.award_spoils(turn.player1)
       elsif turn.type == :basic && turn.winner == turn.player2
-        p "Turn #{@counter}: Aurora won 2 cards"
-        turn.pile_cards
-        turn.spoils_of_war.shuffle
-        turn.award_spoils(turn.player2)
+          p "Turn #{@counter}: Aurora won 2 cards"
+          turn.pile_cards
+          turn.spoils_of_war.shuffle
+          turn.award_spoils(turn.player2)
+      end
+
+      # #decide the winner
+       if turn.player1.has_lost? == true
+        p "*~*~*~* Aurora has won the game! *~*~*~*"
+      elsif turn.player2.has_lost? == true
+        p "*~*~*~* Megan has won the game! *~*~*~*"
       end
 
         #if no winner

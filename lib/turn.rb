@@ -15,6 +15,8 @@ class Turn
        :basic
     elsif @player1.deck.cards[0].rank == @player2.deck.cards[0].rank
        :war
+    # elsif @player1.deck.cards[0].rank == nil || @player2.deck.cards[0].rank == nil
+    #    :game_over
     end
   end
 
@@ -62,5 +64,6 @@ class Turn
   def award_spoils(winner)
     winner.deck.cards << @spoils_of_war
     winner.deck.cards = winner.deck.cards.flatten
+    @spoils_of_war.clear
   end
 end
