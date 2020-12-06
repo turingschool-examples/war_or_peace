@@ -8,8 +8,12 @@ class Player
     @has_lost = false
   end
 
+  def card_count
+    @deck.cards.length 
+  end
+
   def has_lost?
-    if @deck.cards.empty?
+    if @deck.cards.length < 3
       @has_lost = true
     else
       @has_lost
