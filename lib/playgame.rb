@@ -44,7 +44,7 @@ class PlayGame
     end
   end
 
-  private
+
   def create_deck
     suits = [:heart, :spade, :diamond, :club]
     deck = []
