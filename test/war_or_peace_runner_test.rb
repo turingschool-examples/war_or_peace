@@ -1,9 +1,5 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/deck'
-require './lib/card'
-require './lib/player'
-require './lib/turn'
 require './lib/war_or_peace_runner'
 
 class RunnerTest < Minitest::Test
@@ -17,5 +13,5 @@ class RunnerTest < Minitest::Test
 end
 
 # can't run these tests but intersection is a cool comparator
-# check that deck1 and deck2 don't share cards
+# check that deck1 and deck2 don't share cards:
 # intersection - assert_equal [], (deck1 & deck2)
