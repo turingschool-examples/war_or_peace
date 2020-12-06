@@ -26,8 +26,8 @@ class Deck
   decimal.round(2)
   end
 
-  def remove_card
-    cards.shift
+  def remove_card(num)
+    cards.shift(num)
   end
 
   def add_card(card)

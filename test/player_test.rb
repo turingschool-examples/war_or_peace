@@ -33,8 +33,12 @@ class PlayerTest < Minitest::Test
   end
 
   def test_has_lost?
+    card1 = Card.new(:diamond, 'Queen', 12)
     deck = Deck.new([])
+    deck2 = Deck.new([card1])
     player = Player.new('Clarissa', deck)
+    player2 = Player.new('bob', deck2)
+    assert_equal false, player2.has_lost?
     assert_equal true, player.has_lost?
   end
 end

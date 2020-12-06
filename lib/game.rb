@@ -18,22 +18,44 @@ Type 'GO' to start the game!
          turn_num = 1
          while turn_num < 1000000 && player1.has_lost? == false && player2.has_lost? == false
            turn = Turn.new(player1, player2)
-# It is getting confused when there aren't enough cards for a war, but neither deck is empty
-            turn.type
-            turn.winner
-            turn.pile_cards
-            if turn.type == :mutually_assured_destruction
-              puts "No winner"
-            else
-              puts "Turn #{turn_num}: #{turn.type}: The winner is #{turn.winner.name}. They won #{turn.pile_cards.length} cards."
+           type = turn.type
+           winner = turn.winner
+              # binding.pry
+            if type == :basic #&& (winner = player1 || winner = player2)
+              winner
+              turn.pile_cards.shuffle!
+              # binding.pry
+              puts "Turn #{turn_num}: #{winner.name} won #{turn.spoils_of_war.length} cards"
+              turn.award_spoils
+            elsif type == :war #&& (winner = player1 || winner = player2)
+
+              winner
+              turn.pile_cards.shuffle!
+              puts "Turn #{turn_num}: WAR - #{winner.name} won #{turn.spoils_of_war.length} cards"
+              turn.award_spoils
+              # binding.pry
+            elsif type == :mutually_assured_destruction #&& winner = "No Winner"
+              winner
+              turn.pile_cards
+              puts "Turn #{turn_num}: *mutually assured destruction* 6 cards removed from play."
+            # else
+            #   error
+              #what is error?? does it ever hit mutally_assured?
             end
             turn_num += 1
-            turn.award_spoils
+
           end
-          puts "game over"
+
+          if player1.has_lost? == true
+            puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
+          elsif player2.has_lost? == true
+            puts  "*~*~*~* #{player1.name} has won the game! *~*~*~*"
+          else
+            puts "GAME OVER. NO WINNER."
+          end
+
        else
          puts "I'm afraid I can't do that."
-
        end
    end
 
