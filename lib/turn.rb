@@ -74,6 +74,8 @@ def winner
     end
   end
   def award_spoils_of_war(winner)
-    turn.winner.deck.cards << spoils_of_war
+    until @spoils_of_war.empty?
+      winner.deck.add_card(@spoils_of_war.pop)
+    end
   end
 end

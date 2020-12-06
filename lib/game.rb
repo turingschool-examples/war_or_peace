@@ -74,7 +74,7 @@ class Game
             p "Turn#{counter}: WAR - #{turn.player1.name} has won 6 Cards"
         elsif determine_winner == turn.player2.name && type == :war
                 p "Turn#{counter}: WAR - #{turn.player2.name} has won 6 Cards"
-        else p "Turn#{counter}: *mutually assured destruction* 6 cards removed from play"
+        else p "Turn#{counter}: *Mutually Assured Destruction* 6 cards removed from play"
         end
 
       if counter == 1000000
