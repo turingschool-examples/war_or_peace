@@ -2,6 +2,8 @@ class Turn
   attr_reader :player1,
               :player2,
               :spoils_of_war
+              :winner
+
   def initialize(player1, player2)
     @player1       = player1
     @player2       = player2
@@ -29,20 +31,22 @@ class Turn
   end
 
   def pile_cards
-    require "pry"; binding.pry
     if :basic
       @spoils_of_war << player1.deck.cards[0] &&
       @spoils_of_war << player2.deck.cards[0]
-    elsif :war
-      @spoils_of_war << player1.deck.cards[0..2] &&
-      @spoils_of_war << player2.deck.cards[0..2]
-    else :mutually_assured_destruction
-      3.times do player1.deck |card|
-        player1.deck.remove_card
-      end
-      3.times do player2.deck |card|
-        player2.deck.remove_card
-      end
+    # elsif :war
+    #   @spoils_of_war << player1.deck.cards[0..2] &&
+    #   @spoils_of_war << player2.deck.cards[0..2]
+    # else :mutually_assured_destruction
+    #   3.times do player1.deck |card|
+    #     player1.deck.remove_card
+    #   end
+    #   3.times do player2.deck |card|
+    #     player2.deck.remove_card
+    #   end
     end
+  end
+
+  def award_spoils(winner)
   end
 end
