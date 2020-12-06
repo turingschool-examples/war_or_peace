@@ -16,11 +16,11 @@ class DeckTest < Minitest::Test
     assert_equal [], deck.cards
   end
 
-  def test_it_returns_nil_for_rank_if_card_not_found
+  def test_it_returns_zero_for_rank_if_card_not_found
     card = Card.new(:spade, 'Ace', 14)
     deck = Deck.new([card])
 
-    assert_nil deck.rank_of_card_at(1)
+    assert_equal 0, deck.rank_of_card_at(1)
   end
 
   def test_it_returns_rank_if_card_found
