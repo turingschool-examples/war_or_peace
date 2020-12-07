@@ -184,7 +184,7 @@ class TurnClass < Minitest::Test
     assert_equal 3, player2.deck.cards.count
   end
 
-  def test_award_spoils_adds_cards_to_winner_in_basic
+  def test_award_spoils_adds_cards_to_winner_in_basic_zzz
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -428,8 +428,4 @@ class TurnClass < Minitest::Test
 
     assert_equal [], turn.spoils_of_war
   end
-
-  
-
-
 end
