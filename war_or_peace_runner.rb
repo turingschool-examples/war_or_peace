@@ -71,14 +71,14 @@ cards = [card1, card2, card3, card4, card5, card6, card7, card8, card9, card10,
 
 deck1 = Deck.new([card1, card14, card16, card23, card38, card51,
                   card4, card11, card17, card33, card40, card43,
-                  card18,card25, card28, card30, card45, card46,
+                  card19,card25, card28, card30, card45, card46,
                   card8, card21, card26, card34, card36, card50,
-                  card41, card47])
-deck2 = Deck.new([card2, card3, card13, card52, card9, card10,
-                  card20, card32, card42, card44, card48, card7,
-                  card6, card12, card24, card29, card31, card49,
+                  card42, card47])
+deck2 = Deck.new([card2, card3, card13, card10, card9, card52,
+                  card20, card32, card24, card44, card48, card7,
+                  card6, card12, card41, card29, card31, card49,
                   card5, card15, card22, card35, card37, card39,
-                  card19, card27])
+                  card1, card27])
 
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
