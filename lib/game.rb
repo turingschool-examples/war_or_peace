@@ -21,26 +21,26 @@ Type 'GO' to start the game!
            type = turn.type
            winner = turn.winner
               # binding.pry
-            if player1.deck.cards.count < 4 || player2.deck.cards.count < 4
-              if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
-                type = :basic
-                if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-                  # binding.pry
-                  turn.pile_cards
-                  puts "Turn #{turn_num}: #{winner.name} won #{turn.spoils_of_war.length} cards"
-                  # binding.pry
-                  player1.deck.cards << turn.spoils_of_war
-                elsif player1.deck.rank_of_card_at(0) < player2.deck.rank_of_card_at(0)
-                  # binding.pry
-                  turn.pile_cards
-                  puts "Turn #{turn_num}: #{winner.name} won #{turn.spoils_of_war.length} cards"
-                  # binding.pry
-                  player2.deck.cards << turn.spoils_of_war
-                end
-              elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
-                break
-              end
-            elsif type == :basic #&& (winner = player1 || winner = player2)
+            # if player1.deck.cards.count < 4 || player2.deck.cards.count < 4
+            #   if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
+            #     type = :basic
+            #     if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+            #       # binding.pry
+            #       turn.pile_cards
+            #       puts "Turn #{turn_num}: #{winner.name} won #{turn.spoils_of_war.length} cards"
+            #       # binding.pry
+            #       player1.deck.cards << turn.spoils_of_war
+            #     elsif player1.deck.rank_of_card_at(0) < player2.deck.rank_of_card_at(0)
+            #       # binding.pry
+            #       turn.pile_cards
+            #       puts "Turn #{turn_num}: #{winner.name} won #{turn.spoils_of_war.length} cards"
+            #       # binding.pry
+            #       player2.deck.cards << turn.spoils_of_war
+            #     end
+            #   elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+            #     break
+            #   end
+            if type == :basic #&& (winner = player1 || winner = player2)
               winner
               turn.pile_cards.shuffle!
               # binding.pry

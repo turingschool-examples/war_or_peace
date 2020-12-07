@@ -40,7 +40,7 @@ class GameTest < Minitest::Test
     new_game = Game.new(@player1, @player2)
     new_game.start
 
-     binding.pry
+    # binding.pry
     #assert_equal game.start
   end
 end
