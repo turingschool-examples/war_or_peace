@@ -21,8 +21,3 @@ end
 # def shuffle
 #   cards.shuffle!
 # end
-
-
-deck1 << cards.sample(26)
-  cards.delete(deck1)
-  require 'pry';binding.pry
