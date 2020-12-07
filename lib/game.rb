@@ -21,7 +21,26 @@ Type 'GO' to start the game!
            type = turn.type
            winner = turn.winner
               # binding.pry
-            if type == :basic #&& (winner = player1 || winner = player2)
+            if player1.deck.cards.count < 4 || player2.deck.cards.count < 4
+              if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
+                type = :basic
+                if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+                  # binding.pry
+                turn.pile_cards
+                puts "Turn #{turn_num}: #{winner.name} won #{turn.spoils_of_war.length} cards"
+                # binding.pry
+                player1.deck.cards << turn.spoils_of_war
+              elsif player1.deck.rank_of_card_at(0) < player2.deck.rank_of_card_at(0)
+                # binding.pry
+                turn.pile_cards
+                puts "Turn #{turn_num}: #{winner.name} won #{turn.spoils_of_war.length} cards"
+                # binding.pry
+                player2.deck.cards << turn.spoils_of_war
+              end
+              elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+
+              end
+            elsif type == :basic #&& (winner = player1 || winner = player2)
               winner
               turn.pile_cards.shuffle!
               # binding.pry
@@ -38,11 +57,11 @@ Type 'GO' to start the game!
               winner
               turn.pile_cards
               puts "Turn #{turn_num}: *mutually assured destruction* 6 cards removed from play."
-            # else
-            #   error
-              #what is error?? does it ever hit mutally_assured?
+
             end
             turn_num += 1
+            player1.has_lost?
+            player2.has_lost?
 
           end
 
@@ -51,7 +70,7 @@ Type 'GO' to start the game!
           elsif player2.has_lost? == true
             puts  "*~*~*~* #{player1.name} has won the game! *~*~*~*"
           else
-            puts "GAME OVER. NO WINNER."
+            puts "Draw"
           end
 
        else
