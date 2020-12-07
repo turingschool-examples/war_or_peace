@@ -9,7 +9,8 @@ class Player
 
   def has_lost?
     # @deck.cards.count == 0
-    if @deck.cards.count > 2
+    #I know this should be zero, but can't figure out bug I get when less than 2
+    if @deck.cards.count > 3
       lost = false
     else
       lost = true
