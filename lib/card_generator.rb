@@ -38,4 +38,12 @@ class CardGenerator
       end
     end
   end
+
+# Iteration 4: Implement a method to read in the text file
+  # def read_in_standard_deck
+  #   filename = "cards.txt"
+  #   File.open(filename) do |line|
+  #     puts line
+  #   end
+  # end
 end
