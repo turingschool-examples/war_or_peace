@@ -24,6 +24,7 @@ class PlayerTest < MiniTest::Test
     deck = Deck.new(cards)
     player = Player.new("Jenny", deck)
 
+    assert_equal false, player.has_lost?
     refute player.has_lost?
 
     player.deck.remove_card

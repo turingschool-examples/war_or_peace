@@ -2,10 +2,6 @@ class Turn
   attr_reader  :player1,
                :player2,
                :spoils_of_war,
-               :player_1_rank_0,
-               :player_1_rank_2,
-               :player_2_rank_0,
-               :player_2_rank_2,
                :game_over
 
   def initialize(player1, player2)
@@ -77,26 +73,26 @@ class Turn
   end
 
   def get_ranks
-    if @player1.deck.cards[0] == nil
-      @player_1_rank_0 = -1
-    else
+    # if @player1.deck.cards[0] == nil
+    #   @player_1_rank_0 = -1
+    # else
       @player_1_rank_0 = @player1.deck.rank_of_card_at(0)
-    end
-    if @player2.deck.cards[0] == nil
-      @player_2_rank_0 = -1
-    else
+    # end
+    # if @player2.deck.cards[0] == nil
+    #   @player_2_rank_0 = -1
+    # else
       @player_2_rank_0 = @player2.deck.rank_of_card_at(0)
-    end
-    if @player1.deck.cards[2] == nil
-      @player_1_rank_2 = -1
-    else
+    # end
+    # if @player1.deck.cards[2] == nil
+    #   @player_1_rank_2 = -1
+    # else
       @player_1_rank_2 = @player1.deck.rank_of_card_at(2)
-    end
-    if @player2.deck.cards[2] == nil
-      @player_2_rank_2 = -1
-    else
+    # end
+    # if @player2.deck.cards[2] == nil
+    #   @player_2_rank_2 = -1
+    # else
       @player_2_rank_2 = @player2.deck.rank_of_card_at(2)
-    end
+    # end
   end
 
   #determines winner of war
