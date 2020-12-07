@@ -107,4 +107,12 @@ class CardGeneratorTest < Minitest::Test
 
     assert_equal 52, card_generator.full_card_deck.count
   end
+
+  # Iteration 4: Write a test to implement a
+  # def test_it_returns_cards_from_the_text_file
+  #   filename = "cards.txt"
+  #   cards = CardGenerator.new(filename).cards
+  #
+  #   assert_equal cards, card_generator.read_in_standard_deck
+  # end
 end
