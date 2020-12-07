@@ -26,19 +26,19 @@ Type 'GO' to start the game!
                 type = :basic
                 if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
                   # binding.pry
-                turn.pile_cards
-                puts "Turn #{turn_num}: #{winner.name} won #{turn.spoils_of_war.length} cards"
-                # binding.pry
-                player1.deck.cards << turn.spoils_of_war
-              elsif player1.deck.rank_of_card_at(0) < player2.deck.rank_of_card_at(0)
-                # binding.pry
-                turn.pile_cards
-                puts "Turn #{turn_num}: #{winner.name} won #{turn.spoils_of_war.length} cards"
-                # binding.pry
-                player2.deck.cards << turn.spoils_of_war
-              end
+                  turn.pile_cards
+                  puts "Turn #{turn_num}: #{winner.name} won #{turn.spoils_of_war.length} cards"
+                  # binding.pry
+                  player1.deck.cards << turn.spoils_of_war
+                elsif player1.deck.rank_of_card_at(0) < player2.deck.rank_of_card_at(0)
+                  # binding.pry
+                  turn.pile_cards
+                  puts "Turn #{turn_num}: #{winner.name} won #{turn.spoils_of_war.length} cards"
+                  # binding.pry
+                  player2.deck.cards << turn.spoils_of_war
+                end
               elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
-
+                break
               end
             elsif type == :basic #&& (winner = player1 || winner = player2)
               winner
@@ -70,7 +70,7 @@ Type 'GO' to start the game!
           elsif player2.has_lost? == true
             puts  "*~*~*~* #{player1.name} has won the game! *~*~*~*"
           else
-            puts "Draw"
+            puts "GAME OVER. NO WINNER."
           end
 
        else
