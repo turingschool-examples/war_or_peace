@@ -4,9 +4,9 @@ require './lib/player'
 require './lib/turn'
 require './lib/game'
 
-random_cards = make_deck
-random_cards1 = random_cards[0..25]
-random_cards2 = random_cards[26..51]
+random_cards = make_deck.shuffle
+random_cards1 = random_cards[0..25].shuffle
+random_cards2 = random_cards[26..51].shuffle
 deck1 = Deck.new(random_cards2)
 deck2 = Deck.new(random_cards1)
 player1 = Player.new('Megan', deck1)
