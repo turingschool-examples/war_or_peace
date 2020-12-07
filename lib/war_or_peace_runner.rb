@@ -4,17 +4,6 @@ require './lib/deck'
 require './lib/player'
 require './lib/game'
 
-
-
-def dashes
-  5.times { print "-" }
-  puts
-end
-dashes
-p "Welcome to War! (or Peace) This game will be played with 52 cards."
-dashes
-
-
 deck1 = []
 deck2 = []
 suits = %i[heart club diamond spade]
@@ -40,17 +29,14 @@ suits = %i[heart club diamond spade]
 @deck
 
 shuffled = @deck.shuffle
-player_1_deck = deck1 << shuffled.slice!(0..25)
-player_2_deck = deck2 << shuffled.slice!(0..25)
+deck1 = shuffled[0..25]
+deck2 = shuffled[26..51]
+player_1_deck = Deck.new(deck1)
+player_2_deck = Deck.new(deck2)
+@player1 = Player.new("Dymtri", player_1_deck)
+@player2 = Player.new("Lana", player_2_deck)
 players = Turn.new(@player1, @player2)
-player_1 = Player.new("Dymtri", player_1_deck)
-player_2 = Player.new("Lana", player_2_deck)
-loop do
-  start = gets.chomp
-  if start == "GO"
-    Game.new(players)
-    break
-  else
-    p "Type 'GO' to start the game!"
-  end
-end
+
+start_game = Game.new(players)
+require "pry"; binding.pry
+# start_game.intro
