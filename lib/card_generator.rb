@@ -9,7 +9,7 @@ class CardGenerator
   end
 
   def cards
-    cards_data = File.read filename
+    cards_data = File.read @filename
     cards_data.split("\n").map do |line|
       suit, value, rank = line.split(',')
       Card.new(suit.downcase.to_sym, value.strip, rank.to_i)
