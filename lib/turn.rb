@@ -46,19 +46,22 @@ class Turn
 
   def pile_cards
     if self.type == :basic
-      @spoils_of_war << @player1.deck.remove_card(:basic)
-      @spoils_of_war << @player2.deck.remove_card(:basic)
+      @spoils_of_war << @player1.deck.cards.shift
+      @spoils_of_war << @player2.deck.cards.shift
     elsif self.type == :war
-      @spoils_of_war << player1.deck.remove_card(:war)
-      @spoils_of_war << player2.deck.remove_card(:war)
+      @spoils_of_war << @player1.deck.cards.shift(3)
+      @spoils_of_war << @player2.deck.cards.shift(3)
       @spoils_of_war = @spoils_of_war.flatten
     else
-      @player1.deck.remove_card(:mutually_assued_destruction)
-      @player2.deck.remove_card(:mutually_assued_destruction)
+      @player1.deck.cards.shift(3)
+      @player2.deck.cards.shift(3)
     end
   end
 
   def award_spoils(winner)
+    #begin test line
+    # @spoils_of_war = @spoils_of_war.shuffle
+    #end test line
     @spoils_of_war.each do |card|
       winner.deck.cards << card
     end

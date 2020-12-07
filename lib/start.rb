@@ -13,7 +13,8 @@ class Start
 
   def start
     counter = 1
-    while counter < 30
+    while counter <= 1000000
+
       winner = turn.winner
 
       if turn.type == :basic
@@ -23,16 +24,21 @@ class Start
       else
         p "Turn #{counter}: *mutually_assued_destruction* 6 cards removed from play"
       end
+
       turn.pile_cards
+
       turn.award_spoils(winner)
+
       check_lost([turn.player1, turn.player2])
+
       check_draw(counter)
+
       counter += 1
     end
   end
 
   def check_draw(counter)
-    if counter == 10
+    if counter == 1000000
       p "---- DRAW ----"
       exit!
     end
@@ -46,13 +52,14 @@ class Start
 
       if players[0].lost == true
         display_win(players[1])
-      else
+      elsif players[1].lost == true
         display_win(players[0])
       end
     end
   end
 
   def display_win(player)
-    p "#{player.name} has won the game"
+    p "*~*~*~* #{player.name} has won the game! *~*~*~*"
+    exit!
   end
 end
