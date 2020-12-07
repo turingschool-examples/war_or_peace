@@ -2,12 +2,7 @@ require './lib/card'
 require 'minitest/autorun'
 require 'minitest/pride'
 
-
 class CardTest < Minitest::Test
-  def setup
-    card = Card.new(:diamond, 'Queen', 12)
-  end
-
   def test_it_exists
     card = Card.new(:diamond, 'Queen', 12)
 
