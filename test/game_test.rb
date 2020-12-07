@@ -5,7 +5,7 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 require './lib/game'
-require './war_or_peace_runner'
+require './lib/generator'
 
 
 class GameTest < Minitest::Test
@@ -21,7 +21,6 @@ class GameTest < Minitest::Test
     deck = game.deal_cards
 
     assert_equal 26, deck1.count
-
   end
 
 end
