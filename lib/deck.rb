@@ -10,6 +10,7 @@ class Deck
   end
 
   def high_ranking_cards
+    cards.find_all {|c| c.rank >= 11}
   end
 
   def percent_high_ranking
