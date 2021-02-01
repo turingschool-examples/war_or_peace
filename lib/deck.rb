@@ -3,9 +3,10 @@ class Deck
 
   def initialize(c)
     @cards = c
-  end 
+  end
 
   def rank_of_card_at(index)
+    self.cards[index].rank if index < self.cards.size
   end
 
   def high_ranking_cards
