@@ -14,9 +14,12 @@ class Deck
   end
 
   def percent_high_ranking
+    decimal_value = self.high_ranking_cards.size / cards.size.to_f
+    (decimal_value * 100).round(2)
   end
 
   def remove_card
+
   end
 
   def add_card
