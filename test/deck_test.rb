@@ -65,7 +65,7 @@ class DeckTest < Minitest::Test
   end
 
   def test_percent_high_ranking
-    skip
+    # skip
 
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
@@ -77,7 +77,7 @@ class DeckTest < Minitest::Test
   end
 
   def test_remove_card
-    skip
+    # skip
 
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
@@ -87,20 +87,23 @@ class DeckTest < Minitest::Test
 
     assert_equal deck.remove_card, card1
     assert_equal deck.cards, [card2, card3]
+    assert_equal deck.high_ranking_cards, [card3]
+    assert_equal deck.percent_high_ranking, 50.0
   end
 
   def test_add_card
-    skip
+    # skip
 
-    card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
     card4 = Card.new(:club, '5', 5)
-    cards = [card1, card2, card3]
+    cards = [card2, card3]
     deck = Deck.new(cards)
 
     assert_equal deck.add_card(card4), card4
-    assert_equal deck.cards, [card1, card2, card3, card4]
-  end 
+    assert_equal deck.cards, [card2, card3, card4]
+    assert_equal deck.high_ranking_cards, [card3]
+    assert_equal deck.percent_high_ranking, 33.33
+  end
 
 end
