@@ -7,5 +7,4 @@ class Card
     @rank = r
   end
 
-  
 end
