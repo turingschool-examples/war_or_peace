@@ -7,5 +7,12 @@ class Deck
 
   def rank_of_card_at(position)
     cards[position]
-  end 
+  end
+
+  def high_ranking_cards
+    cards.select do |card|
+      card.rank >= 11
+    end
+
+  end
 end
