@@ -62,7 +62,6 @@ class Turn
       @spoils_of_war << player2.deck.remove_card
       @spoils_of_war << player2.deck.remove_card
       @spoils_of_war << player2.deck.remove_card
-      @spoils_of_war << player2.deck.remove_card
     else type == :basic
       @spoils_of_war << player1.deck.remove_card
       @spoils_of_war << player2.deck.remove_card
