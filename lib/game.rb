@@ -16,15 +16,19 @@ class Game
       else
         puts "Turn #{turn_counter}: #{turn.winner.name} won 2 cards"
       end
-      turn.pile_cards
-    end
 
-    # winner prompt
+      turn.pile_cards
+      turn.award_spoils(turn.winner)
+      puts "player1's cards: #{turn.player1.deck.cards.size} || player2's cards: #{turn.player2.deck.cards.size}"
+    end
+    self.result
+  end
+
+  def result
     if turn.winner == 'No Winner'
       puts '---- DRAW ----'
     else
-      puts "*~*~*~* #{turn.winner} has won the game! *~*~*~*"
+      puts "*~*~*~* #{turn.winner.name} has won the game! *~*~*~*"
     end
-
   end
 end
