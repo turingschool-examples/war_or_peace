@@ -9,6 +9,10 @@ class Player
   end
 
   def has_lost?
+    if @deck.empty
+      then true
+    else
     @lost
+    end
   end
 end
