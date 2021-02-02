@@ -6,6 +6,7 @@ class Deck
   end
 
   def rank_of_card_at(index)
+    return 0 if self.cards[index] == nil
     self.cards[index].rank if index < self.cards.size
   end
 
