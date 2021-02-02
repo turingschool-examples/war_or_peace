@@ -62,12 +62,13 @@ class DeckTest < Minitest::Test
   end
 
   def test_it_can_remove_top_card
-    skip
+    # skip
     card1 = Card.new(:diamond, "Queen", 12)
     card2 = Card.new(:spade, "3", 3)
     card3 = Card.new(:heart, "Ace", 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
+    deck.remove_card
     assert_equal 2, cards.length
   end
 
@@ -76,8 +77,11 @@ class DeckTest < Minitest::Test
     card1 = Card.new(:diamond, "Queen", 12)
     card2 = Card.new(:spade, "3", 3)
     card3 = Card.new(:heart, "Ace", 14)
+    card4 = Card.new(:club, "5", 5)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
+    deck.remove_card
+    deck.add_card(card4)
     assert_equal 3, cards.length
   end
 
