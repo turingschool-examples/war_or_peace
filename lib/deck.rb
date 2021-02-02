@@ -15,5 +15,15 @@ class Deck
     end
   end
 
+  def percent_high_ranking
+    high_ranking_cards = 0
+    cards.select do |card|
+      if card.rank >= 11
+        high_ranking_cards += 1
+      end
+    end
+    (high_ranking_cards.to_f / cards.length.to_f * 100).round(2)
+  end
+
 
 end

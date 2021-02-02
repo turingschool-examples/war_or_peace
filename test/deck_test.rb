@@ -52,7 +52,7 @@ class DeckTest < Minitest::Test
   end
 
   def test_it_returns_percentage_of_high_ranking_cards
-    skip
+    # skip
     card1 = Card.new(:diamond, "Queen", 12)
     card2 = Card.new(:spade, "3", 3)
     card3 = Card.new(:heart, "Ace", 14)
