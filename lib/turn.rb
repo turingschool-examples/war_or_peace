@@ -37,8 +37,8 @@ class Turn
       }
     elsif self.type == :war
       3.times {
-        spoils_of_war << player1.deck.remove_card
-        spoils_of_war << player2.deck.remove_card
+        spoils_of_war << player1.deck.remove_card if player1.deck.cards.size > 0
+        spoils_of_war << player2.deck.remove_card if player2.deck.cards.size > 0
       }
     else
       spoils_of_war << player1.deck.remove_card
