@@ -14,7 +14,7 @@ require './lib/card_generator'
 #   end
 # end
 
-standard_deck = CardGenerator.new('cards').cards
+standard_deck = CardGenerator.new('cards.txt').cards
 
 shuffled_deck = standard_deck.shuffle
 cards1 = shuffled_deck[0..25]
