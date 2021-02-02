@@ -31,4 +31,8 @@ class TurnTest < Minitest::Test
   def test_it_starts_with_empty_spoils
     assert_equal [], @turn.spoils_of_war
   end
+
+  def test_it_has_turn_type
+    assert_equal :basic, @turn.type
+  end
 end
