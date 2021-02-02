@@ -27,7 +27,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_spoils_of_war_exists
-
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -45,7 +44,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_type_of_turn_and_winner
-
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -65,7 +63,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_award_spoils
-
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
