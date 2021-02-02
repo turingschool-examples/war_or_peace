@@ -47,7 +47,9 @@ class Turn
   end
 
   def award_spoils(win)
+    return false if win == 'No Winner'
     spoils_of_war.map {|c| win.deck.add_card(c)}
+    @spoils_of_war = []
   end
 
 end
