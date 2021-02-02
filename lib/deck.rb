@@ -1,9 +1,10 @@
 require './lib/card'
+require 'pry'
 
 class Deck
   #On this line, I am creating a new class called Deck
   attr_reader :cards
-# The attribute reader
+# The attribute reader can only read the value
   def initialize(cards)
     #This is the first run (original) of cards
     @cards = cards
@@ -17,23 +18,23 @@ class Deck
   end
 
   def high_ranking_cards
-    high_ranking = array.new
-    cards.each do |highcard|
-      if highcard > 11
-        high_ranking.push(card)
-      elsif highcard < 11
-        puts "Your card is not higher than 11."
-      end
-      puts high_ranking
+    @cards.find_all do |high_card|
+      #The find_all method is like .each, except it can iterate over an array
+      high_card.rank >= 11
+      #Calling the .rank method to rank only the cards that are >=11
   end
 
   def percent_high_ranking
+    return high_ranking_cards().length / @cards.length.to_f
   end
 
   def remove_card
     @cards.shift
+    #This method returns and removes the first element in @cards
   end
 
-  def add_card
+  def add_card(card)
+    @cards.push(card)
+    #I use the .push method to add elements to the end of an array
   end
 end
