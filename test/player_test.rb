@@ -4,7 +4,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 
-class DeckTest < Minitest::Test
+class PlayerTest < Minitest::Test
   def setup
     @card1 = Card.new(:diamond, 'Queen', 12)
     @card2 = Card.new(:spade, '3', 3)
