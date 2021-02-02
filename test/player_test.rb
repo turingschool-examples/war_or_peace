@@ -16,7 +16,7 @@ class DeckTest < Minitest::Test
   def test_it_exists_and_has_attributes
     assert_instance_of Player, @player
     assert_equal "Clarisa", @player.name
-    assert_equal [@card1, @card2, @card3], @player.deck
+    assert_equal @deck, @player.deck
   end
 
   def test_player_has_lost
@@ -24,8 +24,9 @@ class DeckTest < Minitest::Test
     @player.deck.remove_card
     assert_equal false, @player.has_lost?
     @player.deck.remove_card
-    assert_equal true, @player.has_lost
-    assert_equal [], @player.deck
+    assert_equal false, @player.has_lost?
+    @player.deck.remove_card
+    assert_equal true, @player.has_lost?
+    assert_equal @deck, @player.deck
   end
-
 end
