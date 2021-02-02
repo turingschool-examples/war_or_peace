@@ -18,6 +18,7 @@ class PlayerTest < MiniTest::Test
   end
 
   def test_it_has_readable_attributes
+    # skip
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
@@ -26,7 +27,7 @@ class PlayerTest < MiniTest::Test
     player = Player.new('Clarisa', deck)
 
     assert_equal player.name, 'Clarisa'
-    assert_equal player.deck, Deck.new(cards)
+    assert_equal player.deck.cards, Deck.new(cards).cards
   end
 
   def test_it_has_lost?
@@ -44,6 +45,6 @@ class PlayerTest < MiniTest::Test
     assert_equal player.has_lost?, false
     player.deck.remove_card
     assert_equal player.has_lost?, true
-    assert_equal player.deck, Deck.new()
+    assert_equal player.deck.cards, Deck.new().cards
   end
 end
