@@ -6,7 +6,7 @@ class CardGenerator
   end
 
   def generate_txt
-    path_to_file = "#{filename}.txt"
+    path_to_file = "#{filename}"
 
     File.delete(path_to_file) if File.exist?(path_to_file)
 
@@ -32,7 +32,7 @@ class CardGenerator
   end
 
   def file_to_array
-    path_to_file = "#{filename}.txt"
+    path_to_file = "#{filename}"
     text = File.open(path_to_file).read.scan(/\w+/)
   end
 
