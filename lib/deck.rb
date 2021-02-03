@@ -5,6 +5,10 @@ class Deck
     @cards = cards
   end
 
+  def empty?
+    @cards.empty?
+  end
+
   def rank_of_card_at(index)
     cards[index].rank
   end
@@ -30,7 +34,7 @@ class Deck
   end
 
   def add_card(card)
-    self.cards << card 
+    self.cards << card
   end
 
 

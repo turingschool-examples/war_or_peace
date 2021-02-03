@@ -7,7 +7,11 @@ class Player
   end
 
   def has_lost?
-    false
+    if self.deck.empty?
+      true
+    else
+      false
+    end
   end
 
 end
