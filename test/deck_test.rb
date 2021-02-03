@@ -22,7 +22,7 @@ class DeckTest < Minitest::Test
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
-    
+
     assert_equal 14, deck.rank_of_card_at(2)
   end
 
@@ -49,7 +49,13 @@ class DeckTest < Minitest::Test
   end
 
   def test_can_remove_card
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
 
+    assert_equal cards.shift, deck.remove_card
   end
 
   def test_can_add_card
