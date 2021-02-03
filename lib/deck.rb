@@ -4,6 +4,7 @@ class Deck
   attr_reader :cards
   def initialize(cards)
     @cards = cards
+    @high_rank = []
   end
 
   def rank_of_card_at(index)
@@ -21,7 +22,7 @@ class Deck
   end
 
   def percent_high_ranking
-
+    percent = (@high_rank.length.to_f / @cards.length.to_f).round(4) * 100
   end
 
   def remove_card
@@ -29,6 +30,6 @@ class Deck
   end
 
   def add_card
-    
+
   end
 end
