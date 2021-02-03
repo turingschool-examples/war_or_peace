@@ -8,6 +8,7 @@ class Player
   end
 
   def has_lost?
+    @lost = true if @deck.cards.length == 0
     @lost
   end
 end
