@@ -5,10 +5,11 @@ class Deck
   #On this line, I am creating a new class called Deck
   attr_reader :cards
 # The attribute reader can only read the value
-  def initialize(cards)
+  def initialize(cards, deck)
     #This is the first run (original) of cards
     @cards = cards
     #This defines the instance variable @cards and knows what the data cards is (instance variables store data, they KNOW things). This first @cards is = cards because cards is the initial value of our class
+    @deck  = deck
   end
 
   def rank_of_card_at(index)
@@ -37,4 +38,5 @@ class Deck
     @cards.push(card)
     #I use the .push method to add elements to the end of an array
   end
+end
 end
