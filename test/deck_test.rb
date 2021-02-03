@@ -38,4 +38,16 @@ class DeckTest < Minitest::Test
 
     assert_equal high_rank_cards, deck.high_ranking_cards
   end
+
+  def test_can_calculate_percent_high_rank
+
+  end
+
+  def test_can_remove_card
+    
+  end
+
+  def test_can_add_card
+
+  end
 end

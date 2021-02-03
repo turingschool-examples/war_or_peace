@@ -19,4 +19,16 @@ class Deck
     end
     return @high_rank
   end
+
+  def percent_high_ranking
+
+  end
+
+  def remove_card
+
+  end
+
+  def add_card
+    
+  end
 end
