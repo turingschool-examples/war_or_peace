@@ -12,5 +12,6 @@ class PlayerTest < Minitest::Test
     deck = Deck.new([card1, card2, card3])
     player = Player.new('Clarisa', deck)
 
-    assert_instance_of Player,
+    assert_instance_of Player, player
   end
+end
