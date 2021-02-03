@@ -55,10 +55,20 @@ class DeckTest < Minitest::Test
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
 
-    assert_equal cards.shift, deck.remove_card
+    deck.remove_card
+
+    assert_equal cards.shift, deck.cards 
   end
 
   def test_can_add_card
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    card4 = Card.new(:club, '5', 5)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
 
+
+    assert_equal [card2, card3, card4], deck.add_card(card4)
   end
 end
