@@ -1,4 +1,4 @@
-require "pry"
+
 class Deck
   attr_reader :cards
   def initialize(cards = [])
@@ -18,9 +18,17 @@ class Deck
       13 => "King",
       14 => "Ace"
     }
+    @high_rank = []
   end
 
   def rank_of_card_at(index)
-    cards[index].rank
+    @cards[index].rank
+  end
+
+  def high_ranking_cards
+    @cards.each do |card|
+        if card.rank > 10
+          @high_rank << card
+    end
   end
 end
