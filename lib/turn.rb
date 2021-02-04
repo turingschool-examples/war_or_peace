@@ -49,19 +49,11 @@ class Turn
 
   def pile_cards
     if type == :mutually_assured_destruction
-      player1.deck.remove_card
-      player1.deck.remove_card
-      player1.deck.remove_card
-      player2.deck.remove_card
-      player2.deck.remove_card
-      player2.deck.remove_card
+      player1.deck.remove_card(3)
+      player2.deck.remove_card(3)
     elsif type == :war
-      @spoils_of_war << player1.deck.remove_card
-      @spoils_of_war << player1.deck.remove_card
-      @spoils_of_war << player1.deck.remove_card
-      @spoils_of_war << player2.deck.remove_card
-      @spoils_of_war << player2.deck.remove_card
-      @spoils_of_war << player2.deck.remove_card
+      @spoils_of_war << player1.deck.remove_card(3)
+      @spoils_of_war << player2.deck.remove_card(3)
     else type == :basic
       @spoils_of_war << player1.deck.remove_card
       @spoils_of_war << player2.deck.remove_card
