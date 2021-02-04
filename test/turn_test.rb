@@ -20,8 +20,8 @@ class TurnTest < Minitest::Test
     @player1 = Player.new("Megan", @deck1)
     @player2 = Player.new("Aurora", @deck2)
     @turn = Turn.new(@player1, @player2)
-
   end
+
   def test_it_exists
     assert_instance_of Turn, @turn
     assert_equal @turn.player1, @player1
@@ -39,21 +39,16 @@ class TurnTest < Minitest::Test
   def test_there_is_a_winner
     assert_equal @turn.winner, @player1
   end
-end
 
-#
-#
-# pry(main)> winner = turn.winner
-# #=> #<Player:0x007fa3edae29d0 @deck=#<Deck:0x007fa3eda472c8...>, @name="Megan">
-#
-# pry(main)> turn.pile_cards
-#
-# pry(main)> turn.spoils_of_war
-# #=> [#<Card:0x007fa3edaa0df0 @rank=11, @suit=:heart, @value="Jack">, #<Card:0x007fa3ed98d9b8 @rank=9, @suit=:heart, @value="9">]
-#
-# pry(main)> turn.award_spoils(winner)
-#
-# pry(main)> player1.deck
-# #=> #<Deck:0x007fa3eda472c8 @cards=[#<Card:0x007fa3eda519a8...>, #<Card:0x007fa3edb263d8...>, #<Card:0x007fa3eda89308...>, #<Card:0x007fa3edaa0df0...>, #<Card:0x007fa3ed98d9b8...>]>
-# pry(main)> player2.deck
-# #=> #<Deck:0x007fa3ee11ee48 @cards=[#<Card:0x007fa3ee14ef80...>, #<Card:0x007fa3eda3e1f0...>, #<Card:0x007fa3edad1cc0...>]>
+  def test_pile_cards
+    assert_equal @turn.pile_cards, @turn.spoils_of_war
+  end
+
+  def test_spoils_are_awarded_to_winner
+    @turn.award_spoils(@player1)
+    # require "pry"; binding.pry
+
+    assert_equal @player1.deck.cards, [@card2, @card5, @card8, @card1, @card3]
+    assert_equal @player2.deck.cards, [@card4, @card6, @card7]
+  end
+end

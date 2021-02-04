@@ -21,4 +21,15 @@ class Turn
     end
   end
 
+  def pile_cards
+    @spoils_of_war.push(player1.deck.remove_card, player2.deck.remove_card)
+  end
+
+  def award_spoils(winner)
+    @spoils_of_war.each do |card|
+      # require "pry"; binding.pry
+      winner.deck.cards << card
+    end
+    @spoils_of_war.clear
+  end
 end
