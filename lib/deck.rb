@@ -12,13 +12,12 @@ class Deck
   end
 
   def high_ranking_cards
-    @high_rank = []
     @cards.map do |card|
         if card.rank > 10
           @high_rank << card
         end
     end
-    return @high_rank
+    @high_rank 
   end
 
   def percent_high_ranking

@@ -15,14 +15,7 @@ class DeckTest < Minitest::Test
     @card4 = Card.new(:club, '5', 5)
     @cards = [@card1, @card2, @card3]
     @deck = Deck.new(@cards)
-
   end
-
-  # def test_it_exists
-  #   @cards
-  #   @deck
-  #   assert_instance_of Deck.new(@cards), @deck
-  # end
 
   def test_can_find_rank_of_card_at_index
     # card1 = Card.new(:diamond, 'Queen', 12)
