@@ -8,37 +8,43 @@ class Turn
   end
 
   def type
-    if player1.card_rank_at(0) == player2.card_rank_at(0) && player1.card_rank_at(2) == player2.card_rank_at(2)
+    if cards_match_at(0) && cards_match_at(2)
       :mutually_assured_destruction
-    elsif player1.card_rank_at(0) == player2.card_rank_at(0)
+    elsif cards_match_at(0)
       :war
     else
       :basic
     end
   end
 
+  def mutually_assured_destruction?
+    type == :mutually_assured_destruction
+  end
+
+  def war?
+    type == :war
+  end
+
   def winner
-    if self.type == :mutually_assured_destruction
+    if mutually_assured_destruction?
       'No Winner'
-    elsif self.type == :war
-      return player1 if player1.card_rank_at(2) > player2.card_rank_at(2)
-      player2
+    elsif war?
+      compare_card_at(2) < 0 ? player1 : player2
     else
-      return player1 if player1.card_rank_at(0) > player2.card_rank_at(0)
-      player2
+      compare_card_at(0) < 0 ? player1 : player2
     end
   end
 
   def pile_cards
-    if self.type == :mutually_assured_destruction
+    if mutually_assured_destruction?
       3.times {
         player1.deck.remove_card
         player2.deck.remove_card
       }
-    elsif self.type == :war
+    elsif war?
       3.times {
-        spoils_of_war << player1.deck.remove_card if !player1.has_lost?
-        spoils_of_war << player2.deck.remove_card if !player2.has_lost?
+        spoils_of_war << player1.deck.remove_card unless player1.has_lost?
+        spoils_of_war << player2.deck.remove_card unless player2.has_lost?
       }
     else
       spoils_of_war << player1.deck.remove_card
@@ -52,4 +58,20 @@ class Turn
     @spoils_of_war = []
   end
 
+  def player_stats
+    puts "player1's cards: #{player1.num_cards} || player2's cards: #{player2.num_cards}"
+  end
+
+  def valid_game?
+    !player1.has_lost? && !player2.has_lost?
+  end
+
+  private
+  def cards_match_at(index)
+    player1.card_rank_at(index) == player2.card_rank_at(index)
+  end
+
+  def compare_card_at(index = 0)
+    player1.card_rank_at(index) <=> player2.card_rank_at(index)
+  end
 end
