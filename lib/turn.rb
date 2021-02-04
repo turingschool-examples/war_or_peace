@@ -33,7 +33,7 @@ class Turn
   end
 
   def return_bigger_winner(index)
-    if player1.deck.rank_of_card_at(index) > player2.rank_of_card_at(index)
+    if player1.deck.rank_of_card_at(index) > player2.deck.rank_of_card_at(index)
       player1
     else
       player2
