@@ -1,4 +1,3 @@
-require 'Minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/deck'
@@ -22,7 +21,7 @@ class DeckTest < Minitest::Test
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
 
-    assert_equal deck.rank_of_card_at(0), card1
+    assert_equal deck.rank_of_card_at(0), 12
   end
 
   def test_high_ranking_cards
