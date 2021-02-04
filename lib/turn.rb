@@ -25,7 +25,7 @@ class Turn
       "No Winner."
     elsif type == :war
       if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
-        then @player1
+        @player1
           else @player2
       end
     else type == :basic
@@ -40,5 +40,9 @@ class Turn
     type == :basic
       @spoils_of_war << @player1.deck.remove_card
       @spoils_of_war << @player2.deck.remove_card
+  end
+
+  def award_spoils(winner)
+    winner.deck.add_card(@spoils_of_war)
   end
 end
