@@ -42,5 +42,7 @@ class MADTest < Minitest::Test
 
     turn.pile_cards
     assert_equal [], turn.spoils_of_war
+    assert_equal deck1, player1.deck
+    assert_equal deck2, player2.deck
   end
 end
