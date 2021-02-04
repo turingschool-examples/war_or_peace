@@ -23,7 +23,7 @@ class MADTest < Minitest::Test
     assert_equal :mutually_assured_destruction, turn.type
   end
 
-  def test_it_has_no_winner
+  def test_it_has_no_winner_and_does_not_pile_cards
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -39,5 +39,8 @@ class MADTest < Minitest::Test
     turn = Turn.new(player1, player2)
     # winner = turn.winner
     assert_equal "No Winner", turn.winner
+
+    turn.pile_cards
+    assert_equal [], turn.spoils_of_war
   end
 end
