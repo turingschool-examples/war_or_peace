@@ -4,7 +4,6 @@ require './lib/deck'
 require './lib/card'
 require './lib/player'
 require './lib/turn'
-require "pry"; binding.pry
 
 class TurnTest < Minitest::Test
   def setup
