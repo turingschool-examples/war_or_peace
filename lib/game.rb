@@ -7,7 +7,7 @@ class Game
   def start
     # game logic
     turn_counter = 0
-    while turn.player1.deck.cards.size > 0 && turn.player2.deck.cards.size > 0 && turn_counter < 1000000
+    while !turn.player1.has_lost? && !turn.player2.has_lost? && turn_counter < 1000000
       turn_counter += 1
       the_winner = turn.winner
       if turn.type == :mutually_assured_destruction
@@ -20,7 +20,7 @@ class Game
 
       turn.pile_cards
       turn.award_spoils(the_winner)
-      # puts "player1's cards: #{turn.player1.deck.cards.size} || player2's cards: #{turn.player2.deck.cards.size}"
+      puts "player1's cards: #{turn.player1.deck.cards.size} || player2's cards: #{turn.player2.deck.cards.size}"
     end
 
     if turn.winner == 'No Winner' || turn_counter == 1000000

@@ -6,12 +6,11 @@ class Deck
   end
 
   def rank_of_card_at(index)
-    return 0 if self.cards[index] == nil
-    self.cards[index].rank if index < self.cards.size
+    self.cards[index].nil? ? 0 : self.cards[index].rank
   end
 
   def high_ranking_cards
-    cards.find_all {|c| c.rank >= 11}
+    cards.find_all {|c| c.rank > 10}
   end
 
   def percent_high_ranking

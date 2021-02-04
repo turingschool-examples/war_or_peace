@@ -7,7 +7,10 @@ class Player
   end
 
   def has_lost?
-    return false if deck.cards.size > 0
-    true
+    deck.cards.size == 0
+  end
+
+  def card_rank_at(index)
+    deck.rank_of_card_at(index)
   end
 end

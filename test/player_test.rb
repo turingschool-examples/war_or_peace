@@ -47,4 +47,14 @@ class PlayerTest < MiniTest::Test
     assert_equal player.has_lost?, true
     assert_equal player.deck.cards, Deck.new().cards
   end
+
+  def test_card_rank_at
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+    player = Player.new('Clarisa', deck)
+    assert_equal player.card_rank_at(0), 12
+  end
 end

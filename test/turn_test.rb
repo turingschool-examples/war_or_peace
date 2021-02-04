@@ -204,5 +204,4 @@ class TurnTest < Minitest::Test
     assert_equal turn.player1.deck.cards, [card8]
     assert_equal turn.player2.deck.cards, [card7]
   end
-
 end
