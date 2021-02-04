@@ -1,4 +1,7 @@
 class CardGenerator
+  SUITS = %w[Spades Hearts Diamonds Clubs].freeze
+  RANKS = %w[2 3 4 5 6 7 8 9 10 Jack Queen King Ace].freeze
+
   attr_reader :filename
   def initialize(f)
     @filename = f
@@ -6,15 +9,10 @@ class CardGenerator
   end
 
   def generate_txt
-    path_to_file = "#{filename}"
-
-    File.delete(path_to_file) if File.exist?(path_to_file)
-
-    suits = %w[Spades Hearts Diamonds Clubs]
-    ranks = %w{2 3 4 5 6 7 8 9 10 Jack Queen King Ace}
-    suits.each do |suit|
-      ranks.size.times do |i|
-        File.open(path_to_file, "a") { |f| f.write "#{ranks[i]}, #{suit}, #{i+2} \n" }
+    File.delete(filename) if File.exist?(filename)
+    SUITS.each do |suit|
+      RANKS.size.times do |i|
+        File.open(filename, "a") { |f| f.puts "#{RANKS[i]}, #{suit}, #{i+2}" }
       end
     end
   end
@@ -32,8 +30,7 @@ class CardGenerator
   end
 
   def file_to_array
-    path_to_file = "#{filename}"
-    text = File.open(path_to_file).read.scan(/\w+/)
+    text = File.open(filename).read.scan(/\w+/)
   end
 
 end
