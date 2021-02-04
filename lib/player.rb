@@ -6,8 +6,12 @@ class Player
     @deck = d
   end
 
+  def num_cards
+    deck.cards.size
+  end
+
   def has_lost?
-    deck.cards.size == 0
+    num_cards.zero?
   end
 
   def card_rank_at(index)
