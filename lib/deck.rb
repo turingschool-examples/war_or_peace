@@ -2,11 +2,11 @@ class Deck
   attr_reader :cards
 
   def initialize(*cards)
-    @cards = cards 
+    @cards = cards
   end
 
   def empty?
-    @cards.empty?
+    cards.empty?
   end
 
   def rank_of_card_at(index)
@@ -30,11 +30,11 @@ class Deck
   end
 
   def remove_card
-    self.cards.shift
+    cards.shift
   end
 
   def add_card(card)
-    self.cards << card
+    cards << card
   end
 
 
