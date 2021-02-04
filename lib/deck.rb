@@ -1,34 +1,30 @@
 class Deck
-  attr_reader  :cards
+  attr_reader :cards,:high_cards
 
   def initialize(cards=[])
-    @cards = cards
     @high_cards = []
-    # @high_card_count = 0
+    @cards = cards
   end
 
   def add_card(card)
-    if card.rank > 10
-      # @high_card_count += 1
-      @high_cards << card
-    end
+    @high_cards << card if card.rank > 10
     @cards << card
   end
 
   def rank_of_card_at(index)
-    deck[index].rank
+    @cards[index].rank
   end
 
   def high_ranking_cards
-    @high_cards
+    cards.select {|card| card.rank > 10}
   end
 
   def percent_high_ranking
-    @high_cards.size / @cards.size
+    (100* high_ranking_cards.size.to_f / @cards.size).round(2)
   end
 
   def remove_card
-    @high_cards.shift
+    cards.shift
   end
 
 end
