@@ -18,7 +18,7 @@ class CardGenerator
   end
 
   def cards
-    card_array = self.file_to_array
+    card_array = file_to_array
     standard_deck = []
     52.times {
       rank = card_array.shift
@@ -30,7 +30,7 @@ class CardGenerator
   end
 
   def file_to_array
-    text = File.open(filename).read.scan(/\w+/)
+    File.read(filename).scan(/\w+/)
   end
 
 end
