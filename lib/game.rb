@@ -17,6 +17,14 @@ class Game
 
   def start
     turn = Turn.new(@player1, @player2)
-    p turn.winner.name
+      if turn.type == :mutually_assured_destruction
+        puts 'Turn 3: *mutually assured destruction*
+              No cards for anyone.
+              6 cards go bye bye and removed from play'
+      elsif turn.type == :war
+        puts "Turn 2: #{turn.winner.name} cleaning house and sticky fingering 6 cards"
+      else turn.type == :basic
+        puts "Turn 1: #{turn.winner.name} inching towards winning and claiming 2 cards"
+      end
   end
 end
