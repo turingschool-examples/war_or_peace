@@ -61,4 +61,8 @@ class GameTest < Minitest::Test
     assert_equal "*~*~*~* #{@game.player1.name} has won the game! *~*~*~*", @game.final_message
   end
 
+  def test_game_has_end_conditions
+    4.times {@game.player2.deck.remove_card}
+    assert_equal @game.final_message, @game.game_ender
+  end
 end
