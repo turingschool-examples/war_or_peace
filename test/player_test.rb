@@ -15,9 +15,10 @@ class PlayerTest < Minitest::Test
     player = Player.new('Clarisa', deck)
 
     assert_instance_of Player, player
-    assert_instance_of Deck, deck
+    # assert_instance_of Deck, deck ...do not need b/c it already exists in deck.rb
     assert_equal [card1, card2, card3], player.deck.cards
     #player.deck.cards <- deck is an object and cards is an attribute of that deck in which cards have 3 instances
+    assert_equal "Clarisa", player.name
   end
 
   def test_has_lost
