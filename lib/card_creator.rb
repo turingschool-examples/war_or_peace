@@ -6,14 +6,14 @@ class CardCreator
               :suits,
               :full_deck
 
-  def initialize(ranks = all_ranks, suits = all_suits) # take out defaults?
+  def initialize(ranks = all_ranks, suits = all_suits)
     @ranks = ranks
     @suits = suits
     @full_deck = []
   end
 
   def all_ranks
-    {
+      {
         '2' => 2,
         '3' => 3,
         '4' => 4,
@@ -33,6 +33,7 @@ class CardCreator
   def all_suits
     [:heart, :diamond, :spade, :club]
   end
+
 
 def create_deck
   @suits.each do |suit|

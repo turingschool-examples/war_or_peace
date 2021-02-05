@@ -6,6 +6,7 @@ require './lib/player'
 require './lib/turn'
 require './lib/card_creator'
 require 'pry'
+
 class CardCreatorTest < Minitest:: Test
   def setup
     @all_suits = [:heart, :diamond, :spade, :club]
@@ -58,31 +59,7 @@ class CardCreatorTest < Minitest:: Test
     assert_equal true, @card_creator.full_deck.empty?
 
     @card_creator.create_deck
-    
+
     assert_equal 52, @card_creator.full_deck.count
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 end
