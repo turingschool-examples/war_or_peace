@@ -38,7 +38,7 @@ class TurnTest < Minitest::Test
     assert_equal [], @turn.spoils_of_war
   end
 
-  def test_type_method_is_basic
+  def test_can_compare_players_cards
     assert_equal :basic, @turn.type
   end
 
