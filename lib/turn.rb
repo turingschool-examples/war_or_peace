@@ -61,7 +61,7 @@ class Turn
     @spoils_of_war.each do |spoil|
       if winner == player1
         player1.deck.cards << spoil
-      else
+      elsif winer == player2
         player2.deck.cards << spoil
       end
     end
