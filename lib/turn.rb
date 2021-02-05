@@ -9,12 +9,12 @@ class Turn
   end
 
   def type
-    if player1.deck.rank_of_card_at(0) !=  player2.deck.rank_of_card_at(0)
-      :basic
-    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
-      :war
-    else
+    if ((player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)) && (player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)))
       :mutually_assured_destruction
+    elsif player1.deck.rank_of_card_at(0) !=  player2.deck.rank_of_card_at(0)
+      :basic
+    else
+      :war
     end
   end
 
@@ -35,8 +35,8 @@ class Turn
       @spoils_of_war.push(player1.deck.cards.shift)
       @spoils_of_war.push(player2.deck.cards.shift)
     elsif type == :war
-      @spoils_of_war.push(player1.deck.cards.shift(3))
-      @spoils_of_war.push(player2.deck.cards.shift(3))
+      @spoils_of_war.push(player1.deck.cards.shift(3)).flatten!
+      @spoils_of_war.push(player2.deck.cards.shift(3)).flatten!
     elsif self.type == :mutually_assured_destruction
       player1.deck.cards.shift(3)
       player2.deck.cards.shift(3)
@@ -47,8 +47,7 @@ class Turn
      if type == :mutually_assured_destruction
        return
      end
-     winner.deck.cards << @spoils_of_war
-     winner.deck.cards == winner.deck.cards.flatten
+     winner.deck.cards.push(@spoils_of_war).flatten!
      @spoils_of_war.clear
    end
 end
