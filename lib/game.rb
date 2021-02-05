@@ -19,9 +19,9 @@ class Game
 
   def final_message
     if player1.has_lost?
-      "*~*~*~* #{turn.player2.winner} has won the game! *~*~*~*"
+      "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
     elsif player2.has_lost?
-      "*~*~*~* #{turn.player1.winner} has won the game! *~*~*~*"
+      "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
     else
       "---- DRAW ----"
     end
