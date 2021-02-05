@@ -11,10 +11,13 @@ class Turn
   def type
     if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
       :basic
+    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+      :war
     end
   end
 
   def determine_winner
+    # require "pry"; binding.pry
     if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
       player1
     elsif player1.deck.rank_of_card_at(0) < player2.deck.rank_of_card_at(0)
@@ -23,7 +26,6 @@ class Turn
   end
 
   def pile_cards
-
     @spoils_of_war.push(player1.deck.remove_card, player2.deck.remove_card)
   end
 
