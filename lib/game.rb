@@ -27,5 +27,10 @@ class Game
     end
   end
 
-
+  def game_ender
+    if @turn_number == 1000000 || player1.has_lost? || player2.has_lost?
+      final_message
+    end
+  end
+  
 end
