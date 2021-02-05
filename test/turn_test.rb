@@ -39,7 +39,15 @@ class TurnTest < Minitest::Test
 
   end
   def test_pile_cards
+    assert_equal @turn.spoils_of_war, []
     @turn.pile_cards
     assert_equal @turn.spoils_of_war, [@card1,@card4]
+  end
+  def test_award_spoils
+    @turn.pile_cards
+    @turn.test_award_spoils
+    assert_equal @turn.spoils_of_war, []
+    assert_equal @player1.deck.cards, [@card4,@card1,@card3, @card5]
+    assert_equal @player2.deck.cards, [@card6, @card5]
   end
 end
