@@ -61,8 +61,17 @@ class GameTest < Minitest::Test
     assert_equal "*~*~*~* #{@game.player1.name} has won the game! *~*~*~*", @game.final_message
   end
 
-  def test_game_has_end_conditions
+  def test_game_ender_returns_true_when_one_player_no_longer_has_cards
+    # skip
     4.times {@game.player2.deck.remove_card}
-    assert_equal @game.final_message, @game.game_ender
+    assert_equal true, @game.game_ender
   end
+
+  def test_game_ends_with_draw_if_turn_counter_reaches_1000000
+    @game.game_starter
+
+    assert_equal "---- DRAW ----", @game.final_message
+  end
+  
+
 end
