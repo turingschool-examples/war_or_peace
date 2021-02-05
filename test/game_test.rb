@@ -45,14 +45,20 @@ class GameTest < Minitest::Test
   end
 
   def test_returns_draw
-    # skip
-
+    skip
     assert_equal "---- DRAW ----", @game.final_message
   end
 
-  def test_returns_win
-    skip
+  def test_returns_win_for_player_2
+    # skip
+    4.times {@game.player1.deck.remove_card}
+    assert_equal "*~*~*~* #{@game.player2.name} has won the game! *~*~*~*", @game.final_message
   end
 
+  def test_returns_win_for_player_1
+    # skip
+    4.times {@game.player2.deck.remove_card}
+    assert_equal "*~*~*~* #{@game.player1.name} has won the game! *~*~*~*", @game.final_message
+  end
 
 end
