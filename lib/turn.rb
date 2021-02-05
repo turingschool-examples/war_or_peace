@@ -26,12 +26,16 @@ class Turn
         player1
       elsif player1.deck.rank_of_card_at(2) < player2.deck.rank_of_card_at(2)
         player2
-      end 
+      end
     end
   end
 
   def pile_cards
-    @spoils_of_war.push(player1.deck.remove_card, player2.deck.remove_card)
+    if type == :basic
+      @spoils_of_war.push(player1.deck.remove_card, player2.deck.remove_card)
+    elsif type == :war
+      3.times { @spoils_of_war.push(player1.deck.remove_card, player2.deck.remove_card) }
+    end
   end
 
   def award_spoils
