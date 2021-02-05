@@ -13,7 +13,7 @@ class Turn
     player2_at_0 = player2.deck.rank_of_card_at(0)
     player2_at_2 = player2.deck.rank_of_card_at(2)
 
-    if player1_at_0 == player2_at_0 && player1_at_2 == player1_at_2
+    if player1_at_0 == player2_at_0 && player1_at_2 == player2_at_2
       :mutually_assured_destruction
     elsif player1_at_0 == player2_at_0
       :war
