@@ -6,7 +6,7 @@ require './lib/player'
 require './lib/turn'
 require './lib/game'
 
-class GameTest < Minitest::Test:
+class GameTest < Minitest::Test
   def setup
     @card1 = Card.new(:heart, 'Jack', 11)
     @card2 = Card.new(:heart, '10', 10)
@@ -30,3 +30,4 @@ class GameTest < Minitest::Test:
   def test_it_exists
     assert_instance_of Game, @game
   end
+end
