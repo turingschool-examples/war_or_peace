@@ -17,11 +17,11 @@ class Turn
       :mutually_assured_destruction
     elsif player1_at_0 == player2_at_0
       :war
-    else
+    elsif player1_at_0 != player2_at_0
       :basic
     end
   end
-
+  
   def winner
     if type == :mutually_assured_destruction
       "No Winner"
@@ -61,7 +61,7 @@ class Turn
     @spoils_of_war.each do |spoil|
       if winner == player1
         player1.deck.cards << spoil
-      elsif winer == player2
+      elsif winner == player2
         player2.deck.cards << spoil
       end
     end
