@@ -143,14 +143,72 @@ class TurnTest < Minitest::Test
   def test_basic_play_results_two_new_cards_in_spoils
     # skip
     deck1 = Deck.new(@card1, @card5, @card2, @card8)
-    deck2 = Deck.new(@card4, @card3, @card9, @card7)
+    deck2 = Deck.new(@card3, @card4, @card9, @card7)
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
 
     turn.pile_cards
 
-    assert_equal [@card1, @card4], turn.spoils_of_war
+    assert_equal [@card1, @card3], turn.spoils_of_war
+  end
+
+  def test_war_play_results_six_new_cards_in_spoils
+    # skip
+    deck1 = Deck.new(@card1, @card2, @card5, @card8)
+    deck2 = Deck.new(@card4, @card3, @card6, @card7)
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+
+    turn.pile_cards
+
+    assert_equal [@card1, @card2, @card5, @card4, @card3, @card6], turn.spoils_of_war
+  end
+
+  def test_mutually_assured_play_results_each_player_loses_3_cards
+    # skip
+    deck1 = Deck.new(@card1, @card5, @card2, @card10)
+    deck2 = Deck.new(@card4, @card3, @card9, @card6)
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    turn.pile_cards
+
+    assert_equal [@card10], turn.player1.deck.cards
+
+    assert_equal [@card6], turn.player2.deck.cards
+  end
+
+  def test_pile_cards_gives_spoils_2_new_cards_basic
+    deck1 = Deck.new(@card1, @card2, @card5, @card8)
+    deck2 = Deck.new(@card3, @card4, @card6, @card7)
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    winner = turn.winner
+    turn.pile_cards
+
+    assert_equal [@card1, @card3], turn.spoils_of_war
+  end
+
+  def test_award_spoils_gives_winner_2_cards
+    deck1 = Deck.new(@card1, @card2, @card5, @card8)
+    deck2 = Deck.new(@card3, @card4, @card6, @card7)
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    winner = turn.winner
+    turn.pile_cards
+    turn.awards_spoils(winner)
+
+    assert_equal [@card2, @card5, @card8, @card1, @card3], turn.player1.deck.cards
+
+    assert_equal [@card4, @card6, @card7], turn.player2.deck.cards
+  end
+
+  def test
+
   end
 
 

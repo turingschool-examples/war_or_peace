@@ -76,7 +76,6 @@ class DeckTest < Minitest::Test
     @card3
     deck = Deck.new(@card1, @card2, @card3)
     deck.remove_card
-
     assert_equal 2, deck.cards.length
   end
 

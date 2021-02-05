@@ -11,10 +11,22 @@ class Turn
     @type = [:basic, :war, :mutually_assured_destruction]
   end
 
+  def awards_spoils(winner)
+    @spoils_of_war.each do |card|
+      winner.deck.cards << card
+    end
+  end
+
   def pile_cards
       if    turn_type == :mutually_assured_destruction
+        3.times {player1.deck.remove_card}
+        3.times {player2.deck.remove_card}
       elsif turn_type == :war
-      else  turn_type == :basic
+        3.times {@spoils_of_war << player1.deck.remove_card}
+        3.times {@spoils_of_war << player2.deck.remove_card}
+      else
+        @spoils_of_war << player1.deck.remove_card
+        @spoils_of_war << player2.deck.remove_card
     end
   end
 
@@ -33,13 +45,13 @@ class Turn
     if    turn_type == :mutually_assured_destruction
       "No Winner"
     elsif turn_type == :war
-      if player1.deck.cards[2].rank > player2.deck.cards[2].rank
+      if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
         player1
       else
         player2
       end
     elsif turn_type == :basic
-      if player1.deck.remove_card.rank > player2.deck.remove_card.rank
+      if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
         player1
       else
         player2
