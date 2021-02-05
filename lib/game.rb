@@ -7,7 +7,7 @@ class Game
     @player2 = player2
   end
 
-  def welcome_message
+  def start
     puts "      Welcome to War! (or Peace) This game will be played
       with 52 cards.
       The players today are #{@player1.name} and #{@player2.name}.
@@ -15,16 +15,26 @@ class Game
       ________________________________________________________"
   end
 
-  def start
-    turn = Turn.new(@player1, @player2)
+  def play
+    count = 1
+    while count < 15
+      turn = Turn.new(@player1, @player2)
+      winner = turn.winner
+
       if turn.type == :mutually_assured_destruction
-        puts 'Turn 3: *mutually assured destruction*
-              No cards for anyone.
-              6 cards go bye bye and removed from play'
+        p "Turn #{count}: *mutually assured destruction*
+          3 cards from each of your decks making their way to el garbagio."
+        turn.pile_cards
       elsif turn.type == :war
-        puts "Turn 2: #{turn.winner.name} cleaning house and sticky fingering 6 cards"
+        p "Turn #{count}: #{turn.winner.name} cleaning house and snatchin' 6 cards."
+        turn.pile_cards
+        turn.award_spoils(winner)
       else turn.type == :basic
-        puts "Turn 1: #{turn.winner.name} inching towards winning and claiming 2 cards"
+        p "Turn #{count}: #{turn.winner.name} inchin' towards the win and claiming 2 cards."
+        turn.pile_cards
+        turn.award_spoils(winner)
       end
+      count += 1
+    end
   end
 end

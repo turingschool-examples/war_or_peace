@@ -124,12 +124,12 @@ player2_deck = Deck.new(deck2)
 @player2 = Player.new('Jenny', player2_deck)
 
 new_game = Game.new(@player1, @player2)
-new_game.welcome_message
+new_game.start
 
 user_go = gets.chomp.upcase
 #COME BACK TO REFACTOR WITH UNTIL for GO INPUT OR EXIT
 if user_go == "GO"
-  new_game.start
+  new_game.play
 else
   p "If you're ready for WAR... say so by typing GO."
     user_go = gets.chomp.upcase
