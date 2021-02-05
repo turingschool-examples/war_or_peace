@@ -26,13 +26,20 @@ class TurnTest < Minitest::Test
     assert_equal @turn.player2, @player2
     assert_equal @turn.spoils_of_war, []
     #add more tests for spoils of war after turn initiated and given all combos
+
   end
   def test_type
     assert_equal @turn.type, 'basic'
     #add more to check if still correct for all types 
+
   end
   def test_winner
     assert_equal @turn.winner, "Alex"
     #add more for different scenarios
+
+  end
+  def test_pile_cards
+    @turn.pile_cards
+    assert_equal @turn.spoils_of_war, [@card1,@card4]
   end
 end
