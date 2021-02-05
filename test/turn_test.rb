@@ -45,10 +45,11 @@ class TurnTest < Minitest::Test
   end
 
   def test_spoils_are_awarded_to_winner
-    @turn.award_spoils(@player1)
-    # require "pry"; binding.pry
+    @turn.pile_cards
+    @turn.award_spoils
 
-    assert_equal @player1.deck.cards, [@card2, @card5, @card8, @card1, @card3]
-    assert_equal @player2.deck.cards, [@card4, @card6, @card7]
+    assert_equal @player1.deck.cards.count, 5
+    assert_equal @player2.deck.cards.count, 3
+    assert_includes @player1.deck.cards, @card3
   end
 end
