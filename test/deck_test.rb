@@ -29,10 +29,18 @@ class DeckTest < Minitest::Test
     assert_equal [@card3, @card1, @card6, @card4], @deck1.high_ranking_cards
   end
   def test_percent
-    assert_equal 66.67, @deck1.percent_high_ranking
+    if @deck1.cards.length < 7
+        assert_equal 66.67, @deck1.percent_high_ranking
+    else 
+        assert_equal (5.0/7).round(2), @deck1.percent_high_ranking
   end
   def test_remove
     @deck1.remove_card
     assert_equal @deck1.cards,  [@card3, @card2, @card1,@card6, @card5]
   end
+  def test_add
+    @deck1.add_card(@card1)
+    assert_equal @deck1, [@card3, @card2, @card1,@card6, @card5, @card4,@card1]
+  end
+end
 end
