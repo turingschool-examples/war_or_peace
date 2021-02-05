@@ -1,4 +1,3 @@
-
 class Game
   attr_reader :player1,
               :player2
@@ -18,29 +17,28 @@ class Game
 
   def start
     count = 1
-    while count < 100
+    while count < 100000000
     turn = Turn.new(@player1, @player2)
     winner = turn.winner
+    turn.pile_cards
     if turn.type == :mutually_assured_destruction
-      p "Turn #{count} mutually assured destruction, Stalement
-            6 cards have been completely destroyed"
-            turn.pile_cards
+      p "Turn #{count} mutually assured destruction Stalement 6 cards have been destroyed"
+        turn.pile_cards
     elsif turn.type == :war
+      winner = turn.winner
       p "Turn #{count}: #{turn.winner.name} won the battle and gains 6 cards."
-      turn.pile_cards
       turn.award_spoils(winner)
     else turn.type == :basic
+      winner = turn.winner
       p "Turn #{count}: #{turn.winner.name} won the skirmish and gains 2 cards."
-    end
-    turn.pile_cards
-    turn.award_spoils(winner)
-
-    if turn.player1.has_lost?
-      p "*~*~*~*~ #{player2.name} has won the war. *~*~*~*~ "
-    else turn.player2.has_lost?
-      p  "*~*~*~*~ #{player1.name} has won the war. *~*~*~*~ "
+      turn.award_spoils(winner)
     end
 
+    # if player1.has_lost?
+    #   p "*~*~*~*~ #{player2.name} has won the war. *~*~*~*~ "
+    # else player2.has_lost?
+    #   p  "*~*~*~*~ #{player1.name} has won the war. *~*~*~*~ "
+    # end
 
     count += 1
    end
