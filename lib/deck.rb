@@ -1,23 +1,37 @@
 
-require './lib/card'
-
 class Deck
+  attr_accessor :cards
 
-  attr_reader :card, :suit, :value, :rank
-
-  def initialize(cards)
+  def initialize (cards)
     @cards = cards
-    @card = card
-    @suit = suit
-    @value = value
-    @rank = rank
-
   end
 
-  def cards
+
+  def rank_of_card_at(index)
+    @cards[index].rank
+  end
+
+
+  def high_ranking_cards
+    cards.select do |card|
+     card.rank > 11
+    end
+  end
 
 
 
+  def percent_high_ranking
+    high_rank = cards.select do |card|
+     card.rank > 11
+    end
+     (high_rank.length.to_f/cards.length.to_f).round(3) * 100
+  end
+
+  def remove_card
+    cards.shift
+  end
+
+  def add_card(card)
+    cards.append(card)
   end
 end
- card1 = Card.new(:diamond, 'queen', 12)

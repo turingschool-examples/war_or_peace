@@ -1,25 +1,14 @@
 
 class Card
 
-  def initialize(suit, value, rank)
-    @suit = suit
-    @value = value
-    @rank = rank
-  end
+  attr_reader :suit,
+  :value,
+  :rank
 
-  def suit
-    return @suit
-  end
 
-  def value
-    return @value
-  end
-
-  def rank
-    return @rank
-  end
-
+   def initialize(suit, value, rank)
+     @suit = suit
+     @value = value
+     @rank = rank
+   end
 end
-
-card = Card.new(:diamond, 'Queen', 12)
-p card
