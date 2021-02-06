@@ -41,11 +41,12 @@ class GameTest < Minitest::Test
 
   def test_turn_shows_turn_messages
     # skip
-    assert_equal "Turn 5: WAR - Player 1 won 6 cards", @game.turn_messages(5, :war, "Player 1")
+    assert_equal "Turn #{@game.turn_number}: WAR - Player 1 won 6 cards", @game.turn_messages(:war, "Player 1")
   end
 
   def test_returns_draw
-    skip
+    # skip
+    @game.turn_number = 999999
     assert_equal "---- DRAW ----", @game.final_message
   end
 
@@ -66,12 +67,5 @@ class GameTest < Minitest::Test
     4.times {@game.player2.deck.remove_card}
     assert_equal true, @game.game_ender
   end
-
-  def test_game_ends_with_draw_if_turn_counter_reaches_1000000
-    @game.game_starter
-
-    assert_equal "---- DRAW ----", @game.final_message
-  end
-  
 
 end
