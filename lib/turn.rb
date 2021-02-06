@@ -12,41 +12,60 @@ class Turn
   end
 
   def type
-    if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
-        :basic
+    if @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
+      :mutually_assured_destruction
     elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
-        :war
-    else @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
-        :mutually_assured_destruction
+      :war
+    else @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+      :basic
     end
   end
 
   def winner
-    if @type == :basic && player_card_rank_at_0
+    basic_winner = @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
+    war_winner = @player1.deck.rank_of_card_at(2) < @player2.deck.rank_of_card_at(2)
+
+    if @type == :basic && basic_winner == true
+      @player1
+    else
+      @player2
+    end
+    if @type == :war && war_winner == true
+      @player2
+    else
+      @player1
     end
   end
 
   def pile_cards
-    if :basic
-      @spoils_of_war.flatten << [@player1.deck[0],@player2.deck[0]]
-    elsif :war
-      @spoils_of_war.flatten << [@player1.deck[0..2],@player2.deck[0..2]]
+    if @type == :basic
+      @spoils_of_war.unshift(@player2.deck.cards[0])
+      @player2.deck.cards.delete_at(0)
+      @spoils_of_war.unshift(@player1.deck.cards[0])
+      @player1.deck.cards.delete_at(0)
+    elsif @type == :war
+      @spoils_of_war.unshift(@player1.deck.cards[0])
+      @spoils_of_war.unshift(@player1.deck.cards[0])
+      @spoils_of_war.unshift(@player1.deck.cards[0])
+      @player1.deck.cards.delete_at(0)
+      @player1.deck.cards.delete_at(0)
+      @player1.deck.cards.delete_at(0)
+      @spoils_of_war.unshift(@player2.deck.cards[0])
+      @spoils_of_war.unshift(@player2.deck.cards[0])
+      @spoils_of_war.unshift(@player2.deck.cards[0])
+      @player2.deck.cards.delete_at(0)
+      @player2.deck.cards.delete_at(0)
+      @player2.deck.cards.delete_at(0)
+    else @type == :mutually_assured_destruction
+      'No Winner'
+      end
     end
-  end
 
-  def player_card_rank_at_0
-    rank_array_0 = [@player1.deck.rank_of_card_at(0),@player2.deck.rank_of_card_at(0)].max
-  end
-
-  # def player_card_rank_at_2
-  #   rank_array_2 = [@player1.deck.rank_of_card_at(2),@player2.deck.rank_of_card_at(2)].max
-  # end
-
-end
-
-
-
-
-
+    def award_spoils(winner)
+      @spoils_of_war.each do |card|
+      winner.deck.cards << card
+    end
+      winner.deck.cards
+    end
 
 end
