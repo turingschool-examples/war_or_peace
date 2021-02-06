@@ -75,11 +75,20 @@ class WarTest < Minitest::Test
   end
 
   def test_it_has_attributes
-    card = @card1
+    war1 = War.new(@turn)
 
-    assert_equal @card1, card
+    assert_equal @turn, war1.turn
   end
 
-  def test_it_can_have_different_attributes
+  def test_it_can_have_winner_of_turn_1
+    war1 = War.new(@turn)
+    #I tried using assert_equal with || operator but it doesn't work
+    refute_nil @turn.winner.name
+  end
+
+  def test_it_can_ask_to_start_a_game
+    war1 = War.new(@turn)
+
+    assert_equal "Type 'GO' to start the game!", war1.start
   end
 end
