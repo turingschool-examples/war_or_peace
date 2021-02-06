@@ -1,3 +1,4 @@
+require 'pry'
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/deck'
@@ -12,11 +13,12 @@ class TurnTest < Minitest::Test
     @card4 = Card.new(:diamond, 'Jack', 11)
     @card5 = Card.new(:heart, '8', 8)
     @card6 = Card.new(:diamond, 'Queen', 12)
-    @deck1 = Deck.new([@card3, @card5, @card1])
+    @deck1 = Deck.new([@card3, @card2, @card1])
     @deck2 = Deck.new([@card6, @card5, @card4])
     @player1 = Player.new("Alex",@deck1)
     @player2 = Player.new("Another Alex",@deck2)
     @turn = Turn.new(@player1, @player2)
+    #binding.pry
   end
   def test_it_exists
     assert_instance_of Turn, @turn
@@ -29,12 +31,16 @@ class TurnTest < Minitest::Test
 
   end
   def test_type
-    assert_equal @turn.type, 'basic'
+    assert_equal @turn.type, :basic
     #add more to check if still correct for all types 
 
   end
   def test_winner
-    assert_equal @turn.winner, "Alex"
+    assert_equal @turn.winner, @player1
+    @turn.pile_cards
+    @turn.award_spoils
+    assert_equal @turn.winner, @player2
+
     #add more for different scenarios
 
   end
@@ -45,9 +51,10 @@ class TurnTest < Minitest::Test
   end
   def test_award_spoils
     @turn.pile_cards
-    @turn.test_award_spoils
+    @turn.award_spoils
     assert_equal @turn.spoils_of_war, []
-    assert_equal @player1.deck.cards, [@card4,@card1,@card3, @card5]
-    assert_equal @player2.deck.cards, [@card6, @card5]
+    assert_equal @turn.player1.deck.cards, [@card1,@card4,@card3, @card2]
+    assert_equal @turn.player2.deck.cards, [@card6, @card5]
   end
+
 end
