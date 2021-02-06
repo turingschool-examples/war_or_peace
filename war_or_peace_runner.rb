@@ -29,7 +29,7 @@ suites = [:clubs, :hearts, :spades, :diamonds]
 cards1 = []
 card_values_and_ranks.each do |value, rank|
   suites.each do |suite|
-    cards1.push(card.new(suite, value, rank))
+    cards1.push(Card.new(suite, value, rank))
   end
 end
 #Here I am telling my code to add each suite, value, and rank (for a total of 52)
@@ -50,4 +50,15 @@ turn    = Turn.new(player1, player2)
 #test files
 game    = Game.new(turn)
 #Here I am creating a new instance of the game class and giving it the argument
-#of turn 
+#of turn
+game.start
+#I use the start method of the game class to print the opening statement
+user_input = gets.chomp
+  if user_input == "GO"
+  game.play
+  else
+  game.start
+end
+#Here I am telling the code to ask the user to input something after the opening
+#game statement appears. If they do not type verbatim, GO, then they will see the
+#opening statement again.-
