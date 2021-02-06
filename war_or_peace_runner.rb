@@ -1,11 +1,8 @@
-# require 'minitest/autorun'
-# require 'minitest/pride'
 require './lib/deck'
 require './lib/card'
 require './lib/player'
 require './lib/turn'
 require './lib/game'
-
 
 # Card generator
 ranks = %w{2 3 4 5 6 7 8 9 10 J Q K A}
