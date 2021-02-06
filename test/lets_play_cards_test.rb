@@ -91,4 +91,9 @@ class WarTest < Minitest::Test
 
     assert_equal "Type 'GO' to start the game!", war1.start
   end
+
+  def test_user_can_respond_GO
+    war1 = War.new(@turn)
+
+    assert_equal "GO", go
 end
