@@ -112,6 +112,7 @@ require './lib/game'
           ]
 
     shuffled = @deck.shuffle
+
     deck1 = shuffled[0..25]
     deck2 = shuffled[26..51]
     player1_deck = Deck.new(deck1)

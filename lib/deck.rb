@@ -13,14 +13,11 @@ class Deck
     end
   end
 
+
   def high_ranking_cards
-    royal_cards = []
-    cards.each do |card|
-      if card.rank > 10
-        royal_cards << card
-      end
+    @cards.find_all do |card|
+      card.rank > 10
     end
-    royal_cards
   end
 
   def percent_high_ranking
