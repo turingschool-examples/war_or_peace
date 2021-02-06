@@ -5,8 +5,8 @@ class Deck
      @cards = cards
    end
 
-   def rank_of_card_at(index)
-     @cards[index].rank
+   def rank_of_card_at(card)
+     @cards[card].rank
    end
 
     def high_ranking_cards
@@ -26,15 +26,17 @@ class Deck
         # end
 
    def percent_high_ranking
-     (100*high_ranking_cards.length.to_f / @cards.length.to_f).round(2)
+     (100*high_ranking_cards.length.fdiv(@cards.length)).round(2)
    end
 
-   # def remove_card
-   #   remove top card from deck  #define this function
-   # end
-   #
-   # def add_card
-   #   add_card top card from deck  #define this function
-   # end
+   def remove_card
+     @cards.shift
+   end
+
+   def add_card(card)
+     #require "pry"; binding.pry
+     @cards.push(card)
+     #remove_card.push(card)
+   end
 
  end
