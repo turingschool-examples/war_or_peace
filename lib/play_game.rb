@@ -6,7 +6,7 @@ class PlayGame
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
-    @number_of_turns = 0
+    # @number_of_turns = 0
   end
 
   def start
@@ -24,13 +24,15 @@ class PlayGame
     play_turn
   end
 
+
   def play_turn
-    # @number_of_turns += 1
-    number_of_turns
+    @number_of_turns = 1
+    # number_of_turns
     turn = Turn.new(@player1, @player2)
+    @number_of_turns += 1
 
 
-    if @number_of_turns >= 1
+    # if @number_of_turns >= 1
 
       turn.pile_cards
 
@@ -53,17 +55,17 @@ class PlayGame
         p "*~*~*~* #{player1.name} has won the game! *~*~*~*"
       end
 
-      # if @number_of_turns == 1000000
-      #   p "---- DRAW ----"
-      # end
-    end
+      if @number_of_turns == 1000000
+        p "---- DRAW ----"
+      end
+    # end
   end
 
-  def number_of_turns
-    @number_of_turns += 1
-    if @number_of_turns == 1000000
-      p "---- DRAW ----"
-    end
-  end
+  # def number_of_turns
+  #   @number_of_turns += 1
+  #   if @number_of_turns == 1000000
+  #     p "---- DRAW ----"
+  #   end
+  # end
 
 end

@@ -40,7 +40,7 @@ class TurnTest < MiniTest::Test
     card8 = Card.new(:diamond, '2', 2)
     # card9 = Card.new(:diamond, '3', 3)
 
-    deck1 = Deck.new([card1, card2, card5, card8])
+    deck1 = Deck.new([card1, card5, card2, card8])
     deck2 = Deck.new([card4, card3, card6, card7])
 
     player1 = Player.new("Megan", deck1)
@@ -146,7 +146,7 @@ class TurnTest < MiniTest::Test
     card7 = Card.new(:heart, '3', 3)
     card8 = Card.new(:diamond, '2', 2)
 
-    deck1 = Deck.new([card1, card2, card5, card8])
+    deck1 = Deck.new([card1, card5, card2, card8])
     deck2 = Deck.new([card4, card3, card6, card7])
 
     player1 = Player.new("Megan", deck1)
