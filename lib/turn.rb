@@ -21,22 +21,22 @@ class Turn
       :basic
     end
   end
-  
+
   def winner
-    if type == :mutually_assured_destruction
-      "No Winner"
+    if type == :basic
+      return_bigger_winner(0)
     elsif type == :war
       return_bigger_winner(2)
-    elsif type == :basic
-      return_bigger_winner(0)
+    elsif type == :mutually_assured_destruction
+        "No Winner"
     end
   end
 
   def return_bigger_winner(index)
     if player1.deck.rank_of_card_at(index) > player2.deck.rank_of_card_at(index)
-      player1
+      player1.name
     else
-      player2
+      player2.name
     end
   end
 
@@ -60,9 +60,9 @@ class Turn
   def award_spoils(winner)
     @spoils_of_war.each do |spoil|
       if winner == player1
-        player1.deck.cards << spoil
+        player1.deck.add_card(spoil)
       elsif winner == player2
-        player2.deck.cards << spoil
+        player2.deck.add_card(spoil)
       end
     end
   end
