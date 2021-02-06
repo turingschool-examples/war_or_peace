@@ -6,6 +6,7 @@ class Deck
   end
 
   def rank_of_card_at(index)
+    return 0 if cards[index] == nil
     @cards[index].rank
   end
 
@@ -18,7 +19,7 @@ class Deck
   end
   #
   def percent_high_ranking
-      sum = ((high_ranking_cards.length.to_f / @cards.length.to_f) * 100).round(2)
+      sum = ((high_ranking_cards.length / @cards.length.to_f) * 100).round(2)
   end
 
   def remove_card
