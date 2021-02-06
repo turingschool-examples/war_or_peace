@@ -1,5 +1,6 @@
 class Game
-  attr_reader :player1, :player2, :turn_number
+  attr_reader :player1, :player2
+  attr_accessor :turn_number
 
   def initialize(player1, player2)
     @player1 = player1
@@ -9,7 +10,7 @@ class Game
 
   def begin
     game_starter
-    final_message
+    puts final_message
   end
 
   def game_starter
@@ -19,19 +20,19 @@ class Game
       turn_winner = turn.winner
       turn.pile_cards
       turn.award_spoils(turn_winner)
-      turn_messages(turn, turn_type, turn_winner)
+      puts turn_messages(turn_type, turn_winner)
 
       @turn_number += 1
     end
   end
 
-  def turn_messages(turn_number, turn_type, turn_winner)
+  def turn_messages(turn_type, winner)
     if turn_type == :mutually_assured_destruction
-      "Turn #{turn_number}: *mutually assured destruction* 6 cards removed from play"
+      "Turn #{@turn_number}: *mutually assured destruction* 6 cards removed from play"
     elsif turn_type == :basic
-      "Turn #{turn_number}: #{turn_winner} won 2 cards"
+      "Turn #{@turn_number}: #{winner} won 2 cards"
     elsif turn_type == :war
-      "Turn #{turn_number}: WAR - #{turn_winner} won 6 cards"
+      "Turn #{@turn_number}: WAR - #{winner} won 6 cards"
     end
   end
 
