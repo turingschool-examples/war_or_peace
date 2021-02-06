@@ -22,14 +22,14 @@ class War
 
   def start
     p ask_start
+
     say_go
-    # require "pry"; binding.pry
+
     if @go == "GO"
       turn_counter = 1
       until turn.player1.has_lost? == true || turn.player2.has_lost? == true || turn_counter == 1000000 do
         winner_of_turn = turn.winner
         type_of_turn = turn.turn_type
-        # require "pry"; binding.pry
         turn.pile_cards
         case type_of_turn
         when :mutually_assured_destruction
