@@ -1,7 +1,8 @@
 class Turn
   attr_reader :player1,
               :player2,
-              :spoils_of_war
+              :spoils_of_war,
+              :winner
 
   def initialize(player1, player2)
     @player1 = player1
@@ -20,9 +21,34 @@ class Turn
     end
   end
 
+  # def basic_winner
+  #   if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+  #     player1
+  #   else
+  #     player2
+  #   end
+  # end
+  #
+  # def war_winner
+  #   if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+  #     player1
+  #   else
+  #     player2
+  #   end
+  # end
+  #
+  # def winner
+  #   if type == :mutually_assured_destruction
+  #     p "No winner"
+  #   elsif type == :war
+  #     war_winner
+  #   else type == :basic
+  #     basic_winner
+  #   end
+  # end
+
   def winner
     if type == :mutually_assured_destruction
-      nil
       p "No Winner"
     elsif type == :war
       if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)

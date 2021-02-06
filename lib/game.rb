@@ -5,6 +5,7 @@ class Game
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
+    @count = 0
   end
 
   def start
@@ -16,25 +17,36 @@ class Game
   end
 
   def play
-    count = 1
-    while count < 15
+    while @count <= 1000000
+      @count += 1
       turn = Turn.new(@player1, @player2)
-      winner = turn.winner
 
       if turn.type == :mutually_assured_destruction
-        p "Turn #{count}: *mutually assured destruction*
-          3 cards from each of your decks making their way to el garbagio."
+        winner = turn.winner
+        p "Turn #{@count}: *mutually assured destruction* 3 cards from each of your decks making their way to el garbagio."
         turn.pile_cards
       elsif turn.type == :war
-        p "Turn #{count}: #{turn.winner.name} cleaning house and snatchin' 6 cards."
+        winner = turn.winner
+        p "Turn #{@count}: #{turn.winner.name} cleaning house and snatchin' 6 cards."
         turn.pile_cards
         turn.award_spoils(winner)
       else turn.type == :basic
-        p "Turn #{count}: #{turn.winner.name} inchin' towards the win and claiming 2 cards."
+        winner = turn.winner
+        p "Turn #{@count}: #{turn.winner.name} inchin' towards the win and claiming 2 cards."
         turn.pile_cards
         turn.award_spoils(winner)
       end
-      count += 1
+
+      if @player1.has_lost?
+          p "#{@player2.name} has won!"
+          break
+      elsif @player2.has_lost?
+          p "#{@player1.name} has won!"
+      else
+        if @count == 1000000
+          p "DRAW"
+        end
+      end
     end
   end
 end

@@ -116,10 +116,8 @@ shuffled_deck = @table_deck.shuffle
 
 deck1 = shuffled_deck[0..25]
 deck2 = shuffled_deck[26..51]
-
 player1_deck = Deck.new(deck1)
 player2_deck = Deck.new(deck2)
-
 @player1 = Player.new('Olivia', player1_deck)
 @player2 = Player.new('Jenny', player2_deck)
 
