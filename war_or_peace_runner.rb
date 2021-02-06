@@ -4,6 +4,7 @@ require './lib/deck'
 require './lib/card'
 require './lib/player'
 require './lib/turn'
+require './lib/game'
 
 
 # Card generator
@@ -18,8 +19,8 @@ end
 
 stack_of_cards.shuffle
 
-deck1 = Deck.new(stack_of_cards[0..25])
-deck2 = Deck.new(stack_of_cards[26..51])
+deck1 = Deck.new(stack_of_cards[0..25].shuffle)
+deck2 = Deck.new(stack_of_cards[26..51].shuffle)
 
 player1 = Player.new("Player 1", deck1)
 player2 = Player.new("Player 2", deck2)
@@ -31,3 +32,6 @@ Type 'GO' to start the game!
 until gets.chomp == "GO"
   puts "Sorry, please type 'GO'. All caps. No period."
 end
+
+game = Game.new(player1, player2)
+game.begin
