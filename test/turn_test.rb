@@ -4,7 +4,6 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
-require 'pry'
 
 class TurnTest < Minitest::Test
   def test_turn_exists
@@ -114,7 +113,7 @@ class TurnTest < Minitest::Test
 
     assert_equal :mutually_assured_destruction, turn.type
 
-    winner = turn.winner
+    victor = turn.winner
 
     assert_equal "No Winner", turn.winner
 
@@ -122,12 +121,12 @@ class TurnTest < Minitest::Test
 
     assert_equal [], turn.spoils_of_war
 
-    turn.award_spoils(winner)
+    turn.award_spoils(victor)
     assert_equal 1, turn.player1.deck.cards.size
     assert_equal 1, turn.player2.deck.cards.size
 
     assert_equal [card8], turn.player1.deck.cards
     assert_equal [card7], turn.player2.deck.cards
   end
-  
+
 end
