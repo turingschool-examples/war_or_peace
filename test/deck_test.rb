@@ -75,6 +75,7 @@ require './lib/deck'
     deck.remove_card
 
     assert_equal cards, deck.add_card(card4)
+    require "pry"; binding.pry
   end
 
 
