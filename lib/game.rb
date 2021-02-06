@@ -12,6 +12,14 @@ class Game
     p "------------------------------------------------------------------"
   end
 
+  def winner_announcement
+    if player1.turn.has_lost? == true
+      p "*~*~*~* #{turn.player2.name} has won the game! *~*~*~*"
+    else
+      p "*~*~*~* #{turn.player1.name} has won the game! *~*~*~*"
+    end
+  end
+
   def play
     until (player1.turn.has_lost? == true) || (player2.turn.has_lost? == true)
       #This line is saying that until these conditions have been met, do the
@@ -38,10 +46,16 @@ class Game
         p "Turn #{@turn_number}, *mutually assured destruction* 6 cards removed from play"
         turn.pile_cards
         @turn_number += 1
-      end
-      #This last elsif is saying that if the turn is mutually_assured_destruction,
+      #This elsif is saying that if the turn is mutually_assured_destruction,
       #then six cards get removed from the turn.pile_cards. There is no turn.award_spoils(winner)
       #here because there is automatically no winner with this turn.
+      elsif @turn_number == 1000001
+        p "--- DRAW ---"
+        break
+      #Using the break escapes the enumerable and does not let the next iteration happen,
+      #meaning no turn after 1000001 will happen because it is the last turn.
+      end
     end
+    return winner_announcement
   end
 end
