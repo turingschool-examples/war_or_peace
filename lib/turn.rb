@@ -40,6 +40,7 @@ class Turn
     elsif type == :war
       3.times { @spoils_of_war.push(player1.deck.remove_card, player2.deck.remove_card) }
     elsif type == :mutually_assured_destruction
+        3.times { player1.deck.remove_card && player2.deck.remove_card }
       false
     end
   end
