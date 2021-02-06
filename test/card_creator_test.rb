@@ -5,7 +5,6 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 require './lib/card_creator'
-require 'pry'
 
 class CardCreatorTest < Minitest:: Test
   def setup
