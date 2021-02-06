@@ -33,7 +33,7 @@ class Turn
 
   def turn_type
     if    player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) &&
-          player1.deck.rqank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+          player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
       @type[2]
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
       @type[1]
