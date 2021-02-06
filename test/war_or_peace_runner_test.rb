@@ -4,7 +4,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
-require './lib/war_or_peace_runner'
+# require './lib/war_or_peace_runner'
 
 class WarOrPeaceRunnerTest < Minitest::Test
   def setup
@@ -91,5 +91,8 @@ class WarOrPeaceRunnerTest < Minitest::Test
     deck2 = shuffled_deck.drop 26
 
     assert_equal false, deck1.include?(deck2[0])
+  end
+
+  def test
   end
 end

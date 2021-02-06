@@ -87,13 +87,37 @@ class WarTest < Minitest::Test
   end
 
   def test_it_can_ask_to_start_a_game
+    # skip
     war1 = War.new(@turn)
 
-    assert_equal "Type 'GO' to start the game!", war1.start
+    assert_equal "Welcome to War! (or Peace) This game will be played with 52 cards. The players today are Megan and Aurora. Type 'GO' to start the game!", war1.ask_start
   end
 
   def test_user_can_respond_GO
+    skip
     war1 = War.new(@turn)
+    # war1.say_go
+    assert_equal "GO", war1.say_go
+  end
 
-    assert_equal "GO", go
+  def test_war_start_can_run_ask_start_say_go
+    skip
+    war1 = War.new(@turn)
+    war1.start
+    # this test will not pass if game starts with war or mad.
+    assert_equal 2, war1.turn.spoils_of_war.length
+  end
+
+  def test_if_user_doesnt_say_GO
+    skip
+    war1 = War.new(@turn)
+    #for this test to pass, test line 100 must fail
+    assert_equal "What game do you want to play!?", war1.start
+  end
+
+  def test_play_loops_until_1000000_or_winner
+    war1 = War.new(@turn)
+    #this scenario is a bit canned but it shows the game plays...
+    assert_equal "*~*~*~* Aurora has won the game! *~*~*~*", war1.start
+  end
 end
