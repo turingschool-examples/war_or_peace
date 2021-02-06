@@ -65,10 +65,8 @@ class Turn
   end
 
   def award_spoils(winner)
-    if winner == player1
-      player1.deck.cards.push(@spoils_of_war)
-    else winner == player2
-      player2.deck.cards.push(@spoils_of_war)
+    @spoils_of_war.each do |card|
+      winner.deck.add_card(card)
     end
   end
 end

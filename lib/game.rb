@@ -4,6 +4,7 @@ class Game
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
+    @count   = 0
   end
 
 
@@ -16,37 +17,47 @@ class Game
   end
 
   def start
-    @count = 1
-    while @count < 100000000
-    turn = Turn.new(@player1, @player2)
-    winner = turn.winner
-    turn.pile_cards
-    if turn.type == :mutually_assured_destruction
-      p "Turn #{@count} mutually assured destruction Stalement 6 cards have been destroyed"
+    while @count <= 1000000
+      @count +=1
+      turn = Turn.new(@player1, @player2)
+      if turn.type == :mutually_assured_destruction
+        winner = turn.winner
+        p "Turn #{@count}: mutually assured destruction Stalement 6 cards have been destroyed"
         turn.pile_cards
-    elsif turn.type == :war
-      winner = turn.winner
-      p "Turn #{@count}: #{turn.winner.name} won the battle and gains 6 cards."
-      turn.award_spoils(winner)
-    else turn.type == :basic
-      winner = turn.winner
-      p "Turn #{@count}: #{turn.winner.name} won the skirmish and gains 2 cards."
-      turn.award_spoils(winner)
+      elsif turn.type == :war
+        winner = turn.winner
+        p "Turn #{@count}: #{turn.winner.name} won the battle and gains 6 cards."
+        turn.pile_cards
+        turn.award_spoils(winner)
+      else turn.type == :basic
+        winner = turn.winner
+        p "Turn #{@count}: #{turn.winner.name} won the skirmish and gains 2 cards."
+        turn.pile_cards
+        turn.award_spoils(winner)
+      end
+
+      if player1.has_lost?
+        p "*~*~*~*~ #{player2.name} has won the war. *~*~*~*~ "
+        break
+      elsif player2.has_lost?
+        p  "*~*~*~*~ #{player1.name} has won the war. *~*~*~*~ "
+        break
+      end
+
+      if @count == 1000000
+        p "----Draw----"
     end
 
-    if player1.has_lost?
-      p "*~*~*~*~ #{player2.name} has won the war. *~*~*~*~ "
-      break
-    elsif player2.has_lost?
-      p  "*~*~*~*~ #{player1.name} has won the war. *~*~*~*~ "
-      break
-    elsif
-      @count >=100000000
-        p "---DRAW---" &&
-        break
-    else
-    @count += 1
-   end
- end
-end
-end
+      #   @count = 100000001
+      #   p "---DRAW---" &&
+      #   break
+      # else
+      # end
+    end
+  end
+
+  # def draw(count)
+  #   if @count.to_s.count == 100000001
+  #       p "---DRAW---"
+  #     end
+  end
