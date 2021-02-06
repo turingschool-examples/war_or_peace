@@ -2,26 +2,26 @@ class Deck
   attr_reader :cards
 
   def initialize(*cards)
-    @cards = cards
+    @cards = cards.flatten
   end
 
   def empty?
-    cards.empty?
+    @cards.empty?
   end
 
   def rank_of_card_at(index)
-    cards[index].rank
+    @cards[index].rank
   end
 
   def high_ranking_cards
-    cards.select do |card|
+    @cards.select do |card|
       card.rank >= 11
     end
   end
 
   def percent_high_ranking
     high_ranking_cards = 0
-    cards.select do |card|
+    @cards.select do |card|
       if card.rank >= 11
         high_ranking_cards += 1
       end
@@ -34,7 +34,7 @@ class Deck
   end
 
   def add_card(card)
-    cards << card
+    @cards << card
   end
 
 
