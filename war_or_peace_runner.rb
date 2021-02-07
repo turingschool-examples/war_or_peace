@@ -118,17 +118,28 @@ deck1 = shuffled_deck[0..25]
 deck2 = shuffled_deck[26..51]
 player1_deck = Deck.new(deck1)
 player2_deck = Deck.new(deck2)
-@player1 = Player.new('Olivia', player1_deck)
-@player2 = Player.new('Jenny', player2_deck)
+@player1 = Player.new('Morgan Freeman', player1_deck)
+@player2 = Player.new('Patrick Stewart', player2_deck)
 
 new_game = Game.new(@player1, @player2)
 new_game.start
 
 user_go = gets.chomp.upcase
 #COME BACK TO REFACTOR WITH UNTIL for GO INPUT OR EXIT
-if user_go == "GO"
-  new_game.play
-else
-  p "Hablo no understando what you wrote. If you're ready for WAR... say so by typing GO."
+# if user_go == "GO"
+#   new_game.play
+# else
+  while user_go != "GO"
+    messages = ["'Ich verstehe nicht'. Oh, don't understand? Neither do I. Type GO to start the game.",
+                "'ʻAʻole maopopo iaʻu'. Translated: I don't understand... please type GO to begin.",
+                "'Ní thuigim'... is Irish for 'I don't understand' so please type GO.",
+                "'Sielewi' is Swahili for type GO so I understand what you're saying.",
+                "Not catching what you're throwing... If you're ready for WAR... say so by typing GO."]
+  p messages.sample
     user_go = gets.chomp.upcase
-end
+  end
+
+  if user_go == "GO"
+    new_game.play
+  end
+# end

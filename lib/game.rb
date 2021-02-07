@@ -9,11 +9,12 @@ class Game
   end
 
   def start
-    puts "      Welcome to War! (or Peace) This game will be played
-      with 52 cards.
-      The players today are #{@player1.name} and #{@player2.name}.
-      Type 'GO' to start the game!
-      ________________________________________________________"
+    puts "      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      - Welcome to the War (or Peace) Arena...
+      - Where 52 cards and 2 players equals (almost) infinite possibilities.
+      - The battle between #{@player1.name} and #{@player2.name}
+      - will commence as soon as you type 'GO'!
+      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
   end
 
   def play
@@ -22,7 +23,9 @@ class Game
       turn = Turn.new(@player1, @player2)
 
       if turn.type == :mutually_assured_destruction
-        p "Turn #{@count}: *mutually assured destruction* 3 cards from each of your decks making their way to el garbagio."
+        message = ['Negative 3 cards for the both of you.',
+          "Taking 3 cards from #{@player1.name} and 3 cards from #{@player2.name} and tossing them into el garbagio."]
+        p "Turn #{@count}: *MUTUALLY ASSURED DESTRUCTION* #{message.sample}"
         winner = turn.winner
         turn.pile_cards
       elsif turn.type == :war
@@ -31,7 +34,11 @@ class Game
         turn.pile_cards
         turn.award_spoils(winner)
       else turn.type == :basic
-        p "Turn #{@count}: #{turn.winner.name} takes this round and pockets 2 cards."
+        message = ['adds 2 to the ImGonnaWin pile.', 'taking 2 cards and heading towards Winsville.',
+        'slipping 2 cards into an envelope, slapping a stamp on it and mailing out to Winnerton Town.',
+        'getting closer to WinnerRamaTownsVilleTon with 2 more cards.', 'sitting pretty with 2 more cards.',
+        'takes 2 cards and adds them to the pile of awesome.']
+        p "Turn #{@count}: #{turn.winner.name} #{message.sample}"
         winner = turn.winner
         turn.pile_cards
         turn.award_spoils(winner)
