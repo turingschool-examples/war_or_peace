@@ -1,4 +1,3 @@
-require './lib/card'
 
 class CardCreator
   attr_reader :ranks,
@@ -32,6 +31,7 @@ class CardCreator
   def all_suits
     [:heart, :diamond, :spade, :club]
   end
+
 
 
 def create_deck

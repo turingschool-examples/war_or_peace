@@ -1,3 +1,4 @@
+require 'pry'
 class PlayGame
   attr_reader :player1,
               :player2
@@ -5,8 +6,13 @@ class PlayGame
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
-    @number_of_turns = 0
+    @number_of_turns = 1
   end
+
+  def announce_winner
+
+  end
+
 
   def start
     p "Welcome to War! (or Peace) This game will be played with 52 cards."
@@ -26,33 +32,48 @@ class PlayGame
 
   def play_turn
     turn = Turn.new(@player1, @player2)
-    @number_of_turns += 1
 
     while @number_of_turns < 1000001
+
       if turn.type == :basic
-        winner = turn.winner
-        p "Turn #{@number_of_turns}: #{winner.name} won 2 cards"
-        turn.pile_cards
-        turn.award_spoils(winner)
-        @number_of_turns += 1
-      elsif turn.type == :war
-        winner = turn.winner
-        p "Turn #{@number_of_turns}: WAR - #{winner.name} won 6 cards"
-        turn.pile_cards
-        turn.award_spoils(winner)
-        @number_of_turns += 1
-      else turn.type == :mutually_assured_destruction
-        p "Turn #{@number_of_turns}: *mutually assured destruction* 6 cards
-          removed from play"
+          winner = turn.winner
+          p "Turn #{@number_of_turns}: #{winner.name} won 2 cards"
           turn.pile_cards
-          @number_of_turns += 1
+          turn.award_spoils(winner)
+      elsif turn.type == :war
+          winner = turn.winner
+          p "Turn #{@number_of_turns}: WAR - #{winner.name} won 6 cards"
+          # break
+          turn.pile_cards
+          turn.award_spoils(winner)
+          break
+      else turn.type == :mutually_assured_destruction
+          p "Turn #{@number_of_turns}: *mutually assured destruction* 6 cards removed from play"
+          # turn.pile_cards
       end
 
-      if winner == @player2
-        p "*~*~*~* #{player2.name} has won the game! *~*~*~*"
-      else winner == @player1
-        p "*~*~*~* #{player1.name} has won the game! *~*~*~*"
+
+      # if player1.has_lost?
+      #   p "*~*~*~* #{player2.name} has won the game! *~*~*~*"
+      #   break
+      # else player2.has_lost?
+      #   p "*~*~*~* #{player1.name} has won the game! *~*~*~*"
+      #   # break
+      # end
+
+      @number_of_turns += 1
+      if @number_of_turns == 1000001
+        p "---- DRAW ----"
+        # break
       end
+    end
+
+    if @player1 == winner
+      p "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+      # break
+    else @player2 == winner
+      p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+      # break
     end
   end
 end
