@@ -34,9 +34,9 @@ class Turn
 
   def return_bigger_winner(index)
     if player1.deck.rank_of_card_at(index) > player2.deck.rank_of_card_at(index)
-      player1.name
+      player1
     else
-      player2.name
+      player2
     end
   end
 
@@ -61,8 +61,10 @@ class Turn
     @spoils_of_war.each do |spoil|
       if winner == player1
         player1.deck.add_card(spoil)
+        @spoils_of_war = []
       elsif winner == player2
         player2.deck.add_card(spoil)
+        @spoils_of_war = []
       end
     end
   end

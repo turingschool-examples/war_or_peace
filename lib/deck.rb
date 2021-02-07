@@ -13,7 +13,7 @@ class Deck
   def high_ranking_cards
     high_array = []
     @cards.each do |card|
-      high_array << card if card.rank >= 11
+      high_array << card if card.rank > 10
     end
     high_array
   end

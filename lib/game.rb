@@ -18,6 +18,8 @@ class Game
       turn = Turn.new(player1, player2)
       turn_type = turn.type
       turn_winner = turn.winner
+      p "#{player1.name} now has #{player1.deck.cards.length} cards"
+      p "#{player2.name} now has #{player2.deck.cards.length} cards"
       turn.pile_cards
       turn.award_spoils(turn_winner)
       puts turn_messages(turn_type, turn_winner)
@@ -30,9 +32,9 @@ class Game
     if turn_type == :mutually_assured_destruction
       "Turn #{@turn_number}: *mutually assured destruction* 6 cards removed from play"
     elsif turn_type == :basic
-      "Turn #{@turn_number}: #{winner} won 2 cards"
+      "Turn #{@turn_number}: #{winner.name} won 2 cards"
     elsif turn_type == :war
-      "Turn #{@turn_number}: WAR - #{winner} won 6 cards"
+      "Turn #{@turn_number}: WAR - #{winner.name} won 6 cards"
     end
   end
 
