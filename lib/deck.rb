@@ -10,7 +10,12 @@ class Deck
   end
 
   def rank_of_card_at(index)
-    @cards[index].rank
+    #if else statement prevents edge case of war with 2 cards 
+      if @cards.length > 2
+        @cards[index].rank
+      else
+        1
+      end
   end
 
   def high_ranking_cards
