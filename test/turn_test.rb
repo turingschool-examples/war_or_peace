@@ -16,8 +16,10 @@ class TurnTest < Minitest::Test
     @card6 = Card.new(:diamond, 'Queen', 12)
     @card7 = Card.new(:heart, '3', 3)
     @card8 = Card.new(:diamond, '2', 2)
-    @deck1 = Deck.new([@card1, @card2, @card5, @card8])
-    @deck2 = Deck.new([@card3, @card4, @card6, @card7])
+    @card9 = Card.new(:heart, 'Ace', 14)
+    @card10 = Card.new(:spade, 'Ace', 14)
+    @deck1 = Deck.new([@card1, @card2, @card5, @card8, @card9])
+    @deck2 = Deck.new([@card3, @card4, @card6, @card7, @card10])
     @player1 = Player.new("Megan", @deck1)
     @player2 = Player.new("Aurora", @deck2)
     @turn = Turn.new(@player1, @player2)
@@ -45,9 +47,40 @@ class TurnTest < Minitest::Test
     winner = @turn.winner
     @turn.pile_cards
     @turn.award_spoils(winner)
-    assert_equal 5, @player1.deck.cards.length
-    assert_equal 3, @player2.deck.cards.length
+    assert_equal 6, @player1.deck.cards.length
+    assert_equal 4, @player2.deck.cards.length
+  end
 
+  def test_turn_type
+    @turn.pile_cards
+    @turn.pile_cards
+    @turn.pile_cards
+    @turn.pile_cards
+    assert_equal :war, @turn.type
+  end
+
+  def test_turn_winner
+    winner = @turn.winner
+    @turn.pile_cards
+    @turn.award_spoils(winner)
+    winner = @turn.winner
+    @turn.pile_cards
+    @turn.award_spoils(winner)
+    winner = @turn.winner
+    @turn.pile_cards
+    @turn.award_spoils(winner)
+    winner = @turn.winner
+    @turn.pile_cards
+    @turn.award_spoils(winner)
+    assert_equal @player2, @turn.winner
+  end
+
+  def test_turn_type
+    @turn.pile_cards
+    @turn.pile_cards
+    @turn.pile_cards
+    @turn.pile_cards
+    assert_equal :mutually_assured_destruction, @turn.type
   end
 
 end
