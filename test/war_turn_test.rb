@@ -81,7 +81,7 @@ class TurnTest < Minitest::Test
     turn = Turn.new(player1, player2)
     winner = turn.winner
     turn.pile_cards
-    expected = [card1, card2, card5, card4, card3, card6]
+    expected = [card1, card4, card2, card3, card5, card6]
     assert_equal expected, turn.spoils_of_war
     turn.award_spoils(winner)
     assert_equal deck1, player1.deck
