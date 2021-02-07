@@ -77,7 +77,7 @@ p "Type 'GO' to start the game!"
 say_go = gets.chomp
 
 if say_go == 'GO'
-  until (player1.has_lost?) || (player2.has_lost?) do
+  until (player1.has_lost? || player2.has_lost?) || new_game.turn_count > 1000000
     new_game.start_game
   end
   new_game.announce_winner
