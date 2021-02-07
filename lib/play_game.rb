@@ -43,37 +43,23 @@ class PlayGame
       elsif turn.type == :war
           winner = turn.winner
           p "Turn #{@number_of_turns}: WAR - #{winner.name} won 6 cards"
-          # break
           turn.pile_cards
           turn.award_spoils(winner)
           break
       else turn.type == :mutually_assured_destruction
           p "Turn #{@number_of_turns}: *mutually assured destruction* 6 cards removed from play"
-          # turn.pile_cards
       end
-
-
-      # if player1.has_lost?
-      #   p "*~*~*~* #{player2.name} has won the game! *~*~*~*"
-      #   break
-      # else player2.has_lost?
-      #   p "*~*~*~* #{player1.name} has won the game! *~*~*~*"
-      #   # break
-      # end
 
       @number_of_turns += 1
       if @number_of_turns == 1000001
         p "---- DRAW ----"
-        # break
       end
     end
 
     if @player1 == winner
       p "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
-      # break
     else @player2 == winner
       p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
-      # break
     end
   end
 end
