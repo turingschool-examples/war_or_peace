@@ -293,12 +293,113 @@ class TurnTest < Minitest::Test
     winner = turn.winner
     assert_equal :war, turn.type
 
+    pile = turn.pile_cards
+
     #assert_equal turn.spoils_of_war, turn.pile_cards
-    require "pry"; binding.pry
-    assert_equal [card2, card5, card8], deck1.cards
-    assert_equal [card3, card6, card7], deck2.cards
-    assert_equal [card1, card3], turn.pile_cards
+    assert_equal [card1, card2, card3, card5, card6, card7], pile
+    #require "pry"; binding.pry
+    assert_equal [card4], deck1.cards
+    assert_equal [card8], deck2.cards
+
 
   end
+
+  def test_pile_cards_war_or_basic
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10)
+    card3 = Card.new(:heart, '9', 9)
+    card4 = Card.new(:heart, '8', 8)
+    card5 = Card.new(:diamond, 'Jack', 11)
+    card6 = Card.new(:diamond, 'Queen', 12)
+    card7 = Card.new(:heart, '3', 3)
+    card8 = Card.new(:diamond, '2', 2)
+
+    deck1 = Deck.new([card1, card2, card3, card4])
+    deck2 = Deck.new([card5, card6, card7, card8])
+
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+
+    turn = Turn.new(player1, player2)
+    #require "pry"; binding.pry
+
+    winner = turn.winner
+    assert_equal :war, turn.type
+
+    pile = turn.pile_cards
+
+    #require "pry"; binding.pry
+
+
+    #assert_equal turn.spoils_of_war, turn.pile_cards
+    assert_equal [card4, card1, card2, card3, card5, card6, card7], turn.award_spoils
+    #require "pry"; binding.pry
+    assert_equal [card4], deck1.cards
+    assert_equal [card8], deck2.cards
+
+
+  end
+
+
+  # def test_pile_cards_mutually_assured_destruction
+  #   card1 = Card.new(:heart, 'Jack', 11)
+  #   card2 = Card.new(:heart, '10', 10)
+  #   card3 = Card.new(:heart, '9', 9)
+  #   card4 = Card.new(:heart, '8', 8)
+  #   card5 = Card.new(:diamond, 'Jack', 11)
+  #   card6 = Card.new(:diamond, 'Queen', 12)
+  #   card7 = Card.new(:diamond, '9', 9)
+  #   card8 = Card.new(:diamond, '2', 2)
+  #
+  #   deck1 = Deck.new([card1, card2, card3, card4])
+  #   deck2 = Deck.new([card5, card6, card7, card8])
+  #
+  #   player1 = Player.new("Megan", deck1)
+  #   player2 = Player.new("Aurora", deck2)
+  #
+  #   turn = Turn.new(player1, player2)
+  #
+  #   winner = turn.winner
+  #   assert_equal :mutually_assured_destruction, turn.type
+  #
+  #   pile = turn.pile_cards
+  #
+  #   assert_equal [], pile
+  #   assert_equal [card4], deck1.cards
+  #   assert_equal [card8], deck2.cards
+  #
+  #
+  # end
+
+  # def test_award_spoils_mutually_assured_destruction
+  #   card1 = Card.new(:heart, 'Jack', 11)
+  #   card2 = Card.new(:heart, '10', 10)
+  #   card3 = Card.new(:heart, '9', 9)
+  #   card4 = Card.new(:heart, '8', 8)
+  #   card5 = Card.new(:diamond, 'Jack', 11)
+  #   card6 = Card.new(:diamond, 'Queen', 12)
+  #   card7 = Card.new(:diamond, '9', 9)
+  #   card8 = Card.new(:diamond, '2', 2)
+  #
+  #   deck1 = Deck.new([card1, card2, card3, card4])
+  #   deck2 = Deck.new([card5, card6, card7, card8])
+  #
+  #   player1 = Player.new("Megan", deck1)
+  #   player2 = Player.new("Aurora", deck2)
+  #
+  #   turn = Turn.new(player1, player2)
+  #
+  #   winner = turn.winner
+  #   assert_equal :mutually_assured_destruction, turn.type
+  #
+  #   spoils = turn.award_spoils
+  #
+  #
+  #   #require "pry"; binding.pry
+  #   assert_equal [card4], deck1.cards
+  #   assert_equal [card8], deck2.cards
+  #
+  #
+  # end
 
 end
