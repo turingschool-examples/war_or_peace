@@ -81,6 +81,7 @@ class DeckTest < Minitest::Test
     deck.add_card(card4)
     assert_equal [card1, card2, card3, card4], deck.cards
   end
+  
   def test_percent_high_ranking_with_added_card
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
@@ -91,12 +92,4 @@ class DeckTest < Minitest::Test
     deck.add_card(card4)
     assert_equal (50.0), deck.percent_high_ranking
   end
-
-  # def test_rank_of_cards_with_index_2_if_deck_has_two_cards
-  #   card1 = Card.new(:diamond, '3', 3)
-  #   card2 = Card.new(:diamond, '2', 2)
-  #   cards = [card1, card2]
-  #   deck= Deck.new(cards)
-  #   assert_equal nil, deck.rank_of_card_at(2)
-  # end
 end
