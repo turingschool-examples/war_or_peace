@@ -15,7 +15,7 @@ p "------------------------------------------------------------------"
 cue = "> "
 start = nil
 until (start == 'GO' || start == 'g') #make 'go'
-    print cue
+    print "GO/go to start " + cue
     start = gets.chomp
 end
 

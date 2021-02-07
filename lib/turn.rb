@@ -12,21 +12,8 @@ class Turn
   end
 
   def type
-    # type.end_the_war if player1.deck.cards.size == 3 || player2.deck.cards.size == 3
-    # require "pry"; binding.pry
-    # if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
-    #   :basic
-    # else
-    #   if player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
-    #     #GOOD require "pry"; binding.pry
-    #     :mutually_assured_destruction
-    #   else
-    #     :war
-    #   end
-    # end
-
+    end_the_war if player1.deck.cards.size < 3 || player2.deck.cards.size < 3
     if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
-      # require "pry"; binding.pry
       :mutually_assured_destruction
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
       :war
@@ -36,9 +23,7 @@ class Turn
   end
 
   def winner
-    p "#{@type} winner"
     if @type == :mutually_assured_destruction
-      #XX require "pry"; binding.pry
       "No Winner"
       # require "pry"; binding.pry
     elsif @type == :basic
@@ -46,7 +31,7 @@ class Turn
     else
       who_won(2)
     end
-    # p "#{@type} winner end"
+    # p "#{@type} winner end" BREAK
   end
 
   def who_won(index)
@@ -73,18 +58,15 @@ class Turn
   end
 
   def award_spoils(winner)
-    # p "#{@type} spoils"
     # p "#{winner} spoils"
     if @type == :mutually_assured_destruction
-    # if winner == "No Winner"
-      # @spoils_of_war.clear
     else
       @spoils_of_war.each {|spoil| winner.deck.add_card(spoil)}
     end
     p "#{@type} spoils end"
   end
 
-  def start_a_war
+  def start_a_war     #Done in GAME
     line = 1
     result = nil
     until player1.deck.cards.size == 4 || player2.deck.cards.size == 4
