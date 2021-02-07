@@ -1,11 +1,10 @@
 class Turn
-  attr_reader :player1, :player2, :spoils_of_war#, :winner
+  attr_reader :player1, :player2, :spoils_of_war
 
   def initialize(player1,player2)
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
-    # @winner = determine_winner
   end
 
   def type
@@ -37,10 +36,10 @@ class Turn
   def winner
     if type == :mutually_assured_destruction
       "No Winner"
-    elsif type == :war
-      high_card_2
     elsif type == :basic
       high_card_0
+    elsif type == :war
+      high_card_2
     end
   end
 
@@ -54,11 +53,13 @@ class Turn
     end
   end
 
-  def award_spoils
-    @spoils_of_war.each do |card|
+  def award_spoils(winner)
+    pile_cards
+    spoils_of_war.each do |card|
       return false if winner == "No Winner"
-      winner.deck.cards << card
+      winner.deck.add_card(card)
     end
-    @spoils_of_war.clear
+    spoils_of_war.clear
   end
+
 end
