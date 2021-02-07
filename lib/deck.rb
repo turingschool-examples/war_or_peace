@@ -1,4 +1,4 @@
-require 'pry'
+# require 'pry'
 class Deck
 
   attr_reader :cards
