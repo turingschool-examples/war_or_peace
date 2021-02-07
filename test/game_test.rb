@@ -15,8 +15,7 @@ class GameTest < Minitest::Test
   end
 
   def test_game_start
-    skip
-
+    # skip
     suits = [:spades, :hearts, :diamonds, :clubs]
     values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']
     full_deck = []
@@ -31,33 +30,52 @@ class GameTest < Minitest::Test
 
     player1 = Player.new('Meagan', deck1)
     player2 = Player.new('Aurora', deck2)
-    # turn = Turn.new(player1, player2)
-
 
     26.times do |index|
       player1.deck.cards << full_deck.shift
       player2.deck.cards << full_deck.shift
     end
 
-    assert_equal player1, turn.player1
-    assert_equal player2, turn.player2
-    assert_equal [], turn.spoils_of_war
+    assert_equal 26, player1.deck.cards.size
+    assert_equal 26, player2.deck.cards.size
+  end
 
-    winner = turn.winner
+  def test_game_run
+    # skip
+    suits = [:spades, :hearts, :diamonds, :clubs]
+    values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']
+    full_deck = []
 
-    assert_equal :basic, turn.type
-    assert_equal player1, turn.winner
+    suits.each do |suit|
+      values.size.times {|r| full_deck << Card.new( suit, values[r], r+2 )}
+    end
 
-    turn.pile_cards
+    full_deck = full_deck.shuffle.shuffle
+    deck1 = Deck.new([])
+    deck2 = Deck.new([])
 
-    assert_equal [card1,card3], turn.spoils_of_war
+    player1 = Player.new('Meagan', deck1)
+    player2 = Player.new('Aurora', deck2)
 
-    turn.award_spoils(winner)
-    assert_equal 5, turn.player1.deck.cards.size
-    assert_equal 3, turn.player2.deck.cards.size
+    26.times do |index|
+      player1.deck.cards << full_deck.shift
+      player2.deck.cards << full_deck.shift
+    end
 
-    assert_equal [card2,card5,card8,card1,card3], turn.player1.deck.cards
-    assert_equal [card4,card6,card7], turn.player2.deck.cards
+    turn = Turn.new(player1, player2)
+    game = Game.new(player1, player2)
+
+    game.start_a_war
+
+    # assert_equal 'Meagan' || 'Aurora', game.victor.name
+    assert_not_equal nil, game.victor
+    # assert_equal game.hand > 1, true
+    # assert_equal player1, turn.winner
+    #
+    # assert_equal 3, turn.player2.deck.cards.size
+    #
+    # assert_equal [card2,card5,card8,card1,card3], turn.player1.deck.cards
+    # assert_equal [card4,card6,card7], turn.player2.deck.cards
   end
 
 end
