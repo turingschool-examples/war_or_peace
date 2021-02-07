@@ -22,4 +22,14 @@ class Start
     turn.pile_cards
     turn.award_spoils
   end
+
+  def announce_winner
+    if turn.player1.has_lost?
+      puts "*~*~*~* #{turn.player2.name} has won the game! *~*~*~*"
+    elsif turn.player2.has_lost?
+      puts "*~*~*~* #{turn.player1.name} has won the game! *~*~*~*"
+    elsif @turn_count > 1000000
+      "---- DRAW ----"
+    end
+  end
 end

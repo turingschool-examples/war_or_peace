@@ -80,4 +80,5 @@ if say_go == 'GO'
   until (player1.has_lost?) || (player2.has_lost?) do
     new_game.start_game
   end
+  new_game.announce_winner
 end
