@@ -172,7 +172,8 @@ class TurnTest < Minitest::Test
     turn = Turn.new(player1, player2)
 
     assert_equal turn.winner, "No Winner"
-    assert_equal turn.pile_cards, false
-    assert_equal turn.spoils_of_war, []
+
+    turn.pile_cards
+    assert_equal true, turn.spoils_of_war.empty?
   end
 end
