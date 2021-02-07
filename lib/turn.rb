@@ -1,37 +1,50 @@
 class Turn
   attr_reader :player1,
               :player2,
-              :spoils_of_war,
-              :type
+              :spoils_of_war
 
   def initialize(player1,player2)
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
-    @type = type
   end
 
   def type
-    end_the_war if player1.deck.cards.size < 3 || player2.deck.cards.size < 3
-    if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
-      :mutually_assured_destruction
-    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
-      :war
-    else
+    if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
       :basic
+    else
+      if player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+        # GOOD require "pry"; binding.pry
+        :mutually_assured_destruction
+      else
+        :war
+      end
     end
+    # elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+    #     #   require "pry"; binding.pry
+    #   :mutually_assured_destruction
+    # else
+    #   :war
+    # end
+    # if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+    #   require "pry"; binding.pry
+    #   :mutually_assured_destruction
+    # elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+    #   :war
+    # else
+    #   :basic
+    # end
   end
 
   def winner
-    if @type == :mutually_assured_destruction
+    if type == :mutually_assured_destruction
+      #XX require "pry"; binding.pry
       "No Winner"
-      # require "pry"; binding.pry
-    elsif @type == :basic
+    elsif type == :basic
       who_won(0)
     else
       who_won(2)
     end
-    # p "#{@type} winner end" BREAK
   end
 
   def who_won(index)
@@ -43,50 +56,40 @@ class Turn
   end
 
   def pile_cards
-    # p "#{@type} pile"
-    if @type == :basic
+    if type == :basic
       @spoils_of_war << player1.lose_card
       @spoils_of_war << player2.lose_card
-    elsif @type == :war
+    elsif type == :war
       3.times {@spoils_of_war << player1.lose_card}
       3.times {@spoils_of_war << player2.lose_card}
-    else @type == :mutually_assured_destruction
+    elsif type == :mutually_assured_destruction
       #XX require "pry"; binding.pry
       3.times {player1.lose_card; player2.lose_card}
     end
-    p "#{@type} pile end"
   end
 
   def award_spoils(winner)
-    # p "#{winner} spoils"
-    if @type == :mutually_assured_destruction
-    else
-      @spoils_of_war.each {|spoil| winner.deck.add_card(spoil)}
-    end
-    p "#{@type} spoils end"
+    @spoils_of_war.each {|spoil| winner.deck.add_card(spoil)}
   end
 
-  def start_a_war     #Done in GAME
+  def start_a_war
     line = 1
     result = nil
-    # require "pry"; binding.pry
-    until player1.deck.cards.size == 4 || player2.deck.cards.size == 4
+    until player1.deck.cards.size == 3 || player2.deck.cards.size == 3
     # until player1.has_lost? == true || player2.has_lost? == true
       turn = Turn.new(player1, player2)
-      turn.type # result = turn.type
-      p @type
-      # if result == :mutually_assured_destruction
-      #   # require "pry"; binding.pry
-      #   victor = "No Winner"
-      # else
+      result = turn.type
+      if result == :mutually_assured_destruction
+        require "pry"; binding.pry
+        victor = "No Winner"
+      else
         victor = turn.winner
-      # end
+      end
       turn.pile_cards
-      # require "pry"; binding.pry
-      turn.award_spoils(victor)
+      turn.award_spoils(victor)      #turn..
       if result == :mutually_assured_destruction
         p "Turn #{line}: *mutually assured destruction* 6 cards removed from play"
-        #XX require "pry"; binding.pry
+        # require "pry"; binding.pry
       elsif result == :war
         p "Turn #{line}: WAR - #{victor.name} won 6 cards"
       else
@@ -95,7 +98,7 @@ class Turn
       p player1.deck.cards.size
       p player2.deck.cards.size
       line +=1
-      break if line == 1000001
+      break if line == 20001
     end
     end_the_war
   end

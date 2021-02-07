@@ -36,7 +36,7 @@ class TurnTest < Minitest::Test
     assert_equal player2, turn.player2
     assert_equal [], turn.spoils_of_war
 
-    victor = turn.winner
+    winner = turn.winner
 
     assert_equal :basic, turn.type
     assert_equal player1, turn.winner
@@ -45,7 +45,7 @@ class TurnTest < Minitest::Test
 
     assert_equal [card1,card3], turn.spoils_of_war
 
-    turn.award_spoils(victor)
+    turn.award_spoils(winner)
     assert_equal 5, turn.player1.deck.cards.size
     assert_equal 3, turn.player2.deck.cards.size
 
@@ -74,7 +74,7 @@ class TurnTest < Minitest::Test
     turn = Turn.new(player1, player2)
     assert_equal :war, turn.type
 
-    victor = turn.winner
+    winner = turn.winner
 
     assert_equal player2, turn.winner
 
@@ -82,7 +82,7 @@ class TurnTest < Minitest::Test
 
     assert_equal [card1,card2,card5,card4,card3,card6], turn.spoils_of_war
 
-    turn.award_spoils(victor)
+    turn.award_spoils(winner)
     assert_equal 1, turn.player1.deck.cards.size
     assert_equal 7, turn.player2.deck.cards.size
     # require "pry"; binding.pry
@@ -120,7 +120,6 @@ class TurnTest < Minitest::Test
     turn.pile_cards
 
     assert_equal [], turn.spoils_of_war
-    # require "pry"; binding.pry
 
     turn.award_spoils(victor)
     assert_equal 1, turn.player1.deck.cards.size
