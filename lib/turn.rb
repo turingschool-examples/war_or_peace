@@ -3,6 +3,10 @@ class Turn
               :player2,
               :spoils_of_war
 
+  # def spoils_of_war
+  #   @spoils_of_war
+  # end
+
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
@@ -17,7 +21,6 @@ class Turn
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
       return :war
     else
-      "error"
     end
   end
 
@@ -28,7 +31,6 @@ class Turn
       elsif player1.deck.rank_of_card_at(0) < player2.deck.rank_of_card_at(0)
         return player2
       else
-        "error"
       end
 
     elsif type == :war
@@ -37,11 +39,24 @@ class Turn
       elsif player1.deck.rank_of_card_at(2) < player2.deck.rank_of_card_at(2)
         return player2
       else
-        "error"
       end
 
     else type == :mutually_assured_destruction
       return "No Winner"
+    end
+  end
+
+  def pile_cards
+    #@spoils_of_war = []
+    if type == :basic
+      @spoils_of_war.push(player1.deck.remove_card).push(player2.deck.remove_card)
+    elsif type == :war
+      @spoils_of_war.push(player1.deck.remove_card).push(player2.deck.remove_card)
+      @spoils_of_war.push(player1.deck.remove_card).push(player2.deck.remove_card)
+      @spoils_of_war.push(player1.deck.remove_card).push(player2.deck.remove_card)
+    else type == :mutually_assured_destruction
+      # 3.times{player1.deck.remove_card}
+      # 3.times{player2.deck.remove_card}
 
     end
   end
