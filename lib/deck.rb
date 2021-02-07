@@ -31,4 +31,9 @@ class Deck
     @cards
   end
 
+  def add_card(card4)
+    @cards << card4
+    binding.pry
+  end
+
 end
