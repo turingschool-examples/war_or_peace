@@ -2,6 +2,7 @@ require './lib/deck'
 require './lib/card'
 require './lib/player'
 require './lib/turn'
+require './lib/start'
 
 cards_array = [card1 = Card.new(:diamond, '2', 2),
 card2 = Card.new(:diamond, '3', 3),
@@ -66,36 +67,17 @@ player2 = Player.new("Aurora", deck2)
 
 turn = Turn.new(player1, player2)
 
+new_game = Start.new(turn)
+
+
 p "Welcome to War! (or Peace) This game will be played with 52 cards."
 p "The players today are Megan and Aurora."
 p "Type 'GO' to start the game!"
 
-start_game = gets.chomp
+say_go = gets.chomp
 
-if start_game == 'GO'
+if say_go == 'GO'
   until (player1.has_lost?) || (player2.has_lost?) do
-    turn.start_game
+    new_game.start_game
   end
-
 end
-
-
-
-
-
-  # i = 0
-  # basic_phrase = "#{turn.winner.name} won 2 cards"
-  # war_phrase = "WAR - #{turn.winner.name} won 6 cards"
-  # mad_phrase = "*mutually assured destruction* 6 cards removed from play"
-  #
-  # until player1.has_lost? || player2.has_lost?
-  #   # require "pry"; binding.pry
-  #   turn.type
-  #   turn.winner
-  #   turn.pile_cards
-  #   turn.award_spoils
-  #   p "Turn #{i += 1}: #{turn.winner.name}"
-  #   # p "#{turn.winner.name}"
-  # end
-#
-# end
