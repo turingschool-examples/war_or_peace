@@ -13,19 +13,19 @@ class PlayerTest < Minitest::Test
 
   end
   def test_player_exists
-    skip
+
     player = Player.new('Clarisa', @deck)
     assert_instance_of Player, player
   end
 
   def test_player_name
-    skip
+
     player = Player.new('Clarisa', @deck)
     assert_equal 'Clarisa', player.name
   end
 
   def test_player_deck
-    skip
+    
     player = Player.new('Clarisa', @deck)
     assert_equal @deck, player.deck
   end

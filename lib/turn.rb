@@ -32,38 +32,48 @@ class Turn
 
 
   def winner
-    if @type == :basic
-      #ternary operater, uses ? then True: False
-      comparison = @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
-      comparison ? @player1 : @player2
-    elsif @type == :war
-      comparison = @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
-      comparison ? @player1 : @player2
-    else
+
+    if @player1.deck.rank_of_card_at(2) == nil
+      @player2
+    elsif @player2.deck.rank_of_card_at(2) == nil
+      @player1
+    elsif @type == :basic && @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
+      @player1
+    elsif @type == :basic && @player2.deck.rank_of_card_at(0) > @player1.deck.rank_of_card_at(0)
+      @player2
+    elsif @type == :war && @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
+      @player1
+    elsif @type == :war && @player2.deck.rank_of_card_at(2) > @player1.deck.rank_of_card_at(2)
+      @player2
+    elsif @type == :mutually_assured_destruction
       "No Winner"
     end
   end
 
-  def pile_cards
+
+   def pile_cards
     if @type == :basic
-      @spoils_of_war << @player1.deck.cards.shift
-      @spoils_of_war << @player2.deck.cards.shift
+      @spoils_of_war.concat(@player1.deck.cards.shift(1))
+      @spoils_of_war.concat(@player2.deck.cards.shift(1))
     elsif @type == :war
-      @spoils_of_war << @player1.deck.cards.shift(3)
-      @spoils_of_war << @player2.deck.cards.shift(3)
+      @spoils_of_war.concat(@player1.deck.cards.shift(3))
+      @spoils_of_war.concat(@player2.deck.cards.shift(3))
     else
-      @player1.deck.cards.shift(3)
-      @player2.deck.cards.shift(3)
+     @player1.deck.remove_card(3)
+     @player2.deck.cards.remove_card(3)
     end
   end
 
+
+
   def award_spoils(winner)
-       if @type == :mutually_assured_destruction
+    if @type == :mutually_assured_destruction
          @spoils_of_war = []
-       else
-         @spoils_of_war.each do |card|
-           winner.deck.cards.concat(@spoils_of_war) << card
-         end
-       end
+    else
+       @spoils_of_war.each do |card|
+         winner.deck.cards.concat(@spoils_of_war) << @card
+      end
+    end
   end
+
 end

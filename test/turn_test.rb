@@ -41,7 +41,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_war_type
-    skip
+
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
     deck2 = Deck.new([@card4, @card3, @card6, @card7])
     player1 = Player.new("Megan", deck1)
@@ -56,7 +56,9 @@ class TurnTest < Minitest::Test
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn2 = Turn.new(player1, player2)
+    #require "pry";binding.pry
     assert_equal player2, turn2.winner
+
   end
 
   def test_mutually_assured_destruction
@@ -70,7 +72,7 @@ class TurnTest < Minitest::Test
     assert_equal :mutually_assured_destruction, turn2.type
   end
 
-  def test_mutually_assureed_destruction_winner
+  def test_mutually_assured_destruction_winner
     skip
     card6 = Card.new(:diamond, '8', 8)
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
@@ -88,10 +90,12 @@ class TurnTest < Minitest::Test
   end
 
   def test_pile_cards_for_basic_turn_type
-    skip
+
     turn1 = Turn.new(@player1, @player2)
     turn1.pile_cards
+    #require "pry";binding.pry
     assert_equal turn1.spoils_of_war, [@card1, @card3]
+
   end
 
   def test_pile_cards_for_war_turn_type
@@ -155,4 +159,5 @@ class TurnTest < Minitest::Test
     assert_equal 1, player1.deck.cards.length
     assert_equal 1, player2.deck.cards.length
   end
+
 end
