@@ -46,18 +46,7 @@ class Game
 
       if @count == 1000000
         p "----Draw----"
-    end
-
-      #   @count = 100000001
-      #   p "---DRAW---" &&
-      #   break
-      # else
-      # end
+      end
     end
   end
-
-  # def draw(count)
-  #   if @count.to_s.count == 100000001
-  #       p "---DRAW---"
-  #     end
-  end
+end
