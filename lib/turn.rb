@@ -69,6 +69,7 @@ class Turn
   def start_a_war     #Done in GAME
     line = 1
     result = nil
+    # require "pry"; binding.pry
     until player1.deck.cards.size == 4 || player2.deck.cards.size == 4
     # until player1.has_lost? == true || player2.has_lost? == true
       turn = Turn.new(player1, player2)

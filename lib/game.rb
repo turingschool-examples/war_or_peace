@@ -22,7 +22,6 @@ class Game
     #     line +=1
     #   break if line == 201
     # end
-    # require "pry"; binding.pry
     until player1.has_lost? == true || player2.has_lost? == true
       turn = Turn.new(player1, player2)
       result = turn.type      #   turn.type # result = turn.type
