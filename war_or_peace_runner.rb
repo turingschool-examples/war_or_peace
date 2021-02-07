@@ -129,6 +129,6 @@ user_go = gets.chomp.upcase
 if user_go == "GO"
   new_game.play
 else
-  p "If you're ready for WAR... say so by typing GO."
+  p "Hablo no understando what you wrote. If you're ready for WAR... say so by typing GO."
     user_go = gets.chomp.upcase
 end

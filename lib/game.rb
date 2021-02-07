@@ -22,29 +22,31 @@ class Game
       turn = Turn.new(@player1, @player2)
 
       if turn.type == :mutually_assured_destruction
-        winner = turn.winner
         p "Turn #{@count}: *mutually assured destruction* 3 cards from each of your decks making their way to el garbagio."
+        winner = turn.winner
         turn.pile_cards
       elsif turn.type == :war
+        p "Turn #{@count}: #{turn.winner.name} wins this --*WAR*-- and sweeps up 6 cards."
         winner = turn.winner
-        p "Turn #{@count}: #{turn.winner.name} cleaning house and snatchin' 6 cards."
         turn.pile_cards
         turn.award_spoils(winner)
       else turn.type == :basic
+        p "Turn #{@count}: #{turn.winner.name} takes this round and pockets 2 cards."
         winner = turn.winner
-        p "Turn #{@count}: #{turn.winner.name} inchin' towards the win and claiming 2 cards."
         turn.pile_cards
         turn.award_spoils(winner)
       end
 
-      if @player1.has_lost?
-          p "#{@player2.name} has won!"
+      if @player1.has_lost? && !@player2.has_lost?
+          p "#{@player2.name} has won the game!"
           break
-      elsif @player2.has_lost?
-          p "#{@player1.name} has won!"
+      elsif @player2.has_lost? && !@player1.has_lost?
+          p "#{@player1.name} has won the game!"
+          break
       else
         if @count == 1000000
-          p "DRAW"
+          p "- DRAW - - - NOBODY WINS - - - DRAW -"
+          break
         end
       end
     end
