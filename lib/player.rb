@@ -1,4 +1,4 @@
-require 'pry'
+# require 'pry'
 class Player
   attr_reader :cards, :name, :deck
   def initialize(name,deck)
