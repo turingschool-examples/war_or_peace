@@ -48,19 +48,27 @@ class Turn
       player1.deck.remove_card
       player2.deck.remove_card
     elsif type == :war
-      @spoils_of_war.push(player1.deck.cards.shift(3)).flatten!
-      @spoils_of_war.push(player2.deck.cards.shift(3)).flatten!
+      3.times do
+        @spoils_of_war << player1.deck.remove_card
+        @spoils_of_war << player2.deck.remove_card
+      end
     elsif type == :mutually_assured_destruction
-      player1.deck.cards.shift(3)
-      player2.deck.cards.shift(3)
+      3.times do
+        player1.deck.remove_card
+        player2.deck.remove_card
+        #Use the OOP method remove_card rather than the Ruby method .shift
+      end
     end
   end
 
   def award_spoils(winner)
-     if type == :mutually_assured_destruction
-       return
-     end
-     winner.deck.cards.push(@spoils_of_war).flatten!
-     @spoils_of_war.clear
-   end
+    if winner == 'No Winner'
+      @spoils_of_war = []
+    else
+      @spoils_of_war.each do |spoil|
+        winner.deck.cards << spoil
+      end
+      @spoils_of_war = []
+    end
+  end
 end

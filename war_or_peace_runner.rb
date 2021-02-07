@@ -45,10 +45,10 @@ deck1   = Deck.new(cards1)
 player1 = Player.new("Megan", deck1)
 deck2   = Deck.new(cards2)
 player2 = Player.new("Aurora", deck2)
-turn    = Turn.new(player1, player2)
+# turn    = Turn.new(player1, player2)
 #Here are assigned instances with their arguments which are taken from my other
 #test files
-game    = Game.new(turn)
+game    = Game.new(player1, player2)
 #Here I am creating a new instance of the game class and giving it the argument
 #of turn
 game.start
