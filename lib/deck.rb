@@ -7,6 +7,7 @@ class Deck
   end
 
   def rank_of_card_at(position)
+    return 0 unless cards[position]
     cards[position].rank
   end
 

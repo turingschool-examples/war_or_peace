@@ -56,6 +56,7 @@ class Turn
 
   def award_spoils
     @spoils_of_war.each do |card|
+      return false if winner == "No Winner"
       winner.deck.cards << card
     end
     @spoils_of_war.clear
