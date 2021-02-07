@@ -7,12 +7,12 @@ class Turn
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
-    @type = type
   end
 
   def type
     game.end_the_war if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && (player1.deck.cards.size < 3 || player2.deck.cards.size < 3)
     if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+      # require "pry"; binding.pry
       :mutually_assured_destruction
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
       :war
@@ -51,13 +51,15 @@ class Turn
       #XX require "pry"; binding.pry
       3.times {player1.lose_card; player2.lose_card}
     end
+    # p "#{game.result} pile end"
   end
 
   def award_spoils(winner)
     @spoils_of_war.each {|spoil| winner.deck.add_card(spoil)}
+    p "#{game.result} spoils end"
   end
 
-  def start_a_war
+  def start_a_war #DONE in Game
     line = 1
     result = nil
     until player1.deck.cards.size == 3 || player2.deck.cards.size == 3
