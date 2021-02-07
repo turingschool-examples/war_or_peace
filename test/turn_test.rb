@@ -6,52 +6,120 @@ require './lib/player'
 require './lib/turn'
 
 class TurnTest < Minitest::Test
-  def setup
-    @card1 = Card.new(:heart, 'Jack', 11)
-    @card2 = Card.new(:heart, '10', 10)
-    @card3 = Card.new(:heart, '9', 9)
-    @card4 = Card.new(:diamond, 'Jack', 11)
-    @card5 = Card.new(:heart, '8', 8)
-    @card6 = Card.new(:diamond, 'Queen', 12)
-    @card7 = Card.new(:heart, '3', 3)
-    @card8 = Card.new(:diamond, '2', 2)
-    @deck1 = Deck.new([@card1, @card2, @card5, @card8])
-    @deck2 = Deck.new([@card3, @card4, @card6, @card7])
-    @player1 = Player.new("Megan", @deck1)
-    @player2 = Player.new("Aurora", @deck2)
-    @turn = Turn.new(@player1, @player2)
-  end
-
   def test_it_exists
-    assert_instance_of Turn, @turn
-    assert_equal @turn.player1, @player1
-    assert_equal @turn.player2, @player2
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10)
+    card3 = Card.new(:heart, '9', 9)
+    card4 = Card.new(:diamond, 'Jack', 11)
+    card5 = Card.new(:heart, '8', 8)
+    card6 = Card.new(:diamond, 'Queen', 12)
+    card7 = Card.new(:heart, '3', 3)
+    card8 = Card.new(:diamond, '2', 2)
+    deck1 = Deck.new([card1, card2, card5, card8])
+    deck2 = Deck.new([card3, card4, card6, card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+
+    assert_instance_of Turn, turn
+    assert_equal turn.player1, player1
+    assert_equal turn.player2, player2
   end
 
   def test_player_starts_with_no_spoils_of_war
-    assert_equal @turn.spoils_of_war, []
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10)
+    card3 = Card.new(:heart, '9', 9)
+    card4 = Card.new(:diamond, 'Jack', 11)
+    card5 = Card.new(:heart, '8', 8)
+    card6 = Card.new(:diamond, 'Queen', 12)
+    card7 = Card.new(:heart, '3', 3)
+    card8 = Card.new(:diamond, '2', 2)
+    deck1 = Deck.new([card1, card2, card5, card8])
+    deck2 = Deck.new([card3, card4, card6, card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+
+    assert_equal turn.spoils_of_war, []
   end
 
 # turn type :basic
   def test_turn_type
-    assert_equal @turn.type, :basic
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10)
+    card3 = Card.new(:heart, '9', 9)
+    card4 = Card.new(:diamond, 'Jack', 11)
+    card5 = Card.new(:heart, '8', 8)
+    card6 = Card.new(:diamond, 'Queen', 12)
+    card7 = Card.new(:heart, '3', 3)
+    card8 = Card.new(:diamond, '2', 2)
+    deck1 = Deck.new([card1, card2, card5, card8])
+    deck2 = Deck.new([card3, card4, card6, card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+
+    assert_equal turn.type, :basic
   end
 
   def test_there_is_a_winner
-    assert_equal @turn.winner, @player1
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10)
+    card3 = Card.new(:heart, '9', 9)
+    card4 = Card.new(:diamond, 'Jack', 11)
+    card5 = Card.new(:heart, '8', 8)
+    card6 = Card.new(:diamond, 'Queen', 12)
+    card7 = Card.new(:heart, '3', 3)
+    card8 = Card.new(:diamond, '2', 2)
+    deck1 = Deck.new([card1, card2, card5, card8])
+    deck2 = Deck.new([card3, card4, card6, card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+
+    assert_equal turn.winner, player1
   end
 
   def test_pile_cards
-    assert_equal @turn.pile_cards, @turn.spoils_of_war
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10)
+    card3 = Card.new(:heart, '9', 9)
+    card4 = Card.new(:diamond, 'Jack', 11)
+    card5 = Card.new(:heart, '8', 8)
+    card6 = Card.new(:diamond, 'Queen', 12)
+    card7 = Card.new(:heart, '3', 3)
+    card8 = Card.new(:diamond, '2', 2)
+    deck1 = Deck.new([card1, card2, card5, card8])
+    deck2 = Deck.new([card3, card4, card6, card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+
+    assert_equal turn.pile_cards, turn.spoils_of_war
   end
 
   def test_spoils_are_awarded_to_winner
-    @turn.pile_cards
-    @turn.award_spoils
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10)
+    card3 = Card.new(:heart, '9', 9)
+    card4 = Card.new(:diamond, 'Jack', 11)
+    card5 = Card.new(:heart, '8', 8)
+    card6 = Card.new(:diamond, 'Queen', 12)
+    card7 = Card.new(:heart, '3', 3)
+    card8 = Card.new(:diamond, '2', 2)
+    deck1 = Deck.new([card1, card2, card5, card8])
+    deck2 = Deck.new([card3, card4, card6, card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
 
-    assert_equal @player1.deck.cards.count, 5
-    assert_equal @player2.deck.cards.count, 3
-    assert_includes @player1.deck.cards, @card3
+    turn.award_spoils(turn.winner)
+
+    assert_equal turn.winner.deck.cards.count, 5
+    assert_equal player2.deck.cards.count, 3
+    assert_includes player1.deck.cards, card3
+    assert_includes turn.winner.deck.cards, card3
   end
 
   # turn type :war
@@ -108,7 +176,7 @@ class TurnTest < Minitest::Test
 
     turn.pile_cards
 
-    assert_equal turn.spoils_of_war, [card1, card4, card2, card3, card5, card6]
+    assert_equal 6, turn.spoils_of_war.count
   end
 
   def test_spoils_are_awarded_to_winner
@@ -126,8 +194,7 @@ class TurnTest < Minitest::Test
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
 
-    turn.pile_cards
-    turn.award_spoils
+    turn.award_spoils(turn.winner)
 
     assert_equal turn.winner, player2
     assert_equal player1.deck.cards.count, 1
