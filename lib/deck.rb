@@ -11,7 +11,7 @@ class Deck
 
   def high_ranking_cards
     @cards.find_all do |high_card|
-      high_card.value >= 11
+      high_card.rank >= 11
     end
   end
 
