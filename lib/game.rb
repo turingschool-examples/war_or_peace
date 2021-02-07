@@ -4,8 +4,7 @@ require './lib/player'
 require  './lib/turn'
 class Game
   attr_reader :player1,
-              :player2,
-              :turn
+              :player2
   def initialize(player1, player2)
     @player1     = player1
     @player2     = player2
@@ -26,11 +25,9 @@ class Game
   end
 
   def winner_announcement
-    if player1.has_lost?
-      # require "pry"; binding.pry
+    if player1.has_lost? == true
       p "*~*~*~* #{player2.name} has won the game! *~*~*~*"
-    elsif player2.has_lost?
-      # require "pry"; binding.pry
+    elsif player2.has_lost? == true
       p "*~*~*~* #{player1.name} has won the game! *~*~*~*"
     else
       p "--- DRAW ---"
@@ -46,32 +43,39 @@ class Game
     until check_winner? do
           #This line is saying that until these conditions have been met, do the
       #following:
-      @turn = Turn.new(player1, player2)
-      turn.pile_cards
-      turn.award_spoils(turn.winner)
-      turn_results(turn)
-      @turn_number += 1
-      # if player1.deck.cards.length >= 3 && player2.deck.cards.length >=3
-        # make_turn_go(turn)
+      turn = Turn.new(player1, player2)
+      if player1.deck.cards.length >= 3 && player2.deck.cards.length >=3
+        make_turn_go(turn)
         #Line 47 is creating a new turn instance, which is being passed on line 57 to
         #say that
-      # else
-      #   break
-      # end
+      else
+        break
+      end
     end
     # return winner_announcement
     winner_announcement
   end
 
-  def turn_results(turn)
-    winner = turn.winner
-    case turn.type
-    when :basic
+  def make_turn_go(turn)
+   if turn.type == :basic
+        winner = turn.winner
+        turn.pile_cards
+        turn.award_spoils(winner)
         p "Turn #{@turn_number}, #{winner.name} has won 2 cards"
-    when :war
+        @turn_number += 1
+    elsif turn.type == :war
+        winner = turn.winner
+        turn.pile_cards
+        turn.award_spoils(winner)
         p "Turn #{@turn_number}, WAR - #{winner.name} has won 6 cards"
-    when :mutually_assured_destruction
+        @turn_number += 1
+    elsif turn.type == :mutually_assured_destruction
+        winner = turn.winner
+        turn.pile_cards
         p "Turn #{@turn_number}, *mutually assured destruction* 6 cards removed from play"
+        @turn_number += 1
+    # elsif @turn_number == 4
+    #     p "--- DRAW ---"
     end
   end
 end
