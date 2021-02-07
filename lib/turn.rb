@@ -18,12 +18,25 @@ class Turn
     end
   end
 
-  def determine_winner
-    high_card_0 = player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0) ? player1 : player2
-    high_card_2 = player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0) ? player1 : player2
+  def high_card_0
+    if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+      player1
+    else
+      player2
+    end
+  end
 
+  def high_card_2
+    if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+      player1
+    else
+      player2
+    end
+  end
+
+  def determine_winner
     if type == :mutually_assured_destruction
-      "No Winner"
+      return "No Winner"
     elsif type == :war
       high_card_2
     elsif type == :basic
@@ -44,8 +57,28 @@ class Turn
 
   def award_spoils
     @spoils_of_war.each do |card|
-      winner.deck.cards << card
+      determine_winner.deck.cards << card
     end
     @spoils_of_war.clear
   end
+
+  def start_game
+    @turn_num = 0
+    if type == :mutually_assured_destruction
+      @turn_num += 1
+      pile_cards
+      puts "Turn #{@turn_num}: *mutually assured destruction* 6 cards removed from play"
+    elsif type == :basic
+      @turn_num += 1
+      pile_cards
+      award_spoils
+      puts "Turn #{@turn_num}: #{determine_winner.name} won 2 cards"
+    elsif type == :war
+      @turn_num += 1
+      pile_cards
+      award_spoils
+      puts "Turn #{@turn_num}: WAR - #{determine_winner.name} won 6 cards"
+    end
+  end
+
 end
