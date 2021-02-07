@@ -11,8 +11,6 @@ class Turn
 
   attr_accessor :spoils_of_war
 
-
-
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
@@ -36,7 +34,6 @@ class Turn
 
 
   def determine_winner
-
     if @player1.deck.rank_of_card_at(2) == nil
       @player2
     elsif @player2.deck.rank_of_card_at(2) == nil
@@ -74,6 +71,7 @@ class Turn
     if @type == :mutually_assured_destruction
          @spoils_of_war = []
     else
+      #@spoils_of_war.shuffle
        @spoils_of_war.each do |card|
          winner.deck.cards << card
       end

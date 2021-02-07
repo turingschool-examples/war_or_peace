@@ -18,17 +18,17 @@ class Deck
           for i in 0..@special_ranks.length - 1
               @cards << Card.new(suit, @special_values[i], @special_ranks[i])
           end
-
         end
       end
-
   end
 
 
   def rank_of_card_at(index)
-    # if @cards.length < 3 && index == 2
-    
-    @cards[index].rank
+    if @cards.length < 3 && index == 2
+      nil
+    else
+      @cards[index].rank
+    end
   end
 
 

@@ -55,7 +55,6 @@ class Game
     m = 0
     b = 0
     until @player_1.has_lost? == true || @player_2.has_lost? == true
-      #break if n > 1000000
       turn = Turn.new(@player_1, @player_2)
       type = turn.type
       winner = turn.winner
@@ -69,8 +68,11 @@ class Game
       if n == 1000001
         puts "---- DRAW ----"
         break
+      elsif @player_1.has_lost? == true
+        puts "*-*-*-* #{@player_2.name} has won the game! *-*-*-*"
+      elsif @player_2.has_lost? == true
+        puts "*-*-*-* #{@player_1.name} has won the game! *-*-*-*"
       end
-
     end
     puts "#{b} BASIC turns"
     puts "#{w} WAR turns"
@@ -87,5 +89,4 @@ class Game
       p "Turn #{round}: *mutually assured destruction* 6 cards removed from play"
     end
   end
-
 end
