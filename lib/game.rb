@@ -1,15 +1,15 @@
 class Game
-  attr_reader :player1, :player2, :result
+  attr_reader :player1, :player2 #, :result
 
   def initialize(player1,player2)
     @player1 = player1
     @player2 = player2
-    @result = nil
+    # @result = nil
   end
 
   def start_a_war
     line = 1
-    # result = nil
+    result = nil
     until player1.has_lost? == true || player2.has_lost? == true
       turn = Turn.new(player1, player2)
       @result = turn.type      #   turn.type # result = turn.type
