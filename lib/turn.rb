@@ -72,7 +72,6 @@ class Turn
     until player1.deck.cards.size == 4 || player2.deck.cards.size == 4
     # until player1.has_lost? == true || player2.has_lost? == true
       turn = Turn.new(player1, player2)
-      # require "pry"; binding.pry
       turn.type # result = turn.type
       p @type
       # if result == :mutually_assured_destruction
