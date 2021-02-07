@@ -26,6 +26,8 @@ class Deck
 
 
   def rank_of_card_at(index)
+    # if @cards.length < 3 && index == 2
+    
     @cards[index].rank
   end
 

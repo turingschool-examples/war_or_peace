@@ -31,9 +31,10 @@ class Game
     left,right = shuffle_deck.each_slice((shuffle_deck.size/2.0).round).to_a
     deck1.cards = left
     deck2 = Deck.new(right)
+
     @player_1 = Player.new(player_names[0], deck1)
     @player_2 = Player.new(player_names[1], deck2)
-    
+
   end
 
 
@@ -52,17 +53,23 @@ class Game
 
   def play_loop
     n = 1
+    i = 0
+    z = 0
     until @player_1.has_lost? == true || @player_2.has_lost? == true
-      break if n > 100  #change back to 999,999
+      break if n > 999999
       turn = Turn.new(@player_1, @player_2)
       type = turn.type
       winner = turn.winner
+      i += 1 if type == :war
+      z += 1 if type == :mutually_assured_destruction
       turn.pile_cards
       turn.award_spoils(winner)
       state_winner(type, winner, n)
       n += 1
-    end
 
+    end
+    puts "#{i} WAR"
+    puts "#{z} MAD"
   end
 
 

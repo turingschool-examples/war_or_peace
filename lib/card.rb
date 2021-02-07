@@ -1,7 +1,7 @@
 
 class Card
 
-  attr_reader :suit,
+  attr_accessor :suit,
   :value,
   :rank
 

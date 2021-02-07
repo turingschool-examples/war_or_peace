@@ -99,7 +99,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_pile_cards_for_war_turn_type
-    skip
+
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
     deck2 = Deck.new([@card4, @card3, @card6, @card7])
     player1 = Player.new("Megan", deck1)
