@@ -26,14 +26,11 @@ class Deck
   end
   def remove_card
     # cards - card1
-    card1 = cards[0]
-    cards.delete(card1)
-    @cards
+    @cards.shift
   end
 
   def add_card(card4)
     @cards << card4
-    binding.pry
   end
 
 end
