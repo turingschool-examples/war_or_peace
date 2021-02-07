@@ -40,4 +40,18 @@ turn = Turn.new(player1, player2)
   player2.deck.cards << full_deck.shift
 end
 
-turn.start_a_war
+game = Game.new(player1,player2)
+game.start_a_war
+
+# def start_a_war
+#   line = 1
+#   result = nil
+#   # require "pry"; binding.pry
+#   until player1.has_lost? == true || player2.has_lost? == true
+#     turn = Turn.new(player1, player2)
+#     result = turn.type
+#     if result == :mutually_assured_destruction
+#       victor = "No Winner"
+#     else
+#       victor = turn.winner
+#     end

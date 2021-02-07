@@ -7,33 +7,18 @@ class Turn
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
+    @type = type
   end
 
   def type
-    if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
-      :basic
+    game.end_the_war if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && (player1.deck.cards.size < 3 || player2.deck.cards.size < 3)
+    if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+      :mutually_assured_destruction
+    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+      :war
     else
-      if player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
-        # GOOD require "pry"; binding.pry
-        :mutually_assured_destruction
-      else
-        :war
-      end
+      :basic
     end
-    # elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
-    #     #   require "pry"; binding.pry
-    #   :mutually_assured_destruction
-    # else
-    #   :war
-    # end
-    # if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
-    #   require "pry"; binding.pry
-    #   :mutually_assured_destruction
-    # elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
-    #   :war
-    # else
-    #   :basic
-    # end
   end
 
   def winner
