@@ -17,7 +17,7 @@ class CardGenerator
       rank = card_info[2].strip.to_i
       card = Card.new(suit, value, rank)
       @cards << card
-    end 
+    end
   end
 
   # def get_card_info(data)
@@ -36,6 +36,3 @@ class CardGenerator
   # end
 
 end
-
-
-# File.readlines(file) do |line| puts line.chop end

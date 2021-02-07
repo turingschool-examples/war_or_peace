@@ -27,7 +27,6 @@ class CardGeneratorTest < Minitest::Test
     card1 = CardGenerator.new(data)
 
     assert_equal 2, card1.cards[0].rank
-
   end
 
   def test_a_string_can_create_rank_value_suit_with_another
@@ -50,7 +49,6 @@ class CardGeneratorTest < Minitest::Test
       # skip
     file = File.new('cards.txt')
     lines = File.readlines(file, chomp: true)
-    # require "pry"; binding.pry
     card1 = CardGenerator.new([lines[0]])
 
     assert_equal Card, card1.cards[0].class
@@ -70,7 +68,6 @@ class CardGeneratorTest < Minitest::Test
     # skip
     file = File.new('cards.txt')
     lines = File.readlines(file, chomp: true)
-
     full_deck = CardGenerator.new(lines)
 
     assert_equal "All the cards", full_deck.cards
