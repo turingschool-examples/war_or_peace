@@ -9,12 +9,13 @@ class Game
   end
 
   def start
-    puts "      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-      - Welcome to the War (or Peace) Arena...
-      - Where 52 cards and 2 players equals (almost) infinite possibilities.
-      - The battle between #{@player1.name} and #{@player2.name}
-      - will commence as soon as you type 'GO'!
-      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+    puts "      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      -                 Welcome to the War (or Peace) Arena...                -
+      -  Where 52 cards and 2 players equals (almost) infinite possibilities. -
+      -                       Opponents have been chosen.                     -
+      -                   #{@player1.name} and #{@player2.name}                  -
+      -                shall commence in battle once you type 'GO'!           -
+      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
   end
 
   def play
