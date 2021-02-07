@@ -92,4 +92,10 @@ class DeckTest < Minitest::Test
     assert_equal 3, deck.cards.length
   end
 
+  def test_rankofcard_method_does_not_return_nil
+    card1 = Card.new(:diamond, "Jack", 11)
+    card2 = Card.new(:club, "8", 8)
+    deck = Deck.new(card1, card2)
+    refute_nil deck.rank_of_card_at(2)
+  end
 end
