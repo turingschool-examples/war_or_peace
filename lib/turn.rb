@@ -1,11 +1,11 @@
 class Turn
-  attr_reader :player1, :player2, :spoils_of_war, :winner
+  attr_reader :player1, :player2, :spoils_of_war#, :winner
 
   def initialize(player1,player2)
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
-    @winner = determine_winner
+    # @winner = determine_winner
   end
 
   def type
@@ -34,9 +34,9 @@ class Turn
     end
   end
 
-  def determine_winner
+  def winner
     if type == :mutually_assured_destruction
-      return "No Winner"
+      "No Winner"
     elsif type == :war
       high_card_2
     elsif type == :basic
@@ -51,34 +51,13 @@ class Turn
       3.times { @spoils_of_war.push(player1.deck.remove_card, player2.deck.remove_card) }
     elsif type == :mutually_assured_destruction
         3.times { player1.deck.remove_card && player2.deck.remove_card }
-      false
     end
   end
 
   def award_spoils
     @spoils_of_war.each do |card|
-      determine_winner.deck.cards << card
+      winner.deck.cards << card
     end
     @spoils_of_war.clear
   end
-
-  def start_game
-    @turn_num = 0
-    if type == :mutually_assured_destruction
-      @turn_num += 1
-      pile_cards
-      puts "Turn #{@turn_num}: *mutually assured destruction* 6 cards removed from play"
-    elsif type == :basic
-      @turn_num += 1
-      pile_cards
-      award_spoils
-      puts "Turn #{@turn_num}: #{determine_winner.name} won 2 cards"
-    elsif type == :war
-      @turn_num += 1
-      pile_cards
-      award_spoils
-      puts "Turn #{@turn_num}: WAR - #{determine_winner.name} won 6 cards"
-    end
-  end
-
 end
