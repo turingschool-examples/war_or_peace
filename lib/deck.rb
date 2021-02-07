@@ -1,5 +1,4 @@
 
-
 class Deck
   attr_reader :cards
   def initialize(cards)
@@ -8,6 +7,7 @@ class Deck
   end
 
   def rank_of_card_at(index)
+    return 0 if @cards[index].nil?
     @cards[index].rank
   end
 

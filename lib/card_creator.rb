@@ -1,5 +1,4 @@
 require './lib/card'
-require 'pry'
 
 class CardCreator
   attr_reader :ranks,

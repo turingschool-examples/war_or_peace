@@ -4,7 +4,6 @@ require './lib/player'
 require './lib/turn'
 require './lib/card_creator'
 require './lib/play_game'
-require 'pry'
 
 @card_creator = CardCreator.new()
 @card_creator.create_deck
