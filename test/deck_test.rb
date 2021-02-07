@@ -3,7 +3,7 @@ require 'minitest/pride'
 require './lib/card'
 require './lib/deck'
 require 'pry'
-
+​
 class DeckTest < Minitest::Test
   #def setup   ... can use def_setup so you do not have to keep pasting the variables
   # @card1 = Card.new(:diamond, 'Queen', 12)

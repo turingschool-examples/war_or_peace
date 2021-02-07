@@ -1,15 +1,12 @@
 class Deck
+  # require 'pry'; binding.pry
   attr_reader :cards
-  def initialize(cards = [])
+  def initialize(cards)
     @cards = cards
   end
 
   def rank_of_card_at(index)
-    if @cards[index].nil? == true
-      return 0
-    else
-      @cards[index].value
-    end
+    @cards[index].rank
   end
 
   def high_ranking_cards

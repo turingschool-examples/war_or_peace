@@ -11,16 +11,16 @@ card_values_and_ranks = {
   "2" => 2,
   "3" => 3,
   "4" => 4,
-  "5" => 5,
-  "6" => 6,
-  "7" => 7,
-  "8" => 8,
-  "9" => 9,
-  "10" => 10,
-  "Jack" => 11,
-  "Queen" => 12,
-  "King" => 13,
-  "Ace" => 14,
+  # "5" => 5,
+  # "6" => 6,
+  # "7" => 7,
+  # "8" => 8,
+  # "9" => 9,
+  # "10" => 10,
+  # "Jack" => 11,
+  # "Queen" => 12,
+  # "King" => 13,
+  # "Ace" => 14,
 }
 #Here I create a hash that is showing the values and ranks in a card deck.
 suites = [:clubs, :hearts, :spades, :diamonds]
@@ -53,12 +53,12 @@ game    = Game.new(turn)
 #of turn
 game.start
 #I use the start method of the game class to print the opening statement
-user_input = gets.chomp
-  if user_input == "GO"
-  game.play
-  else
-  game.start
-end
+# user_input = gets.chomp
+#   if user_input == "GO"
+#   game.play
+#   else
+#   game.start
+# end
 #Here I am telling the code to ask the user to input something after the opening
 #game statement appears. If they do not type verbatim, GO, then they will see the
 #opening statement again.-

@@ -8,24 +8,34 @@ class Turn
     @spoils_of_war = []
   end
 
+  def should_we_play?
+    player1.deck.cards.length >= 3 && player2.deck.cards.length >=3
+  end
+
   def type
-    if ((player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)) && (player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)))
-      :mutually_assured_destruction
-    elsif player1.deck.rank_of_card_at(0) !=  player2.deck.rank_of_card_at(0)
-      :basic
-    else
-      :war
+    if should_we_play?
+      if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+        # puts "PLEASE"
+        :mutually_assured_destruction
+      elsif player1.deck.rank_of_card_at(0) !=  player2.deck.rank_of_card_at(0)
+        :basic
+        # puts "#{player1.deck.rank_of_card_at(0)}"
+      else
+        :war
+        # puts "WORK"
+      end
     end
   end
 
   def winner
-    if type == :basic && player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0) ||
-      type == :war && player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-      player1
-    elsif type == :basic && player2.deck.rank_of_card_at(0) > player1.deck.rank_of_card_at(0) ||
-      type == :war && player2.deck.rank_of_card_at(2) > player1.deck.rank_of_card_at(2)
-      player2
-    elsif type == :mutually_assured_destruction
+    # require 'pry'; binding.pry
+    if type == :basic
+      player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0) ? player1 : player2
+    elsif type == :war
+      if should_we_play?
+        player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2) ? player1 : player2
+      end
+    else
       'No Winner'
     end
   end

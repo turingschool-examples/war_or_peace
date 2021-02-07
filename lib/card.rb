@@ -4,7 +4,7 @@ class Card
               :rank
   def initialize(suit, value, rank)
     @suit = suit
-    @rank = rank
     @value = value
+    @rank = rank
   end
 end
