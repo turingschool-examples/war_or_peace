@@ -39,7 +39,6 @@ require './lib/deck'
     deck = Deck.new(cards)
 
     assert_equal cards, deck.cards
-    #require "pry"; binding.pry
     assert_equal [card1, card3], deck.high_ranking_cards
   end
 
@@ -75,8 +74,6 @@ require './lib/deck'
     deck.remove_card
 
     assert_equal cards, deck.add_card(card4)
-    require "pry"; binding.pry
   end
-
 
  end

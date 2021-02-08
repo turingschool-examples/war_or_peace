@@ -8,8 +8,4 @@ class Card
     @rank = rank
   end
 
-  #This is what attr_reader is doing
-  # def rank
-    # @rank
-  # end
 end

@@ -9,7 +9,6 @@ class Player
 
   def has_lost?
     @deck.cards == []
-
   end
 
 end

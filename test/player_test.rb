@@ -15,7 +15,6 @@ class PlayerTest < Minitest::Test
     player = Player.new('Clarisa', deck)
 
     assert_instance_of Player, player
-      #require "pry"; binding.pry
   end
 
   def test_it_has_readable_attributes
@@ -39,13 +38,12 @@ class PlayerTest < Minitest::Test
     player = Player.new('Clarisa', deck)
 
     assert_equal false, player.has_lost?
-    #require "pry"; binding.pry
 
     cards = []
     deck = Deck.new(cards)
     player = Player.new('Clarisa', deck)
-    assert_equal true, player.has_lost?
 
+    assert_equal true, player.has_lost?
   end
 
 end
