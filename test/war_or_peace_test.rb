@@ -44,5 +44,9 @@ class WarTest < Minitest::Test
     war = WarOrPeace.new(turn)
     #binding.pry
     assert_equal war.turn.type, :draw
+    player1 = Player.new("Alex", @deck1)
+  end
+  def test_
+
   end
 end

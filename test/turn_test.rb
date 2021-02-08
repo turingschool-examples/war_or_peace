@@ -13,12 +13,12 @@ class TurnTest < Minitest::Test
     @card4 = Card.new(:diamond, 'Jack', 11)
     @card5 = Card.new(:heart, '8', 8)
     @card6 = Card.new(:diamond, 'Queen', 12)
-    @deck1 = Deck.new([@card3, @card2, @card1])
-    @deck2 = Deck.new([@card6, @card5, @card4])
+    @deck1 = Deck.new([@card6, @card2, @card1])
+    @deck2 = Deck.new([@card3, @card5, @card4])
     @player1 = Player.new("Alex",@deck1)
     @player2 = Player.new("Another Alex",@deck2)
     @turn = Turn.new(@player1, @player2)
-    #binding.pry
+    binding.pry
   end
   def test_it_exists
     assert_instance_of Turn, @turn
