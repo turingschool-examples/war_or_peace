@@ -40,7 +40,7 @@ class GameTest < Minitest::Test
     assert_equal 26, player2.deck.cards.size
   end
 
-  def test_game_run
+  def test_game_runs_past_first_turn
     # skip
     suits = [:spades, :hearts, :diamonds, :clubs]
     values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']
@@ -67,15 +67,7 @@ class GameTest < Minitest::Test
 
     game.start_a_war
 
-    # assert_equal 'Meagan' || 'Aurora', game.victor.name
-    # assert_not_equal nil, game.victor
-    assert_equal game.hand > 1, true
-    # assert_equal player1, turn.winner
-    #
-    # assert_equal 3, turn.player2.deck.cards.size
-    #
-    # assert_equal [card2,card5,card8,card1,card3], turn.player1.deck.cards
-    # assert_equal [card4,card6,card7], turn.player2.deck.cards
+    assert_equal game.hand != 1, true
   end
 
 end

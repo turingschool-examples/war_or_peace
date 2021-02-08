@@ -1,13 +1,11 @@
 class Deck
-  attr_reader :cards #,:high_cards
+  attr_reader :cards
 
   def initialize(cards=[])
-    # @high_cards = []
     @cards = cards
   end
 
   def add_card(card)
-    # @high_cards << card if card.rank > 10
     @cards << card
   end
 
