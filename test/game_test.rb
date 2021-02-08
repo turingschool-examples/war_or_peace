@@ -68,8 +68,8 @@ class GameTest < Minitest::Test
     game.start_a_war
 
     # assert_equal 'Meagan' || 'Aurora', game.victor.name
-    assert_not_equal nil, game.victor
-    # assert_equal game.hand > 1, true
+    # assert_not_equal nil, game.victor
+    assert_equal game.hand > 1, true
     # assert_equal player1, turn.winner
     #
     # assert_equal 3, turn.player2.deck.cards.size
