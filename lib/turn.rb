@@ -9,7 +9,7 @@ class Turn
   end
 
   def should_we_play?
-    player1.deck.cards.length >= 3 && player2.deck.cards.length >=3
+    player1.deck.cards.length > 0 && player2.deck.cards.length > 0
   end
 
   def type
@@ -28,7 +28,6 @@ class Turn
   end
 
   def winner
-    # require 'pry'; binding.pry
     if type == :basic
       player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0) ? player1 : player2
     elsif type == :war

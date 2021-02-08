@@ -35,47 +35,34 @@ class Game
   end
 
   def check_winner?
-    player1.has_lost? == true  || player2.has_lost? == true || @turn_number == 1000001
+    player1.has_lost? || player2.has_lost? || @turn_number == 1000000
     # needs to return true or false based on if players have lost or count is 10000
   end
 
   def play
-    until check_winner? do
-          #This line is saying that until these conditions have been met, do the
-      #following:
+    until check_winner?
       turn = Turn.new(player1, player2)
-      if player1.deck.cards.length >= 3 && player2.deck.cards.length >=3
+      if !player1.has_lost? || !player2.has_lost? || @turn_number != 1000000
         make_turn_go(turn)
-        #Line 47 is creating a new turn instance, which is being passed on line 57 to
-        #say that
-      else
-        break
       end
     end
-    # return winner_announcement
     winner_announcement
   end
 
   def make_turn_go(turn)
+    @turn_number += 1
+    turn.pile_cards
    if turn.type == :basic
         winner = turn.winner
-        turn.pile_cards
         turn.award_spoils(winner)
         p "Turn #{@turn_number}, #{winner.name} has won 2 cards"
-        @turn_number += 1
     elsif turn.type == :war
         winner = turn.winner
-        turn.pile_cards
         turn.award_spoils(winner)
         p "Turn #{@turn_number}, WAR - #{winner.name} has won 6 cards"
-        @turn_number += 1
     elsif turn.type == :mutually_assured_destruction
         winner = turn.winner
-        turn.pile_cards
         p "Turn #{@turn_number}, *mutually assured destruction* 6 cards removed from play"
-        @turn_number += 1
-    # elsif @turn_number == 4
-    #     p "--- DRAW ---"
     end
   end
 end
