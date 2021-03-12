@@ -13,6 +13,11 @@ class Deck
       if card.rank >= 11
       card
       end
-    end.compact 
+    end.compact
+  end
+
+  def percent_high_ranking
+     percent = high_ranking_cards.count.to_f / @cards.count.round * 100
+     percent.round(2)
   end
 end
