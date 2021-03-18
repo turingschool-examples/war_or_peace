@@ -59,14 +59,14 @@ class DeckTest < Minitest::Test
     @deck.add_cards(@card3)
 
     assert_equal @card1, @deck.remove_card
+    assert_equal [@card2, @card3], @deck.cards
+    assert_equal [@card3], @deck.high_ranking_cards
+    assert_equal 50.0, @deck.percent_high_ranking
   end
 end
-#  deck.cards
-# #=> [#<Card:0x007fbfd19f4fa0...>, #<Card:0x007fbfd18555a0...>]
-#  deck.high_ranking_cards
-# #=> [#<Card:0x007fbfd18555a0...>]
-#  deck.percent_high_ranking
-# #=> 50.0
+
+
+
 #  card4 = Card.new(:club, '5', 5)
 # #=> #<Card:0x007fbfd2963978 @rank=5, @suit=:club, @value="5">
 #  deck.add_card(card4)
