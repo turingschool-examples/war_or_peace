@@ -13,29 +13,32 @@ class TurnTest < Minitest::Test
   @card5 = Card.new(:heart, '8', 8)
   @card8 = Card.new(:diamond, '2', 2)
   @deck1 = Deck.new([@card1, @card2, @card5, @card8])
-  @megan = Player.new("Megan", @deck1)
+  @player1 = Player.new("Megan", @deck1)
 
   @card3 = Card.new(:heart, '9', 9)
   @card4 = Card.new(:diamond, 'Jack', 11)
   @card6 = Card.new(:diamond, 'Queen', 12)
   @card7 = Card.new(:heart, '3', 3)
   @deck2 = Deck.new([@card3, @card4, @card6, @card7])
-  @aurora = Player.new("Aurora", @deck2)
+  @player2 = Player.new("Aurora", @deck2)
 
-  @turn = Turn.new(@megan, @aurora)
+  @turn = Turn.new(@player1, @player2)
   end
 
   def test_it_exists
     assert_instance_of Turn, @turn
   end
+
+  def test_player_can_take_a_turn
+    assert_equal @player1, @turn.player1
+    assert_equal @player2, @turn.player2
+  end
+
+  def test_it_starts_with_no_spoils_of_war
+    assert_equal [], @turn.spoils_of_war
+  end
 end
 
-# turn.megan
-# #=> #<Player:0x007fa3edae29d0 @deck=#<Deck:0x007fa3eda472c8...>, @name="Megan">
-# turn.aurora
-# #=> #<Player:0x007fa3ed9e6568 @deck=#<Deck:0x007fa3ee11ee48...>, @name="Aurora">
-# turn.spoils_of_war
-# #=> []
 # turn.type
 # #=> :basic
 # winner = turn.winner
