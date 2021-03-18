@@ -37,17 +37,5 @@ class TurnTest < Minitest::Test
   def test_it_starts_with_no_spoils_of_war
     assert_equal [], @turn.spoils_of_war
   end
-end
 
-# turn.type
-# #=> :basic
-# winner = turn.winner
-# #=> #<Player:0x007fa3edae29d0 @deck=#<Deck:0x007fa3eda472c8...>, @name="Megan">
-# turn.pile_cards
-# turn.spoils_of_war
-# #=> [#<Card:0x007fa3edaa0df0 @rank=11, @suit=:heart, @value="Jack">, #<Card:0x007fa3ed98d9b8 @rank=9, @suit=:heart, @value="9">]
-# turn.award_spoils(winner)
-# megan.deck
-# #=> #<Deck:0x007fa3eda472c8 @cards=[#<Card:0x007fa3eda519a8...>, #<Card:0x007fa3edb263d8...>, #<Card:0x007fa3eda89308...>, #<Card:0x007fa3edaa0df0...>, #<Card:0x007fa3ed98d9b8...>]>
-# aurora.deck
-# #=> #<Deck:0x007fa3ee11ee48 @cards=[#<Card:0x007fa3ee14ef80...>, #<Card:0x007fa3eda3e1f0...>, #<Card:0x007fa3edad1cc0...>]>
+end
