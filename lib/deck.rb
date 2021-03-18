@@ -8,4 +8,19 @@ class Deck
   def add_cards(card)
     @cards << card
   end
+
+  def rank_of_card_at(index)
+    @cards[index].rank
+  end
+
+  def high_ranking_cards
+    highest = @cards.find_all do |card|
+      card.rank >= 11
+    end
+    highest
+  end
+
+  def percent_high_ranking
+    
+  end
 end
