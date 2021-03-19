@@ -10,14 +10,13 @@ class Deck
   end
 
   def rank_of_card_at(index)
-    @cards[index].rank
+    cards[index].rank
   end
 
   def high_ranking_cards
-    highest = @cards.find_all do |card|
+    cards.find_all do |card|
       card.rank >= 11
     end
-    highest
   end
 
   def percent_high_ranking
@@ -25,7 +24,7 @@ class Deck
   end
 
   def percent_math
-    high_ranking_cards.length / @cards.length.to_f
+    high_ranking_cards.length / cards.length.to_f
   end
 
   def remove_card
