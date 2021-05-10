@@ -1,2 +1,5 @@
 class Card
-end 
+
+  def initialize(suit, value, rank)
+  end
+end
