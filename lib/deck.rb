@@ -9,4 +9,8 @@ class Deck
     @cards[index].rank
   end
 
+  def high_ranking_cards
+    @cards.find_all { |card| 11 <= card.rank}
+  end
+
 end
