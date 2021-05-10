@@ -13,4 +13,9 @@ class Deck
     @cards.find_all { |card| 11 <= card.rank}
   end
 
+  def percent_high_ranking
+    percent = (high_ranking_cards.size.to_f/@cards.size) * 100
+    percent.round(2)
+  end
+
 end
