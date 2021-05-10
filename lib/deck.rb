@@ -6,7 +6,6 @@ class Deck
     @cards = cards
   end
 
-
   def high_ranking_cards
     # This method will return an array of cards in the deck that have a rank of 11 or above (face cards and aces)
     high_ranking_cards = cards.select do |card|
