@@ -9,7 +9,7 @@ class Card
       'King': 13,
       'Queen': 12,
       'Jack': 11,
-      :numeric => (1..10)
+      :numeric => (2..10)
     }
 
     suit_check = suit.to_s.downcase.to_sym

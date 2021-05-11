@@ -29,10 +29,15 @@ RSpec.describe Card do
   end
 
   it 'prevents cheating' do
-    real_card = Card.new(:Club, 'king', 13)
-    expect(real_card.suit).to eq(:club)
-    expect(real_card.value).to eq('King')
-    expect(real_card.rank).to eq(13)
+    real_card1 = Card.new(:Club, 'king', 13)
+    expect(real_card1.suit).to eq(:club)
+    expect(real_card1.value).to eq('King')
+    expect(real_card1.rank).to eq(13)
+
+    real_card2 = Card.new(:spade, '10', 10)
+    expect(real_card2.suit).to eq(:spade)
+    expect(real_card2.value).to eq('10')
+    expect(real_card2.rank).to eq(10)
 
     fake_card1 = Card.new(:rhinestone, 'Queen', 12)
     expect(fake_card1.suit).to eq(:joker)
