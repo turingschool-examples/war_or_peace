@@ -2,7 +2,10 @@ class Deck
   attr_reader :cards
 
   def initialize(cards=[])
-    if cards.class != Array
+    card_check = cards.any? do |card|
+      card.class != Card
+    end
+    if card_check || cards.class != Array
       @cards = Array.new
     else
       @cards = cards

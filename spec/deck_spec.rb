@@ -7,6 +7,7 @@ RSpec.describe Deck do
     empty_deck = Deck.new
 
     expect(empty_deck).to be_an_instance_of(Deck)
+    expect(empty_deck.cards).to eq([])
     expect(empty_deck.cards.length).to eq(0)
     expect(empty_deck.rank_of_card_at(0)).to be(nil)
     expect(empty_deck.high_ranking_cards.length).to eq(0)
@@ -32,6 +33,18 @@ RSpec.describe Deck do
     expect(deck.cards[2].suit).to eq(:heart)
     expect(deck.cards[2].value).to eq('Ace')
     expect(deck.cards[2].rank).to eq(14)
+  end
+
+  it 'can only be created with valid cards' do
+    fake_deck = Deck.new([10, 20, 30])
+    
+    expect(fake_deck).to be_an_instance_of(Deck)
+    expect(fake_deck.cards).to eq([])
+    expect(fake_deck.cards.length).to eq(0)
+    expect(fake_deck.rank_of_card_at(0)).to be(nil)
+    expect(fake_deck.high_ranking_cards.length).to eq(0)
+    expect(fake_deck.percent_high_ranking).to eq(0.0)
+    expect(fake_deck.remove_card).to be(nil)
   end
 
   it 'can return the rank of a card at a given index' do

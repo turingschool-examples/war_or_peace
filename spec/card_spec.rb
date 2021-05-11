@@ -27,4 +27,26 @@ RSpec.describe Card do
     expect(default_card.value.class).to be(String)
     expect(default_card.rank.class).to be(Integer)
   end
+
+  it 'prevents cheating' do
+    real_card = Card.new(:Club, 'king', 13)
+    expect(real_card.suit).to eq(:club)
+    expect(real_card.value).to eq('King')
+    expect(real_card.rank).to eq(13)
+
+    fake_card1 = Card.new(:rhinestone, 'Queen', 12)
+    expect(fake_card1.suit).to eq(:joker)
+    expect(fake_card1.value).to eq('Joker')
+    expect(fake_card1.rank).to eq(0)
+
+    fake_card2 = Card.new(:heart, 'Aces', 12)
+    expect(fake_card2.suit).to eq(:joker)
+    expect(fake_card2.value).to eq('Joker')
+    expect(fake_card2.rank).to eq(0)
+
+    fake_card3 = Card.new(:heart, 'Ace', 50)
+    expect(fake_card3.suit).to eq(:joker)
+    expect(fake_card3.value).to eq('Joker')
+    expect(fake_card3.rank).to eq(0)
+  end
 end
