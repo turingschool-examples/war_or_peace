@@ -25,21 +25,25 @@ class Turn
 
 
   def type()
-    if self.player1.deck.rank_of_card_at(0) == self.player2.deck.rank_of_card_at(0) && self.player1.rank_of_card_at(2) == self.player2.rank_of_card_at(2)
+    player1_rank_at_0 = self.player1.deck.rank_of_card_at(0)
+    player1_rank_at_2 = self.player1.deck.rank_of_card_at(2)
+    player2_rank_at_0 = self.player2.deck.rank_of_card_at(0)
+    player2_rank_at_2 = self.player2.deck.rank_of_card_at(2)
+
+    if player1_rank_at_0 == player2_rank_at_0 && player1_rank_at_2 == player2_rank_at_2
       return :mutually_assured_destruction
-    elsif self.player1.deck.rank_of_card_at(0) == self.player2.deck.rank_of_card_at(0)
+    elsif player1_rank_at_0 == player2_rank_at_0
       return :war
-    elsif self.player1.deck.rank_of_card_at(0) != self.player2.deck.rank_of_card_at(0)
+    elsif player1_rank_at_0 != player2_rank_at_0
       return :basic
-    else
-      return nil
     end
+    
   end
 
 
   def winner()
     players = [self.player1, self.player2]
-    
+
     if self.victor == nil
       if type() == :mutually_assured_destruction
         self.victor = 'No Winner'
@@ -63,25 +67,25 @@ class Turn
 
   def pile_cards()
     if type() == :basic
-      self.spoils_of_war << player1.deck.remove_card
-      self.spoils_of_war << player2.deck.remove_card
+      self.spoils_of_war << self.player1.deck.remove_card
+      self.spoils_of_war << self.player2.deck.remove_card
     elsif type() == :war
-      3.times { self.spoils_of_war << player1.deck.remove_card }
-      3.times { self.spoils_of_war << player2.deck.remove_card }
+      3.times { self.spoils_of_war << self.player1.deck.remove_card }
+      3.times { self.spoils_of_war << self.player2.deck.remove_card }
     elsif type() == :mutually_assured_destruction
-      3.times { player1.deck.remove_card }
-      3.times { player2.deck.remove_card }
+      3.times { self.player1.deck.remove_card }
+      3.times { self.player2.deck.remove_card }
     end
   end
 
+
   def award_spoils(victor)
-    if self.spoils_of_war.length > 0
+    if self.spoils_of_war.length > 0 && victor.class == Player
       self.spoils_of_war.each do |card|
         victor.deck.cards << card
       end
       self.spoils_of_war = Array.new
     end
   end
-
 
 end
