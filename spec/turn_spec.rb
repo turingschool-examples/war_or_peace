@@ -63,6 +63,13 @@ RSpec.describe Turn do
       expect(@turn.winner).to eq(@player1)
     end
 
+    it "#pile_cards :basic" do
+      @turn.pile_cards
+      expect(@turn.spoils_of_war).to include(@card1, @card3)
+      expect(@player1.deck.cards).to eq([@card2, @card5, @card8])
+      expect(@player2.deck.cards).to eq([@card4, @card6, @card7])
+    end
+
   end
 
   describe ":war turn type methods" do
