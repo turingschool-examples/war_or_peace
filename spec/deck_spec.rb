@@ -34,12 +34,14 @@ RSpec.describe Deck do
     end
 
     it "has high_ranking_cards method" do
-      # This method will return an array of cards in the deck that have a rank of 11 or above (face cards and aces)
+      # This method will return an array of cards in the deck that have a rank
+      # of 11 or above (face cards and aces)
       expect(@deck.high_ranking_cards).to eq([@card1, @card3])
     end
 
     it "has rank_of_card_at method" do
-      # This method will take one argument that represents the index location of a card to be used and will return the rank of that card
+      # This method will take one argument that represents the index location
+      # of a card to be used and will return the rank of that card
       expect(@deck.rank_of_card_at(0)).to eq(12)
       expect(@deck.rank_of_card_at(2)).to eq(14)
     end
