@@ -1,7 +1,7 @@
 class Deck
 
 end
-# 
+#
 # p deck.high_ranking_cards
 # p deck.percent_high_ranking
 # p deck.remove_card
