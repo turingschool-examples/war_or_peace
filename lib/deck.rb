@@ -23,18 +23,29 @@ class Deck
     #     high_rank << cards[2]
     # end
 
-    cards[0..2].select do |var|
+    cards.select do |var|
       var.rank > 11
     end
   end
 
   def percent_high_ranking
+    # ranks = []
+    # percent_low = []
+    # cards[0..2].each do |var|
+    #   ranks << var.rank
+    # end
+    # ranks.select do |var|
+    #   percent << var.rank
+    # end
+
   end
 
   def remove_card
+    cards.shift
   end
 
-  def add_card
+  def add_card(new_card)
+    cards.append(new_card)
   end
 
 end
