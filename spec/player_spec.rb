@@ -19,7 +19,7 @@ RSpec.describe Player do
     expect(ready_to_play.name).to eq('Clarissa')
     expect(ready_to_play.has_lost?).to be(false)
 
-    expect(ready_to_play.deck.cards.length).to be(3)
+    expect(ready_to_play.deck.cards.length).to eq(3)
 
     expect(ready_to_play.deck.cards[0].suit).to eq(:diamond)
     expect(ready_to_play.deck.cards[0].value).to eq('Queen')
@@ -40,19 +40,19 @@ RSpec.describe Player do
     card3 = Card.new(:heart, 'Ace', 14)
     player = Player.new('Clarissa', Deck.new([card1, card2, card3]))
 
-    expect(player.deck.cards.length).to be(3)
+    expect(player.deck.cards.length).to eq(3)
     expect(player.has_lost?).to be(false)
 
     player.deck.remove_card
-    expect(player.deck.cards.length).to be(2)
+    expect(player.deck.cards.length).to eq(2)
     expect(player.has_lost?).to be(false)
 
     player.deck.remove_card
-    expect(player.deck.cards.length).to be(1)
+    expect(player.deck.cards.length).to eq(1)
     expect(player.has_lost?).to be(false)
 
     player.deck.remove_card
-    expect(player.deck.cards.length).to be(0)
+    expect(player.deck.cards.length).to eq(0)
     expect(player.has_lost?).to be(true)
   end
 end
