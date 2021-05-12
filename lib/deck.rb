@@ -24,4 +24,11 @@ class Deck
     end
   end
 
+  def remove_card
+    @remove_card = cards.shift
+  end
+
+  def add_card(new_card)
+    @add_card = cards.append(new_card)
+  end
 end
