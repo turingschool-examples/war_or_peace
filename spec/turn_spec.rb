@@ -100,6 +100,13 @@ RSpec.describe Turn do
       expect(@turn.winner).to eq(@player2)
     end
 
+    it "#pile_cards :basic" do
+      @turn.pile_cards
+      expect(@turn.spoils_of_war).to include(@card1, @card2, @card5, @card4, @card3, @card6)
+      expect(@player1.deck.cards).to eq([@card8])
+      expect(@player2.deck.cards).to eq([@card7])
+    end
+
   end
 
   describe ":mutually_assured_destruction turn type methods" do
