@@ -53,6 +53,19 @@ attr_reader :player1, :player2, :spoils_of_war
       @player1.deck.remove_card
       @spoils_of_war << @player2.deck.cards[0]
       @player2.deck.remove_card
+    elsif type == :war
+      @spoils_of_war << @player1.deck.cards[0]
+      @spoils_of_war << @player1.deck.cards[1]
+      @spoils_of_war << @player1.deck.cards[2]
+      @player1.deck.remove_card
+      @player1.deck.remove_card
+      @player1.deck.remove_card
+      @spoils_of_war << @player2.deck.cards[0]
+      @spoils_of_war << @player2.deck.cards[1]
+      @spoils_of_war << @player2.deck.cards[2]
+      @player2.deck.remove_card
+      @player2.deck.remove_card
+      @player2.deck.remove_card
     end
       # for a :war turn, each player will send three cards (the top three
       # cards) to the spoils pile
