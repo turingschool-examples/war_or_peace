@@ -13,6 +13,16 @@ class Deck
   end
 
   def high_ranking_cards
+    high_rank = []
+    if cards[0].rank >= 11
+        high_rank << cards[0]
+    end
+    if cards[1].rank >= 11
+        high_rank << cards[1]
+    end
+    if cards[2].rank >= 11
+        high_rank << cards[2]
+    end  
   end
 
   def percent_high_ranking
