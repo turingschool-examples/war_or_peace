@@ -4,15 +4,9 @@ def initialize(cards)
   @cards = cards
 end
 
-def rank_of_card_at(position)
-  cards[position].rank
-end
 
-def high_ranking_cards()
-  high_cards = @cards.select do |card|
-    card.rank >= 11
-  end
-end
+
+
 
 def percent_high_ranking()
   percentage_high_cards = @cards.select do |card|
