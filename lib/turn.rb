@@ -44,15 +44,17 @@ attr_reader :player1, :player2, :spoils_of_war
   end
 
   def pile_cards
-    #when this method is called, cards will be sent from the players' decks
-    # into the @spoils_of_war based on these rules:
-      # for a :basic turn, each player will send one card (the top card) to
-      # the spoils pile
+  #when this method is called, cards will be sent from the players' decks
+  # into the @spoils_of_war based on these rules:
+    # for a :basic turn, each player will send one card (the top card) to
+    # the spoils pile
     if type == :basic
       @spoils_of_war << @player1.deck.cards[0]
       @player1.deck.remove_card
       @spoils_of_war << @player2.deck.cards[0]
       @player2.deck.remove_card
+    # for a :war turn, each player will send three cards (the top three
+    # cards) to the spoils pile
     elsif type == :war
       @spoils_of_war << @player1.deck.cards[0]
       @spoils_of_war << @player1.deck.cards[1]
@@ -66,14 +68,20 @@ attr_reader :player1, :player2, :spoils_of_war
       @player2.deck.remove_card
       @player2.deck.remove_card
       @player2.deck.remove_card
+    # for a :mutually_assured_destruction turn, each player will remove
+    # three cards from play (the top three cards in their deck). These
+    # cards are not sent to the spoils pile, they are simply removed from
+    # each players’ deck.
+    elsif type == :mutually_assured_destruction
+      @player1.deck.remove_card
+      @player1.deck.remove_card
+      @player1.deck.remove_card
+      @player2.deck.remove_card
+      @player2.deck.remove_card
+      @player2.deck.remove_card
+    else
+      p "Whoops! Something went wrong here!"
     end
-      # for a :war turn, each player will send three cards (the top three
-      # cards) to the spoils pile
-      #
-      # for a :mutually_assured_destruction turn, each player will remove
-      # three cards from play (the top three cards in their deck). These
-      # cards are not sent to the spoils pile, they are simply removed from
-      # each players’ deck.
   end
 
   def award_spoils
