@@ -26,4 +26,33 @@ describe Turn do
 
     expect(turn).to be_a(Turn)
   end
+  it 'has one player' do
+    turn = Turn.new(@player1, @player2)
+
+    expect(turn.player1).to eq(@player1)
+  end
+  it 'has a second player' do
+    turn = Turn.new(@player1, @player2)
+
+    expect(turn.player2).to eq(@player2)
+  end
+  it 'starts with empty war spoils' do
+    turn = Turn.new(@player1, @player2)
+
+    expect(turn.spoils_of_war).to eq([])
+  end
+  it 'has a type of turn' do
+    turn = Turn.new(@player1, @player2)
+
+    expect(turn.type).to eq(:basic)
+  end
+  describe 'Commands' do
+    it 'has a winner' do
+      turn = Turn.new(@player1, @player2)
+
+      turn.type
+
+      expect(turn.winner).to eq(@player1)
+    end
+  end
 end
