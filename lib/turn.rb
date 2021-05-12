@@ -6,6 +6,7 @@ attr_reader :player1, :player2, :spoils_of_war
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
+    @winner = winner
   end
 
   def type
@@ -24,17 +25,17 @@ attr_reader :player1, :player2, :spoils_of_war
       # a higher rank_of_card_at(0)
     if type == :basic
       if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-        player1
+        @winner = player1
       else
-        player2
+        @winner = player2
       end
       # if the turn has a type of :war the winner will be whichever player has
       # a higher rank_of_card_at(2)
     elsif type == :war
       if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-        player1
+        @winner = player1
       else
-        player2
+        @winner = player2
       end
       # if the turn has a type of :mutually_assured_destruction the method
       # will return No Winner.
@@ -87,6 +88,9 @@ attr_reader :player1, :player2, :spoils_of_war
   def award_spoils
     # this method will add each of the cards in the @spoils_of_war array to
     # the winner of the turn.
+    @spoils_of_war.each do |spoils|
+      @winner.deck.add_card(spoils)
+    end
   end
 
 
