@@ -158,6 +158,13 @@ RSpec.describe Turn do
       expect(@player2.deck.cards).to eq([@card7])
     end
 
+    it "#award_spoils :mutually_assured_destruction" do
+      @turn.pile_cards
+      @turn.award_spoils
+      expect(@player1.deck.cards).to eq([@card8])
+      expect(@player2.deck.cards).to eq([@card7])
+    end
+
   end
 
 end
