@@ -137,6 +137,13 @@ RSpec.describe Turn do
       expect(@turn.winner).to eq("No Winner")
     end
 
+    it "#pile_cards :mutually_assured_destruction" do
+      @turn.pile_cards
+      expect(@turn.spoils_of_war).to eq([])
+      expect(@player1.deck.cards).to eq([@card8])
+      expect(@player2.deck.cards).to eq([@card7])
+    end
+
   end
 
 end
