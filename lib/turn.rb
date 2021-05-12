@@ -48,7 +48,12 @@ attr_reader :player1, :player2, :spoils_of_war
     # into the @spoils_of_war based on these rules:
       # for a :basic turn, each player will send one card (the top card) to
       # the spoils pile
-      #
+    if type == :basic
+      @spoils_of_war << @player1.deck.cards[0]
+      @player1.deck.remove_card
+      @spoils_of_war << @player2.deck.cards[0]
+      @player2.deck.remove_card
+    end
       # for a :war turn, each player will send three cards (the top three
       # cards) to the spoils pile
       #
