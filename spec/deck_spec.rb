@@ -1,5 +1,5 @@
-require_relative '../lib/deck.rb'
-require_relative '../lib/card.rb'
+require './lib/deck'
+require './lib/card'
 
 RSpec.describe Deck do
   it "exists" do

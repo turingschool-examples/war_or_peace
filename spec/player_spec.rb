@@ -1,6 +1,6 @@
-require_relative '../lib/card.rb'
-require_relative '../lib/deck.rb'
-require_relative '../lib/player.rb'
+require './lib/card'
+require './lib/deck'
+require './lib/player'
 
 RSpec.describe Player do
   it 'has a name' do
