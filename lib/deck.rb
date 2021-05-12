@@ -7,14 +7,16 @@ class Deck
   end
 
   def high_ranking_cards
-    # This method will return an array of cards in the deck that have a rank of 11 or above (face cards and aces)
+    # This method will return an array of cards in the deck that have a rank
+    # of 11 or above (face cards and aces)
     high_ranking_cards = @cards.select do |card|
       card.rank > 10
     end
   end
 
   def rank_of_card_at(index)
-    # This method will take one argument that represents the index location of a card to be used and will return the rank of that card
+    # This method will take one argument that represents the index location of
+    # a card to be used and will return the rank of that card
     @cards[index].rank
   end
 
