@@ -15,3 +15,12 @@ RSpec.describe Card do
     expect(card.rank).to eq(12)
   end
 end
+
+
+class Deck
+  attr_reader :cards
+
+  def initialize(cards)
+    @cards = cards
+  end
+end
