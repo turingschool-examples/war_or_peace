@@ -3,7 +3,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 
-describe Turn do
+ describe Turn do
   context 'turn type: basic' do
     before(:each) do
       @card1 = Card.new(:heart, 'Jack', 11)
@@ -85,7 +85,7 @@ describe Turn do
   end
 end
 
-  context 'turn type: war'
+  context 'turn type: war' do
     before(:each) do
       @card1 = Card.new(:heart, 'Jack', 11)
       @card2 = Card.new(:heart, '10', 10)
@@ -152,15 +152,16 @@ end
         expect(@player2.deck.cards).to eq([@card7, @card1, @card2, @card5, @card4, @card3, @card6])
       end
   end
+end
 
-  context 'turn type: mutually assured destruction'
+  context 'turn type: mutually assured destruction' do
     before(:each) do
       @card1 = Card.new(:heart, 'Jack', 11)
       @card2 = Card.new(:heart, '10', 10)
       @card3 = Card.new(:heart, '9', 9)
       @card4 = Card.new(:diamond, 'Jack', 11)
       @card5 = Card.new(:heart, '8', 8)
-      @card6 = Card.new(:diamond, 'Queen', 12)
+      @card6 = Card.new(:diamond, '8', 8)
       @card7 = Card.new(:heart, '3', 3)
       @card8 = Card.new(:diamond, '2', 2)
 
@@ -190,34 +191,25 @@ end
     end
 
     it 'has a type of turn' do
-      expect(@turn.type).to eq(:war)
+      expect(@turn.type).to eq(:mutually_assured_destruction)
     end
 
     describe 'Command' do
       it 'has a winner' do
         @turn.type
 
-        expect(@turn.winner).to eq(@player2)
+        expect(@turn.winner).to eq('No Winner')
       end
 
-      it 'piles cards' do
+      it 'it does not pile cards' do
         @turn.type
         @turn.winner
         @turn.pile_cards
 
-        expect(@turn.spoils_of_war).to eq([@card1, @card2, @card5, @card4, @card3, @card6])
-      end
-
-      it 'awards cards to winner' do
-        turn = Turn.new(@player1, @player2)
-
-        @turn.type
-        @turn.winner
-        @turn.pile_cards
-        @turn.award_spoils(@turn.award_winner)
-
+        expect(@turn.spoils_of_war).to eq([])
         expect(@player1.deck.cards).to eq([@card8])
-        expect(@player2.deck.cards).to eq([@card7, @card1, @card2, @card5, @card4, @card3, @card6])
+        expect(@player2.deck.cards).to eq([@card7])
       end
+  end
   end
 end

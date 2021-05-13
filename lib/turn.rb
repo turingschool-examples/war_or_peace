@@ -10,12 +10,13 @@ class Turn
   end
 
   def type
+    #binding.pry
     if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
       type = :basic
+    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player2.deck.rank_of_card_at(2) == player1.deck.rank_of_card_at(2)
+      type = :mutually_assured_destruction
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
       type = :war
-    elsif (player1.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2)) == (player2.deck.rank_of_card_at(0) && player2.deck.rank_of_card_at(2))
-      type = :mutually_assured_destruction
     end
   end
 
@@ -51,10 +52,12 @@ class Turn
       spoils_of_war << player2.deck.cards.shift
     elsif type == :war
       #send top 3 cards to spoils
-      3.times { spoils_of_war << player1.deck.remove_card }
-      3.times { spoils_of_war << player2.deck.remove_card }
+      3.times {spoils_of_war << player1.deck.remove_card}
+      3.times {spoils_of_war << player2.deck.remove_card}
     else
       #remove three cards from each player's deck
+      3.times {player1.deck.remove_card}
+      3.times {player2.deck.remove_card}
     end
   end
 
