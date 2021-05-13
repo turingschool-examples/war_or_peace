@@ -20,9 +20,14 @@ class Deck
         @high_ranking_cards << card
       end
     end
-    return high_ranking_cards
+    return @high_ranking_cards
   end
 
+  # def percent_high_ranking
+  #   @percent_high_ranking = deck.high_ranking_cards.count / deck.cards.count
+  #   return @percent_high_ranking
+  # end
+  
   def remove_card
     @remove_card = cards.shift
   end
