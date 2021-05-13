@@ -1,7 +1,7 @@
 require './lib/card'
 
 class Deck
-  attr_reader :cards
+  attr_reader :cards, :high_ranking_cards
 
   def initialize(cards)
     @cards = cards
@@ -12,10 +12,19 @@ class Deck
   end
 
   def high_ranking_cards
-    @cards.delete_if {|high_card| high_card.rank <= 10}
+    @high_ranking_cards = @cards.select {|high_card| high_card.rank > 10}
   end
 
   def percent_high_ranking
+    def high_cards
+      @cards.select {|high_card| high_card.rank > 10}.length.to_f
+    end
+
+    def original_cards
+      @cards.length
+    end
+
+    ((high_cards / original_cards) * 100).round(2)
   end
 
   def remove_card
