@@ -10,4 +10,10 @@ class Deck
       return card[index].rank
     end
   end
+
+  def high_ranking_cards(cards)
+    cards.find_all do |card|
+      card.rank >= 11
+    end
+  end
 end
