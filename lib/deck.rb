@@ -1,7 +1,11 @@
 class Deck
-  attr_accessor :cards
+  attr_reader :cards
   def initialize(cards)
     @cards = []
+  end
+
+  def add_card(card)
+    @cards << card
   end
 
 
@@ -9,7 +13,9 @@ class Deck
    cards[index].rank
  end
 
- def add_card(card)
-   @cards << card
+ def high_ranking_cards
+   @cards.find_all do |card|
+     card.rank >= 11
  end
+
 end
