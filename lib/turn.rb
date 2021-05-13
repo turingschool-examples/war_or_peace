@@ -1,12 +1,14 @@
 require 'pry'
 
 class Turn
-  attr_reader :player1, :player2, :spoils_of_war, :type
+  attr_reader :player1, :player2, :spoils_of_war, :type, :award_winner
   def initialize (player1, player2)
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
+    @award_winner
   end
+
   def type
     if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
       type = :basic
@@ -16,24 +18,50 @@ class Turn
       type = :mutually_assured_destruction
     end
   end
+
   def winner
+    #refactor to case statement
+    #ternary operator
     if type == :basic
       #array = [player1.deck.rank_of_card_at(0), player2.deck.rank_of_card_at(0)]
       #binding.pry
       #array.max
       if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-        player1
+        @award_winner = player1
       else
-        player2
+        @award_winner = player2
       end
+
     elsif type == :war
       if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-        player1
+        @award_winner = player1
       else
-        player2
+        @award_winner = player2
       end
+
     elsif type == :mutually_assured_destruction
       return 'No Winner'
+    end
+  end
+
+  def pile_cards
+    if type == :basic
+      #send top card to spoils
+      spoils_of_war << player1.deck.cards.shift
+      spoils_of_war << player2.deck.cards.shift
+    elsif type == :war
+      #send top 3 cards to spoils
+      3.times { spoils_of_war << player1.deck.remove_card }
+      3.times { spoils_of_war << player2.deck.remove_card }
+    else
+      #remove three cards from each player's deck
+    end
+  end
+
+  def award_spoils(winner)
+    #binding.pry
+    spoils_of_war.each do |card|
+      winner.deck.add_card(card)
     end
   end
 end

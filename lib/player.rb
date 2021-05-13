@@ -7,6 +7,8 @@ class Player
     @deck = deck
   end
   def has_lost?
-    false
+    #false
+    #binding.pry
+    @deck.cards.empty?
   end
 end
