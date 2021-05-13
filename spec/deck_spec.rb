@@ -55,5 +55,17 @@ describe Deck do
       expect(deck.remove_card).to eq(card1)
     end
 
+    it 'adds a card to the bottom' do
+      card2 = Card.new(:spade, '3', 3)
+      card3 = Card.new(:heart, 'Ace', 14)
+      cards = [card2, card3]
+      deck = Deck.new(cards)
+      card4 = Card.new(:club, '5', 5)
+
+      expect(deck.cards).to eq([card2, card3])
+      expect(deck.add_card(card4)).to eq([card2, card3, card4])
+      expect(deck.cards).to eq([card2, card3, card4])
+    end
+
   end
 end
