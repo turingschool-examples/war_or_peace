@@ -4,7 +4,7 @@ class Card
   # RANKS = ['Ace', 'King', 'Queen', 'Jack', 'Ten', 'Nine', 'Eight',
   #   'Seven', 'Six', 'Five', 'Four', 'Three', 'Two', 'One']
 
-  attr_accessor :suit, :value, :rank
+  attr_reader :suit, :value, :rank
 
   def initialize(suit, value, rank)
     @suit = suit
