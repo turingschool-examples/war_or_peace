@@ -2,17 +2,15 @@ class Deck
   attr_reader :cards
 
   def initialize(cards)
-    @cards = [cards]
+    @cards = cards
   end
 
   def rank_of_card_at(index)
-    @cards.each do |card|
-      return card[index].rank
-    end
+    @cards[index].rank
   end
 
   def high_ranking_cards(cards)
-    cards.find_all do |card|
+    @cards.find_all do |card|
       card.rank >= 11
     end
   end
