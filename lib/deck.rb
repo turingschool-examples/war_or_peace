@@ -31,7 +31,8 @@ class Deck
     @cards.slice!(0)
   end
 
-  def add_card
+  def add_card(new_card)
+    @cards << new_card
   end
 
 end
