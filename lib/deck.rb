@@ -21,4 +21,9 @@ class Deck
     high_ranks
   end
 
+  def percent_ranking_cards
+    percent = 100.00 * high_ranking_cards.length
+    percent = percent / @cards.length
+    percent.round(2)
+  end
 end
