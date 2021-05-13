@@ -1,4 +1,3 @@
-
 class Player
   attr_reader :name, :deck
 
@@ -8,10 +7,6 @@ class Player
   end
 
   def has_lost?
-    if deck.cards.length == 0
-      return true
-    else
-      return false
-    end
+    deck.cards.length == 0
   end
 end

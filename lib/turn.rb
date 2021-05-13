@@ -1,4 +1,3 @@
-
 class Turn
   attr_reader :player1, :player2, :spoils_of_war
 
@@ -9,13 +8,13 @@ class Turn
   end
 
   def type
-   if first_card(@player1) == first_card(@player2) && third_card(@player1) == third_card(@player2)
-     return :mutually_assured_destruction
-   elsif first_card(@player1) == first_card(@player2) && third_card(@player1) != third_card(@player2)
-     return :war
-   else
-     return :basic
-   end
+    if first_card(@player1) == first_card(@player2) && third_card(@player1) == third_card(@player2)
+      :mutually_assured_destruction
+    elsif first_card(@player1) == first_card(@player2) && third_card(@player1) != third_card(@player2)
+      :war
+    else
+      :basic
+    end
   end
 
   def winner
@@ -24,9 +23,8 @@ class Turn
     elsif type == :war
       third_card(@player1) > third_card(@player2) ? @player1 : @player2
     else
-      return "No Winner"
+      'No Winner'
     end
-
   end
 
   def pile_cards
@@ -42,7 +40,7 @@ class Turn
     end
   end
 
-  #helper methods
+  # helper methods
   def first_card(player)
     player.deck.rank_of_card_at(0)
   end

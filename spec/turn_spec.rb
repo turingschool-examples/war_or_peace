@@ -13,42 +13,42 @@ RSpec.describe Turn do
       @card8 = Card.new(:diamond, '2', 2)
       @deck1 = Deck.new([@card1, @card2, @card5, @card8])
       @deck2 = Deck.new([@card3, @card4, @card6, @card7])
-      @player1 = Player.new("Megan", @deck1)
-      @player2 = Player.new("Aurora", @deck2)
+      @player1 = Player.new('Megan', @deck1)
+      @player2 = Player.new('Aurora', @deck2)
       @turn = Turn.new(@player1, @player2)
     end
 
-    it "exists" do
+    it 'exists' do
       expect(@turn).to be_an_instance_of(Turn)
     end
 
-    it "has a player" do
+    it 'has a player' do
       expect(@turn.player1).to eq(@player1)
     end
 
-    it "has a second player" do
+    it 'has a second player' do
       expect(@turn.player2).to eq(@player2)
     end
 
-    it "has an empty discard pile by default" do
+    it 'has an empty discard pile by default' do
       expect(@turn.spoils_of_war).to eq([])
     end
 
-    it "has a type of the game" do
+    it 'has a type of the game' do
       expect(@turn.type).to eq(:basic)
     end
 
-    it "has a winner for each round" do
+    it 'has a winner for each round' do
       winner = @turn.winner
       expect(winner).to eq(@player1)
     end
 
-    it "puts cards into the discard pile" do
+    it 'puts cards into the discard pile' do
       @turn.pile_cards
       expect(@turn.spoils_of_war).to eq([@card1, @card3])
     end
 
-    it "gives the winner the discard pile" do
+    it 'gives the winner the discard pile' do
       winner = @turn.winner
       @turn.pile_cards
       @turn.award_spoils(winner)
@@ -69,16 +69,16 @@ RSpec.describe Turn do
       @card8 = Card.new(:diamond, '2', 2)
       @deck1 = Deck.new([@card1, @card2, @card5, @card8])
       @deck2 = Deck.new([@card4, @card3, @card6, @card7])
-      @player1 = Player.new("Megan", @deck1)
-      @player2 = Player.new("Aurora", @deck2)
+      @player1 = Player.new('Megan', @deck1)
+      @player2 = Player.new('Aurora', @deck2)
       @turn = Turn.new(@player1, @player2)
     end
 
-    it "has a different type" do
+    it 'has a different type' do
       expect(@turn.type).to eq(:war)
     end
 
-    it "has a winner" do
+    it 'has a winner' do
       winner = @turn.winner
       expect(winner).to eq(@player2)
     end
@@ -96,8 +96,8 @@ RSpec.describe Turn do
       @card8 = Card.new(:diamond, '2', 2)
       @deck1 = Deck.new([@card1, @card2, @card5, @card8])
       @deck2 = Deck.new([@card4, @card3, @card6, @card7])
-      @player1 = Player.new("Megan", @deck1)
-      @player2 = Player.new("Aurora", @deck2)
+      @player1 = Player.new('Megan', @deck1)
+      @player2 = Player.new('Aurora', @deck2)
       @turn = Turn.new(@player1, @player2)
     end
 
