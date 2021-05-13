@@ -6,4 +6,6 @@ require_relative 'lib/game'
 
 
 game = Game.new
-p game.cards.length
+shuffled_cards = game.cards
+
+# p shuffled_cards

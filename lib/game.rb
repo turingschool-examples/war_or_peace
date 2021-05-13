@@ -30,6 +30,8 @@ class Game
 
       end
     end
+
+    @cards = cards.sample(52)
   end
 
 

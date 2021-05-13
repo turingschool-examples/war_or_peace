@@ -2,8 +2,7 @@ require_relative 'card'
 require_relative 'deck'
 
 class Player
-  attr_reader :name
-  attr_accessor :deck, :has_lost
+  attr_reader :name, :deck
 
   def initialize(name='John', deck=Deck.new)
     @name = name.to_s
@@ -12,14 +11,14 @@ class Player
     else
       @deck = deck
     end
-    @has_lost = false
   end
 
   def has_lost?()
     if self.deck.cards.length == 0
-      self.has_lost = true
+      return true
+    else
+      return false
     end
-    return self.has_lost
   end
 
 end

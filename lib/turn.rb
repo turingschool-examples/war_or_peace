@@ -37,7 +37,7 @@ class Turn
     elsif player1_rank_at_0 != player2_rank_at_0
       return :basic
     end
-    
+
   end
 
 
@@ -87,5 +87,6 @@ class Turn
       self.spoils_of_war = Array.new
     end
   end
+
 
 end
