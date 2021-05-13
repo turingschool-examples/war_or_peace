@@ -26,4 +26,8 @@ class Deck
     percent = percent / @cards.length
     percent.round(2)
   end
+
+  def remove_card
+    @cards.shift
+  end
 end
