@@ -16,6 +16,18 @@ class Deck
     end
   end
 
+  def percent_high_ranking
+    percentage_high_cards = @cards.select do |card|
+      card.rank >= 11
+    end
+    percent = (percentage_high_cards.length).to_f / (@cards.length).to_f
+    return (percent * 100).round(1)
+  end
+
+  def remove_card
+    @cards.shift
+  end
+
   def add_card(card)
     @cards << card
   end
