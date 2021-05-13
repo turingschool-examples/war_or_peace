@@ -46,18 +46,20 @@ class Turn
 
     if self.victor == nil
       if type() == :mutually_assured_destruction
-        self.victor = 'No Winner'
+        result = 'No Winner'
 
       elsif type() == :war
-        self.victor = players.max_by do |player|
+        result = players.max_by do |player|
           player.deck.rank_of_card_at(2)
         end
 
       elsif type() == :basic
-        self.victor = players.max_by do |player|
+        result = players.max_by do |player|
           player.deck.rank_of_card_at(0)
         end
       end
+
+      self.victor = result unless result == nil
     end
 
     return self.victor

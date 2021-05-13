@@ -5,7 +5,7 @@ require_relative '../lib/player'
 require_relative '../lib/turn'
 
 RSpec.describe Turn do
-  it 'initializes correctly' do
+  it 'initializes' do
     no_players = Turn.new
     expect(no_players.player1.deck.cards.length).to eq(0)
     expect(no_players.player2.deck.cards.length).to eq(0)
@@ -32,6 +32,8 @@ RSpec.describe Turn do
       Card.new(:heart, '3', 3)
     ])
     players = Turn.new(Player.new('Megan', deck1), Player.new('Aurora', deck2))
+
+    expect(players).to be_an_instance_of(Turn)
     expect(players.spoils_of_war).to eq([])
 
     expect(players.player1.name).to eq('Megan')

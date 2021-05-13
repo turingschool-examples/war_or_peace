@@ -15,7 +15,7 @@ class Deck
   end
 
   def rank_of_card_at(index_of_card=nil)
-    if self.cards.length == 0 || index_of_card.class != Integer
+    if index_of_card.class != Integer
       return nil
     else
       output = self.cards[index_of_card]

@@ -4,7 +4,7 @@ require_relative '../lib/deck'
 require_relative '../lib/player'
 
 RSpec.describe Player do
-  it 'initializes correctly' do
+  it 'initializes' do
     not_ready_to_play = Player.new
     expect(not_ready_to_play.name).to eq('John')
     expect(not_ready_to_play.deck.cards).to eq([])
@@ -16,6 +16,7 @@ RSpec.describe Player do
     card3 = Card.new(:heart, 'Ace', 14)
     ready_to_play = Player.new('Clarissa', Deck.new([card1, card2, card3]))
 
+    expect(ready_to_play).to be_an_instance_of(Player)
     expect(ready_to_play.name).to eq('Clarissa')
     expect(ready_to_play.has_lost?).to be(false)
 

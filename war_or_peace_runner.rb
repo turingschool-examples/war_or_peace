@@ -6,6 +6,32 @@ require_relative 'lib/game'
 
 
 game = Game.new
-shuffled_cards = game.cards
 
-# p shuffled_cards
+shuffled_cards = game.cards
+split_deck = [
+  Deck.new(shuffled_cards[0..25]),
+  Deck.new(shuffled_cards[26..52])
+]
+
+player1_name = 'Megan'
+player2_name = 'Aurora'
+
+player1 = Player.new(player1_name, split_deck[0])
+player2 = Player.new(player2_name, split_deck[1])
+
+
+goodbye = "Game exiting... \n Goodbye!"
+if game.greet(player1, player2).to_s.include?('Error')
+  puts goodbye
+else
+  puts " >"
+  prompt = $stdin.gets.chomp
+
+  if prompt != 'GO'
+    puts goodbye
+  elsif prompt == 'GO'
+    game.start(player1, player2)
+    puts goodbye
+  end
+
+end

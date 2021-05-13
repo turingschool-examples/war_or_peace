@@ -8,6 +8,7 @@ require_relative '../lib/game'
 RSpec.describe Game do
   it 'creates 52 cards with 13 per suit' do
     game = Game.new
+    expect(game).to be_an_instance_of(Game)
     expect(game.cards.length).to eq(52)
 
     clubs = game.cards.select do |card|
@@ -44,5 +45,28 @@ RSpec.describe Game do
     ranks.each do |rank, cards|
       expect(cards.length).to eq(4)
     end
+  end
+
+  it 'can greet the players' do
+    game = Game.new
+
+    shuffled_cards = game.cards
+    split_deck = [
+      Deck.new(shuffled_cards[0..25]),
+      Deck.new(shuffled_cards[26..52])
+    ]
+
+    player1_name = 'Megan'
+    player2_name = 'Aurora'
+
+    player1 = Player.new(player1_name, split_deck[0])
+    player2 = Player.new(player2_name, split_deck[1])
+
+    puts "\nTesting 'Game' 'happy path':\n"
+    puts "-"*25
+    expect(game.greet(player1, player2).to_s).to include('Welcome', 'Megan', 'Aurora')
+    puts "\nTesting 'Game' 'sad path':\n"
+    puts "-"*25
+    expect(game.greet(player1_name, player2_name).to_s).to include('Error!')
   end
 end
