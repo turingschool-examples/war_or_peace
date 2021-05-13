@@ -8,17 +8,9 @@ end
 
 
 
-def percent_high_ranking()
-  percentage_high_cards = @cards.select do |card|
-    card.rank >= 11
-  end
-  percent = (percentage_high_cards.length).to_f / (@cards.length).to_f
-  return (percent * 100).round(1)
-end
 
-def remove_card
-  @cards.delete_at(0)
-end
+
+
 
 def add_card(card)
   @cards << card
@@ -47,15 +39,15 @@ class Turn
   def winner()
     if @type == :basic
       if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-        return player1.name
+        return @player1
       elsif player1.deck.rank_of_card_at(0) < player2.deck.rank_of_card_at(0)
-        return player2.name
+        return @player2
       end
     elsif @type == :war
       if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-        return player1.name
+        return @player1
       elsif player1.deck.rank_of_card_at(2) < player2.deck.rank_of_card_at(2)
-        return player2.name
+        return @player2
       end
     elsif @type == :mutually_assured_destruction
       return 'No Winner'
