@@ -1,7 +1,7 @@
 require './lib/card'
 
 class Deck
-  attr_reader :@cards
+  attr_reader :cards
 
   def initialize(cards)
     @cards = []
@@ -9,8 +9,8 @@ class Deck
 
   # This method takes one argument that represents the index location of a card
   # to be used and will return the rank of that card.
-  def rank_of_card_at()
-    @cards.index("a")
+  def rank_of_card_at
+    cards.index
   end
 
   # This method will return an arry of cards in the deck that have a rank of 11
@@ -24,11 +24,11 @@ class Deck
 
   # This method will remove the top card from the deck
   def remove_card
-    @cards.shift
+    @cards = cards.shift
   end
 
   # This method will add one card to the bottom (end) of the deck
   def add_card
-    @cards.push
+    @cards = cards.push
   end
 end
