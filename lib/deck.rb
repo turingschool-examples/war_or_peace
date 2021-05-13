@@ -25,7 +25,7 @@ class Deck
     # high_ranking_cards = @cards.select do |card|
     #   card.rank > 10
     # end
-    (self.high_ranking_cards.count.fdiv(@cards.count) * 100).round(2)
+    (high_ranking_cards.count.fdiv(@cards.count) * 100).round(2)
   end
 
   def remove_card
