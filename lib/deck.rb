@@ -6,12 +6,24 @@ class Deck
   end
 
   def rank_of_card_at(index)
-    @index = index
-    @cards[index][3]
+    @cards[index].rank
   end
 
   def high_ranking_cards
-    @card.rank > 11
+    @cards.find_all do |card|
+      card.rank >= 11
+    end
   end
+
+
+  # def percent_high_rankning
+  # end
+
+  # def remove_card
+  #   @card.delete.at(0)
+  # end
+  #
+  # def add_card
+  # end
 
 end
