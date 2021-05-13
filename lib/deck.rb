@@ -12,19 +12,16 @@ class Deck
   end
 
   def high_ranking_cards
-
+    @cards.delete_if {|high_card| high_card.rank <= 10}
   end
 
   def percent_high_ranking
-
   end
 
   def remove_card
-
   end
 
   def add_card
-
   end
 
 end
