@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Turn
   attr_reader :player1, :player2, :spoils_of_war
 
@@ -18,9 +20,10 @@ class Turn
   end
 
   def winner
-    if type == :basic
+    case type
+    when :basic
       first_card(@player1) > first_card(@player2) ? @player1 : @player2
-    elsif type == :war
+    when :war
       third_card(@player1) > third_card(@player2) ? @player1 : @player2
     else
       'No Winner'

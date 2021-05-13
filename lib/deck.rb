@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Deck
   attr_reader :cards
 
@@ -20,7 +22,7 @@ class Deck
     percentage_high_cards = @cards.select do |card|
       card.rank >= 11
     end
-    percent = percentage_high_cards.length.to_f / @cards.length.to_f
+    percent = percentage_high_cards.length.to_f / @cards.length
     (percent * 100).round(1)
   end
 

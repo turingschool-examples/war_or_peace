@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Player
   attr_reader :name, :deck
 
@@ -7,6 +9,6 @@ class Player
   end
 
   def has_lost?
-    deck.cards.length == 0
+    deck.cards.length.zero?
   end
 end
