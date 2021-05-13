@@ -28,6 +28,7 @@ class Deck
   end
 
   def remove_card
+    @cards.slice!(0)
   end
 
   def add_card
