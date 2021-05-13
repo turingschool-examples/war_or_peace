@@ -2,6 +2,7 @@ require './lib/deck'
 require './lib/card'
 require './lib/player'
 require './lib/turn'
+require './lib/game'
 
 card1 = Card.new(:heart, '2', 2)
 card2 = Card.new(:heart, '3', 3)
@@ -67,3 +68,7 @@ deck1 = Deck.new(full_deck[0..25])
 deck2 = Deck.new(full_deck[26..52])
 player1 = Player.new("Ian", deck1)
 player2 = Player.new("Mike", deck2)
+
+game = Game.new
+
+game.start
