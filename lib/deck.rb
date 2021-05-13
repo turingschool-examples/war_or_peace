@@ -1,5 +1,6 @@
 class Deck
-  attr_reader :cards
+  attr_reader :cards, :high_rank
+
   def initialize(cards)
     @cards = cards
   end
@@ -23,9 +24,17 @@ class Deck
     #     high_rank << cards[2]
     # end
 
-    cards.select do |var|
-      var.rank > 11
+    # cards.select do |var|
+    #   var.rank > 11
+    # end
+
+    high_rank = []
+    cards.each do |num|
+      if num.rank > 10
+        high_rank << num
+      end
     end
+    high_rank
   end
 
   def percent_high_ranking
@@ -37,6 +46,19 @@ class Deck
     # ranks.select do |var|
     #   percent << var.rank
     # end
+    high_rank = []
+    cards.each do |num|
+      if num.rank > 10
+        high_rank << num
+      end
+    end
+
+    # a = cards.length
+    # b = high_rank.length
+    # c = b.to_f / a.to_f * 100
+    # c.round(2)
+
+    (high_rank.length.to_f / cards.length.to_f * 100).round(2)
 
   end
 
