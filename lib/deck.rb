@@ -17,11 +17,10 @@ class Deck
     @high_ranking_cards = []
     cards.each_with_index do |card, index|
       if rank_of_card_at(index) >= 11
-        puts "this is a high card"
-      else
-        puts "this is not a high card"
+        @high_ranking_cards << card
       end
     end
+    return high_ranking_cards
   end
 
   def remove_card
