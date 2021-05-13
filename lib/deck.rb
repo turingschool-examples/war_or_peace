@@ -7,7 +7,7 @@ class Deck
     @cards = cards
   end
 
-  def rank_of_cards_at(index)
+  def rank_of_card_at(index)
     @cards.at(index).rank
   end
 
@@ -21,7 +21,7 @@ class Deck
     high_ranks
   end
 
-  def percent_ranking_cards
+  def percent_high_ranking
     percent = 100.00 * high_ranking_cards.length
     percent = percent / @cards.length
     percent.round(2)

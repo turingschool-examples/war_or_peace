@@ -28,8 +28,8 @@ describe Deck do
       cards = [card1, card2, card3]
       deck = Deck.new(cards)
 
-      expect(deck.rank_of_cards_at(0)).to eq(12)
-      expect(deck.rank_of_cards_at(2)).to eq(14)
+      expect(deck.rank_of_card_at(0)).to eq(12)
+      expect(deck.rank_of_card_at(2)).to eq(14)
     end
 
     it 'returns high ranking cards' do
@@ -49,7 +49,7 @@ describe Deck do
       cards = [card1, card2, card3]
       deck = Deck.new(cards)
 
-      expect(deck.percent_ranking_cards).to eq(66.67)
+      expect(deck.percent_high_ranking).to eq(66.67)
     end
 
     it 'remove card from top of deck' do
