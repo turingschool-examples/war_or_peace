@@ -31,6 +31,6 @@ RSpec.describe Player do
     deck = Deck.new([card1, card2, card3])
     player = Player.new('Clarisa', deck)
 
-    expect(player.deck).to eq([card1, card2, card3])
+    expect(player.deck).to eq(deck)
   end
 end
