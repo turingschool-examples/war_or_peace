@@ -17,15 +17,29 @@ RSpec.describe Player do
     expect(@player).to be_a(Player)
   end
 
-  it 'has name' do
+  it 'tests has name' do
     expect(@player.name).to eq('Clarisa')
   end
 
-  it 'has deck' do
+  it 'tests has deck' do
     expect(@player.deck).to eq(@deck)
   end
 
-  it 'has lost?' do
+  it 'tests has lost?' do
     expect(@player.has_lost?).to eq(false)
+  end
+
+  it "tests if player has lost when removing cards" do
+    @player.deck.remove_card
+
+    expect(@player.has_lost?).to eq(false)
+
+    @player.deck.remove_card
+
+    expect(@player.has_lost?).to eq(false)
+
+    @player.deck.remove_card
+
+    expect(@player.has_lost?).to eq(true)
   end
 end
