@@ -57,13 +57,9 @@ attr_reader :player1, :player2, :spoils_of_war
     elsif type == :war
       # for a :war turn, each player sends three cards (the top three
       # cards) to the spoils pile
-      @spoils_of_war << @player1.deck.cards[0]
-      @spoils_of_war << @player1.deck.cards[1]
-      @spoils_of_war << @player1.deck.cards[2]
+      @player1.deck.cards[0..2].each { |card| @spoils_of_war << card }
       3.times { @player1.deck.remove_card }
-      @spoils_of_war << @player2.deck.cards[0]
-      @spoils_of_war << @player2.deck.cards[1]
-      @spoils_of_war << @player2.deck.cards[2]
+      @player2.deck.cards[0..2].each { |card| @spoils_of_war << card }
       3.times { @player2.deck.remove_card }
     elsif type == :mutually_assured_destruction
       # for a :mutually_assured_destruction turn, each player removes
@@ -80,9 +76,7 @@ attr_reader :player1, :player2, :spoils_of_war
   def award_spoils
     # this method adds each of the cards in the @spoils_of_war array to
     # the winner of the turn.
-    @spoils_of_war.each do |spoils|
-      @winner.deck.add_card(spoils)
-    end
+    @spoils_of_war.each { |spoils| @winner.deck.add_card(spoils) }
   end
 
 
