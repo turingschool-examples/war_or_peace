@@ -3,7 +3,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 
- describe Turn do
+ RSpec.describe Turn do
   context 'turn type: basic' do
     before(:each) do
       @card1 = Card.new(:heart, 'Jack', 11)
