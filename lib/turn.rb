@@ -8,27 +8,27 @@ class Turn
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
+    @player1_c1 = @player1.deck.rank_of_card_at(0)
+    @player2_c1 = @player2.deck.rank_of_card_at(0)
+    @p1ayer1_c2 = @player1.deck.rank_of_card_at(2)
+    @player2_c2 = @player2.deck.rank_of_card_at(2)
   end
 
   def type
-    @p1_c1 = @player1.deck.rank_of_card_at(0)
-    @p2_c1 = @player2.deck.rank_of_card_at(0)
-    @p1_c2 = @player1.deck.rank_of_card_at(2)
-    @p2_c2 = @player2.deck.rank_of_card_at(2)
-    if @p1_c1 != @p2_c1
+    if @player1_c1 != @player2_c1
       :basic
-    elsif @p1_c1 == @p2_c1 && @p1_c2 != @p2_c2
+    elsif @player1_c1 == @player2_c1 && @p1ayer1_c2 != @player2_c2
       :war
-    elsif @p1_c1 == @p2_c1 && @p1_c2 == @p2_c2
+    elsif @player1_c1 == @player2_c1 && @p1ayer1_c2 == @player2_c2
       :mutually_assured_destruction
     end
   end
 
   def winner
     if type == :basic
-      result = @p1_c1 > @p2_c1
+      result = @player1_c1 > @player2_c1
     elsif type == :war
-      result = @p1_c2 > @p2_c2
+      result = @p1ayer1_c2 > @player2_c2
     else type == :mutually_assured_destruction
       result = nil
     end
@@ -68,7 +68,11 @@ class Turn
   def award_spoils
     if winner == @player1
       @spoils_of_war.each do |spoil|
-        @player1.deck << spoil
+        @player1.deck.add_card(spoil)
+      end
+    elsif winner == @player2
+      @spoils_of_war.each do |spoil|
+        @player2.deck.add_card(spoil)
       end
     end
     @spoils_of_war = []
