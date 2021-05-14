@@ -1,7 +1,7 @@
 require 'rspec'
-require '.lib/card'
-require '.lib/player'
-require '.lib/turn'
+require './lib/card'
+require './lib/player'
+require './lib/turn'
 
 RSpec.describe Turn do
   before :each do
@@ -19,8 +19,19 @@ RSpec.describe Turn do
 
     @player1 = Player.new("Megan", @deck1)
     @player2 = Player.new("Aurora", @deck2)
+
+    @turn = Turn.new(@player1, @player2)
   end
 
-  
+  it "exists" do
+    expect(@turn).to be_an_instance_of(Turn)
+  end
+
+  it "" do
+
+  end
+
+
+
 
 end
