@@ -112,4 +112,12 @@ describe Turn do
       expect(new_deck2.cards).to eq([card7])
     end
   end
+
+  context 'award_spoils method' do
+    it 'awards spoils to the winner' do
+      turn.award_spoils
+      expect(player1.deck.cards).to eq([card2, card5, card8, card1, card3])
+      expect(turn.spoils_of_war).to eq([])
+    end
+  end
 end
