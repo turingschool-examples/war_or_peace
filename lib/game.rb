@@ -77,19 +77,21 @@ class Game
         winner = turn.winner
         turn.pile_cards
         spoils = turn.spoils_of_war
+        cards_won = spoils.length
         turn.award_spoils(winner)
         if type == :mutually_assured_destruction
           puts "Turn #{total_turn_counter}: *mutually assured destruction* 6 cards removed from play"
           mas_turn_counter += 1
         elsif type == :war
-          puts "Turn #{total_turn_counter}: WAR - #{winner.name} won 6 cards"
+          puts "Turn #{total_turn_counter}: WAR - #{winner.name} won #{cards_won} cards"
           war_turn_counter += 1
         elsif type == :basic
-          puts "Turn #{total_turn_counter}: #{winner.name} won 2 cards"
+          puts "Turn #{total_turn_counter}: #{winner.name} won #{cards_won} cards"
           basic_turn_counter += 1
         end
 
         total_turn_counter += 1
+        cards_won = 0
       end
 
       if player1.has_lost?
@@ -103,11 +105,11 @@ class Game
       results = [
         "Final results:",
         "-"*16,
-        "#{player1.name} has #{player1.deck.cards.length} cards",
-        "#{player2.name} has #{player2.deck.cards.length} cards",
-        "#{basic_turn_counter} total 'basic' turns",
-        "#{war_turn_counter} total 'war' turns",
-        "#{mas_turn_counter} total 'mutually assured destruction' turns"
+        "#{player1.name} has #{player1.deck.cards.length} cards.",
+        "#{player2.name} has #{player2.deck.cards.length} cards.",
+        "#{basic_turn_counter} total 'basic' turns.",
+        "#{war_turn_counter} total 'war' turns.",
+        "#{mas_turn_counter} total 'mutually assured destruction' turns."
       ]
       results.each do |result|
         puts result

@@ -14,7 +14,7 @@ class Deck
     end
   end
 
-  def rank_of_card_at(index_of_card=nil)
+  def rank_of_card_at(index_of_card)
     if index_of_card.class != Integer
       return nil
     else

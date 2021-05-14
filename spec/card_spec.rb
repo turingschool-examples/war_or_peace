@@ -34,7 +34,7 @@ RSpec.describe Card do
     expect(real_card1.value).to eq('King')
     expect(real_card1.rank).to eq(13)
 
-    real_card2 = Card.new(:spade, '10', 10)
+    real_card2 = Card.new(:spade, 10, 10)
     expect(real_card2.suit).to eq(:spade)
     expect(real_card2.value).to eq('10')
     expect(real_card2.rank).to eq(10)

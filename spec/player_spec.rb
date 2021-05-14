@@ -20,6 +20,7 @@ RSpec.describe Player do
     expect(ready_to_play.name).to eq('Clarissa')
     expect(ready_to_play.has_lost?).to be(false)
 
+
     expect(ready_to_play.deck.cards.length).to eq(3)
 
     expect(ready_to_play.deck.cards[0].suit).to eq(:diamond)
@@ -44,13 +45,23 @@ RSpec.describe Player do
     expect(player.deck.cards.length).to eq(3)
     expect(player.has_lost?).to be(false)
 
+
     player.deck.remove_card
     expect(player.deck.cards.length).to eq(2)
     expect(player.has_lost?).to be(false)
 
+    expect(player.deck.cards[0].suit).to eq(:spade)
+    expect(player.deck.cards[0].value).to eq('3')
+    expect(player.deck.cards[0].rank).to eq(3)
+
     player.deck.remove_card
     expect(player.deck.cards.length).to eq(1)
     expect(player.has_lost?).to be(false)
+
+    expect(player.deck.cards[0].suit).to eq(:heart)
+    expect(player.deck.cards[0].value).to eq('Ace')
+    expect(player.deck.cards[0].rank).to eq(14)
+
 
     player.deck.remove_card
     expect(player.deck.cards.length).to eq(0)

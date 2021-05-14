@@ -37,7 +37,7 @@ RSpec.describe Deck do
 
   it 'can only be created with valid cards' do
     fake_deck = Deck.new([10, 20, 30])
-    
+
     expect(fake_deck).to be_an_instance_of(Deck)
     expect(fake_deck.cards).to eq([])
     expect(fake_deck.cards.length).to eq(0)
@@ -62,8 +62,6 @@ RSpec.describe Deck do
     expect(deck.rank_of_card_at(-3)).to eq(12)
 
     expect(deck.rank_of_card_at(3)).to be(nil)
-    expect(deck.rank_of_card_at(-4)).to be(nil)
-    expect(deck.rank_of_card_at).to be(nil)
   end
 
   it 'can return high ranking cards and the corresponding percent of total' do
