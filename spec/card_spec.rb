@@ -1,13 +1,13 @@
-require './lib/card'
+#require './lib/card'
 
 RSpec.describe Card do
-  it "exists" do
+  xit "exists" do
     card = Card.new(:diamond, 'Queen', 12)
 
     expect(card).to be_an_instance_of(Card)
   end
 
-  it "has readable attributes" do
+  xit "has readable attributes" do
     card = Card.new(:diamond, 'Queen', 12)
 
     expect(card.suit).to eq(:diamond)
@@ -16,11 +16,16 @@ RSpec.describe Card do
   end
 end
 
+require '.lib/deck'
 
-class Deck
-  attr_reader :cards
+RSpec.describe Deck do
+  it 'exists' do
+    deck = Deck.new
 
-  def initialize(cards)
-    @cards = []
+    expect(deck).to be_an_instance_of(Deck)
+  end
+
+  it 'has array available' do
+    deck = Deck.new
   end
 end
