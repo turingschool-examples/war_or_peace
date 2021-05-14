@@ -70,10 +70,12 @@ describe Turn do
     end
   end
 
-  context 'CHANGE' do
+  context 'moves cards from deck to spoils' do
     it 'add cards to spoils for :basic turn' do
       @turn.pile_cards
       expect(@turn.spoils_of_war).to eq([@card1, @card3])
+      expect(@deck1.cards).to eq([@card2, @card5, @card8])
+      expect(@deck2.cards).to eq([@card4, @card6, @card7])
     end
 
     it 'add cards to spoils for :war turn' do
@@ -94,18 +96,19 @@ describe Turn do
 
       @turn.pile_cards
 
+      expect(@turn.spoils_of_war).to eq([])
       expect(@deck1.cards).to eq([@card8])
       expect(@deck2.cards).to eq([@card7])
+    end
+  end
+
+  context 'award_spoils method' do
+    it 'awards spoils to the winner' do
+
+      @turn.pile_cards
+      @turn.award_spoils
+      expect(@deck1.cards).to eq([@card2, @card5, @card8, @card1, @card3])
       expect(@turn.spoils_of_war).to eq([])
     end
   end
 end
-#
-#   context 'award_spoils method' do
-#     it 'awards spoils to the winner' do
-#       turn.award_spoils
-#       expect(player1.deck.cards).to eq([card2, card5, card8, card1, card3])
-#       expect(turn.spoils_of_war).to eq([])
-#     end
-#   end
-# end
