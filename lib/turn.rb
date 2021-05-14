@@ -18,4 +18,20 @@ class Turn
       :war
     end
   end
+
+  def winner
+    if type == :basic
+      if player1.first_card > player2.first_card
+        player1
+      else player2
+      end
+    elsif type == :war
+      if player1.third_card > player2.third_card
+        player1
+      else player2
+      end
+    elsif type == :mutually_assured_destruction
+      "No Winner"
+    end 
+  end
 end
