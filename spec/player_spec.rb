@@ -15,4 +15,32 @@ describe Player do
   it "exists" do
     expect(@player).to be_an_instance_of(Player)
   end
+
+  it "has readable attributes" do
+    expect(@player.name).to eq('Clarisa')
+    expect(@player.deck).to eq(@deck)
+  end
+
+  it "returns if player has lost" do
+    expect(@player.has_lost?).to eq(false)
+  end
+
+  it "returns if player has lost after removing one card" do
+    @player.deck.remove_card
+    expect(@player.has_lost?).to eq(false)
+  end
+
+  it "returns if player has lost after removing two cards" do
+    @player.deck.remove_card
+    @player.deck.remove_card
+    expect(@player.has_lost?).to eq(false)
+  end
+
+  it "returns if player has lost after removing three cards" do
+    @player.deck.remove_card
+    @player.deck.remove_card
+    @player.deck.remove_card
+    expect(@player.has_lost?).to eq(false)
+  end
+
 end

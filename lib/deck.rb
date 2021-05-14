@@ -13,6 +13,10 @@ class Deck
   end
 
   def high_ranking_cards
+  #   @cards.find_all do |card|
+  #     card.rank >= 11
+  #   end
+  # end
     @high_ranking_cards = []
     cards.each_with_index do |card, index|
       if rank_of_card_at(index) >= 11
