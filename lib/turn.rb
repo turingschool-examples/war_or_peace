@@ -60,26 +60,18 @@ attr_reader :player1, :player2, :spoils_of_war
       @spoils_of_war << @player1.deck.cards[0]
       @spoils_of_war << @player1.deck.cards[1]
       @spoils_of_war << @player1.deck.cards[2]
-      @player1.deck.remove_card
-      @player1.deck.remove_card
-      @player1.deck.remove_card
+      3.times { @player1.deck.remove_card }
       @spoils_of_war << @player2.deck.cards[0]
       @spoils_of_war << @player2.deck.cards[1]
       @spoils_of_war << @player2.deck.cards[2]
-      @player2.deck.remove_card
-      @player2.deck.remove_card
-      @player2.deck.remove_card
+      3.times { @player2.deck.remove_card }
     elsif type == :mutually_assured_destruction
       # for a :mutually_assured_destruction turn, each player removes
       # three cards from play (the top three cards in their deck). These
       # cards are not sent to the spoils pile, they are simply removed from
       # each players’ deck.
-      @player1.deck.remove_card
-      @player1.deck.remove_card
-      @player1.deck.remove_card
-      @player2.deck.remove_card
-      @player2.deck.remove_card
-      @player2.deck.remove_card
+      3.times { @player1.deck.remove_card }
+      3.times { @player2.deck.remove_card }
     else
       p "Whoops! Something went wrong here!"
     end
