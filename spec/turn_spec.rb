@@ -44,9 +44,9 @@ RSpec.describe do
         
 
         expect(turn.spoils_of_war).to eq([])
-        turn.pile_cards
         expect(turn.type).to eq(:basic)
         expect(turn.winner).to eq(player1)
+        turn.pile_cards
         expect(turn.spoils_of_war).to eq([card1, card3])
     end 
 
@@ -64,11 +64,14 @@ RSpec.describe do
         player1 = Player.new("Megan", deck1)
         player2 = Player.new("Aurora", deck2)
         turn = Turn.new(player1, player2)
+        turn.type
 
 
         expect(turn.spoils_of_war).to eq([])
         expect(turn.type).to eq(:war)
         expect(turn.winner).to eq(player2)
+        turn.pile_cards
+        expect(turn.spoils_of_war).to eq([card1, card2, card5, card4, card3, card6])
     end
 
     it 'is mutually assured destruction' do
