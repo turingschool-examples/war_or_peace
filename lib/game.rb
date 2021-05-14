@@ -95,18 +95,17 @@ class Game
       end
 
       if player1.has_lost?
-        puts "---- #{player2.name.upcase} WINS! ----"
+        puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
       elsif player2.has_lost?
-        puts "---- #{player1.name.upcase} WINS! ----"
+        puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
       else
         puts "---- DRAW ----"
       end
 
       results = [
+        "\n",
         "Final results:",
         "-"*16,
-        "#{player1.name} has #{player1.deck.cards.length} cards.",
-        "#{player2.name} has #{player2.deck.cards.length} cards.",
         "#{basic_turn_counter} total 'basic' turns.",
         "#{war_turn_counter} total 'war' turns.",
         "#{mas_turn_counter} total 'mutually assured destruction' turns."
