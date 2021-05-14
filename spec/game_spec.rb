@@ -6,7 +6,7 @@ require_relative '../lib/turn'
 require_relative '../lib/game'
 
 RSpec.describe Game do
-  it 'creates 52 cards with 13 per suit' do
+  it 'has a built in card generator' do
     game = Game.new
     expect(game).to be_an_instance_of(Game)
     expect(game.cards.length).to eq(52)

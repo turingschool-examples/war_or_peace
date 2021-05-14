@@ -7,6 +7,8 @@ require_relative 'lib/game'
 
 game = Game.new
 
+## note, card generator is already built in to Game class
+# separate .txt file not required, a shuffled deck of cards is auto-created via Game.new
 shuffled_cards = game.cards
 split_deck = [
   Deck.new(shuffled_cards[0..25]),

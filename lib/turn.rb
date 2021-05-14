@@ -50,12 +50,12 @@ class Turn
 
       elsif type() == :war
         result = players.max_by do |player|
-          player.deck.rank_of_card_at(2)
+          player.deck.rank_of_card_at(2).to_s.to_i
         end
 
       elsif type() == :basic
         result = players.max_by do |player|
-          player.deck.rank_of_card_at(0)
+          player.deck.rank_of_card_at(0).to_s.to_i
         end
       end
 
