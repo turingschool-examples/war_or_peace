@@ -27,7 +27,7 @@ class Deck
 
   def remove_card
     # This method removes the top card from the deck
-    @cards.delete_at(0)
+    @cards.shift
   end
 
   def add_card(new_card)
