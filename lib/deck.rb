@@ -20,4 +20,8 @@ class Deck
     all = @cards.length.to_f
     ((high / all) * 100).round 2
   end
+
+  def remove_card
+    @cards.shift
+  end
 end
