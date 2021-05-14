@@ -14,4 +14,10 @@ class Deck
       card.rank >= 11
     end
   end
+
+  def percent_high_ranking
+    high = high_ranking_cards(cards).length
+    all = @cards.length.to_f
+    ((high / all) * 100).round 2
+  end
 end
