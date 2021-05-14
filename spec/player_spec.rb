@@ -19,6 +19,11 @@ describe Player do
   it "has readable attributes" do
     expect(@player.name).to eq('Clarisa')
     expect(@player.deck).to eq(@deck)
+    expect(@player.deck.cards).to match_array([
+      have_attributes(suit: :diamond, value: "Queen", rank: 12),
+      have_attributes(suit: :spade, value: "3", rank: 3),
+      have_attributes(suit: :heart, value: "Ace", rank: 14),
+      ])
   end
 
   it "finds if player has lost" do
@@ -32,6 +37,8 @@ describe Player do
 
     @player.deck.remove_card
     expect(@player.has_lost?).to eq(true)
+    expect(@player.deck.cards).to eq([])
+
   end
 
 end
