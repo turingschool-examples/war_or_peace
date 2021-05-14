@@ -25,11 +25,11 @@ class Turn
   end
 
   def winner
-    if type == :basic
+    if self.type == :basic
       result = @player1_c1 > @player2_c1
-    elsif type == :war
+    elsif self.type == :war
       result = @p1ayer1_c2 > @player2_c2
-    else type == :mutually_assured_destruction
+    else self.type == :mutually_assured_destruction
       result = nil
     end
 
@@ -43,13 +43,13 @@ class Turn
   end
 
   def pile_cards
-    if type == :basic
+    if self.type == :basic
       @spoils_of_war << @player1.deck.cards[0]
       @player1.deck.remove_card
       @spoils_of_war << @player2.deck.cards[0]
       @player2.deck.remove_card
 
-    elsif type == :war
+    elsif self.type == :war
       3.times do
       @spoils_of_war << @player1.deck.cards[0]
       @player1.deck.remove_card
@@ -57,7 +57,7 @@ class Turn
       @player2.deck.remove_card
       end
 
-    elsif type == :mutually_assured_destruction
+    elsif self.type == :mutually_assured_destruction
       3.times do
       @player1.deck.remove_card
       @player2.deck.remove_card
