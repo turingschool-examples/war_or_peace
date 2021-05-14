@@ -39,16 +39,13 @@ describe Deck do
     expect(@deck.percent_high_ranking).to eq(66.67)
   end
 
-  it "can output array of cards after removing a card" do
+  it "can output array of cards after removing cards" do
     @deck.remove_card
     expect(@deck.cards).to match_array([
       have_attributes(suit: :spade, value: "3", rank: 3),
       have_attributes(suit: :heart, value: "Ace", rank: 14),
       ])
-  end
 
-  it "can output array of cards after adding a card" do
-    @deck.remove_card
     card4 = Card.new(:club, '5', 5)
     @deck.add_card(card4)
     expect(@deck.cards).to match_array([
@@ -57,5 +54,5 @@ describe Deck do
       have_attributes(suit: :club, value: "5", rank: 5),
       ])
   end
-  
+
 end

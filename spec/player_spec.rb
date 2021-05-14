@@ -21,24 +21,15 @@ describe Player do
     expect(@player.deck).to eq(@deck)
   end
 
-  it "returns if player has lost" do
+  it "finds if player has lost" do
     expect(@player.has_lost?).to eq(false)
-  end
 
-  it "returns if player has lost after removing one card" do
     @player.deck.remove_card
     expect(@player.has_lost?).to eq(false)
-  end
 
-  it "returns if player has lost after removing two cards" do
-    @player.deck.remove_card
     @player.deck.remove_card
     expect(@player.has_lost?).to eq(false)
-  end
 
-  it "returns if player has lost after removing three cards" do
-    @player.deck.remove_card
-    @player.deck.remove_card
     @player.deck.remove_card
     expect(@player.has_lost?).to eq(true)
   end
