@@ -1,7 +1,7 @@
 class Deck
   attr_reader :cards
   def initialize(cards)
-    @cards = []
+    @cards = cards
   end
 
   def add_card(card)
@@ -16,6 +16,14 @@ class Deck
  def high_ranking_cards
    @cards.find_all do |card|
      card.rank >= 11
+  end
  end
 
+ def percent_high_ranking
+   (self.high_ranking_cards.count.to_f / @cards.count * 100).round(2)
+ end
+
+ def remove_card
+   @cards.shift
+ end
 end
