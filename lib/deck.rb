@@ -24,8 +24,8 @@ class Deck
   end
 
   def remove_card
-    @cards.shift
-    return @cards
+    @cards.shift # without return, return value is diamond/Queen/12
+    # return @cards # don't need this since return value should be diamond/Queen/12
     # @cards.slice!(1, 2) # this works too
   end
 
