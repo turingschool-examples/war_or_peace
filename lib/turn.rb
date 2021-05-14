@@ -65,10 +65,12 @@ class Turn
     end
   end
 
-  # def award_spoils
-  #   if winner == true
-  #     @player1.deck << @spoils_of_war
-  #   end
-  #   @spoils_of_war = []
-  # end
+  def award_spoils
+    if winner == @player1
+      @spoils_of_war.each do |spoil|
+        @player1.deck << spoil
+      end
+    end
+    @spoils_of_war = []
+  end
 end
