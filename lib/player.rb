@@ -1,7 +1,5 @@
-require './spec/card_spec.rb'
-
 class Player
-  attr_reader :name, :deck, :spoils_of_war, :cards
+  attr_reader :name, :deck, :spoils_of_war
 
   def initialize(name, deck)
     @name = name
@@ -9,6 +7,10 @@ class Player
   end
 
   def has_lost?
-    (@deck.cards.count) == 0 #this is where i stopped
+    # The array of cards is an attribute of a Deck and
+    # is initialized with a Deck.
+    # Access array of cards of a Deck with @deck.cards .
+    # 
+    @deck.cards.count == 0
   end
 end
