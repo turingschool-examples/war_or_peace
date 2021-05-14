@@ -63,10 +63,53 @@ RSpec.describe Game do
     player2 = Player.new(player2_name, split_deck[1])
 
     puts "\nTesting 'Game' 'happy path':\n"
-    puts "-"*25
+    puts "-"*30
     expect(game.greet(player1, player2).to_s).to include('Welcome', 'Megan', 'Aurora')
+
     puts "\nTesting 'Game' 'sad path':\n"
-    puts "-"*25
+    puts "-"*30
     expect(game.greet(player1_name, player2_name).to_s).to include('Error!')
+    2.times { puts "-"*40 }
+  end
+
+  it 'can start and end' do
+    game = Game.new
+
+    shuffled_cards = game.cards
+    mini_split_deck = [
+      Deck.new(shuffled_cards[0..2]),
+      Deck.new(shuffled_cards[3..5])
+    ]
+
+    player1_name = 'Megan'
+    player2_name = 'Aurora'
+
+    player1 = Player.new(player1_name, mini_split_deck[0])
+    player2 = Player.new(player2_name, mini_split_deck[1])
+
+    expect(player1.deck.cards.length).to eq(3)
+    expect(player2.deck.cards.length).to eq(3)
+    expect(player1.has_lost?).to be(false)
+    expect(player2.has_lost?).to be(false)
+
+    puts "\nTesting limited 'Game' run:\n"
+    puts "-"*30
+    game.start(player1, player2)
+
+    if player1.has_lost?
+      expect(player2.deck.cards.length).to be > player1.deck.cards.length
+      expect(player1.has_lost?).to be(true)
+      expect(player2.has_lost?).to be(false)
+    elsif player2.has_lost?
+      expect(player1.deck.cards.length).to be > player2.deck.cards.length
+      expect(player1.has_lost?).to be(false)
+      expect(player2.has_lost?).to be(true)
+    else
+      expect(player1.deck.cards.length).to be > 0
+      expect(player2.deck.cards.length).to be > 0
+      expect(player1.has_lost?).to be(false)
+      expect(player2.has_lost?).to be(false)
+    end
+
   end
 end
