@@ -62,7 +62,7 @@ RSpec.describe Game do
       expect(game.diamonds.last).to eq([:diamond, 'Ace', 14])
     end
 
-    xit 'can add club cards' do
+    it 'can add club cards' do
       game = Game.new
 
       game.add_club_card
@@ -71,7 +71,7 @@ RSpec.describe Game do
       expect(game.clubs.last).to eq([:club, 'Ace', 14])
     end
 
-    xit 'can add spade cards' do
+    it 'can add spade cards' do
       game = Game.new
 
       game.add_spade_card
@@ -80,31 +80,31 @@ RSpec.describe Game do
       expect(game.spades.last).to eq([:spade, 'Ace', 14])
     end
 
-    xit 'can add heart cards' do
+    it 'can add heart cards' do
       game = Game.new
 
-      game.add_diamond_card
+      game.add_heart_card
 
-      expect(game.diamonds.first).to eq([:diamond, '2', 2])
-      expect(game.diamonds.last).to eq([:diamond, 'Ace', 14])
+      expect(game.hearts.first).to eq([:heart, '2', 2])
+      expect(game.hearts.last).to eq([:heart, 'Ace', 14])
     end
 
-    xit 'can populate a Card object' do
+    it 'can create a deck' do
         game = Game.new
 
         game.add_diamond_card
-        game.create_deck(deck1)
-        deck1 = Deck.new(deck1)
+        game.add_club_card
+        game.add_spade_card
+        game.add_heart_card
 
-        expect(deck1.cards.first).to eq(diamond1)
-        expect(deck1.cards.last).to eq(diamond14)
+        deck1 = Deck.new(game.create_deck)
+
+        expect(deck1.cards.first.suit).to eq(:diamond)
+        expect(deck1.cards.first.rank).to eq(2)
+        expect(deck1.cards.last.suit).to eq(:heart)
+        expect(deck1.cards.last.rank).to eq(14)
     end
 
-    xit 'can create a diamond Card object' do
-      game = Game.new
-
-      game.create_diamond_cards
-    end
   end
 
 end

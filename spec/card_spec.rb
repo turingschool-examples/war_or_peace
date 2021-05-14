@@ -15,14 +15,4 @@ RSpec.describe Card do
     expect(card.value).to eq('Queen')
     expect(card.rank).to eq(12)
   end
-
-  xit 'can create its own objects' do
-      game = Game.new
-      card = Card.new
-
-      game.add_diamond_card
-      card.
-  end
-
-  end
 end

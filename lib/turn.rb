@@ -67,8 +67,4 @@ class Turn
       winner.deck.add_card(card)
     end
   end
-
-  def start
-    #code
-  end
 end

@@ -2,32 +2,19 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/game'
 require 'pry'
 
 #[(:suit, value, rank)]
-[
-  (:diamond, '2', 2),
-  (:diamond, '3', 3),
-  (:diamond, '4', 4),
-  (:diamond, '5', 5),
-  (:diamond, '6', 6),
-  (:diamond, '7', 7),
-  (:diamond, '8', 8)
-]
+#Create 2 deck of cards
+game= Game.new
+game.add_diamond_card
+game.add_club_card
+game.add_spade_card
+game.add_heart_card
 
-def create_diamonds
-  diamonds = []
-  diamond_value = '1'
-  diamond_rank = 1
-  diamonds = loop do
-    each_diamond =
-    :diamond
-    diamond_value = ((diamond_value.to_i) + 1).to_s
-    diamond_rank += 1
+deck1 = Deck.new(game.create_deck)
+deck2 = Deck.new(game.create_deck)
 
-    #diamonds << [:diamond, diamond_value, diamond_rank]
-    if diamond_rank == 10
-      break
-    end
-  p diamonds
-end
+player1 = Player.new('Megan', deck1.shuffle)
+player2 = Player.new('Aurora', deck2.shuffle)
