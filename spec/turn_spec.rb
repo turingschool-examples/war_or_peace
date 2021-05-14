@@ -30,4 +30,26 @@ describe Turn do
       expect(turn.spoils_of_war).to eq([])
     end
   end
+
+  context 'Methods' do
+    it 'returns type of turn :basic' do
+      expect(turn.type).to eq(:basic)
+    end
+    it 'returns type of turn :war' do
+      new_deck1 = Deck.new([card1, card2, card5, card8])
+      new_deck2 = Deck.new([card1, card4, card6, card7])
+      new_player1 = Player.new("Megan", new_deck1)
+      new_player2 = Player.new("Aurora", new_deck2)
+      new_turn = Turn.new(new_player1, new_player2)
+      expect(new_turn.type).to eq(:war)
+    end
+    it 'returns type of turn :mutually_assured_destruction' do
+      new_deck1 = Deck.new([card1, card2, card5, card8])
+      new_deck2 = Deck.new([card1, card4, card5, card7])
+      new_player1 = Player.new("Megan", new_deck1)
+      new_player2 = Player.new("Aurora", new_deck2)
+      new_turn = Turn.new(new_player1, new_player2)
+      expect(new_turn.type).to eq(:mutually_assured_destruction)
+    end
+  end
 end
