@@ -95,7 +95,6 @@ describe Turn do
       @turn = Turn.new(@player1, @player2)
 
       @turn.pile_cards
-
       expect(@turn.spoils_of_war).to eq([])
       expect(@deck1.cards).to eq([@card8])
       expect(@deck2.cards).to eq([@card7])
@@ -103,12 +102,23 @@ describe Turn do
   end
 
   context 'award_spoils method' do
-    it 'awards spoils to the winner' do
+    it 'awards spoils to the :basic winner' do
 
       @turn.pile_cards
       @turn.award_spoils
       expect(@deck1.cards).to eq([@card2, @card5, @card8, @card1, @card3])
       expect(@turn.spoils_of_war).to eq([])
+    end
+
+    it 'awards spoils to the :war winner' do
+    @deck2 = Deck.new([@card1, @card4, @card6, @card7])
+    @player2 = Player.new("Aurora", @deck2)
+    @turn = Turn.new(@player1, @player2)
+    
+    @turn.pile_cards
+    @turn.award_spoils
+    expect(@deck2.cards).to eq([@card7, @card1, @card1, @card2, @card4, @card5, @card6])
+    expect(@turn.spoils_of_war).to eq([])
     end
   end
 end
