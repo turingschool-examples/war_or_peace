@@ -2,6 +2,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/game'
 
 card1 = Card.new(:heart, '3', 3)
 card2 = Card.new(:heart, '4', 4)
@@ -62,61 +63,6 @@ deck2 = [card2, card4, card6, card8, card10, card12, card14, card16, card18, car
 player1 = Player.new('Billy', deck1)
 player2 = Player.new('Lauren', deck2)
 
-
-class Game
-  attr_reader :turn
-
-  def initialize(turn)
-    @turn = turn
-  end
-
-  def start
-    p "Welcome to War! (or Peace) This game will be played with 52 cards.
-    The players today are #{@turn.player1.name} and #{@turn.player2.name}. Type 'GO' to start the game!"
-
-    play_game = gets.chomp
-    if play_game.downcase == 'go'
-      @turn.type
-    else
-      puts 'Some other time maybe'
-    end
-  end
-end
-
 turn1 = Turn.new(player1, player2)
 game1 = Game.new(turn1)
 game1.start
-
-
-# class Question
-#   attr_accessor :prompt, :answer
-#   def initialize(prompt, answer)
-#     @prompt = prompt
-#     @answer = answer
-#   end
-# end
-#
-# p1 = "what color are apples\n(a)red\n(b)blue\n(c)orange"
-# p2 = "what color are bananas\n(a)green\n(b)blue\n(c)yellow"
-# p3 = "what color are oranges\n(a)black\n(b)yellow\n(c)orange"
-#
-# questions = [
-#     Question.new(p1, "a"),
-#     Question.new(p2, "c"),
-#     Question.new(p3, "c")
-# ]
-#
-# def run_test(questions)
-#   answer = ""
-#   score = 0
-#   for question in questions
-#     puts question.prompt
-#     answer = gets.chomp()
-#     if answer == question.answer
-#       score += 1
-#     end
-#   end
-#   puts ("you got " + score.to_s + "/" + questions.length().to_s)
-# end
-#
-# run_test(questions)
