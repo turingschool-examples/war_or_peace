@@ -40,7 +40,7 @@ describe Player do
     @player.deck.remove_card
     @player.deck.remove_card
     @player.deck.remove_card
-    expect(@player.has_lost?).to eq(false)
+    expect(@player.has_lost?).to eq(true)
   end
 
 end
