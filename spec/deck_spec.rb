@@ -16,12 +16,6 @@ RSpec.describe Deck do
   end
 
   it "has a rank_of_card_at" do
-    cards = []
-
-    @deck.add_card(@card1)
-    @deck.add_card(@card2)
-    @deck.add_card(@card3)
-
     expect(@deck.rank_of_card_at(0)).to eq(12)
     expect(@deck.rank_of_card_at(1)).to eq(3)
     expect(@deck.rank_of_card_at(2)).to eq(14)
@@ -29,6 +23,20 @@ RSpec.describe Deck do
 
   it "has high_ranking_cards" do
     expect(@deck.high_ranking_cards).to eq([@card1, @card3])
+  end
+
+  it "has a percent_high_ranking" do
+    expect(@deck.percent_high_ranking).to eq(66.67)
+  end
+
+  it "will remove_card" do
+    expect(@deck.remove_card).to eq([@card2, @card3])
+  end
+
+  it "will add_card" do
+    @card4 = Card.new(:club, '5', 5)
+
+    expect(@deck.add_card(@card4)).to eq([@card1, @card2, @card3, @card4])
   end
 
 end

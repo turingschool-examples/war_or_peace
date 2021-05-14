@@ -20,18 +20,16 @@ class Deck
   end
 
   def percent_high_ranking
-    total_cards = cards.count
-    cards.each do |percent|
-    percent_high_ranking = (high_ranking_cards / total_cards) * 100
-    end
-    puts percent_high_ranking
+    (self.high_ranking_cards.count.to_f / @cards.count * 100).round(2)
   end
 
   def remove_card
-    cards.delete_at(0)
+    @cards.shift
+    return @cards
+    # @cards.slice!(1, 2) # this works too
   end
 
   def add_card(new_card)
-    cards.append(new_card)
+    @cards << new_card
   end
 end
