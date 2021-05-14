@@ -1,23 +1,22 @@
-require_relative 'Card'
-
 class Deck
-  attr_reader :cards
+  attr_reader :cards, :new_card, :high_ranking_cards
 
   def initialize(cards)
     @cards = cards
   end
 
-  def rank_of_card_at.index
-    puts rank_of_card_at
+  def rank_of_card_at(index)
+    cards[index].rank # represent index location of a card to be used
   end
 
   def high_ranking_cards
-    high_ranking_cards = []
-    cards.each do |faces_and_aces|
-      if @rank >= 11
-        then high_ranking_cards << cards
+    @high_ranking_cards = []
+    cards.each_with_index do |card, index| # for this card at this index
+      if rank_of_card_at(index) >= 11
+        @high_ranking_cards << card
       end
-    puts high_ranking_cards
+    end
+    return @high_ranking_cards
   end
 
   def percent_high_ranking
@@ -32,8 +31,7 @@ class Deck
     cards.delete_at(0)
   end
 
-  def add_card
-    cards.append(add_card)
-    @add_card = add_card
+  def add_card(new_card)
+    cards.append(new_card)
   end
 end
