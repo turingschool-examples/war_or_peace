@@ -38,13 +38,29 @@ class Turn
   def pile_cards
     if type == :basic
       @spoils_of_war << player1.deck.cards[0]
+      player1.deck.remove_card
       @spoils_of_war << player2.deck.cards[0]
+      player2.deck.remove_card
     elsif type == :war
       @spoils_of_war << player1.deck.cards(0..2)
+      player1.deck.remove_card * 3
       @spoils_of_war << player2.deck.cards(0..2)
+      player2.deck.remove_card * 3
     elsif type == :mutually_assured_destruction
-      player1.deck.cards.delete(0..2)
-      player1.deck.cards.delete(0..2)
+      player1.deck.remove_card * 3
+      player1.deck.remove_card * 3
+    end
+  end
+
+  def award_spoils(winner)
+    if winner == player1
+      @spoils_of_war.map do |spoil|
+        player1.deck.cards << spoil
+      end
+    else
+      @spoils_of_war.map do |spoil|
+        player2.deck.cards << spoil
+      end
     end
   end
 end
