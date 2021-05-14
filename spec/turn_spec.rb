@@ -21,7 +21,7 @@ describe Turn do
 
   context 'Attribues' do
     it 'is a turn' do
-      
+
       expect(turn).to be_an_instance_of(Turn)
     end
 
@@ -37,6 +37,7 @@ describe Turn do
 
       expect(turn.type).to eq(:basic)
     end
+
     it 'returns type of turn :war' do
       new_deck1 = Deck.new([card1, card2, card5, card8])
       new_deck2 = Deck.new([card1, card4, card6, card7])
@@ -45,6 +46,7 @@ describe Turn do
       new_turn = Turn.new(new_player1, new_player2)
       expect(new_turn.type).to eq(:war)
     end
+
     it 'returns type of turn :mutually_assured_destruction' do
       new_deck1 = Deck.new([card1, card2, card5, card8])
       new_deck2 = Deck.new([card1, card4, card5, card7])
@@ -57,7 +59,6 @@ describe Turn do
 
   context 'winner method' do
     it 'return :basic type winner' do
-
       expect(turn.winner).to eq(player1)
     end
 
@@ -85,8 +86,30 @@ describe Turn do
   context 'pile_cards method' do
     it 'add cards to spoils for :basic turn' do
       turn.pile_cards
-
       expect(turn.spoils_of_war).to eq([card1, card3])
+    end
+
+    it 'add cards to spoils for :war turn' do
+      new_deck1 = Deck.new([card1, card2, card5, card8])
+      new_deck2 = Deck.new([card1, card4, card6, card7])
+      new_player1 = Player.new("Megan", new_deck1)
+      new_player2 = Player.new("Aurora", new_deck2)
+      new_turn = Turn.new(new_player1, new_player2)
+      new_turn.pile_cards
+
+      expect(new_turn.spoils_of_war).to eq([card1, card2, card5, card1, card4, card6])
+    end
+
+    it 'add remove cards for :mutually_assured_destruction' do
+      new_deck1 = Deck.new([card1, card2, card5, card8])
+      new_deck2 = Deck.new([card1, card4, card5, card7])
+      new_player1 = Player.new("Megan", new_deck1)
+      new_player2 = Player.new("Aurora", new_deck2)
+      new_turn = Turn.new(new_player1, new_player2)
+      new_turn.pile_cards
+
+      expect(new_deck1.cards).to eq([card8])
+      expect(new_deck2.cards).to eq([card7])
     end
   end
 end
