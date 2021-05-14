@@ -36,6 +36,7 @@ RSpec.describe Deck do
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
 
-    expect(deck.percent_high_ranking(cards)).to eq(66.67)
+
+    expect(deck.high_ranking_cards(cards)).to eq([11..14])
   end
 end

@@ -11,8 +11,8 @@ class Deck
     @cards[index].rank
   end
 
-  def high_ranking_cards
-    @cards.rank
+  def high_ranking_cards(face_cards)
+    @cards[face_cards]
   end
 
 end
