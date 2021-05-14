@@ -30,7 +30,7 @@ class Game
       end
     end
 
-    @cards = cards.sample(52)
+    @cards = @cards.sample(52)
     @type_error = [
       'Error!',
       'Two valid players are required to start the game, please try again.'

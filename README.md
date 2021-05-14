@@ -3,7 +3,7 @@
 This is the repo for Taylor Varoglu's BE Mod1 **War or Peace** project.
 
 
-### Project Requirements
+### Project Requirements:
 
 1. [x] [Iteration 1](https://backend.turing.edu/module1/projects/war_or_peace/iteration1)
 
@@ -15,7 +15,7 @@ This is the repo for Taylor Varoglu's BE Mod1 **War or Peace** project.
 
 
 
-#### Results
+### Results:
 
 1. **Testing Output**
     - Note, `greet` and `start` methods in `Game` class return strings, and therefore print intended terminal outputs during a `spec` run.
