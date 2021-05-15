@@ -59,7 +59,7 @@ attr_reader :player1, :player2, :spoils_of_war
       # What fun is that?
       pile_draw
     else
-      p "Whoops! Something went wrong here!"
+      puts "Whoops! Something went wrong here!"
     end
   end
 
