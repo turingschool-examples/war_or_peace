@@ -6,12 +6,12 @@ class Deck
   end
 
   def rank_of_card_at(index)
-    cards[index].rank # represent index location of a card to be used
+    @cards[index].rank # represent index location of a card to be used #@?
   end
 
   def high_ranking_cards
     @high_ranking_cards = []
-    cards.each_with_index do |card, index| # for this card at this index
+    @cards.each_with_index do |card, index| # for this card at this index #@?
       if rank_of_card_at(index) >= 11
         @high_ranking_cards << card
       end
