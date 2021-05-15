@@ -36,8 +36,8 @@ class Turn
             spoils_of_war << player1.deck.remove_card
             spoils_of_war << player2.deck.remove_card
         when :war
-            spoils_of_war << player1.deck.remove_card * 3
-            spoils_of_war << player2.deck.remove_card * 3
+            spoils_of_war.concat(player1.deck.cards[0..2])
+            spoils_of_war.concat(player2.deck.cards[0..2])
         else
             player1.deck.remove_card * 3
             player2.deck.remove_card * 3
