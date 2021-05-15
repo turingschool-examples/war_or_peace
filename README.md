@@ -26,4 +26,4 @@ This is the repo for Taylor Varoglu's BE Mod1 **War or Peace** project.
 2. **Production Output**
     - Executed via the `runner` file in the `root` directory.  Iteration 4 (dynamic card generator) was built during Iteration 3, to avoid manual hard-coding a deck of cards. This method is tested in the corresponding `spec` file for the `Game` class.
 
-<img width="592" alt="prod_output.png" src="https://user-images.githubusercontent.com/58891447/118371991-65908e80-b56c-11eb-96f3-a106a227b21f.png">
+<img width="594" alt="prod_output.png" src="https://user-images.githubusercontent.com/58891447/118372271-0df32280-b56e-11eb-970f-0d1b134cf2d2.png">
