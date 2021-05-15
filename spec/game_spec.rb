@@ -82,8 +82,8 @@ RSpec.describe Game do
 
     shuffled_cards = game.cards
     mini_split_deck = [
-      Deck.new(shuffled_cards[0..2]),
-      Deck.new(shuffled_cards[3..5])
+      Deck.new(shuffled_cards[0..3]),
+      Deck.new(shuffled_cards[4..7])
     ]
 
     player1_name = 'Megan'
@@ -92,8 +92,8 @@ RSpec.describe Game do
     player1 = Player.new(player1_name, mini_split_deck[0])
     player2 = Player.new(player2_name, mini_split_deck[1])
 
-    expect(player1.deck.cards.length).to eq(3)
-    expect(player2.deck.cards.length).to eq(3)
+    expect(player1.deck.cards.length).to eq(4)
+    expect(player2.deck.cards.length).to eq(4)
     expect(player1.has_lost?).to be(false)
     expect(player2.has_lost?).to be(false)
 

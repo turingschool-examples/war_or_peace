@@ -21,9 +21,9 @@ This is the repo for Taylor Varoglu's BE Mod1 **War or Peace** project.
     - Note, `greet` and `start` methods in `Game` class return strings, and therefore print intended terminal outputs during a `spec` run.
     - Note, even with a limited game run test (deck of 6 cards), the game can still result in a draw.
 
-<img width="595" alt="Screen Shot 2021-05-14 at 16 25 10" src="https://user-images.githubusercontent.com/58891447/118337413-fdd93580-b4d0-11eb-8b58-787c2caf2e6f.png">
+<img width="592" alt="test_output.png" src="https://user-images.githubusercontent.com/58891447/118371959-3f6aee80-b56c-11eb-8295-4012d89db148.png">
 
 2. **Production Output**
     - Executed via the `runner` file in the `root` directory.  Iteration 4 (dynamic card generator) was built during Iteration 3, to avoid manual hard-coding a deck of cards. This method is tested in the corresponding `spec` file for the `Game` class.
 
-<img width="595" alt="Screen Shot 2021-05-14 at 16 29 21" src="https://user-images.githubusercontent.com/58891447/118337694-8fe13e00-b4d1-11eb-936e-45375846b668.png">
+<img width="592" alt="prod_output.png" src="https://user-images.githubusercontent.com/58891447/118371991-65908e80-b56c-11eb-96f3-a106a227b21f.png">

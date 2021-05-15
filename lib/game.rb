@@ -91,7 +91,6 @@ class Game
         end
 
         total_turn_counter += 1
-        cards_won = 0
       end
 
       if player1.has_lost?
