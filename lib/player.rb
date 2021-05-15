@@ -8,6 +8,6 @@ class Player
   end
 
   def has_lost?
-    @deck.cards.size.zero?
+    @deck.cards.empty?
   end
 end

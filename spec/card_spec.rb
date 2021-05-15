@@ -8,9 +8,7 @@ RSpec.describe Card do
 
       expect(card).to be_an_instance_of(Card)
     end
-  end
 
-  describe 'attributes' do
     it "has readable attributes" do
       card = Card.new(:heart, 'Jack', 11)
 
