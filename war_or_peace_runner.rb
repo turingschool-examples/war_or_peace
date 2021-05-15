@@ -7,6 +7,10 @@ class Game
   attr_reader :standard_deck, :deck1, :deck2, :player1, :player2
 
   def start
+    p "Welcome to War! (or Peace) This game will be played with 52 cards."
+    p "The players today are Megan and Aurora"
+    p "Type 'GO' to start the game!"
+    p "-------------------------------------------------------------------"
     print "Type Here: "
     to_start = gets.chomp.upcase
     create_deck
@@ -60,30 +64,27 @@ class Game
 
   def turns
     @turn = (turn = Turn.new(@player1, @player2))
-    # turn = 0
-    # loop do
-    #   turn += 1
-    #   @turn.type
-    #   winner = @turn.winner
-    #   @turn.pile_cards
-    #   @turn.award_spoils
-    #   if type == :basic
-    #     p "Turn #{turn}: #{winner} won 2 cards"
-    #   elsif type == :war
-    #     p "WAR - #{winner} won 6 cards"
-    #   else
-    #     p "*mutually assured destruction* 6 cards removed from play"
-    #   end
-    # end
+    turn = 0
+    loop do
+      turn += 1
+      @turn.type
+      winner = @turn.winner
+      @turn.pile_cards
+      @turn.award_spoils(winner)
+      if @turn.type == :basic
+        p "Turn #{turn}: #{winner.name} won 2 cards"
+      elsif @turn.type == :war
+        p "Turn #{turn}: WAR - #{winner.name} won 6 cards"
+      else
+        p "*mutually assured destruction* 6 cards removed from play"
+      end
+      if (@turn.player1.deck == [] || @turn.player2.deck == []) || turn == 1000000
+        break
+      end
+    end
   end
 
 end
 
 game = Game.new
-
-p "Welcome to War! (or Peace) This game will be played with 52 cards."
-p "The players today are Megan and Aurora"
-p "Type 'GO' to start the game!"
-p "-------------------------------------------------------------------"
-
 p game.start
