@@ -7,6 +7,11 @@ class Deck
   end
 
   def rank_of_card_at(position)
+    # require "pry"; binding.pry
+    # if @cards[position].nil?
+    #   0
+    # else @cards[position].rank
+    # end
     @cards[position].rank
   end
 

@@ -50,7 +50,7 @@ class Turn
     end
   end
 
-  # helper methods
+  # Helper Methods
   def first_card(player)
     player.deck.rank_of_card_at(0)
   end

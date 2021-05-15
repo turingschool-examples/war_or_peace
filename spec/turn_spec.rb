@@ -152,11 +152,15 @@ RSpec.describe Turn do
     it 'can return the rank of the first card' do
       expect(@turn.first_card(@player1)).to eq(11)
       expect(@turn.first_card(@player2)).to eq(11)
+      expect(@turn.first_card(@player1)).not_to eq(10)
+      expect(@turn.first_card(@player1)).not_to eq(10)
     end
 
     it 'can return the rank of the third card' do
       expect(@turn.third_card(@player1)).to eq(8)
       expect(@turn.third_card(@player2)).to eq(12)
+      expect(@turn.third_card(@player1)).not_to eq(11)
+      expect(@turn.third_card(@player2)).not_to eq(11)
     end
   end
 end
