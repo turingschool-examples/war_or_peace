@@ -7,10 +7,10 @@ class Game
   end
 
   def start
-    p "Welcome to War! (or Peace) This game will be played with 52 cards."
-    p "The players today are Megan and Aurora."
-    p "Type 'GO' to start the game!"
-    p "------------------------------------------------------------------"
+    puts "Welcome to War! (or Peace) This game will be played with 52 cards."
+    puts "The players today are Megan and Aurora."
+    puts "Type 'GO' to start the game!"
+    puts "------------------------------------------------------------------"
 
     start_word = gets.chomp
 
@@ -40,25 +40,25 @@ class Game
         turn.award_spoils
 
         if turn_type == :basic
-          p "Turn #{count}: #{turn_winner} won #{spoils_count} cards"
+          puts "Turn #{count}: #{turn_winner} won #{spoils_count} cards"
         elsif turn_type == :war
-          p "Turn #{count}: WAR - #{turn_winner} won #{spoils_count} cards"
+          puts "Turn #{count}: WAR - #{turn_winner} won #{spoils_count} cards"
         elsif turn_type == :mutually_assured_destruction
-          p "Turn #{count}: *mutually assured destruction* 6 cards removed from play"
+          puts "Turn #{count}: *mutually assured destruction* 6 cards removed from play"
         elsif turn_type == :draw
-          p "Turn #{count}: The cards are getting low!  This was a draw! Please hold while I shuffle both decks!"
+          puts "Turn #{count}: The cards are getting low!  This was a draw! Please hold while I shuffle both decks!"
         else
-          p "There's been a very terrible error!"
+          puts "There's been a very terrible error!"
         end
 
         # p player1.deck.cards.count # checking card count
         # p player2.deck.cards.count # checking card count
 
         if player1.has_lost?
-          p "*~*~*~* #{player2.name} has won the game! *~*~*~*"
+          puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
           break
         elsif player2.has_lost?
-          p "*~*~*~* #{player1.name} has won the game! *~*~*~*"
+          puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
           break
         end
 
