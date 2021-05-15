@@ -15,13 +15,19 @@ class Turn
   end
 
   def type
+    @player1_c1 = @player1.deck.rank_of_card_at(0)
+    @player2_c1 = @player2.deck.rank_of_card_at(0)
+    @p1ayer1_c2 = @player1.deck.rank_of_card_at(2)
+    @player2_c2 = @player2.deck.rank_of_card_at(2)
+    
     if @player1_c1 != @player2_c1
-      :basic
+      @type = :basic
     elsif @p1ayer1_c2 != @player2_c2
-      :war
+      @type = :war
     elsif @p1ayer1_c2 == @player2_c2
-      :mutually_assured_destruction
+      @type = :mutually_assured_destruction
     end
+    @type
   end
 
   def winner
