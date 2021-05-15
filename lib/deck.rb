@@ -14,17 +14,20 @@ class Deck
       card.rank >= 11
     end
   end
-  #
-  # def percent_high_ranking
-  #   percent = high_ranking_cards.length % @cards.length
-  # end
-  #
-  # def remove_card
-  #   @cards.shift
-  # end
-  #
-  # def add_card(card)
-  #   @cards << card
-  # end
+
+  def percent_high_ranking
+    percent = (high_ranking_cards.length.to_f / @cards.length) * 100
+    percent.round(2)
+  end
+
+  def remove_card
+    @cards.shift
+  end
+
+  def add_card(new_card)
+    @cards << new_card
+  end
+
+# require 'pry'; binding.pry
 
 end

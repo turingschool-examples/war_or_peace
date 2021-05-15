@@ -15,44 +15,46 @@ RSpec.describe Deck do
 
   end
 
-  it 'has a deck' do
+  it "has a deck" do
     expect(@deck).to be_an_instance_of(Deck)
   end
 
 
-  it 'has attr_reader' do
+  it "has attr_reader" do
     expect(@deck.cards).to eq(@cards)
   end
 
-  it 'shows rank of card' do
+  it "shows rank of card" do
     expect(@deck.rank_of_card_at(0)).to eq(12)
     expect(@deck.rank_of_card_at(2)).to eq(14)
   end
 
-  it 'shows high ranking cards' do
-    expect(@deck.high_ranking_cards).to eq(@card1, @card3)
+  it "shows high ranking cards" do
+    expect(@deck.high_ranking_cards).to eq([@card1, @card3])
   end
 
-  xit 'shows percent of high ranking cards' do
+  it "shows percent of high ranking cards" do
     expect(@deck.percent_high_ranking).to eq(66.67)
   end
 
-  xit 'removes top card from deck' do
+  it "removes top card from deck" do
       expect(@deck.remove_card).to eq(@card1)
       expect(@deck.cards).to eq(@cards)
-      expect(@deck.high_ranking_cards).to eq(@card3)
+      expect(@deck.high_ranking_cards).to eq([@card3])
       expect(@deck.percent_high_ranking).to eq(50.00)
   end
 
-  xit 'adds a card' do
+  it "adds a card" do
+    expect(@deck.remove_card).to eq(@card1)
+
     @card4 = Card.new(:club, '5', 5)
 
-    @deck = Deck.new(@cards)
+    @deck.add_card(@card4)
 
-    expect(@deck.add_card(@card4)).to eq(@card4)
     expect(@deck.cards).to eq(@cards)
-    expect(@deck.high_ranking_cards).to eq(@card3)
     expect(@deck.percent_high_ranking).to eq(33.33)
   end
 
 end
+
+#require 'pry'; binding.pry
