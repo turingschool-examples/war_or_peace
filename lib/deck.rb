@@ -48,22 +48,25 @@ class Deck
     @cards.each do |card|
       if card.rank >= 11
         total_number_of_cards += 1
-      end 
+      end
     end
 
     number_of_high_cards
 
     percentage_of_high_ranking_cards = number_of_high_cards / total_number_of_cards
   end
+  # passes test but returning 0 in pry???
 
   # remove top card from the deck
-  def remove_card(card)
-  #   @cards -= card
+  def remove_card
+    card = @cards
+    card.shift()
   end
 
   # add one card to bottom of the deck
   def add_card(card)
     @cards << card
   end
+  # not sure if this is supposed to return the new array in pry???
 
 end
