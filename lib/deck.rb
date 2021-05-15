@@ -15,15 +15,15 @@ class Deck
     end
   end
 
+  def percent_high_ranking
+    percent = high_ranking_cards.length % @cards.length
+  end
 
-  # def percent_high_rankning
-  # end
+  def remove_card
+    @cards.shift
+  end
 
-  # def remove_card
-  #   @card.delete.at(0)
-  # end
-  #
-  # def add_card
-  # end
+  def add_card
+  end
 
 end

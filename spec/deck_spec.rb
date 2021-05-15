@@ -19,6 +19,7 @@ RSpec.describe Deck do
     expect(@deck).to be_an_instance_of(Deck)
   end
 
+
   it 'has attr_reader' do
     expect(@deck.cards).to eq(@cards)
   end
@@ -28,18 +29,28 @@ RSpec.describe Deck do
     expect(@deck.rank_of_card_at(2)).to eq(14)
   end
 
-  it 'show high ranking cards' do
+  it 'shows high ranking cards' do
     expect(@deck.high_ranking_cards).to eq(@card1, @card3)
   end
 
-  # xit 'removes card' do
-  #
-  #   @deck =
-  #   expect(deck.remove_card).to ??????
-  # end
-  #
-  # xit 'adds a card' do
-  #   expect(deck.add_card).to ??????
-  # end
+  it 'shows percent of high ranking cards' do
+    expect(@deck.percent_high_ranking).to eq(66.67)
+  end
+
+  it 'removes top card from deck' do
+      expect(@deck.remove_card).to eq(@card1)
+      expect(@deck.cards).to eq(@cards)
+      expect(@deck.high_ranking_cards).to eq(@card3)
+      expect(@deck.percent_high_ranking).to eq(50.00)
+  end
+
+  it 'adds a card' do
+    @card4 = Card.new(:club, '5', 5)
+
+    expect(@deck.add_card(@card4)).to
+    expect(@deck.cards).to eq(@cards)
+    expect(@deck.high_ranking_cards).to eq(@card3)
+    expect(@deck.percent_high_ranking).to eq(33.33)
+  end
 
 end
