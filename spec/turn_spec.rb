@@ -31,10 +31,14 @@ describe Turn do
     expect(@turn.player2.name).to eq('Aurora')
     expect(@turn.player2.deck).to eq(@deck2)
     expect(@turn.spoils_of_war).to eq([])
+  end
+
+# basic turn
+  it "results in basic turn" do
     expect(@turn.type).to eq(:basic)
   end
 
-  xit "returns winner of basic turn" do
-  expect(@turn.winner).to eq()
+  it "returns winner of basic turn" do
+    expect(@turn.winner).to eq(@player1)
   end
 end
