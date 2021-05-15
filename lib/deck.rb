@@ -15,23 +15,20 @@ class Deck
 
   # return an array of cards in the deck that have a rank of 11 or above (face cards or aces)
   def high_ranking_cards
+    #   'Jack' = 11
+    #   'Queen' = 12
+    #   'King' = 13
+    #   'Ace' = 14
     rank_of_cards = []
 
     @cards.each do |card|
       if card.rank >= 11
         rank_of_cards << card
       end
+    end
 
     rank_of_cards
 
-    # for
-      # if @cards.rank >= 11
-
-    # high_ranking_cards
-  #   'Jack' = 11
-  #   'Queen' = 12
-  #   'King' = 13
-  #   'Ace' = 14
   end
 
   # return the percentage of cards that are high ranking
