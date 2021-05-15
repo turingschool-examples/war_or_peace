@@ -17,9 +17,9 @@ class Turn
   def type
     if @player1_c1 != @player2_c1
       :basic
-    elsif @player1_c1 == @player2_c1 && @p1ayer1_c2 != @player2_c2
+    elsif @p1ayer1_c2 != @player2_c2
       :war
-    elsif @player1_c1 == @player2_c1 && @p1ayer1_c2 == @player2_c2
+    elsif @p1ayer1_c2 == @player2_c2
       :mutually_assured_destruction
     end
   end
@@ -44,17 +44,13 @@ class Turn
 
   def pile_cards
     if self.type == :basic
-      @spoils_of_war << @player1.deck.cards[0]
-      @player1.deck.remove_card
-      @spoils_of_war << @player2.deck.cards[0]
-      @player2.deck.remove_card
+      @spoils_of_war << @player1.deck.remove_card
+      @spoils_of_war << @player2.deck.remove_card
 
     elsif self.type == :war
       3.times do
-      @spoils_of_war << @player1.deck.cards[0]
-      @player1.deck.remove_card
-      @spoils_of_war << @player2.deck.cards[0]
-      @player2.deck.remove_card
+      @spoils_of_war << @player1.deck.remove_card
+      @spoils_of_war << @player2.deck.remove_card
       end
 
     elsif self.type == :mutually_assured_destruction
