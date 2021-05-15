@@ -88,9 +88,12 @@ RSpec.describe do
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
+    turn.type
 
     expect(turn.spoils_of_war).to eq([])
     expect(turn.type).to eq(:mutually_assured_destruction)
     expect(turn.winner).to eq("No Winner")
+    turn.pile_cards
+    expect(turn.spoils_of_war).to eq([card1, card2, card5, card4, card3, card6])
     end
 end

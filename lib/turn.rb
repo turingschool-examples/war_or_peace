@@ -34,21 +34,17 @@ class Turn
             end 
 
         elsif type == :mutually_assured_destruction
-            # if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
             p "No Winner"  
         end
     end
 
     def pile_cards
-        # require "pry"; binding.pry  
         if type == :basic
             spoils_of_war << player1.deck.cards.shift
             spoils_of_war << player2.deck.cards.shift
         end 
 
         if type == :war
-            # spoils_of_war << player1.deck.cards.shift(3)
-            # spoils_of_war << player2.deck.cards.shift(3)
             player1.deck.cards.shift(3).each do |card|
                 spoils_of_war << card
             end
@@ -56,10 +52,16 @@ class Turn
                 spoils_of_war << card
             end 
         end 
+
+        if type == :mutually_assured_destruction
+            player1.deck.cards.shift(3).each do |card|
+                spoils_of_war << card
+            end 
+            player2.deck.cards.shift(3).each do |card|
+                spoils_of_war << card
+            end 
+        end 
     end 
 
-    
 
-
-   
 end 
