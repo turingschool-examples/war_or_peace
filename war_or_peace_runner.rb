@@ -73,10 +73,10 @@ class Game
       @turn.award_spoils(winner)
       if @turn.type == :mutually_assured_destruction
         p "Turn #{turn} *mutually assured destruction* 6 cards removed from play"
-      elsif @turn.type == :war
-        p "Turn #{turn}: WAR - #{winner.name} won 6 cards"
-      else
+      elsif @turn.type == :basic
         p "Turn #{turn}: #{winner.name} won 2 cards"
+      else
+        p "Turn #{turn}: WAR - #{winner.name} won 6 cards"
       end
       if @turn.player1.deck == [] || @turn.player2.deck == []
         break

@@ -26,7 +26,7 @@ RSpec.describe Turn do
     end
 
     it 'starts with no spoils' do
-      expect(turn.spoils_of_war).to be_nil
+      expect(turn.spoils_of_war).to be_empty
     end
   end
   describe 'turn type basic' do
@@ -64,8 +64,8 @@ RSpec.describe Turn do
       winner = turn.winner
       turn.award_spoils(winner)
 
-      expect(player1.deck).to eq(deck1)
-      expect(player2.deck).to eq(deck2)
+      expect(player1.deck.cards).to eq([card2, card5, card8, card1, card3])
+      # expect(player2.deck.cards).to eq([card4, card6, card7])
     end
   end
 
@@ -104,8 +104,8 @@ RSpec.describe Turn do
       winner = turn.winner
       turn.award_spoils(winner)
 
-      expect(player1.deck).to eq(deck1)
-      expect(player2.deck).to eq(deck2)
+      expect(player1.deck.cards).to eq([card8])
+      expect(player2.deck.cards).to eq([card7, card1, card2, card5, card4, card3, card6])
     end
   end
 
@@ -137,12 +137,12 @@ RSpec.describe Turn do
     it 'can pile cards in war spoils' do
       turn.pile_cards
 
-      expect(turn.spoils_of_war).to be_nil
+      expect(turn.spoils_of_war).to be_empty
     end
 
     it 'can have no award spoils' do
-      expect(player1.deck).to eq(deck1)
-      expect(player2.deck).to eq(deck2)
+      expect(player1.deck.cards).to eq([card8])
+      expect(player2.deck.cards).to eq([card7])
     end
   end
 end
