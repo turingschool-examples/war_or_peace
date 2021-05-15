@@ -1,5 +1,4 @@
 require './lib/card'
-require './lib/game'
 
 RSpec.describe Card do
   it "exists" do
