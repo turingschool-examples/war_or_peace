@@ -7,7 +7,8 @@ RSpec.describe Deck do
     @card1 = Card.new(:diamond, 'Queen', 12)
     @card2 = Card.new(:spade, 'Three', 3)
     @card3 = Card.new(:heart, 'Ace', 14)
-    @deck = Deck.new([@card1, @card2, @card3])
+    @cards = [@card1, @card2, @card3]
+    @deck = Deck.new(@cards)
   end
 
   it "exists" do
@@ -30,12 +31,15 @@ describe 'Instance Methods' do
   it 'Shows percent of Rank 11 up' do
     expect(@deck.percent_high_ranking).to eq(66.67)
   end
-    xit 'Removes a Card' do
-    expect(@deck.cards.length).to eq(2)
+  it 'Removes a Card' do
+    @deck.remove_card
+    expect(@deck.cards).to eq([@card2, @card3])
+    @deck.remove_card
+    expect(@deck.cards).to eq([@card3])
   end
-    xit 'Adds a Card' do
-      deck.add_card(card1)
-      expect(@deck.cards.length).to eq(4)
+  it 'Adds a Card' do
+      @deck.add_card(@card4)
+      expect(@deck.cards).to eq([@card1, @card2, @card3, @card4])
     end
   end
 end
