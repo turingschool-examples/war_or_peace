@@ -33,21 +33,23 @@ RSpec.describe Deck do
     expect(@deck.high_ranking_cards).to eq(@card1, @card3)
   end
 
-  it 'shows percent of high ranking cards' do
+  xit 'shows percent of high ranking cards' do
     expect(@deck.percent_high_ranking).to eq(66.67)
   end
 
-  it 'removes top card from deck' do
+  xit 'removes top card from deck' do
       expect(@deck.remove_card).to eq(@card1)
       expect(@deck.cards).to eq(@cards)
       expect(@deck.high_ranking_cards).to eq(@card3)
       expect(@deck.percent_high_ranking).to eq(50.00)
   end
 
-  it 'adds a card' do
+  xit 'adds a card' do
     @card4 = Card.new(:club, '5', 5)
 
-    expect(@deck.add_card(@card4)).to
+    @deck = Deck.new(@cards)
+
+    expect(@deck.add_card(@card4)).to eq(@card4)
     expect(@deck.cards).to eq(@cards)
     expect(@deck.high_ranking_cards).to eq(@card3)
     expect(@deck.percent_high_ranking).to eq(33.33)

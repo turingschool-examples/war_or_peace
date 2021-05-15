@@ -14,16 +14,17 @@ class Deck
       card.rank >= 11
     end
   end
-
-  def percent_high_ranking
-    percent = high_ranking_cards.length % @cards.length
-  end
-
-  def remove_card
-    @cards.shift
-  end
-
-  def add_card
-  end
+  #
+  # def percent_high_ranking
+  #   percent = high_ranking_cards.length % @cards.length
+  # end
+  #
+  # def remove_card
+  #   @cards.shift
+  # end
+  #
+  # def add_card(card)
+  #   @cards << card
+  # end
 
 end
