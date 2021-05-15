@@ -35,5 +35,11 @@ RSpec.describe Turn do
     it 'returns type method as basic' do
       expect(@turn.type).to eq(:basic)
     end
+
+    it 'returns winner' do
+      winner = @turn.winner
+
+      expect(winner).to eq(@player1)
+    end
   end
 end
