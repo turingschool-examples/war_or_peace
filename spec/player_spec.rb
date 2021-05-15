@@ -52,6 +52,6 @@ RSpec.describe Player do
     @player.deck.remove_card
 
     expect(@player.has_lost?).to eq true
-    expect(@player.deck).to eq(@deck)
+    expect(@player.deck.cards).to be_empty
   end
 end

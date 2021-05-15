@@ -12,7 +12,7 @@ class Game
     p "Type 'GO' to start the game!"
     p "-------------------------------------------------------------------"
     print "Type Here: "
-    to_start = gets.chomp.upcase
+    # to_start = gets.chomp.upcase
     create_deck
     shuffle_deck
     split_deck
@@ -64,30 +64,34 @@ class Game
 
   def turns
     @turn = (turn = Turn.new(@player1, @player2))
-    turn = 0
+
+    turn_count = 0
+
     loop do
-      turn += 1
-      if @turn.player1.has_lost? == true
-        return p "*~*~*~* #{@turn.player1.name} has won the game! *~*~*~*"
+      turn_count += 1
+      if @turn.type == :end_game
+        if @turn.player1.has_lost? == true
+          p "*~*~*~* #{@turn.player2.name} has won the game! *~*~*~*"
+        else
+          p "*~*~*~* #{@turn.player1.name} has won the game! *~*~*~*"
+        end
         break
-      elsif @turn.player2.has_lost? == true
-        return p "*~*~*~* #{@turn.player2.name} has won the game! *~*~*~*"
-        break
-      elsif turn == 1000000
-        return p "---- DRAW ----"
+      elsif turn_count > 1000000
+        p "---- DRAW ----"
         break
       end
-      @turn.type
+      # p @turn.type
       winner = @turn.winner
+      if @turn.type == :mutually_assured_destruction
+        winner = nil
+        p "Turn #{turn_count}: *mutually assured destruction* 6 cards removed from play"
+      elsif @turn.type == :basic
+        p "Turn #{turn_count}: #{winner.name} won 2 cards"
+      else
+        p "Turn #{turn_count}: WAR - #{winner.name} won 6 cards"
+      end
       @turn.pile_cards
       @turn.award_spoils(winner)
-      if @turn.type == :mutually_assured_destruction
-        p "Turn #{turn} *mutually assured destruction* 6 cards removed from play"
-      elsif @turn.type == :basic
-        p "Turn #{turn}: #{winner.name} won 2 cards"
-      else
-        p "Turn #{turn}: WAR - #{winner.name} won 6 cards"
-      end
     end
   end
 

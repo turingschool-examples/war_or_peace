@@ -8,7 +8,7 @@ class Deck
   def rank_of_card_at(index)
     if @cards == []
       0
-    elsif @cards[index].rank == nil
+    elsif @cards.length == 2
       0
     else
       @cards[index].rank
