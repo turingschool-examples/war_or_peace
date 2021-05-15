@@ -33,14 +33,16 @@ class Turn
     def pile_cards
         case type
         when :basic
-            spoils_of_war << player1.deck.remove_card
-            spoils_of_war << player2.deck.remove_card
+            @spoils_of_war << player1.deck.remove_card
+            @spoils_of_war << player2.deck.remove_card
         when :war
-            spoils_of_war.concat(player1.deck.cards[0..2])
-            spoils_of_war.concat(player2.deck.cards[0..2])
+            3.times {@spoils_of_war << player1.deck.remove_card}
+            3.times {@spoils_of_war << player2.deck.remove_card}
         else
-            player1.deck.remove_card * 3
-            player2.deck.remove_card * 3
+            3.times do
+                player1.deck.remove_card
+                player2.deck.remove_card
+            end
         end
     end
 
