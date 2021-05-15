@@ -63,13 +63,13 @@ class Game
         end
 
         if count == 4000
-          p "---- DRAW ----"
+          puts "---- DRAW ----"
           break
         end
       end
 
     else
-      p "That's funny ... I thought I said to type 'GO' to start the game!  Try again!"
+      puts "That's funny ... I thought I said to type 'GO' to start the game!  Try again!"
     end
 
   end
