@@ -35,13 +35,25 @@ class Deck
   # return the percentage of cards that are high ranking
   def percent_high_ranking
     # 2 / 3 => 66.67
-    total_number_of_cards = @cards.length
+    total_number_of_cards = 0
 
-    number_of_high_cards = @high_ranking_cards.length
+    @cards.each do |card|
+      total_number_of_cards += 1
+    end
 
-    high = number_of_high_cards
-    total = total_number_of_cards
-    percentage_of_high_ranking_cards = high / total
+    total_number_of_cards
+
+    number_of_high_cards = 0
+
+    @cards.each do |card|
+      if card.rank >= 11
+        total_number_of_cards += 1
+      end 
+    end
+
+    number_of_high_cards
+
+    percentage_of_high_ranking_cards = number_of_high_cards / total_number_of_cards
   end
 
   # remove top card from the deck
