@@ -4,7 +4,7 @@ require './lib/player'
 require './lib/turn'
 
 class Game
-  attr_reader :standard_deck, :deck1, :deck2, :player1, :player2
+  attr_reader :standard_deck, :deck1, :deck2, :player1, :player2, :turn
 
   def start
     p "Welcome to War! (or Peace) This game will be played with 52 cards."
@@ -67,6 +67,16 @@ class Game
     turn = 0
     loop do
       turn += 1
+      if @turn.player1.has_lost? == true
+        return p "*~*~*~* #{@turn.player1.name} has won the game! *~*~*~*"
+        break
+      elsif @turn.player2.has_lost? == true
+        return p "*~*~*~* #{@turn.player2.name} has won the game! *~*~*~*"
+        break
+      elsif turn == 1000000
+        return p "---- DRAW ----"
+        break
+      end
       @turn.type
       winner = @turn.winner
       @turn.pile_cards
@@ -77,11 +87,6 @@ class Game
         p "Turn #{turn}: #{winner.name} won 2 cards"
       else
         p "Turn #{turn}: WAR - #{winner.name} won 6 cards"
-      end
-      if @turn.player1.deck == [] || @turn.player2.deck == []
-        break
-      elsif turn == 1000
-        break
       end
     end
   end
