@@ -81,6 +81,7 @@ require './lib/player'
 
         expect(@player1.deck.cards).to eq([@card2, @card5, @card8, @card1, @card3])
         expect(@player2.deck.cards).to eq([@card4, @card6, @card7])
+        expect(turn.spoils_of_war.empty?).to be true
       end
   end
 end
@@ -150,6 +151,7 @@ end
 
         expect(@player1.deck.cards).to eq([@card8])
         expect(@player2.deck.cards).to eq([@card7, @card1, @card2, @card5, @card4, @card3, @card6])
+        expect(@turn.spoils_of_war.empty?).to be true
       end
   end
 end
