@@ -13,11 +13,11 @@ game.add_club_card
 game.add_spade_card
 game.add_heart_card
 
-deck1 = Deck.new(game.create_deck)
-deck2 = Deck.new(game.create_deck)
+deck1 = Deck.new(game.create_deck.shuffle)
+deck2 = Deck.new(game.create_deck.shuffle)
 
-player1 = Player.new('Megan', deck1.shuffle)
-player2 = Player.new('Aurora', deck2.shuffle)
+player1 = Player.new('Megan', deck1)
+player2 = Player.new('Aurora', deck2)
 
 turn = Turn.new(player1, player2)
 

@@ -8,6 +8,7 @@ class Deck
   end
 
   def rank_of_card_at (index)
+    #binding.pry
     @cards[index].rank
   end
 
