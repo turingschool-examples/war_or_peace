@@ -22,9 +22,9 @@ class Turn
     def winner
         case type
         when :basic
-            player1.deck[0] > player2.deck[0] ? player1 : player2
+            player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0) ? player1 : player2
         when :war
-            player1.deck[2] > player2.deck[2] ? player1 : player2
+            player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2) ? player1 : player2
         else
             'No Winner'
         end
