@@ -327,6 +327,8 @@ RSpec.describe Turn do
       turn.pile_cards
 
       expect(turn.spoils_of_war).to eq([])
+      expect(player1.deck).to eq(deck1)
+      expect(player2.deck).to eq(deck2)
     end
   end
 end
