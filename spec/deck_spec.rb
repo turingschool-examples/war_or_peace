@@ -5,12 +5,13 @@ describe Deck do
   it "exists" do
     deck = Deck.new('cards')
 
-    expect(deck).to be_an_instance_of (Deck)
+    expect(deck).to be_an_instance_of(Deck)
   end
 
-  it "has 52 cards" do
-    deck = Deck.new()
+  it "lists cards in the deck" do
+    cards = ["card1", "card2", "card3"]
+    deck = Deck.new(cards)
 
-    expect(deck).to eq
+    expect(deck.cards).to eq(["card1", "card2", "card3"])
   end
 end
