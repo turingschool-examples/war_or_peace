@@ -19,7 +19,7 @@ This is the repo for Taylor Varoglu's BE Mod1 **War or Peace** project.
 
 1. **Testing Output**
     - Note, `greet` and `start` methods in `Game` class return strings, and therefore print intended terminal outputs during a `spec` run.
-    - Note, even with a limited game run test (deck of 6 cards), the game can still result in a draw.
+    - Note, even with a limited game run test (deck of 8 cards), the game can still result in a draw.
 
 <img width="592" alt="test_output.png" src="https://user-images.githubusercontent.com/58891447/118371959-3f6aee80-b56c-11eb-8295-4012d89db148.png">
 
