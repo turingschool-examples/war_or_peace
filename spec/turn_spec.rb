@@ -27,5 +27,9 @@ RSpec.describe Turn do
       expect(@turn.player1).to eq(@player1)
       expect(@turn.player2).to eq(@player2)
     end
+
+    it 'has spoils of war method' do
+      expect(@turn.spoils_of_war).to eq([])
+    end
   end
 end
