@@ -10,5 +10,8 @@ RSpec.describe Deck do
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
+    player = Player.new('Clarisa', deck)
+
+    expect(player).to be_an_instance_of(Player)
   end
 end
