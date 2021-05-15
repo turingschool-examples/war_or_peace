@@ -9,29 +9,18 @@ class Turn
 
   def type
 
-      p1card = @player1.deck.rank_of_card_at(0)
-      p2card = @player2.deck.rank_of_card_at(0)
-      p1card3 = @player1.deck.rank_of_card_at(2)
-      p2card3 = @player2.deck.rank_of_card_at(2)
-
-      if p1card != p2card
-          :basic
-      elsif p1card == p2card || p1card3 == p2card3
+      if @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
         :mutually_assured_destruction
-      elsif p1card == p2card
+      elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
         :war
       else
-        puts "Game Over"
+        :basic
       end
   end
 
   def winner
-
-    p1card = @player1.deck.rank_of_card_at(0)
-    p2card = @player2.deck.rank_of_card_at(0)
-
     if type == :basic
-      if p1card > p2card
+      if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
         @player1
       else
         @player2
@@ -43,7 +32,7 @@ class Turn
           @player2
         end
     elsif type == :mutually_assured_destruction
-        puts "No Winner"
+        "No Winner"
     else
       puts "Game Over"
     end
@@ -62,7 +51,6 @@ class Turn
     else
       puts "Game Over"
     end
-
   end
 
   def award_spoils(winner)
