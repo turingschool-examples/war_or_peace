@@ -8,66 +8,15 @@ class Game
 
   def start
     puts "Welcome to War! (or Peace) This game will be played with 52 cards."
-    puts "The players today are Megan and Aurora."
+    puts "The players today are Ian and Mike."
     puts "Type 'GO' to start the game!"
     puts "------------------------------------------------------------------"
 
     start_word = gets.chomp
 
     if start_word == "GO"
-
       initialize_deck
-
-      deck1 = Deck.new(@full_deck[0..25])
-      deck2 = Deck.new(@full_deck[26..52])
-      player1 = Player.new("Ian", deck1)
-      player2 = Player.new("Mike", deck2)
-
-      count = 0
-
-      loop do
-
-        count +=1
-
-        turn = Turn.new(player1, player2)
-        turn_type = turn.type
-        if turn_type == :basic || turn_type == :war
-          turn_winner = turn.winner.name
-        end
-        turn.pile_cards
-        spoils_count = turn.spoils_of_war.count
-        # p turn.spoils_of_war # checking cards in spoils are changing
-        turn.award_spoils
-
-        if turn_type == :basic
-          puts "Turn #{count}: #{turn_winner} won #{spoils_count} cards"
-        elsif turn_type == :war
-          puts "Turn #{count}: WAR - #{turn_winner} won #{spoils_count} cards"
-        elsif turn_type == :mutually_assured_destruction
-          puts "Turn #{count}: *mutually assured destruction* 6 cards removed from play"
-        elsif turn_type == :draw
-          puts "Turn #{count}: The cards are getting low!  This was a draw! Please hold while I shuffle both decks!"
-        else
-          puts "There's been a very terrible error!"
-        end
-
-        # p player1.deck.cards.count # checking card count
-        # p player2.deck.cards.count # checking card count
-
-        if player1.has_lost?
-          puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
-          break
-        elsif player2.has_lost?
-          puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
-          break
-        end
-
-        if count == 4000
-          puts "---- DRAW ----"
-          break
-        end
-      end
-
+      play_game
     else
       puts "That's funny ... I thought I said to type 'GO' to start the game!  Try again!"
     end
@@ -136,6 +85,61 @@ class Game
 
     @full_deck.shuffle!.shuffle!.shuffle! # three times a charm!
 
+  end
+
+  def play_game
+    deck1 = Deck.new(@full_deck[0..25])
+    deck2 = Deck.new(@full_deck[26..52])
+    player1 = Player.new("Ian", deck1)
+    player2 = Player.new("Mike", deck2)
+
+    @count = 0
+
+    loop do
+
+      @count +=1
+
+      turn = Turn.new(player1, player2)
+      @turn_type = turn.type
+      if @turn_type == :basic || @turn_type == :war
+        @turn_winner = turn.winner.name
+      end
+      turn.pile_cards
+      @spoils_count = turn.spoils_of_war.count
+      # p turn.spoils_of_war # checking cards in spoils are changing
+      turn.award_spoils
+      game_output
+
+      # p player1.deck.cards.count # checking card count
+      # p player2.deck.cards.count # checking card count
+
+      if player1.has_lost?
+        puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
+        break
+      elsif player2.has_lost?
+        puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
+        break
+      end
+
+      if @count == 1000000
+        puts "---- DRAW ----"
+        break
+      end
+    end
+  end
+
+  def game_output
+    if @turn_type == :basic
+      puts "Turn #{@count}: #{@turn_winner} won #{@spoils_count} cards"
+    elsif @turn_type == :war
+      puts "Turn #{@count}: WAR - #{@turn_winner} won #{@spoils_count} cards"
+    elsif @turn_type == :mutually_assured_destruction
+      puts "Turn #{@count}: *mutually assured destruction* 6 cards removed from play"
+    elsif @turn_type == :draw
+      puts "Turn #{@count}: The cards are getting low!  This was a draw! Please hold while I shuffle both decks!"
+    else
+      puts "There's been a very terrible error!"
+    end
   end
 
 end
