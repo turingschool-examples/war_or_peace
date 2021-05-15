@@ -14,12 +14,20 @@ class Deck
   end
 
   # return an array of cards in the deck that have a rank of 11 or above (face cards or aces)
-  # def high_ranking_cards(card)
+  def high_ranking_cards
+    # high_ranking_cards = []
+
+    @cards.each 
+
+    # for
+      # if @cards.rank >= 11
+
+    high_ranking_cards
   #   'Jack' = 11
   #   'Queen' = 12
   #   'King' = 13
   #   'Ace' = 14
-  # end
+  end
 
   # return the percentage of cards that are high ranking
   # def percent_high_ranking
