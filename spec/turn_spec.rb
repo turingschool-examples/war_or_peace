@@ -1,5 +1,6 @@
 require 'rspec'
 require './lib/card'
+require './lib/deck'
 require './lib/player'
 require './lib/turn'
 
@@ -27,8 +28,8 @@ RSpec.describe Turn do
     expect(@turn).to be_an_instance_of(Turn)
   end
 
-  it "" do
-
+  it "is a basic turn type" do
+    expect(@turn.type).to eq(:war)
   end
 
 
