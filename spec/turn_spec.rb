@@ -51,7 +51,7 @@ RSpec.describe Turn do
     it 'has a winner' do
       winner = turn.winner
 
-      expect(winner).to eq(turn.player1)
+      expect(winner.name).to eq(turn.player1.name)
     end
 
     it 'can pile cards in spoils' do
@@ -91,7 +91,7 @@ RSpec.describe Turn do
     it 'has a war winner' do
       winner = turn.winner
 
-      expect(winner).to eq(turn.player2)
+      expect(winner.name).to eq(turn.player2.name)
     end
 
     it 'can pile cards in war spoils' do
