@@ -76,7 +76,7 @@ class Game
           p "*~*~*~* #{@turn.player1.name} has won the game! *~*~*~*"
         end
         break
-      elsif turn_count > 10000
+      elsif turn_count > 1000000
         p "---- DRAW ----"
         break
       end
