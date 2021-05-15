@@ -49,7 +49,7 @@ describe Deck do
 
     deck = Deck.new(cards)
 
-    expect(deck.percent_high_ranking).to eq(2 / 3)
+    expect(deck.percent_high_ranking).to eq(66.67)
   end
 
   it "removes top card from the deck" do

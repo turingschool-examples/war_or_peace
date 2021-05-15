@@ -28,33 +28,47 @@ class Deck
     end
 
     high_ranking_cards
-    @high_ranking_cards = high_ranking_cards
 
   end
 
   # return the percentage of cards that are high ranking
   def percent_high_ranking
-    # 2 / 3 => 66.67
-    total_number_of_cards = 0
+    cards = @cards
+    total_number_of_cards = cards.length
 
-    @cards.each do |card|
-      total_number_of_cards += 1
-    end
-
-    total_number_of_cards
-
-    number_of_high_cards = 0
+    high_cards = []
 
     @cards.each do |card|
       if card.rank >= 11
-        total_number_of_cards += 1
+        high_cards << card
       end
     end
 
-    number_of_high_cards
+    high_cards
 
-    percentage_of_high_ranking_cards = number_of_high_cards / total_number_of_cards
+    number_of_high_cards = high_cards.length
+
+    # total_number_of_cards = 0
+    #
+    # @cards.each do |card|
+    #   total_number_of_cards += 1
+    # end
+    #
+    # total_number_of_cards
+
+    # number_of_high_cards = 0
+
+    # @cards.each do |card|
+      # if card.rank >= 11
+        # number_of_high_cards += 1
+      # end
+    # end
+
+    # number_of_high_cards
+
+    percentage_of_high_ranking_cards = number_of_high_cards / total_number_of_cards * 100.00
   end
+  # 2 / 3 => 66.67, 1 / 2 = 50.0, 1 / 3 = 33.33
   # passes test but returning 0 in pry???
 
   # remove top card from the deck
