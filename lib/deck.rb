@@ -1,3 +1,5 @@
+require "pry"
+
 class Deck
   attr_reader :cards
   def initialize(cards)
@@ -11,8 +13,14 @@ class Deck
     @cards[index].rank
   end
 
-  def high_ranking_cards(face_cards)
-    @cards[face_cards]
+  def high_ranking_cards
+    @cards.select do |card|
+      card.rank >= 11
+    end
+  end
+
+  def percent_high_rank
+    binding.pry
   end
 
 end
