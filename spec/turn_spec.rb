@@ -167,4 +167,27 @@ RSpec.describe Turn do
 
   end
 
+  describe 'Low Card Count Cases' do
+
+    before(:each) do
+      @card1 = Card.new(:heart, 'Jack', 11)
+      @card2 = Card.new(:heart, '10', 10)
+      @card3 = Card.new(:heart, '9', 9)
+      @card4 = Card.new(:diamond, 'Jack', 11)
+      @deck1 = Deck.new([@card1, @card2])
+      @deck2 = Deck.new([@card4, @card3])
+      @player1 = Player.new("Megan", @deck1)
+      @player2 = Player.new("Aurora", @deck2)
+      @turn = Turn.new(@player1, @player2)
+      @turn.player1
+      @turn.player2
+    end
+
+    it "has less than two cards" do
+      expect(@turn.player1.deck.cards.length).to eq(2)
+      expect(@turn.player2.deck.cards.length).to eq(2)
+      expect(@turn.type).to eq(:draw)
+    end
+
+  end
 end
