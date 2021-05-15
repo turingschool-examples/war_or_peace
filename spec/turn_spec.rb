@@ -39,6 +39,17 @@ describe Turn do
   end
 
   it "returns winner of basic turn" do
+    winner = @turn.winner
     expect(@turn.winner).to eq(@player1)
   end
+
+  it "piles cards for basic turn into spoils_of_war array" do
+    @turn.pile_cards
+    expect(@turn.spoils_of_war).to match_array([
+      have_attributes(suit: :heart, value: "Jack", rank: 11),
+      have_attributes(suit: :heart, value: "9", rank: 9),
+    ])
+  end
+
+
 end
