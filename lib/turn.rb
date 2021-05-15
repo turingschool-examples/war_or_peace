@@ -37,21 +37,25 @@ class Turn
       @spoils_of_war.concat(player1.deck.cards.shift(3))
       @spoils_of_war.concat(player2.deck.cards.shift(3))
     elsif type == :mutually_assured_destruction
-      player1.deck.cards.shift(3)
-      player2.deck.cards.shift(3)
+      @player1.deck.cards.shift(3)
+      @player2.deck.cards.shift(3)
     end
   end
 
   def award_spoils(winner)
+    # require "pry"; binding.pry
     if winner == @player1
-      @player1.deck.cards << @spoils_of_war
+      @player1.deck.cards.concat(@spoils_of_war)
+      @spoils_of_war = []
     elsif winner == @player2
-      @player2.deck.cards << @spoils_of_war
+      @player2.deck.cards.concat(@spoils_of_war)
+      @spoils_of_war = []
     end
   end
 
   # Helper Methods
   def first_card(player)
+    # require "pry"; binding.pry
     player.deck.rank_of_card_at(0)
   end
 

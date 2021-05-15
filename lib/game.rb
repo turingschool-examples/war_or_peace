@@ -13,19 +13,19 @@ class Game
       turn_count += 1
 
       if @turn.type == :basic
-        winner = turn.winner
+        winner = @turn.winner
         @turn.pile_cards
         @turn.award_spoils(winner)
 
         p "Turn #{turn_count}: #{winner.name} won 2 cards"
       elsif @turn.type == :war
-        winner = turn.winner
+        winner = @turn.winner
         @turn.pile_cards
         @turn.award_spoils(winner)
 
         p "Turn #{turn_count}: #{winner.name} won 6 cards"
       else
-        winner = turn.winner
+        winner = @turn.winner
         @turn.pile_cards
         @turn.award_spoils(winner)
 
@@ -34,6 +34,8 @@ class Game
 
       if @turn.player1.deck.cards.length == 0 || @turn.player1.deck.cards.length == 0
         end_game
+      elsif turn_count == 1000000
+        p ' ---- DRAW ----'
       end
     end
   end
