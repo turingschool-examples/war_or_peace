@@ -38,7 +38,14 @@ class Turn
     if type == :basic
       @spoils_of_war = [@player1.deck.remove_card, @player2.deck.remove_card]
     elsif type == :war
-      @spoils_of_war = [3.times { p @player1.deck.remove_card}]
+      @spoils_of_war = [
+        @player1.deck.remove_card,
+        @player1.deck.remove_card,
+        @player1.deck.remove_card,
+        @player2.deck.remove_card,
+        @player2.deck.remove_card,
+        @player2.deck.remove_card
+      ]
     else
       count = 0
       loop do
