@@ -1,5 +1,6 @@
 require 'rspec'
 require './lib/game_deck'
+require './lib/deck'
 
 
 describe GameDeck do
@@ -16,6 +17,15 @@ describe GameDeck do
       expect(deck1.deck.cards.last.rank).to eq(14)
       expect(deck1.deck.cards.last.value).to eq('Ace')
       expect(deck1.deck.cards.last.suit).to eq(:club)
+    end
+
+    it 'is a deck' do
+      gamedeck = GameDeck.new
+      gamedeck = gamedeck.build_game_deck
+      deck = Deck.new(gamedeck)
+
+      expect(deck).to be_an_instance_of(Deck)
+      expect(deck.cards).to eq(gamedeck)
     end
   end
 end
