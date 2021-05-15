@@ -18,3 +18,7 @@ deck2 = Deck.new(game.create_deck)
 
 player1 = Player.new('Megan', deck1.shuffle)
 player2 = Player.new('Aurora', deck2.shuffle)
+
+turn = Turn.new(player1, player2)
+
+turn.start

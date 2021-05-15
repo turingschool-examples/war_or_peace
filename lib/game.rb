@@ -1,7 +1,8 @@
 require 'pry'
+require '../war_or_peace_runner'
 
 class Game
-  attr_reader :diamonds, :hearts, :clubs, :spades, :card_object
+  attr_reader :diamonds, :hearts, :clubs, :spades, :card_object, :turn
   def initialize ()
     @diamonds = []
     @hearts = []
@@ -210,9 +211,5 @@ class Game
     end
 
     cards
-  end
-
-  def start
-    #code
   end
   end
