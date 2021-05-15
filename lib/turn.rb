@@ -1,7 +1,7 @@
 require 'pry'
 
 class Turn
-  attr_reader :player1, :player2, :spoils_of_war, :type, :award_winner
+  attr_reader :player1, :player2, :spoils_of_war, :award_winner
   def initialize (player1, player2)
     @player1 = player1
     @player2 = player2
@@ -11,19 +11,19 @@ class Turn
 
   def type
     #binding.pry
-    if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
-      type = :basic
-    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player2.deck.rank_of_card_at(2) == player1.deck.rank_of_card_at(2)
-      type = :mutually_assured_destruction
-    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
-      type = :war
+    if @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player2.deck.rank_of_card_at(2) == @player1.deck.rank_of_card_at(2)
+      :mutually_assured_destruction
+    elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+      :basic
+    else
+      :war
     end
   end
 
   def winner
     #refactor to case statement
     #ternary operator
-    if type == :basic
+    if self.type == :basic
       #array = [player1.deck.rank_of_card_at(0), player2.deck.rank_of_card_at(0)]
       #binding.pry
       #array.max
@@ -33,14 +33,14 @@ class Turn
         @award_winner = player2
       end
 
-    elsif type == :war
+    elsif self.type == :war
       if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
         @award_winner = player1
       else
         @award_winner = player2
       end
 
-    elsif type == :mutually_assured_destruction
+    else
       return 'No Winner'
     end
   end
@@ -73,5 +73,25 @@ class Turn
     puts "The players today are #{player1.name} and #{player2.name}"
     puts "Type 'GO' to start the game"
     puts "---------------------------------------------------------------"
+    play_game = gets.chomp
+    if play_game == 'GO'
+      loop_count = 0
+      loop do
+        self.type
+        self.winner
+        self.pile_cards
+        loop_count +=1
+        puts "Turn #{loop_count}: #{self.type}, #{@award_winner.name} won #{@spoils_of_war.length} cards"
+        self.award_spoils
+        if player1.has_lost? == true || player2.has_lost? == false
+          break
+        end
+        if loop_count == 1000000
+          break
+        end
+    # else
+    #   puts 'No game for you.'
+      end
+    end
   end
 end
