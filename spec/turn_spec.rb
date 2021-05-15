@@ -36,8 +36,30 @@ RSpec.describe Turn do
     expect(@turn.winner).to eq(@player2)
   end
 
-  it "has a pile_cards" do
-    expect(@turn.pile_cards).to eq([@card1, @card2, @card5, @card4, @card3, @card6])
+  it "adds to the pile_cards" do
+    @turn.player1
+    @turn.player2
+
+    expect(@turn.pile_cards).to eq([@card1, @card4])
+    # player1 and player2 have to go before running .pile_cards
+    @turn.player1
+    @turn.player2
+    expect(@turn.pile_cards).to eq([@card1, @card4, @card2, @card3])
   end
 
+  it "start with empty array for spoils_of_war" do
+    expect(@turn.spoils_of_war).to eq([])
+
+  end
+
+  it "will award spoils_of_war to winner" do
+    winner = @turn.winner
+
+    expect(@turn.type).to eq(:war)
+    @turn.pile_cards
+    @turn.award_spoils(winner)
+
+    # expect(@turn.award_spoils(winner)).to eq([])
+    expect(@player1.deck.cards).to eq([@card2, @card5, @card8, @card1, @card3])
+  end
 end
