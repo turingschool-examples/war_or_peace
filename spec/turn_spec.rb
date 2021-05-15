@@ -28,11 +28,16 @@ RSpec.describe Turn do
     expect(@turn).to be_an_instance_of(Turn)
   end
 
-  it "is a basic turn type" do
+  it "has a turn type" do
     expect(@turn.type).to eq(:war)
   end
 
+  it "has a winner" do
+    expect(@turn.winner).to eq(@player2)
+  end
 
-
+  it "has a pile_cards" do
+    expect(@turn.pile_cards).to eq([@card1, @card2, @card5, @card4, @card3, @card6])
+  end
 
 end
