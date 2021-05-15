@@ -38,13 +38,13 @@ class Turn
       end
     # if turn type is :mutually_assured_destruction, return No Winner
     else # if self.type == :mutually_assured_destruction
-      puts "No Winner"
+      return "No Winner"
     end
   end
 
   def pile_cards
     # for :basic turn, each player will send 1 card (the top card) to spoils pile
-    if type = :basic
+    if type = :basic 
       @spoils_of_war << @player1.deck.cards.shift
       @spoils_of_war << @player2.deck.cards.shift
     # for :war turn, each player will send 3 cards (the top 3 cards) to spoils pile
