@@ -28,4 +28,8 @@ class Deck
   def add_card(card)
     @cards.append(card)
   end
+
+  def shuffle
+    @cards = @cards.shuffle
+  end
 end
