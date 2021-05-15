@@ -34,7 +34,7 @@ class Turn
             end 
 
         elsif type == :mutually_assured_destruction
-            return "No Winner"  
+            p "No Winner"
         end
     end
 
@@ -54,24 +54,20 @@ class Turn
         end 
 
         if type == :mutually_assured_destruction
-            @player1.deck.cards.shift(3).each do |card|
-            end 
-            @player2.deck.cards.shift(3).each do |card|  
-            end 
+            @player1.deck.cards.shift(3)
+            @player2.deck.cards.shift(3)
         end 
     end 
-
-   
 
     def award_spoils
         if @winner == player1
             @spoils_of_war.each do |card|
-                @player1.deck.cards << card
+                @winner.deck.add_card(card)
             end 
         else 
             @spoils_of_war.each do |card|
-                @player2.deck.cards << card
+                @winner.deck.add_card(card)
             end 
-        end 
+        end
     end 
 end
