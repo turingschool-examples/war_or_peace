@@ -31,5 +31,9 @@ RSpec.describe Turn do
     it 'has spoils of war method' do
       expect(@turn.spoils_of_war).to eq([])
     end
+
+    it 'returns type method as basic' do
+      expect(@turn.type).to eq(:basic)
+    end
   end
 end
