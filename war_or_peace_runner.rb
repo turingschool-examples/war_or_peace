@@ -12,7 +12,7 @@ class Game
     p "Type 'GO' to start the game!"
     p "-------------------------------------------------------------------"
     print "Type Here: "
-    # to_start = gets.chomp.upcase
+    to_start = gets.chomp.upcase
     create_deck
     shuffle_deck
     split_deck
@@ -76,11 +76,11 @@ class Game
           p "*~*~*~* #{@turn.player1.name} has won the game! *~*~*~*"
         end
         break
-      elsif turn_count > 1000000
+      elsif turn_count > 10000
         p "---- DRAW ----"
         break
       end
-      # p @turn.type
+      @turn.type
       winner = @turn.winner
       if @turn.type == :mutually_assured_destruction
         winner = nil
@@ -92,6 +92,8 @@ class Game
       end
       @turn.pile_cards
       @turn.award_spoils(winner)
+      # p @turn.player1.deck.cards.length
+      # p @turn.player2.deck.cards.length
     end
   end
 
