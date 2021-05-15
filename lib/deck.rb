@@ -1,5 +1,3 @@
-require "pry"
-
 class Deck
   attr_reader :cards
   def initialize(cards)
@@ -19,8 +17,17 @@ class Deck
     end
   end
 
-  def percent_high_rank
-    binding.pry
+  def percent_high_ranking
+    (high_ranking_cards.length / @cards.length.to_f).round(4) *100
   end
+
+  def remove_card
+    @cards.shift
+  end
+
+  def add_card
+    @cards.push[-1]
+  end
+
 
 end
