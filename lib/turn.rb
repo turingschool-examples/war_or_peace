@@ -8,10 +8,6 @@ class Turn
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
-    @player1_c1 = @player1.deck.rank_of_card_at(0)
-    @player2_c1 = @player2.deck.rank_of_card_at(0)
-    @p1ayer1_c2 = @player1.deck.rank_of_card_at(2)
-    @player2_c2 = @player2.deck.rank_of_card_at(2)
   end
 
   def type
@@ -19,7 +15,7 @@ class Turn
     @player2_c1 = @player2.deck.rank_of_card_at(0)
     @p1ayer1_c2 = @player1.deck.rank_of_card_at(2)
     @player2_c2 = @player2.deck.rank_of_card_at(2)
-    
+
     if @player1_c1 != @player2_c1
       @type = :basic
     elsif @p1ayer1_c2 != @player2_c2
