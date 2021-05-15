@@ -34,19 +34,11 @@ attr_reader :player1, :player2, :spoils_of_war
     if type == :basic
       # if the turn has a type of :basic, it returns whichever player has
       # a higher rank_of_card_at(0)
-      if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-        @winner = player1
-      else
-        @winner = player2
-      end
+      @winner = player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0) ? player1 : player2
     elsif type == :war
       # if the turn has a type of :war, the winner is whichever player has
       # a higher rank_of_card_at(2)
-      if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-        @winner = player1
-      else
-        @winner = player2
-      end
+      @winner = player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2) ? player1 : player2
     else
       # if the turn has a type of :mutually_assured_destruction, the method
       # returns No Winner.
@@ -102,7 +94,7 @@ attr_reader :player1, :player2, :spoils_of_war
     @player1.deck.cards.shuffle! # alternatively, could use #rotate method
     @player2.deck.cards.shuffle! # alternatively, could use #rotate method
   end
-  
+
   def award_spoils
     # this method adds each of the cards in the @spoils_of_war array to
     # the winner of the turn.
