@@ -5,7 +5,7 @@ require './lib/player'
 require './lib/turn'
 
 RSpec.describe Game do
-  it 'exists' do
+  it 'exists with attributes' do
     card1 = Card.new(:spade, '2', 2)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:spade, '4', 4)
@@ -82,5 +82,8 @@ RSpec.describe Game do
     game = Game.new(player1, player2, full_deck)
 
     expect(game).to be_an_instance_of(Game)
+    expect(game.player1).to eq(player1)
+    expect(game.player2).to eq(player2)
+    expect(game.full_deck).to eq(full_deck)
   end
 end
