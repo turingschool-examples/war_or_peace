@@ -1,10 +1,10 @@
 require './lib/deck'
 
 class GameDeck
-  attr_reader :deck
+  attr_reader :game_deck
 
   def initialize
-    @deck = Deck.new([])
+    @game_deck = []
   end
 
   def build_game_deck
@@ -14,7 +14,7 @@ class GameDeck
 
     suits.each do |suit|
       ranks.each do |rank|
-        @deck.cards << Card.new(suit, values[rank - 2], rank)
+        @game_deck << Card.new(suit, values[rank - 2], rank)
       end
     end
   end
