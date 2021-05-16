@@ -123,4 +123,43 @@ describe Turn do
     expect(@turn.spoils_of_war).to eq([])
     end
   end
+
+  context 'special_war method' do
+    it 'awards cards for second card winner' do
+      @deck1 = Deck.new([@card1, @card2])
+      @deck2 = Deck.new([@card1, @card4, @card6])
+      @player1 = Player.new("Megan", @deck1)
+      @player2 = Player.new("Aurora", @deck2)
+      @turn = Turn.new(@player1, @player2)
+
+      @turn.special_war
+      expect(@deck1.cards).to eq([])
+      expect(@deck2.cards).to eq([@card6, @card1, @card1, @card2, @card4])
+    end
+
+    it 'removes 2 cards for mutually assured destruction' do
+      @deck1 = Deck.new([@card1, @card2])
+      @deck2 = Deck.new([@card1, @card2, @card6])
+      @player1 = Player.new("Megan", @deck1)
+      @player2 = Player.new("Aurora", @deck2)
+      @turn = Turn.new(@player1, @player2)
+
+      @turn.special_war
+      expect(@turn.spoils_of_war).to eq([])
+      expect(@deck1.cards).to eq([])
+      expect(@deck2.cards).to eq([@card6])
+    end
+
+    it 'removes card if only one card and not basic turn' do
+      @deck1 = Deck.new([@card1])
+      @deck2 = Deck.new([@card1, @card4, @card6])
+      @player1 = Player.new("Megan", @deck1)
+      @player2 = Player.new("Aurora", @deck2)
+      @turn = Turn.new(@player1, @player2)
+
+      @turn.special_war
+      expect(@deck1.cards).to eq([])
+      expect(@deck2.cards).to eq([@card4, @card6])
+    end
+  end
 end
