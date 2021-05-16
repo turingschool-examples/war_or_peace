@@ -6,9 +6,7 @@ class Deck
   end
 
   def rank_of_card_at(index)
-    # if index == 2
-    #   # require 'pry'; binding.pry
-    # end
+
     @cards[index].rank
   end
 

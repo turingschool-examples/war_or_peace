@@ -12,9 +12,6 @@ class Turn
   def type
     if @player1.deck.cards.length < 3 || @player2.deck.cards.length < 3
       return :basic
-    #   # && @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
-    #   # && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
-
     elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
       return :mutually_assured_destruction
     elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
@@ -32,8 +29,6 @@ class Turn
        @player1
     elsif self.type == :basic && @player1.deck.rank_of_card_at(0) < @player2.deck.rank_of_card_at(0)
       @player2
-    # elsif self.type == :basic
-    #   @player1
     elsif self.type == :war && @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
        @player1
     elsif self.type == :war && @player1.deck.rank_of_card_at(2) < @player2.deck.rank_of_card_at(2)
