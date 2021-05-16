@@ -16,8 +16,8 @@ class Deck
   # This method will return an arry of cards in the deck that have a rank of 11
   # or above (face cards and aces)
   def high_ranking_cards
-    @cards.find_all do |high_rank|
-      high_rank.rank >= 11
+    @cards.find_all do |cards|
+      cards.rank >= 11
     end
   end
 

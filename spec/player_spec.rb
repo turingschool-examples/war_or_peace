@@ -1,7 +1,6 @@
 require 'rspec'
 require './lib/player'
 require './lib/deck'
-require './lib/card'
 
 RSpec.describe Player do
   before (:each)do
