@@ -7,6 +7,12 @@ class Turn
    @winner = nil
  end
 
+ def pile_cards
+   @spoils_of_war.basic << @player1.deck.rank_of_card_at(0) && @player2.deck.rank_of_card_at(0)
+   @spoils_of_war.war << @player1.deck.rank_of_card_at(0, 1, 2) && @player2.deck.rank_of_card_at(0, 1, 2)
+   @spoils_of_war.mutually_assured_destruction << @player1.deck.rank_of_card_at(0, 1, 2).shift && @player2.deck.rank_of_card_at(0, 1, 2).shift
+ end
+
  def type
   if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
     if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
@@ -27,4 +33,5 @@ class Turn
     :war
   end
  end
+
 end
