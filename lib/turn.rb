@@ -16,7 +16,7 @@ class Turn
     elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
       return :war
     # when the rank_of_card_at(0) from the players’ decks are not the same rank
-    elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+    else#if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
       return :basic
     end
   end
@@ -44,7 +44,7 @@ class Turn
 
   def pile_cards
     # for :basic turn, each player will send 1 card (the top card) to spoils pile
-    if type = :basic 
+    if type = :basic
       @spoils_of_war << @player1.deck.cards.shift
       @spoils_of_war << @player2.deck.cards.shift
     # for :war turn, each player will send 3 cards (the top 3 cards) to spoils pile
