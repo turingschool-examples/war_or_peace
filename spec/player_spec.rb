@@ -34,8 +34,8 @@ RSpec.describe Player do
     expect(@player.has_lost?).to be false
 
     @player.deck.remove_card
+    
     expect(@player.has_lost?).to be true
-
     expect(@player.deck.cards).to eq([])
   end
 end
