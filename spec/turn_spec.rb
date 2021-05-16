@@ -51,5 +51,24 @@ describe Turn do
     ])
   end
 
+  it "awards spoils_of_war into correct players hand" do
+    winner = @turn.winner
+    @turn.pile_cards
+    @turn.award_spoils(winner)
+
+    expect(@turn.player1.deck.cards).to match_array([
+      have_attributes(suit: :heart, value: "10", rank: 10),
+      have_attributes(suit: :heart, value: "8", rank: 8),
+      have_attributes(suit: :diamond, value: "2", rank: 2),
+      have_attributes(suit: :heart, value: "Jack", rank: 11),
+      have_attributes(suit: :heart, value: "9", rank: 9),
+    ])
+
+    expect(@turn.player2.deck.cards).to match_array([
+      have_attributes(suit: :diamond, value: "Jack", rank: 11),
+      have_attributes(suit: :diamond, value: "Queen", rank: 12),
+      have_attributes(suit: :heart, value: "3", rank: 3),
+      ])
+  end
 
 end
