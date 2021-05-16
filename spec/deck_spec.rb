@@ -62,4 +62,21 @@ RSpec.describe Deck do
 
     expect(deck.add_card(card4)).to eq([card2, card3, card4])
   end
+
+  it 'populates full deck' do
+    deck = Deck.new([])
+    deck.populate
+
+    expect(deck.cards.length).to eq(52)
+  end
+
+  it 'shuffles and deals into 2 decks' do
+    deck = Deck.new([])
+    deck.populate
+    deck.shuffle_and_deal
+    player1 = Player.new("Megan", deck.deck1)
+    player2 = Player.new("Aurora", deck.deck2)
+
+    expect(player1.deck.cards.length).to eq(26)
+  end
 end
