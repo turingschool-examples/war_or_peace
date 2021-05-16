@@ -137,7 +137,7 @@ describe Turn do
       expect(@deck2.cards).to eq([@card6, @card1, @card1, @card2, @card4])
     end
 
-    it 'removes 2 cards for mutually assured destruction' do
+    it 'removes 4 cards for mutually assured destruction' do
       @deck1 = Deck.new([@card1, @card2])
       @deck2 = Deck.new([@card1, @card2, @card6])
       @player1 = Player.new("Megan", @deck1)
