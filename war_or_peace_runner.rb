@@ -50,3 +50,6 @@ card49 = Card.new(:spade, 'Jack', 11)
 card50 = Card.new(:spade, 'Queen', 12)
 card51 = Card.new(:spade, 'King', 13)
 card52 = Card.new(:spade, 'Ace', 14)
+
+game = Game.new
+game.start
