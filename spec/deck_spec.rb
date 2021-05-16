@@ -27,7 +27,7 @@ RSpec.describe Deck do
     expect(@deck.rank_of_card_at(2)).to eq(14)
   end
 
-  it 'has the high_ranking_cards' do
+  it 'is the high_ranking_cards' do
     expect(@deck.high_ranking_cards).to eq([@card1, @card3])
   end
 
@@ -37,9 +37,7 @@ RSpec.describe Deck do
   end
 
   it 'can remove_card from deck' do
-    # @deck.remove_card
-
-    # expect(@deck.remove_card).to eq(@card1)
+    @deck.remove_card
     expect(@deck.cards).to eq([@card2, @card3])
     #this should be 50 from removing 1 high card from the group of 3
     expect(@deck.percent_high_ranking).to eq(50.00)
