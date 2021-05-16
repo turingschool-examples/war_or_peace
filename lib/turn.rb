@@ -12,14 +12,15 @@ class Turn
     #   player1(name, deck1) => turn(p1, p2)
     p1 = @player1.deck
     p2 = @player2.deck
-    if p1.rank_of_card_at(0) == p2.rank_of_card_at(0)
+    p1_index_0_2 = [p1.rank_of_card_at(0), p1.rank_of_card_at(2)]
+    p2_index_0_2 = [p2.rank_of_card_at(0), p2.rank_of_card_at(2)]
+
+    if p1_index_0_2 == p2_index_0_2
+      :mutually_assured_destruction
+    elsif p1.rank_of_card_at(0) == p2.rank_of_card_at(0)
       :war
-    # if p1.rank_of_card_at(0,2) == p2.rank_of_card_at(0,2)
-    #   :mutually_assured_destruction
-    # elsif p1.rank_of_card_at(0) == p2.rank_of_card_at(0)
-    #   :war
-    # else p1.rank_of_card_at(0) != p2.rank_or_card_at(0)
-    #   :basic
+    else p1.rank_of_card_at(0) != p2.rank_of_card_at(0)
+      :basic
     end
   end
   # => :basic, :war, OR :mutually_assured_destruction

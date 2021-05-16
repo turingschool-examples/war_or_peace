@@ -107,11 +107,25 @@ describe Turn do
 
     turn = Turn.new(player1, player2)
 
-    # expect(turn.type).to eq(:basic)
+    expect(turn.type).to eq(:basic)
 
-    expect(turn.type).to eq(:war) #look at card order!
+    deck3 = Deck.new([card1, card2, card5, card8])
+    deck4 = Deck.new([card4, card3, card6, card7])
 
-    # expect(turn.type).to eq(:mutually_assured_destruction)
+    player3 = Player.new("Megan", deck3)
+    player4 = Player.new("Aurora", deck4)
+
+    turn = Turn.new(player3, player4)
+    expect(turn.type).to eq(:war)
+
+    deck5 = Deck.new([card1, card2, card1, card8])
+    deck6 = Deck.new([card4, card3, card4, card7])
+
+    player5 = Player.new("Megan", deck5)
+    player6 = Player.new("Aurora", deck6)
+
+    turn = Turn.new(player5, player6)
+    expect(turn.type).to eq(:mutually_assured_destruction)
   end
 end
 
