@@ -1,7 +1,7 @@
-require './lib/turn'
 require './lib/game'
-
-@game = Game.new
+require './lib/turn'
+require './lib/player'
+require './lib/deck'
 
 def standard_deck
   @cards1 = []
@@ -85,10 +85,8 @@ end
 
 def start_game
   standard_deck
-  # p @deck1
-  # p @deck2
+  @game = Game.new
   @game.start
-  game_input
 end
 
 def quit_game

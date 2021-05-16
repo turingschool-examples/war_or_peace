@@ -1,4 +1,6 @@
 require './lib/turn'
+require './lib/player'
+require './lib/deck'
 
 class Game
   attr_reader :start
@@ -9,19 +11,21 @@ class Game
   end
 
   def turns
-    turns = 0
+    @turns = 0
   end
 
   def start
-    if @player1.has_lost? != true do
-      if @player2.has_lost != true do
-        if @turns != 1000000 do
-          winner = @turn.winner
-          @turn.pile_cards
-          @turn.award_spoils(winner)
-          @turns += 1
-        end
+    p "START GAME"
+    loop do
+      @turns =+ 1
+      @turn
+      if @turn.type == :basic
+        "basic"
+      elsif @turn.type == :spoils_of_war
+        "spoils of war"
+      else
+        "war"
       end
     end
-    p @winner
   end
+end
