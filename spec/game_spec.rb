@@ -14,7 +14,7 @@ describe '#initialize' do
 
   it 'has a complete fulldeck' do
     game = Game.new
-    
+
 
     expect().to be()
   end
@@ -42,5 +42,9 @@ describe '#initialize' do
     game = Game.new
 
     expect().to be()
+
+    expect().to be()
+
+    expect(game.game_end(1000001)).to be(true)
   end
 end
