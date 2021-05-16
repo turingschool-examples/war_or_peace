@@ -22,5 +22,13 @@ RSpec.describe Turn do
     @player1 = Player.new('Aedion', @deck1)
     @player2 = Player.new('Aelin', @deck2)
 
+    @turn = Turn.new(player1, player2)
+
+    expect(@turn.player1.name).to eq('Aedion')
+    expect(@turn.player2.name).to eq('Aelin')
+    expect(@turn).to be_a(Turn)
+
   end
+
+
 end

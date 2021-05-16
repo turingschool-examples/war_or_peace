@@ -10,11 +10,11 @@ class Turn
 
   def type
     if p1_card.deck.rank_of_card_at(0) != p2_card.deck.rank_of_card_at(0)
-      @type = :basic
+     return :basic
     elsif p1_card.deck.rank_of_card_at(0) == p2_card.deck.rank_of_card_at(0)
-      @type = :war
+      return :war
     elsif p1_card.deck.rank_of_card_at(0) == p2_card.deck.rank_of_card_at(0) && p1_card.deck.rank_of_card_at(2) == p2_card.deck.rank_of_card_at(2)
-      @type = :mutually_assured_destruction
+      return :mutually_assured_destruction
     end
   end
 
@@ -27,13 +27,25 @@ class Turn
     elsif p2_card > p1_card
       return @player2
     end
+  end
 
-    def pile_cards
+  def pile_cards                                #correct?
+    if :basic
+      @spoils_of_war << @player1.deck.shift
+      @spoils_of_war << @player2.deck.shift
+    elsif :war
+      @spoils_of_war << @player1.deck.drop(3)
+      @spoils_of_war << @player2.deck.drop(3)
+    elsif :mutually_assured_destruction
+      @player1.deck.drop(3)
+      @player2.deck.drop(3)
     end
 
-    def award_spoils
-      turn.winner << @spoils_of_war
-    end
+  end
+
+  def award_spoils
+      turn.winner << @spoils_of_war  #correct?
+  end
 
   end
 end
