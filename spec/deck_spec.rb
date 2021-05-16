@@ -15,7 +15,7 @@ RSpec.describe Deck do
     expect(@deck).to be_an_instance_of(Deck)
   end
 
-  it "has an array" do
+  it "has expect array" do
     expect(@deck.cards).to eq([@card1, @card2, @card3])
   end
 
