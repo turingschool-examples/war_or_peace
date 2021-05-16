@@ -110,12 +110,6 @@ class Turn
     end
   end
 
-  # Method to destribute cards when one player has 2 or 1 cards remaining and
-  # the turn type is not basic (each player's first card has the same rank).
-  # In the event of 2 cards, the turn winner is determined by their second card
-  # with the winner receiving 4 cards, or in the event of a tie all 4 cards
-  # are removed from play. When a player has only 1 card, both cards are
-  # discarded from play, leaving that player with no remaining cards.
   def special_war
     if @player1.deck.cards.length == 2 || @player2.deck.cards.length == 2
       if @player1.deck.rank_of_card_at(1) == @player2.deck.rank_of_card_at(1)
