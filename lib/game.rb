@@ -1,7 +1,7 @@
 require 'pry'
 
 class Game
-  attr_reader :diamonds, :hearts, :clubs, :spades, :card_object, :turn
+  attr_reader :diamonds, :hearts, :clubs, :spades, :card_object
   def initialize ()
     @diamonds = []
     @hearts = []
