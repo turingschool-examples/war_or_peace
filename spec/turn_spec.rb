@@ -89,7 +89,7 @@ describe Turn do
     expect(turn.spoils_of_war).to eq([])
   end
 
-  it "has nothing in spoils_of_war" do
+  it "returns the type of turn based on card ranking" do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -107,11 +107,11 @@ describe Turn do
 
     turn = Turn.new(player1, player2)
 
-    expect(turn.type).to eq(:basic)
+    # expect(turn.type).to eq(:basic)
 
-    expect(turn.type).to eq(:war)
+    expect(turn.type).to eq(:war) #look at card order!
 
-    expect(turn.type).to eq(:mutually_assured_destruction)
+    # expect(turn.type).to eq(:mutually_assured_destruction)
   end
 end
 

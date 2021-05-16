@@ -8,12 +8,18 @@ class Turn
   end
 
   def type
-    if deck1.rank_of_card_at(0,2) == deck2.rank_of_card_at(0,2)
-      :mutually_assured_destruction
-    elsif deck1.rank_of_card_at(0) == deck2.rank_of_card_at(0)
+    # (suit, value, rank) => card1(s,v,r) => deck1([1,2,5,8]) =>
+    #   player1(name, deck1) => turn(p1, p2)
+    p1 = @player1.deck
+    p2 = @player2.deck
+    if p1.rank_of_card_at(0) == p2.rank_of_card_at(0)
       :war
-    else deck1.rank_of_card_at(0) != deck2.rank_or_card_at(0)
-      :basic
+    # if p1.rank_of_card_at(0,2) == p2.rank_of_card_at(0,2)
+    #   :mutually_assured_destruction
+    # elsif p1.rank_of_card_at(0) == p2.rank_of_card_at(0)
+    #   :war
+    # else p1.rank_of_card_at(0) != p2.rank_or_card_at(0)
+    #   :basic
     end
   end
   # => :basic, :war, OR :mutually_assured_destruction
