@@ -39,51 +39,49 @@ class Game
     fulldeck.shuffle!
   end
 
-  def power_on
-    p "Welcome to War! (or Peace) This game will be played with 52 cards. The players today are Megan and Aurora. Type 'GO' to start the game!------------------------------------------------------------------"
-    user_input = gets.chomp
+  def start
+    p "Welcome to War! (or Peace) This game will be played with 52 cards. The players today are Diana, The WonderWoman and Circe. Type 'GO' to start the game!------------------------------------------------------------------"
+    user_input = gets.chomp.upcase
     if user_input != 'GO'
       p 'Invalid input. Please try again'
-      power_on
+      start
     else
-      start_game
+      play
     end
   end
 
-  def turn_counter
-  end
-
-
-
-  def start_game
-    #loop until turn# == 1000001 then p "---- DRAW ----"
-    if type == :mutually_assured_destruction
-      p "Turn #{}: *mutually_assured_destruction* #{} cards removed from play"
-    elsif type == :war
-      p "Turn #{}: WAR - #{turn.winner.name} won #{} cards"
-    elsif type == :basic
-      p "Turn #{}: #{turn.winner.name} won #{} cards"
+#loop until turn# == 1000001 then p "---- DRAW ----"
+  def play
+    turn = Turn.new(@player1, @player2)
+    # winner = turn.winner # little mistake, teachable moment
+    # turn.pile_cards # teachable moment
+    counter = 0
+    while counter < 100
+      # break loop if @playe1.deck.cards == 0 or if @player2..... == 0
+    counter += 1
+      if turn.type == :mutually_assured_destruction
+        p "Turn #{counter}: *mutually_assured_destruction* 6 cards removed from play"
+        turn.pile_cards
+      elsif turn.type == :war
+        p "Turn #{counter}: WAR - #{turn.winner.name} won 6 cards"
+        turn.pile_cards
+        turn.award_spoils(turn.winner)
+      elsif turn.type == :basic
+        p "Turn #{counter}: #{turn.winner.name} won 2 cards"
+        turn.pile_cards
+        turn.award_spoils(turn.winner)
+      end
     end
   end
 
   def game_end
     if @player1.has_lost?
       p "*~*~*~* #{@player2.name} has won the game!} *~*~*~*"
-      power_off
     elsif @player2.has_lost?
       p "*~*~*~* #{@player1.name} has won the game!} *~*~*~*"
-      power_off
-    elsif turn_counter == 1000001
+    elsif 
       p "---- DRAW ----"
-      power_off
+    else
+    end
   end
 end
-
-  def power_off
-    #how to make it wait a few sec before exiting like 15 sec countdown??exit!
-  end
-end
-
-
-  # turn = Turn.new(@player1, @player2)
-  # turn.type

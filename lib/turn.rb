@@ -14,7 +14,7 @@ class Turn
       :mutually_assured_destruction
     elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
       :war
-    else
+    elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
       :basic
     end
   end
@@ -24,8 +24,8 @@ class Turn
       winner_basic
     elsif type == :war
       winner_war
-    else type == :mutually_assured_destruction
-      p 'No Winner'
+    elsif type == :mutually_assured_destruction
+      winner_mutually_assured_destruction
     end
   end
 
@@ -49,6 +49,13 @@ class Turn
     end
   end
 
+  def winner_mutually_assured_destruction
+    if type == :mutually_assured_destruction
+      @player1 && @player2
+    end
+  end
+  ### Why does this work to not break game but breaks test?????
+
   def pile_cards
     if type == :basic
       @spoils_of_war << @player1.deck.remove_card
@@ -58,7 +65,7 @@ class Turn
       war1.flatten!
       war2 = @spoils_of_war << @player2.deck.cards.slice!(0..2)
       war2.flatten!
-    else type == :mutually_assured_destruction
+    elsif type == :mutually_assured_destruction
       3.times{@player1.deck.remove_card}
       3.times{@player2.deck.remove_card}
     end
