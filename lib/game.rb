@@ -112,13 +112,13 @@ require './lib/turn'
         @turn = Turn.new(@player1, @player2)
         turn_count += 1
         if @player1.has_lost? == true
-          p '*~*~*~* Aurora has won the game! *~*~*~*'
+          puts '*~*~*~* Aurora has won the game! *~*~*~*'
           break
         elsif @player2.has_lost? == true
-          p '*~*~*~* Megan has won the game! *~*~*~*'
+          puts '*~*~*~* Megan has won the game! *~*~*~*'
           break
         elsif turn_count > 1000000
-          p '---- DRAW ----'
+          puts '---- DRAW ----'
           break
         end
 
