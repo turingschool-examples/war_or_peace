@@ -28,4 +28,9 @@ class Turn
      return player2
     end
   end
+
+  def pile_cards
+    @spoils_of_war << player1.deck.remove_card
+    @spoils_of_war << player2.deck.remove_card
+  end
 end
