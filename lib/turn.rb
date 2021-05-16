@@ -20,38 +20,38 @@ class Turn
   end
 
   def winner
-    #refactor to case statement
-    #ternary operator
-    if @type == :basic
+    case @type
+    when :basic
       if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
         @award_winner = player1
       else
         @award_winner = player2
       end
 
-    elsif @type == :war
+    when :war
       if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
         @award_winner = player1
       else
         @award_winner = player2
       end
 
-    else
+    when :mutually_assured_destruction
       @award_winner = 'No Winner'
       return 'No Winner'
     end
   end
 
   def pile_cards
-    if type == :basic
+    case @type
+    when :basic
       spoils_of_war << player1.deck.remove_card
       spoils_of_war << player2.deck.remove_card
 
-    elsif type == :war
+    when :war
       3.times {spoils_of_war << player1.deck.remove_card}
       3.times {spoils_of_war << player2.deck.remove_card}
 
-    elsif type == :mutually_assured_destruction
+    when :mutually_assured_destruction
       3.times {player1.deck.remove_card}
       3.times {player2.deck.remove_card}
     end
@@ -65,6 +65,7 @@ class Turn
     end
     @spoils_of_war = []
   end
+
   def start
     puts 'Welcome to War! (or Peace) This game will be played with 52 cards.'
     puts "The players today are #{player1.name} and #{player2.name}"
@@ -84,7 +85,7 @@ class Turn
               puts "Turn #{loop_count}: *#{@type}* #{@award_winner.name} won #{@spoils_of_war.length} cards"
           end
           self.award_spoils(@award_winner)
-          #to make the game a little more interesting uncomment lines 88 & 89
+          #to make the game a little more interesting uncomment lines 89 & 90
           #@player1.deck.shuffle
           #@player2.deck.shuffle
           if loop_count == 1000000
@@ -100,6 +101,8 @@ class Turn
             break
           end
         end
-      end
+    else
+      puts "Okay then... we'll play later."
+    end
   end
 end
