@@ -104,6 +104,7 @@ RSpec.describe do
       turn.award_spoils(winner)
 
       expect(player1.deck).to eq(winner.deck)
+      expect(player2.deck).to eq(deck2)
     end
   end
 end
