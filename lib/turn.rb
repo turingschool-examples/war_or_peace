@@ -75,4 +75,41 @@ class Turn
     end
     @spoils_of_war = []
   end
+
+  def start
+    print 'Welcome to War! (or Peace) '
+    puts 'This game will be played with 52 cards.'
+    puts "The players today are #{@player1.name} and #{@player2.name}."
+    puts 'Type \'GO\' to start the game!'
+    puts '-' * 59
+
+    starter = gets.chomp
+    turn = 0
+
+    while @player1.deck.cards.length >= 3 &&  @player2.deck.cards.length >= 3
+      turn = turn + 1
+
+      if self.type == :basic && turn <= 1000000
+        puts "Turn #{turn}: #{self.winner.name} won 2 cards"
+      elsif self.type == :war && turn <= 1000000
+        puts "Turn #{turn}: WAR - #{self.winner.name} won 6 cards"
+      elsif self.type == :mutually_assured_destruction && turn <= 1000000
+        print "Turn #{turn}: *mutually assured "
+        puts 'destruction* 6 cards removed from play'
+      elsif turn > 1000000
+        puts "DRAW: After 1 million glorious and heroric turns"
+        puts "#{@player1.name} and #{@player2.name} go away in peace"
+        break
+      end
+      win = self.winner
+      self.pile_cards
+      self.award_spoils(win)
+    end
+
+    if @player1.deck.cards.length >= 3
+      "#{@player1.name} wins!!"
+    elsif @player2.deck.cards.length >= 3
+      "#{@player2.name} wins!!"
+    end
+  end
 end
