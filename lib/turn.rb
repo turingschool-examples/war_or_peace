@@ -81,35 +81,44 @@ class Turn
     puts 'This game will be played with 52 cards.'
     puts "The players today are #{@player1.name} and #{@player2.name}."
     puts 'Type \'GO\' to start the game!'
-    puts '-' * 59
-
+    puts '-' * 65
     starter = gets.chomp
     turn = 0
 
-    while @player1.deck.cards.length >= 3 &&  @player2.deck.cards.length >= 3
-      turn = turn + 1
+    if starter == 'GO' || starter == 'go' || starter == 'Go'
 
-      if self.type == :basic && turn <= 1000000
-        puts "Turn #{turn}: #{self.winner.name} won 2 cards"
-      elsif self.type == :war && turn <= 1000000
-        puts "Turn #{turn}: WAR - #{self.winner.name} won 6 cards"
-      elsif self.type == :mutually_assured_destruction && turn <= 1000000
-        print "Turn #{turn}: *mutually assured "
-        puts 'destruction* 6 cards removed from play'
-      elsif turn > 1000000
-        puts "DRAW: After 1 million glorious and heroric turns"
-        puts "#{@player1.name} and #{@player2.name} go away in peace"
-        break
+      while @player1.deck.cards.length >= 3 &&  @player2.deck.cards.length >= 3
+        turn = turn + 1
+        if self.type == :basic && turn <= 1000000
+          puts "Turn #{turn}: #{self.winner.name} won 2 cards"
+
+        elsif self.type == :war && turn <= 1000000
+          puts "Turn #{turn}: WAR - #{self.winner.name} won 6 cards"
+
+        elsif self.type == :mutually_assured_destruction && turn <= 1000000
+          print "Turn #{turn}: *mutually assured "
+          puts 'destruction* 6 cards removed from play'
+
+        elsif turn > 1000000
+          puts '*~*~*~* DRAW *~*~*~*'
+          puts "#{@player1.name} and #{@player2.name} end their war with peace"
+          break
+        end
+
+        win = self.winner
+        self.pile_cards
+        self.award_spoils(win)
       end
-      win = self.winner
-      self.pile_cards
-      self.award_spoils(win)
-    end
 
-    if @player1.deck.cards.length >= 3
-      "#{@player1.name} wins!!"
-    elsif @player2.deck.cards.length >= 3
-      "#{@player2.name} wins!!"
+      if @player1.deck.cards.length >= 3 && turn < 1000000
+        puts "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+
+      elsif @player2.deck.cards.length >= 3 && turn < 1000000
+        puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+      end
+
+    else
+      puts 'Invalid input'
     end
   end
 end
