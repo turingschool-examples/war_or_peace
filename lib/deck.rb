@@ -18,10 +18,10 @@ class Deck
 
 #receiving error 'count' is undefined method
   def percent_high_ranking
-    (@high_ranking_cards.count.fdiv(@cards.count) * 100).round(2)
+    (high_ranking_cards.count.fdiv(@cards.count) * 100).round(2)
   end
 
-    #receiving errors this method is undefined?
+
   def remove_card
     #removes the top(first) card from our deck
     @cards.shift
@@ -33,7 +33,8 @@ class Deck
     #of the deck
     # @cards << new_card
 
-    #error because of 'new_card' not sure what variable to use here
+    #error because of 'new_card' not sure what to use here
+    #error fixed by adding it as a parameter?
     @cards.insert(-1, new_card)
   end
 end
