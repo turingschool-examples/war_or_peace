@@ -9,7 +9,8 @@ attr_reader :name,
   end
 
 #this determines when the player loses
-#could this piece of code work?(found online) ask instructor
+#the method is counting the amount of cards the player holds
+#when that is equal to 0 the player then loses the game
   def lost?
     @deck.cards.length == 0
   end

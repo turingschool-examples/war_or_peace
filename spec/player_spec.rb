@@ -35,4 +35,5 @@ RSpec.describe Player do
       @player.deck.remove_card
       expect(@player.lost?).to be true
     end
+    
 end

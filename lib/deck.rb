@@ -16,7 +16,9 @@ class Deck
     end
   end
 
-#receiving error 'count' is undefined method
+#fdiv is taking the # of high_ranking_cards and dividing them by total cards
+#allowing us to * by 100 to find the percent
+#round is rounding our number to 2 decimal places
   def percent_high_ranking
     (high_ranking_cards.count.fdiv(@cards.count) * 100).round(2)
   end
