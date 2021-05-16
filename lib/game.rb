@@ -1,8 +1,8 @@
 class Game
-    attr_reader :turn
+    attr_reader :turns
 
     def initialize
-        @turn = 0
+        @turns = 0
     end
 
     def welcome
@@ -15,8 +15,18 @@ class Game
     end
 
     def turn_counter
-        @turn += 1
+        @turns += 1
         print 'Turn #{@turn}: '
+    end
+
+    def print_winner
+        if turn.type == :basic
+            p '#{turn.winner.name} won 2 cards'
+        elsif turn.type == :war
+            p 'WAR - #{turn.winner.name} won 6 cards'
+        else
+            p '*mutually assured destruction* 6 cards removed from play'
+        end
     end
 
     def start
@@ -28,7 +38,7 @@ class Game
         else
             p "Then let's begin!"
         end
-        until @turn == 10000
-            
+        until @turns == 10000
+        end
     end
 end
