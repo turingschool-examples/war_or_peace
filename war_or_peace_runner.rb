@@ -66,15 +66,28 @@ spades = [card14, card15, card16, card17, card18, card19, card20, card21, card22
 hearts = [card27, card28, card29, card30, card31, card32, card33, card34, card35, card36, card37, card38, card39]
 diamonds = [card40, card41, card42, card43, card44, card45, card46, card47, card48, card49, card50, card51, card52]
 
-deck = [clubs + spades + hearts + diamonds].flatten
-deck1 = []
-deck2 = []
-deck1 << deck.sample(26).flatten.to_a
-deck2 <<(deck-deck1).sample(26).flatten.to_a
+deck = Deck.new([clubs + spades + hearts + diamonds].flatten)
+deck.cards.shuffle!
+cards1 = deck.cards.slice(0..25)
+cards2 = deck.cards.slice(26..52)
+# p cards1
+# p "break"
+# p cards2
+deck1 = Deck.new(cards1)
+deck2 = Deck.new(cards2)
+# p deck1
+# p "break"
+# p deck2
+# p deck
+# # deck1 =
+# deck1 << deck.sample(26)
+# deck2 << (deck-deck1).sample(26).flatten
 
 player1 = Player.new('Megan', deck1)
 player2 = Player.new('Aurora', deck2)
-
+# p deck1
+# p 'break'
+# p deck2
 turn = Turn.new(player1, player2)
 turn.start
 # deck1 = deck.sample(5)
