@@ -1,3 +1,9 @@
+require './lib/card'
+require './lib/deck'
+require './lib/game'
+require './lib/player'
+require './lib/turn'
+
 card1 = Card.new(:spade, '2', 2)
 card2 = Card.new(:spade, '3', 3)
 card3 = Card.new(:spade, '4', 4)
@@ -66,3 +72,16 @@ full_deck = [
               card45, card46, card47, card48,
               card49, card50, card51, card52
             ]
+
+shuffle_deck = full_deck.shuffle
+
+deck1 = Deck.new(shuffle_deck[0..25])
+deck2 = Deck.new(shuffle_deck[26..51])
+
+player1 = Player.new("Megan", deck1)
+player2 = Player.new("Aurora", deck2)
+
+turn = Turn.new(player1, player2)
+
+game = Game.new(turn)
+game.start

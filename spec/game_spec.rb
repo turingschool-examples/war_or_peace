@@ -74,16 +74,16 @@ RSpec.describe Game do
                   card49, card50, card51, card52]
 
     shuffle_deck = full_deck.shuffle
+
     deck1 = shuffle_deck[0..25]
     deck2 = shuffle_deck[26..52]
+
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
 
-    game = Game.new(player1, player2, full_deck)
+    turn = Turn.new(player1, player2)
+    game = Game.new(turn)
 
     expect(game).to be_an_instance_of(Game)
-    expect(game.player1).to eq(player1)
-    expect(game.player2).to eq(player2)
-    expect(game.full_deck).to eq(full_deck)
   end
 end

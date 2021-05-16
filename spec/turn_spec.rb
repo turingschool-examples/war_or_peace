@@ -2,6 +2,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/game'
 
 
 RSpec.describe Turn do
@@ -323,7 +324,7 @@ RSpec.describe Turn do
       player2 = Player.new("Aurora", deck2)
 
       turn = Turn.new(player1, player2)
-
+      
       turn.pile_cards
 
       expect(turn.spoils_of_war).to eq([])

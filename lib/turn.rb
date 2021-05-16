@@ -10,25 +10,29 @@ class Turn
   end
 
   def type
-    if player1.first_card != player2.first_card
+    if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
       :basic
-    elsif player1.first_card == player2.first_card && player1.third_card == player2.third_card
+    elsif (player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)) && (player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2))
       :mutually_assured_destruction
-    elsif player1.first_card == player2.first_card
+    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
       :war
+    else
+      fail "We hit the else in type"
     end
   end
 
   def winner
     if type == :basic
-      if player1.first_card > player2.first_card
+      if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
         player1
-      else player2
+      else
+        player2
       end
     elsif type == :war
-      if player1.third_card > player2.third_card
+      if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
         player1
-      else player2
+      else
+        player2
       end
     else
       "No Winner"
@@ -43,26 +47,27 @@ class Turn
       player2.deck.remove_card
     elsif type == :war
       @spoils_of_war << player1.deck.cards[0..2]
-      @spoils_of_war.flatten!
-      3.times { player1.deck.remove_card }
       @spoils_of_war << player2.deck.cards[0..2]
       @spoils_of_war.flatten!
+      3.times { player1.deck.remove_card }
       3.times { player2.deck.remove_card }
     elsif type == :mutually_assured_destruction
       3.times { player1.deck.remove_card }
       3.times { player2.deck.remove_card }
+    else
+      fail "FAILURE IN PILE CARDS"
     end
+  end
+
+  def clear_spoils
+    @spoils_of_war.clear
   end
 
   def award_spoils(winner)
     if winner == player1
-      @spoils_of_war.map do |spoil|
-        player1.deck.cards << spoil
-      end
-    else
-      @spoils_of_war.map do |spoil|
-        player2.deck.cards << spoil
-      end
+      player1.deck.add_cards(@spoils_of_war)
+    elsif winner == player2
+      player2.deck.add_cards(@spoils_of_war)
     end
   end
 end
