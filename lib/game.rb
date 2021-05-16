@@ -119,20 +119,19 @@ class Game
       @count +=1
 
       @turn.pile_cards
-      @turn.spoils_of_war
-      @turn.award_spoils
-
 
       if @turn.type == :mutually_assured_destruction
-        p "*mutually assured destruction* 6 crads removed from play"
+        p "Turn #{@count}: *mutually assured destruction* 6 cards removed from play"
 
       elsif @turn.type == :basic
-        p "#{@turn.winner.name} won 2 cards"
-
+        p "Turn #{@count}: #{@turn.winner.name} won 2 cards"
+        # @turn.spoils_of_war
+        @turn.award_spoils(@turn.winner)
       elsif @turn.type == :war
-        p "WAR - #{@turn.winner.name} won 6 cards"
+        p "Turn #{@count}: WAR - #{@turn.winner.name} won 6 cards"
+        # @turn.spoils_of_war
+        @turn.award_spoils(@turn.winner)
       end
-
 
       if @player1.has_lost?
         p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
@@ -141,11 +140,11 @@ class Game
         p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
       end
 
-
-
       if @count == 1000000
         p "---- DRAW ----"
       end
+
+      p @player1.deck.cards.length
     end
   end
 end
