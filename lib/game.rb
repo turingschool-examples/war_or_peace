@@ -117,7 +117,7 @@ require './lib/turn'
         elsif @player2.has_lost? == true
           p '*~*~*~* Megan has won the game! *~*~*~*'
           break
-        elsif turn_count > 10000
+        elsif turn_count > 1000000
           p '---- DRAW ----'
           break
         end
