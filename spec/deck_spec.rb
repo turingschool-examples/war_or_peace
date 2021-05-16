@@ -68,9 +68,12 @@ RSpec.describe Deck do
       cards = [card1, card2, card3]
       deck = Deck.new(cards)
       card4 = Card.new(:club, '5', 5)
+      deck.remove_card
       deck.add_card(card4)
 
-      expect(deck.cards).to eq([card1, card2, card3, card4])
+      expect(deck.cards).to eq([card2, card3, card4])
+      expect(deck.high_ranking_cards).to eq([card3])
+      expect(deck.percent_high_ranking).to eq(33.33)
     end
   end
 
