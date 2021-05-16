@@ -12,11 +12,13 @@ class Game
     count = 0
     until count == 1000000
       count += 1
-      if @player1.deck.cards.nil? == true
+      if count == 1000000
+        puts "DRAW!"
+      elsif @player1.deck.cards.empty? == true
         puts "#{@player1.name} wins!"
-      elsif @player2.deck.cards.nil? == true
-        puts "#{@player2.name} wins!"
-      elsif if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+      elsif @player2.deck.cards.empty? == true
+        puts "#{@player1.name} wins!"
+      elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
         winner_1 = @turn.winner
         @turn.pile_cards
         @turn.award_spoils(winner_1)
@@ -30,7 +32,6 @@ class Game
         puts "Turn #{count}: *mutually assured destruction* 6 cards removed from play"
       end
     end
-  end
   end
 
   def user_input
