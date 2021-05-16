@@ -63,8 +63,8 @@ RSpec.describe Deck do
     deck = Deck.new(cards)
 
     card4 = Card.new(:club, '5', 5)
-    @cards.add_card(card4)
-    
-    expect(deck.add_card).to eq(card4)
+    deck.add_card(card4)
+
+    expect(deck.cards).to eq([card2, card3, card4])
   end
 end
