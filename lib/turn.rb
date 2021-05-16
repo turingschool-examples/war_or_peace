@@ -68,47 +68,6 @@ class Turn
     @spoils_of_war = []
   end
 
-  def special_war
-    if @player1.deck.cards.length == 2 || @player2.deck.cards.length == 2
-      if @player1.deck.rank_of_card_at(1) == @player2.deck.rank_of_card_at(1)
-        2.times do
-        @player1.deck.remove_card
-        @player2.deck.remove_card
-        end
-        if @player1.has_lost? == true
-          print "Turn #{@turn_num}: SPECIAL WAR: #{@player1.name}\'s final 2 "
-          puts 'cards removed from play in a tie'
-        elsif @player2.has_lost? == true
-          print "Turn #{@turn_num}: SPECIAL WAR: #{@player2.name}\'s final 2 "
-          puts 'cards removed from play in a tie'
-        end
-      else
-        win = @player1.deck.rank_of_card_at(1) > @player2.deck.rank_of_card_at(1)
-        2.times do
-          @spoils_of_war << @player1.deck.remove_card
-          @spoils_of_war << @player2.deck.remove_card
-        end
-        if win == true
-          puts "Turn #{@turn_num}: SPECIAL WAR: #{@player1.name} won 2 cards"
-          self.award_spoils(@player1)
-        elsif win == false
-          puts "Turn #{@turn_num}: SPECIAL WAR: #{@player2.name} won 2 cards"
-          self.award_spoils(@player2)
-        end
-      end
-    elsif @player1.deck.cards.length == 1 || @player2.deck.cards.length == 1
-      @player1.deck.remove_card
-      @player2.deck.remove_card
-      if @player1.has_lost? == true
-        print "Turn #{@turn_num}: SPECIAL WAR: #{@player1.name}\'s final card "
-        puts 'removed from play in a tie'
-      elsif @player2.has_lost? == true
-        print "Turn #{@turn_num}: SPECIAL WAR: #{@player2.name}\'s final card "
-        puts 'removed from play in a tie'
-      end
-    end
-  end
-
   def game_runner
     @turn_num = 1
     while @player1.has_lost? == false && @player2.has_lost? == false
@@ -141,13 +100,60 @@ class Turn
     starter = gets.chomp
     if starter == 'GO' || starter == 'go' || starter == 'Go'
       self.game_runner
-      if @player1.has_lost? == true && @turn_num < 1000000
+      if @player1.has_lost? == true
         puts "\n\n*~*~*~* #{@player2.name} has won the game! *~*~*~*\n\n"
-      elsif @player2.has_lost? == true && @turn_num < 1000000
+      elsif @player2.has_lost? == true
         puts "\n\n*~*~*~* #{@player1.name} has won the game! *~*~*~*\n\n"
       end
     else
       puts 'Invalid input'
+    end
+  end
+
+  # Method to destribute cards when one player has 2 or 1 cards remaining and
+  # the turn type is not basic (each player's first card has the same rank).
+  # In the event of 2 cards, the turn winner is determined by their second card
+  # with the winner receiving 4 cards, or in the event of a tie all 4 cards
+  # are removed from play. When a player has only 1 card, both cards are
+  # discarded from play, leaving that player with no remaining cards.
+  def special_war
+    if @player1.deck.cards.length == 2 || @player2.deck.cards.length == 2
+      if @player1.deck.rank_of_card_at(1) == @player2.deck.rank_of_card_at(1)
+        2.times do
+        @player1.deck.remove_card
+        @player2.deck.remove_card
+        end
+        if @player1.has_lost? == true
+          print "Turn #{@turn_num}: SPECIAL WAR: #{@player1.name}\'s final 2 "
+          puts 'cards removed from play'
+        elsif @player2.has_lost? == true
+          print "Turn #{@turn_num}: SPECIAL WAR: #{@player2.name}\'s final 2 "
+          puts 'cards removed from play'
+        end
+      else
+        win = @player1.deck.rank_of_card_at(1) > @player2.deck.rank_of_card_at(1)
+        2.times do
+          @spoils_of_war << @player1.deck.remove_card
+          @spoils_of_war << @player2.deck.remove_card
+        end
+        if win == true
+          puts "Turn #{@turn_num}: SPECIAL WAR: #{@player1.name} won 2 cards"
+          self.award_spoils(@player1)
+        elsif win == false
+          puts "Turn #{@turn_num}: SPECIAL WAR: #{@player2.name} won 2 cards"
+          self.award_spoils(@player2)
+        end
+      end
+    elsif @player1.deck.cards.length == 1 || @player2.deck.cards.length == 1
+      @player1.deck.remove_card
+      @player2.deck.remove_card
+      if @player1.has_lost? == true
+        print "Turn #{@turn_num}: SPECIAL WAR: #{@player1.name}\'s final card "
+        puts 'removed from play'
+      elsif @player2.has_lost? == true
+        print "Turn #{@turn_num}: SPECIAL WAR: #{@player2.name}\'s final card "
+        puts 'removed from play'
+      end
     end
   end
 end
