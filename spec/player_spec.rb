@@ -15,6 +15,7 @@ RSpec.describe Player do
     end
 
     it "exists" do
+      expect(@player).to be_a(Player)
       expect(@player.name).to eq('Clarisa')
       expect(@player.deck).to eq(@deck)
     end
