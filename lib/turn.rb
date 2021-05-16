@@ -31,16 +31,25 @@ class Turn
     p1_index_0_2 = [p1.rank_of_card_at(0), p1.rank_of_card_at(2)]
     p2_index_0_2 = [p2.rank_of_card_at(0), p2.rank_of_card_at(2)]
 
-    if turn.type == :basic
-      return @player1 if p1.rank_of_card_at(0) > p2.rank_of_card_at(0)
-      return @player2 if p2.rank_of_card_at(0) > p1.rank_of_card_at(0)
-      
+    if p1_index_0_2 == p2_index_0_2
+      puts "No Winner"
+    elsif p1.rank_of_card_at(0) == p2.rank_of_card_at(0)
+      if p1.rank_of_card_at(2) > p2.rank_of_card_at(2)
+        return @player1
+      # else
+        # return @player2
+      end
+    elsif p1.rank_of_card_at(0) > p2.rank_of_card_at(0)
+      return @player1
+    else
+      return @player2
+    end
   end
 
   def pile_cards
   end
 
-  def award_spolis
+  def award_spoils
   end
 
 end
