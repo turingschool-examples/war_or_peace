@@ -62,7 +62,7 @@ RSpec.describe Game do
       expect(game.diamonds.last).to eq([:diamond, 'Ace', 14])
     end
 
-    it 'can add club cards' do
+    xit 'can add club cards' do
       game = Game.new
 
       game.add_club_card
@@ -80,7 +80,7 @@ RSpec.describe Game do
       expect(game.spades.last).to eq([:spade, 'Ace', 14])
     end
 
-    it 'can add heart cards' do
+    xit 'can add heart cards' do
       game = Game.new
 
       game.add_heart_card
@@ -89,7 +89,7 @@ RSpec.describe Game do
       expect(game.hearts.last).to eq([:heart, 'Ace', 14])
     end
 
-    it 'can create a deck' do
+    xit 'can create a deck' do
         game = Game.new
 
         game.add_diamond_card

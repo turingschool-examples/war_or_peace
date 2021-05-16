@@ -12,9 +12,12 @@ game.add_diamond_card
 game.add_club_card
 game.add_spade_card
 game.add_heart_card
+cards = game.create_deck.shuffle
+cards1 = cards.slice(0..25)
+cards2 = cards.slice(26..52)
 
-deck1 = Deck.new(game.create_deck.shuffle)
-deck2 = Deck.new(game.create_deck.shuffle)
+deck1 = Deck.new(cards1)
+deck2 = Deck.new(cards2)
 
 player1 = Player.new('Megan', deck1)
 player2 = Player.new('Aurora', deck2)

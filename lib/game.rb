@@ -7,99 +7,114 @@ class Game
     @hearts = []
     @clubs = []
     @spades = []
-    @diamond_rank = 1
-    @diamond_value = '1'
+    @card_rank = 1
+    @card_values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']
     @spade_rank = 1
-    @spade_value = '1'
     @club_rank = 1
-    @club_value = '1'
     @heart_rank = 1
     @heart_value = '1'
   end
 
   def add_diamond_card
     #binding.pry
-    while @diamond_rank < 10
-      diamond_card = [
-      :diamond,
-      @diamond_value = (@diamond_value.to_i + 1).to_s,
-      @diamond_rank += 1,
-    ]
-      @diamonds << diamond_card
+    @diamonds = @card_values.map do |value|
+      card = [
+        :diamond,
+        value,
+        @card_rank += 1
+      ]
     end
-    while @diamond_rank <14
-      if @diamond_rank == 10
-        diamond_card = [
-          :diamond,
-          @diamond_value = 'Jack',
-          @diamond_rank += 1
-        ]
-        @diamonds << diamond_card
-      elsif @diamond_rank == 11
-        diamond_card = [
-          :diamond,
-          @diamond_value = 'Queen',
-          @diamond_rank += 1
-        ]
-        @diamonds << diamond_card
-      elsif @diamond_rank == 12
-        diamond_card = [
-          :diamond,
-          @diamond_value = 'King',
-          @diamond_rank += 1
-        ]
-        @diamonds << diamond_card
-      elsif @diamond_rank == 13
-        diamond_card = [
-          :diamond,
-          @diamond_value = 'Ace',
-          @diamond_rank += 1
-        ]
-        @diamonds << diamond_card
-      end
-    end
+    @card_rank = 1
   end
+  #   while @card_rank < 14
+  #     diamond_card = [
+  #     :diamond,
+  #     @diamond_value = (@diamond_value.to_i + 1).to_s,
+  #     @diamond_rank += 1,
+  #   ]
+  #     @diamonds << diamond_card
+  #   end
+  #   while @diamond_rank <14
+  #     if @diamond_rank == 10
+  #       diamond_card = [
+  #         :diamond,
+  #         @diamond_value = 'Jack',
+  #         @diamond_rank += 1
+  #       ]
+  #       @diamonds << diamond_card
+  #     elsif @diamond_rank == 11
+  #       diamond_card = [
+  #         :diamond,
+  #         @diamond_value = 'Queen',
+  #         @diamond_rank += 1
+  #       ]
+  #       @diamonds << diamond_card
+  #     elsif @diamond_rank == 12
+  #       diamond_card = [
+  #         :diamond,
+  #         @diamond_value = 'King',
+  #         @diamond_rank += 1
+  #       ]
+  #       @diamonds << diamond_card
+  #     elsif @diamond_rank == 13
+  #       diamond_card = [
+  #         :diamond,
+  #         @diamond_value = 'Ace',
+  #         @diamond_rank += 1
+  #       ]
+  #       @diamonds << diamond_card
+  #     end
+  #   end
+  # end
 
   def add_spade_card
-    while @spade_rank < 10
-      spade_card = [
-      :spade,
-      @spade_value = (@spade_value.to_i + 1).to_s,
-      @spade_rank += 1,
-    ]
-      @spades << spade_card
+    @spades = @card_values.map do |value|
+      card = [
+        :spade,
+        value,
+        @card_rank += 1
+      ]
     end
-    while @spade_rank <14
-      if @spade_rank == 10
-        spade_card = [
-          :diamond,
-          @spade_value = 'Jack',
-          @spade_rank += 1
-        ]
-        @spades << spade_card
-      elsif @spade_rank == 11
-        spade_card = [
-          :spade,
-          @spade_value = 'Queen',
-          @spade_rank += 1
-        ]
-        @spades << spade_card
-      elsif @spade_rank == 12
-        spade_card = [
-          :spade,
-          @spade_value = 'King',
-          @spade_rank += 1
-        ]
-        @spades << spade_card
-      elsif @spade_rank == 13
-        spade_card = [
-          :spade,
-          @spade_value = 'Ace',
-          @spade_rank += 1
-        ]
-        @spades << spade_card
-      end
-    end
+    @card_rank = 1
+    # while @spade_rank < 10
+    #   spade_card = [
+    #   :spade,
+    #   @spade_value = (@spade_value.to_i + 1).to_s,
+    #   @spade_rank += 1,
+    # ]
+    #   @spades << spade_card
+    # end
+    # while @spade_rank <14
+    #   if @spade_rank == 10
+    #     spade_card = [
+    #       :diamond,
+    #       @spade_value = 'Jack',
+    #       @spade_rank += 1
+    #     ]
+    #     @spades << spade_card
+    #   elsif @spade_rank == 11
+    #     spade_card = [
+    #       :spade,
+    #       @spade_value = 'Queen',
+    #       @spade_rank += 1
+    #     ]
+    #     @spades << spade_card
+    #   elsif @spade_rank == 12
+    #     spade_card = [
+    #       :spade,
+    #       @spade_value = 'King',
+    #       @spade_rank += 1
+    #     ]
+    #     @spades << spade_card
+    #   elsif @spade_rank == 13
+    #     spade_card = [
+    #       :spade,
+    #       @spade_value = 'Ace',
+    #       @spade_rank += 1
+    #     ]
+    #     @spades << spade_card
+    #   end
+    # end
   end
 
   def add_club_card
