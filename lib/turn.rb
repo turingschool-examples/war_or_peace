@@ -11,16 +11,11 @@ class Turn
   end
 
   def type
-    @player1_c1 = @player1.deck.rank_of_card_at(0)
-    @player2_c1 = @player2.deck.rank_of_card_at(0)
-    @p1ayer1_c2 = @player1.deck.rank_of_card_at(2)
-    @player2_c2 = @player2.deck.rank_of_card_at(2)
-
-    if @player1_c1 != @player2_c1
+    if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
       @type = :basic
-    elsif @p1ayer1_c2 != @player2_c2
+    elsif @player1.deck.rank_of_card_at(2) != @player2.deck.rank_of_card_at(2)
       @type = :war
-    elsif @p1ayer1_c2 == @player2_c2
+    elsif @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
       @type = :mutually_assured_destruction
     end
     @type
@@ -28,16 +23,16 @@ class Turn
 
   def winner
     if self.type == :basic
-      result = @player1_c1 > @player2_c1
+      win = @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
     elsif self.type == :war
-      result = @p1ayer1_c2 > @player2_c2
+      win = @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
     else self.type == :mutually_assured_destruction
-      result = nil
+      win = nil
     end
 
-    if result == true
+    if win == true
       @player1
-    elsif result == false
+    elsif win == false
       @player2
     else
       'No Winner'
@@ -87,7 +82,7 @@ class Turn
 
     if starter == 'GO' || starter == 'go' || starter == 'Go'
 
-      while @player1.deck.cards.length >= 3 &&  @player2.deck.cards.length >= 3
+      while @player1.has_lost? == false &&  @player2.has_lost? == false
         turn = turn + 1
         if self.type == :basic && turn <= 1000000
           puts "Turn #{turn}: #{self.winner.name} won 2 cards"
@@ -110,11 +105,11 @@ class Turn
         self.award_spoils(win)
       end
 
-      if @player1.deck.cards.length >= 3 && turn < 1000000
-        puts "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
-
-      elsif @player2.deck.cards.length >= 3 && turn < 1000000
+      if @player1.has_lost? == true && turn < 1000000
         puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+
+      elsif @player2.has_lost? == true && turn < 1000000
+        puts "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
       end
 
     else
