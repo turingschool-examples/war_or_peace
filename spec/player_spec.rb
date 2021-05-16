@@ -28,11 +28,11 @@ RSpec.describe Player do
     end
 
     it 'has lost?' do
-    @player.deck.remove_card
-    expect(@player.lost?).to be false
-    @player.deck.remove_card
-    expect(@player.lost?).to be false
-    @player.deck.remove_card
-    expect(@player.lost?).to be true
-  end
+      @player.deck.remove_card
+      expect(@player.lost?).to be false
+      @player.deck.remove_card
+      expect(@player.lost?).to be false
+      @player.deck.remove_card
+      expect(@player.lost?).to be true
+    end
 end
