@@ -19,6 +19,7 @@ class Game
       play_game
     else
       puts "That's funny ... I thought I said to type 'GO' to start the game!  Try again!"
+      self.start
     end
 
   end
