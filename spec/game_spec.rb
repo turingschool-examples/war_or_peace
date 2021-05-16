@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'spec_helper'
 
 RSpec.describe Game do
@@ -26,6 +28,6 @@ RSpec.describe Game do
 
   it 'has players' do
     expect(@game.turn.player1).to be_an_instance_of(Player)
-    expect(@turn.player1.name).to eq("Billy")
+    expect(@turn.player1.name).to eq('Billy')
   end
 end

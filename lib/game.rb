@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 class Game
   attr_reader :turn
@@ -11,7 +12,7 @@ class Game
 
     play_game = gets.chomp
     if play_game.downcase == 'go'
-      self.run_game
+      run_game
     else
       p 'Some other time maybe'
     end
@@ -20,30 +21,31 @@ class Game
   def run_game
     # While both player's cards are more than 0 and turn count is less than 1,000,000
     turn_count = 0
-    while @turn.player1.deck.cards.length > 0 && @turn.player2.deck.cards.length > 0 && turn_count < 1000000 do
+    while @turn.player1.deck.cards.length.positive? && @turn.player2.deck.cards.length.positive? && turn_count < 1_000_000
       turn_count += 1
 
-      if @turn.type == :basic
+      case @turn.type
+      when :basic
         winner = @turn.winner
         @turn.pile_cards
         @turn.award_spoils(winner)
 
         p "Turn #{turn_count}: #{winner.name} won 2 cards"
-        break if @turn.player1.has_lost?  || @turn.player2.has_lost?
-      elsif @turn.type == :war
+        break if @turn.player1.has_lost? || @turn.player2.has_lost?
+      when :war
         winner = @turn.winner
         @turn.pile_cards
         @turn.award_spoils(winner)
 
         p "Turn #{turn_count}: WAR - #{winner.name} won 6 cards"
-        break if @turn.player1.has_lost?  || @turn.player2.has_lost?
+        break if @turn.player1.has_lost? || @turn.player2.has_lost?
       else
         @turn.pile_cards
 
         p "Turn #{turn_count}: *mutually assured destruction* 6 cards removed from play"
       end
 
-      break if @turn.player1.has_lost?  || @turn.player2.has_lost?
+      break if @turn.player1.has_lost? || @turn.player2.has_lost?
     end
     end_game
   end

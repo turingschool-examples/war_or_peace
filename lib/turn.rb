@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 class Turn
   attr_reader :player1, :player2, :spoils_of_war, :player1_win_count, :player2_win_count
@@ -24,7 +25,7 @@ class Turn
     # Case statement
     case type
     when :basic
-       # Ternary operator
+      # Ternary operator
       first_card(@player1) > first_card(@player2) ? @player1 : @player2
     when :war
       third_card(@player1) > third_card(@player2) ? @player1 : @player2

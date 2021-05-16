@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 require_relative 'spec_helper'
 
@@ -85,7 +86,7 @@ RSpec.describe Turn do
       expect(winner).to eq(@player2)
     end
 
-    it "puts cards into discard" do
+    it 'puts cards into discard' do
       @turn.pile_cards
       expect(@turn.spoils_of_war).to eq([@card1, @card2, @card5, @card4, @card3, @card6])
     end
@@ -99,7 +100,7 @@ RSpec.describe Turn do
     end
   end
 
-  context 'mutually Assured Destruction'do
+  context 'mutually Assured Destruction' do
     before :each do
       @card1 = Card.new(:heart, 'Jack', 11)
       @card2 = Card.new(:heart, '10', 10)
@@ -111,8 +112,8 @@ RSpec.describe Turn do
       @card8 = Card.new(:diamond, '2', 2)
       @deck1 = Deck.new([@card1, @card2, @card5, @card8])
       @deck2 = Deck.new([@card4, @card3, @card6, @card7])
-      @player1 = Player.new("Megan", @deck1)
-      @player2 = Player.new("Aurora", @deck2)
+      @player1 = Player.new('Megan', @deck1)
+      @player2 = Player.new('Aurora', @deck2)
       @turn = Turn.new(@player1, @player2)
     end
 
@@ -125,7 +126,7 @@ RSpec.describe Turn do
       expect(winner).to eq('No Winner')
     end
 
-    it "removes 3 cards from players deck" do
+    it 'removes 3 cards from players deck' do
       @turn.pile_cards
       expect(@turn.spoils_of_war).to eq([])
       expect(@player1.deck).to eq(@deck1)

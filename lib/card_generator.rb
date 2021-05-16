@@ -1,5 +1,6 @@
-class CardGenerator
+# frozen_string_literal: true
 
+class CardGenerator
   def initialize(file)
     @card_file = file
   end

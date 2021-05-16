@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
 require './lib/game'
 require './lib/card_generator'
-
 
 card_generator = CardGenerator.new('cards.txt')
 deck1 = Deck.new(card_generator.deck_one)

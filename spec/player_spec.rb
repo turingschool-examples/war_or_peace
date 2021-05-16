@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 require_relative 'spec_helper'
 
@@ -34,7 +35,7 @@ RSpec.describe Player do
     expect(@player.has_lost?).to be false
 
     @player.deck.remove_card
-    
+
     expect(@player.has_lost?).to be true
     expect(@player.deck.cards).to eq([])
   end
