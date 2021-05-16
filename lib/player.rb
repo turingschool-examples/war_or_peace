@@ -11,6 +11,6 @@ class Player
     # is initialized with a Deck.
     # Access array of cards of a Deck with @deck.cards .
     #
-    @deck.cards.count == 0
+    @deck.cards.length == 0
   end
 end
