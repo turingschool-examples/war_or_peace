@@ -4,7 +4,8 @@ require './lib/card'
 require './lib/player'
 require 'pry'
 
-RSpec.describe Player do
+describe Player do
+  context Player do
   it "is and instance of player" do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
@@ -51,5 +52,6 @@ RSpec.describe Player do
     expect(player.has_lost?).to be(true)
 
   end
+end
 
 end

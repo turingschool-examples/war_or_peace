@@ -10,5 +10,4 @@ class Player
     @deck.cards.count == 0
   end
 
-
 end
