@@ -6,7 +6,7 @@ require './lib/game'
 require 'pry'
 
 #[(:suit, value, rank)]
-#Create 2 deck of cards
+#Create a deck of cards split between two players
 game= Game.new
 game.add_diamond_card
 game.add_club_card
@@ -24,4 +24,5 @@ player2 = Player.new('Aurora', deck2)
 
 turn = Turn.new(player1, player2)
 
+#start the game
 turn.start
