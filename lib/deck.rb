@@ -21,10 +21,17 @@ class Deck
   end
 
   def percent_high_ranking
+    (high_ranking_cards.length.to_f / @cards.length * 100).round(2)
+  end
 
+  def remove_card
+    @cards.delete_at(0)
+  end
 
-    git commit -m"Create me
-    thods for deck class"
+  def add_card(add_card)
+    @cards << add_card
+  end
+
 end
 
   #
