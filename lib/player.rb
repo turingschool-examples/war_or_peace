@@ -4,7 +4,7 @@ class Player
 
   def initialize(name, deck)
     @name = name
-    @deck = deck.cards
+    @deck = deck
   end
 
   def has_lost?
