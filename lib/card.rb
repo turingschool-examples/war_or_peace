@@ -13,7 +13,9 @@ class Card
 
   def suit
     # four possible suits - diamond, heart, spade, club
-    suits = [:diamond, :heart,:spade, :club]
+    # failing second test in card_spec.rb  - returns an array of all possible suits,
+    # but we want only one of hte suits to be chosen
+    suits = [:diamond, :heart, :spade, :club]
   end
 
   def value
