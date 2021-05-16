@@ -28,5 +28,7 @@ class Game
         else
             p "Then let's begin!"
         end
+        until @turn == 10000
+            
     end
 end
