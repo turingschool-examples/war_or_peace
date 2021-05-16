@@ -42,6 +42,7 @@ RSpec.describe Turn do
     it 'has a winner for each round' do
       winner = @turn.winner
       expect(winner).to eq(@player1)
+      expect(winner).not_to eq(@player2)
     end
 
     it 'puts cards into the discard pile' do
