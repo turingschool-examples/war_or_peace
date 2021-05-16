@@ -1,6 +1,6 @@
 require './lib/deck'
 require 'rspec'
 
-describe eck do
-  
+describe Deck do
+
 end
