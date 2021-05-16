@@ -77,6 +77,7 @@ RSpec.describe Deck do
     player1 = Player.new("Megan", deck.deck1)
     player2 = Player.new("Aurora", deck.deck2)
 
-    expect(player1.deck.cards.length).to eq(26)
+    expect(player1.deck.length).to eq(26)
+    expect(player2.deck.length).to eq(26)
   end
 end
