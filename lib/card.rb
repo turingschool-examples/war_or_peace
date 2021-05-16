@@ -1,8 +1,8 @@
 # require './lib/deck'
 
 class Card
-  attr_reader :suit
-              :value
+  attr_reader :suit,
+              :value,
               :rank
 
   def initialize(suit, value, rank)
