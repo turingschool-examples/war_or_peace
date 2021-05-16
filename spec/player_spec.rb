@@ -24,26 +24,30 @@ RSpec.describe Player do
     expect(@player.deck).to eq(@deck)
   end
 
-  xit "has lost?" do
+  it "has lost?" do
     expect(@player.has_lost?).to eq(false)
   end
 
-  # it "remove card and has lost 1?" do
-  #   expcet(@player.deck.remove_card).to eq(@card1)
-  #   expect(@player.has_lost?).to eq(false)
-  # end
-  #
-  # it "remove card and has lost 2?" do
-  #   expcet(@player.deck.remove_card).to eq(@card1)
-  #   expcet(@player.deck.remove_card).to eq(@card2)
-  #   expect(@player.has_lost?).to eq(false)
-  # end
-  #
-  # it "remove card and has lost 3?" do
-  #   expcet(@player.deck.remove_card).to eq(@card1)
-  #   expcet(@player.deck.remove_card).to eq(@card2)
-  #   expcet(@player.deck.remove_card).to eq(@card3)
-  #   expect(@player.has_lost?).to eq(true)
-  #   expect(@player.deck)to. eq(@deck)
-  # end
+  it "remove card and has lost 1?" do
+    expect(@player.deck.remove_card).to eq(@card1)
+    expect(@player.has_lost?).to eq(false)
+  end
+
+  it "remove card and has lost 2?" do
+    @player.deck.remove_card
+
+    expect(@player.deck.remove_card).to eq(@card2)
+    expect(@player.has_lost?).to eq(false)
+  end
+
+  it "remove card and has lost 3?" do
+    @player.deck.remove_card
+    @player.deck.remove_card
+
+    expect(@player.deck.remove_card).to eq(@card3)
+    expect(@player.has_lost?).to eq(true)
+    expect(@player.deck).to eq(@deck)
+  end
 end
+
+#  require 'pry'; binding.pry
