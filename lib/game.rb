@@ -6,8 +6,7 @@ require_relative '../lib/turn'
 class Game
   MAXTURNS = 1000001
   def initialize
-    #init card gener/creator know where to look for file
-    @fulldeck = create_deck #card gen.new
+    @fulldeck = create_deck
     @deck1 = Deck.new(@fulldeck[0..25])
     @deck2 = Deck.new(@fulldeck[26..51])
     @player1 = Player.new("Diana, The WonderWoman", @deck1)
@@ -52,18 +51,12 @@ class Game
     end
   end
 
-#loop until turn# == 1000001 then p "---- DRAW ----"
   def play
-    # turn = Turn.new(@player1, @player2)
-    # winner = turn.winner # little mistake, teachable moment
-    # turn.pile_cards # teachable moment
     counter = 0
     while counter < MAXTURNS
       turn = Turn.new(@player1, @player2)
-      # break loop if @playe1.deck.cards == 0 or if @player2..... == 0
       counter += 1
       if turn.type == :mutually_assured_destruction
-        # require "pry"; binding.pry
         p "Turn #{counter}: *mutually_assured_destruction* 6 cards removed from play"
         turn.pile_cards
       elsif turn.type == :war
@@ -71,13 +64,10 @@ class Game
         turn.pile_cards
         turn.award_spoils(turn.winner)
       elsif turn.type == :basic
-        # require "pry"; binding.pry
         p "Turn #{counter}: #{turn.winner.name} won 2 cards"
         turn.pile_cards
         turn.award_spoils(turn.winner)
       end
-      # puts turn.player1.deck.cards.count #For testing purposes
-      # puts turn.player2.deck.cards.count
       break if game_end(counter) == true
     end
   end
@@ -85,15 +75,12 @@ class Game
   def game_end(counter)
     if @player1.has_lost?
       p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
-      # sleep(5)
       true
     elsif @player2.has_lost?
       p "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
-      # sleep(5)
       true
     elsif counter == MAXTURNS
       p "---- DRAW ----"
-      # sleep(5)
        true
     else
       false

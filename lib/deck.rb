@@ -6,9 +6,7 @@ class Deck
   end
 
   def rank_of_card_at(index)
-    # require "pry"; binding.pry
     return 0 if cards[index] == nil 
-    #error fix
     @cards[index].rank
   end
 

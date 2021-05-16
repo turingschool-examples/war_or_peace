@@ -54,7 +54,6 @@ class Turn
       @player1 && @player2
     end
   end
-  # ### Why does this work to not break game but breaks test?????
 
   def pile_cards
     if type == :basic
@@ -72,7 +71,6 @@ class Turn
   end
 
   def award_spoils(turn_winner)
-    # require "pry"; binding.pry
     return 'No Winner' if turn_winner == :mutually_assured_destruction
     award = turn_winner.deck.cards << @spoils_of_war
     award.flatten!

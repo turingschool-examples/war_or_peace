@@ -120,7 +120,7 @@ RSpec.describe Turn do
       winner = turn.winner
       turn.pile_cards
       turn.award_spoils(winner)
-  # require "pry"; binding.pry
+
       expect(player1.deck.cards).to eq([card2,card5,card8,card1,card3])
 
       expect(player2.deck.cards).to eq([card4,card6,card7])
@@ -182,7 +182,7 @@ RSpec.describe Turn do
       winner = turn.winner
       turn.pile_cards
 
-      expect(turn.spoils_of_war).to eq([card1,card2,card5,card4,card3,card6]) #run test, get fail, c&p getting.
+      expect(turn.spoils_of_war).to eq([card1,card2,card5,card4,card3,card6])
     end
 
     it 'awards spoils cards array to winner of war turn' do
@@ -243,7 +243,7 @@ RSpec.describe Turn do
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
       winner = turn.winner
-  # require "pry"; binding.pry
+  
       expect(turn.winner).to eq("No Winner")
     end
 
