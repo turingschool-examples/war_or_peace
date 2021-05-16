@@ -9,5 +9,6 @@ class Player
 
   def has_lost?
     # code here
+    # if card rank is higher than oppposing player, return false.
   end
 end
