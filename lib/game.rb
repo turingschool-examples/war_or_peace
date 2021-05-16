@@ -1,7 +1,7 @@
 require './lib/turn'
 
 class Game
-  attr_accessor :start
+  attr_reader :start
 
   def initialize
     @start = start
@@ -13,12 +13,15 @@ class Game
   end
 
   def start
-    unitl @player1.has_lost?(true) do
-      winner = @turn.winner
-      @turn.pile_cards
-      @turn.award_spoils(winner)
-      @turns += 1
+    if @player1.has_lost? != true do
+      if @player2.has_lost != true do
+        if @turns != 1000000 do
+          winner = @turn.winner
+          @turn.pile_cards
+          @turn.award_spoils(winner)
+          @turns += 1
+        end
+      end
     end
     p @winner
   end
-end

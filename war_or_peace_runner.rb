@@ -1,6 +1,8 @@
 require './lib/turn'
 require './lib/game'
 
+@game = Game.new
+
 def standard_deck
   @cards1 = []
   @cards2 = []
@@ -70,7 +72,7 @@ def standard_deck
 end
 
 def game_input
-  input = gets.chomp
+  input = gets.chomp.upcase
   if input == 'GO'
     start_game
   elsif input =='QUIT' or input == 'EXIT'
@@ -83,9 +85,9 @@ end
 
 def start_game
   standard_deck
-  p @deck1
-  p @deck2
-  # start
+  # p @deck1
+  # p @deck2
+  @game.start
   game_input
 end
 
