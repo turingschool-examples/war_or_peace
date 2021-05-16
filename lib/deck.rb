@@ -12,7 +12,17 @@ class Deck
 
   def high_ranking_cards(index)
 
-    
+      cards[index >= 11].rank
+
+
+
+
+
+
+
+
+
+
 
   end
 

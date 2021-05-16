@@ -54,7 +54,7 @@ RSpec.describe Deck do
 
         deck = Deck.new(cards)
 
-        expect(deck.high_ranking_cards) 
+        expect(deck.high_ranking_cards).to eq [card1, card2]
 
 
 
