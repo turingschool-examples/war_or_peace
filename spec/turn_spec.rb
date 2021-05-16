@@ -129,18 +129,6 @@ describe Turn do
   end
 end
 
-# turn.player1
-# turn.player2
-# turn.spoils_of_war
-#
-#
-# turn.type
 # winner = turn.winner
-#
 # turn.pile_cards
-# turn.spoils_of_war
-#
 # turn.award_spoils(winner)
-#
-# player1.deck
-# player2.deck

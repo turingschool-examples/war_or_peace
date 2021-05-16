@@ -9,7 +9,7 @@ class Turn
 
   def type
     # (suit, value, rank) => card1(s,v,r) => deck1([1,2,5,8]) =>
-    #   player1(name, deck1) => turn(p1, p2)
+      # player1(name, deck1) => turn(p1, p2)
     p1 = @player1.deck
     p2 = @player2.deck
     p1_index_0_2 = [p1.rank_of_card_at(0), p1.rank_of_card_at(2)]
@@ -26,6 +26,15 @@ class Turn
   # => :basic, :war, OR :mutually_assured_destruction
 
   def winner
+    p1 = @player1.deck
+    p2 = @player2.deck
+    p1_index_0_2 = [p1.rank_of_card_at(0), p1.rank_of_card_at(2)]
+    p2_index_0_2 = [p2.rank_of_card_at(0), p2.rank_of_card_at(2)]
+
+    if turn.type == :basic
+      return @player1 if p1.rank_of_card_at(0) > p2.rank_of_card_at(0)
+      return @player2 if p2.rank_of_card_at(0) > p1.rank_of_card_at(0)
+      
   end
 
   def pile_cards
