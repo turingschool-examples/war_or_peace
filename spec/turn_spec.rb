@@ -53,31 +53,15 @@ RSpec.describe Turn do
     end
 
     it "will award spoils_of_war to winner" do
-      @turn.player1
-      @turn.player2
-
       winner = @turn.winner
+      expect(@turn.winner).to eq(@player1) #works; Megan wins
 
-    require "pry"; binding.pry
-      expect(@turn.type).to eq(:basic) #works up until here, below doesn't
-      # @turn.pile_cards
-      # @turn.award_spoils(winner)
-      #
-      # # expect(@turn.award_spoils(winner)).to eq([])
-      # expect(@player2.deck.cards).to eq([@card3, @card6, @card7, @card1, @card4])
+      expect(@turn.pile_cards).to eq([@card1, @card3])
 
-      
-
-    end
-
-    it "has a turn type" do
-      expect(@turn.type).to eq(:war)
-      winner = @turn.winner
-      @turn.pile_cards
-      @turn.spoils_of_war
       @turn.award_spoils(winner)
 
-      expect(@turn.type).to eq(:basic)
+      expect(@player1.deck.cards).to eq([@card2, @card5, @card8, @card1, @card3])
+      expect(@player2.deck.cards).to eq([@card4, @card6, @card7])
     end
   end
 
