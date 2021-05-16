@@ -89,7 +89,7 @@ class Game
 
   def play_game
     deck1 = Deck.new(@full_deck[0..25])
-    deck2 = Deck.new(@full_deck[26..52])
+    deck2 = Deck.new(@full_deck[26..51])
     player1 = Player.new("Ian", deck1)
     player2 = Player.new("Mike", deck2)
 
