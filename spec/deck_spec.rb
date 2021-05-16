@@ -19,7 +19,6 @@ RSpec.describe Deck do
     expect(@deck).to be_an_instance_of(Deck)
   end
 
-
   it "has attr_reader" do
     expect(@deck.cards).to eq(@cards)
   end
@@ -54,7 +53,6 @@ RSpec.describe Deck do
     expect(@deck.cards).to eq(@cards)
     expect(@deck.percent_high_ranking).to eq(33.33)
   end
-
 end
 
-#require 'pry'; binding.pry
+#  require 'pry'; binding.pry

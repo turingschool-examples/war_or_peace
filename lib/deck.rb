@@ -28,6 +28,4 @@ class Deck
     @cards << new_card
   end
 
-# require 'pry'; binding.pry
-
 end

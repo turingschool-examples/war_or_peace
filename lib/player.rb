@@ -8,7 +8,10 @@ class Player
   end
 
   def has_lost?
-    false if @deck.length == 0
-    true
+    if full_deck = (@deck.length) == (0)
+      true
+    else
+      false
+    end
   end
 end
