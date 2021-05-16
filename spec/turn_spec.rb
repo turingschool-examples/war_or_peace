@@ -40,6 +40,8 @@ RSpec.describe do
 
       expect(turn.player1).to eq(player1)
       expect(turn.player2).to eq(player2)
+      expect(turn.spoils_of_war).to eq([])
+      expect(turn.type).to eq(:basic)
     end
   end
 end
