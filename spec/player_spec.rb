@@ -39,8 +39,6 @@ RSpec.describe Player do
     expect(player.deck).to eq(deck)
   end
 
-  #before(:each) <== Look in testing notes (variables need to be instance variables)
-
   it 'has lost?' do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
