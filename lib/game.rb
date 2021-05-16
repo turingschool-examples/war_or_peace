@@ -20,9 +20,9 @@ class Game
     end
 
     def print_winner
-        if turn.type == :basic
+        if Turn.type == :basic
             p '#{turn.winner.name} won 2 cards'
-        elsif turn.type == :war
+        elsif Turn.type == :war
             p 'WAR - #{turn.winner.name} won 6 cards'
         else
             p '*mutually assured destruction* 6 cards removed from play'

@@ -10,6 +10,5 @@ full_deck.populate
 full_deck.shuffle_and_deal
 player1 = Player.new('Megan', full_deck.deck1)
 player2 = Player.new('Aurora', full_deck.deck2)
-binding.pry
 game = Game.new
 game.start
