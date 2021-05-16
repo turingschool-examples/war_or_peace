@@ -12,6 +12,15 @@ class Game
         p "The players today are Megan and Aurora."
         p "Type 'GO' to start the game!"
         p '------------------------------------------------------------------'
+    end
+
+    def turn_counter
+        @turn += 1
+        print 'Turn #{@turn}: '
+    end
+
+    def start
+        game.welcome
         print '> '
         response = gets.chomp
         if response != GO
@@ -19,9 +28,5 @@ class Game
         else
             p "Then let's begin!"
         end
-    end
-
-    def start
-        game.welcome
     end
 end

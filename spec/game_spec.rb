@@ -16,4 +16,22 @@ RSpec.describe Game do
 
         expect(game).to be_an_instance_of(Game)
     end
+
+    it 'displays welcome message' do
+        game = Game.new
+
+        expect(game.welcome).to be_a(String)
+    end
+
+    it 'counts turns' do
+        game = Game.new
+        
+        game.turn_counter
+        expect(game.turn).to eq(1)
+
+        game.turn_counter
+        expect(game.turn).to eq(2)
+    end
+
+    
 end
