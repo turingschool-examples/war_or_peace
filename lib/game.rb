@@ -87,14 +87,16 @@ class Game
                     puts "*Mutually assured destruction* 6 cards removed from deck"
                 else
                     puts "Turn type #{turn.type}, #{turn.winner.name} has won #{turn.award_spoils.length}"
-                end
-                if player1.has_lost?
-                    puts "The winner is Aurora!"
-                else
-                    puts "The winner is Megan!"
-                end 
+                end          
             end 
-        end 
+        end
+        if player1.deck.cards.count == 0
+            p 'Aurora has won the game!'
+          elsif player2.deck.cards.count == 0
+            p "Megan has won the game!"
+          elsif loop_count == 1000000 # || (player1.deck.cards.count == player2.deck.cards.count)
+            p "---- DRAW ----"
+          end 
     end 
 end
 
