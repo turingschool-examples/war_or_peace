@@ -61,51 +61,5 @@ class Turn
     end
   end
 
-# #Start
-# p 'Welcome to War! (or Peace) This game will be played with 52 cards.
-# The players today are Megan and Aurora.
-# Type 'GO' to start the game!
-# ------------------------------------------------------------------'
-  # class Game
-  #   attr_reader :full_deck, :deck1, :deck2, :player1, :player2
-  #
-  #   def start
-  #     p 'Welcome to War! (or Peace) This game will be played with 52 cards.'
-  #     p 'The players today are Megan and Aurora.'
-  #     p 'Type 'GO' to start the game!'
-  #     'p ------------------------------------------------------------------'
-  #     input = gets.chomp.upcase
-  #     shuffle_deck
-  #     split_deck
-  #     add_deck_to_players
-  #     turns
-  #   end
-  #
-  #
-  #   def shuffle_deck
-  #     :full_deck.shuffle!()
-  #   end
-  #
-  #   def split_deck
-  #     full_deck.shuffle_deck.slice(26)
-  #
-  #     #this method will split the deck between two players
-  #   end
-  #
-  #   def add_deck_to_players
-  #     #This adds both players to the game
-  #   end
-  #
-  #   def turns
-  #     #this method will keep count and return the the number of turns
-  #   end
-  # end
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-
+#
 end
