@@ -9,14 +9,16 @@ class Deck
     @cards[index].rank
   end
 
+
   def high_ranking_cards
-    high_ranking_cards = @cards.find_all do |card|
-      cards.rank >= 11
+    @high_ranking_cards = @cards.find_all do |card|
+      card.rank >= 11
+    end
   end
 
+#receiving error 'count' is undefined method
   def percent_high_ranking
-    ((high_ranking_cards.count / @cards.count) * 100).round(2)
-
+    (@high_ranking_cards.count.fdiv(@cards.count) * 100).round(2)
   end
 
     #receiving errors this method is undefined?
@@ -33,10 +35,5 @@ class Deck
 
     #error because of 'new_card' not sure what variable to use here
     @cards.insert(-1, new_card)
-  end
-
-
-
-
   end
 end
