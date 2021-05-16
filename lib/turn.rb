@@ -43,7 +43,7 @@ class Turn
     elsif self.type == :mutually_assured_destruction
       "No Winner, No Winner, No Chicken Dinner"
     else
-      "#{@player1.name} wins by default because I don't know what this edge case is"
+      "#{@player1.name} wins by default because I don't know what this edge case could logically be"
     end
   end
 
@@ -110,7 +110,7 @@ class Turn
         #cant figure out edge case, changed rules to assign Winner
         #if either player gets below 3
         if player1.deck.cards.length < 3 || player2.deck.cards.length < 3
-          p "#{self.winner.name} won the game!"
+          p "*~*~*~* #{self.winner.name} won the game!*~*~*~* "
           break
         end
         if loop_counter == 1000000
