@@ -13,6 +13,7 @@ describe Player do
 
   context 'Attributes' do
     it 'is a player with assigned instance variables' do
+
       expect(@player).to be_an_instance_of(Player)
       expect(@player.name).to eq('Clarisa')
       expect(@player.deck).to eq(@deck)
@@ -21,6 +22,7 @@ describe Player do
 
   context 'Methods' do
     it 'Return false player has lost?' do
+
       expect(@player.has_lost?).to be(false)
     end
 
@@ -29,6 +31,7 @@ describe Player do
       @player.deck.remove_card
       @player.deck.remove_card
       @player.deck.remove_card
+      
       expect(@player.has_lost?).to be(true)
     end
   end

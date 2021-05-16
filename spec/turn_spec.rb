@@ -23,6 +23,7 @@ describe Turn do
 
   context 'Attribues' do
     it 'is a turn with assigned instance variables' do
+
       expect(@turn).to be_an_instance_of(Turn)
       expect(@turn.player1).to eq(@player1)
       expect(@turn.player2).to eq(@player2)
@@ -32,6 +33,7 @@ describe Turn do
 
   context 'returns turn types' do
     it 'returns type of turn :basic' do
+
       expect(@turn.type).to eq(:basic)
     end
 
@@ -39,6 +41,7 @@ describe Turn do
       @deck2 = Deck.new([@card1, @card4, @card6, @card7])
       @player2 = Player.new("Aurora", @deck2)
       @turn = Turn.new(@player1, @player2)
+
       expect(@turn.type).to eq(:war)
     end
 
@@ -46,12 +49,14 @@ describe Turn do
       @deck2 = Deck.new([@card1, @card4, @card5, @card7])
       @player2 = Player.new("Aurora", @deck2)
       @turn = Turn.new(@player1, @player2)
+
       expect(@turn.type).to eq(:mutually_assured_destruction)
     end
   end
 
   context 'returns winner for all turn types' do
     it 'return :basic type winner' do
+
       expect(@turn.winner).to eq(@player1)
     end
 
@@ -59,6 +64,7 @@ describe Turn do
       @deck2 = Deck.new([@card1, @card4, @card6, @card7])
       @player2 = Player.new("Aurora", @deck2)
       @turn = Turn.new(@player1, @player2)
+
       expect(@turn.winner).to eq(@player2)
     end
 
@@ -66,6 +72,7 @@ describe Turn do
       @deck2 = Deck.new([@card1, @card4, @card5, @card7])
       @player2 = Player.new("Aurora", @deck2)
       @turn = Turn.new(@player1, @player2)
+
       expect(@turn.winner).to eq('No Winner')
     end
   end
@@ -73,6 +80,7 @@ describe Turn do
   context 'moves cards from deck to spoils' do
     it 'add cards to spoils for :basic turn' do
       @turn.pile_cards
+
       expect(@turn.spoils_of_war).to eq([@card1, @card3])
       expect(@deck1.cards).to eq([@card2, @card5, @card8])
       expect(@deck2.cards).to eq([@card4, @card6, @card7])
@@ -82,8 +90,8 @@ describe Turn do
       @deck2 = Deck.new([@card1, @card4, @card6, @card7])
       @player2 = Player.new("Aurora", @deck2)
       @turn = Turn.new(@player1, @player2)
-
       @turn.pile_cards
+
       expect(@turn.spoils_of_war).to eq([@card1, @card1, @card2, @card4, @card5, @card6])
       expect(@deck1.cards).to eq([@card8])
       expect(@deck2.cards).to eq([@card7])
@@ -93,8 +101,8 @@ describe Turn do
       @deck2 = Deck.new([@card1, @card4, @card5, @card7])
       @player2 = Player.new("Aurora", @deck2)
       @turn = Turn.new(@player1, @player2)
-
       @turn.pile_cards
+
       expect(@turn.spoils_of_war).to eq([])
       expect(@deck1.cards).to eq([@card8])
       expect(@deck2.cards).to eq([@card7])
@@ -103,10 +111,10 @@ describe Turn do
 
   context 'award_spoils method' do
     it 'awards spoils to the :basic winner' do
-
       winner = @turn.winner
       @turn.pile_cards
       @turn.award_spoils(winner)
+
       expect(@deck1.cards).to eq([@card2, @card5, @card8, @card1, @card3])
       expect(@turn.spoils_of_war).to eq([])
     end
@@ -115,10 +123,10 @@ describe Turn do
     @deck2 = Deck.new([@card1, @card4, @card6, @card7])
     @player2 = Player.new("Aurora", @deck2)
     @turn = Turn.new(@player1, @player2)
-
     winner = @turn.winner
     @turn.pile_cards
     @turn.award_spoils(winner)
+
     expect(@deck2.cards).to eq([@card7, @card1, @card1, @card2, @card4, @card5, @card6])
     expect(@turn.spoils_of_war).to eq([])
     end
@@ -131,8 +139,8 @@ describe Turn do
       @player1 = Player.new("Megan", @deck1)
       @player2 = Player.new("Aurora", @deck2)
       @turn = Turn.new(@player1, @player2)
-
       @turn.special_war
+
       expect(@deck1.cards).to eq([])
       expect(@deck2.cards).to eq([@card6, @card1, @card1, @card2, @card4])
     end
@@ -143,8 +151,8 @@ describe Turn do
       @player1 = Player.new("Megan", @deck1)
       @player2 = Player.new("Aurora", @deck2)
       @turn = Turn.new(@player1, @player2)
-
       @turn.special_war
+
       expect(@turn.spoils_of_war).to eq([])
       expect(@deck1.cards).to eq([])
       expect(@deck2.cards).to eq([@card6])
@@ -156,8 +164,8 @@ describe Turn do
       @player1 = Player.new("Megan", @deck1)
       @player2 = Player.new("Aurora", @deck2)
       @turn = Turn.new(@player1, @player2)
-
       @turn.special_war
+      
       expect(@deck1.cards).to eq([])
       expect(@deck2.cards).to eq([@card4, @card6])
     end
