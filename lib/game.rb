@@ -11,4 +11,5 @@ class = Game
         response = gets.chomp
         if response == GO
             
+
     end
