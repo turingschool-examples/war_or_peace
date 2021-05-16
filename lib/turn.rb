@@ -4,11 +4,19 @@ class Turn
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
-    @spoils_of_war = [ ] #write tests for these
+    @spoils_of_war = []
   end
 
   def type
+    if deck1.rank_of_card_at(0,2) == deck2.rank_of_card_at(0,2)
+      :mutually_assured_destruction
+    elsif deck1.rank_of_card_at(0) == deck2.rank_of_card_at(0)
+      :war
+    else deck1.rank_of_card_at(0) != deck2.rank_or_card_at(0)
+      :basic
+    end
   end
+  # => :basic, :war, OR :mutually_assured_destruction
 
   def winner
   end
