@@ -1,5 +1,9 @@
 require './lib/start'
+require './lib/deck'
+require './lib/card'
+require './lib/player'
+require './lib/turn'
 
 start = Start.new
-input = gets.chomp
-input == 'go' || input == 'Go' || input == 'GO' ? (start.run) : (puts 'Invalid response - please try again')
+puts start.greeting
+start.begin_game(gets.chomp)

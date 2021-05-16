@@ -1,7 +1,6 @@
 require 'rspec'
 require './lib/deck'
 require './lib/card'
-require 'pry'
 
 describe Deck do
   context 'attributes' do
