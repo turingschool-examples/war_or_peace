@@ -6,6 +6,3 @@ require './lib/game'
 
 game = Game.new
 p game.start
-    #this method will keep count and return the the number of turns
-
-  

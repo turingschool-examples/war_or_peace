@@ -150,12 +150,10 @@ RSpec.describe Turn do
 
     winner = turn.winner
 
-    # require 'pry'; binding.pry
     expect(turn.type).to eq(:war)
 
     turn.pile_cards
     turn.award_spoils(winner)
-    # require 'pry'; binding.pry
 
     expect(player2.deck.cards).to eq([card7, card1, card2, card5, card4, card3, card6])
   end
@@ -181,8 +179,6 @@ RSpec.describe Turn do
     winner = turn.winner
 
     expect(turn.type).to eq(:mutually_assured_destruction)
-
-    # require 'pry'; binding.pry
 
 
     turn.pile_cards

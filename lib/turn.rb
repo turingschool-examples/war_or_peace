@@ -19,7 +19,7 @@ class Turn
   end
 
   def winner
-    if type == :basic #(self.type??)
+    if type == :basic
       if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
         @player1
       else
@@ -33,8 +33,6 @@ class Turn
         end
     elsif type == :mutually_assured_destruction
         "No Winner"
-    else
-      puts "Game Over"
     end
   end
 
