@@ -56,10 +56,6 @@ class Turn
   def award_spoils(winner)
     @spoils_of_war.map do |card|
       winner.deck.cards << card
-
-      #winner.deck.add_card(card)
     end
   end
-
-#
 end

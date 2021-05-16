@@ -69,7 +69,7 @@ require './lib/turn'
       @cards = [card1, card2, card3 ,card4, card5, card6, card7, card8, card9, card10, card11, card12,card13, card14, card15, card16, card17, card18, card19, card20, card21, card22, card23, card24, card25, card26, card27, card28, card29, card30, card31, card32, card33, card34, card35, card36, card37, card38, card39, card40, card41, card42, card43, card44, card45, card46, card47, card48, card49, card50, card51, card52]
 
       @full_deck = Deck.new(@cards)
-
+      # require 'pry'; binding.pry
     end
 
     def start
@@ -77,16 +77,18 @@ require './lib/turn'
       p 'The players today are Megan and Aurora.'
       p 'Type GO to start the game!'
       p '------------------------------------------------------------------'
+
       input = gets.chomp.upcase
-
-      shuffle_deck
-      # require 'pry'; binding.pry
-
-      split_deck
-      add_players
-      turns
+      if input == 'GO'
+        shuffle_deck
+        split_deck
+        add_players
+        turns
+      else
+        p "Try Again"
+        self.start
+      end
     end
-
 
     def shuffle_deck
       @full_deck.cards.shuffle!
@@ -116,7 +118,7 @@ require './lib/turn'
         elsif @player2.has_lost? == true
           p '*~*~*~* Megan has won the game! *~*~*~*'
           break
-        elsif turn_count > 5000
+        elsif turn_count > 10000
           p '---- DRAW ----'
           break
         end
