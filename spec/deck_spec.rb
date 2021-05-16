@@ -32,6 +32,19 @@ RSpec.describe Deck do
   end
 
   it 'has percent_high_ranking cards' do
+    #expect the percentage of high cards in the deck
     expect(@deck.percent_high_ranking).to eq(66.67)
   end
+
+  it 'can remove_card from deck'
+    expect(@deck.remove_card).to eq(@card1)
+    expect(@deck.cards).to eq([@card2, @card3])
+    #this should be 50 from removing 1 high card from the group of 3
+    expect(@deck.percent_high_ranking).to eq(50.00)
+
+  it 'can add_card to deck'
+    @card4 = Card.new(:club, '5', 5)
+    @deck.add_card(@card4)
+    #expect the new deck to grow
+    expect(@deck.cards).to eq([@card1, @card2, @card3, @card4])
 end
