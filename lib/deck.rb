@@ -1,9 +1,6 @@
 class Deck
   attr_reader :cards
   def initialize(cards)
-    # @rank = rank
-    # @suit = suit
-    # @value = value
     @cards = cards
   end
 

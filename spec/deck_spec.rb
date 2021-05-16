@@ -2,7 +2,7 @@ require 'rspec'
 require './lib/deck'
 
 RSpec.describe Deck do
-  it 'exists'do
+  it 'exists' do
     deck = Deck.new([])
 
     expect(deck).to be_an_instance_of(Deck)
@@ -67,7 +67,7 @@ RSpec.describe Deck do
     card4 = Card.new(:club, '5', 5)
     cards = [card1, card2, card3, card4]
     deck = Deck.new(cards)
-    
+
     expect(deck.add_card).to eq(card4)
   end
 end
