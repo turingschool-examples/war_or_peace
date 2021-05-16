@@ -89,11 +89,9 @@ class Game
                     puts "Turn type #{turn.type}, #{turn.winner.name} has won #{turn.award_spoils.length}"
                 end
                 if player1.has_lost?
-                    puts "-------------The winner is Aurora!------------"
-                elsif player2.has_lost? 
-                    puts "-------------The winner is Megan!--------------"
+                    puts "The winner is Aurora!"
                 else
-                    puts "********* DRAW **********"
+                    puts "The winner is Megan!"
                 end 
             end 
         end 
