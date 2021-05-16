@@ -6,6 +6,7 @@ class Deck
   end
 
   def rank_of_card_at(index)
+    return 2 if cards[index] == nil
     cards[index].rank
     # this method will take one argument
     # that represents the index location of
