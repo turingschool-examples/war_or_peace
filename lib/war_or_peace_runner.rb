@@ -5,4 +5,4 @@ require_relative '../lib/player'
 require_relative '../lib/turn'
 require_relative '../lib/game'
 
-Game.new.start
+Game.new.power_on
