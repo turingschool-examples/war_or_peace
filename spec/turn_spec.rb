@@ -1,8 +1,8 @@
 require 'rspec'
-require './lib/turn'
 require './lib/player'
 require './lib/deck'
 require './lib/card'
+require './lib/turn'
 
 RSpec.describe Turn do
   before(:each) do
@@ -35,7 +35,23 @@ RSpec.describe Turn do
   end
 
   it 'Should be Basic turn' do
-    expect(@turn.type).to eq(@basic)
+    expect(@turn.type).to eq(:basic)
   end
+
+  it 'Should be War turn' do
+    @player2.deck.remove_card
+    expect(@turn.type).to eq(:war)
+  end
+
+  it 'Should have player 1 win' do
+    expect(@turn.winner).to eq(@player1)
+  end
+
+  xit 'Spoils of war works' do
+    @turn.winner
+    expect(@turn.spoils_of_war).to eq([@card3])
+
+  end
+
 
 end
