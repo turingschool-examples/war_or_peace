@@ -7,7 +7,7 @@ class Deck
   end
 
   def rank_of_card_at(index)
-    @rank_of_card_at = @cards[index].rank
+    @cards[index].rank
   end
 
   def high_ranking_cards
@@ -30,10 +30,10 @@ class Deck
   end
 
   def remove_card
-    @remove_card = @cards.shift
+    @cards.shift
   end
 
   def add_card(new_card)
-    @add_card = @cards.append(new_card)
+    @cards.append(new_card)
   end
 end

@@ -70,8 +70,8 @@ require './game'
 
 player1 = Player.new("Megan", @deck1)
 player2 = Player.new("Aurora", @deck2)
-@turn = Turn.new(player1, player2)
-@game = Game.new(player1, player2)
-@game.user_input
+turn = Turn.new(player1, player2)
 
-require 'pry'; binding.pry
+@game = Game.new(player1, player2, turn)
+@game.user_input
+#require 'pry'; binding.pry
