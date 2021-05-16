@@ -12,12 +12,15 @@ class Game
     p "Type 'GO' to start the game!"
     p "-------------------------------------------------------------------"
     print "Type Here: "
-    to_start = gets.chomp.upcase
-    create_deck
-    shuffle_deck
-    split_deck
-    add_players
-    turns
+    if to_start = gets.chomp.upcase == "GO"
+      create_deck
+      shuffle_deck
+      split_deck
+      add_players
+      turns
+    else
+      "Try again"
+    end
   end
 
   def create_deck
@@ -72,7 +75,7 @@ class Game
       if @turn.type == :end_game
         if @turn.player1.has_lost? == true
           p "*~*~*~* #{@turn.player2.name} has won the game! *~*~*~*"
-        else
+        elsif @turn.player2.has_lost? == true
           p "*~*~*~* #{@turn.player1.name} has won the game! *~*~*~*"
         end
         break
@@ -92,8 +95,12 @@ class Game
       end
       @turn.pile_cards
       @turn.award_spoils(winner)
-      # p @turn.player1.deck.cards.length
-      # p @turn.player2.deck.cards.length
+      if turn_count % 5000 == 0
+        @turn.player1.deck.cards.shuffle!
+        @turn.player2.deck.cards.shuffle!
+      end
+      p @turn.player1.deck.cards.length
+      p @turn.player2.deck.cards.length
     end
   end
 
