@@ -70,41 +70,12 @@ deck = Deck.new([clubs + spades + hearts + diamonds].flatten)
 deck.cards.shuffle!
 cards1 = deck.cards.slice(0..25)
 cards2 = deck.cards.slice(26..52)
-# p cards1
-# p "break"
-# p cards2
+
 deck1 = Deck.new(cards1)
 deck2 = Deck.new(cards2)
-# p deck1
-# p "break"
-# p deck2
-# p deck
-# # deck1 =
-# deck1 << deck.sample(26)
-# deck2 << (deck-deck1).sample(26).flatten
 
 player1 = Player.new('Megan', deck1)
 player2 = Player.new('Aurora', deck2)
-# p deck1
-# p 'break'
-# p deck2
+
 turn = Turn.new(player1, player2)
 turn.start
-# deck1 = deck.sample(5)
-# deck2 = deck.sample(5)
-# p deck.first
-# p deck.shuffle
-# deck.each_slice(26)
-# p deck.first
-# #
-# deck1 = 26.times do rand(deck.52) end
-# deck1 = deck.map { |e|  }
-# deck1 = []
-# deck2 =[]
-# p deck1
-# p "break"
-# p deck2
-# p deck2
-# p deck2
-# deck.shuffle
-# p player1
