@@ -33,8 +33,7 @@ class Deck
 
   # return the percentage of cards that are high ranking
   def percent_high_ranking
-    cards = @cards
-    total_number_of_cards = cards.length
+    @cards.length
 
     high_cards = []
 
@@ -45,8 +44,29 @@ class Deck
     end
 
     high_cards
+    high_cards.length
+    (100 * high_cards.length.fdiv(@cards.length)).round(2)
+  end
+  # 2 / 3 => 66.67, 1 / 2 = 50.0, 1 / 3 = 33.33
 
-    number_of_high_cards = high_cards.length
+
+    # cards = @cards
+    # @cards.count
+    # total_number_of_cards = cards.length
+
+    # high_cards = []
+
+    # @cards.each do |card|
+      # if card.rank >= 11
+        # high_cards << card
+      # end
+    # end
+
+    # high_cards
+
+    # 100.00 * (high_cards.count / @cards.count)
+    # 100.00 * (high_cards.length.fdiv(@cards.length)
+
 
     # total_number_of_cards = 0
     #
@@ -66,10 +86,13 @@ class Deck
 
     # number_of_high_cards
 
-    percentage_of_high_ranking_cards = number_of_high_cards / total_number_of_cards * 100.00
-  end
-  # 2 / 3 => 66.67, 1 / 2 = 50.0, 1 / 3 = 33.33
+    # percentage_of_high_ranking_cards = number_of_high_cards / total_number_of_cards * 100.00
+  # end
+  # # 2 / 3 => 66.67, 1 / 2 = 50.0, 1 / 3 = 33.33
   # passes test but returning 0 in pry???
+
+
+
 
   # remove top card from the deck
   def remove_card
@@ -81,6 +104,5 @@ class Deck
   def add_card(card)
     @cards << card
   end
-  # not sure if this is supposed to return the new array in pry???
 
 end
