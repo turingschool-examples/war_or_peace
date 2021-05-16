@@ -4,6 +4,6 @@ class Player
 
   def initialize(name, deck)
     @name = name
-    @deck = deck
+    @deck = deck.cards
   end
 end
