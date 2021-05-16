@@ -116,3 +116,46 @@ descirbe 'War turn type' do
   end
 
 end
+
+descirbe 'mutually_assured_destruction type' do
+
+  before :each do
+    @card1 = Card.new(:heart, 'Jack', 11)
+    @card2 = Card.new(:heart, '10', 10)
+    @card3 = Card.new(:heart, '9', 9)
+    @card4 = Card.new(:diamond, 'Jack', 11)
+    @card5 = Card.new(:heart, '8', 8)
+    @card6 = Card.new(:diamond, 'Queen', 12)
+    @card7 = Card.new(:heart, '3', 3)
+    @card8 = Card.new(:diamond, '2' 2)
+    @deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    @deck2 = Deck.new([@card3, @card4, @card6, @card7])
+    @player1 = Player.new("Megan", @deck1)
+    @player2 = Player.new("Aurora", @deck2)
+    @turn = Turn.new(@player1, @player2)
+    @winner = turn.winner
+  end
+
+  it 'is mutually_assured_destruction type' do
+    expect(@turn.type).to eq(:Mutually_assured_destruction)
+  end
+
+  it 'has mutually_assured_destruction winner' do
+    expect(@turn.winner).to eq("No Winner")
+  end
+
+  it 'pile_cards for mutually_assured_destruction' do
+    @turn.pile_cards
+    expect(@turn.spoils_of_war).to eq([])
+    expect(@player1.deck.cards).to eq([@card8])
+    expect(@player2.deck.cards).to eq([@card7])
+  end
+
+  it 'awards spoils_of_war for mutually_assured_destruction type' do
+    @turn.pile_cards
+    @turn.award_spoils
+    expect(@player1.deck.cards).to eq([@card8])
+    expect(@player2.deck.cards).to eq([@card9])
+  end
+
+end
