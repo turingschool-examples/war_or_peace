@@ -16,7 +16,7 @@ class Deck
   end
 
   def percent_high_ranking
-    percent_high_ranking = (Float(high_ranking_cards.count) / Float(cards.count) * 100).round(2)
+    percent_high_ranking = (Float(self.high_ranking_cards.count) / Float(cards.count) * 100).round(2)
   end
 
   def remove_card
@@ -24,6 +24,6 @@ class Deck
   end
 
   def add_card(new_card)
-    @cards.push(new_card)
+    @cards << (new_card)
   end
 end

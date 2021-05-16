@@ -6,12 +6,7 @@ class Player
     @deck = deck
   end
 
-  def name
-  end
-
-  def deck
-  end
-
-  def has_lost?
+  def has_lost?(hand1, hand2)
+    if 
   end
 end
