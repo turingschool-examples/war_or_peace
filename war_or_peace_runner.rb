@@ -99,8 +99,8 @@ class Game
         @turn.player1.deck.cards.shuffle!
         @turn.player2.deck.cards.shuffle!
       end
-      p @turn.player1.deck.cards.length
-      p @turn.player2.deck.cards.length
+      # p @turn.player1.deck.cards.length
+      # p @turn.player2.deck.cards.length
     end
   end
 
