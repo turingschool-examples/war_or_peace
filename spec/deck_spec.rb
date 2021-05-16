@@ -9,6 +9,7 @@ RSpec.describe Deck do
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
+
     expect(deck).to be_an_instance_of(Deck)
   end
 
@@ -23,6 +24,7 @@ RSpec.describe Deck do
     deck.add_card(card2)
     deck.add_card(card3)
     deck.add_card(card4)
+
     expect(deck.cards).to eq([card1, card2, card3,card4])
   end
 
