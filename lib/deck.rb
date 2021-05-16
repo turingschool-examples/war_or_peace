@@ -3,13 +3,15 @@ class Deck
   attr_reader :cards
 
   def initialize(cards)
-    # returns an array
+    # returns an array of cards
     @cards = []
   end
 
-  def rank_of_card_at(i)
+  def rank_of_card_at(index)
     # represents an index location of a card to be used
-    ranks = ['Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King','Ace']
+    rank = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King','Ace']
+    rank.fetch(index)
+
   end
 
   def high_ranking_cards
@@ -19,7 +21,7 @@ class Deck
 
   def percent_high_ranking
     # returns the percentage of cards that are high ranking
-    high_ranking_cards.length / ranks.length * 100
+    high_ranking_cards.count / rank.count * 100.0
   end
 
   def remove_card
@@ -29,7 +31,7 @@ class Deck
 
   def add_card(card)
     # add one card to the bottom of the deck. the bottom of the deck is the end of the deck.
-    @cards << card
+    @cards << Card.new(card)
   end
 end
 
