@@ -7,7 +7,7 @@ class War
     @player1 = player1
     @player2 = player2
   end
-end
+
 # Create 52 Cards (A standard deck)
 @card1 = Card.new(:spade, 'Ace', 14)
 @card2 = Card.new(:spade, '2', 2)
@@ -88,7 +88,7 @@ def random
       @deck2 << 26.times.card
   end
 end
-
+end
 # Put those cards into two Decks (some randomness would be nice here!)
 # Create two players with the Decks you created
 # Start the game using a new method called start
