@@ -75,6 +75,13 @@ class Turn
         @player1.deck.remove_card
         @player2.deck.remove_card
         end
+        if @player1.has_lost? == true
+          print "Turn #{@turn_num}: SPECIAL WAR: #{@player1.name}\'s final 2 "
+          puts 'cards removed from play in a tie'
+        elsif @player2.has_lost? == true
+          print "Turn #{@turn_num}: SPECIAL WAR: #{@player2.name}\'s final 2 "
+          puts 'cards removed from play in a tie'
+        end
       else
         win = @player1.deck.rank_of_card_at(1) > @player2.deck.rank_of_card_at(1)
         2.times do
@@ -82,26 +89,29 @@ class Turn
           @spoils_of_war << @player2.deck.remove_card
         end
         if win == true
+          puts "Turn #{@turn_num}: SPECIAL WAR: #{@player1.name} won 2 cards"
           self.award_spoils(@player1)
         elsif win == false
+          puts "Turn #{@turn_num}: SPECIAL WAR: #{@player2.name} won 2 cards"
           self.award_spoils(@player2)
-        elsif win == nil
-          @spoils_of_war = []
         end
       end
     elsif @player1.deck.cards.length == 1 || @player2.deck.cards.length == 1
       @player1.deck.remove_card
       @player2.deck.remove_card
+      if @player1.has_lost? == true
+        print "Turn #{@turn_num}: SPECIAL WAR: #{@player1.name}\'s final card "
+        puts 'removed from play in a tie'
+      elsif @player2.has_lost? == true
+        print "Turn #{@turn_num}: SPECIAL WAR: #{@player2.name}\'s final card "
+        puts 'removed from play in a tie'
+      end
     end
   end
 
   def game_runner
-    @turn_num = 0
+    @turn_num = 1
     while @player1.has_lost? == false && @player2.has_lost? == false
-      @turn_num += 1
-      if self.type != :basic && @turn_num <= 1000000
-        self.special_war
-      end
       if self.type == :basic && @turn_num <= 1000000
         puts "Turn #{@turn_num}: #{self.winner.name} won 2 cards"
       elsif self.type == :war && @turn_num <= 1000000
@@ -110,13 +120,15 @@ class Turn
         print "Turn #{@turn_num}: *mutually assured "
         puts 'destruction* 6 cards removed from play'
       elsif @turn_num > 1000000
-        puts '*~*~*~* DRAW *~*~*~*'
-        puts "#{@player1.name} and #{@player2.name} end their war with peace"
+        puts "\n\n*~*~*~* DRAW *~*~*~*\n"
+        puts "\n#{@player1.name} and #{@player2.name} end war with peace\n\n"
         break
       end
       win = self.winner
       self.pile_cards
       self.award_spoils(win)
+      @turn_num += 1
+      self.special_war
     end
   end
 
@@ -130,9 +142,9 @@ class Turn
     if starter == 'GO' || starter == 'go' || starter == 'Go'
       self.game_runner
       if @player1.has_lost? == true && @turn_num < 1000000
-        puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+        puts "\n\n*~*~*~* #{@player2.name} has won the game! *~*~*~*\n\n"
       elsif @player2.has_lost? == true && @turn_num < 1000000
-        puts "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+        puts "\n\n*~*~*~* #{@player1.name} has won the game! *~*~*~*\n\n"
       end
     else
       puts 'Invalid input'
