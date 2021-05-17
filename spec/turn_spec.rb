@@ -1,7 +1,7 @@
+require './lib/turn'
 require './lib/deck'
 require './lib/card'
 require './lib/player'
-require './lib/turn'
 
 RSpec.describe Turn do
   before :each do
@@ -22,13 +22,26 @@ RSpec.describe Turn do
     @player1 = Player.new('Aedion', @deck1)
     @player2 = Player.new('Aelin', @deck2)
 
-    @turn = Turn.new(player1, player2)
+    @turn = Turn.new(@player1, @player2)
 
-    expect(@turn.player1.name).to eq('Aedion')
-    expect(@turn.player2.name).to eq('Aelin')
-    expect(@turn).to be_a(Turn)
 
   end
 
+  it 'exists and has attributes' do
+    expect(@turn.player1.name).to eq('Aedion')
+    expect(@turn.player2.name).to eq('Aelin')
+    expect(@turn).to be_a(Turn)
+  end
+
+  it 'determines winner' do
+    expect(@turn.winner).to eq(@player2)
+  end
+
+  it 'sends cards into spoils of war' do
+    @turn.spoils_of_war
+    # expect(@turn.type).to eq(:basic)
+    expect(pile_cards).to eq([@card1, @card2])
+    # expect(@spoils_of_war).to eq(@card2)
+  end
 
 end
