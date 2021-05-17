@@ -17,6 +17,7 @@ class Deck
   def rank_of_card_at(index)
     # This method takes one argument that represents the index location of
     # a card to be used and returns the rank of that card
+    # consider adding method to return 0 if index is >= cards.length or something like that
     @cards[index].rank
   end
 
@@ -32,7 +33,7 @@ class Deck
 
   def add_card(new_card)
     # This method adds one card to the bottom (end) of the deck
-    @cards.insert(-1, new_card)
+    @cards << new_card
   end
 
 end
