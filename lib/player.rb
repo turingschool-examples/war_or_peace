@@ -6,10 +6,6 @@ class Player
   end
 
   def has_lost?
-    if player.deck == []
-      return true
-    else
-      return false
-    end
+    player.deck == []
   end
 end
