@@ -26,6 +26,9 @@ class Game
 
   def initialize_deck
 
+    # array of suits. do each for following, etc. etc.
+    # deck.add_card to add card to deck instead of making a separate array
+
     card1 = Card.new(:heart, '2', 2)
     card2 = Card.new(:heart, '3', 3)
     card3 = Card.new(:heart, '4', 4)
@@ -89,7 +92,7 @@ class Game
        card37, card38, card39, card40, card41, card42, card43, card44, card45,
        card46, card47, card48, card49, card50, card51, card52]
 
-    @full_deck.shuffle!.shuffle!.shuffle! # three times a charm!
+    3.times { @full_deck.shuffle! } # three times a charm!
 
   end
 
@@ -99,13 +102,14 @@ class Game
     player1 = Player.new("Ian", deck1)
     player2 = Player.new("Mike", deck2)
 
+
     @count = 0
 
     loop do
 
       @count +=1
 
-      turn = Turn.new(player1, player2)
+      turn = Turn.new(player1, player2) # dependency injection
       @turn_type = turn.type
       if @turn_type == :basic || @turn_type == :war
         @turn_winner = turn.winner.name
