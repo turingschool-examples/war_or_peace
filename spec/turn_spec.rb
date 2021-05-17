@@ -95,21 +95,23 @@ describe 'War turn type' do
     expect(@turn.type).to eq(:war)
   end
 
-  it 'winner of war type' do
+  it 'winner' do
     expect(@turn.winner).to eq(@player2)
   end
 
   it 'pile_cards for war type' do
     @turn.pile_cards
-    expect(@turn.spoils_of_war).to eq([@card1, @card2, @card5, @card4, @card3, @card5])
+    #error in test here
+    expect(@turn.spoils_of_war).to eq([@card1, @card2, @card5, @card4, @card3, @card6])
     expect(@player1.deck).to eq(@card8)
     expect(@player2.deck).to eq(@card7)
   end
 
-  it 'award winner with spoils_of_war for war type' do
+  it 'award winner with spoils_of_war' do
     @turn.pile_cards
     @turn.award_spoils
     expect(@player1.deck.cards).to eq([@card8])
+    #error in test here
     expect(@player2.deck.cards).to eq([@card7, @card1, @card2, @card5, @card4, @card3, @card6])
   end
 
