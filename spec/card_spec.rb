@@ -6,18 +6,10 @@ RSpec.describe Card do
     expect(card).to be_an_instance_of(Card)
   end
 
-  it "has a suit" do
+  it "has a different attributes" do
     card = Card.new(:heart, 'Jack', 11)
     expect(card.suit).to eq(:heart)
-  end
-
-  it "has a value" do
-    card = Card.new(:heart, 'Jack', 11)
     expect(card.value).to eq('Jack')
-  end
-
-  it "has a rank" do
-    card = Card.new(:heart, 'Jack', 11)
     expect(card.rank).to eq(11)
   end
 end
