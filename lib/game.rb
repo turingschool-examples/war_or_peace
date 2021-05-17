@@ -1,11 +1,11 @@
 class Game
-  attr_reader :full_deck, :player1, :player2
+  attr_reader :full_deck#, :player1, :player2
 
   def initialize
     deck = full_deck.cards.shuffle!
-
-    @player1 = Player.new("Megan", deck[0..25]) #
-    @player2 = Player.new("Aurora", deck[26..51]) #
+# require "pry"; binding.pry
+    @player1 = Player.new("Megan", Deck.new(deck[0..25])) #
+    @player2 = Player.new("Aurora", Deck.new(deck[26..51])) #
   end
 
   def start
@@ -92,6 +92,10 @@ class Game
 
   def turns
     @turn = Turn.new(@player1, @player2)
+
+    # @turn.player1 #
+    # @turn.player2 #
+
     @count = 0
 
     loop do
@@ -99,27 +103,52 @@ class Game
 
       @turn.pile_cards
 
-      if @turn.type == :mutually_assured_destruction
+      if @count == 1010000
+        p "---- DRAW ----"
+        break
+
+      elsif @turn.type == :mutually_assured_destruction
         p "Turn #{@count}: *mutually assured destruction* 6 cards removed from play"
+
+        if @player1.has_lost?
+          p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+          break
+
+        elsif @player1.has_lost?
+          p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+          break
+        end
 
       elsif @turn.type == :basic
         p "Turn #{@count}: #{@turn.winner.name} won 2 cards"
         @turn.award_spoils(@turn.winner)
+
+        if @player1.has_lost?
+          p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+          break
+        elsif @player1.has_lost?
+          p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+          break
+        end
+
       elsif @turn.type == :war
         p "Turn #{@count}: WAR - #{@turn.winner.name} won 6 cards"
         @turn.award_spoils(@turn.winner)
+
+        if @player1.has_lost?
+          p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+          break
+        elsif @player1.has_lost?
+          p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+          break
+        end
       end
 
-      if @player1.has_lost?
-        p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
 
-      elsif @player1.has_lost?
-        p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
-      end
 
-      if @count == 1000000
-        p "---- DRAW ----"
-      end
+      # if @count == 100#0000
+      #   p "---- DRAW ----"
+      # end
 
       p @player1.deck.cards.length
     end

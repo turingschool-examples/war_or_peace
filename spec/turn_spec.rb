@@ -42,14 +42,20 @@ RSpec.describe Turn do
     end
 
     it "adds to the pile_cards" do
-      @turn.player1
-      @turn.player2
-      expect(@turn.pile_cards).to eq([@card1, @card3])
+      @turn.pile_cards
 
-      @turn.player1
-      @turn.player2
+      expect(@turn.spoils_of_war).to eq([@card1, @card3])
 
-      expect(@turn.pile_cards).to eq([@card1, @card3, @card2, @card4])
+      expect(@player1.deck.cards).to eq(@card2, @card5, @card8)
+      expect(@player2.deck.cards).to eq(@card4, @card6, @card7)
+      # @turn.player1
+      # @turn.player2
+      # expect(@turn.pile_cards).to eq([@card1, @card3])
+
+      # @turn.player1
+      # @turn.player2
+      #
+      # expect(@turn.pile_cards).to eq([@card1, @card3, @card2, @card4])
     end
 
     it "will award spoils_of_war to winner" do
