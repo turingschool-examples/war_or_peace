@@ -95,8 +95,6 @@ RSpec.describe Turn do
       @player1 = Player.new("Megan", @deck1)
       @player2 = Player.new("Aurora", @deck2)
       @turn = Turn.new(@player1, @player2)
-      @turn.player1
-      @turn.player2
     end
 
     it "has :war turn type" do
@@ -121,6 +119,8 @@ RSpec.describe Turn do
       expect(@player2.deck.cards).to eq([@card7, @card1, @card2, @card5, @card4, @card3, @card6])
     end
 
+    # test scenario when one player has less than 3 cards
+
   end
 
   describe ":mutually_assured_destruction turn type methods" do
@@ -139,8 +139,6 @@ RSpec.describe Turn do
       @player1 = Player.new("Megan", @deck1)
       @player2 = Player.new("Aurora", @deck2)
       @turn = Turn.new(@player1, @player2)
-      @turn.player1
-      @turn.player2
     end
 
     it "has :mutually_assured_destruction turn type" do
@@ -169,6 +167,8 @@ RSpec.describe Turn do
 
   describe 'Low Card Count Cases' do
 
+    # could add case where one player DOES have third card
+
     before(:each) do
       @card1 = Card.new(:heart, 'Jack', 11)
       @card2 = Card.new(:heart, '10', 10)
@@ -179,8 +179,6 @@ RSpec.describe Turn do
       @player1 = Player.new("Megan", @deck1)
       @player2 = Player.new("Aurora", @deck2)
       @turn = Turn.new(@player1, @player2)
-      @turn.player1
-      @turn.player2
     end
 
     it "has less than two cards" do
