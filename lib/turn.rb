@@ -66,19 +66,15 @@ attr_reader :player1, :player2, :spoils_of_war
   def pile_basic
     # for a :basic turn, each player sends one card (the top card) to
     # the spoils pile
-    @spoils_of_war << @player1.deck.cards[0]
-    @player1.deck.remove_card
-    @spoils_of_war << @player2.deck.cards[0]
-    @player2.deck.remove_card
+    @spoils_of_war << @player1.deck.remove_card
+    @spoils_of_war << @player2.deck.remove_card
   end
 
   def pile_war
     # for a :war turn, each player sends three cards (the top three
     # cards) to the spoils pile
-    @player1.deck.cards[0..2].each { |card| @spoils_of_war << card }
-    3.times { @player1.deck.remove_card }
-    @player2.deck.cards[0..2].each { |card| @spoils_of_war << card }
-    3.times { @player2.deck.remove_card }
+    3.times { @spoils_of_war << @player1.deck.remove_card }
+    3.times { @spoils_of_war << @player2.deck.remove_card }
   end
 
   def pile_mutually_assured_destruction
