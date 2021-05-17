@@ -9,7 +9,7 @@ class Player
 
   def has_lost?
     # This method determines if the player has lost the game
-    @deck.cards.length == 0
+    @deck.cards.empty?
   end
 
 end
