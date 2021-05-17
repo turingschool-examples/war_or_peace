@@ -7,10 +7,6 @@ class Player
   end
 
   def has_lost?
-    # The array of cards is an attribute of a Deck and
-    # is initialized with a Deck.
-    # Access array of cards of a Deck with @deck.cards .
-    #
     @deck.cards.length == 0
   end
 end

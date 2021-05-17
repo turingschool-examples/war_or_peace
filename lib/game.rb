@@ -1,12 +1,11 @@
 class Game
-  attr_reader :full_deck, :deck1, :deck2, :player1, :player2#, :turn
+  attr_reader :full_deck, :player1, :player2
 
   def initialize
-    @full_deck = full_deck
-    @deck1 = deck1
-    @deck2 = deck2
-    @player1 = player1
-    @player2 = player2
+    deck = full_deck.cards.shuffle!
+
+    @player1 = Player.new("Megan", deck[0..25]) #
+    @player2 = Player.new("Aurora", deck[26..51]) #
   end
 
   def start
@@ -18,10 +17,7 @@ class Game
     user_input = gets.chomp.upcase
 
     if user_input == "GO"
-      # then self.create_standard_deck
-      create_full_deck # To call a method in the same class
-      shuffle
-      add_players
+      full_deck
       turns
     else
       p "Hmm... not quite. Try again. Type 'GO' to start the game!"
@@ -29,7 +25,7 @@ class Game
     end
   end
 
-  def create_full_deck
+  def full_deck
     card1 = Card.new(:spade, 'Ace', 14)
     card2 = Card.new(:spade, '2', 2)
     card3 = Card.new(:spade, '3', 3)
@@ -91,24 +87,7 @@ class Game
       card39, card40, card41, card42, card43, card44, card45, card46,
       card47, card48, card49, card50, card51, card52]
 
-    @full_deck = Deck.new(@cards)
-  end
-
-
-  def shuffle
-    @full_deck.cards.shuffle!
-
-    # @deck = Deck.new(@cards) # maybe this needs to be here
-    # @deck1 = Deck.new(@cards)
-    # @deck2 = Deck.new(@cards)
-
-    @deck1 = Deck.new(@full_deck.cards[0..25])
-    @deck2 = Deck.new(@full_deck.cards[26..51])
-  end
-
-  def add_players
-    @player1 = Player.new("Megan", @deck1)
-    @player2 = Player.new("Aurora", @deck2)
+    Deck.new(@cards)
   end
 
   def turns
@@ -125,11 +104,9 @@ class Game
 
       elsif @turn.type == :basic
         p "Turn #{@count}: #{@turn.winner.name} won 2 cards"
-        # @turn.spoils_of_war
         @turn.award_spoils(@turn.winner)
       elsif @turn.type == :war
         p "Turn #{@count}: WAR - #{@turn.winner.name} won 6 cards"
-        # @turn.spoils_of_war
         @turn.award_spoils(@turn.winner)
       end
 
@@ -148,15 +125,3 @@ class Game
     end
   end
 end
-
-  # def random
-  #   @deck1 = []
-  #   @deck2 = []
-  #
-  #   @standard_deck.shuffle!
-  #
-  #   @standard_deck.each do |card|
-  #       26.times {@deck1 << card}
-  #       26.times {@deck2 << card}
-  #   end
-  # end

@@ -1,4 +1,3 @@
-# This is my runner file for War or Peace
 require './lib/deck'
 require './lib/card'
 require './lib/player'

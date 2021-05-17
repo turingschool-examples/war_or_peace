@@ -30,7 +30,9 @@ RSpec.describe Deck do
   end
 
   it "will remove_card" do
-    expect(@deck.remove_card).to eq(@card1)
+    @deck.remove_card
+
+    expect(@deck.cards).to eq([@card2, @card3])
   end
 
   it "will add_card" do
@@ -38,5 +40,4 @@ RSpec.describe Deck do
 
     expect(@deck.add_card(@card4)).to eq([@card1, @card2, @card3, @card4])
   end
-
 end

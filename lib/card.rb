@@ -1,5 +1,5 @@
 class Card
-  attr_accessor :suit, :value, :rank
+  attr_reader :suit, :value, :rank
 
   def initialize(suit, value, rank)
     @suit = suit
@@ -8,8 +8,3 @@ class Card
   end
 
 end
-
-# card = Card.new("heart", "queen", "11")
-# puts card.suit
-# puts card.value
-# puts card.rank
