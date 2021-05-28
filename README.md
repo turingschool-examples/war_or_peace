@@ -13,9 +13,9 @@
 
 ### <ins>Overview</ins>
 
-[War or Peace](https://github.com/Scott-Borecki/war_or_peace) is a 6-day, solo project during the first week of Mod 1 of 4, for Turing School's Back End Engineering Program.
+[War or Peace](https://github.com/Scott-Borecki/war_or_peace) is a 6-day, solo project during the first week of Mod 1 of 4 for Turing School's Back End Engineering Program.
 
-My challenge was to write a program to simulate a game of the classic card game [war](https://en.wikipedia.org/wiki/War_(card_game)). A user will be able to create two players, and watch them ‘play’ the game.
+My challenge was to write a program to simulate a game of the classic card game [war](https://en.wikipedia.org/wiki/War_(card_game)). A user is able to create two players and watch them ‘play’ the game.
 
 Learning goals and areas of focus consisted of:
 
