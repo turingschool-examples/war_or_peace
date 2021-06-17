@@ -1,6 +1,5 @@
 require 'rspec'
-require_relative '../lib/card'
-require_relative '../lib/deck'
+require_relative 'spec_helper'
 
 RSpec.describe Deck do
   it 'can exist as an "empty" or a "non-empty" deck' do
