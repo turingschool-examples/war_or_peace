@@ -1,8 +1,7 @@
 require_relative 'player'
 
 class Turn
-  attr_reader :player1, :player2
-  attr_accessor :spoils_of_war, :victor
+  attr_reader :player1, :player2, :spoils_of_war, :victor
 
   def initialize(player1=Player.new, player2=Player.new)
     player1.class != Player ? @player1 = Player.new : @player1 = player1
@@ -50,7 +49,7 @@ class Turn
 
   def award_spoils(victor)
     if @spoils_of_war.length > 0 && victor.class == Player
-      @spoils_of_war.each { |card| victor.deck.cards << card }
+      @spoils_of_war.each { |card| victor.deck.add_card(card) }
       @spoils_of_war = Array.new
     end
   end
