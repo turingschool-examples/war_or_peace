@@ -42,7 +42,7 @@ RSpec.describe Game do
     expect(game.split_deck[1].length).to eq(26)
   end
 
-  it 'can increment and reset turns' do
+  it 'can increment turns' do
     game = Game.new
 
     expect(game.total_turn_counter).to eq(1)
@@ -59,13 +59,6 @@ RSpec.describe Game do
     expect(game.basic_turn_counter).to eq(3)
     expect(game.war_turn_counter).to eq(3)
     expect(game.mas_turn_counter).to eq(3)
-
-    game.reset_turns
-
-    expect(game.total_turn_counter).to eq(1)
-    expect(game.basic_turn_counter).to eq(0)
-    expect(game.war_turn_counter).to eq(0)
-    expect(game.mas_turn_counter).to eq(0)
   end
 
   it 'can greet players' do

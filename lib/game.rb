@@ -41,17 +41,7 @@ class Game
   end
 
   def split_deck
-    [
-      @cards[0..25],
-      @cards[26..52]
-    ]
-  end
-
-  def reset_turns
-    @total_turn_counter = 1
-    @basic_turn_counter = 0
-    @war_turn_counter = 0
-    @mas_turn_counter = 0
+    [@cards[0..25], @cards[26..52]]
   end
 
   def increment_total_turns
