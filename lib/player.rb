@@ -1,4 +1,3 @@
-require_relative 'card'
 require_relative 'deck'
 
 class Player
@@ -6,19 +5,11 @@ class Player
 
   def initialize(name='John', deck=Deck.new)
     @name = name.to_s
-    if deck.class != Deck
-      @deck = Deck.new
-    else
-      @deck = deck
-    end
+    deck.class != Deck ? @deck = Deck.new : @deck = deck
   end
 
-  def has_lost?()
-    if self.deck.cards.length == 0
-      return true
-    else
-      return false
-    end
+  def has_lost?
+    deck.cards.length == 0
   end
 
 end

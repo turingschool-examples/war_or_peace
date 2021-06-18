@@ -1,27 +1,20 @@
 class Card
-  attr_reader :suit, :value, :rank
+  attr_reader :suit, :value, :rank, :valid_suits, :valid_values
 
   def initialize(suit=:joker, value='Joker', rank=0)
-    valid_suits = [:heart, :spade, :diamond, :club]
-
-    valid_values = {
+    @valid_suits = [:heart, :spade, :diamond, :club]
+    @valid_values = {
       'Ace': 14,
       'King': 13,
       'Queen': 12,
       'Jack': 11,
       :numeric => (2..10)
     }
-
-    suit_check = suit.to_s.downcase.to_sym
-    value_check_str = value.to_s.capitalize.to_sym
-    value_check_int = value.to_s.to_i
-    rank_check = rank.to_s.to_i
-
-    if valid_suits.index(suit_check) == nil
+    if @valid_suits.index(suit.to_s.downcase.to_sym) == nil
       invalid_input = true
-    elsif valid_values.keys.index(value_check_str) == nil && valid_values[:numeric].include?(value_check_int) == false
+    elsif @valid_values.keys.index(value.to_s.capitalize.to_sym) == nil && @valid_values[:numeric].include?(value.to_s.to_i) == false
       invalid_input = true
-    elsif valid_values[value_check_str] != rank_check && value_check_int != rank_check
+    elsif @valid_values[value.to_s.capitalize.to_sym] != rank.to_s.to_i && value.to_s.to_i != rank.to_s.to_i
       invalid_input = true
     end
 
@@ -30,9 +23,9 @@ class Card
       @value = 'Joker'
       @rank = 0
     else
-      @suit = suit_check
+      @suit = suit.to_s.downcase.to_sym
       @value = value.to_s.capitalize
-      @rank = rank_check
+      @rank = rank.to_s.to_i
     end
   end
 

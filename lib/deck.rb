@@ -4,9 +4,7 @@ class Deck
   attr_reader :cards
 
   def initialize(cards=[])
-    card_check = cards.any? do |card|
-      card.class != Card
-    end
+    card_check = cards.any? { |card| card.class != Card }
     if card_check || cards.class != Array
       @cards = Array.new
     else
@@ -15,40 +13,23 @@ class Deck
   end
 
   def rank_of_card_at(index_of_card)
-    if index_of_card.class != Integer
-      return nil
-    else
-      output = self.cards[index_of_card]
-      return output.rank unless output == nil
-    end
+    @cards[index_of_card].rank unless index_of_card.class != Integer || @cards[index_of_card] == nil
   end
 
-  def high_ranking_cards()
-    if self.cards.length > 0
-      return self.cards.select do |card|
-        card.rank >= 11
-      end
-    else
-      return Array.new
-    end
+  def high_ranking_cards
+    @cards.length > 0 ? @cards.select { |card| card.rank >= 11 } : Array.new
   end
 
-  def percent_high_ranking()
-    if self.cards.length == 0
-      return 0.to_f
-    else
-      return ((high_ranking_cards.length.to_f / self.cards.length.to_f) * 100).round(2)
-    end
+  def percent_high_ranking
+    @cards.length == 0 ? 0.to_f : ((high_ranking_cards.length / @cards.length.to_f) * 100).round(2)
   end
 
-  def remove_card()
-    return self.cards.shift unless self.cards.length == 0
+  def remove_card
+    @cards.shift unless @cards.length == 0
   end
 
   def add_card(new_card)
-    if new_card.class == Card
-      self.cards << new_card
-    end
+    @cards << new_card if new_card.class == Card
   end
 
 end
