@@ -1,4 +1,4 @@
-require './lib/card'
+require './card'
 
 class Deck
   attr_accessor :cards
@@ -19,6 +19,11 @@ class Deck
     end}
     high_rankers
   end
+
+  def percent_high_ranking
+    high_ranking = high_ranking_cards
+    ((high_ranking.length / @cards.length.to_f) * 100).round(2)
+  end
 end
 
 card1 = Card.new(:diamond, 'Queen', 12)
@@ -30,3 +35,7 @@ card3 = Card.new(:heart, 'Ace', 14)
 cards = [card1, card2, card3]
 
 deck = Deck.new(cards)
+
+deck.high_ranking_cards
+
+p deck.percent_high_ranking
