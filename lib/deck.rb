@@ -17,9 +17,11 @@ class Deck
   end
 
   def remove_card #removes the top (beginning) card from the deck
+    @cards.delete_at(0)
   end
 
-  def add_card #adds one card to the bottom (end) of the deck
+  def add_card(card) #adds one card to the bottom (end) of the deck
+    @cards << card
   end
 
 end
