@@ -1,20 +1,22 @@
-class Deck
-  attr_reader :cards
-  def initialize([])
-    @cards = cards
+class Card
+  attr_accessor :suit, :value, :rank
+  def initialize(suit, value, rank)
+    @suit = suit
+    @value = value
+    @rank = rank
   end
 
-  def rank_of_card_at()
+  def suit
+    @suit
   end
 
-  def high_ranking_cards()
+  def value
+    @value
   end
 
-  def percent_high_ranking
+  def rank
+    @rank 
   end
 
-  def remove_card
-  end
 
-  def add_card
-  end
+end
