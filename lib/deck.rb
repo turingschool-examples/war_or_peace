@@ -7,9 +7,10 @@ class Deck
   end
 
   def rank_of_card_at(index) #returns the rank of a card in the @cards array
+    @cards[index].rank
   end
 
-  def high_ranking_cards #return an array of cards in the deckwith rank 11 or above
+  def high_ranking_cards #return an array of cards in the deck with rank 11 or above
   end
 
   def percent_high_ranking #return the percentage of cards that are high ranking
