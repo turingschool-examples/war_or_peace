@@ -15,4 +15,4 @@ class Card
   end
 end
 
-jack = Card.new('heart', 'Jack', 11)
+card = Card.new('heart', 'Jack', 11)
