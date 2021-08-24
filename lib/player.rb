@@ -5,8 +5,9 @@ class Player
     @deck = deck
   end
 
+  #check if array of cards is empty
   def has_lost?
-    @deck.empty?
+    @deck.cards.empty?
   end
 
 end
