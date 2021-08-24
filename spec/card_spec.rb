@@ -1,5 +1,5 @@
 require 'rspec'
-require './lib/card'
+require '/Users/billyfrey/turing/1module/war_or_peace/lib/card.rb'
 
 RSpec.describe Card do
   it "exists" do
