@@ -5,9 +5,10 @@ class Deck
     @cards = card_array
   end
   def rank_of_card_at(position)
+    @position = position
+    cards[position.to_i].rank
   end
 end
 
 # what I've figured out so far
-# calling deck.cards[0] calls the first card within the given cards
-# this doesn't work in a method, since the variable needs to be redefined
+# calling the cards variable allows us to call the specific card
