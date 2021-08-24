@@ -12,11 +12,18 @@ class Deck
   end
 
   def high_ranking_cards
+
+    all_cards = []
     high_cards = []
 
-    @cards.each do | i |
+    @cards.each do | c |
+      all_cards << c.rank
+    end
 
-      if @cards[i].rank >= 11
+
+     all_cards.each do | i |
+
+      if rank_of_card_at(i) >= 11
         high_cards << @cards[i]
       end
 
@@ -31,4 +38,11 @@ class Deck
     return percent
   end
 
+  def remove_card
+    @cards.shift
+  end
+
+  def add_card(new_card)
+    @cards << new_card
+  end
 end
