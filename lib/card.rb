@@ -3,9 +3,9 @@ class Card
               :value,
               :rank
 
-def initialize
-  @suit = suit
-  @value = value
-  @rank = rank
+  def initialize(suit, value, rank)
+    @suit = suit
+    @value = value
+    @rank = rank
   end
 end
