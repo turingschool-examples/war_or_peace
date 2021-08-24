@@ -30,7 +30,6 @@ class Deck
     return percent_high_rank.round(2)
   end
   def remove_card
-    return cards[0]
     cards.shift
   end
 end
