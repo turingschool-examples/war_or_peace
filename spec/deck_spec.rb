@@ -50,13 +50,24 @@ describe Deck do
     end
   end
   describe '#percent_high_ranking' do
-    it 'returns a percentage of the cards that are high ranking' do
+    xit 'returns a percentage of the cards that are high ranking' do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
       cards = [card1, card2, card3]
       deck = Deck.new(cards)
       expect(deck.percent_high_ranking).to eq(66.67)
+    end
+  end
+  describe '#remove card' do
+    it 'removes the first card from the deck' do
+      card1 = Card.new(:diamond, 'Queen', 12)
+      card2 = Card.new(:spade, '3', 3)
+      card3 = Card.new(:heart, 'Ace', 14)
+      cards = [card1, card2, card3]
+      deck = Deck.new(cards)
+      cards.shift
+      expect(cards).to eq([card2, card3])
     end
   end
 end
