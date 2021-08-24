@@ -3,8 +3,8 @@ require './card'
 class Deck
   attr_reader :cards
 
-  def initialize(card_parameter)
-      @cards = card_parameter
+  def initialize(cards)
+      @cards = cards
   end
 
   def rank_of_card_at(index)
