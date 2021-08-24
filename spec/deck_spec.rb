@@ -53,11 +53,11 @@ RSpec.describe Deck do
     deck = Deck.new(cards)
     deck.remove_card
 
-    expect(deck.cards).to eq([card1, card2])
+    expect(deck.cards).to eq([card2, card3])
 
   end
 
-  it 'can add a card' do
+  it 'can add a card to the bottom' do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     cards = [card1, card2]
