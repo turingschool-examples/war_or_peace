@@ -68,14 +68,32 @@ describe Deck do
       deck = Deck.new(cards)
       expect(deck.remove_card).to eq(card1)
     end
-#    it 'causes there to be two remaining cards' do
-#      card1 = Card.new(:diamond, 'Queen', 12)
-#      card2 = Card.new(:spade, '3', 3)
-#      card3 = Card.new(:heart, 'Ace', 14)
-#      cards = [card1, card2, card3]
-#      deck = Deck.new(cards)
-#      cards.shift
-#      expect(cards.deck).to eq ([card2, card3])
-#    end
+    it 'causes there to be two remaining cards' do
+      card1 = Card.new(:diamond, 'Queen', 12)
+      card2 = Card.new(:spade, '3', 3)
+      card3 = Card.new(:heart, 'Ace', 14)
+      cards = [card1, card2, card3]
+      deck = Deck.new(cards)
+      deck.remove_card
+      expect(deck.cards).to eq ([card2, card3])
+    end
+    it 'causes there to only have one high remaining card left' do
+      card1 = Card.new(:diamond, 'Queen', 12)
+      card2 = Card.new(:spade, '3', 3)
+      card3 = Card.new(:heart, 'Ace', 14)
+      cards = [card1, card2, card3]
+      deck = Deck.new(cards)
+      deck.remove_card
+      expect(deck.high_ranking_cards).to eq([card3])
+    end
+    it 'causes the percentage of high ranking cards to be 50%' do
+      card1 = Card.new(:diamond, 'Queen', 12)
+      card2 = Card.new(:spade, '3', 3)
+      card3 = Card.new(:heart, 'Ace', 14)
+      cards = [card1, card2, card3]
+      deck = Deck.new(cards)
+      deck.remove_card
+      expect(deck.percent_high_ranking).to eq(50.00)
+    end
   end
 end
