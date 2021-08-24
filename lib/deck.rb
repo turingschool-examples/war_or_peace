@@ -15,10 +15,10 @@ class Deck
 
     high_cards = []
 
-      cards.each do | i |
+      cards.each do | card |
 
-      if i.rank >= 11
-        high_cards << i
+      if card.rank >= 11
+        high_cards << card
       end
 
     end
@@ -28,6 +28,7 @@ class Deck
 
   def percent_high_ranking
     percent = (high_ranking_cards.count.to_f) / (cards.count.to_f)
+    percent *= 100.0
     return percent.round(2)
   end
 
