@@ -9,7 +9,6 @@ class Card
 end
 
 
-card = Card.new(:heart, "Ace", 14)
 card = Card.new(:diamond, "Queen", 12)
-card = Card.new(:heart, "Jack", 11)
 card = Card.new(:spade, "3", 3)
+card = Card.new(:heart, "Ace", 14)
