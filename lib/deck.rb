@@ -29,7 +29,8 @@ class Deck
     percent_high_rank = number_of_high_rank_cards.to_f / number_of_cards.to_f * 100
     return percent_high_rank.round(2)
   end
+  def remove_card
+    p card1
+    cards.shift
+  end
 end
-
-# what I've figured out so far
-# calling the cards variable allows us to call the specific card
