@@ -60,7 +60,7 @@ describe Deck do
     end
   end
   describe '#remove_card' do
-    it 'removes the first card from the deck' do
+    xit 'removes the first card from the deck' do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -68,7 +68,7 @@ describe Deck do
       deck = Deck.new(cards)
       expect(deck.remove_card).to eq(card1)
     end
-    it 'causes there to be two remaining cards' do
+    xit 'causes there to be two remaining cards' do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -77,7 +77,7 @@ describe Deck do
       deck.remove_card
       expect(deck.cards).to eq ([card2, card3])
     end
-    it 'causes there to only have one high remaining card left' do
+    xit 'causes there to only have one high remaining card left' do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -86,7 +86,7 @@ describe Deck do
       deck.remove_card
       expect(deck.high_ranking_cards).to eq([card3])
     end
-    it 'causes the percentage of high ranking cards to be 50.00' do
+    xit 'causes the percentage of high ranking cards to be 50.00' do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -97,7 +97,7 @@ describe Deck do
     end
   end
   describe '#add_card' do
-    it 'adds a card to the bottom of the deck' do # I'm uncertain if this is the 'best' test, but it works
+    xit 'adds a card to the bottom of the deck' do # I'm uncertain if this is the 'best' test, but it works
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -108,7 +108,7 @@ describe Deck do
       deck.add_card(card4)
       expect(deck.cards).to eq([card2, card3, card4])
     end
-    it 'causes the deck to contain 3 cards' do
+    xit 'causes the deck to contain 3 cards' do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -119,7 +119,7 @@ describe Deck do
       deck.add_card(card4)
       expect(cards.count).to eq(3)
     end
-    it 'causes there to still have one high ranking card' do
+    xit 'causes there to still have one high ranking card' do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -130,7 +130,7 @@ describe Deck do
       deck.add_card(card4)
       expect(deck.high_ranking_cards).to eq([card3])
     end
-    it 'causes the percentage of high ranking cards to be 33.33' do
+    xit 'causes the percentage of high ranking cards to be 33.33' do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
