@@ -5,10 +5,10 @@ class Turn
               :spoils_of_war
 
   def initialize(player1, player2)
-    @player1 = player1
-    @player2 = player2
-    @spoils_of_war = []
-    @type = :default
+    @player1        = player1
+    @player2        = player2
+    @spoils_of_war  = []
+    @type           = :default
     @winner
   end
 
@@ -52,8 +52,12 @@ class Turn
         @spoils_of_war << @player2.deck.remove_card
       end
     elsif @type == :mutually_assured_destruction
-      @player1.deck.slice[0, 2]
-      @player2.deck.slice[0, 2]
+      3.times do
+        @player1.deck.remove_card
+      end
+      3.times do
+        @player2.deck.remove_card
+      end
     end
   end
 
