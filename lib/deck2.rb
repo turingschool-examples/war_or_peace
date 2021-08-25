@@ -20,6 +20,11 @@ class Deck
    end
 
    def remove_card
-     @cards.shift(0)
+     @cards.shift
    end
+
+   def add_card(card)
+     @cards.push(card)
+   end
+   
 end
