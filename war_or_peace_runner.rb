@@ -1,4 +1,5 @@
-
+require './lib/card'
+require './lib/deck'
 
 
 card_1 = Card.new(:diamonds, 'ace', 13)
