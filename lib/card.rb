@@ -1,9 +1,9 @@
 require 'rspec'
-require './lib/card'
 
 class Card
-  attr_reader :suit
-  attr_accessor :rank, :value
+  attr_reader :suit,
+              :rank,
+              :value
 
   def initialize (suit, value, rank)
     @suit = suit
