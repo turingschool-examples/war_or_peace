@@ -20,16 +20,16 @@ class Deck
     end
     return @high_rank_cards
   end
-=begin
+
   def percent_high_ranking
-    percent = (@high_rank_cards / @cards.length) * 100
+    percent = (@high_rank_cards.count / @cards.count) * 100
     return percent
   end
 
   def remove_card
     @cards.shift
   end
-
+=begin
   def add_card
     @cards.append
   end
