@@ -19,18 +19,20 @@ class Deck
       end
     end
 
+    @high_cards
+
   end
 
   def percent_high_ranking #return the percentage of cards that are high ranking
-    @high_cards = []
+    @high_cards_count = 0
 
     @cards.each do |card|
       if card.rank >= 11
-        @high_cards << card
+        @high_cards_count += 1
       end
     end
 
-    @high_cards.length.to_f / @cards.length.to_f * 100
+    @high_cards_count.to_f / @cards.length.to_f * 100
   end
 
   def remove_card #removes the top (beginning) card from the deck
