@@ -23,6 +23,7 @@ describe Deck do
       card3 = Card.new(:heart, 'Ace', 14)
       cards = [card1, card2, card3]
       deck = Deck.new(cards)
+      expect(deck.rank_of_card_at(0)).to be_an Integer
       expect(deck.rank_of_card_at(0)).to eq(12)
     end
   end
@@ -38,6 +39,27 @@ describe Deck do
       cards = [card1, card2, card3]
       deck = Deck.new(cards)
       expect(deck.high_ranking_cards).to be_an Array
+    end
+  end
+  describe '#percent_high_ranking' do
+    it 'returns the percentage of high ranking cards' do
+      card1 = Card.new(:diamond, 'Queen', 12)
+      card2 = Card.new(:spade, '3', 3)
+      card3 = Card.new(:heart, 'Ace', 14)
+      cards = [card1, card2, card3]
+      deck = Deck.new(cards)
+      expect(deck.percent_high_ranking).to be_an Integer
+    end
+  end
+  describe '#remove_card' do
+    it 'removes the top (first) card of the deck' do
+      card1 = Card.new(:diamond, 'Queen', 12)
+      card2 = Card.new(:spade, '3', 3)
+      card3 = Card.new(:heart, 'Ace', 14)
+      cards = [card1, card2, card3]
+      deck = Deck.new(cards)
+      deck.remove_card
+      expect(cards.count).to eq(2)
     end
   end
 end
