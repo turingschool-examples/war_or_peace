@@ -15,8 +15,6 @@ class Card
   end
 
   def rank
-    @rank 
+    @rank
   end
-
-
 end
