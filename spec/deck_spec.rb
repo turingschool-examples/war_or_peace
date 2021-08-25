@@ -48,6 +48,7 @@ describe Deck do
       card3 = Card.new(:heart, 'Ace', 14)
       cards = [card1, card2, card3]
       deck = Deck.new(cards)
+      deck.high_ranking_cards
       expect(deck.percent_high_ranking).to be_an Integer
     end
   end
