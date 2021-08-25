@@ -1,5 +1,5 @@
-require "./card"
-require "./deck"
+# require "./card"
+# require "./deck"
 
 class Player
   attr_reader :deck,
