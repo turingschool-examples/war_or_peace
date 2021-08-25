@@ -1,6 +1,3 @@
-# require "./card"
-# require "./deck"
-
 class Player
   attr_reader :deck,
               :name
