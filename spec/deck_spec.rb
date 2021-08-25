@@ -62,4 +62,16 @@ describe Deck do
       expect(cards.count).to eq(2)
     end
   end
+  describe '#add_card' do
+    it 'adds a card to the bottom (end) of the deck' do
+      card1 = Card.new(:diamond, 'Queen', 12)
+      card2 = Card.new(:spade, '3', 3)
+      card3 = Card.new(:heart, 'Ace', 14)
+      card4 = Card.new(:club, '5', 5)
+      cards = [card1, card2, card3]
+      deck = Deck.new(cards)
+      deck.add_card(card4)
+      expect(cards.count).to eq(4)
+    end
+  end
 end
