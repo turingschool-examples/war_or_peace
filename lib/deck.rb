@@ -19,7 +19,6 @@ class Deck
       end
     end
 
-    @high_cards
   end
 
   def percent_high_ranking #return the percentage of cards that are high ranking
