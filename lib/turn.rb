@@ -45,8 +45,12 @@ class Turn
       @spoils_of_war << @player1.deck.remove_card
       @spoils_of_war << @player2.deck.remove_card
     elsif @type == :war #same as above
-      3.times do @spoils_of_war << @player1.deck.remove_card #not sure if the ... works here
-      3.times do @spoils_of_war << @player2.deck.remove_card
+      3.times do
+        @spoils_of_war << @player1.deck.remove_card
+      end
+      3.times do
+        @spoils_of_war << @player2.deck.remove_card
+      end
     elsif @type == :mutually_assured_destruction
       @player1.deck.slice[0, 2]
       @player2.deck.slice[0, 2]
@@ -55,7 +59,9 @@ class Turn
 
   def award_spoils(winner)
     if @type != :mutually_assured_destruction
-      winner.deck << @spoils_of_war #may need to remove cards from the spoils
+      while @spoils_of_war.length > 0
+        winner.deck.cards << @spoils_of_war.delete_at(0)
+      end
     end
   end
 end

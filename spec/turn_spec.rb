@@ -25,7 +25,7 @@ describe Turn do
     @turn = Turn.new(@player1, @player2)
   end
 
-  describe '#initialize' do
+  context 'Initialize' do
     it 'exists' do
       expect(@turn).to be_an_instance_of(Turn)
     end
@@ -38,7 +38,7 @@ describe Turn do
   end
 
 
-  describe '#basic turn' do
+  context 'Basic Turn' do
 
     it 'is a basic turn' do
       expect(@turn.type).to eq(:basic)
@@ -56,20 +56,21 @@ describe Turn do
       @turn.winner
       @turn.pile_cards
       expect(@turn.spoils_of_war).to include(@card1)
-      expect(@turn.spoils_of_War).to include(@card3)
-      expect(@turn.player1.deck).to eq([@card2, @card5, @card8])
-      expect(@turn.player2.deck).to eq([@card4, @card6, @card7])
+      expect(@turn.spoils_of_war).to include(@card3)
+      expect(@turn.player1.deck.cards).to eq([@card2, @card5, @card8])
+      expect(@turn.player2.deck.cards).to eq([@card4, @card6, @card7])
     end
 
     it "awards the spoils to the winner" do
-      winner = @turn.winner
+      @turn.type
+      @winner = @turn.winner
       @turn.pile_cards
-      @turn.award_spoils(winner)
-
-      expect(winner.deck).to include(@card1)
-      expect(winner.deck).to include(@card3)
-      expect(@player1.deck.size).to eq(4)
-      expect(@player2.deck.size).to eq(2)
+      @turn.award_spoils(@winner)
+      
+      expect(@winner.deck.cards).to include(@card1)
+      expect(@winner.deck.cards).to include(@card3)
+      expect(@player1.deck.cards.size).to eq(5)
+      expect(@player2.deck.cards.size).to eq(3)
     end
   end
 end
