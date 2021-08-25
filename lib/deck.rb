@@ -22,7 +22,12 @@ class Deck
   end
 
   def percent_high_ranking
-    percent = (@high_rank_cards.count / @cards.count) * 100
+    @cards.each do |card|
+      if card.rank >= 11
+        @high_rank_cards << (card)
+      end
+    end
+    percent = ((@high_rank_cards.count.to_f / @cards.count.to_f) * 100)
     return percent
   end
 
@@ -40,9 +45,3 @@ card2 = Card.new(:spade, '3', 3)
 card3 = Card.new(:heart, 'Ace', 14)
 cards = [card1, card2, card3]
 deck = Deck.new(cards)
-
-puts deck.high_ranking_cards
-puts "efqwf"
-puts @high_rank_cards
-puts "asdf"
-puts deck.percent_high_ranking
