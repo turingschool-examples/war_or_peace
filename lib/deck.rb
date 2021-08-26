@@ -13,10 +13,16 @@ class Deck
   #Method will return an array of cards in the deck that have a rank of 11 or above (faces and aces)
   def high_ranking_cards
 
-    high_rank = []
-
     cards.find_all do |card|
       card.rank >= 11
     end
   end
+
+  #Method will return the percentage of cards that are high ranking.
+  def percent_high_ranking
+
+    ((high_ranking_cards.length.to_f / @cards.count) * 100).round(2)
+
+  end
+
 end
