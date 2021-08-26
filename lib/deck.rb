@@ -1,17 +1,6 @@
-#require '.,=/card'
-
 class Deck
-  attr_reader :cards,
-              :card,
-              :high_ranking_cards,
-              :suit,
-              :rank,
-              :value
-
-#    @suit = ["diamonds", "spades", "hearts", "clubs"]
-#    @value = [0...14]
-#    @rank = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14"]
-#  end
+  attr_reader :cards
+              :high_cards
 
   def initialize(cards)
     @cards = cards
@@ -21,27 +10,28 @@ class Deck
     cards[index_location_of_card].rank
   end
 
-  high_cards= []
-
   def high_ranking_cards
-      cards.each do |cards|
-      if cards.rank > 11
-        high_cards << cards
-      else
+    high_cards = []
+    cards.each do |card|
+      if card.rank >= 11
+        high_cards << card
       end
+    end
+    high_cards
   end
 
-end
-#return an array of cards in the deck that have a rank of 11 or above (face cards and aces)|
-
-#  def percent_high_ranking
+  def percent_high_ranking
+    (high_ranking_cards.count / cards.count) * 100
     #this method will return the percentage of cards that are high ranking
+  end
 
-#  def remove_card
+  def remove_card
+    cards.delete_at(0)
     #this method will remove the top card from the deck
+  end
 
-#  def add_card
+  def add_card(card)
+    cards.append(card)
     #this method will add one card to the bottom (end) of the deck
+  end
 end
-
-#card_1 = Card.new('club', 1, "2")
