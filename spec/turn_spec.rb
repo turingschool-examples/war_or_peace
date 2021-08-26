@@ -39,23 +39,6 @@ describe Turn do
       turn = Turn.new(player1, player2)
       expect(turn.player2).to eq(player2)
     end
-
-    it 'spoils_of_war is an empty array' do
-      card1 = Card.new(:heart, 'Jack', 11)
-      card2 = Card.new(:heart, '10', 10)
-      card3 = Card.new(:heart, '9', 9)
-      card4 = Card.new(:diamond, 'Jack', 11)
-      card5 = Card.new(:heart, '8', 8)
-      card6 = Card.new(:diamond, 'Queen', 12)
-      card7 = Card.new(:heart, '3', 3)
-      card8 = Card.new(:diamond, '2', 2)
-      deck1 = Deck.new([card1, card2, card5, card8])
-      deck2 = Deck.new([card3, card4, card6, card7])
-      player1 = Player.new("Megan", deck1)
-      player2 = Player.new("Aurora", deck2)
-      turn = Turn.new(player1, player2)
-      expect(turn.spoils_of_war).to eq([])
-    end
   end
 
   describe '#type' do
@@ -165,7 +148,7 @@ describe Turn do
   end
 
   describe '#pile_cards' do
-    it 'add cards included in battle to spoils of war' do
+    it 'add cards included in a basic battle to spoils of war' do
       card1 = Card.new(:heart, 'Jack', 11)
       card2 = Card.new(:heart, '10', 10)
       card3 = Card.new(:heart, '9', 9)
@@ -179,12 +162,148 @@ describe Turn do
       player1 = Player.new("Megan", deck1)
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
-      turn.type
       turn.pile_cards
-      expect(@spoils_of_war).to eq([card1, card3])
+
+      expect(turn.spoils_of_war).to eq([card1, card3])
     end
 
+    it 'add cards included in a war to spoils of war' do
+      card1 = Card.new(:heart, 'Jack', 11)
+      card2 = Card.new(:heart, '10', 10)
+      card3 = Card.new(:heart, '9', 9)
+      card4 = Card.new(:diamond, 'Jack', 11)
+      card5 = Card.new(:heart, '8', 8)
+      card6 = Card.new(:diamond, 'Queen', 12)
+      card7 = Card.new(:heart, '3', 3)
+      card8 = Card.new(:diamond, '2', 2)
+      deck1 = Deck.new([card1, card2, card5, card8])
+      deck2 = Deck.new([card4, card3, card6, card7])
+      player1 = Player.new("Megan", deck1)
+      player2 = Player.new("Aurora", deck2)
+      turn = Turn.new(player1, player2)
+      turn.pile_cards
+
+      expect(turn.spoils_of_war).to eq([card1, card2, card5, card4, card3, card6])
+    end
+
+    it 'removes the top card from each player deck in a basic battle' do
+      card1 = Card.new(:heart, 'Jack', 11)
+      card2 = Card.new(:heart, '10', 10)
+      card3 = Card.new(:heart, '9', 9)
+      card4 = Card.new(:diamond, 'Jack', 11)
+      card5 = Card.new(:heart, '8', 8)
+      card6 = Card.new(:diamond, 'Queen', 12)
+      card7 = Card.new(:heart, '3', 3)
+      card8 = Card.new(:diamond, '2', 2)
+      deck1 = Deck.new([card1, card2, card5, card8])
+      deck2 = Deck.new([card3, card4, card6, card7])
+      player1 = Player.new("Megan", deck1)
+      player2 = Player.new("Aurora", deck2)
+      turn = Turn.new(player1, player2)
+      turn.pile_cards
+
+      expect(player1.deck.cards).to eq([card2, card5, card8])
+      expect(player2.deck.cards).to eq([card4, card6, card7])
+    end
+
+    it 'removes the top three cards from each player deck in a war' do
+      card1 = Card.new(:heart, 'Jack', 11)
+      card2 = Card.new(:heart, '10', 10)
+      card3 = Card.new(:heart, '9', 9)
+      card4 = Card.new(:diamond, 'Jack', 11)
+      card5 = Card.new(:heart, '8', 8)
+      card6 = Card.new(:diamond, 'Queen', 12)
+      card7 = Card.new(:heart, '3', 3)
+      card8 = Card.new(:diamond, '2', 2)
+      deck1 = Deck.new([card1, card2, card5, card8])
+      deck2 = Deck.new([card4, card3, card6, card7])
+      player1 = Player.new("Megan", deck1)
+      player2 = Player.new("Aurora", deck2)
+      turn = Turn.new(player1, player2)
+      turn.pile_cards
+
+      expect(player1.deck.cards).to eq([card8])
+      expect(player2.deck.cards).to eq([card7])
+    end
+
+    it 'removes the top three cards from each player deck in mutually assured destruction' do
+      card1 = Card.new(:heart, 'Jack', 11)
+      card2 = Card.new(:heart, '10', 10)
+      card3 = Card.new(:heart, '9', 9)
+      card4 = Card.new(:diamond, 'Jack', 11)
+      card5 = Card.new(:heart, '8', 8)
+      card6 = Card.new(:diamond, '8', 8)
+      card7 = Card.new(:heart, '3', 3)
+      card8 = Card.new(:diamond, '2', 2)
+      deck1 = Deck.new([card1, card2, card5, card8])
+      deck2 = Deck.new([card4, card3, card6, card7])
+      player1 = Player.new("Megan", deck1)
+      player2 = Player.new("Aurora", deck2)
+      turn = Turn.new(player1, player2)
+      turn.pile_cards
+
+      expect(player1.deck.cards).to eq([card8])
+      expect(player2.deck.cards).to eq([card7])
+    end
+  end
+
+  describe '#award_spoils' do
+    it 'awards the spoils of war to the winner of a basic battle' do
+      card1 = Card.new(:heart, 'Jack', 11)
+      card2 = Card.new(:heart, '10', 10)
+      card3 = Card.new(:heart, '9', 9)
+      card4 = Card.new(:diamond, 'Jack', 11)
+      card5 = Card.new(:heart, '8', 8)
+      card6 = Card.new(:diamond, 'Queen', 12)
+      card7 = Card.new(:heart, '3', 3)
+      card8 = Card.new(:diamond, '2', 2)
+      deck1 = Deck.new([card1, card2, card5, card8])
+      deck2 = Deck.new([card3, card4, card6, card7])
+      player1 = Player.new("Megan", deck1)
+      player2 = Player.new("Aurora", deck2)
+      turn = Turn.new(player1, player2)
+      turn.award_spoils
+
+      expect(player1.deck.cards).to eq([card2, card5, card8, card1, card3])
+    end
+
+    it 'awards the spoils of war to the winner of a war' do
+      card1 = Card.new(:heart, 'Jack', 11)
+      card2 = Card.new(:heart, '10', 10)
+      card3 = Card.new(:heart, '9', 9)
+      card4 = Card.new(:diamond, 'Jack', 11)
+      card5 = Card.new(:heart, '8', 8)
+      card6 = Card.new(:diamond, 'Queen', 12)
+      card7 = Card.new(:heart, '3', 3)
+      card8 = Card.new(:diamond, '2', 2)
+      deck1 = Deck.new([card1, card2, card5, card8])
+      deck2 = Deck.new([card4, card3, card6, card7])
+      player1 = Player.new("Megan", deck1)
+      player2 = Player.new("Aurora", deck2)
+      turn = Turn.new(player1, player2)
+      turn.award_spoils
+
+      expect(player2.deck.cards).to eq([card7, card1, card2, card5, card4, card3, card6])
+    end
+
+    it 'awards cards to neither player in mutually assured destruction' do
+      card1 = Card.new(:heart, 'Jack', 11)
+      card2 = Card.new(:heart, '10', 10)
+      card3 = Card.new(:heart, '9', 9)
+      card4 = Card.new(:diamond, 'Jack', 11)
+      card5 = Card.new(:heart, '8', 8)
+      card6 = Card.new(:diamond, '8', 8)
+      card7 = Card.new(:heart, '3', 3)
+      card8 = Card.new(:diamond, '2', 2)
+      deck1 = Deck.new([card1, card2, card5, card8])
+      deck2 = Deck.new([card4, card3, card6, card7])
+      player1 = Player.new("Megan", deck1)
+      player2 = Player.new("Aurora", deck2)
+      turn = Turn.new(player1, player2)
+      turn.award_spoils
+
+      expect(player1.deck.cards).to eq([card8])
+      expect(player2.deck.cards).to eq([card7])
+    end
   end
 end
-
-# NEED TO CONTINUE WORK ON PILE CARDS METHOD
