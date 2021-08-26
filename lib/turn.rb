@@ -87,7 +87,7 @@ class Turn
       if @turn == :basic
         p "Turn #{turn_count}: #{winner.name} won 2 cards"
       elsif @turn == :war
-        p "Turn #{turn_count}: #{winner.name} won 6 cards"
+        p "Turn #{turn_count}: WAR - #{winner.name} won 6 cards"
       else @turn == :mutually_assured_destruction
         p "Turn #{turn_count}: *mutually assured destruction* 6 cards removed from play"
       end
