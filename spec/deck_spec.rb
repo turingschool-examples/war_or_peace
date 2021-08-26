@@ -26,12 +26,24 @@ RSpec.describe Deck do
   end
 
   it 'remove_card' do
-    expect(cards.remove_card).to be([heart2, spadeA, club5])
+    diamondQ = Card.new(:diamond, 'Queen', 12)
+    heart2 = Card.new(:heart, '2', 2)
+    spadeA = Card.new(:spade, 'Ace', 14)
+    club5 = Card.new(:club, '5', 5)
+    cards = [diamondQ, heart2, spadeA, club5]
+    deck = Deck.new(cards)
+    expect(deck.remove_card).to be(diamondQ)
   end
 
   it 'add card' do
-    new_card = Card.new(:spade, 'Jack', 11)
-    expect(cards.add_card).to be([diamondQ, heart2, spadeA, club5, spadeA])
+    diamondQ = Card.new(:diamond, 'Queen', 12)
+    heart2 = Card.new(:heart, '2', 2)
+    spadeA = Card.new(:spade, 'Ace', 14)
+    club5 = Card.new(:club, '5', 5)
+    cards = [diamondQ, heart2, spadeA, club5]
+    deck = Deck.new(cards)
+    spadeA = Card.new(:spade, 'Jack', 11)
+    expect(deck.add_card).to be([diamondQ, heart2, spadeA, club5, spadeA])
   end
 
 end

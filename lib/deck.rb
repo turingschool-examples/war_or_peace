@@ -9,6 +9,10 @@ class Deck
     return cards[index_location].rank
   end
 
+  def high_ranking_cards
+
+  end
+
   def percent_high_ranking    #calculate high ranking cards / card count
 
   end
@@ -18,7 +22,7 @@ class Deck
   end
 
   def add_card
-    cards.push(new_card)
+    cards.push
   end
 
 end
