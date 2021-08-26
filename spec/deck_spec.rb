@@ -76,16 +76,16 @@ describe Deck do
                [:diamonds, '6', 6]
               ]
       deck = Deck.new(cards)
-      card7 = Card.new(:clubs, '5', 5)
-      expect(deck.add_card).to eq([[:diamonds, 'ace', 14],
-                                   [:diamonds, 'king', 13],
-                                   [:diamonds, 'queen', 12],
-                                   [:diamonds, '2', 2],
-                                   [:diamonds, '3', 3],
-                                   [:diamonds, '6', 6],
-                                   [:clubs, '5', 5]
-                                  ]
-                                )
+      card7 = [:clubs, '5', 5]
+      expect(deck.add_card(card7)).to eq([[:diamonds, 'ace', 14],
+                                          [:diamonds, 'king', 13],
+                                          [:diamonds, 'queen', 12],
+                                          [:diamonds, '2', 2],
+                                          [:diamonds, '3', 3],
+                                          [:diamonds, '6', 6],
+                                          [:clubs, '5', 5]
+                                         ]
+                                        )
     end
   end
 end
