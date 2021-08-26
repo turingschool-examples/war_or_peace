@@ -30,7 +30,7 @@ describe Deck do
                [:diamonds, '6', 6]
               ]
       deck = Deck.new(cards)
-      expect(deck.high_ranking_cards).to incliude([:diamonds, 'ace', 14],
+      expect(deck.high_ranking_cards).to include([:diamonds, 'ace', 14],
                                                   [:diamonds, 'king', 13],
                                                   [:diamonds, 'queen', 12]
                                                  )
