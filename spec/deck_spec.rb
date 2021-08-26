@@ -39,7 +39,7 @@ describe Deck do
       card2 = Card.new(:diamonds, '2', 2)
       cards = [card1, card2]
       deck = Deck.new(cards)
-      expect(deck.high_ranking_cards).to eq(card1)
+      expect(deck.high_ranking_cards).to eq([card1])
     end
   end
 
