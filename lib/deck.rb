@@ -1,4 +1,5 @@
 require './lib/card.rb'
+require './lib/player'
 
 class Deck
   attr_reader :cards, :high_rank_cards
