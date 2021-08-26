@@ -7,44 +7,46 @@ class Deck
     @cards = cards
   end
 
-  def add_cards(card)
+
+  def new_cards(card)
     @cards.push(card)
   end
-  
 
 
-  #def rank_of_card_at(index_location)
-    #@rank = rank
-    #return rank
-  #end
+  def rank_of_card_at(index)
+    cards[index].rank
+  end
 
-  #def high_ranking_cards
-    #high_cards = []
-    #cards.each do |card|
-    #  if cards.rank >= 11
-        #high_cards << card
-    #  end
-    #  return high_cards
-  #  end
-#  end
+
+  def high_ranking_cards
+    high_cards = []
+    @cards.each do |card|
+      if card.rank >= 11
+      high_cards << card
+      end
+    end
+    high_cards
+  end
+
+  def percent_high_ranking
+    percent = ()
+    high_cards_count = 0
+    cards.each do |card|
+      if card.rank >= 11
+        high_cards_count += 1
+      end
+    end
+    (100 * high_cards_count.to_f / cards.length.to_f).round(2)
+  end
+
+
+  def remove_card
+    @cards.shift
+  end
+
+
+  def add_card(card)
+    @cards << card
+  end
+
 end
-    #high_cards = []
-
-    #cards.each do |card|
-      #if card.rank >= 11
-        #high_cards.push(card)
-        #return high_cards
-      #end
-    #end
-  #end
-
-  #def percent_high_ranking
-    #def percents
-    #self.to_f / n.to_f * 100.0
-    #end
-  #end
-#end
-
-
-
-require 'pry'; binding.pry
