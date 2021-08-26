@@ -57,3 +57,9 @@ card_49 = Card.new(:spades, '5', 5)
 card_50 = Card.new(:spades, '4', 4)
 card_51 = Card.new(:spades, '3', 3)
 card_52 = Card.new(:spades, '2', 2)
+
+#Place the 52 card objects into an array
+#Randomly sort the array
+#split the array into 2 arrays
+#assign each array to a new Deck class instance object
+# assign each deck class instance object to a player
