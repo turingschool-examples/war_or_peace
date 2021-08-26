@@ -17,4 +17,16 @@ describe Player do
     end
   end
 
+  describe "attr_reader" do
+    it "has readable attributes" do
+      card1 = Card.new(:diamonds, 'ace', 14)
+      cards = [card1]
+      deck1 = Deck.new(cards)
+      player1 = Player.new("Jacob", deck1)
+
+      expect(player1.name).to eq("Jacob")
+      expect(player1.deck).to eq(deck1)
+    end
+  end
+
 end
