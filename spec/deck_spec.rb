@@ -18,5 +18,22 @@ describe Deck do
         deck = Deck.new(cards)
         expect(deck.rank_of_card_at(0)).to eq(3)
       end
+  end
+
+  describe "#high_ranking_cards" do
+    it "returns an array of cards rank 11 or above" do
+      cards = [[:diamonds, 'ace', 14],
+               [:diamonds, 'king', 13],
+               [:diamonds, 'queen', 12],
+               [:diamonds, '2', 2],
+               [:diamonds, '3', 3],
+               [:diamonds, '6', 6)]
+              ]
+      deck = deck.new(cards)
+      expect(deck.high_ranking_cards).to incliude([:diamonds, 'ace', 14],
+                                                  [:diamonds, 'king', 13],
+                                                  [:diamonds, 'queen', 12]
+                                                 )
     end
   end
+end
