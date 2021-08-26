@@ -290,7 +290,9 @@ describe Turn do
 
       turn.pile_cards
 
-      turn.award_spoils(turn.winner)
+      winner = turn.winner
+
+      turn.award_spoils(winner)
 
       expect(player1.deck.cards).to be_a Array
       expect(player1.deck.cards.count).to eq 5
@@ -324,7 +326,9 @@ describe Turn do
 
       turn.pile_cards
 
-      turn.award_spoils(turn.winner)
+      winner = turn.winner
+
+      turn.award_spoils(winner)
 
       expect(player1.deck.cards).to be_a Array
       expect(player1.deck.cards.count).to eq 1
