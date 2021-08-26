@@ -33,4 +33,34 @@ class Turn
       return "No Winner"
     end
   end
+
+  def pile_cards
+    if @turn == :basic
+      @spoils_of_war << player1.deck.cards[0]
+      @spoils_of_war << player2.deck.cards[0]
+      1.times do
+        player1.deck.remove_card
+        player2.deck.remove_card
+      end
+    elsif @turn == :war
+      @spoils_of_war << player1.deck[0..2]
+      @spoils_of_war << player2.deck[0..2]
+      3.times do
+        player1.deck.remove_card
+        player2.deck.remove_card
+      end
+    else
+      3.times do
+        player1.deck.remove_card
+        player2.deck.remove_card
+      end
+    end
+  end
+
+#  def award_spoils
+#    until @spoils_of_war = []
+#      winner << @spoils_of_war[0]
+#    end
+#  end
+
 end
