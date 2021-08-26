@@ -6,7 +6,7 @@ class Deck
   end
 
   def rank_of_card_at(index_num)
-    return @cards[index_num][2]
+    return @cards[index_num].rank
   end
 
   def high_ranking_cards
