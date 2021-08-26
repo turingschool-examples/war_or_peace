@@ -25,13 +25,12 @@ describe Deck do
       card6 = Card.new(:diamonds, '6', 6)
       cards = [card1, card2, card3, card4, card5, card6]
       deck = Deck.new(cards)
-      expect(deck.cards).to include([[:diamonds, 'ace', 14],
+      expect(deck.cards).to include([:diamonds, 'ace', 14],
                                  [:diamonds, 'king', 13],
                                  [:diamonds, 'queen', 12],
                                  [:diamonds, '2', 2],
                                  [:diamonds, '3', 3],
                                  [:diamonds, '6', 6]
-                                ]
                                )
     end
   end
@@ -39,7 +38,10 @@ describe Deck do
   describe "#rank_of_card_at" do
     context "given 0"
       it "returns the 3rd item in the first item in the array" do
-        cards = [[:spade, '3', 3], [:diamond, 'Queen', 12], [:club, '5', 5]]
+        card1 = Card.new(:spade, '3', 3)
+        card2 = Card.new(:diamond, 'Queen', 12)
+        card3 = Card.new(:club, '5', 5)
+        cards = [card1, card2, card3]
         deck = Deck.new(cards)
         expect(deck.rank_of_card_at(0)).to eq(3)
       end
@@ -47,13 +49,13 @@ describe Deck do
 
   describe "#high_ranking_cards" do
     it "returns an array of cards rank 11 or above" do
-      cards = [[:diamonds, 'ace', 14],
-               [:diamonds, 'king', 13],
-               [:diamonds, 'queen', 12],
-               [:diamonds, '2', 2],
-               [:diamonds, '3', 3],
-               [:diamonds, '6', 6]
-              ]
+      card1 = Card.new(:diamonds, 'ace', 14)
+      card2 = Card.new(:diamonds, 'king', 13)
+      card3 = Card.new(:diamonds, 'queen', 12)
+      card4 = Card.new(:diamonds, '2', 2)
+      card5 = Card.new(:diamonds, '3', 3)
+      card6 = Card.new(:diamonds, '6', 6)
+      cards = [card1, card2, card3, card4, card5, card6]
       deck = Deck.new(cards)
       expect(deck.high_ranking_cards).to include([:diamonds, 'ace', 14],
                                                   [:diamonds, 'king', 13],
