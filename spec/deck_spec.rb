@@ -27,7 +27,7 @@ describe Deck do
                [:diamonds, 'queen', 12],
                [:diamonds, '2', 2],
                [:diamonds, '3', 3],
-               [:diamonds, '6', 6)]
+               [:diamonds, '6', 6]
               ]
       deck = deck.new(cards)
       expect(deck.high_ranking_cards).to incliude([:diamonds, 'ace', 14],
