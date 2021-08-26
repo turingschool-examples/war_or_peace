@@ -306,4 +306,44 @@ describe Turn do
       expect(player2.deck.cards).to eq([card7])
     end
   end
+
+  describe '#start' do
+    it 'stops running once player1 has lost' do
+      card1 = Card.new(:heart, 'Jack', 11)
+      card2 = Card.new(:spade, '3', 3)
+      deck1 = Deck.new([card1])
+      deck2 = Deck.new([card2])
+      player1 = Player.new('Megan', deck1)
+      player2 = Player.new('Aurora', deck2)
+      turn = Turn.new(player1, player2)
+
+      expect(turn.start).to eq(true)
+    end
+
+    it 'stops running once player2 has lost' do
+      card1 = Card.new(:heart, 'Jack', 11)
+      card2 = Card.new(:spade, '3', 3)
+      deck1 = Deck.new([card1])
+      deck2 = Deck.new([card2])
+      player1 = Player.new('Megan', deck2)
+      player2 = Player.new('Aurora', deck1)
+      turn = Turn.new(player1, player2)
+
+      expect(turn.start).to eq(true)
+    end
+
+    it 'stops running once 1,000,000 turns have passed' do
+      card1 = Card.new(:heart, 'Jack', 11)
+      card2 = Card.new(:spade, '3', 3)
+      card3 = Card.new(:spade, 'Jack', 11)
+      card4 = Card.new(:heart, '3', 3)
+      deck1 = Deck.new([card1, card4])
+      deck2 = Deck.new([card2, card3])
+      player1 = Player.new('Megan', deck1)
+      player2 = Player.new('Aurora', deck2)
+      turn = Turn.new(player1, player2)
+
+      expect(turn.start).to eq(true)
+    end
+  end
 end
