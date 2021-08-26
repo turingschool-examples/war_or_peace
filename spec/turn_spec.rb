@@ -134,7 +134,6 @@ describe Turn do
       @turn.type
       winner = @turn.winner
       @turn.pile_cards
-      @turn.spoils_of_war
       @turn.award_spoils(winner)
 
       expect(@player1.deck.cards.size).to eq(1)

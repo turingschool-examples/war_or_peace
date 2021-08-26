@@ -22,5 +22,5 @@ deck2 = Deck.new(cards[26..51])
 player1 = Player.new('Megan', deck1)
 player2 = Player.new('Aurora', deck2)
 
-game = Game.new
+game = Game.new(player1, player2)
 game.start
