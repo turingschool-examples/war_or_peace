@@ -69,9 +69,7 @@ describe Deck do
       cards = [card1]
       deck = Deck.new(cards)
       card7 = Card.new(:diamonds, 'queen', 12)
-
       expect(deck.add_card(card7)).to include(card1,card7)
-
     end
   end
 end
