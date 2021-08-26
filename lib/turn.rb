@@ -51,11 +51,12 @@ class Turn
         player1.deck.remove_card
         player2.deck.remove_card
       end
-    else
+    elsif @turn == :mutually_assured_destruction
       3.times do
         player1.deck.remove_card
         player2.deck.remove_card
       end
+    else
     end
   end
 
@@ -87,7 +88,7 @@ class Turn
         p "Turn #{turn_count}: #{winner.name} won 2 cards"
       elsif @turn == :war
         p "Turn #{turn_count}: #{winner.name} won 6 cards"
-      else @turn == :war
+      else @turn == :mutually_assured_destruction
         p "Turn #{turn_count}: *mutually assured destruction* 6 cards removed from play"
       end
       award_spoils
