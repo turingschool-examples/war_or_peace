@@ -23,7 +23,7 @@ RSpec.describe Turn do
     expect(turn).to be_an_instance_of(Turn)
   end
 
-  it "has players" do
+  it "has players with a basic turn" do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -41,5 +41,13 @@ RSpec.describe Turn do
 
     expect(turn.player1).to eq(player1)
     expect(turn.player2).to eq(player2)
+
+    expect(turn.spoils_of_war).to eq([])
+    expect(turn.type).to eq(:basic)
+
+    winner = turn.winner
+
+    turn.pile_cards
+    expect(turn.spoils_of_war).to eq([card1, card3])
   end
 end
