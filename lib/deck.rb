@@ -31,29 +31,35 @@ class Deck
 
   end
 
-#XXXmethod that returns the percentage of cards that are high ranking
+#method that returns the percentage of cards that are high ranking
   def percent_high_ranking
 
-require "pry"; binding.pry
+    count_high = 0
 
-    num_total_cards = cards.length
+    cards.each do |card|
 
-    array_high_cards = cards.high_ranking_cards
+      if card.rank >= 11
+        count_high += 1
+      end
 
-    num_high_cards = array_high_cards.length
+    end
 
-    percent = 100 * (num_high_cards/num_total_cards)
 
-    return percent
+    count_high_f = count_high.to_f
+    count_total = cards.length
+    count_total_f = count_total.to_f
+
+    (100 * (count_high_f/count_total_f)).round(2)
 
   end
 
-#XXXmethod that removes the top card from the deck
+#method that removes the top card from the deck
   def remove_card
-    @cards = cards.shift
+    cards.shift
+    return @cards
   end
 
-#XXXmethod that adds one card to the bottom (end) of the deck
+#method that adds one card to the bottom (end) of the deck
   def add_card(card)
     @cards << card
   end

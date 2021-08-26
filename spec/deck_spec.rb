@@ -43,7 +43,7 @@ RSpec.describe Deck do
   end
 
 
-  xit "can find percentage of high ranking cards" do
+  it "can find percentage of high ranking cards" do
 
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
@@ -56,7 +56,7 @@ RSpec.describe Deck do
 
   end
 
-  xit "can remove the top card from the deck" do
+  it "can remove the top card from the deck" do
 
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
@@ -69,7 +69,7 @@ RSpec.describe Deck do
     expect(deck.cards).to eq([card2, card3])
   end
 
-  xit "can add a card to the bottom of the deck" do
+  it "can add a card to the bottom of the deck" do
 
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
