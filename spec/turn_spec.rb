@@ -345,5 +345,19 @@ describe Turn do
 
       expect(turn.start).to eq(true)
     end
+
+    it 'displays mutually assured destruction when it occurs' do
+      card1 = Card.new(:heart, 'Jack', 11)
+      card2 = Card.new(:spade, '3', 3)
+      card3 = Card.new(:spade, 'Jack', 11)
+      card4 = Card.new(:heart, '3', 3)
+      deck1 = Deck.new([card1, card2, card3, card4])
+      deck2 = Deck.new([card1, card2, card3])
+      player1 = Player.new('Megan', deck1)
+      player2 = Player.new('Aurora', deck2)
+      turn = Turn.new(player1, player2)
+
+      expect(turn.start).to eq(true)
+    end
   end
 end
