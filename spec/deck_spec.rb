@@ -20,7 +20,18 @@ RSpec.describe Deck do
     expect(deck.rank_of_card_at(0)).to be(12)
   end
 
-  it 'percent high ranking' do
-    expect(deck.percent_high_ranking).to be(0.50)
+  xit 'percent high ranking' do
+    expect(deck.percent_high_ranking).to be_a(Float)
+    expect(deck.percent_high_ranking).to be()
   end
+
+  it 'remove_card' do
+    expect(cards.remove_card).to be([heart2, spadeA, club5])
+  end
+
+  it 'add card' do
+    new_card = Card.new(:spade, 'Jack', 11)
+    expect(cards.add_card).to be([diamondQ, heart2, spadeA, club5, spadeA])
+  end
+
 end
