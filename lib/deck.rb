@@ -18,23 +18,24 @@ class Deck
   end
 
   def percent_high_ranking
-
-  high_count = 0
+    high_count = 0
 
     cards.each do |card|
       if card.rank >= 11
         high_count += 1
       end
+      return high_count
     end
+
     p 100 * (high_count.to_f/(cards.length))
   end
 
   def remove_card
-    card.shift
+    cards.shift
   end
 
   def add_card
-    cards.push(card4)
+    cards.push(card4) 
   end
 end
 
