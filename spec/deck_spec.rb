@@ -1,5 +1,6 @@
 require 'rspec'
 require './lib/deck'
+require './lib/card'
 
 describe Deck do
 
@@ -62,6 +63,19 @@ describe Deck do
               ]
       deck = Deck.new(cards)
       expect(deck.remove_card).to eq([:diamonds, 'ace', 14])
+    end
+  end
+
+  describe "#add_card" do
+    it "adds a card object to the end of the instance object array" do
+      cards = [[:diamonds, 'ace', 14],
+               [:diamonds, 'king', 13],
+               [:diamonds, 'queen', 12],
+               [:diamonds, '2', 2],
+               [:diamonds, '3', 3],
+               [:diamonds, '6', 6]
+              ]
+      deck = Deck.new(cards)
     end
   end
 end
