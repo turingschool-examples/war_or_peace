@@ -10,19 +10,21 @@ class Deck
   end
 
   def high_ranking_cards
-
+    cards.find_all do |card|
+      card.rank >= 11
+    end
   end
 
   def percent_high_ranking    #calculate high ranking cards / card count
-
+    ((high_ranking_cards.length) / (cards.length)) * 100
   end
 
   def remove_card
     cards.shift
   end
 
-  def add_card
-    cards.push
+  def add_card(new_card)
+    cards << new_card
   end
 
 end
