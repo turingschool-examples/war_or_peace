@@ -24,5 +24,8 @@ class Deck
     ((high_ranking_cards.length.to_f / @cards.count) * 100).round(2)
 
   end
-
+  #Method will remove the top card from deck.
+  def remove_card
+    @cards.push[0]
+  end
 end
