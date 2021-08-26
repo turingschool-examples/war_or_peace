@@ -7,16 +7,15 @@ class Turn
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
-    @turn = ''
   end
 
   def type
     if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
-      turn = :basic
+      @turn = :basic
     elsif player1.deck.rank_of_card_at(2) != player2.deck.rank_of_card_at(2)
-      turn = :war
+      @turn = :war
     else
-      turn = :mutually_assured_destruction
+      @turn = :mutually_assured_destruction
     end
   end
 
@@ -35,16 +34,19 @@ class Turn
   end
 
   def pile_cards
+    type
     if @turn == :basic
       @spoils_of_war << player1.deck.cards[0]
       @spoils_of_war << player2.deck.cards[0]
-      1.times do
-        player1.deck.remove_card
-        player2.deck.remove_card
-      end
+      player1.deck.remove_card
+      player2.deck.remove_card
     elsif @turn == :war
-      @spoils_of_war << player1.deck[0..2]
-      @spoils_of_war << player2.deck[0..2]
+        @spoils_of_war << player1.deck.cards[0]
+        @spoils_of_war << player1.deck.cards[1]
+        @spoils_of_war << player1.deck.cards[2]
+        @spoils_of_war << player2.deck.cards[0]
+        @spoils_of_war << player2.deck.cards[1]
+        @spoils_of_war << player2.deck.cards[2]
       3.times do
         player1.deck.remove_card
         player2.deck.remove_card
@@ -57,10 +59,21 @@ class Turn
     end
   end
 
-#  def award_spoils
-#    until @spoils_of_war = []
-#      winner << @spoils_of_war[0]
-#    end
-#  end
-
+  def award_spoils
+    if winner == player1
+      pile_cards
+      while @spoils_of_war != []
+        player1.deck.add_card(@spoils_of_war[0])
+        @spoils_of_war.shift
+      end
+    elsif winner == player2
+      pile_cards
+      while @spoils_of_war != []
+        player2.deck.add_card(@spoils_of_war[0])
+        @spoils_of_war.shift
+      end
+    else
+      pile_cards
+    end
+  end
 end
