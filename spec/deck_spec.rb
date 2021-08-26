@@ -1,12 +1,12 @@
 require 'rspec'
 require './lib/deck'
-require './lib.card'
+require './lib/card'
 
 describe Deck do
 
   describe "#initialize" do
     it "is an instance of Deck" do
-      card1 = Card.new(:spade, '3', 3])
+      card1 = Card.new(:spade, '3', 3)
       card2 = Card.new(:diamond, 'Queen', 12)
       card3 = Card.new(:club, '5', 5)
       cards = [card1, card2, card3]
@@ -17,15 +17,15 @@ describe Deck do
 
   describe "attr_reader" do
     it "has readable attributes" do
-      cards = [[:diamonds, 'ace', 14],
-               [:diamonds, 'king', 13],
-               [:diamonds, 'queen', 12],
-               [:diamonds, '2', 2],
-               [:diamonds, '3', 3],
-               [:diamonds, '6', 6]
-              ]
+      card1 = Card.new(:diamonds, 'ace', 14)
+      card2 = Card.new(:diamonds, 'king', 13)
+      card3 = Card.new(:diamonds, 'queen', 12)
+      card4 = Card.new(:diamonds, '2', 2)
+      card5 = Card.new(:diamonds, '3', 3)
+      card6 = Card.new(:diamonds, '6', 6)
+      cards = [card1, card2, card3, card4, card5, card6]
       deck = Deck.new(cards)
-      expect(deck.cards).to eql([[:diamonds, 'ace', 14],
+      expect(deck.cards).to include([[:diamonds, 'ace', 14],
                                  [:diamonds, 'king', 13],
                                  [:diamonds, 'queen', 12],
                                  [:diamonds, '2', 2],
