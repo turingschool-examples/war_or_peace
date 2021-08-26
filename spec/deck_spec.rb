@@ -5,7 +5,7 @@ describe Deck do
 
   describe "#initialize" do
     it "is an instance of Deck" do
-      cards = [1,2,3]
+      cards = [[:spade, '3', 3], [:diamond, 'Queen', 12], [:club, '5', 5]]
       deck = Deck.new(cards)
       expect(deck).to be_an_instance_of(Deck)
     end
