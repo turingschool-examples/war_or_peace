@@ -3,8 +3,11 @@ require './lib/card'
 require './lib/deck'
 
 describe Deck do
+
+  #"before(:each) do" block to contain setup for deck of cards using instance variables
+
   describe '#initialize' do
-    xit 'creates an array equal to the cards variable' do
+    it 'creates an array equal to the cards variable' do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -12,7 +15,8 @@ describe Deck do
       deck = Deck.new(cards)
       expect(deck.cards).to eq(cards)
     end
-    xit 'creates an array of cards' do
+
+    it 'creates an array of cards' do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -21,8 +25,9 @@ describe Deck do
       expect(deck.cards).to be_a(Array)
     end
   end
+
   describe '#rank_of_card_at' do
-    xit 'gives us the rank of the chosen card' do
+    it 'gives us the rank of the chosen card' do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -30,7 +35,8 @@ describe Deck do
       deck = Deck.new(cards)
       expect(deck.rank_of_card_at(0)).to eq(12)
     end
-    xit 'gives us the rank of the chosen card' do
+
+    it 'gives us the rank of the chosen card' do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -39,8 +45,9 @@ describe Deck do
       expect(deck.rank_of_card_at(2)).to eq(14)
     end
   end
+
   describe '#high_ranking_cards' do
-    xit 'gives us an array of cards that rank 11 or above' do
+    it 'gives us an array of cards that rank 11 or above' do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -49,8 +56,9 @@ describe Deck do
       expect(deck.high_ranking_cards).to eq([card1, card3])
     end
   end
+
   describe '#percent_high_ranking' do
-    xit 'returns a percentage of the cards that are high ranking' do
+    it 'returns a percentage of the cards that are high ranking' do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -59,8 +67,9 @@ describe Deck do
       expect(deck.percent_high_ranking).to eq(66.67)
     end
   end
+
   describe '#remove_card' do
-    xit 'removes the first card from the deck' do
+    it 'removes the first card from the deck' do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -68,7 +77,8 @@ describe Deck do
       deck = Deck.new(cards)
       expect(deck.remove_card).to eq(card1)
     end
-    xit 'causes there to be two remaining cards' do
+
+    it 'causes there to be two remaining cards' do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -77,7 +87,8 @@ describe Deck do
       deck.remove_card
       expect(deck.cards).to eq ([card2, card3])
     end
-    xit 'causes there to only have one high remaining card left' do
+
+    it 'causes there to only have one high remaining card left' do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -86,7 +97,8 @@ describe Deck do
       deck.remove_card
       expect(deck.high_ranking_cards).to eq([card3])
     end
-    xit 'causes the percentage of high ranking cards to be 50.00' do
+
+    it 'causes the percentage of high ranking cards to be 50.00' do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -96,8 +108,9 @@ describe Deck do
       expect(deck.percent_high_ranking).to eq(50.00)
     end
   end
+
   describe '#add_card' do
-    xit 'adds a card to the bottom of the deck' do # I'm uncertain if this is the 'best' test, but it works
+    it 'adds a card to the bottom of the deck' do # I'm uncertain if this is the 'best' test, but it works
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -108,7 +121,8 @@ describe Deck do
       deck.add_card(card4)
       expect(deck.cards).to eq([card2, card3, card4])
     end
-    xit 'causes the deck to contain 3 cards' do
+
+    it 'causes the deck to contain 3 cards' do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -119,7 +133,8 @@ describe Deck do
       deck.add_card(card4)
       expect(cards.count).to eq(3)
     end
-    xit 'causes there to still have one high ranking card' do
+
+    it 'causes there to still have one high ranking card' do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -130,7 +145,8 @@ describe Deck do
       deck.add_card(card4)
       expect(deck.high_ranking_cards).to eq([card3])
     end
-    xit 'causes the percentage of high ranking cards to be 33.33' do
+
+    it 'causes the percentage of high ranking cards to be 33.33' do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
