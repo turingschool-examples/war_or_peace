@@ -41,10 +41,10 @@ class Turn
   end
 
   def pile_cards
-    if @type == :basic #may need to also remove cards from the decks - come back during testing. can use the slice method
+    if @type == :basic
       @spoils_of_war << @player1.deck.remove_card
       @spoils_of_war << @player2.deck.remove_card
-    elsif @type == :war #same as above
+    elsif @type == :war
       3.times do
         @spoils_of_war << @player1.deck.remove_card
       end

@@ -15,7 +15,8 @@ suits.each do |suit|
   end
 end
 
-#Return to this... how do I randomize them?
+cards = cards.shuffle
+
 deck1 = Deck.new(cards[0..25])
 deck2 = Deck.new(cards[26..51])
 

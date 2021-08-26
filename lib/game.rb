@@ -16,7 +16,7 @@ class Game
       turn_count = 0
       loop do
         turn_count += 1
-        if turn_count == 1000000
+        if turn_count == 1000001
           p "---- DRAW ----"
           break
         else
@@ -27,7 +27,7 @@ class Game
             turn.pile_cards
             turn.award_spoils(winner)
             if type == :basic
-              p "Turn #{turn_count}: #{winner.name} won 2 cards. Now they have #{winner.deck.cards.size}"
+              p "Turn #{turn_count}: #{winner.name} won 2 cards."
             elsif type == :war
               p "Turn #{turn_count}: WAR - #{winner.name} won 6 cards"
             elsif type == :mutually_assured_destruction

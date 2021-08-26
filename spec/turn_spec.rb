@@ -84,8 +84,8 @@ describe Turn do
       @turn.pile_cards
       @turn.award_spoils(@winner)
 
-      expect(@winner.deck.cards).to include(@card1)
-      expect(@winner.deck.cards).to include(@card3)
+      expect(@winner.deck.cards[-1]).to eq(@card3)
+      expect(@winner.deck.cards[-2]).to eq(@card1)
       expect(@player1.deck.cards.size).to eq(5)
       expect(@player2.deck.cards.size).to eq(3)
     end
