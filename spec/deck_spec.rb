@@ -29,7 +29,7 @@ describe Deck do
                [:diamonds, '3', 3],
                [:diamonds, '6', 6]
               ]
-      deck = deck.new(cards)
+      deck = Deck.new(cards)
       expect(deck.high_ranking_cards).to incliude([:diamonds, 'ace', 14],
                                                   [:diamonds, 'king', 13],
                                                   [:diamonds, 'queen', 12]
