@@ -24,7 +24,7 @@ class Turn
   def winner
     round_type = type
     if type == :mutually_assured_destruction
-      puts "No Winner"
+      return "No Winner"
     elsif type == :war
       if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
         return @player1
@@ -43,6 +43,12 @@ class Turn
   end
 
   def pile_cards
+    if type == :basic
 
+    elsif type == :war
+
+    elsif type == :mutually_assured_destruction
+
+    end
   end
 end
