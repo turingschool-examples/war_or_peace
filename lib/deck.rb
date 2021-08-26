@@ -6,16 +6,16 @@ class Deck
   end
 
   def rank_of_card_at(pos)
-    @cards[pos].rank
+    cards[pos].rank
   end
 
   def percent_high_ranking
-    (high_ranking_cards.count / @cards.count.to_f * 100).round(2)
+    (high_ranking_cards.count / cards.count.to_f * 100).round(2)
   end
 
   def high_ranking_cards
     high_rank = []
-    @cards.each do |card|
+    cards.each do |card|
       if card.rank >= 11
         high_rank << card
       end
@@ -24,10 +24,10 @@ class Deck
   end
 
   def remove_card
-    @cards.shift
+    cards.shift
   end
 
   def add_card(card)
-    @cards << card
+    cards << card
   end
 end
