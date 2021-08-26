@@ -47,7 +47,7 @@ describe Deck do
                [:diamonds, '6', 6]
               ]
       deck = Deck.new(cards)
-      expect(deck.percent_high_ranking).to eq("50%")
+      expect(deck.percent_high_ranking).to eq(50.0)
     end
   end
 end
