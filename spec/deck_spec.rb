@@ -36,4 +36,18 @@ describe Deck do
                                                  )
     end
   end
+
+  describe "#percent_high_ranking" do
+    it "returns the percentage of cards that are high ranking" do
+      cards = [[:diamonds, 'ace', 14],
+               [:diamonds, 'king', 13],
+               [:diamonds, 'queen', 12],
+               [:diamonds, '2', 2],
+               [:diamonds, '3', 3],
+               [:diamonds, '6', 6]
+              ]
+      deck = Deck.new(cards)
+      expect(deck.percent_high_ranking).to eq("50%")
+    end
+  end
 end
