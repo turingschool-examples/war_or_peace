@@ -7,7 +7,11 @@ class Deck
   end
 
   def rank_of_card_at(index) #returns the rank of a card in the @cards array
-    @cards[index].rank
+    if index < @cards.length
+      @cards[index].rank
+    else
+      return 0
+    end
   end
 
   def high_ranking_cards #return an array of cards in the deck with rank 11 or above

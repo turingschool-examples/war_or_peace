@@ -33,11 +33,14 @@ class Game
             elsif type == :mutually_assured_destruction
               p "Turn #{turn_count}: *mutually_assured_destruction* 6 cards removed from play"
             end
-          elsif @player1.has_lost? == true
+          elsif @player1.has_lost? == true && @player2.has_lost? == false
             p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
             break
-          elsif @player2.has_lost? == true
+          elsif @player2.has_lost? == true && @player1.has_lost? == false
             p "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+            break
+          elsif
+            p "Both losers"
             break
           end #if player has lost
         end #if turn_count
