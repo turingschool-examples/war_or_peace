@@ -12,7 +12,7 @@ class Deck
   def high_ranking_cards
     new_array = []
     @cards.each do |card|
-      if card[2] >= 11
+      if card.rank >= 11
         new_array.push(card)
       end
     end
