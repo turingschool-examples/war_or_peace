@@ -50,4 +50,18 @@ describe Deck do
       expect(deck.percent_high_ranking).to eq(50.0)
     end
   end
+
+  describe "#remove_card" do
+    it "removes the first card in the instance object array" do
+      cards = [[:diamonds, 'ace', 14],
+               [:diamonds, 'king', 13],
+               [:diamonds, 'queen', 12],
+               [:diamonds, '2', 2],
+               [:diamonds, '3', 3],
+               [:diamonds, '6', 6]
+              ]
+      deck = Deck.new(cards)
+      expect(deck.remove_card).to eq([:diamonds, 'ace', 14])
+    end
+  end
 end
