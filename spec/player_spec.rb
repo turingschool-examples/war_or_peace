@@ -29,4 +29,14 @@ describe Player do
     end
   end
 
+  describe "#has_lost?" do
+    it "determines if player has lost the game" do
+      cards = []
+      deck1 = Deck.new(cards)
+      player1 = Player.new("jacob", deck1)
+
+      expect(player1.has_lost?).to eq(true)
+    end
+  end
+
 end
