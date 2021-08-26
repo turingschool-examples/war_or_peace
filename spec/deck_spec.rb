@@ -17,14 +17,9 @@ describe Deck do
     it "has readable attributes" do
       card1 = Card.new(:diamonds, 'ace', 14)
       card2 = Card.new(:diamonds, 'king', 13)
-      card3 = Card.new(:diamonds, 'queen', 12)
-      card4 = Card.new(:diamonds, '2', 2)
-      card5 = Card.new(:diamonds, '3', 3)
-      card6 = Card.new(:diamonds, '6', 6)
-      cards = [card1, card2, card3, card4, card5, card6]
+      cards = [card1, card2]
       deck = Deck.new(cards)
-      expect(deck.cards).to include('@suit=:diamond, @value="ace"'
-                               )
+      expect(deck.cards).to include(card1, card2)
     end
   end
 
