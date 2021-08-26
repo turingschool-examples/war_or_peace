@@ -68,7 +68,7 @@ end
       cards = [card1, card2, card3]
       deck = Deck.new(cards)
       expect(deck.cards). to eq [card1, card2, card3]
-      expect(deck.add_card(card3)).to eq [card1, card2, card3, card4]
+      expect(deck.add_card(card4)).to eq [card1, card2, card3, card4]
   end
 end
 
