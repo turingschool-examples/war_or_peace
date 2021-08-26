@@ -3,6 +3,7 @@ class Turn
                 :player2,
                 :spoils_of_war
 
+
   def initialize(player1, player2)
     @player1        = player1
     @player2        = player2
@@ -19,17 +20,19 @@ class Turn
 
   def winner
     if type == :basic
-      @player1.deck.cards.first.rank > @player2.deck.cards.first.rank
+      if @player1.deck.cards.first.rank > @player2.deck.cards.first.rank
         winner = @player1
-    else
-       winner = @player2
+      else
+        winner = @player2
+      end
     end
+    winner
   end
 
   def pile_cards
     spoils_of_war << @player1.deck.cards[0]
-    spoils_of_war << @player2.deck.cards[0]
     @player1.deck.cards.shift
+    spoils_of_war << @player2.deck.cards[0]
     @player2.deck.cards.shift
   end
 
@@ -38,7 +41,6 @@ class Turn
       winner.deck.cards << spoil
     end
     spoils_of_war.clear
-    require "pry"; binding.pry
   end
 
 end
