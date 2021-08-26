@@ -11,6 +11,27 @@ describe Deck do
     end
   end
 
+  describe "attr_reader" do
+    it "has readable attributes" do
+      cards = [[:diamonds, 'ace', 14],
+               [:diamonds, 'king', 13],
+               [:diamonds, 'queen', 12],
+               [:diamonds, '2', 2],
+               [:diamonds, '3', 3],
+               [:diamonds, '6', 6]
+              ]
+      deck = Deck.new(cards)
+      expect(deck.cards).to eql([[:diamonds, 'ace', 14],
+                                 [:diamonds, 'king', 13],
+                                 [:diamonds, 'queen', 12],
+                                 [:diamonds, '2', 2],
+                                 [:diamonds, '3', 3],
+                                 [:diamonds, '6', 6]
+                                ]
+                               )
+    end
+  end
+
   describe "#rank_of_card_at" do
     context "given 0"
       it "returns the 3rd item in the first item in the array" do
