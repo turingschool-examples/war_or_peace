@@ -39,19 +39,15 @@ describe Deck do
       card2 = Card.new(:diamonds, '2', 2)
       cards = [card1, card2]
       deck = Deck.new(cards)
-      expect(deck.high_ranking_cards).to include(card1)
+      expect(deck.high_ranking_cards).to eq(card1)
     end
   end
 
   describe "#percent_high_ranking" do
     it "returns the percentage of cards that are high ranking" do
-      card1 = Card.new(:diamonds, 'ace', 14)
-      card2 = Card.new(:diamonds, 'king', 13)
-      card3 = Card.new(:diamonds, 'queen', 12)
-      card4 = Card.new(:diamonds, '2', 2)
-      card5 = Card.new(:diamonds, '3', 3)
-      card6 = Card.new(:diamonds, '6', 6)
-      cards = [card1, card2, card3, card4, card5, card6]
+      card1 = Card.new(:diamonds, 'king', 13)
+      card2 = Card.new(:diamonds, '3', 3)
+      cards = [card1, card2]
       deck = Deck.new(cards)
       expect(deck.percent_high_ranking).to eq(50.0)
     end
@@ -61,13 +57,9 @@ describe Deck do
     it "removes the first card in the instance object array" do
       card1 = Card.new(:diamonds, 'ace', 14)
       card2 = Card.new(:diamonds, 'king', 13)
-      card3 = Card.new(:diamonds, 'queen', 12)
-      card4 = Card.new(:diamonds, '2', 2)
-      card5 = Card.new(:diamonds, '3', 3)
-      card6 = Card.new(:diamonds, '6', 6)
-      cards = [card1, card2, card3, card4, card5, card6]
+      cards = [card1, card2]
       deck = Deck.new(cards)
-      expect(deck.remove_card).to eq([:diamonds, 'ace', 14])
+      expect(deck.remove_card).to eq(card1)
     end
   end
 
