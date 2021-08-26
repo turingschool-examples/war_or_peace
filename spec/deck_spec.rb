@@ -36,17 +36,10 @@ describe Deck do
   describe "#high_ranking_cards" do
     it "returns an array of cards rank 11 or above" do
       card1 = Card.new(:diamonds, 'ace', 14)
-      card2 = Card.new(:diamonds, 'king', 13)
-      card3 = Card.new(:diamonds, 'queen', 12)
-      card4 = Card.new(:diamonds, '2', 2)
-      card5 = Card.new(:diamonds, '3', 3)
-      card6 = Card.new(:diamonds, '6', 6)
-      cards = [card1, card2, card3, card4, card5, card6]
+      card2 = Card.new(:diamonds, '2', 2)
+      cards = [card1, card2]
       deck = Deck.new(cards)
-      expect(deck.high_ranking_cards).to include([:diamonds, 'ace', 14],
-                                                  [:diamonds, 'king', 13],
-                                                  [:diamonds, 'queen', 12]
-                                                 )
+      expect(deck.high_ranking_cards).to include(card1)
     end
   end
 
