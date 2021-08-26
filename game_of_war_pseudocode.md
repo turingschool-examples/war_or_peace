@@ -7,7 +7,7 @@
   - Pull the first card of each deck (pulling first entry from each array)
     - If one card ranks above the other, that card wins and both cards are added to the bottom of the winning player's deck (end of Array)
       - Ranks: A>K>Q>J>10>9>8>7>6>5>4>3>2
-    - If the cards tie, a war happens; three cards are pulled from each deck (but not revealed) before another card is pulled for a battle once again
-    - Repeat until resolved
+    - If the cards tie, a war happens; one card is pulled from each deck (but not revealed) before another card is pulled for a battle once again
+    - If this battle also resolves in a draw, mutually assured destruction occurs and deletes all involved cards
     - If one person's deck runs out of cards, they lose the game, regardless of how it happens
     - If both players run out of cards simultaneously, tie game
