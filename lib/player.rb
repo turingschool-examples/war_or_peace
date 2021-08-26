@@ -6,11 +6,8 @@ class Player
     @name = name
     @deck = deck
   end
+
   def has_lost?
-    if deck.cards == []
-      true
-    else
-      false
-    end
+    deck.cards == []
   end
 end
