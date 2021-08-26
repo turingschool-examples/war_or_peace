@@ -61,4 +61,19 @@ class Turn
       puts "No type"
     end
   end
+
+  def award_spoils(winner)
+    @spoils_of_war.each do | spoil |
+      winner.deck.add_card(spoil)
+    end
+    if type == :basic
+      player1.deck.remove_card
+      player2.deck.remove_card
+    else
+      3.times do
+        player1.deck.remove_card
+        player2.deck.remove_card
+      end
+    end
+  end
 end
