@@ -67,6 +67,7 @@ class Turn
   # add spoils to the bottom of winner's deck
   def award_spoils(winner)
     winner.deck.add_card(@spoils_of_war)
+    @spoils_of_war = []
   end
 
 end
