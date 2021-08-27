@@ -2,6 +2,7 @@ require "./card"
 require "./deck"
 require "./player"
 require "./turn"
+require "./start_game"
 
 spade1 = Card.new(:spade, "2", 2)
 spade2 = Card.new(:spade, "3", 3)
@@ -82,13 +83,17 @@ deck2 = Deck.new(second_deck)
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
 
+game = StartGame.new(player1, player2)
+
 p "Welcome to War! (or Peace) This game will be played with 52 cards."
 p "The players today are Megan and Aurora."
 p "Type 'Go' to start the game!"
 p "------------------------------------------------------------------"
 
-proceed = gets
+proceed = gets.chomp
 
-if proceed == "Go"
-
+if proceed == "GO"
+  game.start
+else
+  p "Have a nice day!"
 end
