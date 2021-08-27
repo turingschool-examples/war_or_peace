@@ -1,3 +1,4 @@
+require 'pry'
 require './lib/card.rb'
 require './lib/player'
 
@@ -6,30 +7,23 @@ class Deck
 
   def initialize(cards)
     @cards = cards
-    @high_rank_cards = []
+  end
+
+  def size
+    cards.count
   end
 
   def rank_of_card_at(index)
-    return @cards[index].rank
+    @cards[index].rank
   end
 
   def high_ranking_cards
-    @cards.each do |card|
-      if card.rank >= 11
-        @high_rank_cards << (card)
-      end
-    end
-    return @high_rank_cards
+    cards.find_all { |card| card.rank >= 11 }
   end
 
   def percent_high_ranking
-    @cards.each do |card|
-      if card.rank >= 11
-        @high_rank_cards << (card)
-      end
-    end
-    percent = ((@high_rank_cards.count.to_f / @cards.count.to_f) * 100)
-    return percent
+    # high_ranking_cards / total_cards
+    ((high_ranking_cards.count.to_f / @cards.count.to_f) * 100)
   end
 
   def remove_card

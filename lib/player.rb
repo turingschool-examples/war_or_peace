@@ -1,3 +1,6 @@
+require './lib/card'
+require './lib/deck'
+
 class Player
   attr_reader :name,
               :deck
@@ -8,6 +11,15 @@ class Player
   end
 
   def has_lost?
-    return false
+    if @deck.cards == []
+      true
+    else
+      false
+    end
+  end
+
+  def remove_card
+    deck.cards.shift
+    #@deck -= @deck[0]
   end
 end
