@@ -29,10 +29,10 @@ class Deck
     @cards.shift
   end
 
-  def add_card(c)
-    c.each do |card|
+  def add_card(card)
+    #c.each do |card|
       @cards.push(card)
-    end
+    #end
   end
 
 end
