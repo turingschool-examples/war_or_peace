@@ -3,48 +3,32 @@ class Deck
   attr_reader :cards
 
   def initialize(cards)
-    @cards = cards
+    @cards    = cards
   end
 
-  def rank_of_card_at(index) #returns the rank of a card in the @cards array
+  def rank_of_card_at(index)
     if index < @cards.length
       @cards[index].rank
     else
-      return 0
+      0 #returns 0 if there is no card at index
     end
   end
 
-  def high_ranking_cards #return an array of cards in the deck with rank 11 or above
-    @high_cards = []
-
-    @cards.each do |card|
-      if card.rank >= 11
-        @high_cards << card
-      end
+  def high_ranking_cards
+    @cards.find_all do |card|
+      card if card.rank >= 11
     end
-
-    @high_cards
-
   end
 
-  def percent_high_ranking #return the percentage of cards that are high ranking
-    @high_cards_count = 0
-
-    @cards.each do |card|
-      if card.rank >= 11
-        @high_cards_count += 1
-      end
-    end
-
-    @high_cards_count.to_f / @cards.length.to_f * 100
+  def percent_high_ranking
+    high_ranking_cards.size.to_f / @cards.size.to_f * 100
   end
 
-  def remove_card #removes the top (beginning) card from the deck
-    @cards.delete_at(0)
+  def remove_card
+    @cards.shift
   end
 
-  def add_card(card) #adds one card to the bottom (end) of the deck
+  def add_card(card)
     @cards << card
   end
-
 end
