@@ -47,20 +47,36 @@ RSpec.describe Player do
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
 
-    deck = Deck.new([card1, card2, card3])
+    cards = [card1, card2, card3]
+
+    deck = Deck.new(cards)
 
     player = Player.new('Clarisa', deck)
 
 #execute has_lost? method 3 times and get false
     expect(player.has_lost?).to be false
-    expect(player.deck.remove_card).to eq(card1)
+
+    player.deck.remove_card
+
+    expect(player.deck.cards).to eq([card2, card3])
+
     expect(player.has_lost?).to be false
-    expect(player.deck.remove_card).to eq(card2)
-    expect(player.has_lost?).to be false
-    expect(player.deck.remove_card).to eq(card3)
-#execute has_lost? method one more time and get true.
+
+    player.deck.remove_card
+
+    expect(player.deck.cards).to eq([card3])
+
+    player.deck.remove_card
+
+    expect(player.deck.cards).to be_empty
+    #expect(player.deck.remove_card).to include(card3)
+#     expect(player.has_lost?).to be false
+#     expect(player.deck.remove_card).to eq(card3)
+
+# #execute has_lost? method one more time and get true.
     expect(player.has_lost?).to be true
-    expect(player.deck).to eq([])
+    expect(player.has_lost?).to_not be false
+#     expect(player.deck).to eq([])
 
   end
 
