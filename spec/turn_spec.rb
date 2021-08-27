@@ -12,8 +12,10 @@ describe Turn do
       card2 = Card.new(:diamonds, 'king', 13)
       card3 = Card.new(:clubs, '8', 8)
       card4 = Card.new(:spades, '5', 5)
-      cards1 = [card1, card2]
-      cards2 = [card3, card4]
+      card5 = Card.new(:hearts, '4', 4)
+      card6 = Card.new(:hearts, '7', 7)
+      cards1 = [card1, card2, card3]
+      cards2 = [card4, card5, card6]
       deck1 = Deck.new(cards1)
       deck2 = Deck.new(cards2)
       player1 = Player.new("Jacob", deck1)
