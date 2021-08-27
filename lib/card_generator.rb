@@ -17,6 +17,6 @@ class CardGenerator
       card_num += 1
     end
 
-    return card_deck
+    card_deck
   end
 end
