@@ -8,5 +8,10 @@ class Player
   end
 
   def has_lost?
+    if deck != []
+      false
+    else
+      true
+    end
   end
 end

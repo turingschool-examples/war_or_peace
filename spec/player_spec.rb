@@ -11,7 +11,9 @@ RSpec.describe Player do
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
 
-    deck = Deck.new([card1, card2, card3])
+    cards = [card1, card2, card3]
+
+    deck = Deck.new(cards)
 
     player = Player.new('Clarisa', deck)
 
@@ -19,21 +21,27 @@ RSpec.describe Player do
 
   end
 
-  xit "has a deck" do
+###still don't get why expect(player.deck).to eq(cards) or 10 other expressions
+###don't work - maybe ask Cydnee later
+
+  it "has a deck" do
+
 
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
 
-    deck = Deck.new([card1, card2, card3])
+    cards = [card1, card2, card3]
+
+    deck = Deck.new(cards)
 
     player = Player.new('Clarisa', deck)
 
-    expect(player.deck).to eq([card1, card2, card3])
+    expect(player.deck.cards).to eq(cards)
 
   end
 
-  xit "can determine if the player has lost the game and remove card" do
+  it "can determine if the player has lost the game" do
 
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
