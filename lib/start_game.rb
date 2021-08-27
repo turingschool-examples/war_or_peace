@@ -8,8 +8,17 @@ class StartGame
   end
 
   def start
+    winner = @player1
     turn_num = 1
     while turn_num <= 100 do
+      turn = Turn.new(@player1, @player2)
+
+      turn.pile_cards
+
+      winner = turn.winner
+
+      turn.award_spoils(winner)
+
       
       turn_num += 1
     end
