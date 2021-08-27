@@ -73,7 +73,7 @@ RSpec.describe Deck do
        card4 = Card.new(:club, '5', 5)
        cards = [card2, card3, card4]
        deck = Deck.new(cards)
-       expect(deck.add_card(card4)).to include(card4)
+       expect(deck.add_card(card4)).to include(card2, card3,card4)
     end
   end
 end
