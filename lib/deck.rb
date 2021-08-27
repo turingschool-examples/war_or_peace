@@ -8,11 +8,6 @@ class Deck
   end
 
 
-  def new_cards(card)
-    @cards.push(card)
-  end
-
-
   def rank_of_card_at(index)
     cards[index].rank
   end

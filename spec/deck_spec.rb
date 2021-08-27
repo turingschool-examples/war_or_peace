@@ -76,7 +76,6 @@ RSpec.describe Deck do
 
     deck.remove_card
 
-
     expect(deck.cards). to eq([card2, card3])
 
     deck.add_card(card4)
@@ -88,25 +87,3 @@ RSpec.describe Deck do
 
 
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#describe Deck do
-  #describe '#initialize' do
-    #it 'is an instance of deck' do
-      #deck = Deck.new('Deck1')
-      #expect(deck).to be_a Deck
-    #end
-  #end
-#end
