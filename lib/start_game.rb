@@ -10,6 +10,7 @@ class StartGame
   def start
     winner = @player1
     turn_num = 1
+    draw_test = 1
     while turn_num <= 1000000 do
       turn = Turn.new(@player1, @player2)
 
@@ -19,7 +20,9 @@ class StartGame
 
       turn.award_spoils(winner)
 
-      if turn.type == :basic
+      if player1.deck.cards.count == 3 || player2.deck.cards.count == 3
+        turn_num = 1000000
+      elsif turn.type == :basic
         p "Turn #{turn_num}: #{winner.name} won 2 cards"
       elsif turn.type == :war
         p "Turn #{turn_num}: WAR - #{winner.name} won 6 cards"
@@ -28,11 +31,11 @@ class StartGame
       else
         p "error: no turn type"
       end
-
+      draw_test += 1
       turn_num += 1
     end
-    if turn_num == 1000000
-      p "--- DRAW ---"
+    if draw_test == 1000001
+      p "----- DRAW -----"
     else
       p "*~*~*~* #{winner.name} has won the game! *~*~*~*"
     end
