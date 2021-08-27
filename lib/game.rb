@@ -22,7 +22,6 @@ class Game
         else
           if @player1.has_lost? == false && @player2.has_lost? == false
             turn = Turn.new(@player1, @player2)
-            type = turn.type
             winner = turn.winner
             turn.pile_cards
             turn.award_spoils(winner)
