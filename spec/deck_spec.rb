@@ -12,10 +12,6 @@ RSpec.describe Deck do
     expect(deck).to be_an_instance_of(Deck)
   end
 
-  #it 'returns the deck of cards' do
-
-  #end
-
   it 'returns rank of card at index locations' do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
