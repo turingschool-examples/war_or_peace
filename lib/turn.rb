@@ -11,10 +11,13 @@ class Turn
   end
 
   def type
-    if @player1.deck.cards.first.rank != @player2.deck.cards.first.rank
+    if @player1.deck.cards[0].rank != @player2.deck.cards[0].rank
       :basic
-    elsif @player1.deck.cards.first.rank == @player2.deck.cards.first.rank
+    elsif @player1.deck.cards[0].rank == @player2.deck.cards[0].rank &&
+          @player1.deck.cards[2].rank != @player2.deck.cards[2].rank
       :war
+    else
+      :mutually_assured_destruction
     end
   end
 
@@ -31,30 +34,35 @@ class Turn
       else
         winner = @player2
       end
+    else
+      p "No Winner"
     end
     winner
   end
 
+  def change_cards
+    spoils_of_war << @player1.deck.cards[0]
+    @player1.deck.cards.shift
+    spoils_of_war << @player2.deck.cards[0]
+    @player2.deck.cards.shift
+  end
+
   def pile_cards
     if type == :basic
-      spoils_of_war << @player1.deck.cards[0]
-      @player1.deck.cards.shift
-      spoils_of_war << @player2.deck.cards[0]
-      @player2.deck.cards.shift
+      change_cards
     elsif type == :war
       3.times do
-        spoils_of_war << @player1.deck.cards[0]
-        @player1.deck.cards.shift
-        spoils_of_war << @player2.deck.cards[0]
-        @player2.deck.cards.shift
+        change_cards
       end
+    else
+      @player1.deck.cards.shift(3)
+      @player2.deck.cards.shift(3)
     end
   end
 
   def award_spoils(winner)
     spoils_of_war.each do |spoil|
       winner.deck.cards << spoil
-      # require "pry"; binding.pry
     end
     spoils_of_war.clear
   end
