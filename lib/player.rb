@@ -3,7 +3,7 @@ class Player
   :deck,
 
   def initialize(name, deck)
-    @name = @name
+    @name = name
     @deck = deck
   end
 
@@ -14,5 +14,6 @@ class Player
       return false
     end
   end
+end
 
-  
+player = Player.new('Clarisa','deck_1')
