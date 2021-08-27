@@ -90,13 +90,10 @@ describe Turn do
       @card6 = Card.new(:diamond, 'Queen', 12)
       @card7 = Card.new(:heart, '3', 3)
       @card8 = Card.new(:diamond, '2', 2)
-
       @deck1 = Deck.new([@card1, @card2, @card5, @card8])
       @deck2 = Deck.new([@card4, @card3, @card6, @card7])
-
       @player1 = Player.new('Megan', @deck1)
       @player2 = Player.new('Aurora', @deck2)
-
       @turn = Turn.new(@player1, @player2)
     end
 
@@ -105,13 +102,10 @@ describe Turn do
     end
 
     it 'has a winner' do
-      @turn.type
       expect(@turn.winner).to eq(@player2)
     end
 
     it 'has many spoils' do
-      @turn.type
-      @turn.winner
       @turn.pile_cards
       @turn.spoils_of_war
 
@@ -120,7 +114,6 @@ describe Turn do
     end
 
     it 'awards the spoils to the winner' do
-      @turn.type
       winner = @turn.winner
       @turn.pile_cards
       @turn.award_spoils(winner)
@@ -141,13 +134,10 @@ describe Turn do
       @card6 = Card.new(:diamond, '8', 8)
       @card7 = Card.new(:heart, '3', 3)
       @card8 = Card.new(:diamond, '2', 2)
-
       @deck1 = Deck.new([@card1, @card2, @card5, @card8])
       @deck2 = Deck.new([@card4, @card3, @card6, @card7])
-
       @player1 = Player.new('Megan', @deck1)
       @player2 = Player.new('Aurora', @deck2)
-
       @turn = Turn.new(@player1, @player2)
     end
 
@@ -156,24 +146,17 @@ describe Turn do
     end
 
     it 'has no winner' do
-      @turn.type
-
       expect(@turn.winner).to eq('No Winner')
     end
 
     it 'has no spoils' do
-      @turn.type
-      @turn.winner
       @turn.pile_cards
 
       expect(@turn.spoils_of_war).to eq([])
     end
 
-    it 'both players lose some cards' do
-      @turn.type
-      @turn.winner
+    it 'assures mutual destruction' do
       @turn.pile_cards
-      @turn.spoils_of_war
 
       expect(@player1.deck.cards.size).to eq(1)
       expect(@player2.deck.cards.size).to eq(1)
