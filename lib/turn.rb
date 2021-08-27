@@ -29,21 +29,41 @@ class Turn
   def winner
     if type == :basic
       player1.deck.cards[0].rank > player2.deck.cards[0].rank
-      print player1
+      winner = player1
+      return winner
     else
-      print player2
+      winner = player2
+      return winner
     end
 
     if type == :war
       #maybe try player1.rank_of_card_at
       player1.deck.cards[2].rank > player2.deck.cards[2].rank
-      print player1
+      winner = player1
+      return winner
     else
-      print player2
+      winner = player2
+      return winner
     end
 
     if type == :mutually_assured_destruction
-      print "No Winner"
+      return "No Winner"
+    end
+  end
+  def pile_cards
+    if type == :basic
+      spoils_of_war << player1.deck.cards[0]
+      spoils_of_war << player2.deck.cards[0]
+    elsif type == :war
+      3.times do
+        spoils_of_war << player1.deck.cards[0]
+        spoils_of_war << player2.deck.cards[0]
+      end
+    elsif type == :mutually_assured_destruction
+      3.times do
+        player1.deck.shift
+        player2.deck.shift
+      end
     end
   end
 end
