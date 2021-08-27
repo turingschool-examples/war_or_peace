@@ -1,26 +1,18 @@
+#Iteration 1
+
 require './lib/card'
 
 class Card
   attr_reader :suit,
-              :rank,
-              :value
-  def initialize(:heart, 'Jack', 11)
+              :value,
+              :rank
+  def initialize(suit, value, rank)
     @suit = suit
-    @rank = rank
     @value = value
+    @rank = rank
+
   end
 
-  def rank
-  end
-
-  def suit
-  end
-
-  def value
-  end
 
 end
-card = Card.new(:heart, 'Jack', 11)
-
-class Deck
-end
+# card = Card.new(:heart, 'Jack', 11)
