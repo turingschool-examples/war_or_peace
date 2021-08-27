@@ -15,13 +15,10 @@ describe Turn do
       @card6 = Card.new(:diamond, 'Queen', 12)
       @card7 = Card.new(:heart, '3', 3)
       @card8 = Card.new(:diamond, '2', 2)
-
       @deck1 = Deck.new([@card1, @card2, @card5, @card8])
       @deck2 = Deck.new([@card3, @card4, @card6, @card7])
-
       @player1 = Player.new('Megan', @deck1)
       @player2 = Player.new('Aurora', @deck2)
-
       @turn = Turn.new(@player1, @player2)
     end
 
@@ -47,13 +44,10 @@ describe Turn do
       @card6 = Card.new(:diamond, 'Queen', 12)
       @card7 = Card.new(:heart, '3', 3)
       @card8 = Card.new(:diamond, '2', 2)
-
       @deck1 = Deck.new([@card1, @card2, @card5, @card8])
       @deck2 = Deck.new([@card3, @card4, @card6, @card7])
-
       @player1 = Player.new('Megan', @deck1)
       @player2 = Player.new('Aurora', @deck2)
-
       @turn = Turn.new(@player1, @player2)
     end
 
@@ -62,30 +56,25 @@ describe Turn do
     end
 
     it 'has a winner' do
-      @turn.type
       expect(@turn.winner).to eq(@player1)
     end
 
     it "moves both 'played' cards to the spoils_of_war" do
       expect(@turn.spoils_of_war).to eq([])
 
-      @turn.type
-      @turn.winner
       @turn.pile_cards
-      expect(@turn.spoils_of_war).to include(@card1)
-      expect(@turn.spoils_of_war).to include(@card3)
+      expect(@turn.spoils_of_war).to eq([@card1, @card3])
       expect(@turn.player1.deck.cards).to eq([@card2, @card5, @card8])
       expect(@turn.player2.deck.cards).to eq([@card4, @card6, @card7])
     end
 
     it 'awards the spoils to the winner' do
-      @turn.type
-      @winner = @turn.winner
+      winner = @turn.winner
       @turn.pile_cards
-      @turn.award_spoils(@winner)
+      @turn.award_spoils(winner)
 
-      expect(@winner.deck.cards[-1]).to eq(@card3)
-      expect(@winner.deck.cards[-2]).to eq(@card1)
+      expect(winner).to eq(@player1)
+      expect(winner.deck.cards[-2..-1]).to eq([@card1, @card3])
       expect(@player1.deck.cards.size).to eq(5)
       expect(@player2.deck.cards.size).to eq(3)
     end
