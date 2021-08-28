@@ -60,7 +60,6 @@ class Turn
   end
 
   def award_spoils(winner)
-    @spoils_of_war.shuffle
     @spoils_of_war.size.times do
       winner.deck.cards << @spoils_of_war.shift
     end
