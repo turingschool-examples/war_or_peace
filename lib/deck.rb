@@ -22,7 +22,7 @@ class Deck
     #((high_cards.count) / (cards.count)) * 100
     x = high_cards.count
     y = cards.count
-    x.to_f / y.to_f * 100.0
+    (x.to_f / y.to_f * 100.0).round(2)
   end
 
   def remove_card
