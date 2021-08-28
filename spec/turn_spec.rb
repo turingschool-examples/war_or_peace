@@ -43,6 +43,7 @@ describe Turn do
       turn1 = Turn.new(player1, player2)
 
       expect(turn1.player1).to eq(player1)
+      expect(turn1.player2).to eq(player2)
     end
   end
 
