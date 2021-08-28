@@ -11,22 +11,22 @@ require 'pry'
 Rspec.describe CardGenerator do
 
   it 'exists' do
-
+    card_generator = CardGenerator.new('cards.txt')
+    expect(card_generator). to be_instance_of(CardGenerator)
   end
 
-  it 'takes a filename as an argument' do
+  xit 'takes a filename as an argument' do
+    card_generator = CardGenerator.new('cards.txt')
+    expect(card_generator.filename). to eq('cards.txt')
   end
 
   describe '#cards' do
 
-    it 'reads filename.txt' do
-
+    xit 'outputs an array of Card objects' do
+      card_generator = CardGenerator.new('cards.txt')
+      cards = card_generator.cards
+      expect(cards[0]).to be_instance_of(Card)
     end
-
-    it 'outputs an array of Card objects' do
-
-    end
-
 
   end
 
