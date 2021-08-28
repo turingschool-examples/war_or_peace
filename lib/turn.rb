@@ -10,13 +10,13 @@ class Turn
   end
 
   def type
-
-    if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
+    #binding.pry
+    if (@player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)) && (@player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2))
       return :mutually_assured_destruction
     elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
       return :war
-    else
-      return :basic  #lazy forcing
+    elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+      return :basic
     end
 
   end
@@ -25,9 +25,9 @@ class Turn
     case self.type
     when  :basic
       if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
-        return player1
+        return @player1
       else
-        return player2
+        return @player2
       end
     when :war
       if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
@@ -47,27 +47,26 @@ class Turn
         @spoils_of_war.push(@player1.deck.remove_card)
         @spoils_of_war.push(@player2.deck.remove_card)
     elsif self.type == :war
-        @spoils_of_war.push(@player1.deck.remove_card)
-        @spoils_of_war.push(@player1.deck.remove_card)
+      3.times do
         @spoils_of_war.push(@player1.deck.remove_card)
         @spoils_of_war.push(@player2.deck.remove_card)
-        @spoils_of_war.push(@player2.deck.remove_card)
-        @spoils_of_war.push(@player2.deck.remove_card)
-    else
+      end
+    elsif self.type == :mutually_assured_destruction
+      3.times do
         @player1.deck.remove_card
         @player2.deck.remove_card
-        @player1.deck.remove_card
-        @player2.deck.remove_card
-        @player1.deck.remove_card
-        @player2.deck.remove_card
+      end
     end
 
   end
 
   # add spoils to the bottom of winner's deck
   def award_spoils(winner)
-    winner.deck.add_card(@spoils_of_war)
-    @spoils_of_war = []
+    #winner.deck.add_card(@spoils_of_war)
+    while !@spoils_of_war.empty?
+      card = @spoils_of_war.pop
+      winner.deck.add_card(card)
+    end
   end
 
 end
