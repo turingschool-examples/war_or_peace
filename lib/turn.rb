@@ -23,4 +23,22 @@ class Turn
     end
   end
 
+  def winner
+    if type == :basic
+      if @c1_0 > @c2_0
+        @player1
+      else
+        @player2
+      end
+    elsif type == :war
+      if @c1_2 > @c2_2
+        @player1
+      else
+        @player2
+      end
+    else
+      "No Winner"
+    end
+  end
+
 end
