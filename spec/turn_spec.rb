@@ -146,7 +146,6 @@ describe Turn do
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
       expect(turn.type).to eq :mutually_assured_destruction
-      winner = turn.winner
       expect(turn.winner).to eq "No winner this time."
       turn.pile_cards
       p turn.spoils_of_war
