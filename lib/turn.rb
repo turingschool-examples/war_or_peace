@@ -25,7 +25,7 @@ class Turn
     elsif player1.deck.cards[0].rank == player2.deck.cards[0].rank
       turn_type = :war
     end
-    turn_type
+    # turn_type
   end
 
   def winner
@@ -72,5 +72,31 @@ class Turn
 
   def award_spoils(winner)
     (winner.deck.cards << @spoils_of_war).flatten
+  end
+
+  def start
+    puts "Welcome to War! (or Peace) This game will be played with 52 cards.
+The players today are #{player1.name} and #{player2.name}.
+Type 'GO' to start the game!
+---------------------------------------------------------------------"
+
+    input = gets.chomp
+    count = 0
+    if input == "GO"
+      until player1.has_lost? == true || player2.has_lost? == true do
+        count += 1
+        pile_cards
+        winner
+        award_spoils(winner)
+        if type == :basic
+          puts "Turn #{count}: #{winner.name} won 2 cards"
+        elsif type == :war
+          puts "Turn #{count}: WAR - #{winner.name} won 6 cards"
+        elsif type == :mutually_assured_destruction
+          puts "Turn #{count}: *mutually_assured_destruction* 6 cards removed from play"
+        end
+      end
+    else puts "You entered something other than 'GO'"
+    end
   end
 end
