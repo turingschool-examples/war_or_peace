@@ -6,7 +6,7 @@ class CardGenerator
   end
 
   def cards
-    
+    file = File.open("users.txt")
   end
 
 end
