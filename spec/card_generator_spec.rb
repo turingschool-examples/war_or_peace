@@ -3,7 +3,6 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 require './lib/card_generator'
-# require './cards.txt'
 
 describe CardGenerator do
   describe '#initialize' do
@@ -25,7 +24,6 @@ describe CardGenerator do
     it 'generates an array of cards' do
       filename = "cards.txt"
       cards = CardGenerator.new(filename).cards
-
 
       expect(cards).to be_a(Array)
     end
