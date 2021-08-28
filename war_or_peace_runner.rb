@@ -21,8 +21,9 @@ end
 cards.shuffle!
 deck1 = Deck.new(cards[0..25])
 deck2 = Deck.new(cards[26..51])
-player1 = Player.new("Megan", deck1)
-player2 = Player.new("Aurora", deck2)
+
+player1 = Player.new("Megan", deck2)
+player2 = Player.new("Aurora", deck1)
 turn = Turn.new(player1, player2)
 
 class Game
@@ -46,8 +47,8 @@ class Game
       end
 
       count = 1
-
-      while (!@turn.player1.has_lost?) && (!@turn.player2.has_lost?) && (count < 10000)
+      #binding.pry
+      while (!@turn.player1.has_lost?) && (!@turn.player2.has_lost?) && (count <= 1000000)
           #binding.pry
           if @turn.type == :basic
             puts "Turn #{count}: #{@turn.winner.name} won 2 cards"
@@ -59,8 +60,9 @@ class Game
             winner = @turn.winner
             @turn.pile_cards
             @turn.award_spoils(winner)
-          elsif @turn.type == :mutually_assured_destrcution
+          elsif @turn.type == :mutually_assured_destruction
             puts "Turn #{count}: *mutually assured destruction* 6 cards removed from play"
+            @turn.pile_cards
           end
 
           count += 1
@@ -68,9 +70,9 @@ class Game
       end
 
       if @turn.player1.has_lost?
-        puts "*~*~*~* #{@turn.player2} has won the game! *~*~*~*"
+        puts "*~*~*~* #{@turn.player2.name} has won the game! *~*~*~*"
       elsif @turn.player2.has_lost?
-        puts "*~*~*~* #{@turn.player1} has won the game! *~*~*~*"
+        puts "*~*~*~* #{@turn.player1.name} has won the game! *~*~*~*"
       else
         puts "---- DRAW ----"
       end
