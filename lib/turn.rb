@@ -24,7 +24,7 @@ class Turn
       end
     end
 
-    return @type_of_turn
+
 
   end
 
@@ -56,13 +56,15 @@ class Turn
   def pile_cards
 
     if type_of_turn == :basic
-      @spoils_of_war << player1.deck.cards[0] << player2.deck.cards[0]
+      @spoils_of_war << player1.deck.cards[0]
+      @spoils_of_war << player2.deck.cards[0]
       player1.deck.remove_card
       player2.deck.remove_card
 
     elsif type_of_turn == :war
       3.times do
-        @spoils_of_war << player1.deck.cards[0] << player2.deck.cards[0]
+        @spoils_of_war << player1.deck.cards[0]
+        @spoils_of_war << player2.deck.cards[0]
         player1.deck.remove_card
         player2.deck.remove_card
       end
@@ -71,20 +73,32 @@ class Turn
       3.times do
         player1.deck.remove_card
         player2.deck.remove_card
-      end  
+      end
     end
   end
 
 #add cards(ARRAY) in the @spoils_of_war to the winner of the turn
-  def award_spoils
+  def award_spoils(winner_of_turn)
+
+
 
     if winner_of_turn == player1
-      player1.deck << spoils_of_war
-      @spoils_of_war = []
+      spoils_of_war.each do |card_in_spoils|
+
+        player1.deck.cards << card_in_spoils
+
+require 'pry'; binding.pry
+
+        spoils_of_war.delete_at(0)
+      end
+
 
     elsif winner_of_turn == player2
-      player2.deck << spoils_of_war
-      @spoils_of_war = []
+      spoils_of_war.each do |card_in_spoils|
+        player2.deck.cards << card_in_spoils
+      #  spoils_of_war.delete(card_in_spoils)
+      end
+
     end
 
   end
