@@ -8,17 +8,20 @@ require 'rspec'
 require 'pry'
 
 # create cards
-suits = [:heart, :club, :diamond, :spade ]
-rank_vals = {"2" => 2, "3" => 3, "4" => 4, "5" => 5,
-   "6" => 6, "7" => 7, "8" => 8, "9" => 9, "10" => 10, "Jack" => 11,
-   "Queen" => 12, "King" => 13, "Ace" => 14}
+# suits = [:heart, :club, :diamond, :spade ]
+# rank_vals = {"2" => 2, "3" => 3, "4" => 4, "5" => 5,
+#    "6" => 6, "7" => 7, "8" => 8, "9" => 9, "10" => 10, "Jack" => 11,
+#    "Queen" => 12, "King" => 13, "Ace" => 14}
+#
+# cards = []
+# suits.each do |suit|
+#   rank_vals.each do |rank, value|
+#       cards << Card.new(suit, value, rank)
+#     end
+# end
 
-cards = []
-suits.each do |suit|
-  rank_vals.each do |rank, value|
-      cards << Card.new(suit, value, rank)
-    end
-end
+card_generator = CardGenerator.new('./lib/cards.txt')
+cards = card_generator.cards
 
 cards.shuffle!
 deck1 = Deck.new(cards[0..25])
