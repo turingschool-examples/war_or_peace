@@ -45,6 +45,8 @@ class Turn
   def pile_cards
     if type == :basic
       @spoils_of_war.push(@player1.deck.cards[0], @player2.deck.cards[0])
+      @player1.deck.cards.delete_at(0)
+      @player2.deck.cards.delete_at(0)
     elsif type == :war
       @spoils_of_war.push(@player1.deck.cards[0],
                           @player1.deck.cards[1],
@@ -52,6 +54,8 @@ class Turn
                           @player2.deck.cards[0],
                           @player2.deck.cards[1],
                           @player2.deck.cards[2])
+      @player1.deck.cards.delete_at(0, 1, 2)
+      @player2.deck.cards.delete_at(0, 1, 2)
     else
       @player1.deck.cards.delete_at(0, 1, 2)
       @player2.deck.cards.delete_at(0, 1, 2)
