@@ -26,7 +26,10 @@ class Deck
   end
 
   def remove_card
+    # avoid throwing nil
+    if !@cards.empty?
     @cards.shift
+    end
   end
 
   def add_card(card)
