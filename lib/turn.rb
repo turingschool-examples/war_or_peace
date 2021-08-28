@@ -31,3 +31,4 @@ class Turn
       p "Player 2 wins"
     end
   end
+end
