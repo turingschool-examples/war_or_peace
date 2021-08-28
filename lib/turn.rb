@@ -58,4 +58,12 @@ class Turn
     end
   end
 
+  def award_spoils
+    if winner == @player1
+      @player1.deck.cards.push(@spoils_of_war)
+    else
+      @player2.deck.cards.push(@spoils_of_war)
+    end
+  end
+
 end
