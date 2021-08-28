@@ -39,6 +39,7 @@ class StartGame
       draw_test += 1
       turn_num += 1
     end
+
     if draw_test == 1000001
       p "----- DRAW -----"
     else
