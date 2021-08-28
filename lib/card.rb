@@ -5,4 +5,8 @@ class Card
     @value = value
     @rank = rank
   end
+
+  def rank
+    @rank
+  end
 end
