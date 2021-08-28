@@ -58,3 +58,5 @@ card41, card43, card45, card47, card49, card51]
 deck_2 = [card2, card4, card6, card8, card10, card12, card14, card16, card18, card20
 card22, card24, card26, card28, card30, card32, card34, card36, card38, card40, card42
 card44, card46, card48, card50, card52]
+
+turn_1 = Turn.new(player1, player2)
