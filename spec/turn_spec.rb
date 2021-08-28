@@ -122,8 +122,9 @@ describe Turn do
       player2 = Player.new("Bacoj", deck2)
       turn1 = Turn.new(player1, player2)
       turn1.pile_cards
+      turn1.award_spoils
 
-      expect(turn1.award_spoils_to_eq)
+      expect(player2.deck.cards).to include(card1)
     end
   end
 
