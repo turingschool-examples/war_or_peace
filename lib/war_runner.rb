@@ -50,3 +50,11 @@ card49 = Card.new(diamond, 'Ace', 14)
 card50 = Card.new(:spade, 'Ace', 14)
 card51 = Card.new(:heart, 'King', 13)
 card52 = Card.new(:club, 'Ace', 14)
+
+deck_1 = [card1, card3, card5, card7, card9, card11, card13, card15, card17, card19
+card21, card23, card25, card27, card29, card31, card33, card35, card37, card39,
+card41, card43, card45, card47, card49, card51]
+
+deck_2 = [card2, card4, card6, card8, card10, card12, card14, card16, card18, card20
+card22, card24, card26, card28, card30, card32, card34, card36, card38, card40, card42
+card44, card46, card48, card50, card52]
