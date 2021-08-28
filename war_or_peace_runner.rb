@@ -3,6 +3,10 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 
+player1_name = $stdin.gets.chomp
+player2_name = $stdin.gets.chomp
+
+
 card_1 = Card.new(:diamonds, 'ace', 14)
 card_2 = Card.new(:diamonds, 'king', 13)
 card_3 = Card.new(:diamonds, 'queen', 12)
@@ -83,6 +87,10 @@ start_deck = start_deck.each_slice(26).to_a
 
 player1_cards = start_deck[0]
 player2_cards = start_deck[1]
+
+player1_deck = Deck.new(player1_cards)
+player2_deck = Deck.new(player2_cards)
+
 
 
 
