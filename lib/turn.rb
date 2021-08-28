@@ -15,7 +15,7 @@ class Turn
     c2_1 = @player2.deck.rank_of_card_at(1)
     c2_2 = @player2.deck.rank_of_card_at(1)
 
-    if (c1_0 == c2_0) && (c1_1 == c2_1)
+    if (c1_0 == c2_0) && (c1_2 == c2_2)
       :mutually_assured_destruction
     elsif c1_0 == c2_0
       :war
