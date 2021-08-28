@@ -5,11 +5,8 @@ require './lib/turn'
 require 'rspec'
 require 'pry'
 
+# create cards
 suits = [:heart, :club, :diamond, :spade ]
-values = ["1", "2", "3", "4", "5," "6", "7", "8", "9", "10",
-        "Jack", "Queen", "King", "Ace"]
-ranks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-
 rank_vals = {"2" => 2, "3" => 3, "4" => 4, "5" => 5,
    "6" => 6, "7" => 7, "8" => 8, "9" => 9, "10" => 10, "Jack" => 11,
    "Queen" => 12, "King" => 13, "Ace" => 14}
@@ -49,31 +46,31 @@ class Game
       end
 
       count = 1
-      msg = {basic: "", war: "WAR - "}
 
-      while !@turn.player1.has_lost? || !@turn.player2.has_lost? || count < 100000000
-        type = @turn.type
-        if @turn.winner.class == Player
-          winner = @turn.winner
-        end
-        @turn.pile_cards
+      while (!@turn.player1.has_lost?) && (!@turn.player2.has_lost?) && (count < 10000)
+          #binding.pry
+          if @turn.type == :basic
+            puts "Turn #{count}: #{@turn.winner.name} won 2 cards"
+            winner = @turn.winner
+            @turn.pile_cards
+            @turn.award_spoils(winner)
+          elsif @turn.type == :war
+            puts "Turn #{count}: WAR - #{@turn.winner.name} won 6 cards"
+            winner = @turn.winner
+            @turn.pile_cards
+            @turn.award_spoils(winner)
+          elsif @turn.type == :mutually_assured_destrcution
+            puts "Turn #{count}: *mutually assured destruction* 6 cards removed from play"
+          end
 
-        if type == :basic || type == :war
-          puts "Turn #{count}:#{msg[type]}#{winner.name} won #{@turn.spoils_of_war.length} cards"
-        else
-          puts "*mutually assured destruction* 6 cards removed from play"
-        end
+          count += 1
 
-        @turn.award_spoils(winner)
-        count += 1
       end
 
-      #puts "...\n...\n...\n"
-
-      if player1.has_lost?
-        puts "*~*~*~* #{player2} has won the game! *~*~*~*"
-      elsif player2.has_lost?
-        puts "*~*~*~* #{player1} has won the game! *~*~*~*"
+      if @turn.player1.has_lost?
+        puts "*~*~*~* #{@turn.player2} has won the game! *~*~*~*"
+      elsif @turn.player2.has_lost?
+        puts "*~*~*~* #{@turn.player1} has won the game! *~*~*~*"
       else
         puts "---- DRAW ----"
       end
