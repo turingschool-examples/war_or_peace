@@ -27,10 +27,9 @@ RSpec.describe Deck do
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
-    #deck.high_ranking_cards
     expect(deck.high_ranking_cards.count).to eq 2
-    #expect(deck.high_ranking_cards).to include Queen
-    #expect(deck.high_ranking_cards).to include card2
+    expect(deck.high_ranking_cards).to include card1
+    expect(deck.high_ranking_cards).not_to include card2
   end
 
   it 'calculates a percentage of high ranking cards' do
