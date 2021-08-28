@@ -100,7 +100,9 @@ describe Turn do
       player1 = Player.new("Jacob", deck1)
       player2 = Player.new("Bacoj", deck2)
       turn1 = Turn.new(player1, player2)
-      expect(turn1.spoils_of_war).to eq(card1, card4)
+      turn1.pile_cards
+      
+      expect(turn1.spoils_of_war).to eq([card1, card4])
     end
   end
 
