@@ -34,6 +34,10 @@ class Deck
     cards.push(new_card)
   end
 
+  def is_empty?
+    cards.length == 0
+  end
+
 
 
 end
