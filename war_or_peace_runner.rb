@@ -91,7 +91,8 @@ player2_cards = start_deck[1]
 player1_deck = Deck.new(player1_cards)
 player2_deck = Deck.new(player2_cards)
 
-
+player1 = Player.new(player1_name, player1_deck)
+player2 = Player.new(player2_name, player2_deck)
 
 
 
