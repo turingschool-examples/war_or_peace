@@ -7,9 +7,10 @@ require './lib/card_generator'
 filename = "cards.txt"
 
 cards = CardGenerator.new(filename).cards # generates a deck from cards.txt
+shuffled_cards = cards.shuffle!
 
-deck1 = Deck.new(cards.shuffle![0..25]) # setup of players, decks, and turn 1
-deck2 = Deck.new(cards.shuffle![26..51])
+deck1 = Deck.new(shuffled_cards[0..25]) # setup of players, decks, and turn 1
+deck2 = Deck.new(shuffled_cards[26..51])
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
 turn = Turn.new(player1, player2)
@@ -29,4 +30,4 @@ lets_go = gets.chomp.to_s # converts odd inputs to strings; also a failsafe for 
   end
 end
 
-turn.start # starts the game with the start method defined in ''./lib/turn'
+turn.start # starts the game with the start method defined in './lib/turn'
