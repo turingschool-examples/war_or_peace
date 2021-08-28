@@ -30,9 +30,7 @@ class Deck
   end
 
   def add_card(card)
-    #c.each do |card|
       @cards.push(card)
-    #end
   end
 
 end
