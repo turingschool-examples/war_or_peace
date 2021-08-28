@@ -59,4 +59,19 @@ deck_2 = [card2, card4, card6, card8, card10, card12, card14, card16, card18, ca
 card22, card24, card26, card28, card30, card32, card34, card36, card38, card40, card42
 card44, card46, card48, card50, card52]
 
-turn_1 = Turn.new(player1, player2)
+def game
+  turn.start
+  if turn.type = :basic
+    p '#{winning_player} won 2 cards'
+  elsif turn.type = :war
+    p '{#wining_player} won 6 cards'
+  else
+    p '*mutually assured desctruction* 6 cards removed from play'
+  end
+end
+
+def winning
+  if winning_player.cards = 52
+    p '*******{#winning_player} is the WINNER*******'
+  end
+end
