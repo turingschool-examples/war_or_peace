@@ -20,40 +20,45 @@ class Turn
   end
 
   def winner
-    if  player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-      return player1
-    elsif player2.deck.rank_of_card_at(0) > player1.deck.rank_of_card_at(0)
-      return player2
-    end
-    if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-      return player1
-    elsif player2.deck.rank_of_card_at(2) > player1.deck.rank_of_card_at(2)
-      return player2
-    end
-
-    if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
-      return no winner
-
+    if type == :basic
+      if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+        return player1
+      else player2.deck.rank_of_card_at(0) > player1.deck.rank_of_card_at(0)
+        return player2
+      end
+    elsif type == :war
+      if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+        return player1
+      elsif player2.deck.rank_of_card_at(2) > player1.deck.rank_of_card_at(2)
+        return player2
+      end
+    else type == :mutually_assured_destruction
+      return "no winner"
     end
   end
 
   def pile_cards
-    if turn == :basic
-      @spoils_of_war << player1.deck.remove_card(1) && @spoils_of_war << player2.deck.remove_card(1)
-    end
+    if type == :basic
+      @spoils_of_war << player1.deck.remove_card && @spoils_of_war << player2.deck.remove_card
 
-    if turn == :war
-      @spoils_of_war << player1.deck.remove_card(3) && @spoils_of_war << player2.deck.remove_card(2)
-    end
+    elsif type == :war
+      3.times do
+        @spoils_of_war << player1.deck.remove_card && @spoils_of_war << player2.deck.remove_card
+      end
 
-    if turn == :mutually_assured_destruction
-      player1.deck.remove_card(3) && player2.deck.remove_card(3)
+    else type == :mutually_assured_destruction
+      3.times do
+        player1.deck.remove_card && player2.deck.remove_card
+      end
     end
   end
 
   def award_spoils(winner)
-    winner.deck.cards << @spoils_of_war
+    if "no winner"
+      @spoils_of_war
+    else winner.deck.cards << @spoils_of_war
   end
+end
 end
 
 
