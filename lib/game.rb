@@ -10,13 +10,13 @@ class Game
     p "Type 'GO' to start the game!"
     p "-" * 70
 
-    # input = $stdin.gets.chomp
+    input = $stdin.gets.chomp
 
-    # if input.upcase == 'GO'
+    if input.upcase == 'GO'
       turn_count = 0
-      while turn_count < 100000 do
+      while turn_count < 1000000 do
         turn_count += 1
-        if turn_count == 1000000
+        if turn_count == 1000001
           p "---- DRAW ----"
         else
           turn = Turn.new(@player1, @player2)
@@ -28,10 +28,10 @@ class Game
 
           if type == :basic
             turn.award_spoils(winner)
-            puts "Turn #{turn_count}: #{winner.name} won 2 cards. (#{@player1.deck.cards.size} vs. #{@player2.deck.cards.size}) - (#{card1.value} #{card1.suit} vs. #{card2.value} #{card2.suit})"
+            puts "Turn #{turn_count}: #{winner.name} won 2 cards." #(#{@player1.deck.cards.size} vs. #{@player2.deck.cards.size}) - (#{card1.value} #{card1.suit} vs. #{card2.value} #{card2.suit})"
           elsif type == :war
             turn.award_spoils(winner)
-            puts "Turn #{turn_count}: WAR - #{winner.name} won 6 cards (#{card1.value} vs. #{card2.value})"
+            puts "Turn #{turn_count}: WAR - #{winner.name} won 6 cards" #(#{card1.value} vs. #{card2.value})"
           elsif type == :mutually_assured_destruction
             puts "Turn #{turn_count}: *mutually_assured_destruction* 6 cards removed from play"
           end
@@ -45,11 +45,11 @@ class Game
           elsif @player1.has_lost? == true && @player2.has_lost? == true
             puts "Both losers"
             break
-          end #if player has lost
-        end #if turn_count
-      end #loop
-    # else
-      # p "Error: input not understood."
-    # end #if input
-  end #method
-end #class
+          end
+        end
+      end
+    else
+      p "Input not understood. Bye!"
+    end
+  end
+end
