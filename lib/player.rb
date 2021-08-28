@@ -1,13 +1,21 @@
 class Player
   attr_reader   :name,
-                :deck,
-                :cards
+                :deck
 
-  def initialize(name, deck, cards)
+  def initialize(name, deck)
     @name   = name
     @deck   = deck
-    @cards  = cards
   end
 
+  def has_lost?
+    if @deck.cards.count >= 1
+      false
+    else
+      true
+    end
+  end
 
+  def remove_card
+    cards.shift
+  end
 end

@@ -36,14 +36,17 @@ RSpec.describe Deck do
     expect(deck.high_ranking_cards).to eq([diamondQ, spadeA])
   end
 
-  xit 'percent high ranking' do
+  it 'percent high ranking' do
     diamondQ = Card.new(:diamond, 'Queen', 12)
     heart2 = Card.new(:heart, '2', 2)
     spadeA = Card.new(:spade, 'Ace', 14)
     club5 = Card.new(:club, '5', 5)
     cards = [diamondQ, heart2, spadeA, club5]
     deck = Deck.new(cards)
+    expect(deck.high_ranking_cards.count).to be(2)
+    expect(deck.cards.count).to be(4)
     expect(deck.percent_high_ranking).to be(50)
+
   end
 
   it 'remove_card' do
