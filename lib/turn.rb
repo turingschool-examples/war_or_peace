@@ -54,11 +54,11 @@ class Turn
                           @player2.deck.cards[0],
                           @player2.deck.cards[1],
                           @player2.deck.cards[2])
-      @player1.deck.cards.delete_at(0, 1, 2)
-      @player2.deck.cards.delete_at(0, 1, 2)
+      3.times {|card| @player1.deck.cards.delete_at(0)}
+      3.times {|card| @player2.deck.cards.delete_at(0)}
     else
-      @player1.deck.cards.delete_at(0, 1, 2)
-      @player2.deck.cards.delete_at(0, 1, 2)
+      3.times {|card| @player1.deck.cards.delete_at(0)}
+      3.times {|card| @player2.deck.cards.delete_at(0)}
     end
   end
 
