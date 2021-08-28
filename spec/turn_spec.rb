@@ -20,4 +20,23 @@ describe Turn do
       expect(player2).to be_a Player
     end
   end
+
+  describe '#start' do
+    it 'starts turn' do
+      turn = Turn.new('Clarisa', 'Greg')
+      expect(chomp).to eq "GO"
+    end
+  end
+
+  describe '#type' do
+    it 'determines type of turn' do
+      turn = Turn.new('Clarisa', 'Greg')
+      expect(type).to include :basic
+    end
+  end
+
+  describe '#winner' do
+    it 'determines winner' do
+      turn = Turn.new('Clarisa', 'Greg')
+      expect(rank_of_card_at(0)).to include @rank
 end
