@@ -49,16 +49,12 @@ class Turn
   def pile_cards # removes cards from player decks, and adds them to spoils of war if relevant to type of turn
     type
     if @turn == :basic
-      @spoils_of_war << player1.deck.cards[0]
-      @spoils_of_war << player2.deck.cards[0]
-      player1.deck.remove_card
-      player2.deck.remove_card
+      @spoils_of_war << player1.deck.remove_card
+      @spoils_of_war << player2.deck.remove_card
     elsif @turn == :war
         3.times do
-          @spoils_of_war << player1.deck.cards[0]
-          @spoils_of_war << player2.deck.cards[0]
-          player1.deck.remove_card
-          player2.deck.remove_card
+          @spoils_of_war << player1.deck.remove_card
+          @spoils_of_war << player2.deck.remove_card
         end
     elsif @turn == :mutually_assured_destruction
       3.times do
@@ -114,7 +110,6 @@ class Turn
       p "Draw"
     end
 
-#    game_end = true       # for testing
-#    return game_end       # for testing
+    return true
   end
 end
