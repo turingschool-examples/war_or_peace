@@ -56,6 +56,7 @@ RSpec.describe Turn do
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
+    winner = turn.winner
 
     expect(turn.type).to eq(:war)
   end
@@ -75,13 +76,129 @@ RSpec.describe Turn do
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
 
+
     expect(turn.type).to eq(:mutually_assured_destruction)
+  end
+
+  it 'has player1 winning in :basic' do
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10)
+    card3 = Card.new(:heart, '9', 9)
+    card4 = Card.new(:diamond, 'Jack', 11)
+    card5 = Card.new(:heart, '8', 8)
+    card6 = Card.new(:diamond, 'Queen', 12)
+    card7 = Card.new(:heart, '3', 3)
+    card8 = Card.new(:diamond, '2', 2)
+    deck1 = Deck.new([card1, card2, card5, card8])
+    deck2 = Deck.new([card3, card4, card6, card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    winner = turn.winner
+
+    expect(turn.winner).to eq(player1)
+  end
+
+  it 'has player2 winning in :basic' do
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10)
+    card3 = Card.new(:heart, '9', 9)
+    card4 = Card.new(:diamond, 'Jack', 11)
+    card5 = Card.new(:heart, '8', 8)
+    card6 = Card.new(:diamond, 'Queen', 12)
+    card7 = Card.new(:heart, '3', 3)
+    card8 = Card.new(:diamond, '2', 2)
+    deck1 = Deck.new([card5, card2, card5, card8])
+    deck2 = Deck.new([card3, card4, card6, card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    winner = turn.winner
+
+    expect(turn.winner).to eq(player2)
+  end
+
+  it 'has player1 winning in :war' do
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10)
+    card3 = Card.new(:heart, '9', 9)
+    card4 = Card.new(:diamond, 'Jack', 11)
+    card5 = Card.new(:heart, '8', 8)
+    card6 = Card.new(:diamond, 'Queen', 12)
+    card7 = Card.new(:heart, '3', 3)
+    card8 = Card.new(:diamond, '2', 2)
+    deck1 = Deck.new([card1, card2, card5, card8])
+    deck2 = Deck.new([card1, card4, card7, card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    winner = turn.winner
+
+    expect(turn.winner).to eq(player1)
+  end
+
+  it 'has player2 winning in :war' do
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10)
+    card3 = Card.new(:heart, '9', 9)
+    card4 = Card.new(:diamond, 'Jack', 11)
+    card5 = Card.new(:heart, '8', 8)
+    card6 = Card.new(:diamond, 'Queen', 12)
+    card7 = Card.new(:heart, '3', 3)
+    card8 = Card.new(:diamond, '2', 2)
+    deck1 = Deck.new([card3, card2, card7, card8])
+    deck2 = Deck.new([card3, card4, card5, card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    winner = turn.winner
+
+    expect(turn.winner).to eq(player2)
+  end
+
+  it 'has no winners when we throw stones' do
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10)
+    card3 = Card.new(:heart, '9', 9)
+    card4 = Card.new(:diamond, 'Jack', 11)
+    card5 = Card.new(:heart, '8', 8)
+    card6 = Card.new(:diamond, 'Queen', 12)
+    card7 = Card.new(:heart, '3', 3)
+    card8 = Card.new(:diamond, '2', 2)
+    deck1 = Deck.new([card3, card2, card7, card8])
+    deck2 = Deck.new([card3, card4, card7, card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    winner = turn.winner
+
+    expect(turn.winner).to eq("No Winner")
+  end
+
+  it 'has piles in basic' do
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10)
+    card3 = Card.new(:heart, '9', 9)
+    card4 = Card.new(:diamond, 'Jack', 11)
+    card5 = Card.new(:heart, '8', 8)
+    card6 = Card.new(:diamond, 'Queen', 12)
+    card7 = Card.new(:heart, '3', 3)
+    card8 = Card.new(:diamond, '2', 2)
+    deck1 = Deck.new([card1, card2, card5, card8])
+    deck2 = Deck.new([card3, card4, card6, card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    winner = turn.winner
+
+    turn.pile_cards
+
+    results [card2, card5, card8]
+    expect(turn.player1.deck).to eq(results)
   end
 end
 
-# winner = turn.winner
-# #=> #<Player:0x007fa3edae29d0 @deck=#<Deck:0x007fa3eda472c8...>, @name="Megan">
-#
+
 # turn.pile_cards
 #
 # turn.spoils_of_war
