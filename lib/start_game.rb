@@ -39,7 +39,7 @@ class StartGame
       draw_test += 1
       turn_num += 1
     end
-    if draw_test == 10000001
+    if draw_test == 1000001
       p "----- DRAW -----"
     else
       p "*~*~*~* #{winner.name} has won the game! *~*~*~*"
