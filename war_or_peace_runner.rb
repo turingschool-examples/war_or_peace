@@ -79,7 +79,7 @@ start_deck = [card_1, card_2, card_3,
               card_52
              ]
 
-
+start_deck = start_deck.shuffle! 
 
 
 
