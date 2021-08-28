@@ -1,6 +1,7 @@
 class Deck
   attr_reader :cards
 
+
   def initialize (cards)
     @cards = cards
   end
@@ -10,13 +11,27 @@ class Deck
     cards[index].rank
   end
 
+
   def high_ranking_cards
-    high_ranking_cards = []
-    cards.each do |card|
-      if rank > 11 card == high_ranking_cards
-      else 
-    end
-    # each card is looked at to see if it's high ranking.
-    # If it is it goes into high_ranking_cards array
+    high_rank = []
+
+    @cards.each do |card|
+      if card.rank > 10
+      high_rank << card
+      end
+  end
+    high_rank
+  end
+
+  def percent_high_ranking
+    ((high_ranking_cards.count.to_f/@cards.count.to_f)* 100).round(2)
+  end
+
+  def remove_card
+    @cards.shift
+  end
+
+  def add_card
+    @cards << cards
   end
 end
