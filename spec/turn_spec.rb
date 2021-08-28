@@ -20,6 +20,7 @@ describe Turn do
       player1 = Player.new("Megan", deck1)
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
+
       expect(turn.player1).to eq(player1)
     end
 
@@ -37,6 +38,7 @@ describe Turn do
       player1 = Player.new("Megan", deck1)
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
+
       expect(turn.player2).to eq(player2)
     end
   end
@@ -56,7 +58,10 @@ describe Turn do
       player1 = Player.new("Megan", deck1)
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
+
       expect(turn.type).to eq(:basic)
+      expect(card1.rank == card3.rank).to eq(false)
+      expect(card5.rank == card6.rank).to eq(false)
     end
 
     it 'this is a turn with a war' do
@@ -73,7 +78,10 @@ describe Turn do
       player1 = Player.new("Megan", deck1)
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
+
       expect(turn.type).to eq(:war)
+      expect(card1.rank == card4.rank).to eq(true)
+      expect(card5.rank == card6.rank).to eq(false)
     end
 
     it 'this is a turn with mutually assured destruction' do
@@ -90,7 +98,10 @@ describe Turn do
       player1 = Player.new("Megan", deck1)
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
+
       expect(turn.type).to eq(:mutually_assured_destruction)
+      expect(card1.rank == card4.rank).to eq(true)
+      expect(card5.rank == card6.rank).to eq(true)
     end
   end
 
@@ -109,6 +120,7 @@ describe Turn do
       player1 = Player.new("Megan", deck1)
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
+
       expect(turn.winner).to eq(player1)
     end
 
@@ -183,7 +195,7 @@ describe Turn do
       turn = Turn.new(player1, player2)
       turn.pile_cards
 
-      expect(turn.spoils_of_war).to eq([card1, card2, card5, card4, card3, card6])
+      expect(turn.spoils_of_war).to eq([card1, card4, card2, card3, card5, card6])
     end
 
     it 'removes the top card from each player deck in a basic battle' do
@@ -248,7 +260,7 @@ describe Turn do
   end
 
   describe '#award_spoils' do
-    it 'awards the spoils of war to the winner of a basic battle' do
+    it 'properly awards the spoils of war to the winner of a basic battle' do
       card1 = Card.new(:heart, 'Jack', 11)
       card2 = Card.new(:heart, '10', 10)
       card3 = Card.new(:heart, '9', 9)
@@ -262,12 +274,14 @@ describe Turn do
       player1 = Player.new("Megan", deck1)
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
-      turn.award_spoils
+      winner = turn.winner
+      turn.award_spoils(winner)
 
+      expect(player2.deck.cards).to eq([card4, card6, card7])
       expect(player1.deck.cards).to eq([card2, card5, card8, card1, card3])
     end
 
-    it 'awards the spoils of war to the winner of a war' do
+    it 'properly awards the spoils of war to the winner of a war' do
       card1 = Card.new(:heart, 'Jack', 11)
       card2 = Card.new(:heart, '10', 10)
       card3 = Card.new(:heart, '9', 9)
@@ -281,12 +295,14 @@ describe Turn do
       player1 = Player.new("Megan", deck1)
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
-      turn.award_spoils
+      winner = turn.winner
+      turn.award_spoils(winner)
 
-      expect(player2.deck.cards).to eq([card7, card1, card2, card5, card4, card3, card6])
+      expect(player2.deck.cards).to eq([card7, card1, card4, card2, card3, card5, card6])
+      expect(player1.deck.cards).to eq([card8])
     end
 
-    it 'awards cards to neither player in mutually assured destruction' do
+    it 'properly awards cards to neither player in mutually assured destruction' do
       card1 = Card.new(:heart, 'Jack', 11)
       card2 = Card.new(:heart, '10', 10)
       card3 = Card.new(:heart, '9', 9)
@@ -300,7 +316,8 @@ describe Turn do
       player1 = Player.new("Megan", deck1)
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
-      turn.award_spoils
+      winner = turn.winner
+      turn.award_spoils(winner)
 
       expect(player1.deck.cards).to eq([card8])
       expect(player2.deck.cards).to eq([card7])
@@ -313,11 +330,12 @@ describe Turn do
       card2 = Card.new(:spade, '3', 3)
       deck1 = Deck.new([card1])
       deck2 = Deck.new([card2])
-      player1 = Player.new('Megan', deck1)
-      player2 = Player.new('Aurora', deck2)
+      player1 = Player.new('Megan', deck2)
+      player2 = Player.new('Aurora', deck1)
       turn = Turn.new(player1, player2)
 
       expect(turn.start).to eq(true)
+      expect(player1.has_lost?).to eq(true)
     end
 
     it 'stops running once player2 has lost' do
@@ -325,11 +343,12 @@ describe Turn do
       card2 = Card.new(:spade, '3', 3)
       deck1 = Deck.new([card1])
       deck2 = Deck.new([card2])
-      player1 = Player.new('Megan', deck2)
-      player2 = Player.new('Aurora', deck1)
+      player1 = Player.new('Megan', deck1)
+      player2 = Player.new('Aurora', deck2)
       turn = Turn.new(player1, player2)
 
       expect(turn.start).to eq(true)
+      expect(player2.has_lost?).to eq(true)
     end
 
     it 'stops running once 1,000,000 turns have passed' do
@@ -351,8 +370,11 @@ describe Turn do
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:spade, 'Jack', 11)
       card4 = Card.new(:heart, '3', 3)
-      deck1 = Deck.new([card1, card2, card3, card4])
-      deck2 = Deck.new([card1, card2, card3])
+      card5 = Card.new(:heart, '6', 6)
+      card7 = Card.new(:heart, '9', 9)
+      card6 = Card.new(:heart, '4', 4)
+      deck1 = Deck.new([card1, card2, card3, card4, card6])
+      deck2 = Deck.new([card1, card2, card3, card5, card7])
       player1 = Player.new('Megan', deck1)
       player2 = Player.new('Aurora', deck2)
       turn = Turn.new(player1, player2)
