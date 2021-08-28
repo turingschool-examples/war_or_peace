@@ -9,32 +9,42 @@ class Turn
     @spoils_of_war = []
   end
 
-  #if deck1[0] != deck2[0] turn = basic
-  #if deck1[0] == deck2[0] turn = war
-  #if deck1[0] == deck2[0] &&
-  #if deck1[2] == deck2[2] turn =mad
-
   def type
-    :basic
-      if deck1[0] != deck2[0]
-        return :basic
-      end
-    :war
-      if deck1[0] == deck2[0]
-        return :war
-      end
-    :mutually_assured_destruction
-      if deck1[0] == deck2[0] &&
-          deck1[2] == deck2[2]
-        return :mutually_assured_destruction
-      end 
+    if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+      :mutually_assured_destruction
+    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+      :war
+    else
+      :basic
+    end
   end
 
-  #def winner
-  #end
+# why would turn.type block this from working???
+def winner
+    if type == :mutually_assured_destruction
+      'no winner'
+    elsif type == :war
+      if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+        @player1
+      elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) < player2.deck.rank_of_card_at(2)
+        @player2
+    elsif type == :basic
+      if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+        @player1
+      elsif player1.deck.rank_of_card_at(0) < player2.deck.rank_of_card_at(0)
+        @player2
+      end
+    end
+  end
+end
 
-  #def pile_cards
-  #spoils_of_war << cards
-  #end
+#basic each player will send top card to the spoils pile
+#war each player will send top 3 cards to spoils pile
+#mutually_assured_destruction each player remove 3 cards from deck. This needs to be destructive and not go to spoils pile 
+  def pile_cards
+  end
+
+  def award_spoils(winner)
+  end
 
 end
