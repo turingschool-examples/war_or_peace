@@ -67,14 +67,9 @@ class Turn
 
   def award_spoils(winner) # piles cards, then awards the spoils of war to the winning player if either player won
     pile_cards
-    if winner == player1
+    if winner == player1 || winner == player2
       while @spoils_of_war != []
-        player1.deck.add_card(@spoils_of_war[0])
-        @spoils_of_war.shift
-      end
-    elsif winner == player2
-      while @spoils_of_war != []
-        player2.deck.add_card(@spoils_of_war[0])
+        winner.deck.add_card(@spoils_of_war[0])
         @spoils_of_war.shift
       end
     else
@@ -110,6 +105,6 @@ class Turn
       p "Draw"
     end
 
-    return true
+#    return true # for testing
   end
 end
