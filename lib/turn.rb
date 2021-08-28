@@ -43,4 +43,13 @@ class Turn
       return "No winner"
     end
   end
+
+  def pile_cards
+    if @type == :basic
+      @spoils_of_war << player1.deck1[0]
+      @spoils_of_war << player2.deck2[0]
+    end
+  end
+
+
 end
