@@ -9,6 +9,14 @@ class Turn
     @spoils_of_war = []
   end
 
+  def start
+    p "Welcome to War! (or Peace) This game will
+    be played with 52 cards"
+    p "The players today are #{player1.name} and #{player2.name}"
+    p "Type GO to start the game"
+    GO = gets.chomp
+  end
+
   def type(:basic, :war, :mutually_assured_destruction)
     :basic if player1.rank_of_card_at(0) != player2.rank_of_card_at(0)
     :war if player1.rank_of_card_at(0) == player2.rank_of_card_at(0)
