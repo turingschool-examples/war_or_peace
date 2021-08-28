@@ -11,7 +11,7 @@ class StartGame
     #winner = @player1
     turn_num = 1
     draw_test = 1
-    while turn_num <= 10000 do
+    while turn_num <= 1000000 do
       turn = Turn.new(@player1, @player2)
 
       #turn.pile_cards
@@ -24,7 +24,7 @@ class StartGame
       turn.award_spoils(winner)
 
       if player1.deck.cards.count == 3 || player2.deck.cards.count == 3
-        turn_num = 10000
+        turn_num = 1000000
       elsif turn_type == :basic
         p "Turn #{turn_num}: #{winner.name} won 2 cards"
       elsif turn_type == :war
@@ -39,7 +39,7 @@ class StartGame
       draw_test += 1
       turn_num += 1
     end
-    if draw_test == 10001
+    if draw_test == 10000001
       p "----- DRAW -----"
     else
       p "*~*~*~* #{winner.name} has won the game! *~*~*~*"
