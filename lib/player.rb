@@ -11,6 +11,7 @@ class Player
   end
 
   def has_lost?
+    #delete everything but @deck.cards == []
     if @deck.cards == []
       true
     else
