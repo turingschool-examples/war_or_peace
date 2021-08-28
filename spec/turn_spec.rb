@@ -288,9 +288,9 @@ describe Turn do
       test1 = Deck.new([card2, card5, card8, card1, card3])
       test2 = Deck.new([card4, card6, card7])
 
-      turn.pile_cards
-
       winner = turn.winner
+
+      turn.pile_cards
 
       turn.award_spoils(winner)
 
@@ -324,9 +324,9 @@ describe Turn do
       test1 = Deck.new([card8])
       test2 = Deck.new([card7, card1, card4, card2, card3, card5, card6])
 
-      turn.pile_cards
-
       winner = turn.winner
+
+      turn.pile_cards
 
       turn.award_spoils(winner)
 

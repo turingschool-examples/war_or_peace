@@ -8,33 +8,38 @@ class StartGame
   end
 
   def start
-    winner = @player1
+    #winner = @player1
     turn_num = 1
     draw_test = 1
-    while turn_num <= 1000000 do
+    while turn_num <= 10000 do
       turn = Turn.new(@player1, @player2)
 
-      turn.pile_cards
-
+      #turn.pile_cards
       winner = turn.winner
+
+      turn_type = turn.type
+
+      turn.pile_cards
 
       turn.award_spoils(winner)
 
       if player1.deck.cards.count == 3 || player2.deck.cards.count == 3
-        turn_num = 1000000
-      elsif turn.type == :basic
+        turn_num = 10000
+      elsif turn_type == :basic
         p "Turn #{turn_num}: #{winner.name} won 2 cards"
-      elsif turn.type == :war
+      elsif turn_type == :war
         p "Turn #{turn_num}: WAR - #{winner.name} won 6 cards"
-      elsif turn.type == :mutually_assured_destruction
+      elsif turn_type == :mutually_assured_destruction
         p "Turn #{turn_num}: *mutually assured destruction* 6 cards removed from play"
+        winner = @player1
       else
         p "error: no turn type"
+        winner = @player1
       end
       draw_test += 1
       turn_num += 1
     end
-    if draw_test == 1000001
+    if draw_test == 10001
       p "----- DRAW -----"
     else
       p "*~*~*~* #{winner.name} has won the game! *~*~*~*"

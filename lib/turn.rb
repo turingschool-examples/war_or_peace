@@ -23,7 +23,7 @@ class Turn
 
   def winner
     if type == :mutually_assured_destruction
-      return "No Winner"
+       return "No Winner"
     elsif type == :war
       if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
         @player1
@@ -57,6 +57,7 @@ class Turn
         player1.deck.remove_card
         player2.deck.remove_card
       end
+      @spoils_of_war
     else
       puts "No type"
     end
@@ -69,11 +70,13 @@ class Turn
     if type == :basic
       player1.deck.remove_card
       player2.deck.remove_card
-    else
+    elsif type == :war
       3.times do
         player1.deck.remove_card
         player2.deck.remove_card
       end
+    else
+      
     end
   end
 end
