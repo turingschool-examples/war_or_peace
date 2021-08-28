@@ -44,11 +44,20 @@ class Turn
       player2.deck.remove_card
     elsif @turn == :war
       if player1.deck.cards.count < 3
-      3.times do
-        @spoils_of_war << player1.deck.cards[0]
-        @spoils_of_war << player2.deck.cards[0]
-        player1.deck.remove_card
-        player2.deck.remove_card
+        until player1.deck.cards.count == 0
+          player1.deck.remove_card
+        end
+      elsif player2.deck.cards.count < 3
+        until player2.deck.cards.count == 0
+          player2.deck.remove_card
+        end
+      else
+        3.times do
+          @spoils_of_war << player1.deck.cards[0]
+          @spoils_of_war << player2.deck.cards[0]
+          player1.deck.remove_card
+          player2.deck.remove_card
+        end
       end
     elsif @turn == :mutually_assured_destruction
       3.times do
