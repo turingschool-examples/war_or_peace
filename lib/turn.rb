@@ -10,7 +10,7 @@ class Turn
     @spoils_of_war  = []
   end
 
-  def type
+  def type # no change
     if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
       :basic
     elsif @player1.deck.rank_of_card_at(2) != @player2.deck.rank_of_card_at(2)
@@ -20,7 +20,7 @@ class Turn
     end
   end
 
-  def winner
+  def winner # no change
     if type == :basic
       if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
         @player1
@@ -38,7 +38,7 @@ class Turn
     end
   end
 
-  def pile_cards
+  def pile_cards #changes the decks. call after prev 2
     if type == :basic
       @spoils_of_war << @player1.deck.remove_card
       @spoils_of_war << @player2.deck.remove_card
@@ -60,10 +60,9 @@ class Turn
   end
 
   def award_spoils(winner)
-    if type != :mutually_assured_destruction
-      @spoils_of_war.size.times do
-        winner.deck.cards << @spoils_of_war.shift
-      end
+    @spoils_of_war.shuffle
+    @spoils_of_war.size.times do
+      winner.deck.cards << @spoils_of_war.shift
     end
   end
 end
