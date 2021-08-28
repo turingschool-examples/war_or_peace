@@ -4,18 +4,17 @@ require './lib/player'
 require './lib/turn'
 require './lib/game'
 require './lib/card_generator'
-
 require 'rspec'
 require 'pry'
 
-Rspec.describe CardGenerator do
+RSpec.describe CardGenerator do
 
   it 'exists' do
     card_generator = CardGenerator.new('cards.txt')
     expect(card_generator). to be_instance_of(CardGenerator)
   end
 
-  xit 'takes a filename as an argument' do
+  it 'takes a filename as an argument' do
     card_generator = CardGenerator.new('cards.txt')
     expect(card_generator.filename). to eq('cards.txt')
   end
