@@ -4,18 +4,39 @@ require './lib/deck.rb'
 require './lib/player'
 require './lib/turn'
 
-card1 = Card.new(:heart, 'Jack', 11)
-card2 = Card.new(:heart, '10', 10)
-card3 = Card.new(:heart, '9', 9)
-card4 = Card.new(:diamond, 'Jack', 11)
-card5 = Card.new(:heart, '8', 8)
-card6 = Card.new(:diamond, '8', 8)
-card7 = Card.new(:heart, '3', 3)
-card8 = Card.new(:diamond, '2', 2)
-deck1 = Deck.new([card1, card2, card5, card8])
-deck2 = Deck.new([card4, card3, card6, card7])
-player1 = Player.new("Megan", deck1)
-player2 = Player.new("Aurora", deck2)
+suits = [:heart, :club, :diamond, :spade]
+ranks_and_values = {"2" => 2, "3" => 3, "4" => 4, "5" => 5, "6" => 6, "7" => 7,
+                    "8" => 8, "9" => 9, "10" => 10, "Jack" => 11, "Queen" => 12,
+                    "King" => 13, "Ace" => 14}
+
+deck_of_cards = []
+
+suits.each do |suit|
+  ranks_and_values.each do |rank, value|
+    deck_of_cards << Card.new(suit, value, rank)
+  end
+end
+
+deck_of_cards = deck_of_cards.shuffle
+
+first_deck = []
+26.times do |card|
+  first_deck << deck_of_cards.delete_at(0)
+end
+
+second_deck = []
+26.times do |card|
+  second_deck << deck_of_cards.delete_at(0)
+end
+
+deck1 = Deck.new(first_deck)
+deck2 = Deck.new(second_deck)
+
+player1 = Player.new("Micha", deck1)
+player2 = Player.new("Jen", deck2)
+
 turn = Turn.new(player1, player2)
+
+turn.start
 
 binding.pry
