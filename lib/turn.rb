@@ -87,7 +87,7 @@ class Turn
   def start
     turn_count = 0
 
-    until player1.has_lost? == true || player2.has_lost? == true || turn_count == 10000
+    until player1.has_lost? == true || player2.has_lost? == true || turn_count == 1000000
       turn_count += 1
       type
       if @turn == :basic
