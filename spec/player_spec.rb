@@ -14,6 +14,7 @@ describe Player do
       card3 = Card.new(:heart, 'Ace', 14)
       deck = Deck.new([card1, card2, card3])
       player = Player.new('Clarisa', deck)
+
       expect(player.name).to eq('Clarisa')
     end
 
@@ -23,6 +24,7 @@ describe Player do
       card3 = Card.new(:heart, 'Ace', 14)
       deck = Deck.new([card1, card2, card3])
       player = Player.new('Clarisa', deck)
+
       expect(player.deck).to eq(deck)
     end
   end
@@ -34,6 +36,7 @@ describe Player do
       card3 = Card.new(:heart, 'Ace', 14)
       deck = Deck.new([card1, card2, card3])
       player = Player.new('Clarisa', deck)
+
       expect(player.has_lost?).to eq(false)
     end
 
@@ -44,6 +47,7 @@ describe Player do
       deck = Deck.new([card1, card2, card3])
       player = Player.new('Clarisa', deck)
       player.deck.remove_card
+
       expect(player.has_lost?).to eq(false)
     end
 
@@ -55,6 +59,7 @@ describe Player do
       player = Player.new('Clarisa', deck)
       player.deck.remove_card
       player.deck.remove_card
+
       expect(player.has_lost?).to eq(false)
     end
 
@@ -67,6 +72,7 @@ describe Player do
       player.deck.remove_card
       player.deck.remove_card
       player.deck.remove_card
+      
       expect(player.has_lost?).to eq(true)
     end
   end
