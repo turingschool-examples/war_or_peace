@@ -6,8 +6,7 @@ class Deck
   end
 
   def rank_of_card_at(position)
-    @position = position
-    cards[position.to_i].rank
+    @cards[position.to_i].rank
   end
 
   def high_ranking_cards
