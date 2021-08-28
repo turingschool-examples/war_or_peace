@@ -1,10 +1,11 @@
 class Turn
 
-  attr_reader :player1, :player2
+  attr_reader :player1, :player2, :spoils_of_war
 
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
+    @spoils_of_war = []
     @c1_0 = @player1.deck.rank_of_card_at(0)
     @c1_1 = @player1.deck.rank_of_card_at(1)
     @c1_2 = @player1.deck.rank_of_card_at(2)
@@ -38,6 +39,22 @@ class Turn
       end
     else
       "No Winner"
+    end
+  end
+
+  def pile_cards
+    if type == :basic
+      @spoils_of_war.push(@player1.deck.cards[0], @player2.deck.cards[0])
+    elsif type == :war
+      @spoils_of_war.push(@player1.deck.cards[0],
+                          @player1.deck.cards[1],
+                          @player1.deck.cards[2],
+                          @player2.deck.cards[0],
+                          @player2.deck.cards[1],
+                          @player2.deck.cards[2])
+    else
+      @player1.deck.cards.delete_at(0, 1, 2)
+      @player2.deck.cards.delete_at(0, 1, 2)
     end
   end
 
