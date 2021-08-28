@@ -72,9 +72,8 @@ class Turn
         @player2.deck.cards.push(card)
       end
     end
-    p @spoils_of_war
-    p @player1.deck.cards
-    p @player2.deck.cards
+
+    @spoils_of_war.clear
   end
 
 end
