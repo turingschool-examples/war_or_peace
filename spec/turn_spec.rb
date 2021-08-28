@@ -138,6 +138,7 @@ describe Turn do
       player1 = Player.new("Megan", deck1)
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
+
       expect(turn.winner).to eq(player2)
     end
 
@@ -155,6 +156,7 @@ describe Turn do
       player1 = Player.new("Megan", deck1)
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
+
       expect(turn.winner).to eq("No Winner")
     end
   end
