@@ -31,7 +31,7 @@ class Deck
   end
 
   def add_card(card)
-    @cards.append(card)
+    cards.append(card)
   end
 end
 
