@@ -19,8 +19,8 @@ class Turn
     end
   end
 
-# why would turn.type block this from working???
-def winner
+  # why would turn.type block this from working???
+  def winner
     if type == :mutually_assured_destruction
       'no winner'
     elsif type == :war
@@ -36,15 +36,37 @@ def winner
       end
     end
   end
-end
+  end
 
-#basic each player will send top card to the spoils pile
-#war each player will send top 3 cards to spoils pile
-#mutually_assured_destruction each player remove 3 cards from deck. This needs to be destructive and not go to spoils pile 
   def pile_cards
+    if type == :basic
+      @spoils_of_war << player1.deck.cards.shift
+      @spoils_of_war << player2.deck.cards.shift
+      @spoils_of_war
+    elsif type == :war
+      3.times do
+      @spoils_of_war << player1.deck.remove_card
+      @spoils_of_war << player2.deck.remove_card
+      end
+      @spoils_of_war
+
+   elsif type == :mutually_assured_destruction
+      3.times do
+        player1.deck.remove_card
+        player2.deck.remove_card
+      end
+
+       @spoils_of_war
+    end
   end
 
-  def award_spoils(winner)
-  end
+  #this method will add each of the cards in spoils of war to the winner of the turn
+  def award_spoils
+    @spoils_of_war.each do |spoil_of_war|
+      winner.deck << @spoils_of_war
+    end
 
+    winner.deck
+
+  end
 end
