@@ -103,9 +103,9 @@ class Turn
     end
 
     if player2.has_lost? == true
-      p "#{player1.name} has won the game!"
+      p "*~*~*~* #{player1.name} has won the game! *~*~*~*"
     elsif player1.has_lost? == true
-      p "#{player2.name} has won the game!"
+      p "*~*~*~* #{player2.name} has won the game! *~*~*~*"
     else
       p "Draw"
     end
