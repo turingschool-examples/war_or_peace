@@ -93,13 +93,10 @@ class Turn
       type
       if @turn == :basic
         p "Turn #{turn_count}: #{winner.name} won 2 cards"
-        p "Megan and Aurora have #{player1.deck.cards.count} cards and #{player2.deck.cards.count} cards."
       elsif @turn == :war
         p "Turn #{turn_count}: WAR - #{winner.name} won 6 cards"
-        p "Megan and Aurora have #{player1.deck.cards.count} cards and #{player2.deck.cards.count} cards."
       else @turn == :mutually_assured_destruction
         p "Turn #{turn_count}: *mutually assured destruction* 6 cards removed from play"
-        p "Megan and Aurora have #{player1.deck.cards.count} cards and #{player2.deck.cards.count} cards."
       end
       award_spoils(winner)
       turn = Turn.new(player1, player2)
