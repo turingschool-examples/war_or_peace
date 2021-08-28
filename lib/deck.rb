@@ -5,7 +5,7 @@ class Deck
   end
 
   def rank_of_card_at(number)
-    @cards.fetch(number).rank
+    @cards[0].rank
   end
 
   def high_ranking_cards
