@@ -1,6 +1,3 @@
-#require './lib/card'
-#require './lib/deck'
-
 class Player
   attr_reader :deck,
               :name
@@ -11,5 +8,10 @@ class Player
   end
 
   def has_lost?
+    if deck.cards.count == 0
+      true
+    else
+      false
+    end
   end
 end

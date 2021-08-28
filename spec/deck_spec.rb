@@ -47,7 +47,7 @@ RSpec.describe Deck do
     expect(deck.percent_high_ranking).to eq(100)
   end
 
-  xit 'removes the first card from the deck' do
+  it 'removes the first card from the deck' do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
@@ -57,14 +57,14 @@ RSpec.describe Deck do
     expect(deck.cards.first).to eq(card2)
   end
 
-  xit 'adds a card to the bottom of the deck' do
+  it 'adds a card to the bottom of the deck' do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
     card4 = Card.new(:club, '2', 2)
-    deck.add_card(:club, '2', 2)
-    expect(deck.cards.last).to eq()
+    deck.add_card(card4)
+    expect(deck.cards.last).to eq(card4)
   end
 end
