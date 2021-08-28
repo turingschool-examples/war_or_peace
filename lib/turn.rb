@@ -27,10 +27,8 @@ class Turn
       @turn = :mutually_assured_destruction
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
       @turn = :war
-    elsif
-      @turn = :basic
     else
-      puts "Error: unable to determine type"
+      @turn = :basic
     end
   end
 
