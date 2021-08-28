@@ -85,4 +85,23 @@ describe Turn do
     end
   end
 
+  describe "#pile_cards" do
+    it "appends reward cards to @spoils_of_war array" do
+      card1 = Card.new(:spade, '3', 3)
+      card2 = Card.new(:diamonds, 'king', 13)
+      card3 = Card.new(:clubs, '8', 8)
+      card4 = Card.new(:spades, '5', 5)
+      card5 = Card.new(:hearts, '4', 4)
+      card6 = Card.new(:hearts, '7', 7)
+      cards1 = [card1, card2, card3]
+      cards2 = [card4, card5, card6]
+      deck1 = Deck.new(cards1)
+      deck2 = Deck.new(cards2)
+      player1 = Player.new("Jacob", deck1)
+      player2 = Player.new("Bacoj", deck2)
+      turn1 = Turn.new(player1, player2)
+      expect(turn1.spoils_of_war).to eq(card1, card4)
+    end
+  end
+
 end
