@@ -78,9 +78,11 @@ start_deck = [card_1, card_2, card_3,
               card_49, card_50, card_51,
               card_52
              ]
+start_deck = start_deck.shuffle!
+start_deck = start_deck.each_slice(26).to_a
 
-start_deck = start_deck.shuffle! 
-
+player1_cards = start_deck[0]
+player2_cards = start_deck[1]
 
 
 
