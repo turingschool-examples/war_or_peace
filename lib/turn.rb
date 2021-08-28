@@ -10,6 +10,17 @@ class Turn
   end
 
   def type
+    if player1.deck.cards.count <= 3
+      until player1.deck.cards.count == 0
+        player1.deck.remove_card
+      end
+      player1.deck.cards << Card.new(:badace, "Bad Ace", 1)
+    elsif player2.deck.cards.count <= 3
+      until player2.deck.cards.count == 0
+        player2.deck.remove_card
+      end
+      player2.deck.cards << Card.new(:badace, "Bad Ace", 1)
+    end
     if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
       @turn = :mutually_assured_destruction
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
@@ -43,22 +54,12 @@ class Turn
       player1.deck.remove_card
       player2.deck.remove_card
     elsif @turn == :war
-      if player1.deck.cards.count < 3
-        until player1.deck.cards.count == 0
-          player1.deck.remove_card
-        end
-      elsif player2.deck.cards.count < 3
-        until player2.deck.cards.count == 0
-          player2.deck.remove_card
-        end
-      else
         3.times do
           @spoils_of_war << player1.deck.cards[0]
           @spoils_of_war << player2.deck.cards[0]
           player1.deck.remove_card
           player2.deck.remove_card
         end
-      end
     elsif @turn == :mutually_assured_destruction
       3.times do
         player1.deck.remove_card
@@ -87,15 +88,18 @@ class Turn
   def start
     turn_count = 0
 
-    until player1.has_lost? == true || player2.has_lost? == true || turn_count == 1000000
+    until player1.has_lost? == true || player2.has_lost? == true || turn_count == 10000
       turn_count += 1
       type
       if @turn == :basic
         p "Turn #{turn_count}: #{winner.name} won 2 cards"
+        p "Megan and Aurora have #{player1.deck.cards.count} cards and #{player2.deck.cards.count} cards."
       elsif @turn == :war
         p "Turn #{turn_count}: WAR - #{winner.name} won 6 cards"
+        p "Megan and Aurora have #{player1.deck.cards.count} cards and #{player2.deck.cards.count} cards."
       else @turn == :mutually_assured_destruction
         p "Turn #{turn_count}: *mutually assured destruction* 6 cards removed from play"
+        p "Megan and Aurora have #{player1.deck.cards.count} cards and #{player2.deck.cards.count} cards."
       end
       award_spoils(winner)
       turn = Turn.new(player1, player2)
