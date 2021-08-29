@@ -22,7 +22,8 @@ class Turn
   # why would turn.type block this from working???
   def winner
     if type == :mutually_assured_destruction
-      'no winner'
+      p 'no winner'
+
     elsif type == :war
       if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
         @player1
@@ -61,12 +62,10 @@ class Turn
   end
 
   #this method will add each of the cards in spoils of war to the winner of the turn
-  def award_spoils
+  def award_spoils(winner)
     @spoils_of_war.each do |spoil_of_war|
-      winner.deck << @spoils_of_war
+      winner.deck.add_card(spoil_of_war)
     end
-
-    winner.deck
-
+      #winner.deck.cards.concat(@spoils_of_war)
   end
 end

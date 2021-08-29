@@ -39,12 +39,10 @@
      player1 = Player.new("Megan", deck1)
      player2 = Player.new("Aurora", deck2)
      turn = Turn.new(player1, player2)
-
      winner = turn.winner
 
      turn.pile_cards
      expect(turn.type).to eq(:basic)
-
    end
 
    it 'has a war turn' do
@@ -61,7 +59,6 @@
      player1 = Player.new("Megan", deck1)
      player2 = Player.new("Aurora", deck2)
      turn = Turn.new(player1, player2)
-
      winner = turn.winner
 
      expect(turn.type).to eq(:war)
@@ -83,7 +80,6 @@
      player1 = Player.new("Megan", deck1)
      player2 = Player.new("Aurora", deck2)
      turn = Turn.new(player1, player2)
-
      winner = turn.winner
 
      expect(turn.type).to eq(:mutually_assured_destruction)
@@ -107,8 +103,8 @@
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
-
     winner = turn.winner
+
     expect(turn.winner).to eq(winner)
   end
 
@@ -126,7 +122,6 @@
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
-
     winner = turn.winner
 
     expect(turn.pile_cards).to eq([card1, card3])
@@ -146,10 +141,17 @@
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
-
     winner = turn.winner
+    turn.pile_cards
+    turn.award_spoils(winner)
 
-    expect(turn.award_spoils).to eq(card3)
+    player1.deck
+    player2.deck
+
+    expect(player1.deck).to eq([card2, card5, card8, card1, card3])
+    expect(player2.deck).to eq([card4, card6, card7])
+    expect(turn.spoils_of_war).to eq([card1, card3])
+    expect(turn.award_spoils).to eq([card1, card3])
   end
 end
 
