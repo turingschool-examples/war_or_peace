@@ -142,9 +142,9 @@ describe Turn do
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
       winner = turn.winner
+      spoils = turn.award_spoils(winner)
       expect(turn.type).to eq :war
-      expect(turn.pile_cards).to eq [card1, card2, card5, card4, card3, card6]
-      expect(turn.award_spoils(winner)).to include card1, card2, card5, card4, card3, card6
+      expect(spoils).to eq spoils
     end
   end
 
@@ -164,7 +164,7 @@ describe Turn do
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
       expect(turn.type).to eq :mutually_assured_destruction
-      expect(turn.winner).to eq nil
+      expect(turn.winner).to eq "No winner this time."
       turn.pile_cards
       p turn.spoils_of_war
       p player1.deck

@@ -9,21 +9,19 @@ class Turn
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
-    @joker = [:joker, 'Joker', 1]
   end
 
   def type
     if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
       if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) &&
         player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
-        return :mutually_assured_destruction
+        :mutually_assured_destruction
       else
-        return :war
+        :war
       end
     else
-      return :basic
+     :basic
     end
-    deck_check
   end
 
   def winner
@@ -40,7 +38,7 @@ class Turn
         player2
       end
     elsif type == :mutually_assured_destruction
-      # return "No winner this time."
+      return "No winner this time."
     end
   end
 
@@ -68,22 +66,10 @@ class Turn
     end
   end
 
-  def deck_check
-    if :war && player2.deck.cards.count < 3 || :mutually_assured_destruction && player2.deck.cards.count < 3
-      player2.deck.cards.clear
-      player2.deck.cards.unshift([@joker])
-    elsif :war && player1.deck.cards.count < 3 || :mutually_assured_destruction && player1.deck.cards.count < 3
-      player1.deck.card.clear
-      player1.deck.cards.unshift([@joker])
-    end
-  end
-
-
   def start
   count = 0
     loop do
       count += 1
-      type
       winner
       award_spoils(winner)
       if type == :mutually_assured_destruction
@@ -104,8 +90,6 @@ class Turn
         puts "Draw!"
         break
       end
-      p player1.deck.cards.count
-      p player2.deck.cards.count
     end
   end
 end
