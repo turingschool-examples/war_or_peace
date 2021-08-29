@@ -21,6 +21,7 @@ class Deck
   end
 
   def remove_card
+    @cards.delete_at(0)
   end
 
   def add_card
