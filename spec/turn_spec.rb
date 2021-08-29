@@ -67,7 +67,7 @@ describe Turn do
     end
   end
 
-  describe "#type" do
+  describe "#winner" do
     it "returns the winner of the turn" do
       card1 = Card.new(:spade, '3', 3)
       card2 = Card.new(:diamonds, 'king', 13)
