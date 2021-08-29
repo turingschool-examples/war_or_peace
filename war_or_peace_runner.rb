@@ -60,14 +60,10 @@ card52 = Card.new(:club, 'Ace', 14)
 deck1 = Deck.new([card11, card25, card20, card32, card18, card36, card12, card2, card40, card35, card24, card30, card44, card15, card37, card27, card22, card48, card23, card52, card45, card43, card34, card39, card38, card1].shuffle!)
 deck2 = Deck.new([card51, card50, card49, card47, card46, card42, card41, card33, card31, card29, card28, card26, card21, card19, card17, card16, card14, card13, card10,card9, card8, card7, card6, card5, card4, card3].shuffle!)
 
-# deck1 = Deck.new([card11, card25, card20, card32].shuffle!)
-# deck2 = Deck.new([card51, card14, card7, card29].shuffle!)
-
 player1 = Player.new('Megan', deck1)
 player2 = Player.new('Aurora', deck2)
 
 turn = Turn.new(player1, player2)
-
 
 puts "Welcome to War! (or Peace) This game will be played with 52 cards.
 The players today are #{player1.name} and #{player2.name}.
@@ -76,7 +72,7 @@ puts "------------------------------------------------------------------"
 print ">"
 go = gets.chomp
 
-if go == "GO" || 'Go'
+if go == "GO" || 'Go' || 'go'
   turn.start
 else
   puts "Come on y'all, type GO"

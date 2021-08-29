@@ -86,7 +86,7 @@ class Turn
       elsif player2.has_lost? == true
         puts "*~*~*~*#{player1.name} has won the game! *~*~*~*"
         break
-      elsif count == 10000
+      elsif count == 100000
         puts "Draw!"
         break
       end
