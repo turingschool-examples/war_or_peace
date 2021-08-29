@@ -5,7 +5,7 @@ class Deck
     @cards = cards
   end
 
-  def rank_of_cards_at(index_location)
+  def rank_of_card_at(index_location)
     @cards[index_location].rank
   end
 

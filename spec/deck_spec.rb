@@ -31,8 +31,8 @@ RSpec.describe Deck do
     deck = Deck.new(cards)
     expect(deck.cards).to eq([card1, card2, card3])
 
-    expect(deck.rank_of_cards_at(0)).to eq(12)
-    expect(deck.rank_of_cards_at(2)).to eq(14)
+    expect(deck.rank_of_card_at(0)).to eq(12)
+    expect(deck.rank_of_card_at(2)).to eq(14)
   end
 
   it "can return all high ranking cards" do
