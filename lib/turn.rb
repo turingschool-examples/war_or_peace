@@ -79,43 +79,6 @@ class Turn
     end
   end
 
-  # def check_deck
-  #   if player1.deck.cards.count < 3  && type == :war
-  #     # binding.pry
-  #     # player1.has_lost? = true
-  #     # puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
-  #     turn_type = :basic
-  #     bad_card = Card.new(:heart, "Card", 1)
-  #     player1.deck.cards.clear
-  #     player1.deck.cards.insert(0, bad_card)
-  #   elsif player2.deck.cards.count < 3 && type == :war
-  #     # binding.pry
-  #
-  #     # player2.has_lost? = true
-  #     # puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
-  #     turn_type = :basic
-  #     bad_card = Card.new(:heart, "Card", 1)
-  #     player2.deck.cards.clear
-  #     player2.deck.cards.insert(0, bad_card)
-  #   elsif player1.deck.cards.count < 3 && type == :mutually_assured_destruction
-  #     # binding.pry
-  #
-  #     # player1.has_lost? = true
-  #     # puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
-  #     turn_type = :basic
-  #     bad_card = Card.new(:heart, "Card", 1)
-  #     player1.deck.cards.clear
-  #     player1.deck.cards.insert(0, bad_card)
-  #   elsif player2.deck.cards.count < 3 && type == :mutually_assured_destruction
-  #     # binding.pry
-  #     # player2.has_lost? = true
-  #     # puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
-  #     turn_type = :basic
-  #     bad_card = Card.new(:heart, "Card", 1)
-  #     player2.deck.cards.clear
-  #     player2.deck.cards.insert(0, bad_card)
-  #   end
-  # end
   def loop
     count = 0
     until player1.has_lost? == true || player2.has_lost? == true do
