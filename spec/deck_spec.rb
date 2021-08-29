@@ -9,6 +9,7 @@ describe Deck do
       card1 = Card.new(:spade, '3', 3)
       cards = [card1]
       deck = Deck.new(cards)
+
       expect(deck).to be_an_instance_of(Deck)
     end
   end
@@ -19,6 +20,7 @@ describe Deck do
       card2 = Card.new(:diamonds, 'king', 13)
       cards = [card1, card2]
       deck = Deck.new(cards)
+
       expect(deck.cards).to include(card1, card2)
     end
   end
@@ -29,6 +31,7 @@ describe Deck do
         card1 = Card.new(:spade, '3', 3)
         cards = [card1]
         deck = Deck.new(cards)
+
         expect(deck.rank_of_card_at(0)).to eq(3)
       end
   end
@@ -39,6 +42,7 @@ describe Deck do
       card2 = Card.new(:diamonds, '2', 2)
       cards = [card1, card2]
       deck = Deck.new(cards)
+
       expect(deck.high_ranking_cards).to eq([card1])
     end
   end
@@ -49,6 +53,7 @@ describe Deck do
       card2 = Card.new(:diamonds, '3', 3)
       cards = [card1, card2]
       deck = Deck.new(cards)
+
       expect(deck.percent_high_ranking).to eq(50.0)
     end
   end
@@ -59,6 +64,7 @@ describe Deck do
       card2 = Card.new(:diamonds, 'king', 13)
       cards = [card1, card2]
       deck = Deck.new(cards)
+
       expect(deck.remove_card).to eq(card1)
     end
   end
@@ -69,6 +75,7 @@ describe Deck do
       cards = [card1]
       deck = Deck.new(cards)
       card7 = Card.new(:diamonds, 'queen', 12)
+      
       expect(deck.add_card(card7)).to include(card1,card7)
     end
   end
