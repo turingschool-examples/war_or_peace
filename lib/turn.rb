@@ -46,14 +46,14 @@ class Turn
     if type == :basic
       @spoils_of_war.push(player1.deck.remove_card)
       @spoils_of_war.push(player2.deck.remove_card)
-    end
-    if type == :war
-      3.times do
-        @spoils_of_war.push(player1.deck.remove_card)
-        @spoils_of_war.push(player2.deck.remove_card)
-      end
-    end
-    if type == :mutually_assured_destruction
+    elsif type == :war
+      @spoils_of_war.push(player1.deck.remove_card)
+      @spoils_of_war.push(player1.deck.remove_card)
+      @spoils_of_war.push(player1.deck.remove_card)
+      @spoils_of_war.push(player2.deck.remove_card)
+      @spoils_of_war.push(player2.deck.remove_card)
+      @spoils_of_war.push(player2.deck.remove_card)
+    else type == :mutually_assured_destruction
       3.times do
         player1.deck.remove_card
         player2.deck.remove_card
@@ -62,10 +62,15 @@ class Turn
   end
 
   def award_spoils(winner)
-    if winner == player1
+    if type == :basic && winner == player1
       deck1.add_card(@spoils_of_war)
     else
       deck2.add_card(@spoils_of_war)
+    end
+    if type == :war && winner == player1
+
+    else
+
     end
   end
 end
