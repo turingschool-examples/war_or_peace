@@ -2,8 +2,12 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/play'
 
+
+p "Please enter player 1 name: >"
 player1_name = $stdin.gets.chomp
+p "Please enter player 2 name: >"
 player2_name = $stdin.gets.chomp
 
 
@@ -94,13 +98,6 @@ player2_deck = Deck.new(player2_cards)
 player1 = Player.new(player1_name, player1_deck)
 player2 = Player.new(player2_name, player2_deck)
 
+game_1 = Play.new(player1, player2)
 
-
-
-
-
-#Place the 52 card objects into an array
-#Randomly sort the array
-#split the array into 2 arrays
-#assign each array to a new Deck class instance object
-# assign each deck class instance object to a player
+game_1.start
