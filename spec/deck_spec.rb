@@ -1,6 +1,6 @@
 require 'rspec'
-require '../lib/deck'
-require '../lib/card'
+require './lib/deck'
+require './lib/card'
 
 RSpec.describe Deck do
 
@@ -66,7 +66,7 @@ RSpec.describe Deck do
     card4 = Card.new(:club, '5', 5)
     cards = [card1, card2, card3, card4]
     deck = Deck.new(cards)
-    new_card = Card.new(:spade, 'Jack', 11)
-    expect(deck.add_card(new_card)).to include(card1, card2, card3, card4, new_card)
+    card5 = Card.new(:spade, 'Jack', 11)
+    expect(deck.add_card(card)).to include(card1, card2, card3, card4, card5)
   end
 end
