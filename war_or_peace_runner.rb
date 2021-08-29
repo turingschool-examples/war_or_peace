@@ -3,19 +3,22 @@ require './lib/deck.rb'
 require './lib/player.rb'
 require './lib/turn.rb'
 require './lib/game.rb'
+require './lib/card_generator.rb'
 
-cards = []
+# cards = []
+#
+# values = ['2','3','4','5','6','7','8','9','10','Jack','Queen','King','Ace']
+# suits = [:diamond, :heart, :spade, :club]
+#
+# suits.each do |suit|
+#   values.size.times do |value|
+#     cards << Card.new(suit, values[value], value + 2)
+#   end
+# end
 
-values = ['2','3','4','5','6','7','8','9','10','Jack','Queen','King','Ace']
-suits = [:diamond, :heart, :spade, :club]
-
-suits.each do |suit|
-  values.size.times do |value|
-    cards << Card.new(suit, values[value], value + 2)
-  end
-end
-
-cards = cards.shuffle
+filename = 'lib/cards.txt'
+card_generator = CardGenerator.new(filename)
+cards = card_generator.cards.shuffle
 
 deck1 = Deck.new(cards[0..25])
 deck2 = Deck.new(cards[26..51])
