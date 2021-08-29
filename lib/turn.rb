@@ -58,6 +58,5 @@ class Turn
      @spoils_of_war.size.times do
      winner.deck.cards << @spoils_of_war.shift
    end
-
   end
 end
