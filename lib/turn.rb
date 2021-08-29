@@ -20,12 +20,20 @@ class Turn
   end
 
   def winner
-
+    if (type == :basic)
+      player1_value = @player1.deck.cards[0].rank
+      player2_value = @player2.deck.cards[0].rank
+      if player1_value > player2_value
+        return player1.name
+      else return player2.name
+      end
+    else (type == :war)
+    end
   end
 
-  def pile_cards
-
-  end
+  # def pile_cards
+  #
+  # end
 
 
 end
