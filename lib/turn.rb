@@ -80,23 +80,18 @@ class Turn
   end
 
   def loop
-    count = 0
+    count = 1
     until player1.has_lost? == true || player2.has_lost? == true do
-
-      puts player1.deck.cards.count
-      puts player2.deck.cards.count
       if winner == nil
-        puts "MAD"
+        puts "Turn #{count}: *mutually assured destruction* 6 cards removed from play"
       else
         winner_name = winner.name
       end
 
       if type == :basic
-        puts "Turn #{count}: turn type is #{type}, #{winner_name} won 2 cards"
+        puts "Turn #{count}: #{winner_name} won 2 cards"
       elsif type == :war
         puts "Turn #{count}: WAR - #{winner_name} won 6 cards"
-      elsif type == :mutually_assured_destruction
-        puts "Turn #{count}: *mutually assured destruction* 6 cards removed from play"
       end
       award_spoils(winner)
 
