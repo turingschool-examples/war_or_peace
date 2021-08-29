@@ -3,7 +3,10 @@ require './deck.rb'
 require './player.rb'
 require './turn.rb'
 
-# I ran out of time, so I just wrote what I can. I will be more mindful of how much
+
+
+# I ran out of time, so I just wrote what I can without debugging anything.
+# No test files. I will be more mindful of how much
 #time I spend on one unruly method. Sorry about the mess!
 
 # create 52 cards
@@ -12,8 +15,9 @@ full_deck_of_cards = []
 suits = ["spade", "diamond", "heart", "club"]
 
 
-## ??? ask someone about symbols.  how do you use it outside hash?
-hash_value_rank = {2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10, jack: 11, queen: 12, king: 13, ace: 14}
+# ??? ask someone about symbols.  how do you use it outside hash?
+
+hash_value_rank = {:2 => 2, :3 => 3, :4 => 4, :5 => 5, :6 => 6, :7 => 7, :8  => 8, :9 => 9, :10 => 10, :jack => 11, :queen => 12, :king => 13, :ace => 14}
 
 suits.each do |suit|
   hash_value_rank.each do |key, value|
@@ -22,20 +26,20 @@ suits.each do |suit|
   end
 end
 
-#alternatively. although odds are they are all wrong.
+#alternatively. although none of them works.
 
-#value = [:2, :3, :4, :5, :6, :7, :8, :9, :10, :jack, :queen, :king, :ace]
+value = [:2, :3, :4, :5, :6, :7, :8, :9, :10, :jack, :queen, :king, :ace]
 #OR value = [':2', ':3', ':4', ':5', ':6', ':7', ':8', ':9', ':10', ':jack', ':queen', ':king', ':ace']
 
-# rank = 2
-#
-# suits.each do |suit|
-#   value.each do |value|
-#     card = Card.new(suit, value, rank)
-#     rank += 1
-#     full_deck_of_cards << card
-#   end
-# end
+rank = 2
+
+suits.each do |suit|
+  value.each do |value|
+    card = Card.new(suit, value, rank)
+    rank += 1
+    full_deck_of_cards << card
+  end
+end
 
 
 

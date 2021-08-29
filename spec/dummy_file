@@ -1,0 +1,18 @@
+dummy file for keeping things
+
+if winner_of_turn == player1
+  spoils_of_war.each do |card_in_spoils|
+
+    player1.deck.cards << card_in_spoils
+    spoils_of_war.shift
+
+  end
+
+
+elsif winner_of_turn == player2
+  spoils_of_war.each do |card_in_spoils|
+    player2.deck.cards << card_in_spoils
+  #  spoils_of_war.delete(card_in_spoils)
+  end
+
+end

@@ -61,10 +61,10 @@ RSpec.describe Turn do
       expect(turn.spoils_of_war).to eq([card1, card3])
     end
 #This damn thing gives me the right deck of cards on pry, but can't pass this test,
-#so I am guessing there's something wrong with the test. 
+#so I am guessing there's something wrong with the test.
 
 
-    xit "can award_spoils to the winner" do
+    it "can award_spoils to the winner" do
 
       expect(turn.player1).to be(player1)
       expect(turn.player2).to be(player2)
@@ -78,9 +78,7 @@ RSpec.describe Turn do
       turn.winner
       turn.pile_cards
 
-      winner = turn.winner
-
-      turn.award_spoils(winner)
+      turn.award_spoils(turn.winner)
 
       expect(player1.deck.cards).to eq([card2, card5, card8, card1, card3])
       expect(player2.deck.cards).to eq([card4, card6, card7])
@@ -126,9 +124,7 @@ RSpec.describe Turn do
       turn.winner
       turn.pile_cards
 
-      winner = turn.winner
-
-      turn.award_spoils(winner)
+      turn.award_spoils(turn.winner)
 
       expect(player1.deck.cards).to eq([card8])
       expect(player2.deck.cards).to eq([card7, card1, card4, card2, card3, card5, card6])

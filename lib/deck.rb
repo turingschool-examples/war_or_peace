@@ -55,8 +55,8 @@ class Deck
 
 #method that removes the top card from the deck
   def remove_card
-    cards.shift
-    return @cards
+    @cards.shift
+
   end
 
 #method that adds one card to the bottom (end) of the deck
