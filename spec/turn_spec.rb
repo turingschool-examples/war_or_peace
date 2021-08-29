@@ -187,16 +187,16 @@ describe Turn do
           card4 = Card.new(:diamond, 'Jack', 11)
           deck1 = Deck.new([card1])
           deck2 = Deck.new([card4, card3, card2])
-          player1 = Player.new("Megan", deck1)
-          player2 = Player.new("Aurora", deck2)
+          player1 = Player.new("Megan", deck2)
+          player2 = Player.new("Aurora", deck1)
           turn = Turn.new(player1, player2)
           turn.start
-          expect(player1.has_lost?).to be true
+          expect(player1.has_lost?).to be false
         end
       end
     end
   end
-  
+
   describe 'rank when no cards are in the deck' do
     context 'deck has 2 cards left' do
       it 'does not return nil when called' do
