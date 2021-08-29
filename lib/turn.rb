@@ -10,7 +10,6 @@ class Turn
   end
 
   def type
-    #binding.pry
     if (@player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)) && (@player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2))
       return :mutually_assured_destruction
     elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
@@ -18,7 +17,6 @@ class Turn
     elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
       return :basic
     end
-
   end
 
   def winner
@@ -40,8 +38,6 @@ class Turn
     end
   end
 
-
-
   def pile_cards
     if self.type == :basic
         @spoils_of_war.push(@player1.deck.remove_card)
@@ -62,7 +58,6 @@ class Turn
 
   # add spoils to the bottom of winner's deck
   def award_spoils(winner)
-    #winner.deck.add_card(@spoils_of_war)
     while !@spoils_of_war.empty?
       card = @spoils_of_war.pop
       winner.deck.add_card(card)
