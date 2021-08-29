@@ -29,8 +29,6 @@ second_deck = []
   second_deck << deck_of_cards.delete_at(0)
 end
 
-# bad_card = Card.new(:heart, "Card", 1)
-
 deck1 = Deck.new(first_deck)
 deck2 = Deck.new(second_deck)
 
