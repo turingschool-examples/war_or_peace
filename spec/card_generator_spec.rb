@@ -2,7 +2,7 @@ require './lib/card_generator'
 
 
 describe CardGenerator do
-  describe '#deck_object_creator' do
+  describe '#import_cards' do
     it 'includes all 52 card objects' do
       full_deck = [
       Card.new(:heart, 'Ace', 14),
@@ -59,9 +59,8 @@ describe CardGenerator do
       Card.new(:club, '2', 2)]
 
       card_object = CardGenerator.new('./lib/cards.txt')
-      card_object.deck_object_creator
+      card_object.import_cards
 
-      # expect(card_object.cards).to match_array(full_deck)
       expect(card_object.cards.count).to eq(52)
   end
 end

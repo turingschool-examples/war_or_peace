@@ -44,5 +44,15 @@ end
       expect(deck.rank_of_card_at(2)).to eq(14)
     end
 
+    it "returns nil if no card is found" do
+      card1 = Card.new(:diamond, 'Queen', 12)
+      card2 = Card.new(:spade, '3', 3)
+
+      cards = [card1, card2]
+      deck = Deck.new(cards)
+
+      expect(deck.rank_of_card_at(2)).to eq(nil)
+    end
+
   end
 end

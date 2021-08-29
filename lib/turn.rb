@@ -15,27 +15,30 @@ class Turn
   def type
     @player1_rank0 = @player1.deck.rank_of_card_at(0)
     @player2_rank0 = @player2.deck.rank_of_card_at(0)
-
-    @player1_rank2 = @player1.deck.rank_of_card_at(2)
-    @player2_rank2 = @player2.deck.rank_of_card_at(2)
+    if @player1.deck.rank_of_card_at(2) != nil
+      @player1_rank2 = @player1.deck.rank_of_card_at(2)
+    end
+    if @player2.deck.rank_of_card_at(2) != nil
+      @player2_rank2 = @player2.deck.rank_of_card_at(2)
+    end
 
     if @player1_rank0 == @player2_rank0 && @player1_rank2 == @player2_rank2
-      return :mutually_assured_destruction
+      :mutually_assured_destruction
     elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
-      return :war
+      :war
     else
-      return :basic
+      :basic
     end
   end
 
   def winner
     if type == :mutually_assured_destruction
-      return 'No Winner'
+       'No Winner'
     elsif type == :war
-      if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
-        return @player1
+      if @player1.deck.rank_of_card_at(2).to_i > @player2.deck.rank_of_card_at(2).to_i
+         @player1
       else
-        return @player2
+         @player2
       end
     elsif type == :basic
       if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
@@ -58,21 +61,19 @@ class Turn
       @spoils_of_war += @player2.deck.cards.values_at(0..2)
       @player2.deck.cards.slice!(0..2)
   elsif type == :basic
-      @spoils_of_war << @player1.deck.cards[0]
-      @player1.deck.cards.slice!(0)
-
-
-      @spoils_of_war << @player2.deck.cards[0]
-      @player2.deck.cards.slice!(0)
+      @spoils_of_war << @player1.deck.remove_card
+      @spoils_of_war << @player2.deck.remove_card
     end
   end
 
   def award_spoils
     if @winner == @player1
+      @spoils_of_war.shuffle!
       @spoils_of_war.each do |spoil|
         @player1.deck.cards << spoil
       end
     else
+      @spoils_of_war.shuffle!
       @spoils_of_war.each do |spoil|
         @player2.deck.cards << spoil
       end

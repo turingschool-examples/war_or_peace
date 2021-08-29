@@ -1,14 +1,15 @@
 require './lib/turn'
 
 class CardGenerator
-  attr_reader :filename
+  attr_reader :filename,
+              :cards
 
   def initialize(filename)
     @filename = filename
     @cards = []
   end
 
-  def cards
+  def import_cards
     full_deck = []
     File.foreach(@filename) do |line|
     full_deck << line.strip.split("\n")
