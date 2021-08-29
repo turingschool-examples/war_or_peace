@@ -22,11 +22,10 @@ RSpec.describe Turn do
     spoils_of_war = []
     turn = Turn.new(player1, player2)
 
-    require "pry"; binding.pry
     expect(turn).to be_an_instance_of(Turn)
   end
 
-  it "can allow for game turns" do
+  it "can confirm type" do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -42,7 +41,7 @@ RSpec.describe Turn do
     spoils_of_war = []
     turn = Turn.new(player1, player2)
 
-    require "pry"; binding.pry
-    expect(turn).to be_an_instance_of(Turn)
+    #require "pry"; binding.pry
+    expect(turn.type).to eq(:basic)
   end
 end
