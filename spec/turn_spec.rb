@@ -65,6 +65,46 @@ describe Turn do
 
       expect(turn1.type).to eq(:basic)
     end
+
+    it "returns the type :war" do
+      card1 = Card.new(:spade, '3', 3)
+      card2 = Card.new(:diamonds, 'king', 13)
+      card3 = Card.new(:clubs, '8', 8)
+      card4 = Card.new(:spades, '5', 5)
+      card5 = Card.new(:hearts, '3', 3)
+      card6 = Card.new(:hearts, '7', 7)
+      card7 = Card.new(:clubs, '10', 10)
+      card8 = Card.new(:clubs, '2', 2)
+      cards1 = [card1, card2, card3, card4]
+      cards2 = [card5, card6, card7, card8]
+      deck1 = Deck.new(cards1)
+      deck2 = Deck.new(cards2)
+      player1 = Player.new("Jacob", deck1)
+      player2 = Player.new("Bacoj", deck2)
+      turn1 = Turn.new(player1, player2)
+
+      expect(turn1.type).to eq(:war)
+    end
+
+    it "returns the type :mutually_assured_destruction" do
+      card1 = Card.new(:spade, '3', 3)
+      card2 = Card.new(:diamonds, 'king', 13)
+      card3 = Card.new(:clubs, '8', 8)
+      card4 = Card.new(:spades, '5', 5)
+      card5 = Card.new(:hearts, '3', 3)
+      card6 = Card.new(:hearts, '7', 7)
+      card7 = Card.new(:hearts, '8', 8)
+      card8 = Card.new(:clubs, '2', 2)
+      cards1 = [card1, card2, card3, card4]
+      cards2 = [card5, card6, card7, card8]
+      deck1 = Deck.new(cards1)
+      deck2 = Deck.new(cards2)
+      player1 = Player.new("Jacob", deck1)
+      player2 = Player.new("Bacoj", deck2)
+      turn1 = Turn.new(player1, player2)
+
+      expect(turn1.type).to eq(:mutually_assured_destruction)
+    end
   end
 
   describe "#winner" do
@@ -114,10 +154,12 @@ describe Turn do
       card2 = Card.new(:diamonds, 'king', 13)
       card3 = Card.new(:clubs, '8', 8)
       card4 = Card.new(:spades, '5', 5)
-      card5 = Card.new(:hearts, '4', 4)
+      card5 = Card.new(:hearts, '3', 3)
       card6 = Card.new(:hearts, '7', 7)
-      cards1 = [card1, card2, card3]
-      cards2 = [card4, card5, card6]
+      card7 = Card.new(:clubs, '10', 10)
+      card8 = Card.new(:clubs, '2', 2)
+      cards1 = [card1, card2, card3, card4]
+      cards2 = [card5, card6, card7, card8]
       deck1 = Deck.new(cards1)
       deck2 = Deck.new(cards2)
       player1 = Player.new("Jacob", deck1)
@@ -126,7 +168,7 @@ describe Turn do
       turn1.pile_cards
       turn1.award_spoils
 
-      expect(player2.deck.cards).to include(card1)
+      expect(player2.deck.cards).to include(card1, card2, card3, card5, card6, card7)
     end
   end
 
