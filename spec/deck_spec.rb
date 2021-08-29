@@ -1,7 +1,7 @@
 require 'rspec'
 require './lib/deck.rb'
 require './lib/card.rb'
-
+require './lib/player.rb'
 
 describe Deck do
   context 'iteration 1' do
