@@ -17,12 +17,31 @@ class Game
   def start_game
     p "Hello!"
     turn_count = 0
+    turn = Turn.new(player1, player2)
     while turn_count < 1000000
-      turn = Turn.new(player1, player2)
-      # require "pry"; binding.pry
-      turn_count += 1
-      p turn_count
-      p turn.type
+      if (player1.has_lost? == true) || (player2.has_lost? == true)
+        break
+      else
+        turn_count += 1
+        p "Turn #{turn_count}"
+        turn.pile_cards
+        p player1.deck.cards[0].rank
+        p player2.deck.cards[0].rank
+        winner = turn.winner
+        turn.award_spoils(winner)
+        p "The winner is #{turn.winner.name}"
+        p "#{player1.name} has #{player1.deck.cards.count} cards left"
+        p "#{player2.name} has #{player2.deck.cards.count} cards left"
+        # if player1.has_lost? == true
+        #   p "#{player2.name} has won"
+        #   break
+        # end
+        # if player2.has_lost? == true
+        #   p "#{player1.name} has won"
+        #   break
+        # end
+        print "\n"
+      end
     end
   end
 
@@ -42,5 +61,4 @@ class Game
     Type 'GO' to start the game!
     ------------------------------------------------------------------"
   end
-
 end

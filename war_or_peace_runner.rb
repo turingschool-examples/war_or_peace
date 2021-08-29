@@ -84,9 +84,4 @@ cards = [
 
         game = Game.new(player1, player2)
 
-        turn = Turn.new(player1, player2)
-        # require "pry"; binding.pry
-        # deck1.cards = cards.take(26)
-        # deck2.cards = (cards - deck1.cards)
-        # require "pry"; binding.pry
         game.start_game
