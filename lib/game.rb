@@ -1,27 +1,27 @@
 class Game
-  # attr_reader   :player1,
-  #               :player2,
-  #               :cards
-  #
-  #
-  # def initialize
-  #   @cards    = cards
-  #   @player1  = player1
-  #   @player2  = player2
-  #
-  # end
-  #
-  # def start
-  #   p "Welcome to War (or Peace)!  This game will be played with 52 cards.
-  #         The players today are Megan and Aurora.
-  #         Type 'Go' to start the game."
-  #
-  #
-  # end
-  #
-  # def shuffle(cards)
-  #   @cards.shuffle!
-  # end
+  attr_reader   :player1,
+                :player2,
+                :cards
+
+
+  def initialize
+    @cards    = cards
+    @player1  = player1
+    @player2  = player2
+
+  end
+
+  def start
+    p "Welcome to War (or Peace)!  This game will be played with 52 cards.
+          The players today are Megan and Aurora.
+          Type 'Go' to start the game."
+
+
+  end
+
+  def shuffle(cards)
+    @cards.shuffle!
+  end
 
 end
 
