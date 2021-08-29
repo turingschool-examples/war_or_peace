@@ -11,12 +11,11 @@ class Player
   end
 
   def has_lost?
-    #delete everything but @deck.cards == []
-    if @deck.cards == []
-      true
-    else
-      false
-    end
+    @deck.cards == []
+  end
+
+  def rank_of_card_at(index)
+    deck.rank_of_card_at(index)
   end
 
   def remove_card
