@@ -8,20 +8,22 @@ class Deck
     @cards.at(index_location).rank
   end
 
-  # def high_ranking_cards
-  #   # if rank_of_card_at >= 11
-  #   #   return []
-  #   # end
-  # end
+  def high_ranking_cards
+
+    @cards.find_all do |card|
+      card.rank >= 11
+    end
+  end
+
+
+
+  def percent_high_ranking
+    (high_ranking_cards.count.to_f / cards.count.to_f).round(4) * 100
+  end
+
+  def remove_card
   #
-  # def percent_high_ranking
-  # #  high_ranking_cards / 14
-  # #  Hello   return
-  # end
-  #
-  # def remove_card
-  #
-  # end
+  end
   #
   # def add_card
   #
