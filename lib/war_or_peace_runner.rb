@@ -3,8 +3,10 @@ require './lib/deck'
 require './lib/card'
 require './lib/player'
 require './lib/turn'
+require './lib/player'
 require './lib/game'
 
 
-game = Game.new(player1, player2)
-game.start
+
+game = Game.new()
+game.start()
