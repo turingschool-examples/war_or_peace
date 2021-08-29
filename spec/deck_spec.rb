@@ -65,14 +65,13 @@ RSpec.describe Deck do
     expect(deck.remove_card).to eq(card1)
   end
 
-  it "can remove a card" do
-    card1 = Card.new(:diamond, 'Queen', 12)
+  it "can add a card" do
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
-    cards = [card1, card2, card3]
+    card4 = Card.new(:club, '5', 5)
+    cards = [card2, card3, card4]
     deck = Deck.new(cards)
 
-    #require "pry"; binding.pry
-    expect(deck.add_card).to be(Card.new)
+    expect(deck.add_card).to eq(card4)
   end
 end
