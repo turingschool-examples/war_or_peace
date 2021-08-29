@@ -9,16 +9,16 @@ class Game
   def initialize
     @full_deck = CardGenerator.new('./lib/cards.txt').import_cards
     @full_deck.shuffle!
-    @deck1 = Deck.new(@full_deck[0..25])
-    @deck2 = Deck.new(@full_deck[26..51])
-    @player1 = Player.new('Megan', @deck1)
-    @player2 = Player.new('Aurora', @deck2)
+    @deck1     = Deck.new(@full_deck[0..25])
+    @deck2     = Deck.new(@full_deck[26..51])
+    @player1   = Player.new('Megan', @deck1)
+    @player2   = Player.new('Aurora', @deck2)
 end
 
   def start
     response = gets.chomp
     while response != 'GO'
-      puts "You entered '#{response}' silly. Type GO to start a game."
+      puts "You entered '#{response}' dum-dum. Type GO to start a game."
       response = gets.chomp
     end
     turn_count = 0

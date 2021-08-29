@@ -10,12 +10,12 @@ class CardGenerator
   end
 
   def import_cards
-    string_array_deck = []
+    deck_string_array = []
     File.foreach(@filename) do |line|
-      string_array_deck << line.strip.split("\n")
+      deck_string_array << line.strip.split("\n")
     end
     split_string_array = []
-    string_array_deck.each do |card|
+    deck_string_array.each do |card|
       split_string_array << card[0].split(", ")
     end
     object_deck = []
