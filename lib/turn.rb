@@ -75,13 +75,13 @@ class Turn
 
 
     if type == :basic
-      p "#{winner.name} won 2 cards"
+      p "Turn#{count}: #{winner.name} won 2 cards"
 
     elsif type == :war
-      p "#{winner.name} won 6 cards"
+      p "turn #{count}: #{winner.name} won 6 cards"
 
     else
-      p "*mutually assured destruction* 6 cards removed from play"
+      p "Turn #{count} *mutually assured destruction* 6 cards removed from play"
     end
   end
 
