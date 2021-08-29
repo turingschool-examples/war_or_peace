@@ -1,29 +1,25 @@
 require 'csv'
+require './lib/card.rb'
 
 class CardGenerator
-  attr_reader :filename
-
   def initialize(filename)
     @filename = filename
   end
 
   def cards
+    deck = []
 
-    csv = CSV.open(@filename)
-    data = []
+    data = File.read(@filename).split(",").map(&:strip)
 
-    52.times do |card_count|
-      array = csv.read[card_count] #should be an array of arrays of all cards like ['2', Heart, 2]
-      card_args = [array[0], array[1], array[2]] #should be array of just 1 card's args
-      suit = card_args[card_count + 1]
-      value = card_args[card_count + 2]
-      rank = card_args[card_count]
+    1.step((13*3*4), 3) do |card_count|
+      rank = data[card_count + 1].to_i
+      value = data[card_count - 1]
+      suit = data[card_count].to_sym
+
       card = Card.new(suit, value, rank)
-      data << card
-
-      card_count += 1
+      deck << card
     end
 
-    return data
+    return deck
   end
 end
