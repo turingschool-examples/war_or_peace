@@ -7,7 +7,11 @@ class Deck
     @cards = cards
   end
 
-
+  # def rank_of_card_at(index)
+  #   if cards.empty? == false && cards[2] != nil
+  #     cards[index].rank
+  #   end
+  # end
   def rank_of_card_at(index)
     cards[index].rank
   end
@@ -38,6 +42,12 @@ class Deck
   def remove_card
     @cards.shift
   end
+
+  # def remove_card
+  #   if cards.empty? == false
+  #     cards.delete_at(0)
+  #   end
+  # end
 
 
   def add_card(card)

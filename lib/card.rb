@@ -9,8 +9,3 @@ class Card
     @rank = rank
   end
 end
-
-
-
-
-#require 'pry'; binding.pry
