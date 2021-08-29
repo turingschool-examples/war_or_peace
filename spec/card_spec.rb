@@ -1,4 +1,3 @@
-#alright here we go
 
 require 'rspec'
 require './lib/card'
