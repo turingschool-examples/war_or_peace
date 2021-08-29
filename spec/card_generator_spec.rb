@@ -22,9 +22,9 @@ RSpec.describe CardGenerator do
   describe '#cards' do
 
     it 'outputs an array of Card objects' do
-      card_generator = CardGenerator.new('./lib/cards.txt')
+      card_generator = CardGenerator.new('cards.txt')
       cards = card_generator.cards
-      #binding.pry
+
       expect(cards[0]).to be_instance_of(Card)
       expect(cards.length).to eq(52)
 
