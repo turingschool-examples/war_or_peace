@@ -27,6 +27,6 @@ describe Player do
     it "player has lost when the deck array is empty" do
       expect(@player.has_lost?).to eq(false)
     end
+    require "pry"; binding.pry
 
-    it ""
 end
