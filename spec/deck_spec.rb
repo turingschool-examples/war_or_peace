@@ -55,13 +55,24 @@ RSpec.describe Deck do
     expect(deck.percent_high_ranking).to eq(66.67)
   end
 
-  it "can identify percent of high rank cards" do
+  it "can remove a card" do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
 
-    expect(deck.remove_card)to be([card1])
+    expect(deck.remove_card).to eq(card1)
+  end
+
+  it "can remove a card" do
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+
+    #require "pry"; binding.pry
+    expect(deck.add_card).to be(Card.new)
   end
 end
