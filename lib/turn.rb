@@ -30,7 +30,7 @@ class Turn
     else (type == :war)
     end
   end
-
+require "pry"; binding.pry
   # def pile_cards
   #
   # end
