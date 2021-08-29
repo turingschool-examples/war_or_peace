@@ -14,10 +14,6 @@ class Player
     @deck.cards == []
   end
 
-  def rank_of_card_at(index)
-    deck.rank_of_card_at(index)
-  end
-
   def remove_card
     deck.cards.shift
   end
