@@ -1,5 +1,3 @@
-#require './lib/card'
-
 class Deck
   attr_reader :cards
 
@@ -8,7 +6,9 @@ class Deck
   end
 
   def rank_of_card_at(index_location_of_card)
-    cards[index_location_of_card].rank
+    if cards.empty? == false
+    cards[index_location_of_card].rank.to_i
+    end
   end
 
   def high_ranking_cards
@@ -25,10 +25,12 @@ class Deck
   end
 
   def remove_card
-    cards.delete_at(0)
+    if cards.empty? == false
+      cards.delete_at(0)
+    end
   end
 
   def add_card(card)
-    cards.append(card)
+    cards.push(card)
   end
 end

@@ -1,8 +1,7 @@
-require './lib/turn'
 require './lib/card'
 require './lib/deck'
 require './lib/player'
-require './lib/start'
+require './lib/turn'
 
 card1 = Card.new(:club, '2', 2)
 card2 = Card.new(:club, '3', 3)
@@ -64,25 +63,45 @@ full_deck = [card1, card2, card3, card4, card5, card6, card7, card8,
   card39, card40, card41, card42, card43, card44, card45, card46, card47, card48,
   card49, card50, card51, card52]
 
+full_deck = full_deck.shuffle
 deck1 = Deck.new([])
 deck2 = Deck.new([])
-
-23.times do
-  deck1.cards << full_deck.shuffle.pop
-  deck2.cards << full_deck.shuffle.pop
+26.times do
+  deck1.cards << full_deck.shift
+  deck2.cards << full_deck.shift
 end
 
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
 turn = Turn.new(player1, player2)
-winner = turn.winner
-#start = Start.new(player1, player2)
+turn_number = 0
 
 turn.start(player1, player2)
 go = $stdin.gets.chomp
 
-if go == "GO" || "go" || "Go"
-  puts "works"
-end 
-# 'pry'
-#binding.pry
+while player1.has_lost? == false && player2.has_lost? == false
+  #urn.new(player1, player2)
+  if turn.type == :basic
+    turn_number = turn_number + 1
+    puts "Turn #{turn_number}: #{turn.winner.name} won 2 cards"
+    turn.pile_cards
+    turn.award_spoils(turn.winner)
+  elsif turn.type == :war
+    turn_number = turn_number + 1
+    puts "Turn #{turn_number + 1}:WAR #{turn.winner.name} won 6 cards!"
+    turn.pile_cards
+    turn.award_spoils(turn.winner)
+  elsif turn.type == :mutually_assured_destruction
+    turn_number = turn_number + 1
+    puts "Turn #{turn_number + 1}:*mutually assured destruction* 6 cards removed from play"
+    turn.pile_cards
+  end
+end
+
+if player1.has_lost? == true && player2.has_lost? == false
+  puts "*~*~*~*#{player2.name} has won the game!*~*~*~*"
+elsif player2.has_lost? == true && player1.has_lost? == false
+  puts "*~*~*~*#{player1.name} has won the game!*~*~*~*"
+elsif player2.has_lost? == true && player1.has_lost? == true
+  puts "---- DRAW ----"
+end
