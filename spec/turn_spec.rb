@@ -30,5 +30,12 @@ describe Turn do
       expect(@turn.player1).to eq(@player1)
     end
 
+    it "type of turn should consist of :basic, :war, :mutually_assured_destruction" do
+      expect(@turn.type).to eq(:basic)
+      # expect(@turn.type).to eq(:war)
+      # expect(@turn.type).to eq(:mutually_assured_destruction)
+    end
+    require "pry"; binding.pry
+
  end
 end
