@@ -2,6 +2,8 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/game'
+
 
 card1 = Card.new(:heart, '2', 2)
 card2 = Card.new(:heart, '3', 3)
@@ -70,13 +72,21 @@ cards = [
         ]
 
         cards.shuffle!
+        cards1 = cards.take(26)
+        cards2 = (cards - cards1)
+        deck1 = Deck.new(cards1)
+        deck2 = Deck.new(cards2)
 
-        deck1 = Deck.new([])
-        deck2 = Deck.new([])
-
-        deck1.cards << cards.take(26)
-        deck2.cards << (cards - deck1.cards)
 
 
         player1 = Player.new("Megan", deck1)
         player2 = Player.new("Aurora", deck2)
+
+        game = Game.new(player1, player2)
+
+        turn = Turn.new(player1, player2)
+        # require "pry"; binding.pry
+        # deck1.cards = cards.take(26)
+        # deck2.cards = (cards - deck1.cards)
+        # require "pry"; binding.pry
+        game.start_game

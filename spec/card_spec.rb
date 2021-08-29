@@ -9,7 +9,6 @@ RSpec.describe Card do
 
   it "has readable attributes" do
     card = Card.new(:diamond, 'Queen', 12)
-
     expect(card.suit).to eq(:diamond)
     expect(card.value).to eq('Queen')
     expect(card.rank).to eq(12)

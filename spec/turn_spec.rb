@@ -93,6 +93,7 @@ RSpec.describe Turn do
     turn = Turn.new(player1, player2)
     expect(turn.type).to eq(:war)
     winner = turn.winner
+    expect(turn.winner).to eq(player2)
     turn.pile_cards
     expected = [card1, card4, card2, card3, card5, card6]
     expect(turn.spoils_of_war).to eq(expected)

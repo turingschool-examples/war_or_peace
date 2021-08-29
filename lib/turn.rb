@@ -17,13 +17,16 @@ class Turn
           @player1.deck.cards[2].rank != @player2.deck.cards[2].rank
       :war
     else
-      :mutually_assured_destruction
+      # if @player1.deck.cards[0].rank == @player2.deck.cards[0].rank &&
+      #     @player1.deck.cards[2].rank == @player2.deck.cards[2].rank
+          :mutually_assured_destruction
+      # end
     end
   end
 
   def winner
     if type == :basic
-      if @player1.deck.cards.first.rank > @player2.deck.cards.first.rank
+      if @player1.deck.cards[0].rank > @player2.deck.cards[0].rank
         winner = @player1
       else
         winner = @player2
@@ -35,16 +38,17 @@ class Turn
         winner = @player2
       end
     else
-      p "No Winner"
+      if type == :mutually_assured_destruction
+        p "No Winner"
+      end
     end
-    winner
   end
 
   def change_cards
-    spoils_of_war << @player1.deck.cards[0]
-    @player1.deck.cards.shift
-    spoils_of_war << @player2.deck.cards[0]
-    @player2.deck.cards.shift
+    spoils_of_war << player1.deck.cards[0]
+    player1.deck.remove_card
+    spoils_of_war << player2.deck.cards[0]
+    player2.deck.remove_card
   end
 
   def pile_cards
