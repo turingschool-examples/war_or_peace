@@ -26,12 +26,9 @@ describe Turn do
       expect(@turn).to be_a(Turn)
     end
 
-    it "2 players exist" do
-      expect(@player1).to eq("Megan")
-      expect(@player2).to eq("Aurora")
+    it "a turn should have 2 players and spoils of war" do
+      expect(@turn.player1).to eq(@player1)
     end
 
-
-
-  end
+ end
 end

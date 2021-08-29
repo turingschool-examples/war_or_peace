@@ -9,7 +9,7 @@ describe Player do
       @card1 = Card.new(:diamond, 'Queen', 12)
       @card2 = Card.new(:spade, '3', 3)
       @card3 = Card.new(:heart, 'Ace', 14)
-      @deck = Deck.new([@card1,@card2, @card3])
+      @deck = Deck.new([@card1, @card2, @card3])
       @player = Player.new('Clarisa', @deck)
     end
 
@@ -27,10 +27,11 @@ describe Player do
 
     it "player has lost when the deck array is empty" do
       expect(@player.has_lost?).to eq(false)
-    end
-
-    it "a card is removed" do
       expect(@deck.remove_card). to eq(@card1)
+      expect(@deck.remove_card). to eq(@card2)
+      expect(@deck.remove_card). to eq(@card3)
+      expect(@player.has_lost?).to eq(true)
+      # require "pry"; binding.pry
     end
   end
 end
