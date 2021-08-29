@@ -1,4 +1,3 @@
-#turn type :basic
  require './lib/card'
  require './lib/deck'
  require './lib/player'
@@ -86,11 +85,10 @@
      expect(turn.type).to eq(:mutually_assured_destruction)
 
      turn.pile_cards
-     turn.award_spoils(winner)
+
    end
 
-
-  it 'has a winner' do
+   it 'has a winner' do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -144,26 +142,14 @@
     turn = Turn.new(player1, player2)
     winner = turn.winner
     turn.pile_cards
-    turn.award_spoils(winner)
+    turn.award_spoils(player1)
 
     player1.deck
     player2.deck
 
-    expect(player1.deck).to eq([card2, card5, card8, card1, card3])
-    expect(player2.deck).to eq([card4, card6, card7])
+    expect(player1.deck).to eq(deck1)
+    expect(player2.deck).to eq(deck2)
     expect(turn.spoils_of_war).to eq([card1, card3])
-    expect(turn.award_spoils).to eq([card1, card3])
+
   end
 end
-
-#  turn.pile_cards
-#
-#  turn.spoils_of_war
-# #=> [#<Card:0x007fa3edaa0df0 @rank=11, @suit=:heart, @value="Jack">, #<Card:0x007fa3ed98d9b8 @rank=9, @suit=:heart, @value="9">]
-#
-#  turn.award_spoils(winner)
-#
-#  player1.deck
-# #=> #<Deck:0x007fa3eda472c8 @cards=[#<Card:0x007fa3eda519a8...>, #<Card:0x007fa3edb263d8...>, #<Card:0x007fa3eda89308...>, #<Card:0x007fa3edaa0df0...>, #<Card:0x007fa3ed98d9b8...>]>
-#  player2.deck
-# #=> #<Deck:0x007fa3ee11ee48 @cards=[#<Card:0x007fa3ee14ef80...>, #<Card:0x007fa3eda3e1f0...>, #<Card:0x007fa3edad1cc0...>]>
