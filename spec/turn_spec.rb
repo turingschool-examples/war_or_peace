@@ -9,7 +9,7 @@ require 'pry'
 
 RSpec.describe Turn do
   describe '#initialize' do
-    it 'describes turn' do
+    it 'describes player setup' do
       card1 = Card.new(:heart, 'Jack', 11)
       card2 = Card.new(:heart, '10', 10)
       card3 = Card.new(:heart, '9', 9)
@@ -158,6 +158,7 @@ RSpec.describe Turn do
       player1 = Player.new("Megan", deck1)
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
+
       expect(turn.pile_cards).to eq([card1, card3])
     end
   end
