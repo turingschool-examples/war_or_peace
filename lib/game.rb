@@ -7,9 +7,7 @@ class Game
   def start
 
       count = 1
-      #binding.pry
-      while (!@turn.player1.has_lost?) && (!@turn.player2.has_lost?) && (count <= 1000000)
-          #binding.pry
+      while (!@turn.player1.has_lost?) && (!@turn.player2.has_lost?) && (count <= 1000000000)
           if @turn.type == :basic
             puts "Turn #{count}: #{@turn.winner.name} won 2 cards"
             winner = @turn.winner
