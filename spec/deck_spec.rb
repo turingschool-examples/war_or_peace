@@ -21,7 +21,17 @@ RSpec.describe Deck do
     deck = Deck.new(cards)
 
     expect(deck.cards).to eq(cards)
-    expect(cards).to eq(cards)
+  end
+
+  it 'can display the #rank_of_card' do
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+
+    expect(deck.rank_of_card(0)).to eq(12)
+    expect(deck.rank_of_card(2)).to eq(14)
   end
 
   # it 'in an array of cards' do
