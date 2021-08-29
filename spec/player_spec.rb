@@ -46,7 +46,6 @@ RSpec.describe Deck do
     deck = Deck.new(cards)
     player = Player.new('Clarisa', deck)
 
-    require "pry"; binding.pry
     expect(player.has_lost).to eq(false)
   end
 end
