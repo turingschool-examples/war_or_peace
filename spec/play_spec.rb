@@ -10,7 +10,6 @@ describe Play do
 
   describe "#initialize" do
     it "creates an instance of Play class" do
-
       card_1 = Card.new(:diamonds, 'ace', 14)
       card_2 = Card.new(:diamonds, 'king', 13)
       card_3 = Card.new(:diamonds, 'queen', 12)
@@ -63,7 +62,6 @@ describe Play do
       card_50 = Card.new(:spades, '4', 4)
       card_51 = Card.new(:spades, '3', 3)
       card_52 = Card.new(:spades, '2', 2)
-
       start_deck = [card_1, card_2, card_3,
                     card_4, card_5, card_6,
                     card_7, card_8, card_9,
@@ -85,21 +83,16 @@ describe Play do
                    ]
       start_deck = start_deck.shuffle!
       start_deck = start_deck.each_slice(26).to_a
-
       player1_cards = start_deck[0]
       player2_cards = start_deck[1]
-
       player1_deck = Deck.new(player1_cards)
       player2_deck = Deck.new(player2_cards)
-
       player1_name = "Jacob"
       player2_name = "Bacoj"
-
       player1 = Player.new(player1_name, player1_deck)
       player2 = Player.new(player2_name, player2_deck)
-
       game = Play.new(player1, player2)
-
+      
       expect(game).to be_an_instance_of(Play)
     end
   end
