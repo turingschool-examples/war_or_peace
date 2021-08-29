@@ -38,24 +38,22 @@ card36 = Card.new(:club, 'Jack', 11)
 card37 = Card.new(:club, 'Queen', 12)
 card38 = Card.new(:club, 'King', 13)
 card39 = Card.new(:club, 'Ace', 14)
-card40
-card41
-card42
-card43
-card44
-card45
-card46
-card47
-card48
-card49
-card50
-card51
-card52
+card40 = Card.new(:spade, '2', 2)
+card41= Card.new(:spade, '3', 3)
+card42= Card.new(:spade, '4', 4)
+card43= Card.new(:spade, '5', 5)
+card44= Card.new(:spade, '6', 6)
+card45= Card.new(:spade, '7', 7)
+card46= Card.new(:spade, '8', 8)
+card47= Card.new(:spade, '9', 9)
+card48= Card.new(:spade, '10', 10)
+card49= Card.new(:spade, 'Jack', 11)
+card50= Card.new(:spade, 'Queen', 12)
+card51= Card.new(:spade, 'King', 13)
+card52= Card.new(:spade, 'Ace', 14)
 
-
-
-cards9 = ([)
-cards10 = ([)
+cards_1 = ([)
+cards_2 = ([)
 
 deck1 = Deck.new(cards1)
 deck2 = Deck.new(cards2)
