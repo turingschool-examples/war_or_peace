@@ -7,5 +7,7 @@ class Player
     @name = name
   end
 
-
+  def has_lost
+     deck.cards.empty?
+  end
 end
