@@ -9,7 +9,7 @@ require './lib/game'
 RSpec.describe Game do
 
   it 'exists' do
-    game1 = Game.new
+    game1 = Game.new(player1, player2)
     expect(game1).to be_an_instance_of(Game)
   end
 

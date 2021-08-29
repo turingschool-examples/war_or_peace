@@ -62,15 +62,10 @@ class Turn
   end
 
   def award_spoils(winner)
-    if type == :basic && winner == player1
-      deck1.add_card(@spoils_of_war)
+    if winner == player1
+      player1.deck.add_card(@spoils_of_war)
     else
-      deck2.add_card(@spoils_of_war)
-    end
-    if type == :war && winner == player1
-
-    else
-
+      player2.deck.add_card(@spoils_of_war)
     end
   end
 end
