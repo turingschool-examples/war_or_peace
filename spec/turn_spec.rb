@@ -22,20 +22,36 @@ describe Turn do
       @turn = Turn.new(@player1, @player2)
     end
 
-    it "exists" do
-      expect(@turn).to be_a(Turn)
+      it "exists" do
+        expect(@turn).to be_a(Turn)
+      end
+
+      it "a turn should have 2 players and spoils of war" do
+        expect(@turn.player1).to eq(@player1)
+      end
+
+     describe 'type' do
+      it "type of turn should consist of :basic, :war, :mutually_assured_destruction" do
+        expect(@turn.type).to eq(:basic)
+      end
+     end
+
+     describe 'winner' do
+      it "finds the winning player" do
+        expect(@turn.winner).to eq(@player1)
+      end
     end
 
-    it "a turn should have 2 players and spoils of war" do
-      expect(@turn.player1).to eq(@player1)
+    describe 'pile_of_cards' do
+      xit "players cards sent to the spoils of war pile" do
+        expect(@turn.pile_of_cards).to eq(@spoils_of_war)
+      end
     end
 
-    it "type of turn should consist of :basic, :war, :mutually_assured_destruction" do
-      expect(@turn.type).to eq(:basic)
-      # expect(@turn.type).to eq(:war)
-      # expect(@turn.type).to eq(:mutually_assured_destruction)
+    describe "award_spoils" do
+      xit "adds cards from spoils of war to winner deck" do
+        expect(@turn.award_spoils).to eq(@spoils_of_war)
+      end
     end
-    require "pry"; binding.pry
-
- end
+  end
 end
