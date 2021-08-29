@@ -1,3 +1,8 @@
+require './lib/card'
+require './lib/deck'
+require './lib/player'
+require './lib/turn'
+
 card1 = Card.new(:heart, '2', 2)
 card2 = Card.new(:heart, '3', 3)
 card3 = Card.new(:heart, '4', 4)
@@ -51,12 +56,20 @@ card50= Card.new(:spade, 'Queen', 12)
 card51= Card.new(:spade, 'King', 13)
 card52= Card.new(:spade, 'Ace', 14)
 
-cards_1 = ([card1, card15, card39, card50, card22, card43, card31, card44, card37, card3, card47, card20, card34])
-cards_2 = ([card7, card18, card30, card42, card51, card10, card13, card24, card32, card45, card49, card8, card12])
-cards_3 = ([card21, card52, card25, card2, card9, card35, card41, card26, card5, card19, card28, card40, card17])
-cards_4 = ([card27, card33, card4, card48, card6, card16, card38, card46, card11, card29, card23, card36, card14])
-deck1 = Deck.new(cards_1)
-deck2 = Deck.new(cards_2)
+cards_1 = [card1, card15, card39, card50, card22, card43, card31, card44, card37, card3, card47, card20, card34]
+cards_2 = [card7, card18, card30, card42, card51, card10, card13, card24, card32, card45, card49, card8, card12]
+cards_3 = [card21, card52, card25, card2, card9, card35, card41, card26, card5, card19, card28, card40, card17]
+cards_4 = [card27, card33, card4, card48, card6, card16, card38, card46, card11, card29, card23, card36, card14]
+d1_1 = cards_1.push(cards_3)
+d1_2 = d1_1.push(cards_4)
+deck_1= d1_2.push(cards_2)
+d2_1 = cards_3.push(cards_4)
+d2_2 = d2_1.push(cards_1)
+deck_2= d2_2.push(cards_2)
+deck1 = Deck.new(deck_1)
+deck2 = Deck.new(deck_2)
 
 player1 = Player.new('Megan', deck1)
 player2 = Player.new('Aurora', deck2)
+
+puts deck1
