@@ -7,8 +7,3 @@ class Card
     @rank = rank
   end
 end
-#
-# card = Card.new(:diamond, 'Queen', 12)
-# card.suit
-# card.value
-# card.rank

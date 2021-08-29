@@ -2,7 +2,6 @@ require 'rspec'
 require './lib/card'
 require './lib/deck'
 require './lib/player'
-require 'pry'
 
 RSpec.describe Player do
   it "exists" do
@@ -35,5 +34,4 @@ RSpec.describe Player do
     expect(player.has_lost?).to be(true)
     expect(player.deck).to eq(deck)
   end
-
 end

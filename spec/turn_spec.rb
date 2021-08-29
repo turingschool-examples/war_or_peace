@@ -197,7 +197,6 @@ RSpec.describe Turn do
    turn = Turn.new(player1, player2)
    winner = turn.winner
 
-   # turn.winner
    turn.pile_cards
    turn.award_spoils(winner)
 
