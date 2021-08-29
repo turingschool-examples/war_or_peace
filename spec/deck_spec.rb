@@ -17,6 +17,17 @@ describe Deck do
     end
   end
 
+  describe '#size' do
+    it "returns the size of the cards array" do
+      card1 = Card.new(:diamond, 'Queen', 12)
+      card2 = Card.new(:spade, '3', 3)
+      card3 = Card.new(:heart, 'Ace', 14)
+      cards = [card1, card2, card3]
+      deck = Deck.new(cards)
+      expect(deck.size).to eq(3)
+    end
+  end
+
   describe '#rank_of_card_at' do
     it "returns the rank at the given index" do
       card1 = Card.new(:diamond, 'Queen', 12)
@@ -67,7 +78,7 @@ describe Deck do
       expect(cards.count).to eq(2)
     end
   end
-  
+
   describe '#add_card' do
     it 'adds a card to the bottom (end) of the deck' do
       card1 = Card.new(:diamond, 'Queen', 12)
