@@ -75,7 +75,7 @@ RSpec.describe Turn do
       expect(@player2.deck.cards).to eq([@card4, @card6, @card7])
     end
 
-    xit "has BASIC award_spoils" do
+    it "has BASIC award_spoils" do
       @turn.pile_cards
       @turn.award_spoils
       expect(@player1.deck.cards).to eq([@card2, @card5, @card8, @card1, @card3])
@@ -114,10 +114,18 @@ RSpec.describe Turn do
 
     it "has a pile of cards for war" do
       @turn.pile_cards
-      expect(turn.spoils_of_war).to eq(@card1, @card2, @card5, @card4, @card3, @card6)
-      expect(@player1.deck.cards).to eq(@card8)
-      expect(@player2.deck.cards).to eq(@card1, @card2, @card5, @card4)
+      expect(@turn.spoils_of_war).to eq([@card1, @card4, @card2, @card3, @card5, @card6])
+      expect(@player1.deck.cards).to eq([@card8])
+      expect(@player2.deck.cards).to eq([@card7])
     end
+
+    it "has War award_spoils" do
+      @turn.pile_cards
+      @turn.award_spoils
+      expect(@player1.deck.cards).to eq([@card8])
+      expect(@player2.deck.cards).to eq([@card7, @card1, @card4, @card2, @card3, @card5, @card6])
+    end
+
   end
 
   describe "Create methods for MAD situations" do
@@ -152,12 +160,12 @@ RSpec.describe Turn do
 
     it "has MAD pile_cards" do
       @turn.pile_cards
-      expect(turn.spoils_of_war).to eq([])
-      expect(player1.deck).to eq([@card8])
-      expect(player2.deck).to eq([@card7])
+      expect(@turn.spoils_of_war).to eq([])
+      expect(@player1.deck.cards).to eq([@card8])
+      expect(@player2.deck.cards).to eq([@card7])
     end
 
-    xit "has MAD spoils_of_war" do
+    it "has MAD spoils_of_war" do
       @turn.pile_cards
       @turn.award_spoils
       expect(@player1.deck.cards).to eq([@card8])
