@@ -1,6 +1,3 @@
-require './lib/deck.rb'
-require './lib/card.rb'
-require './lib/player.rb'
 
 class Turn
   attr_reader :player1, :player2, :spoils_of_war
@@ -13,9 +10,7 @@ class Turn
   def type
     if player1.deck.rank_of_cards_at(0) != player2.deck.rank_of_cards_at(0)
       :basic
-    elsif
-
-      player1.deck.rank_of_cards_at(0) == player2.deck.rank_of_cards_at(0) && player1.deck.rank_of_cards_at(2) == player2.deck.rank_of_cards_at(2)
+    elsif player1.deck.rank_of_cards_at(0) == player2.deck.rank_of_cards_at(0) && player1.deck.rank_of_cards_at(2) == player2.deck.rank_of_cards_at(2)
 
       :mutually_assured_destruction
 
@@ -54,12 +49,19 @@ class Turn
     if type_of_turn == :basic
       @spoils_of_war.push(player1.deck.cards[0])
       @spoils_of_war.push(player2.deck.cards[0])
+      @spoils_of_war
       player1.deck.remove_card
       player2.deck.remove_card
 
     elsif type_of_turn == :war
-      @spoils_of_war += player1.deck.cards[0..2]
-      @spoils_of_war += player2.deck.cards[0..2]
+      @spoils_of_war.push(player1.deck.cards[0])
+      @spoils_of_war.push(player1.deck.cards[1])
+      @spoils_of_war.push(player1.deck.cards[2])
+      @spoils_of_war.push(player2.deck.cards[0])
+      @spoils_of_war.push(player2.deck.cards[1])
+      @spoils_of_war.push(player2.deck.cards[2])
+      @spoils_of_war
+
       3.times do
         player1.deck.remove_card
         player2.deck.remove_card
@@ -78,15 +80,27 @@ class Turn
     if winner == "player1"
       @spoils_of_war.each do |i|
         player1.deck.add_card(i)
-    end
-    player1.deck.cards
+      end
+      return @spoils_of_war
+      @spoils_of_war = []
+      #player1.deck.cards
     elsif winner == "player2"
-      player2.deck.add_card(@spoils_of_war)
+
+
+      @spoils_of_war.each do |n|
+        player2.deck.add_card(n)
+      end
+      return @spoils_of_war
+      @spoils_of_war = []
+      #player2.deck.cards
     elsif winner == "player1"
       player1.deck.add_card(@spoils_of_war)
+      @spoils_of_war = []
     elsif winner == "player2"
       player2.deck.add_card(@spoils_of_war)
+      @spoils_of_war = []
     elsif winner(:mutually_assured_destruction) == "No Winner"
+      @spoils_of_war = []
     else
       "404: Correct coding not found"
     end

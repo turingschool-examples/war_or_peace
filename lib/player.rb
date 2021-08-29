@@ -1,4 +1,3 @@
-require './lib/deck.rb'
 
 class Player
   attr_reader :deck

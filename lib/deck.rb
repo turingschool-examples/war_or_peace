@@ -1,4 +1,3 @@
-require './lib/card.rb'
 
 
 
@@ -11,7 +10,12 @@ class Deck
 
   def rank_of_cards_at(card_index)
     @card_index = card_index
-    cards[card_index].rank
+
+    if cards[card_index] == nil
+      0
+    else
+     cards[card_index].rank
+    end
   end
 
   def high_ranking_cards
@@ -27,7 +31,7 @@ class Deck
 
   def remove_card
     cards.shift
-    @cards 
+    @cards
   end
 
   def add_card(new_card)
@@ -38,6 +42,12 @@ class Deck
     cards.length == 0
   end
 
-
+  def cards
+    @cards
+  end
 
 end
+
+#card_51 = Card.new(:spades, "Queen", 12)
+#card_52 = Card.new(:spades, "King", 13)
+#deck1 = [card_51, card_52]

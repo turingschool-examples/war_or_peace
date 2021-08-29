@@ -1,5 +1,7 @@
 require 'rspec'
 require './lib/deck.rb'
+require './lib/card.rb'
+
 
 RSpec.describe Deck do
   it "exists" do
