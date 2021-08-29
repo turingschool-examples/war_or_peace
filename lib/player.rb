@@ -20,6 +20,5 @@ class Player
 
   def remove_card
     deck.cards.shift
-    #@deck -= @deck[0]
   end
 end
