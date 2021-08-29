@@ -1,3 +1,9 @@
+require 'rspec'
+require './lib/deck'
+require './lib/card'
+require './lib/player'
+require './lib/turn'
+
 card1 = Card.new(:diamond, '2', 2)
 card2 = Card.new(:diamond, '3', 3)
 card3 = Card.new(:diamond, '4', 4)
@@ -53,3 +59,8 @@ card49 = Card.new(:heart, 'Jack', 11)
 card50 = Card.new(:heart, 'Queen', 12)
 card51 = Card.new(:heart, 'King', 13)
 card52 = Card.new(:heart, 'Ace', 14)
+
+deck1 = Deck.new
+deck2 = Deck.new
+player1 = Player.new('Clarisa', deck1)
+player2 = Player.new('Aurora', deck2)
