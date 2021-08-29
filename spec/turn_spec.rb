@@ -7,8 +7,8 @@ require './lib/turn.rb'
 ## figure out the diff btw eq and be
 RSpec.describe Turn do
 
-#use require thing that Dione showed us and organize it better
-  xit "returns player's name, player's deck and spoils_of_war" do
+
+  context 'turn 1, type :basic' do
 
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
@@ -27,36 +27,67 @@ RSpec.describe Turn do
 
     turn = Turn.new(player1, player2)
 
-    expect(turn.player1).to be(player1)
-    expect(turn.player2).to be(player2)
-    expect(turn.player1.name).to eq("Megan")
-    expect(turn.player2.name).to eq("Aurora")
-    expect(turn.player1.deck).to eq(deck1)
-    expect(turn.player1.deck).to_not eq(deck2)
-
-    expect(turn.spoils_of_war).to be_empty
+  #use require thing that Dione showed us and organize it better
+    it "returns player's name, player's deck and spoils_of_war" do
 
 
+      expect(turn.player1).to be(player1)
+      expect(turn.player2).to be(player2)
+      expect(turn.player1.name).to eq("Megan")
+      expect(turn.player2.name).to eq("Aurora")
+      expect(turn.player1.deck).to eq(deck1)
+      expect(turn.player1.deck).to_not eq(deck2)
+
+      expect(turn.spoils_of_war).to be_empty
+
+
+    end
+
+  ##envelop tests in a block as :basic once it runs properly
+
+    it "can determine the type of turn" do
+      turn_first = turn.type
+      expect(turn_first).to eq(:basic)
+    end
+
+    it "can determine the winner" do
+      expect(turn.winner).to eq(player1)
+    end
+
+    it "can move cards to spoils_of_war accordingly" do
+
+      turn.type
+      turn.winner
+      turn.pile_cards
+
+      expect(turn.spoils_of_war).to eq([card1, card3])
+    end
+
+    xit "can award_spoils to the winner" do
+
+      expect(turn.player1).to be(player1)
+      expect(turn.player2).to be(player2)
+      expect(turn.player1.name).to eq("Megan")
+      expect(turn.player2.name).to eq("Aurora")
+
+
+      expect(turn.type).to eq(:basic)
+
+      turn.type
+      turn.winner
+      turn.pile_cards
+
+      winner = turn.winner
+
+      turn.award_spoils(winner)
+
+      expect(player1.deck.cards).to eq([card2, card5, card8, card1, card3])
+      expect(player2.deck.cards).to eq([card4, card6, card7])
+    end
+  ##  KEEP IN MIND - once pile_cards runs, it basically goes to the next turn.
   end
-##envelop tests in a block as :basic once it runs properly
-## error.works on pry
-  xit "can determine the type of turn" do
-    turn_first = turn.type
-    expect(turn_first).to eq(:basic)
-  end
-## ^ same error
-  xit "can determine the winner" do
-    expect(turn.winner).to eq(player1)
-  end
-## same error
-  xit "can move cards to spoils_of_war accordingly" do
-    turn.pile_cards
 
-    expect(turn.spoils_of_war).to be([card1, card3])
-  end
-## same error.  ALSO NOT WORKING ON PRY
-  it "can award_spoils to the winner" do
-
+  context 'turn 2, type :war' do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -67,33 +98,70 @@ RSpec.describe Turn do
     card8 = Card.new(:diamond, '2', 2)
 
     deck1 = Deck.new([card1, card2, card5, card8])
-    deck2 = Deck.new([card3, card4, card6, card7])
+    deck2 = Deck.new([card4, card3, card6, card7])
 
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
 
     turn = Turn.new(player1, player2)
 
-    expect(turn.player1).to be(player1)
-    expect(turn.player2).to be(player2)
-    expect(turn.player1.name).to eq("Megan")
-    expect(turn.player2.name).to eq("Aurora")
+    it "can determine the type of turn" do
+      turn_first = turn.type   ##I probably don't need this?
+      expect(turn_first).to eq(:war)
+    end
 
-    expect(turn.spoils_of_war).to be_empty
-    expect(turn.type).to eq(:basic)
+    it "can move cards to spoils_of_war accordingly" do
+      turn.type
+      turn.winner
+      turn.pile_cards
 
-    winner = turn.winner
-    turn.pile_cards
+      expect(turn.spoils_of_war).to eq([card1, card4, card2, card3, card5, card6])
+    end
 
-    expect(turn.spoils_of_war).to eq([card1, card3])
+## fill it in once I figure out the error
+    xit "can award_spoils to the winner" do
+
+    end
+
+  context 'turn 3, type :mutually_assured_destruction' do
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10)
+    card3 = Card.new(:heart, '9', 9)
+    card4 = Card.new(:diamond, 'Jack', 11)
+    card5 = Card.new(:heart, '8', 8)
+    card6 = Card.new(:diamond, '8', 8)
+    card7 = Card.new(:heart, '3', 3)
+    card8 = Card.new(:diamond, '2', 2)
+
+    deck1 = Deck.new([card1, card2, card5, card8])
+    deck2 = Deck.new([card4, card3, card6, card7])
+
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+
+    turn = Turn.new(player1, player2)
+
+    it "can determine the type of turn" do
+      turn_first = turn.type   ##I probably don't need this?
+      expect(turn_first).to eq(:war)
+    end
+
+    it "can move cards to spoils_of_war accordingly" do
+      turn.type
+      turn.winner
+      turn.pile_cards
+
+      expect(turn.spoils_of_war).to eq([card1, card4, card2, card3, card5, card6])
+    end
+
+## fill it in once I figure out the error
+    xit "can award_spoils to the winner" do
+
+    end
 
 
-
-    turn.award_spoils(winner)
-
-    expect(player1.deck.cards).to eq([card2, card5, card8, card1, card3])
-    expect(player2.deck.cards).to eq([card4, card6, card7])
   end
-##  KEEP IN MIND - once pile_cards runs, it basically goes to the next turn.
+
+
 
 end

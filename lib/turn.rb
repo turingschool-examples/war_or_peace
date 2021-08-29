@@ -81,26 +81,21 @@ class Turn
   def award_spoils(winner_of_turn)
 
 
-
     if winner_of_turn == player1
-      spoils_of_war.each do |card_in_spoils|
-
-        player1.deck.cards << card_in_spoils
-
-require 'pry'; binding.pry
-
-        spoils_of_war.delete_at(0)
+      @spoils_of_war.each do |card_from_spoil|
+        player1.deck.cards.append(card_from_spoil)
       end
 
 
     elsif winner_of_turn == player2
-      spoils_of_war.each do |card_in_spoils|
-        player2.deck.cards << card_in_spoils
-      #  spoils_of_war.delete(card_in_spoils)
+      @spoils_of_war.each do |card_from_spoil|
+        player2.deck.cards.append(card_from_spoil)
       end
 
     end
 
   end
+
+
 
 end
