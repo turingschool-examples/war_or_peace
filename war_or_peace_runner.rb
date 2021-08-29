@@ -19,7 +19,7 @@ suits.each do |suit|
 end
 
 
-# shuffle the 52 cards and divide them into two decks
+# shuffle cards and divide them equally into two decks
 
 full_deck_of_cards.shuffle!
 
@@ -34,11 +34,29 @@ deck2 = Deck.new(half_deck_of_cards2)
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
 
+
+
 #start the game using a new method called start
 #THIS METHOD WILL NEED TO BE INCLUDED IN A CLASS - IT IS UP TO YOU WHICH CLASS
 #EITHER IN EXISTING OR A NEW CLASS
 
-#Welcome to War! (or Peace) This game will be played with 52 cards.
-#The players today are Megan and Aurora.
-#Type 'GO' to start the game!
-#User types GO and a game will start. [account for no capitalization and no and typo]
+METHOD! MOVE AND CHANGE INTO METHOD! 
+
+class Game
+
+  p "Welcome to War! (or Peace) This game will be played with 52 cards."
+  p "The players today are Megan and Aurora."
+  p "Type 'GO' to start the game!"
+
+  answer = gets.chomp
+
+  if answer.upcase == "GO"
+
+
+  elsif answer.upcase != "GO"
+
+    p "Too bad! Maybe next time!"
+
+  end
+
+end
