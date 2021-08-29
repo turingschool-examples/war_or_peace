@@ -14,4 +14,4 @@ deck1 = Deck.new(cards1)
 deck2 = Deck.new(cards2)
 
 player1 = Player.new('Nick', deck1)
-player = Player.new('Melissa', deck2)
+player2 = Player.new('Melissa', deck2)
