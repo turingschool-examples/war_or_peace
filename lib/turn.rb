@@ -1,3 +1,4 @@
+
 class Turn
 
   attr_reader :player1,
@@ -8,6 +9,7 @@ class Turn
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
+    @joker = [:joker, 'Joker', 1]
   end
 
   def type
@@ -21,6 +23,7 @@ class Turn
     else
       return :basic
     end
+    deck_check
   end
 
   def winner
@@ -37,7 +40,7 @@ class Turn
         player2
       end
     elsif type == :mutually_assured_destruction
-      return "No winner this time."
+      # return "No winner this time."
     end
   end
 
@@ -46,42 +49,43 @@ class Turn
       @spoils_of_war << player1.deck.remove_card
       @spoils_of_war << player2.deck.remove_card
     elsif type == :war
-      @spoils_of_war << player1.deck.remove_card
-      @spoils_of_war << player1.deck.remove_card
-      @spoils_of_war << player1.deck.remove_card
-      @spoils_of_war << player2.deck.remove_card
-      @spoils_of_war << player2.deck.remove_card
-      @spoils_of_war << player2.deck.remove_card
+      3.times do
+        @spoils_of_war << player1.deck.remove_card
+        @spoils_of_war << player2.deck.remove_card
+      end
     elsif type == :mutually_assured_destruction
-      player1.deck.remove_card
-      player1.deck.remove_card
-      player1.deck.remove_card
-      player2.deck.remove_card
-      player2.deck.remove_card
-      player2.deck.remove_card
+      3.times do
+        player1.deck.remove_card
+        player2.deck.remove_card
+      end
     end
   end
 
-  def award_spoils(victor)
-    if winner == player1
-      player1.deck.add_card(pile_cards).flatten
-    else
-      player2.deck.add_card(pile_cards).flatten
+  def award_spoils(winner)
+    pile_cards
+    while spoils_of_war != [] do
+      winner.deck.cards << spoils_of_war.shift
     end
   end
+
+  def deck_check
+    if :war && player2.deck.cards.count < 3 || :mutually_assured_destruction && player2.deck.cards.count < 3
+      player2.deck.cards.clear
+      player2.deck.cards.unshift([@joker])
+    elsif :war && player1.deck.cards.count < 3 || :mutually_assured_destruction && player1.deck.cards.count < 3
+      player1.deck.card.clear
+      player1.deck.cards.unshift([@joker])
+    end
+  end
+
 
   def start
-
   count = 0
     loop do
       count += 1
-
-      pile_cards
-
+      type
       winner
-
       award_spoils(winner)
-
       if type == :mutually_assured_destruction
         puts "Turn #{count}: *Mutually Assured Destruction* 6 cards removed from play"
       elsif type == :war
@@ -96,10 +100,12 @@ class Turn
       elsif player2.has_lost? == true
         puts "*~*~*~*#{player1.name} has won the game! *~*~*~*"
         break
-      elsif count == 100
+      elsif count == 10000
         puts "Draw!"
         break
       end
+      p player1.deck.cards.count
+      p player2.deck.cards.count
     end
   end
 end
