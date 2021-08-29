@@ -86,7 +86,7 @@ class Turn
         player1.deck.cards.append(card_from_spoil)
       end
 
-
+#
     elsif winner_of_turn == player2
       @spoils_of_war.each do |card_from_spoil|
         player2.deck.cards.append(card_from_spoil)
