@@ -21,21 +21,22 @@ describe Player do
       expect(@player1.name).to eq('Clarissa')
     end
 
-    it 'can remove a card' do
-      expect(@player1.deck.remove_card).to eq(@card1)
+    it 'check if player has a deck' do
+      expect(@player1.deck).to eq(@deck)
     end
 
+
     it 'removes card and checks if it has lost' do
+      expect(@player1.has_lost?).to eq(false)
       expect(@player1.deck.remove_card).to eq(@card1)
-      expect(@player1.has_lost).to eq(false)
+      expect(@player1.has_lost?).to eq(false)
       expect(@player1.deck.remove_card).to eq(@card2)
-      expect(@player1.has_lost).to eq(false)
+      expect(@player1.has_lost?).to eq(false)
       expect(@player1.deck.remove_card).to eq(@card3)
-      expect(@player1.has_lost).to eq(true)
+      expect(@player1.has_lost?).to eq(true)
     end
 
     it 'has a playable deck' do
-      require "pry"; binding.pry
       expect(@player1.deck).to eq(@deck)
     end
   end
