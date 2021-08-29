@@ -52,8 +52,6 @@ class Turn
   def pile_cards
     if type == :basic
       @spoils_of_war.push(@player1.deck.cards[0], @player2.deck.cards[0])
-      @player1.deck.cards.delete_at(0)
-      @player2.deck.cards.delete_at(0)
     elsif type == :war
       @spoils_of_war.push(@player1.deck.cards[0],
                           @player1.deck.cards[1],
@@ -61,15 +59,8 @@ class Turn
                           @player2.deck.cards[0],
                           @player2.deck.cards[1],
                           @player2.deck.cards[2])
-      3.times {|card| @player1.deck.cards.delete_at(0)}
-      3.times {|card| @player2.deck.cards.delete_at(0)}
     elsif type == :mutually_assured_destruction
-      3.times {|card| @player1.deck.cards.delete_at(0)}
-      3.times {|card| @player2.deck.cards.delete_at(0)}
-    elsif type == :player1_winner
-      @player2.deck.cards.clear
-    else
-      @player2.deck.cards.clear
+      @spoils_of_war = []
     end
   end
 
@@ -99,7 +90,7 @@ class Turn
     else
       @player2.deck.cards.clear
     end
-    
+
     @spoils_of_war.clear
   end
 
