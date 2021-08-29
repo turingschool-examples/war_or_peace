@@ -62,6 +62,13 @@ deck2 = Deck.new([card2, card4, card6, card8, card10, card12, card14, card16, ca
 player1 = Player.new('Steen', deck1)
 player2 = Player.new('Janx', deck2)
 
+turn = Turn.new(player1, player2)
+
 puts "Welcome to War. (or Peace) This game will be played with 52 cards.
 The players today are #{player1.name} and #{player2.name}.
 type'GO' to start the game!"
+go = gets.chomp
+
+if go == "go"
+  turn.start
+end

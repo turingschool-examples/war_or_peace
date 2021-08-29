@@ -54,11 +54,38 @@ class Turn
   end
 
   def award_spoils(winner)
-    if "no winner"
+    if winner == "no winner"
       @spoils_of_war
-    else winner.deck.cards << @spoils_of_war
+    else
+      winner.deck.cards << @spoils_of_war
+    end
   end
-end
+
+
+
+  def start
+    count = 0
+  while player1.has_lost? == false || player2.has_lost? == false do
+
+    count += 1
+
+    award_spoils(winner)
+    pile_cards
+    winner
+
+
+    if type == :basic
+      p "#{winner.name} won 2 cards"
+
+    elsif type == :war
+      p "#{winner.name} won 6 cards"
+
+    else
+      p "*mutually assured destruction* 6 cards removed from play"
+    end
+  end
+
+  end
 end
 
 
