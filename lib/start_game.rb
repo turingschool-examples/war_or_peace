@@ -50,9 +50,6 @@ class StartGame
 
       draw_test += 1
       turn_num += 1
-
-      p "#{player1.name} has #{player1.deck.cards.count} cards"
-      p "#{player2.name} has #{player2.deck.cards.count} cards"
     end
 
     if draw_test == 1000001
