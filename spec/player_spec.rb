@@ -19,4 +19,12 @@ describe Player do
       expect(deck).to be_a Deck
     end
   end
+
+  describe '#has_lost' do
+    it 'determines if player loses' do
+      player = Player.new('Clarisa','deck_1')
+
+      expect(deck_1).to eq 0
+    end
+  end    
 end
