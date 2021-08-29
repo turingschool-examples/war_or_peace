@@ -26,13 +26,14 @@ describe Player do
     end
 
 
-    it 'removes card and checks if it has lost' do
+    it 'checks to see if a player has lost' do
       expect(@player1.has_lost?).to eq(false)
-      expect(@player1.deck.remove_card).to eq(@card1)
-      expect(@player1.has_lost?).to eq(false)
-      expect(@player1.deck.remove_card).to eq(@card2)
-      expect(@player1.has_lost?).to eq(false)
-      expect(@player1.deck.remove_card).to eq(@card3)
+      3.times do
+        @player1.deck.remove_card
+      end
+      # @player1.deck.remove_card
+      # @player1.deck.remove_card
+      # @player1.deck.remove_card
       expect(@player1.has_lost?).to eq(true)
     end
 
