@@ -117,4 +117,8 @@ class Turn
       return "Next Round!"
     end
   end
+
+  #start method to begin the game
+  def start
+  end
 end
