@@ -20,6 +20,7 @@
      player2 = Player.new("Aurora", deck2)
      turn = Turn.new(player1, player2)
 
+     expect(turn).to be_an_instance_of(Turn)
      expect(turn.player1).to eq(player1)
      expect(turn.player2).to eq(player2)
      expect(turn.spoils_of_war).to eq([])
@@ -105,7 +106,7 @@
     turn = Turn.new(player1, player2)
     winner = turn.winner
 
-    expect(turn.winner).to eq(winner)
+    expect(turn.winner).to eq(player1)
   end
 
   it 'piles cards' do
