@@ -4,29 +4,43 @@ require '../lib/card'
 require '../lib/player'
 require '../lib/turn'
 
-RSpec.describe Player do
+RSpec.describe Turn do
   it 'exists' do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:heart, '2', 2)
     card3 = Card.new(:spade, 'Ace', 14)
     card4 = Card.new(:club, '5', 5)
-    cards = [card1, card2, card3, card4]
     deck1 = Deck.new([card1, card2, card3, card4])
     player1 = Player.new('Megan', deck1)
-    expect(player1.name).to eq('Megan')
-    expect(player1.deck).to eq(deck1)
-  end
-
-  it 'exists' do
     card5 = Card.new(:spade, '6', 6)
     card6 = Card.new(:club, 'Jack', 11)
     card7 = Card.new(:diamond, '10', 10)
     card8 = Card.new(:heart, '8', 8)
-    cards = [card5, card6, card7, card8]
     deck2 = Deck.new([card5, card6, card7, card8])
     player2 = Player.new('Aurora', deck2)
-    expect(player2.name).to eq('Aurora')
-    expect(player2.deck).to eq(deck2)
+    turn = Turn.new(player1, player2)
+
+    expect(turn).to be_an_instance_of(Turn)
+  end
+
+  it 'has attributes' do
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:heart, '2', 2)
+    card3 = Card.new(:spade, 'Ace', 14)
+    card4 = Card.new(:club, '5', 5)
+    deck1 = Deck.new([card1, card2, card3, card4])
+    player1 = Player.new('Megan', deck1)
+    card5 = Card.new(:spade, '6', 6)
+    card6 = Card.new(:club, 'Jack', 11)
+    card7 = Card.new(:diamond, '10', 10)
+    card8 = Card.new(:heart, '8', 8)
+    deck2 = Deck.new([card5, card6, card7, card8])
+    player2 = Player.new('Aurora', deck2)
+    turn = Turn.new(player1, player2)
+
+    expect(turn.player1).to eq(player1)
+    expect(turn.player2).to eq(player2)
+    expect(turn.spoils_of_war).to eq([])
   end
 
   it 'type of turn :basic' do
@@ -146,7 +160,7 @@ RSpec.describe Player do
     expect(turn3.winner).to eq("No winner")
   end
 
-  xit 'pile cards :basic' do
+  it 'pile cards :basic' do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:heart, '2', 2)
     card3 = Card.new(:spade, 'Ace', 14)
@@ -163,9 +177,8 @@ RSpec.describe Player do
 
     turn1 = Turn.new(player1, player2)
     expect(turn1.type).to eq(:basic)
-    expect(turn1.winner).to eq(player1)
-    expect(:spoils_of_war).to eq([card1, card4])
+    winner = turn1.winner
+    turn1.pile_cards
+    expect(turn1.spoils_of_war).to eq([card1, card4])
   end
-
-
 end

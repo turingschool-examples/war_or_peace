@@ -25,8 +25,6 @@ RSpec.describe Deck do
     expect(deck.rank_of_card_at(0)).to be_a(Integer)
     expect(deck.rank_of_card_at(0)).to be(12)
     expect(deck.rank_of_card_at(1)).to be(2)
-
-
   end
 
   it 'high ranking cards' do
@@ -39,7 +37,7 @@ RSpec.describe Deck do
     expect(deck.high_ranking_cards).to eq([card1, card3])
   end
 
-  xit 'percent high ranking' do
+  it 'percent high ranking' do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:heart, '2', 2)
     card3 = Card.new(:spade, 'Ace', 14)
@@ -61,7 +59,7 @@ RSpec.describe Deck do
     expect(deck.remove_card).to be(card1)
   end
 
-  xit 'add card' do
+  it 'add card' do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:heart, '2', 2)
     card3 = Card.new(:spade, 'Ace', 14)
@@ -71,5 +69,4 @@ RSpec.describe Deck do
     new_card = Card.new(:spade, 'Jack', 11)
     expect(deck.add_card(new_card)).to include(card1, card2, card3, card4, new_card)
   end
-
 end

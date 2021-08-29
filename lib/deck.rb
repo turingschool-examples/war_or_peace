@@ -13,9 +13,10 @@ class Deck
     cards.find_all do |card|
       card.rank >= 11
     end
+
   end
 
-  def percent_high_ranking    #calculate high ranking cards / card count
+  def percent_high_ranking
     (((high_ranking_cards.count.to_f) / (cards.count.to_f)).round(2) * 100).to_i
   end
 
