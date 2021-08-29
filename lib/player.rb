@@ -5,6 +5,7 @@ class Player
     @name = name
     @deck = deck
     @game_lost = false
+    
   end
 
   def has_lost?
