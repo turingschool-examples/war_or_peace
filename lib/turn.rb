@@ -61,11 +61,11 @@ class Turn
     end
   end
 
-  def award_spoils
+  def award_spoils(winner)
     if winner == player1
-      deck1 << add_card(@spoils_of_war)
+      deck1.add_card(@spoils_of_war)
     else
-      deck2 << add_card(@spoils_of_war)
+      deck2.add_card(@spoils_of_war)
     end
   end
 end

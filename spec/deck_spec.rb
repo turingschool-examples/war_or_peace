@@ -67,6 +67,8 @@ RSpec.describe Deck do
     cards = [card1, card2, card3, card4]
     deck = Deck.new(cards)
     card5 = Card.new(:spade, 'Jack', 11)
-    expect(deck.add_card(card)).to include(card1, card2, card3, card4, card5)
+
+    deck.add_card(card5)
+    expect(deck).to eq([card1, card2, card3, card4, card5])
   end
 end

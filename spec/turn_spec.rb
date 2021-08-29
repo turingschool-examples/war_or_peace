@@ -222,4 +222,25 @@ RSpec.describe Turn do
     turn1.pile_cards
     expect(turn1.spoils_of_war).to eq([])
   end
+
+  it 'award spoils' do
+    card1 = Card.new(:diamond, '6', 6)
+    card2 = Card.new(:heart, '2', 2)
+    card3 = Card.new(:spade, 'Queen', 12)
+    cards = [card1, card2, card3]
+    deck1 = Deck.new([card1, card2, card3])
+    player1 = Player.new('Megan', deck1)
+
+    card4 = Card.new(:spade, '6', 6)
+    card5 = Card.new(:club, 'Jack', 11)
+    card6 = Card.new(:diamond, 'Queen', 12)
+    cards = [card4, card5, card6]
+    deck2 = Deck.new([card4, card5, card6])
+    player2 = Player.new('Aurora', deck2)
+    turn1 = Turn.new(player1, player2)
+    expect(turn1.type).to eq(:mutually_assured_destruction)
+    winner = turn1.winner
+    turn1.pile_cards
+    expect(turn1.spoils_of_war).to eq([])
+  end
 end
