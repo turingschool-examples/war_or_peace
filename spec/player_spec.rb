@@ -22,6 +22,7 @@ describe Player do
       expect(player.deck).to be_a Deck
     end
   end
+
   describe '#has_lost?' do
     it "will return a Boolean value" do
       card1 = Card.new(:diamond, 'Queen', 12)
@@ -40,6 +41,7 @@ describe Player do
       expect(player.has_lost?).to be false
     end
   end
+  
   describe '#remove_card'do
     it "will remove the first card from deck" do
       card1 = Card.new(:diamond, 'Queen', 12)
