@@ -9,16 +9,29 @@ class Turn
   end
 
   def type
-    if (@player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)) && (@player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2))
-      :mutually_assured_destruction
-    elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
-      :war
-    else @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
-      :basic
+    if @player1.deck.cards.length <= 2 || @player2.deck.cards.length <= 2
+      if @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
+        if @player1.deck.cards.length <= 2
+          :player2_winner
+        else
+          :player1_winner
+        end
+      else @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+        :basic
+      end
+    else
+      if (@player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)) && (@player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2))
+        :mutually_assured_destruction
+      elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
+          :war
+      else @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+        :basic
+      end
     end
   end
 
   def winner
+    winner = []
     if type == :basic
       if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
         @player1
@@ -50,9 +63,13 @@ class Turn
                           @player2.deck.cards[2])
       3.times {|card| @player1.deck.cards.delete_at(0)}
       3.times {|card| @player2.deck.cards.delete_at(0)}
-    else
+    elsif type == :mutually_assured_destruction
       3.times {|card| @player1.deck.cards.delete_at(0)}
       3.times {|card| @player2.deck.cards.delete_at(0)}
+    elsif type == :player1_winner
+      @player2.deck.cards.clear
+    else
+      @player2.deck.cards.clear
     end
   end
 
@@ -68,6 +85,21 @@ class Turn
       end
     end
 
+    if type == :basic
+      @player1.deck.cards.delete_at(0)
+      @player2.deck.cards.delete_at(0)
+    elsif type == :war
+      3.times {|card| @player1.deck.cards.delete_at(0)}
+      3.times {|card| @player2.deck.cards.delete_at(0)}
+    elsif type == :mutually_assured_destruction
+      3.times {|card| @player1.deck.cards.delete_at(0)}
+      3.times {|card| @player2.deck.cards.delete_at(0)}
+    elsif type == :player1_winner
+      @player2.deck.cards.clear
+    else
+      @player2.deck.cards.clear
+    end
+    
     @spoils_of_war.clear
   end
 
