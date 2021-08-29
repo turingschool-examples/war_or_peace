@@ -30,7 +30,8 @@ class Deck
     @cards.delete_at(0)
   end
 
-  def add_card
+  def add_card(new_card)
+    @cards.push(new_card)
 
   end
 
