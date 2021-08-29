@@ -62,6 +62,7 @@ describe Turn do
       player1 = Player.new("Jacob", deck1)
       player2 = Player.new("Bacoj", deck2)
       turn1 = Turn.new(player1, player2)
+
       expect(turn1.type).to eq(:basic)
     end
   end
@@ -81,6 +82,7 @@ describe Turn do
       player1 = Player.new("Jacob", deck1)
       player2 = Player.new("Bacoj", deck2)
       turn1 = Turn.new(player1, player2)
+
       expect(turn1.winner).to eq(turn1.player2)
     end
   end
