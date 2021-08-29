@@ -16,6 +16,7 @@ describe Deck do
       expect(deck).to be_a Deck
     end
   end
+
   describe '#rank_of_card_at' do
     it "returns the rank at the given index" do
       card1 = Card.new(:diamond, 'Queen', 12)
@@ -27,6 +28,7 @@ describe Deck do
       expect(deck.rank_of_card_at(0)).to eq(12)
     end
   end
+
   describe '#high_ranking_cards' do
     it 'starts as an empty array' do
       high_rank_cards = []
@@ -41,6 +43,7 @@ describe Deck do
       expect(deck.high_ranking_cards).to be_an Array
     end
   end
+
   describe '#percent_high_ranking' do
     it 'returns the percentage of high ranking cards' do
       card1 = Card.new(:diamond, 'Queen', 12)
@@ -52,6 +55,7 @@ describe Deck do
       expect(deck.percent_high_ranking).to be_a Float
     end
   end
+
   describe '#remove_card' do
     it 'removes the top (first) card of the deck' do
       card1 = Card.new(:diamond, 'Queen', 12)
@@ -63,6 +67,7 @@ describe Deck do
       expect(cards.count).to eq(2)
     end
   end
+  
   describe '#add_card' do
     it 'adds a card to the bottom (end) of the deck' do
       card1 = Card.new(:diamond, 'Queen', 12)
