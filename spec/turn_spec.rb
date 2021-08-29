@@ -39,4 +39,6 @@ describe Turn do
     it 'determines winner' do
       turn = Turn.new('Clarisa', 'Greg')
       expect(rank_of_card_at(0)).to include @rank
+    end
+  end
 end
