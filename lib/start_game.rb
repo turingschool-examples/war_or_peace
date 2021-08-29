@@ -24,7 +24,18 @@ class StartGame
       turn.award_spoils(winner)
 
       if player1.deck.cards.count == 3 || player2.deck.cards.count == 3
-        turn_num = 1000000
+
+        if turn_type == :basic
+          p "Turn #{turn_num}: #{winner.name} won 2 cards"
+        elsif turn_type == :war
+          p p "Turn #{turn_num}: WAR - #{winner.name} won 6 cards"
+        else
+          p "Turn #{turn_num}: *mutually assured destruction* 6 cards removed from play"
+          draw_test = 1000000
+        end
+
+      turn_num = 1000000
+
       elsif turn_type == :basic
         p "Turn #{turn_num}: #{winner.name} won 2 cards"
       elsif turn_type == :war
@@ -36,8 +47,12 @@ class StartGame
         p "error: no turn type"
         winner = @player1
       end
+
       draw_test += 1
       turn_num += 1
+
+      p "#{player1.name} has #{player1.deck.cards.count} cards"
+      p "#{player2.name} has #{player2.deck.cards.count} cards"
     end
 
     if draw_test == 1000001
