@@ -55,4 +55,9 @@ RSpec.describe Deck do
     deck = Deck.new(@full_deck)
     expect(deck.high_ranking_cards.size).to eq(16)
   end
+  
+  it 'can return percent high ranking' do
+    deck = Deck.new(@full_deck)
+    expect(deck.percent_high_ranking).to eq(16/52.0)
+  end
 end
