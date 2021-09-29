@@ -23,8 +23,8 @@ RSpec.describe Deck do
 
   it 'can return rank of card at' do
     deck = Deck.new(@cards)
-    expect(deck.rank_of_card_at(0).to eq(@cards[0]))
-    expect(deck.rank_of_card_at(1).to eq(@cards[1]))
+    expect(deck.rank_of_card_at(0).to eq(@cards[0].rank))
+    expect(deck.rank_of_card_at(1).to eq(@cards[1].rank))
   end
 
   
