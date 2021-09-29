@@ -6,7 +6,6 @@ RSpec.describe Deck do
   before :each do
     suits = %i[diamond heart spaid club]
     card_names = %w[
-      Ace
       Two
       Three
       Four
@@ -19,12 +18,13 @@ RSpec.describe Deck do
       Jack
       Queen
       King
+      Ace
     ]
 
     @full_deck = []
     suits.each do |suit|
       card_names.each_with_index do |name, index|
-        card = Card.new(suit, name, index + 1)
+        card = Card.new(suit, name, index + 2)
         @full_deck << card
       end
     end
@@ -53,6 +53,6 @@ RSpec.describe Deck do
 
   it 'can return high ranking cards' do
     deck = Deck.new(@full_deck)
-    expect(deck.high_ranking_cards.size).to eq(12)
+    expect(deck.high_ranking_cards.size).to eq(16)
   end
 end
