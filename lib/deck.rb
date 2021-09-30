@@ -1,7 +1,7 @@
 class Deck
   attr_reader :cards
 
-  def initialize(cards)
+  def initialize(cards = full_deck)
     @cards = cards
   end
 
@@ -26,6 +26,33 @@ class Deck
 
   def add_card(card)
     @cards << card
+  end
+
+  def full_deck
+    suits = %i[diamond heart spaid club]
+    card_names = %w[
+      Two
+      Three
+      Four
+      Five
+      Six
+      Seven
+      Eight
+      Nine
+      Ten
+      Jack
+      Queen
+      King
+      Ace
+    ]
+
+    full_deck = []
+    suits.each do |suit|
+      card_names.each_with_index do |name, index|
+        full_deck << Card.new(suit, name, index + 2)
+      end
+    end
+    full_deck
   end
 
 end

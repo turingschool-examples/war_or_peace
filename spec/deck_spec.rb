@@ -41,6 +41,11 @@ RSpec.describe Deck do
     expect(deck).to be_an_instance_of(Deck)
   end
 
+  it 'defaults to a full_deck' do
+    deck = Deck.new
+    expect(deck.cards.size).to eq(52)
+  end
+
   it 'can read cards' do
     deck = Deck.new(@cards)
     expect(deck.cards).to eq(@cards)
