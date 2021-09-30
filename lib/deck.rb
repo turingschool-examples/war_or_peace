@@ -54,4 +54,8 @@ class Deck
     end
     full_deck
   end
+
+  def shuffle
+    @cards = @cards.shuffle
+  end
 end

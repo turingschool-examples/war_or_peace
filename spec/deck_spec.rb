@@ -61,28 +61,37 @@ RSpec.describe Deck do
     deck = Deck.new(@full_deck)
     expect(deck.high_ranking_cards.size).to eq(16)
   end
-  
+
   it 'can return percent high ranking' do
     deck = Deck.new(@full_deck)
-    expect(deck.percent_high_ranking).to eq(16/52.0)
+    expect(deck.percent_high_ranking).to eq(16 / 52.0)
   end
-  
+
   it 'can remove top card' do
     deck = Deck.new(@full_deck)
-    expect(deck.cards[0].value).to eq("Two")
+    expect(deck.cards[0].value).to eq('Two')
     expect(deck.cards.size).to eq(52)
     deck.remove_card
-    expect(deck.cards[0].value).to eq("Three")
+    expect(deck.cards[0].value).to eq('Three')
     expect(deck.cards.size).to eq(51)
   end
 
   it 'can add a card to end (bottom) of deck' do
     deck = Deck.new(@full_deck)
-    expect(deck.cards.last.value).to eq("Ace")
+    expect(deck.cards.last.value).to eq('Ace')
     discard = deck.remove_card
     expect(deck.cards.size).to eq(51)
-    expect(deck.cards.last.value).to eq("Ace")
+    expect(deck.cards.last.value).to eq('Ace')
     deck.add_card(discard)
-    expect(deck.cards.last.value).to eq("Two")
+    expect(deck.cards.last.value).to eq('Two')
+  end
+
+  it 'shuffle' do
+    deck = Deck.new
+    start_cards = deck.cards.map { |card| card.rank }
+    deck.shuffle
+    shuffled_cards = deck.cards.map { |card| card.rank }
+    expect(start_cards).to_not eq(shuffled_cards)
+    expect(start_cards.sort).to eq(shuffled_cards.sort)
   end
 end
