@@ -1,4 +1,5 @@
 require 'rspec'
+require 'pry'
 require './lib/deck'
 require './lib/card'
 
@@ -59,5 +60,15 @@ RSpec.describe Deck do
   it 'can return percent high ranking' do
     deck = Deck.new(@full_deck)
     expect(deck.percent_high_ranking).to eq(16/52.0)
+  end
+  
+  it 'can remove top card' do
+    deck = Deck.new(@full_deck)
+    expect(deck.cards[0].value).to eq("Two")
+    expect(deck.cards.size).to eq(52)
+    deck.remove_card
+    expect(deck.cards[0].value).to eq("Three")
+    expect(deck.cards.size).to eq(51)
+
   end
 end
