@@ -10,7 +10,13 @@ RSpec.describe Player do
   end
 
   it 'exists' do
-    deck = []
-    player = Player.new("Sally", deck)
+    player = Player.new("Sally", Deck.new)
+  end
+  
+  it 'has attributes' do
+    player = Player.new("Sally", Deck.new)
+    expect(player.name).to eq("Sally")
+    expect(player.deck).to be_a(Deck)
+    expect(player.deck.cards.size).to eq(52)
   end
 end

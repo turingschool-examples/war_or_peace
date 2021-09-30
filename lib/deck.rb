@@ -11,7 +11,7 @@ class Deck
 
   def high_ranking_cards
     @cards.select do |card|
-        card.rank >= 11
+      card.rank >= 11
     end
   end
 
@@ -19,7 +19,7 @@ class Deck
     high_cards = high_ranking_cards
     high_cards.size.to_f / @cards.size
   end
-  
+
   def remove_card
     @cards.shift
   end
@@ -54,5 +54,4 @@ class Deck
     end
     full_deck
   end
-
 end
