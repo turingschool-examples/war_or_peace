@@ -69,6 +69,15 @@ RSpec.describe Deck do
     deck.remove_card
     expect(deck.cards[0].value).to eq("Three")
     expect(deck.cards.size).to eq(51)
+  end
 
+  it 'can add a card to end (bottom) of deck' do
+    deck = Deck.new(@full_deck)
+    expect(deck.cards.last.value).to eq("Ace")
+    discard = deck.remove_card
+    expect(deck.cards.size).to eq(51)
+    expect(deck.cards.last.value).to eq("Ace")
+    deck.add_card(discard)
+    expect(deck.cards.last.value).to eq("Two")
   end
 end
