@@ -6,6 +6,8 @@ class Deck
   end
 
   def rank_of_card_at(index)
+    return 0 if @cards[index].nil?
+
     @cards[index].rank
   end
 
@@ -21,7 +23,7 @@ class Deck
   end
 
   def remove_card
-    @cards.shift
+    @cards.shift if @cards.size > 0
   end
 
   def add_card(card)
