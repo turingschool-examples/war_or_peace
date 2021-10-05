@@ -1,7 +1,9 @@
+require_relative 'deck'
+
 class Player
   attr_reader :name, :deck
 
-  def initialize(name, deck)
+  def initialize(name, deck = Deck.new)
     @name = name
     @deck = deck
   end

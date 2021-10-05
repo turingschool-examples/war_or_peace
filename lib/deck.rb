@@ -1,5 +1,8 @@
+require_relative 'card'
+
 class Deck
   attr_reader :cards
+  attr_writer :cards
 
   def initialize(cards = full_deck)
     @cards = cards
