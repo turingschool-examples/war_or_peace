@@ -19,7 +19,7 @@ class Game
       turn.pile_cards
       pile_size = turn.spoils_of_war.size
       print "Turn #{count}: #{display_details(turn_type, turn_winner, pile_size)}\n"
-      turn.award_spoils(turn_winner, turn_type)
+      turn.award_spoils(turn_winner) unless turn_type == :mutually_assured_destruction
       print "#{@player1.name}_cards: #{@player1.deck.cards.size}\n"
       print "#{@player2.name}_cards: #{@player2.deck.cards.size}\n"
       break if count == 999_999

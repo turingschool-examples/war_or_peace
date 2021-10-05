@@ -47,8 +47,8 @@ class Turn
     end
   end
 
-  def award_spoils(winning_player, turn_type)
-    winning_player.deck.cards += spoils_of_war unless turn_type == :mutually_assured_destruction
+  def award_spoils(winning_player)
+    winning_player.deck.cards += spoils_of_war
   end
 
   def pile_cards
