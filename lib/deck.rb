@@ -19,4 +19,12 @@ class Deck
   def percent_high_ranking
     self.high_ranking_cards.count / @cards.count
   end
+
+  def remove_card
+    @cards.shift
+  end
+
+  def add_card(card)
+    @cards << card
+  end
 end

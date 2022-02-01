@@ -34,6 +34,21 @@ RSpec.describe Deck do
     expect(@deck.percent_high_ranking).to eq((2/3))
   end
 
+  it 'can #remove_card from top of deck' do
+    expect(@deck.remove_card).to eq(@card1)
+    expect(@deck.cards).to eq([@card2, @card3])
+    expect(@deck.high_ranking_cards).to eq([@card3])
+    expect(@deck.percent_high_ranking).to eq(1/2)
+  end
 
+  it 'can add a card to the bottom of the dec and verify changes in array' do
+    @card4 = Card.new(:club, '5', 5)
+    expected = [@card1, @card2, @card3, @card4]
+
+    expect(@deck.add_card(@card4)).to eq([@card1, @card2, @card3, @card4])
+    expect(@deck.cards).to eq(expected)
+    expect(@deck.high_ranking_cards).to eq([@card1, @card3])
+    expect(@deck.percent_high_ranking).to eq(2/4)
+  end
 
 end
