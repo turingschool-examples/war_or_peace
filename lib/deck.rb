@@ -14,6 +14,9 @@ class Deck
 
   def high_ranking_cards
     @cards.find_all {|card| card.rank >= 11}
-    # binding.pry
+  end
+
+  def percent_high_ranking
+    self.high_ranking_cards.count / @cards.count
   end
 end
