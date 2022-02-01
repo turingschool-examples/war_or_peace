@@ -24,4 +24,9 @@ RSpec.describe Deck do
     expect(@deck.rank_of_card_at(0)).to eq(12)
     expect(@deck.rank_of_card_at(2)).to eq(14)
   end
+
+  it 'can create an array of only the high ranking cards' do
+    expected = [@card1, @card3]
+    expect(@deck.high_ranking_cards).to eq(expected)
+  end
 end
