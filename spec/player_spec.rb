@@ -14,11 +14,12 @@ RSpec.describe Player do
     @player = Player.new('Clarisa', @deck)
   end
 
-it 'player instance exists and is an instance of Player class' do
-  binding.pry
-  expect(@player).to be_a(Player)
-end
+  it 'player instance exists and is an instance of Player class' do
+    expect(@player).to be_a(Player)
+  end
 
-
-
+  it 'returns instance attribute methods' do
+    expect(@player.name).to eq("Clarisa")
+    expect(@player.deck).to eq(@deck)
+  end
 end
