@@ -20,7 +20,8 @@ RSpec.describe Deck do
     expect(@deck.cards).to eq(expected)
   end
 
-  # it 'can return the rank of the card at the given index' do
-  #   expect(@deck.rank_of_card_at(0)).to eq(12)
-  # end
+  it 'can return the rank of the card at the given index' do
+    expect(@deck.rank_of_card_at(0)).to eq(12)
+    expect(@deck.rank_of_card_at(2)).to eq(14)
+  end
 end
