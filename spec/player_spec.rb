@@ -36,8 +36,14 @@ RSpec.describe Player do
     expect(@player.deck.remove_card).to eq(@card1)
   end
 
-  xit 'returns correct boolean with #has_lost? after cards removed' do
+  it 'returns correct boolean with #has_lost? after cards removed' do
     expect(@player.has_lost?).to eq(false)
+    @player.deck.remove_card
+    expect(@player.has_lost?).to eq(false)
+    @player.deck.remove_card
+    expect(@player.has_lost?).to eq(false)
+    @player.deck.remove_card
+    expect(@player.has_lost?).to eq(true)
   end
 
 end
