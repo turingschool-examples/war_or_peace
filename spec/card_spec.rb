@@ -1,5 +1,5 @@
 require 'rspec'
-require '../lib/card'
+require './lib/card'
 
 RSpec.describe Card do
   it "exists" do
