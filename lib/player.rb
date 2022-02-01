@@ -1,3 +1,7 @@
+require './lib/card'
+require './lib/deck'
+require 'pry'
+
 class Player
   attr_reader :name, :deck
 
@@ -9,4 +13,7 @@ class Player
     @name = name
   end
 
+  def has_lost?
+    @deck.cards.count == 0
+  end
 end
