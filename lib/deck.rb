@@ -2,10 +2,10 @@ class Deck
   # initialize a deck of cards, passed an array of cards
   attr_reader :cards
   def initialize (cards)
+    @cards = cards
   end
 
   def cards
-    @cards = cards
     return @cards
   end
 

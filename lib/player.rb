@@ -11,7 +11,6 @@ class Player
   end
 
   def has_lost?
-
   end
-    
+
 end
