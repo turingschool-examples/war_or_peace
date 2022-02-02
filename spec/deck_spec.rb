@@ -18,7 +18,7 @@ require './lib/card'
      deck = Deck.new(cards)
      deck.high_ranking_cards
      expect(deck.rank_of_card_at(0)).to eq(12)
-     expect(deck.high_ranked).to eq ([card1, card3])
+     expect(deck.high_ranking_cards).to eq ([card1, card3])
      expect(deck.percent_high_ranking).to eq (66.67)
    end
 
