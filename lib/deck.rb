@@ -3,14 +3,15 @@ class Deck
   attr_reader :cards,
               :high_ranking_cards,
               :total_high_ranking_cards,
-              :total_cards
+              :total_cards,
+              :percent_high_ranking
 
   def initialize(cards)
     @cards = cards
     @high_ranking_cards = []
     @total_high_ranking_cards = 0
-    @total_cards = 0
-    @percent_high_ranking = 0
+    @total_cards = @cards.length
+    @percent_high_ranking = 0.0
   end
 
   def rank_of_card_at(index)
@@ -25,15 +26,15 @@ class Deck
     end
   end
 
-  def percent_high_ranking
-    @cards.each do |card|
-      if card.rank > 10
-        @high_ranking_cards << card
-      end
-      @total_high_ranking_cards = @high_ranking_cards.length
-      @total_cards = @cards.length
-      @percent_high_ranking = (@total_high_ranking_cards / @total_cards) * 100
-    end
+  def count_high_ranking_cards
+    @total_high_ranking_cards = @high_ranking_cards.length
+  end
+
+  def calculate_percent_high_ranking
+    @total_cards = @total_cards.to_f
+    @total_high_ranking_cards = @total_high_ranking_cards.to_f
+    @percent_high_ranking = (@total_high_ranking_cards / @total_cards) * 100.0
+    @percent_high_ranking = @percent_high_ranking.round(1)
   end
 
   def remove_card
