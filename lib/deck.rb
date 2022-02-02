@@ -24,4 +24,12 @@ class Deck
         unrounded = high_rank.count / cards.count.to_f * 100
         return unrounded.round(2)
     end
+
+    def remove_card
+        cards.shift()
+    end
+
+    def add_card(card)
+        cards.append(card)
+    end
 end
