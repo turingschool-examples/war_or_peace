@@ -1,15 +1,12 @@
 class Deck
 
-  attr_reader :cards,
-              :total_cards,
-              :total_high_ranking_cards
+  attr_reader :cards
 
   def initialize(cards)
     @cards = cards
     @high_ranking_cards = []
     @total_cards = 0
     @total_high_ranking_cards = 0
-    @percent_high_ranking = 0.0
   end
 
   def rank_of_card_at(index)
