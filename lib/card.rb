@@ -1,3 +1,4 @@
+#Playing Card with suit,value and rank, Ace is highest
 class Card
 
   attr_reader :suit, :value, :rank
@@ -6,18 +7,4 @@ class Card
     @value = value
     @rank = rank
   end
-
-  # def silver?
-  #   if @color == 'silver'
-  #     return true
-  #   else
-  #     false
-  #   end
-  # end
-
- # def say (message)
- #   "**;* #{message} **;*"
- # end
-
-
 end

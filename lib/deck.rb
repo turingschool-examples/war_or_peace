@@ -4,7 +4,6 @@ class Deck
   attr_reader :cards
   def initialize (cards)
     @cards = cards
-    @high_ranking_cards = []
   end
 
   def cards
@@ -19,29 +18,32 @@ class Deck
   # return an array of cards in the deck that have a rank
   # of 11 or above (face cards and aces)
   def high_ranking_cards
+    @high_ranking_cards = []
     #build high rank card array
     @cards.each do |card|
 
       if card.rank >= 11
-#        puts "Rank card is #{card}"
-#       puts card.rank
         @high_ranking_cards.push(card)
-#        puts "card array is #{@high_ranking_cards}"
       end
     end
     return @high_ranking_cards
   end
 
   # return the percentage of cards that are high ranking
-#  def percent_high_ranking
-#  end
+  def percent_high_ranking
+
+    percent_high = (((@high_ranking_cards.length).to_f) / ((@cards.length).to_f) *100)
+    return percent_high.round(2)
+  end
 
   #method to remove a card from the top of the deck
-#  def remove_card
-#  end
+  def remove_card
+    @cards.pop
+  end
 
   #method to add a card to the bottome of the deck
-#  def add_card
-#  end
+  def add_card (card_to_be_added)
+    @cards.push(card_to_be_added)
+  end
 
 end
