@@ -1,12 +1,14 @@
 class Deck
 
-  attr_reader :cards
+  attr_reader :cards,
+              :total_cards,
+              :total_high_ranking_cards
 
   def initialize(cards)
     @cards = cards
     @high_ranking_cards = []
+    @total_cards = 0
     @total_high_ranking_cards = 0
-    @total_cards = @cards.length
     @percent_high_ranking = 0.0
   end
 
@@ -16,7 +18,7 @@ class Deck
 
   def high_ranking_cards
     @cards.each do |card|
-      if card.rank >= 11
+      if card.rank >= 11 && @high_ranking_cards.include?(card) == false
         @high_ranking_cards.push(card)
       end
     end
@@ -25,6 +27,7 @@ class Deck
 
   def percent_high_ranking
     @total_high_ranking_cards = @high_ranking_cards.length
+    @total_cards = @cards.length
     @total_cards = @total_cards.to_f
     @total_high_ranking_cards = @total_high_ranking_cards.to_f
     @percent_high_ranking = (@total_high_ranking_cards / @total_cards) * 100.0
@@ -33,6 +36,7 @@ class Deck
   end
 
   def remove_card
+    @high_ranking_cards = []
     @cards.shift
   end
 

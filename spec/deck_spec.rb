@@ -72,7 +72,13 @@ RSpec.describe Deck do
       deck = Deck.new(cards)
 
       deck.remove_card
+      # deck.high_ranking_cards
+      # require 'pry'; binding.pry
       expect(deck.cards).to eq([card2, card3])
+      # # # require 'pry'; binding.pry
+      # # expect(deck.high_ranking_cards).to eq([card3])
+      # require 'pry'; binding.pry
+      # expect(deck.percent_high_ranking).to eq(50.0)
     end
   end
 
