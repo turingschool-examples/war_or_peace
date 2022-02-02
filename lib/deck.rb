@@ -1,10 +1,6 @@
 class Deck
 
-  attr_reader :cards,
-              :high_ranking_cards,
-              :total_high_ranking_cards,
-              :total_cards,
-              :percent_high_ranking
+  attr_reader :cards
 
   def initialize(cards)
     @cards = cards
@@ -25,19 +21,6 @@ class Deck
       end
     end
     return @high_ranking_cards
-  end
-
-  def sort_high_ranking_cards
-    @cards.each do |card|
-      if card.rank >= 11
-        @high_ranking_cards.push(card)
-        return @high_ranking_cards
-      end
-    end
-  end
-
-  def count_high_ranking_cards
-    @total_high_ranking_cards = @high_ranking_cards.length
   end
 
   def percent_high_ranking
