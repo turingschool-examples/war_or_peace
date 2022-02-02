@@ -11,6 +11,7 @@ class Player
   end
 
   def has_lost?
+    return false
   end
 
 end
