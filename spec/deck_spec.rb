@@ -12,16 +12,6 @@ require './lib/card'
    it 'is made up of an array of cards' do
      deck = Deck.new(cards)
      expect(deck.cards).to eq([card1, card2, card3])
-     # deck.high_ranking_cards
-     # expect(deck.rank_of_card_at(0)).to eq(12)
-     # expect(deck.percent_high_ranking).to eq (66.67)
-     # deck.remove_card
-     # expect(deck.rank_of_card_at(0)).to eq(3)
-     # card4 = Card.new(:club, '5', 5)
-     # deck.add_card(card4)
-     # # require 'pry';binding.pry
-     # expect(deck.rank_of_card_at(2)).to eq(5)
-     # expect(deck.percent_high_ranking).to eq (33.33)
    end
 
    it 'can determine card ranking & percentage of high ranking cards' do
