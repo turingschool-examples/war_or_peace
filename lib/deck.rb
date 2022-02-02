@@ -1,12 +1,11 @@
 class Deck
-
   # initialize a deck of cards, passed an array of cards
   attr_reader :cards
   def initialize (cards)
-    @cards = cards
   end
 
   def cards
+    @cards = cards
     return @cards
   end
 
@@ -32,7 +31,10 @@ class Deck
   # return the percentage of cards that are high ranking
   def percent_high_ranking
 
-    percent_high = (((@high_ranking_cards.length).to_f) / ((@cards.length).to_f) *100)
+    numerator = @high_ranking_cards.length.to_f
+    denomanotor = @cards.length.to_f
+    percent_high = (numerator / denomanotor) *100
+
     return percent_high.round(2)
   end
 
@@ -45,5 +47,4 @@ class Deck
   def add_card (card_to_be_added)
     @cards.push(card_to_be_added)
   end
-
 end

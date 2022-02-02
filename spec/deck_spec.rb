@@ -2,37 +2,27 @@ require 'rspec'
 require './lib/card'
 require './lib/deck'
 
-RSpec.describe Card do
-  it "exists" do
-    card1 = Card.new(:diamond, 'Queen', 12)
-    card2 = Card.new(:spade, '3', 3)
-    card3 = Card.new(:heard, 'Ace', 14)
-    cards = [card1, card2, card3]
-    expect(cards).to be_an_instance_of(Card)
-  end
+#Setup variables for tests
+card1 = Card.new(:diamond, 'Queen', 12)
+card2 = Card.new(:spade, '3', 3)
+card3 = Card.new(:heard, 'Ace', 14)
+cards = [card1, card2, card3]
 
-  it "has readable attributes" do
-    deck = Deck.new(cards)
-
-    expect(card.suit).to eq(:diamond)
-    expect(card.value).to eq('Queen')
-    expect(card.rank).to eq(12)
-  end
-end
-
-cards =
 RSpec.describe Deck do
   it "exists" do
-    deck = Deck.new(cards)
 
-    expect(card).to be_an_instance_of(Card)
+    deck = Deck.new(cards)
+    expect(deck).to be_an_instance_of(Deck)
   end
 
   it "has readable attributes" do
-    card = Card.new(:diamond, 'Queen', 12)
+    deck = Deck.new(cards)
+    expect(deck.rank_of_card_at(0)).to eq(12)
+  end
 
-    expect(card.suit).to eq(:diamond)
-    expect(card.value).to eq('Queen')
-    expect(card.rank).to eq(12)
+  it "has cards" do
+    deck = Deck.new(cards)
+    cards_in_deck = (deck.cards).length
+    expect(cards_in_deck).to eq(3)
   end
 end
