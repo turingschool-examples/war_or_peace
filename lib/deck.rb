@@ -18,4 +18,10 @@ class Deck
         end
         return high_rank
     end
+
+    def percent_high_ranking()
+        high_rank = self.high_ranking_cards
+        unrounded = high_rank.count / cards.count.to_f * 100
+        return unrounded.round(2)
+    end
 end
