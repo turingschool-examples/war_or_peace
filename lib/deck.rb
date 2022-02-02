@@ -18,10 +18,20 @@ class Deck
     @cards[index].rank
   end
 
+  def high_ranking_cards
+    @cards.each do |card|
+      if card.rank >= 11
+        @high_ranking_cards.push(card)
+      end
+    end
+    return @high_ranking_cards
+  end
+
   def sort_high_ranking_cards
     @cards.each do |card|
       if card.rank >= 11
         @high_ranking_cards.push(card)
+        return @high_ranking_cards
       end
     end
   end
@@ -30,11 +40,13 @@ class Deck
     @total_high_ranking_cards = @high_ranking_cards.length
   end
 
-  def calculate_percent_high_ranking
+  def percent_high_ranking
+    @total_high_ranking_cards = @high_ranking_cards.length
     @total_cards = @total_cards.to_f
     @total_high_ranking_cards = @total_high_ranking_cards.to_f
     @percent_high_ranking = (@total_high_ranking_cards / @total_cards) * 100.0
     @percent_high_ranking = @percent_high_ranking.round(1)
+    return @percent_high_ranking
   end
 
   def remove_card
