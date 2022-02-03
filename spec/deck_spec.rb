@@ -27,7 +27,7 @@ require './lib/card'
      deck.high_ranking_cards
      deck.remove_card
      expect(deck.rank_of_card_at(0)).to eq(3)
-     expect(deck.percent_high_ranking).to eq (50.0)
+     expect(deck.percent_high_ranking).to eq(50.0)
      card4 = Card.new(:club, '5', 5)
      deck.add_card(card4)
      expect(deck.rank_of_card_at(2)).to eq(5)
