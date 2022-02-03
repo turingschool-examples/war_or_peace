@@ -3,7 +3,7 @@ require './lib/card'
 require './lib/deck'
 # ADD MORE TESTS BEFORE THIS FIRST ONE TO TEST MORE ENTRIES IN THE ITERATION PATTERN
 RSpec.describe Deck do
-  it "deck" do
+  it "deck.cards" do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
