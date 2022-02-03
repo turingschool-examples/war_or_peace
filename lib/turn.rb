@@ -11,7 +11,7 @@ class Turn
     @player2 = player2
     @spoils_of_war = []
     @turn_type = type
-    @winner = nil
+    @winner = winner
   end
 
   def type
@@ -42,5 +42,26 @@ class Turn
     elsif @turn_type == :mutually_assured_destruction
       @winner = "No Winner"
     end
+  end
+
+  def pile_cards
+    if @turn_type == :basic
+      @spoils_of_war << player1.deck.cards[0]
+      @spoils_of_war << player2.deck.cards[0]
+    elsif @turn_type == :war
+      3.times do |index|
+        @spoils_of_war << player1.deck.cards[index]
+        @spoils_of_war << player2.deck.cards[index]
+      end
+    elsif @turn_type == :mutually_assured_destruction
+      3.times do
+        (player1.deck.cards).shift
+        (player2.deck.cards).shift
+      end
+    end
+  end
+
+  def award_spoils(winner)
+    (@winner.deck.cards).push(*@spoils_of_war)
   end
 end

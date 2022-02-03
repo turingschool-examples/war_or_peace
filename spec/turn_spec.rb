@@ -62,7 +62,7 @@ RSpec.describe Turn do
     expect(turn.winner).to eq(player1)
   end
 
-  xit 'can pile cards and give them to the winner' do
+  it 'can pile cards and give them to the winner' do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -126,7 +126,7 @@ RSpec.describe Turn do
     expect(turn.type).to eq(:war)
   end
 
-  xit 'can decide the winner of the turn' do
+  it 'can decide the winner of the turn' do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -144,7 +144,7 @@ RSpec.describe Turn do
     expect(turn.winner).to eq(player2)
   end
 
-  xit 'can pile cards and give them to the winner' do
+  it 'can pile cards and give them to the winner' do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -160,7 +160,6 @@ RSpec.describe Turn do
     turn = Turn.new(player1, player2)
     winner = turn.winner
 
-    turn.type
     turn.pile_cards
     expect(turn.spoils_of_war).to eq([card1, card4, card2, card3, card5, card6])
     turn.award_spoils(winner)
@@ -227,7 +226,7 @@ RSpec.describe Turn do
     expect(turn.winner).to eq("No Winner")
   end
 
-  xit 'can pile cards and give them to the winner' do
+  it 'can pile cards and give them to the winner' do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
