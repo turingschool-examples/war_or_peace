@@ -1,3 +1,4 @@
+require 'pry'
 require 'rspec'
 require './lib/deck.rb'
 require './lib/card.rb'
@@ -29,6 +30,7 @@ RSpec.describe Deck do
     cards = [card1, card2, card3]
     
     deck = Deck.new("cards")
+    binding.pry
     
     expect deck.rank_of_card_at(0).to eq (12)
   end 

@@ -8,8 +8,8 @@ class Deck
   
   
   
-    def rank_of_card_at()
-      returns .rank
+    def rank_of_card_at(index)
+      deck[@card.rank]
     end
   end 
 end
