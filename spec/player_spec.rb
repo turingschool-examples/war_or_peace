@@ -12,10 +12,10 @@ RSpec.describe Player do
     player = Player.new('Clarisa', deck)
 
     expect(player.name).to eq('Clarisa')
-    expect(player.deck).to eq([card1, card2, card3])
+    expect(player.deck).to eq(deck)
   end
 
-  it 'can detect if a player has lost' do
+  xit 'can detect if a player has lost' do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
