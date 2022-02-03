@@ -10,5 +10,5 @@ class Player
     @deck = deck
   end
   
-  def has_lost?
-    if 
+  # def has_lost?
+  #   if 
