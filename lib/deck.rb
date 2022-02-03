@@ -28,6 +28,10 @@ def percent_high_ranking
   return (percent * 100).round(1)
 end
 
+def remove_card
+  @cards.delete_at(0)
+end
+
   # def rank_of_card_at
   # end
   #
