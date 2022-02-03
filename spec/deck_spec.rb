@@ -1,6 +1,7 @@
 require 'rspec'
 require './lib/card'
 require './lib/deck'
+require 'pry'
 
 RSpec.describe Deck do
 
@@ -33,6 +34,29 @@ RSpec.describe Deck do
 
       expect(@deck.high_ranking_cards).to eq(expected)
 
+    end
+
+    it "percent_high_ranking" do
+
+      expected = @deck.high_ranking_cards.count.to_f / @deck.cards.count
+
+      expect(@deck.percent_high_ranking).to eq(expected)
+
+    end
+
+    # it "remove_card" do
+    #
+    #   expected = @deck.cards.shift
+    #
+    #   expect(@deck.remove_cards).to eq(expected)
+    #
+    # end
+
+    it "add_card" do
+
+      expected = @deck.cards.append
+
+      expect(@deck.add_cards).to eq(expected)
 
     end
 

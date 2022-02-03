@@ -25,14 +25,28 @@ class Deck
   end
 
   def percent_high_ranking
+    high_cards = []
+
+    cards.each do |card|
+      if card.rank >= 11
+        high_cards << card
+      end
+    end
+    total_cards = cards.count
+    total_high_cards = high_cards.count
+
+    percent_high_rank = total_high_cards.to_f / total_cards
 
   end
 
-  def remove_card
+
+  def remove_cards
+    @cards.shift
 
   end
 
-  def add_card
+  def add_cards
+    @cards.append
 
   end
 

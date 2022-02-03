@@ -8,17 +8,5 @@ class Card
      @value = card_value
      @rank = card_rank
    end
-  #
-  # def new_suit
-  #   "happy bunny"
-  #  end
-  #
-  # def new_value
-  #
-  # end
-  #
-  # def new_rank
-  #
-  # end
 
 end
