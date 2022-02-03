@@ -1,3 +1,6 @@
+#./lib/deck.rb
+require './lib/card'
+
 class Deck
   # initialize a deck of cards, passed an array of cards
   attr_reader :cards

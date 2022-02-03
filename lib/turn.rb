@@ -63,7 +63,9 @@ class Turn
   def pile_cards
 
     if type == :basic
-      puts "in plie_cards #{type}"
+
+#      puts "in plie_cards #{type}"
+
       #put first card of each player onto spoils_of_war
       @spoils_of_war.push( @player1.deck.cards[0] )
       @spoils_of_war.push( @player2.deck.cards[0] )
@@ -86,6 +88,7 @@ class Turn
 
     elsif type == :war
       puts "in plie_cards #{type}"
+
       #put first 3 cards of each player onto spoils_of_war
       3.times {
       @spoils_of_war.push( @player1.deck.cards[0] )
@@ -100,10 +103,14 @@ class Turn
   end
 
   def award_spoils (winner)
-      puts "In award_spoils #{winner.name}"
-      puts "#{winner.name} cards are #{winner.deck.cards}"
+#      puts "In award_spoils #{winner.name}"
+#      puts "#{winner.name} cards are #{winner.deck.cards}"
+
       #give cards to winning players deck
       winner.deck.add_card(@spoils_of_war)
+      #empty spoils_of_war array for next use
+      @spoils_of_war = []
+
   end
 
 end

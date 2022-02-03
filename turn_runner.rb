@@ -1,3 +1,4 @@
+#!/Users/johnhennerich/.rbenv/shims/ruby
 require 'pry'
 require './lib/card'
 require './lib/deck'
