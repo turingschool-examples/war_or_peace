@@ -13,10 +13,9 @@ RSpec.describe 'Deck class'do
 
     #returns an array...
     expect(deck.cards.class).to eq(Array)
+    expect(deck).to be_an_instance_of(Deck)
     #... of Card instances
-    deck.cards.each do |card|
-      expect(card).to be_an_instance_of(Card)
-    end
+    expect(deck.cards).to eq(cards)
   end
 
   it 'has a method "rank_of_cards" that returns the rank of the card at the given index of the deck' do
@@ -39,9 +38,7 @@ RSpec.describe 'Deck class'do
 
     deck = Deck.new(cards)
 
-    deck.high_ranking_cards.each do |card|
-      expect(card.rank).to be > 10
-    end
+    expect(deck.high_ranking_cards).to eq([card1, card3])
   end
 
   it "has a function 'percent_high_ranking' that returns percentage of high ranking cards in the deck as a float" do
