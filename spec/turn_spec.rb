@@ -126,7 +126,7 @@ RSpec.describe Turn do
     expect(turn.type).to eq(:war)
   end
 
-  it 'can decide the winner of the turn' do
+  xit 'can decide the winner of the turn' do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)

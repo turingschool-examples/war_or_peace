@@ -10,7 +10,7 @@ class Turn
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
-    @turn_type = nil
+    @turn_type = type
     @winner = nil
   end
 
@@ -27,19 +27,19 @@ class Turn
   end
 
   def winner
-    if player1.deck.cards[0].rank != player2.deck.cards[0].rank
+    if @turn_type == :basic
       if player1.deck.cards[0].rank > player2.deck.cards[0].rank
         @winner = player1
       elsif player1.deck.cards[0].rank < player2.deck.cards[0].rank
         @winner = player2
       end
-    elsif player1.deck.cards[0].rank == player2.deck.cards[0].rank && player1.deck.cards[2].rank != player2.deck.cards[2].rank
+    elsif @turn_type == :war
       if player1.deck.cards[2].rank > player2.deck.cards[2].rank
         @winner = player1
       elsif player1.deck.cards[2].rank < player2.deck.cards[2].rank
         @winner = player2
       end
-    elsif player1.deck.cards[0].rank == player2.deck.cards[0].rank && player1.deck.cards[2].rank == player2.deck.cards[2].rank
+    elsif @turn_type == :mutually_assured_destruction
       @winner = "No Winner"
     end
   end
