@@ -34,7 +34,7 @@ class Deck
   end
 
   def remove_card
-    @cards.shift #could i shovel the removed card into a new array here?
+    @cards.shift
   end
 
    def add_card(new_card)
