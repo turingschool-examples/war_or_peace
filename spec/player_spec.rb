@@ -18,6 +18,7 @@ RSpec.describe Player do
     end
     it 'can determine if it has lost' do
       player = Player.new('Clarisa', deck)
+      # binding.pry
       expect(player.has_lost?).to eq(false)
       player.deck.remove_card
       expect(player.has_lost?).to eq(false)
@@ -25,6 +26,7 @@ RSpec.describe Player do
       expect(player.has_lost?).to eq(false)
       player.deck.remove_card
       expect(player.has_lost?).to eq(true)
+      expect(player.deck.cards).to eq([])
     end
   end
 end

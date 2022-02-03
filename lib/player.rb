@@ -5,7 +5,6 @@ class Player
     @deck = deck
   end
   def has_lost?
-    deck.length()>=1
-    #^^^^^ WE ARE HERE ^^^^^^
+    deck.cards.length()==0
   end
 end
