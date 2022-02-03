@@ -58,7 +58,7 @@ RSpec.describe Card do
     expect(deck.percent_high_ranking).to eq(50.0)
   end
 
-  xit 'can remove cards from the deck' do
+  it 'can remove cards from the deck' do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)

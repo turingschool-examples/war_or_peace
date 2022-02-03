@@ -47,4 +47,7 @@ class Deck
     @cards << card
   end
 
+  def remove_card
+    @cards.pop
+  end
 end
