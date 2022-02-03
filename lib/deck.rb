@@ -27,4 +27,12 @@ class Deck
     num_tot = cards.count
     @percent_high_ranking = num_high/num_tot
   end
+
+  def remove_card
+    cards.shift #shows removed cards if no return cards
+  end
+
+  def add_card(new_card)
+    @cards << new_card
+  end
 end

@@ -6,8 +6,9 @@ card1 = Card.new(:diamond, 'Queen', 12)
 card2 = Card.new(:spade, '3', 3)
 card3 = Card.new(:heart, 'Ace', 14)
 cards = [card1, card2, card3]
+card4 = Card.new(:club, '5', 5)
 deck = Deck.new(cards)
-# big_cards = deck.high_ranking_cards
+
 
 RSpec.describe Deck do
   it "holds cards" do
@@ -32,4 +33,23 @@ RSpec.describe Deck do
     expect(deck.percent_high_ranking).to eq(2/3)
   end
 
+  it "removes 1st card" do
+    expect(deck.remove_card). to eq(card1) # shows removed cards
+  end
+
+  it "checks the remaning high ranking cards percentage" do
+    expect(deck.percent_high_ranking).to eq(1/2)
+  end
+
+  it "adds a card at last" do
+      expect(deck.add_card(card4)).to eq([card2, card3, card4])
+  end
+  it "returns a new subset of high ranking cards from current set" do
+    greater_than_eleven = [card3]
+    expect(deck.high_ranking_cards).to eq(greater_than_eleven)
+  end
+
+  it "checks the current high ranking cards percentage" do
+    expect(deck.percent_high_ranking).to eq(1/3)
+  end
 end
