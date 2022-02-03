@@ -73,6 +73,20 @@ RSpec.describe 'Deck class'do
     expect(deck.percent_high_ranking).to eq(expected_high_value_percent)
   end
 
+  it "can add a card to the end of the card array with an 'add card' method" do
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+
+    deck = Deck.new(cards)
+
+    card4 = Card.new(:club, '5', 5)
+    deck.add_card(card4)
+
+    expected_deck = [card1, card2, card3, card4]
+    expect(deck.cards).to eq(expected_deck)
+  end
 end
 
 
