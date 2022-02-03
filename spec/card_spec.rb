@@ -19,6 +19,11 @@ RSpec.describe Card do
 end
 
 
+card1 = Card.new(:diamond, 'Queen', 12)
+card2 = Card.new(:spade, '3', 3)
+card3 = Card.new(:heart, 'Ace', 14)
+card_array = [card1, card2, card3]
+deck2 = Deck.new(card_array)
 
 RSpec.describe Deck do
   it 'exists' do
@@ -27,7 +32,11 @@ RSpec.describe Deck do
     expect(deck).to be_an_instance_of(Deck)
   end
 
+  it 'gets the card rank' do
+    expect(deck2.rank_of_card_at(0)).to eq(12)
+  end
 
+  
 
 
 

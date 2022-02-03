@@ -7,15 +7,19 @@ class Deck
   end
 
   def rank_of_card_at(index)
+
     @cards[index].rank
   end
 
-  def high_ranking_cards(cards_array)
+  def high_ranking_cards
     high_card_array = []
 
-    cards_array.each do |card|
+    @cards.each do |card|
+
       if card.rank >= 11
-      high_card_array << card
+        high_card_array << card
+      end
+
     end
 
     return high_card_array
@@ -25,9 +29,11 @@ class Deck
     high_card_count = 0
 
     @cards.each do |cards|
+
       if cards.rank >= 11
         high_card_count += 1
       end
+
     end
 
     return high_card_count / @cards.length
