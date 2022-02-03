@@ -44,6 +44,13 @@ RSpec.describe Deck do
     expect(deck2.percent_high_ranking).to eq(66.67)
   end
 
+  it 'removes a card' do
+    test = deck2.remove_card
+    expect(test.rank).to eq(@rank=12)
+    expect(test.suit).to eq(@suit=:diamond)
+    expect(test.value).to eq(@value="Queen")
+  end
+
 
 
 
