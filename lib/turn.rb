@@ -25,7 +25,7 @@ class Turn
      if @player1_c[0].rank != @player2_c[0].rank
        :basic
      else
-       if player1_c[2].rank != player2_c[2].rank
+       if @player1_c[2].rank != @player2_c[2].rank
          :war
        else
          :mutually_assured_destruction
@@ -71,16 +71,20 @@ class Turn
       spoils_of_war << @player1.deck.remove_card
       spoils_of_war << @player2.deck.remove_card
     elsif type == :war
+
       3.times do
-        spoils_of_war << @player1.deck.cards[i]
-        spoils_of_war << @player2.deck.cards[i]
+        spoils_of_war << @player1.deck.remove_card
+        spoils_of_war << @player2.deck.remove_card
       end
+      # binding.pry
+
     elsif type ==:mutually_assured_destruction
       3.times do
-        @player1.deck.cards.shift
-        @player2.deck.cards.shift
+        @player1.deck.remove_card
+        @player2.deck.remove_card
       end
     end
+
   end
 
   def award_spoils(winner)
