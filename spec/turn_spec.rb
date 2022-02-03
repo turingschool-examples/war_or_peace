@@ -5,8 +5,8 @@ require './lib/player'
 require './lib/turn'
 
 #turn = basic
-Rspec.describe Turn do
-  xit 'can initialize' do
+RSpec.describe Turn do
+  it 'can initialize' do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -26,7 +26,7 @@ Rspec.describe Turn do
     expect(turn.spoils_of_war).to eq([])
   end
 
-  xit 'can decide the type of turn' do
+  it 'can decide the type of turn' do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -87,7 +87,7 @@ Rspec.describe Turn do
 end
 
 #turn = war
-Rspec.describe Turn do
+RSpec.describe Turn do
   xit 'can initialize' do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
@@ -169,7 +169,7 @@ Rspec.describe Turn do
 end
 
 #turn = mutually assured desturction
-Rspec.describe Turn do
+RSpec.describe Turn do
   xit 'can initialize' do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
