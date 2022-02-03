@@ -2,6 +2,7 @@ require './lib/player.rb'
 require './lib/deck.rb'
 require './lib/card.rb'
 require 'rspec'
+require 'pry'
 
 RSpec.describe 'test functionality of player class' do
 
@@ -14,7 +15,7 @@ RSpec.describe 'test functionality of player class' do
     player = Player.new('Clarisa', deck)
   end
 
-  xit "has a 'name' method to return the player's name" do
+  it "has a 'name' method to return the player's name" do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
@@ -25,7 +26,7 @@ RSpec.describe 'test functionality of player class' do
     expect(player.name).to eq('Clarisa')
   end
 
-  xit "has a 'deck' method to return the player's deck" do
+  it "has a 'deck' method to return the player's deck" do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
@@ -36,7 +37,7 @@ RSpec.describe 'test functionality of player class' do
     expect(player.deck).to eq(deck)
   end
 
-  xit "has a method 'has_lost?' returning True if player's deck is empty" do
+  it "has a method 'has_lost?' returning True if player's deck is empty" do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
@@ -47,15 +48,15 @@ RSpec.describe 'test functionality of player class' do
     expect(player.has_lost?).to eq(false)
 
     player.deck.remove_card
-
+#binding.pry
     expect(player.has_lost?).to eq(false)
 
     player.deck.remove_card
-
+#binding.pry
     expect(player.has_lost?).to eq(false)
 
     player.deck.remove_card
-
+#binding.pry
     expect(player.has_lost?).to eq(true)
   end
 end
