@@ -10,7 +10,7 @@ RSpec.describe Turn do
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
     card4 = Card.new(:diamond, 'Jack', 11)
-    card5 = Card.new(:heart, '8', 8)
+    card5 = Card.new(:heart, '8', 14)
     card6 = Card.new(:diamond, 'Queen', 12)
     card7 = Card.new(:heart, '3', 3)
     card8 = Card.new(:diamond, '2', 2)
@@ -40,6 +40,14 @@ RSpec.describe Turn do
 
     it 'can pile cards' do
       expect(turn.pile_cards).to eq([card1, card3])
+    end
+
+    it 'can give the winner the spoils of war' do
+      # binding.pry
+      turn.pile_cards
+      turn.award_spoils
+      expect(player1.deck.cards).to include(card3)
+      expect(turn.spoils_of_war).to eq([])
     end
   end
 end
