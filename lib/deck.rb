@@ -1,15 +1,18 @@
 class Deck
-  attr_reader :cards
+  attr_reader :cards, :deck
   
   
-  def initialize(deck)
-    @deck = []
-  end
+  def initialize(cards)
+    @cards = cards
+
   
-  def rank_of_card_at[] 
-    returns card.rank
-  end
   
-  def high_ranking_cards
-    if rank >= 11
-      high_rank = []
+  
+    def rank_of_card_at()
+      returns .rank
+    end
+  end 
+end
+  # def high_ranking_cards
+  #   if rank >= 11
+  #     high_rank = []

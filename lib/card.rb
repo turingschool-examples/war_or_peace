@@ -10,5 +10,5 @@ class Card
   
 end
  
-card = Card.new("clubs", "jack", 11)
-p card
+# card = Card.new("clubs", "jack", 11)
+# p card
