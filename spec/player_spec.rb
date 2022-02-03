@@ -2,6 +2,7 @@ require 'rspec'
 require './lib/card'
 require './lib/deck'
 require './lib/player'
+require 'pry'
 
 RSpec.describe Deck do
   describe '#initialize' do
@@ -61,7 +62,7 @@ RSpec.describe Deck do
 
       player = Player.new('Jimbo', deck)
       expect(deck.cards).to eq([card1, card2, card3])
-      expect(player.has_lost?).to eq(false)
+        expect(player.has_lost?).to eq(false)
 
       player.deck.remove_card
       player.deck.remove_card

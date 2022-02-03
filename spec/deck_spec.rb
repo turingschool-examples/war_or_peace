@@ -1,6 +1,7 @@
 require 'rspec'
 require './lib/card'
 require './lib/deck'
+require 'pry'
 
 RSpec.describe Deck do
   describe '#initialize' do
