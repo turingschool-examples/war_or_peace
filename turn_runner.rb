@@ -1,3 +1,4 @@
+require 'pry'
 require './lib/card'
 require './lib/deck'
 require './lib/player'
@@ -25,15 +26,18 @@ turn.player2
 
 turn.spoils_of_war
 
-turn.type
+puts "type is #{turn.type}"
 
 winner = turn.winner
+puts "winner is #{winner.name}"
 
 turn.pile_cards
-
-turn.spoils_of_war
-
 turn.award_spoils(winner)
+#binding.pry
+pry.binding
 
-player1.deck
-player2.deck
+#turn.spoils_of_war
+#turn.award_spoils(winner)
+
+#player1.deck
+#player2.deck
