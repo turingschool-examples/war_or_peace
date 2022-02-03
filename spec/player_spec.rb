@@ -66,7 +66,6 @@ RSpec.describe Deck do
       player.deck.remove_card
       player.deck.remove_card
       player.deck.remove_card
-      require 'pry'; binding.pry
       expect(deck.cards).to eq([])
       expect(player.has_lost?).to eq(true)
     end

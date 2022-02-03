@@ -4,9 +4,6 @@ class Deck
 
   def initialize(cards)
     @cards = cards
-    @high_ranking_cards = []
-    @total_cards = 0
-    @total_high_ranking_cards = 0
   end
 
   def rank_of_card_at(index)
@@ -14,6 +11,7 @@ class Deck
   end
 
   def high_ranking_cards
+    @high_ranking_cards = []
     @cards.each do |card|
       if card.rank >= 11 && @high_ranking_cards.include?(card) == false
         @high_ranking_cards.push(card)
@@ -33,7 +31,6 @@ class Deck
   end
 
   def remove_card
-    @high_ranking_cards = []
     @cards.shift
   end
 
