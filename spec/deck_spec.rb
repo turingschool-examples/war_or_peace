@@ -3,7 +3,7 @@ require './lib/card'
 require './lib/deck'
 
 RSpec.describe Card do
-  it 'can add cards to a deck' do
+  it 'can create a deck' do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
