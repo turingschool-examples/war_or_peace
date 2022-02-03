@@ -33,5 +33,9 @@ RSpec.describe Turn do
       expect(turn.spoils_of_war).to eq([])
     end
 
+    it 'can determine a winner' do
+      expect(turn.winner).to eq(player1)
+    end
+
   end
 end
