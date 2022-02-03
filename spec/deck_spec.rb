@@ -91,7 +91,6 @@ RSpec.describe Deck do
     
     deck = Deck.new(cards)
     
-    # binding.pry
     deck.add_card(card4)
     
     expect(cards.include?(card4)).to eq(true)
