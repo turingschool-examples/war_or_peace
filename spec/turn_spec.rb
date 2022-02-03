@@ -73,6 +73,7 @@ RSpec.describe Turn do
         expect(turn.type).to eq(:war)
         expect(turn.winner).to eq("Aurora")
 
+
         turn.pile_cards
 
         expect(turn.spoils_of_war).to eq([card1, card2, card5, card4, card3, card6])
