@@ -19,4 +19,13 @@ class Deck
     end
     high_cards
   end
+
+  def percent_high_ranking
+    high_cards = high_ranking_cards
+    ((high_cards.count.to_f / @cards.count) * 100).round(2)
+  end
+
+
+
+
 end
