@@ -1,3 +1,5 @@
+require './lib/card'
+
 class Deck
   attr_reader :cards, :deck
   def initialize(cards)
@@ -12,6 +14,15 @@ class Deck
     @cards[place].rank
   end
 
+def high_ranking_card
+  @cards.each do |card|
+    if card.rank < 11
+      @cards.delete(card)
+    end
+    @high_ranking_cards = @cards
+
+  end
+end
 
   # def rank_of_card_at
   # end
