@@ -23,6 +23,9 @@ class Deck
     return high_rank
   end
     
+  def percent_high_ranking
+    high_rank.count / cards.count
     
+  end  
 
 end
