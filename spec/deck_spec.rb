@@ -12,6 +12,7 @@ RSpec.describe Deck do
     deck = Deck.new(cards)
 
     expect(deck).to be_an_instance_of(Deck)
+    expect(deck.cards).to eq(cards)
   end
 
   it "can return the rank of a card" do
