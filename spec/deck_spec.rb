@@ -2,13 +2,13 @@ require 'rspec'
 require './lib/card'
 require './lib/deck'
 require 'pry'
-
+#binding.pry
 RSpec.describe Deck do
 
   before :each do
     @card1 = Card.new(:diamond, 'Queen', 12)
     @card2 = Card.new(:spade, 'King', 13)
-    @card3 = Card.new(:heart, '3',3)
+    @card3 = Card.new(:heart, '3', 3)
 
     @cards = [@card1,@card2,@card3]
 
@@ -39,18 +39,18 @@ RSpec.describe Deck do
     it "percent_high_ranking" do
 
       expected = @deck.high_ranking_cards.count.to_f / @deck.cards.count
-
+      expected = expected.round(4) * 100
       expect(@deck.percent_high_ranking).to eq(expected)
 
     end
 
-    # it "remove_card" do
-    #
-    #   expected = @deck.cards.shift
-    #
-    #   expect(@deck.remove_cards).to eq(expected)
-    #
-    # end
+    it "remove_card" do
+
+      expected = @card1
+
+      expect(@deck.remove_cards).to eq(expected)
+
+    end
 
     it "add_card" do
 

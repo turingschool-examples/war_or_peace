@@ -36,7 +36,7 @@ class Deck
     total_high_cards = high_cards.count
 
     percent_high_rank = total_high_cards.to_f / total_cards
-
+    percent_high_rank = percent_high_rank.round(4) * 100
   end
 
 
