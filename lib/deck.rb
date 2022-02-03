@@ -13,48 +13,27 @@ class Deck
     @cards[place].rank
   end
 
-def high_ranking_card
-  @cards.each do |card|
-    if card.rank < 11
-      @cards.delete(card)
+  def high_ranking_card
+    @cards.each do |card|
+      if card.rank < 11
+        @cards.delete(card)
+      end
+      @high_ranking_cards = @cards
     end
-    @high_ranking_cards = @cards
   end
-end
 
-def percent_high_ranking
-  card_count = @cards.count
-  high_ranking_card
-  percent = @high_ranking_cards.count.to_f.truncate(3) / card_count.to_f.truncate(3)
-  return (percent * 100).round(1)
-end
+  def percent_high_ranking
+    card_count = @cards.count
+    high_ranking_card
+    percent = @high_ranking_cards.count.to_f.truncate(3) / card_count.to_f.truncate(3)
+    return (percent * 100).round(2)
+  end
 
-def remove_card
-  @cards.delete_at(0)
-end
+  def remove_card
+    @cards.delete_at(0)
+  end
 
-def add_card(new_card)
+  def add_card(new_card)
     @cards.push(new_card)
-  # require 'pry'; binding.pry
-end
-  # def rank_of_card_at
-  # end
-  #
-  # def high_ranking_cards
-  #   if card.rank >= 11
-  #   end
-  #
-  # end
-  #
-  # def percent_high_ranking
-  # end
-  #
-  # def remove_card
-  #   @cards.pop
-  # end
-  #
-  # def add_card
-  #   @cards.push
-  # end
-
+  end
 end
