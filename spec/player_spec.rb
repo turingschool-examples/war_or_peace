@@ -5,7 +5,6 @@ require 'rspec'
 require 'pry'
 
 RSpec.describe 'test functionality of player class' do
-
   it 'exists' do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
