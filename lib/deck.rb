@@ -5,10 +5,6 @@ class Deck
     @cards = cards
   end
 
-  def cards
-    return @cards
-  end
-
   # take one argument that represents the index location of a card to be used
   def rank_of_card_at (index)
       return @cards[index].rank

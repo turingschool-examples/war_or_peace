@@ -1,6 +1,4 @@
 #'./lib/player.rb'
-require './lib/card'
-require './lib/deck'
 
 class Player
   attr_reader :name, :deck
@@ -10,8 +8,14 @@ class Player
     @deck = deck
   end
 
+  #If player has no cards left in thier deck they lose the geme
   def has_lost?
-    return false
+
+    if @deck.cards != []
+      return false
+    end
+      return true
+
   end
 
 end

@@ -41,10 +41,12 @@ player2 = Player.new('Aurora', player2_deck)
 turn1 = Turn.new(player1, player2)
 puts "type is #{turn1.type}"
 puts "player1 first card rank is #{player1.deck.cards[0].rank}"
+puts "player1 3rd card rank is #{player1.deck.cards[2].rank}"
 puts "player2 first card rank is #{player2.deck.cards[0].rank}"
-#puts "player1 "
+puts "player2 third card rank is #{player2.deck.cards[2].rank}"
+
 turn1.winner
-#pry.binding
+pry.binding
 
 #
 # #high_cards = deck.high_ranking_cards
