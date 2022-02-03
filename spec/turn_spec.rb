@@ -22,6 +22,7 @@ RSpec.describe Turn do
     player2 = Player.new("Aurora", deck2)
 
     turn = Turn.new(player1, player2)
+    # binding.pry
 
     it 'can determine who its 2 players are' do
       expect(turn.player1.name).to eq("Megan")
@@ -37,5 +38,8 @@ RSpec.describe Turn do
       expect(turn.winner).to eq(player1)
     end
 
+    it 'can pile cards' do
+      expect(turn.pile_cards).to eq([card1, card3])
+    end
   end
 end
