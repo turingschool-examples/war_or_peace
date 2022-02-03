@@ -2,6 +2,7 @@ require './lib/card.rb'
 require './lib/deck.rb'
 require './lib/player.rb'
 require './lib/turn.rb'
+require './lib/game.rb'
 require 'pry'
 
 heart_card2 = Card.new(:heart, '2', 2)
@@ -127,3 +128,7 @@ end
 
 player1 = Player.new('Robot 1', player1_deck)
 player2 = Player.new('Robot 2', player2_deck)
+
+game = Game.new(player1, player2)
+
+game.start
