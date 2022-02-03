@@ -31,7 +31,7 @@ RSpec.describe Card do
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
 
-    expect(deck.high_ranking_cards).to eq([card1, card2])
+    expect(deck.high_ranking_cards).to eq([card1, card3])
   end
 
   xit 'can detect the percent of high rank cards' do
