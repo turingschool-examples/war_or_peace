@@ -27,6 +27,7 @@ class Deck
 
   def percent_high_ranking
     high_card_count = 0
+    test = 0
 
     @cards.each do |cards|
 
@@ -36,7 +37,8 @@ class Deck
 
     end
 
-    return high_card_count / @cards.length
+    test = (high_card_count.to_f / @cards.length) * 100
+    return test.round(2)
 
   end
 

@@ -41,11 +41,7 @@ RSpec.describe Deck do
   end
 
   it 'calcs percentage of high ranking cards' do
-
-
-
-
-
+    expect(deck2.percent_high_ranking).to eq(66.67)
   end
 
 
