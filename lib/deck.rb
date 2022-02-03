@@ -1,7 +1,7 @@
 require './lib/card'
 
 class Deck
-  attr_reader :cards
+  attr_reader :cards, :rank_of_card_at, :high_ranking_cards, :percent_high_ranking, :face_cards
   def initialize(cards)
     @cards = cards
   end
@@ -13,12 +13,18 @@ class Deck
   end
 
   def high_ranking_cards
-    face_cards = []
+    @face_cards = []
     @cards.each do |card|
       if card.rank >= 11
-        face_cards << card
+        @face_cards << card
       end
     end
     return face_cards
-  end 
+  end
+
+  def percent_high_ranking
+    high_ranking_cards
+    total = face_cards.count / cards.count.to_f * 100
+    return total.round(2)
+  end
 end

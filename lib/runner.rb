@@ -1,4 +1,5 @@
 require_relative 'card'
+#require './lib/deck'
 require_relative 'deck'
 
 card1 = Card.new(:diamond, 'Queen', 12)
@@ -9,4 +10,11 @@ cards = [card1, card2, card3]
 
 deck = Deck.new(cards)
 
-require 'pry'; binding.pry 
+deck.cards
+deck.rank_of_card_at(0)
+deck.rank_of_card_at(2)
+deck.cards
+deck.high_ranking_cards
+deck.percent_high_ranking
+
+require 'pry'; binding.pry
