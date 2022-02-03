@@ -9,6 +9,13 @@ RSpec.describe Deck do
     expect(deck1).to be_an_instance_of(Deck)
   end
   
+  it "deck.cards = array" do
+    deck1 = Deck.new([])
+    expect(deck1.cards).to eq([])
+  end
+  
+  
+  
   it "deck is an array" do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
@@ -16,9 +23,9 @@ RSpec.describe Deck do
     
     cards = [card1, card2, card3]
     
-    deck1 = Deck.new("cards")
+    deck1 = Deck.new(cards)
   
-    expect deck1 = [cards]
+    expect(deck1.cards).to eq(cards) 
     
   end
   
@@ -29,10 +36,36 @@ RSpec.describe Deck do
     
     cards = [card1, card2, card3]
     
-    deck = Deck.new("cards")
-    binding.pry
+    deck = Deck.new(cards)
     
-    expect deck.rank_of_card_at(0).to eq (12)
+    expect(deck.rank_of_card_at(0)).to eq(12)
   end 
+  
+  it "array of face cards" do 
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    
+    cards = [card1, card2, card3]
+    
+    deck = Deck.new(cards)
+    
+    expect(deck.high_ranking_cards).to eq([card1, card3])
+  end 
+  
+  it "percentof high ranking cards" do 
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    
+    cards = [card1, card2, card3]
+    
+    deck = Deck.new(cards)
+    
+    expect(deck.high_ranking_cards).to eq([card1, card3])
+  end 
+  
+  
+  
   
 end
