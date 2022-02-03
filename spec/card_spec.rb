@@ -51,6 +51,17 @@ RSpec.describe Deck do
     expect(test.value).to eq(@value="Queen")
   end
 
+  it 'adds a card' do
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    card_array = [card1, card2, card3]
+    deck2 = Deck.new(card_array)
+    card4 = Card.new(:club, '5', 5)
+    deck2.add_card(card4)
+
+    expect(deck2.cards).to eq([card1, card2, card3, card4])
+  end
 
 
 
