@@ -1,7 +1,8 @@
 require './card'
 
 class Deck
-  attr_reader :cards, :rank_of_card_at, :high_ranking_cards
+  attr_reader :cards, :rank_of_card_at, :high_ranking_cards, :percent_high_ranking
+
   def initialize(cards)
     @cards = cards
   end
@@ -21,15 +22,19 @@ class Deck
       end
     end
   end
-# returns an array
 
-
-
-
-
-# require 'pry'; binding.pry
-  # def cards
-  #   @cards << cards
-  # end
+  def percent_high_ranking
+    high_ranking_cards
+    @percent_high_ranking = high_ranking_cards.size / 2
+      number = high_ranking_cards.size / 3.to_f * 100.to_f
+        return number.round(2)
+  end
 end
 # require 'pry'; binding.pry
+
+#secondary solutions?
+# def percent_high_ranking
+#   high_ranking_cards
+#   high = @high_ranking_cards
+#   total = cards.count
+# end
