@@ -21,18 +21,23 @@ RSpec.describe Card do
     expect(card.rank).to eq(12)
   end
 
-  # it 'puts cards in array' do
-  #   card1 = Card.new(:diamond, 'Queen', 12)
-  #   card2 = Card.new(:spade, '3', 3)
-  #   card3 = Card.new(:heart, 'Ace', 14)
-  #   cards = [card1, card2, card3]
-  #   deck = cards.each do |card|
-  #     deck << card
-  #   end
-  #   deck = Deck.new([card1, card2, card3])
-  #   # require 'pry'; binding.pry
-  #
-  #
-  #   expect(deck.cards).to be_an_instance_of Deck
-  # end
+  it 'puts cards in array' do
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+      deck = Deck.new(cards)
+      expect(deck.cards).to eq(cards)
+      # require 'pry'; binding.pry
+    end
+
+  it 'tests rank of cards' do
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+
+    expect(deck.rank_of_card_at(0)).to eq(12)
+  end
 end
