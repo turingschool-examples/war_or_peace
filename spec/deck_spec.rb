@@ -13,7 +13,7 @@ RSpec.describe Card do
     expect(deck.cards).to eq([card1, card2, card3])
   end
 
-  xit 'can check the rank of cards' do
+  it 'can check the rank of cards' do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
@@ -24,7 +24,7 @@ RSpec.describe Card do
     expect(deck.rank_of_card_at(2)).to eq(14)
   end
 
-  xit 'can detect ranks of 11 or higher' do
+  it 'can detect ranks of 11 or higher' do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
