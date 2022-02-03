@@ -8,6 +8,7 @@ class Deck
     @deck = []
   end
 
+
   def rank_of_card_at(place)
     @cards[place].rank
   end
@@ -32,6 +33,10 @@ def remove_card
   @cards.delete_at(0)
 end
 
+def add_card(new_card)
+    @cards.push(new_card)
+  # require 'pry'; binding.pry
+end
   # def rank_of_card_at
   # end
   #
