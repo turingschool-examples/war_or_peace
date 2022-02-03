@@ -32,5 +32,16 @@ RSpec.describe Deck do
     expect(deck.percent_high_ranking).to eq(66.67)
   end
 
-  # it "removes the "
+  it "removes the first card from the deck" do
+
+    deck = Deck.new([1,12,15])
+    expect(deck.remove_card).to eq([12,15])
+  end
+
+  it "adds a card to the end of the deck" do
+    deck = Deck.new([1,12,15])
+    card4 = Card.new(:club, '5', 5)
+    expect(deck.add_card(card4)).to eq([1, 12, 15, 5])
+  end
+
 end

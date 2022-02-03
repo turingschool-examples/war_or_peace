@@ -29,4 +29,14 @@ class Deck
     ((@cards_above_eleven.count.to_f / @cards.count) * 100).round(2)
   end
 
+  def remove_card
+    @cards.delete_at(0)
+    @cards
+  end
+
+  def add_card(card)
+    @cards.push(card.rank)
+    binding.pry
+  end
+
 end
