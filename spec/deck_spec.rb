@@ -26,9 +26,11 @@ RSpec.describe Deck do
     expect(deck.high_ranking_cards).to eq([12,13,14])
   end
 
-  # it "returns the percent of high ranking cards" do
-  #
-  #   deck = Deck.new([1,12,15])
-  #   expect(deck.percent_high_ranking).to eq(66.67)
-  # end
+  it "returns the percent of high ranking cards" do
+
+    deck = Deck.new([1,12,15])
+    expect(deck.percent_high_ranking).to eq(66.67)
+  end
+
+  # it "removes the "
 end
