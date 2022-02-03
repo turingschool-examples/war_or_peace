@@ -16,7 +16,7 @@ RSpec.describe Turn do
     card8 = Card.new(:diamond, '2', 2)
 
     deck1 = Deck.new([card1, card2, card5, card8])
-    deck2 = Deck.new([[card3, card4, card6, card7]])
+    deck2 = Deck.new([card3, card4, card6, card7])
 
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
@@ -26,6 +26,11 @@ RSpec.describe Turn do
     it 'can determine who its 2 players are' do
       expect(turn.player1.name).to eq("Megan")
       expect(turn.player2.name).to eq("Aurora")
+    end
+
+    it 'can determine what type of turn you are taking' do
+      expect(turn.type).to eq(:basic)
+      expect(turn.spoils_of_war).to eq([])
     end
 
   end

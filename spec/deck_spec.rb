@@ -1,7 +1,7 @@
 require 'rspec'
 require './lib/deck'
 require './lib/card'
-# require 'pry';binding.pry
+require 'pry'
  RSpec.describe Deck do
 
    card1 = Card.new(:diamond, 'Queen', 12)
@@ -12,6 +12,7 @@ require './lib/card'
    it 'is made up of an array of cards' do
      deck = Deck.new(cards)
      expect(deck.cards).to eq([card1, card2, card3])
+     binding.pry
    end
 
    it 'can determine card ranking & percentage of high ranking cards' do
