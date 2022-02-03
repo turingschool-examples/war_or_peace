@@ -5,9 +5,7 @@ class Deck
   def initialize(cards)
     @cards = cards
     @high_ranking_cards = []
-    @percent_high_ranking = 0
     @deck = []
-
   end
 
   def rank_of_card_at(place)
@@ -20,8 +18,14 @@ def high_ranking_card
       @cards.delete(card)
     end
     @high_ranking_cards = @cards
-
   end
+end
+
+def percent_high_ranking
+  card_count = @cards.count
+  high_ranking_card
+  percent = @high_ranking_cards.count.to_f.truncate(3) / card_count.to_f.truncate(3)
+  return (percent * 100).round(1)
 end
 
   # def rank_of_card_at
