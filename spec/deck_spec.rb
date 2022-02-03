@@ -55,6 +55,23 @@ RSpec.describe 'Deck class'do
     expect(deck.percent_high_ranking).to eq(66.67)
   end
 
+  it "has a function 'remove_card' that removes the first card from the deck array" do
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+
+    deck = Deck.new(cards)
+    expected_deck = deck.cards[1..2]
+    #forcing expected_high_value_cards to array format with brackets because accessing just one element returns just the element, no longer in an array, which our method needs to do!
+    expected_high_value_cards = [deck.cards[2]]
+    expected_high_value_percent = 50.00
+    deck.remove_card
+
+    expect(deck.cards).to eq(expected_deck)
+    expect(deck.high_ranking_cards).to eq(expected_high_value_cards)
+    expect(deck.percent_high_ranking).to eq(expected_high_value_percent)
+  end
 
 end
 

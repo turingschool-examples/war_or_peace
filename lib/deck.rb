@@ -31,7 +31,6 @@ class Deck
   end
 
   def remove_card
-    #removes top card from @cards
     @cards.shift
     #WARNING: We'll need to do something with this card later, so we'll probably ned to send this somewhere not just forget it
   end
