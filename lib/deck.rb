@@ -28,4 +28,19 @@ class Deck
 
   end
 
+  def percent_high_ranking
+    total_high_rank_cards = 0.0
+    total_cards = 0.0
+
+
+    @cards.each do |high_card|
+      total_cards += 1.0
+      if high_card.rank >= 11
+        total_high_rank_cards += 1.0
+      end
+    end
+
+    return ((total_high_rank_cards/total_cards)*100).round(1)
+  end
+
 end
