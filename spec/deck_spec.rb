@@ -44,7 +44,7 @@ RSpec.describe Card do
     expect(deck.percent_high_ranking).to eq(66.7)
   end
 
-  xit 'can add cards to deck' do
+  it 'can add cards to deck' do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
@@ -54,8 +54,8 @@ RSpec.describe Card do
 
     deck.add_card(card4)
     expect(deck.cards).to eq([card1, card2, card3, card4])
-    expect(deck.high_ranking_cards).to eq(2)
-    expect(deck.percent_high_ranking).to eq(50)
+    expect(deck.high_ranking_cards).to eq([card1, card3])
+    expect(deck.percent_high_ranking).to eq(50.0)
   end
 
   xit 'can remove cards from the deck' do
@@ -67,7 +67,7 @@ RSpec.describe Card do
 
     deck.remove_card
     expect(deck.cards).to eq([card1, card2])
-    expect(deck.high_ranking_cards).to eq(1)
-    expect(deck.percent_high_ranking).to eq(50)
+    expect(deck.high_ranking_cards).to eq([card1])
+    expect(deck.percent_high_ranking).to eq(50.0)
   end
 end

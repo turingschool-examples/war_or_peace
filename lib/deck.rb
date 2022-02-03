@@ -43,4 +43,8 @@ class Deck
     return ((total_high_rank_cards/total_cards)*100).round(1)
   end
 
+  def add_card(card)
+    @cards << card
+  end
+
 end
