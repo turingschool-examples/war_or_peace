@@ -34,10 +34,10 @@ class Turn
   end
 
   def pile_cards
-    if @turn.type == :basic
+    if type == :basic
       @spoils_of_war << @player1.deck.cards.shift
       @spoils_of_war << @player2.deck.cards.shift
-    elsif @turn.type == :war
+    elsif type == :war
       3.times do
         @spoils_of_war << @player1.deck.cards.shift
         @spoils_of_war << @player2.deck.cards.shift
