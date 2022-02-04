@@ -49,7 +49,7 @@ RSpec.describe Turn do
     expect(turn.spoils_of_war).to eq([])
   end
 
-  it 'confirms turn type functionality' do
+  it 'confirms basic turn type functionality' do
     expect(turn.type).to eq(:basic)
   end
 
