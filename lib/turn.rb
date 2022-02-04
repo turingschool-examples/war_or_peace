@@ -37,7 +37,7 @@ class Turn
     elsif type == :war
       if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
         return player1
-      elsif player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+      elsif player1.deck.rank_of_card_at(2) < player2.deck.rank_of_card_at(2)
         return player2
       end
 
@@ -65,15 +65,21 @@ class Turn
   end
 
   def award_spoils(winner)
-    if type == :basic || :war
+    if type == :basic || type == :war
       winner.deck.cards << @spoils_of_war
       winner.deck.cards.flatten!
     end
   end
 
   def start
+    p "Welcome to War! (or Peace) This game will be played with 52 cards."
+    p "The players today are #{player1.name} and #{player2.name}."
+    p "Type 'GO' to start the game!"
     user_input = gets.chomp
     turn_count = 0
+    player1.deck.cards.shuffle!
+    player2.deck.cards.shuffle!
+
 
     if user_input == 'GO'
       until @player1.has_lost? == true || @player2.has_lost? == true || turn_count == 1000000 do
@@ -89,12 +95,23 @@ class Turn
           pile_cards
           award_spoils(winner)
         elsif type == :mutually_assured_desctruction
-          p '*mutually assured destruction*: 6 cards removed from play.'
+          p "Turn#{turn_count}*mutually assured destruction*: 6 cards removed from play."
           pile_cards
         end
       end
+
     else
       p "Type GO to see a war!!"
+    end
+
+    if player1.deck.cards.count == 0
+      p "WINNER: #{player2.name}"
+      p "Megan: #{player1.deck.cards.count} cards"
+      p "Aurora: #{player2.deck.cards.count} cards"
+    elsif player2.deck.cards.count == 0
+      p "WINNER: #{player1.name}"
+      p "Megan: #{player1.deck.cards.count} cards"
+      p "Aurora: #{player2.deck.cards.count} cards"
     end
   end
 end
