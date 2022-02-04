@@ -32,7 +32,7 @@ class Deck
 
   def remove_card
     @cards.shift
-    #WARNING: We'll need to do something with this card later, so we'll probably ned to send this somewhere not just forget it
+    #this should return the card to be transfered to the spoils pile while removing it from the player's hand at the same time!
   end
 
   def add_card(card)
