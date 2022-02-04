@@ -1,7 +1,7 @@
-require './card'
-require './deck'
-require './player'
-require './turn'
+require './lib/card'
+require './lib/deck'
+require './lib/player'
+require './lib/turn'
 
 class Game
     attr_reader :p1name, :p2name, :built_deck, :turn_count, :player1, :player2, :winner
