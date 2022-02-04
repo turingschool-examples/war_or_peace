@@ -23,13 +23,10 @@ RSpec.describe Player do
   end
 
   it "determines whether player lost" do
-
     expect(player.has_lost?).to eq(false)
     player.deck.remove_card
-    # binding.pry
     expect(player.has_lost?).to eq(false)
     player.deck.remove_card
-    # binding.pry
     expect(player.has_lost?).to eq(false)
     player.deck.remove_card
     # binding.pry
@@ -37,8 +34,7 @@ RSpec.describe Player do
   end
 
   it "shows the empty deck" do
-    # binding.pry
-    expect(player.deck.deck).to eq([])
+    expect(player.deck.cards).to eq([])
   end
 
 

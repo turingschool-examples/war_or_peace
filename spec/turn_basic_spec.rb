@@ -45,8 +45,8 @@ RSpec.describe Turn do
 
   it "rewards spoils to the winner" do
     turn.award_spoils(player1)
-    expect(player1.deck.deck).to eq([card2, card5, card8, card1, card3])
-    expect(player2.deck.deck).to eq([card4, card6, card7])
+    expect(player1.deck.cards).to eq([card2, card5, card8, card1, card3])
+    expect(player2.deck.cards).to eq([card4, card6, card7])
   end
 
 

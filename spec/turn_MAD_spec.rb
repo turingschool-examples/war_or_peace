@@ -1,4 +1,5 @@
 
+
 require './lib/card'
 require './lib/deck'
 require './lib/player'
@@ -45,8 +46,8 @@ RSpec.describe Turn do
 
   it "rewards spoils to the winner" do
 
-    expect(player1.deck.deck).to eq([card8])
-    expect(player2.deck.deck).to eq([card7])
+    expect(player1.deck.cards).to eq([card8])
+    expect(player2.deck.cards).to eq([card7])
   end
 
 

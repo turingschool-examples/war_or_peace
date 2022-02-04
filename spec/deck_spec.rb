@@ -21,7 +21,7 @@ RSpec.describe Deck do
   end
 
   it "shows cards" do
-    expect(deck.deck).to eq(cards)
+    expect(deck.cards).to eq(cards)
   end
 
   it "creates a subset of high ranking cards" do
