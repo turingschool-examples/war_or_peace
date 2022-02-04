@@ -65,9 +65,10 @@ class Turn
   end
 
   def award_spoils(winner)
-    winner.deck.cards << @spoils_of_war
-    winner.deck.cards.flatten!
-    spoils_of_war.clear
+    if type == :basic || :war
+      winner.deck.cards << @spoils_of_war
+      winner.deck.cards.flatten!
+    end
   end
 
   def start
@@ -75,8 +76,9 @@ class Turn
     turn_count = 0
 
     if user_input == 'GO'
-      until @playerl.has_lost? == true || @player2.has_lost? == true do || turn_count == 1000000
+      until @player1.has_lost? == true || @player2.has_lost? == true || turn_count == 1000000 do
         turn_count += 1
+        @spoils_of_war.clear
 
         if type == :basic
           p "Turn#{turn_count}: #{winner.name} won 2 cards"
@@ -89,8 +91,10 @@ class Turn
         elsif type == :mutually_assured_desctruction
           p '*mutually assured destruction*: 6 cards removed from play.'
           pile_cards
+        end
       end
     else
       p "Type GO to see a war!!"
     end
+  end
 end
