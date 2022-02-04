@@ -66,6 +66,11 @@ RSpec.describe Turn do
   it 'confirms winner method functionality' do
     expect(turn.winner).to eq(player1)
   end
+
+  it 'confirms pile cards method functionality' do
+    turn.pile_cards
+    expect(turn.spoils_of_war.count).to eq(2)
+  end
 end
 
 # require 'pry'; binding.pry
