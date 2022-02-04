@@ -118,13 +118,16 @@ unshuffled_deck = [
 
 shuffled_deck = unshuffled_deck.shuffle
 
-player1_deck = []
-player2_deck = []
+deck1 = []
+deck2 = []
 
 26.times do
-  player1_deck << shuffled_deck.shift
-  player2_deck << shuffled_deck.shift
+  deck1 << shuffled_deck.shift
+  deck2 << shuffled_deck.shift
 end
+
+player1_deck = Deck.new(deck1)
+player2_deck = Deck.new(deck2)
 
 player1 = Player.new('Robot 1', player1_deck)
 player2 = Player.new('Robot 2', player2_deck)

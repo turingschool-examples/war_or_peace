@@ -30,4 +30,25 @@ RSpec.describe Game do
       expect(game.player2).to eq(player2)
     end
   end
+
+  describe '#run_game' do
+    it 'can determine if a player has lost' do
+      card1 = Card.new(:heart, 'Jack', 11)
+      card2 = Card.new(:heart, '10', 10)
+
+      deck1 = Deck.new([card1])
+      deck2 = Deck.new([card2])
+
+      player1 = Player.new('Robot 1', deck1)
+      player2 = Player.new('Robot 2', deck2)
+
+      game = Game.new(player1, player2)
+
+      game.run_game
+
+      expect(player1.has_lost?).to eq(false)
+      expect(player2.has_lost?).to eq(true)
+    end
+  end
+
 end

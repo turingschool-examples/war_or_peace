@@ -31,6 +31,17 @@ RSpec.describe Deck do
       expect(deck.rank_of_card_at(0)).to eq(12)
       expect(deck.rank_of_card_at(2)).to eq(14)
     end
+
+    it 'works if players only have one card and the ranks match' do
+      card1 = Card.new(:diamond, 'Queen', 12)
+      card2 = Card.new(:spade, '3', 3)
+
+      cards = [card1, card2]
+
+      deck = Deck.new(cards)
+
+      expect(deck.rank_of_card_at(2).to eq(0)
+    end
   end
 
   describe '#high_ranking_cards' do
