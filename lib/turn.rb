@@ -76,6 +76,7 @@ class Turn
   end
 
   def pile_cards
+    @spoils_of_war = []
     if type == :basic
       #binding.pry
       spoils_of_war << @player1.deck.remove_card
@@ -93,21 +94,23 @@ class Turn
         @player1.deck.remove_card
         @player2.deck.remove_card
       end
+
     end
 
   end
 
   def spoils_count
-    @spoils_count = spoils_of_war.count.to_s
+
+    spoils_of_war_o = @spoils_of_war
+    @spoils_count = spoils_of_war_o.count.to_s
   end
 # binding.pry
 
   def award_spoils(winner)
 # binding.pry everything is ok
-
-    winner.deck.cards.concat(@spoils_of_war)
+    winner.deck.cards.concat(spoils_of_war)
   # binding.pry
-    @spoils_of_war.clear
+    # spoils_of_war.clear
   # binding.pry
   end
 

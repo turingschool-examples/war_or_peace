@@ -14,7 +14,7 @@ class Game
 
   def start
     i = 0
-    until @turn.player1.deck == [] || @turn.player2.deck == [] || i == 100
+    until @turn.player1.deck == [] || @turn.player2.deck == [] || i == 1000000
       # binding.pry
       i += 1
       type = @turn.type
