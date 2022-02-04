@@ -21,5 +21,23 @@ class Turn
       :mutually_assured_destruction
     end
   end
+
+  def winner
+    if player1.deck.cards[0].rank != player2.deck.cards[0].rank
+      if player1.deck.cards[0].rank > player2.deck.cards[0].rank
+        player1
+      elsif player1.deck.cards[0].rank < player2.deck.cards[0].rank
+        player2
+      end
+    elsif player1.deck.cards[0].rank == player2.deck.cards[0].rank && player1.deck.cards[2].rank != player2.deck.cards[2].rank
+      if player1.deck.cards[2].rank > player2.deck.cards[2].rank
+        player1
+      elsif player1.deck.cards[2].rank < player2.deck.cards[2].rank
+        player2
+      end
+    elsif player1.deck.cards[0].rank == player2.deck.cards[0].rank && player1.deck.cards[2].rank == player2.deck.cards[2].rank
+      puts 'No winner'
+    end
+  end
 end
 # binding.pry
