@@ -24,11 +24,31 @@ RSpec.describe Player do
 
   context 'instance methods' do
 
-    # it "player name" do
-    #
-    #   expect(@player.player_name).to eq('Clarisa')
-    #
-    # end
+    it "player name" do
+
+      expect(@player.player_name).to eq("Clarisa")
+
+    end
+
+    it "player deck" do
+
+      expect(@player.deck).to eq(@deck)
+
+    end
+
+    it "has_lost?" do
+
+      expect(@player.has_lost?).to eq(false)
+      expect(@player.deck.remove_card).to eq(@card1)
+      expect(@player.has_lost?).to eq(false)
+      expect(@player.deck.remove_card).to eq(@card2)
+      expect(@player.has_lost?).to eq(false)
+      expect(@player.deck.remove_card).to eq(@card3)
+      expect(@player.has_lost?).to eq(true)
+      expect(@player.deck.cards).to eq(@cards)
+
+    end
+
 
   end
 

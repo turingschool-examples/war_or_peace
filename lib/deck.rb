@@ -40,12 +40,12 @@ class Deck
   end
 
 
-  def remove_cards
+  def remove_card
     @cards.shift
 
   end
 
-  def add_cards
+  def add_card
     @cards.append
 
   end
