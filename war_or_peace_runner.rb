@@ -45,6 +45,10 @@ turn = Turn.new(player1, player2)
 while ((player1.deck.cards).length > 0) &&
       ((player2.deck.cards).length > 0) &&
       turn_count <= 100000
+
+player1_deck_size = player1.deck.cards.length
+player2_deck_size = player2.deck.cards.length
+
   puts "Player1 card count = #{player1.deck.cards.length}"
   puts "Player2 card count = #{player2.deck.cards.length}"
   turn_count += 1
@@ -66,4 +70,13 @@ while ((player1.deck.cards).length > 0) &&
   elsif round_type == :mutually_assured_destruction
     puts "Turn #{turn_count}: *mutually_assured_destruction* 6 cards removed from play"
   end
+
+  if player1_deck_size == 1
+    puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
+  elsif player2_deck_size == 1
+    puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
+
+  end
+
+
 end
