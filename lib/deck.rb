@@ -40,7 +40,7 @@ class Deck
 
   #method to remove a card from the top of the deck
   def remove_card
-    @cards.pop
+    @cards.shift
   end
 
   #method to add a card to the bottome of the deck

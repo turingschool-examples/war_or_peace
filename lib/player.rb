@@ -10,12 +10,11 @@ class Player
 
   #If player has no cards left in thier deck they lose the geme
   def has_lost?
-
-    if @deck.cards != []
+    if @deck.cards == []
+      return true
+    else
       return false
     end
-      return true
-
   end
 
 end

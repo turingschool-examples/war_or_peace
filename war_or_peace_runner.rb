@@ -40,9 +40,13 @@ player1 = Player.new('Megan', player1_deck)
 player2 = Player.new('Aurora', player2_deck)
 
 # Take a turn
-turn_count = 0 
+turn_count = 0
 turn = Turn.new(player1, player2)
-while ((player1.deck.cards).length >= 2) && ((player2.deck.cards).length >= 2)
+while ((player1.deck.cards).length > 0) &&
+      ((player2.deck.cards).length > 0) &&
+      turn_count <= 100000
+  puts "Player1 card count = #{player1.deck.cards.length}"
+  puts "Player2 card count = #{player2.deck.cards.length}"
   turn_count += 1
 #  binding.pry
   round_type = turn.type

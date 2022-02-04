@@ -15,22 +15,24 @@ card7 = Card.new(:heart, '3', 3)
 card8 = Card.new(:diamond, '2', 2)
 card9 = Card.new(:spade, '8',8)
 
-deck1 = Deck.new([card1, card2, card5, card8])
-#deck1 = Deck.new([card2])
+#deck1 = Deck.new([card1, card2, card5, card8])
+deck1 = Deck.new([card3])
 #deck1 = Deck.new([card1, card2])
-deck2 = Deck.new([card3, card4, card6, card7])
+deck2 = Deck.new([card3])
 #deck2 = Deck.new([card4,card5])
 
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
 
 #Take a turn
-  turn = Turn.new(player1, player2)
-  while ((player1.deck.cards).length >= 2) && ((player2.deck.cards).length >= 2)
+turn = Turn.new(player1, player2)
+#while ((player1.deck.cards).length >= 2) && ((player2.deck.cards).length >= 2)
+while !player1.has_lost?
   puts "player1 number of cards #{(player1.deck.cards).length}"
   puts "player2 number of cards #{(player2.deck.cards).length}"
+  puts" player1 #{player1.has_lost?} player2 #{player2.has_lost?}"
   turn.type
-#pry.binding
+  #pry.binding
   round_winner = turn.winner
   turn.pile_cards
 

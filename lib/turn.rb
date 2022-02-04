@@ -18,20 +18,22 @@ class Turn
 
 #     puts " player1 cards =#{@player1.deck.cards.length}"
 #     puts " player2 cards =#{@player2.deck.cards.length}"
+      player1_card = @player1.deck.rank_of_card_at(0)
+      player2_card = @player2.deck.rank_of_card_at(0)
 
-    player1_card = @player1.deck.rank_of_card_at(0)
-    player2_card = @player2.deck.rank_of_card_at(0)
-
-    if player1_card != player2_card
+      if @player1.deck.cards.length < 3 || @player2.deck.cards.length < 3
         return :basic
 
-    elsif (player1_card == player2_card) &&
-          (@player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2))
+      elsif player1_card != player2_card
+        return :basic
+
+      elsif (player1_card == player2_card) &&
+            (@player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2))
         return :mutually_assured_destruction
 
-    elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
+      elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
         return :war
-    end
+      end
   end
 
   def spoils_of_war
@@ -78,19 +80,17 @@ class Turn
       @spoils_of_war.push( @player2.deck.cards[0] )
 
       #remove first card in each players deck
-      @player1.deck.cards.shift
-      @player2.deck.cards.shift
-
-#      @spoils_of_war.deck.add_card(@player1.deck.card[0])
-#      @spoils_of_war.deck.add_card(@player2.deck.card[0])
+      @player1.deck.remove_card
+      @player2.deck.remove_card
 
     elsif type == :mutually_assured_destruction
 #      puts "in plie_cards #{type}"
 
       # remove top 3 cards from each players deck
       3.times {
-        @player1.deck.cards.shift
-        @player2.deck.cards.shift
+        @player1.deck.remove_card
+        @player2.deck.remove_card
+#        @player2.deck.cards.shift
       }
 
     elsif type == :war
@@ -104,18 +104,22 @@ class Turn
       @spoils_of_war.push( @player2.deck.cards[0] )
 
       #remove first 3 cards in each players deck
-      @player1.deck.cards.shift
-      @player2.deck.cards.shift
+      @player1.deck.remove_card
+      @player2.deck.remove_card
       }
     end
   end
 
   def award_spoils (winner)
 #      puts "In award_spoils #{winner.name}"
-#      puts "#{winner.name} cards are #{winner.deck.cards}"
-
+#      puts "#{winner.name} cards are #{winner.deck.cards.length}"
+#puts "spoils cards #{@spoils_of_war}"
       #give cards to winning players deck
-      winner.deck.add_card(@spoils_of_war)
+      @spoils_of_war.each do |card|
+      winner.deck.add_card(card)
+      end
+#      puts "#{winner.name} cards are #{winner.deck.cards.length}"
+#      binding.pry
       #empty spoils_of_war array for next use
       @spoils_of_war = []
 
