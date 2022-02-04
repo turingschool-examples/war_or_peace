@@ -1,4 +1,4 @@
-require 'Rspec'
+require 'rspec'
 require './lib/card'
 require './lib/deck'
 
@@ -12,7 +12,7 @@ RSpec.describe Deck do
     deck = Deck.new(cards)
 
     expect(deck.cards).to eq(cards)
-    expect(deck).to be_an_instance_of(Deck)
+    expect(deck).to be_a(Deck)
   end
 
   it "can return high ranking cards" do
@@ -54,6 +54,6 @@ RSpec.describe Deck do
     cards = [card2, card3]
     deck = Deck.new(cards)
     expect cards << card4
-  end 
+  end
 
 end

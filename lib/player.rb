@@ -1,10 +1,19 @@
-require './deck'
+require './lib/card'
+require './lib/deck'
 
 class Player
-  attr_reader :player_name, :deck
-  def initialize(player_name, deck)
-    @player_name = player_name
+  attr_reader :name, :deck, :cards
+  def initialize(name, deck)
+    @name = name
     @deck = deck
+    #@cards = cards
   end
 
-end
+  def has_lost?
+    #if (@deck.cards.count) == 0
+    @deck.cards.count == 0
+    #   return true
+    # else
+    #   return false
+    end
+  end
