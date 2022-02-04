@@ -48,10 +48,14 @@ class Turn
     if @turn_type == :basic
       @spoils_of_war << player1.deck.cards[0]
       @spoils_of_war << player2.deck.cards[0]
+      (player1.deck.cards).shift
+      (player2.deck.cards).shift
     elsif @turn_type == :war
       3.times do |index|
         @spoils_of_war << player1.deck.cards[index]
         @spoils_of_war << player2.deck.cards[index]
+        (player1.deck.cards).shift
+        (player2.deck.cards).shift
       end
     elsif @turn_type == :mutually_assured_destruction
       3.times do
