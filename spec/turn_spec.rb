@@ -24,6 +24,8 @@ player2 = Player.new('Aurora', deck2)
 
 turn = Turn.new(player1, player2)
 
+winner = Turn.winner
+
 RSpec.describe Turn do
   it 'creates new turn' do
     expect(turn).to be_an_instance_of(Turn)
@@ -53,8 +55,16 @@ RSpec.describe Turn do
     expect(turn.type).to eq(:basic)
   end
 
-  it 'confirms war turn type functionality' do
-    expect(turn.type).to eq(:war)
+  # it 'confirms war turn type functionality' do
+  #   expect(turn.type).to eq(:war)
+  # end
+  #
+  # it 'confirms m.a.d turn type functionality' do
+  #   expect(turn.type).to eq(:mutually_assured_destruction)
+  # end
+
+  it 'confirms winner method functionality' do
+    expect(turn.winner).to eq(player1)
   end
 end
 
