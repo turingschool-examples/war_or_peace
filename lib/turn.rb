@@ -16,6 +16,9 @@ class Turn
 
   def type
 
+#     puts " player1 cards =#{@player1.deck.cards.length}"
+#     puts " player2 cards =#{@player2.deck.cards.length}"
+
     player1_card = @player1.deck.rank_of_card_at(0)
     player2_card = @player2.deck.rank_of_card_at(0)
 
@@ -34,37 +37,41 @@ class Turn
   def spoils_of_war
     return @spoils_of_war
   end
-
+  ###
+  #Method to determin the winner of the Turn
+  ###
   def winner
     if type == :basic
 
+      #Player1 first card is higher than Player2 first card
       if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
-        puts "player1 wins "
         return @player1
-      else puts "player2 wins"
+      else
         return @player2
       end
 
     elsif type == :mutually_assured_destruction
+      #Players cards are the same in 1st and 3rd spot
       return "No Winner"
 
     elsif type == :war
+      #Player1 third card is higher than Player2 third card
       if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
-        puts "player1 wins "
         return @player1
       else
-        puts "player2 wins"
         return @player2
       end
     end
 
   end
 
+  ###
+  #Method which adds/removes cards from winner/loser player deck
+  ###
   def pile_cards
 
     if type == :basic
 
-#      puts "in plie_cards #{type}"
 
       #put first card of each player onto spoils_of_war
       @spoils_of_war.push( @player1.deck.cards[0] )
@@ -78,7 +85,7 @@ class Turn
 #      @spoils_of_war.deck.add_card(@player2.deck.card[0])
 
     elsif type == :mutually_assured_destruction
-      puts "in plie_cards #{type}"
+#      puts "in plie_cards #{type}"
 
       # remove top 3 cards from each players deck
       3.times {
@@ -87,7 +94,9 @@ class Turn
       }
 
     elsif type == :war
-      puts "in plie_cards #{type}"
+#     puts "in plie_cards #{type}"
+#     puts " player1 cards =#{@player1.deck.cards.length}"
+#     puts " player2 cards =#{@player2.deck.cards.length}"
 
       #put first 3 cards of each player onto spoils_of_war
       3.times {
@@ -99,7 +108,6 @@ class Turn
       @player2.deck.cards.shift
       }
     end
-
   end
 
   def award_spoils (winner)

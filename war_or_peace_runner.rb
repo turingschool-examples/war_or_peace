@@ -1,3 +1,4 @@
+#!/Users/johnhennerich/.rbenv/shims/ruby
 require 'pry'
 require './lib/card'
 require './lib/deck'
@@ -38,22 +39,27 @@ player2_deck = Deck.new(deck2)
 player1 = Player.new('Megan', player1_deck)
 player2 = Player.new('Aurora', player2_deck)
 
-turn1 = Turn.new(player1, player2)
-puts "type is #{turn1.type}"
-puts "player1 first card rank is #{player1.deck.cards[0].rank}"
-puts "player1 3rd card rank is #{player1.deck.cards[2].rank}"
-puts "player2 first card rank is #{player2.deck.cards[0].rank}"
-puts "player2 third card rank is #{player2.deck.cards[2].rank}"
+# Take a turn
+turn_count = 0 
+turn = Turn.new(player1, player2)
+while ((player1.deck.cards).length >= 2) && ((player2.deck.cards).length >= 2)
+  turn_count += 1
+#  binding.pry
+  round_type = turn.type
+  round_winner = turn.winner
+  turn.pile_cards
 
-turn1.winner
-pry.binding
+  if round_winner != "No Winner"
+    turn.award_spoils(round_winner)
+  else
+    puts "No winner this turn"
+  end
 
-#
-# #high_cards = deck.high_ranking_cards
-# #index = deck.rank_of_card_at(0)
-#
-#
-# turn1 = Turn.new(player1, player2)
-# #puts index
-# #deck.percent_high_ranking
-# #deck.add_card(card4)
+  if round_type == :basic
+    puts "Turn #{turn_count}: #{round_winner.name} won 2 cards #{round_type}"
+  elsif round_type == :war
+    puts "Turn #{turn_count}: WAR - #{round_winner.name} won 6 cards #{round_type}"
+  elsif round_type == :mutually_assured_destruction
+    puts "Turn #{turn_count}: *mutually_assured_destruction* 6 cards removed from play"
+  end
+end

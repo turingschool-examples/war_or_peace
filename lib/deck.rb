@@ -10,6 +10,7 @@ class Deck
 
   # take one argument that represents the index location of a card to be used
   def rank_of_card_at (index)
+#    puts "index is #{@cards[index].rank}"
       return @cards[index].rank
   end
 

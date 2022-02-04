@@ -23,7 +23,9 @@ RSpec.describe Player do
      deck = Deck.new(cards)
      player = Player.new('Clarisa', deck)
 
-     expect(player.name).to eq('Clarisa')
+    expect(player.deck).to be_an_instance_of(Deck)
+    expect(player.deck).to eq(deck)
+#     expect(player.name).to eq('Clarisa')
 #     expect(player.deck).to have_at_least(1).items
    end
 

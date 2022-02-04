@@ -1,3 +1,3 @@
-## War or Peace
+# War or Peace
 
-This is the starter repo for the BE Mod1 **War or Peace** project.
+## John's try at the card game War or Peace
