@@ -23,9 +23,10 @@ RSpec.describe Game do
     it "builds the deck" do
         game = Game.new("Megan", "Aurora")
         game.build_deck
+        deck = Deck.new(game.built_deck)
 
-        expect(game.built_deck.cards.count).to eq(52)
-        expect(game.built_deck.percent_high_ranking).to eq(30.77)
+        expect(game.built_deck.count).to eq(52)
+        expect(deck.percent_high_ranking).to eq(30.77)
     end
 
     it "shuffles and assigns the deck" do
@@ -33,7 +34,9 @@ RSpec.describe Game do
         game.build_deck
         game.assign_decks
 
+        expect(game.player1.name).to eq("Megan")
         expect(game.player1.deck.cards.count).to eq(52)
+        expect(game.player2.name).to eq("Aurora")
         expect(game.player2.deck.cards.count).to eq(52)
         expect(game.player2.deck.cards).not_to eq(game.player1.deck.cards)
     end
