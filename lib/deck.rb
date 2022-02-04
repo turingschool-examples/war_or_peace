@@ -30,4 +30,12 @@ class Deck
 
     return ((high_rank_percent / cards.length) * 100).round(2)
   end
+
+  def remove_card
+    cards.shift
+  end
+
+  def add_card(card)
+    cards << card
+  end
 end
