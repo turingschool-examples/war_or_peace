@@ -1,4 +1,4 @@
-require './lib/card'
+require_relative 'card'
 
 class Deck
   attr_accessor :cards

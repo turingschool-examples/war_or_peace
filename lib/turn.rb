@@ -1,6 +1,6 @@
-require './lib/card'
-require './lib/deck'
-require './lib/player'
+require_relative 'card'
+require_relative 'deck'
+require_relative 'player'
 
 class Turn
 
