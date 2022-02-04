@@ -26,7 +26,12 @@ class Turn
   end
 
   def pile_cards
-    [@player1.deck.cards.first,  @player2.deck.cards.first]
+    cards = [@player1.deck.cards.first,  @player2.deck.cards.first]
+    cards.each do |card|
+      @spoils_of_war.push(card)
+    end
   end
+
+
 
 end
