@@ -15,7 +15,7 @@ end
 
 class Deck
 
-   attr_reader :cards, :index, :high_cards
+   attr_reader :cards, :index, :high_cards, :new_card
 
   def initialize(cards)
     @cards = cards
@@ -64,7 +64,8 @@ class Deck
     cards.shift
   end
 
-  def add_card
+  def add_card(new_card)
+    cards.push(new_card)
   end
 
 end
@@ -82,14 +83,22 @@ puts ""
 puts deck.cards
 puts ""
 # puts deck.count_cards
-puts ""
+# puts ""
 # puts deck.high_card_count
 puts deck.percent_high_ranking
 
-# deck.remove_card
-
-# puts deck.cards
+deck.remove_card
+puts ""
+puts deck.cards
 puts ""
 puts deck.high_ranking_cards
 puts ""
-# puts deck.percent_high_ranking
+puts deck.percent_high_ranking
+
+card4 = Card.new(:club, "5", 5)
+puts ""
+deck.add_card(card4)
+puts ""
+puts deck.cards
+puts ""
+puts deck.percent_high_ranking
