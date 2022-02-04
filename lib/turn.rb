@@ -57,9 +57,16 @@ class Turn
       3.times do
         @player1.deck.remove_card && @player2.deck.remove_card
       end
-
     end
   end
+
+  def award_spoils(winner)
+    @spoils_of_war.each do |winnings|
+      winner.deck.add_card(winnings)
+    end
+  end
+
+
 
 
 end
