@@ -37,12 +37,14 @@ class Turn
       end 
       
       
-    else type == :war
+    elsif type == :war
       if(player1.deck.rank_of_card_at(2)) > (player2.deck.rank_of_card_at(2))
         player1
       else 
         player2
       end 
+    else type == :mutually_assured_destruction
+      :KABOOM!
     end  
         
     
