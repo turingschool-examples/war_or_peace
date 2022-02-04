@@ -21,13 +21,25 @@ class Turn
       return @player1
     elsif @player1.deck.rank_of_card_at(0) < @player2.deck.rank_of_card_at(0) == true
       return @player2
+    elsif @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2) == true
+      return @player1
+    elsif @player1.deck.rank_of_card_at(2) < @player2.deck.rank_of_card_at(2) == true
+      return @player2
     end
   end
 
   def pile_cards
-    cards = [@player1.deck.cards.delete_at(0),  @player2.deck.cards.delete_at(0)]
-    cards.each do |card|
-      @spoils_of_war.push(card)
+    if type == :basic
+      cards = [@player1.deck.cards.delete_at(0),  @player2.deck.cards.delete_at(0)]
+      cards.each do |card|
+        @spoils_of_war.push(card)
+      end
+    elsif type == :war
+      cards = [@player1.deck.cards.shift, @player1.deck.cards.shift, @player1.deck.cards.shift, @player2.deck.cards.shift, @player2.deck.cards.shift, @player2.deck.cards.shift]
+      cards.each do |card|
+        @spoils_of_war.push(card)
+      end
+
     end
   end
 
