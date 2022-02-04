@@ -1,9 +1,17 @@
+require './card'
+require './deck'
+require './player'
+require './turn'
+
 class Game
-    attr_reader :player1, :player2, :built_deck, :turn_count
-    def initialize(player1, player2)
-      @player1 = player1
-      @player2 = player2
+    attr_reader :p1name, :p2name, :built_deck, :turn_count
+    def initialize(p1name, p2name)
+      @p1name = p1name
+      @p2name = p2name
       @turn_count = 1
       @built_deck = []
+      @player1 = nil
+      @player2 = nil
+      @winner = nil
     end
 end
