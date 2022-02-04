@@ -1,3 +1,6 @@
+require './lib/deck'
+require './lib/card'
+
 class Player
 attr_reader :name, :deck
 
@@ -6,7 +9,15 @@ attr_reader :name, :deck
     @deck = deck
   end
 
+  def has_lost?
 
+    if @deck.cards.length < 1
+      true
+    else
+      false
+    end
+
+  end
 
 
 end
