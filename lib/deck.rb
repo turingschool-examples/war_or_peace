@@ -1,11 +1,7 @@
-require './lib/card'
-
 class Deck
-  attr_reader :cards, :deck
+  attr_reader :cards
   def initialize(cards)
     @cards = cards
-    @high_ranking_cards = []
-    @deck = []
   end
 
 
@@ -13,19 +9,19 @@ class Deck
     @cards[place].rank
   end
 
-  def high_ranking_card
+  def high_ranking_cards
+    face_cards = []
     @cards.each do |card|
-      if card.rank < 11
-        @cards.delete(card)
+      if card.rank >= 11
+        face_cards << card
       end
-      @high_ranking_cards = @cards
     end
+    return face_cards
   end
 
   def percent_high_ranking
     card_count = @cards.count
-    high_ranking_card
-    percent = @high_ranking_cards.count.to_f.truncate(3) / card_count.to_f.truncate(3)
+    percent = high_ranking_cards.count.to_f.truncate(3) / card_count.to_f.truncate(3)
     return (percent * 100).round(2)
   end
 
