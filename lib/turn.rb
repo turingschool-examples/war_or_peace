@@ -1,6 +1,7 @@
 require './lib/card'
 require './lib/deck'
 require './lib/player'
+require './lib/turn'
 require 'pry'
 
 class Turn
@@ -95,7 +96,7 @@ class Turn
   end
 
   def start
-    
+    puts "game over!"
   end
 
 end

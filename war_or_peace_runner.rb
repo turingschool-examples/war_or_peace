@@ -26,3 +26,12 @@ deck2 = shuffled_cards[26..53]
 # binding.pry
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
+
+user_response = $stdin.gets.chomp
+
+if user_response == "GO"
+  turn = Turn.new(player1, player2)
+  turn.start
+else
+  print "Your loss!"
+end
