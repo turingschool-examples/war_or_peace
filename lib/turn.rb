@@ -20,8 +20,8 @@ class Turn
       (player1.deck.rank_of_card_at(0)) == (player2.deck.rank_of_card_at(0))
       :war
     elsif 
-      player1.rank_of_card_at(0) == player2.rank_of_card_at(0) &&
-      player1.rank_of_card_at(2) == player2.rank_of_card_at(2)
+      player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) &&
+      player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
       :mutually_assured_destruction
     else
       :basic

@@ -10,7 +10,7 @@ class Deck
   def rank_of_card_at(index)
     @cards[index].rank
   end
-  cards.rank_of_card_at(1)
+  # cards.rank_of_card_at(1)
 
   def high_ranking_cards
     high_rank = []
