@@ -65,5 +65,12 @@ class Turn
     end
 
   end
+
+  def award_spoils(winner)
+    # winner = turn.winner
+    winner.deck.cards.push(*@spoils_of_war)
+    @spoils_of_war.clear
+    # winner.deck.cards.shift
+  end
 end
 # binding.pry
