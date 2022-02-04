@@ -26,4 +26,16 @@ RSpec.describe Turn do
     expect(@turn).to be_an_instance_of(Turn)
   end
 
+  it "#player1 exists" do
+    expect(@turn.player1).to be_an_instance_of(Player)
+  end
+
+  it "#player2 exists" do
+    expect(@turn.player2).to be_an_instance_of(Player)
+  end
+
+  it "#spoils_of_war starts empty" do
+    expect(@turn.spoils_of_war).to eq([])
+  end
+
 end
