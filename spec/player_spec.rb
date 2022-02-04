@@ -19,7 +19,7 @@ RSpec.describe Player do
   end
 
   it "shows the player's deck" do
-    expect(player.deck.deck).to eq(deck)
+    expect(player.deck).to eq(deck)
   end
 
   it "determines whether player lost" do
@@ -37,6 +37,7 @@ RSpec.describe Player do
   end
 
   it "shows the empty deck" do
+    # binding.pry
     expect(player.deck.deck).to eq([])
   end
 

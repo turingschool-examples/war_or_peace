@@ -23,7 +23,7 @@ class Turn
 #a method built to find card rank of a player
   def find_rank_of_card(player, index)
     # binding.pry
-     player.deck.deck[index].rank
+     player.deck[index].rank
   end
 # binding.pry
 # binding.pry
@@ -69,12 +69,13 @@ class Turn
       return "No Winner"
     end
   end
-
+# binding.pry
 
   def pile_cards
     if @type == :basic
       #binding.pry
       spoils_of_war << @player1.deck.remove_card #had extra .cards here
+
       spoils_of_war << @player2.deck.remove_card
     elsif @type == :war
 

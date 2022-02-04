@@ -30,7 +30,7 @@ class Deck
   end
 
   def remove_card
-    deck.shift #shows removed cards if no return cards
+    @deck.shift #shows removed cards if no return cards
   end
 
   def add_card(new_card)
