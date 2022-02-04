@@ -53,6 +53,9 @@ RSpec.describe Turn do
     expect(turn.type).to eq(:basic)
   end
 
+  it 'confirms war turn type functionality' do
+    expect(turn.type).to eq(:war)
+  end
 end
 
 # require 'pry'; binding.pry
