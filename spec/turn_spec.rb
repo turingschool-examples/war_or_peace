@@ -32,7 +32,7 @@ RSpec.describe Turn do
 
   it '#winner returns accurately for each turn' do
     require "pry"; binding.pry
-    expect(@turn.winner).to eq(@player1)
+    expect(winner = @turn.winner).to eq(@player1)
   end
 
 end

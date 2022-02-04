@@ -25,9 +25,9 @@ class Turn
 
   def winner
      if @player1.deck.cards[0].rank > @player2.deck.cards[0].rank
-       @winner = @player1
+       @player1
      elsif @player1.deck.cards[0].rank < @player2.deck.cards[0].rank
-       @winner = @player2
+       @player2
      else
        "No Winner"
      end
@@ -51,6 +51,6 @@ class Turn
   end
 
   def award_spoils(winner)
-    @winner.deck.cards << @spoils_of_war
+    winner.deck.cards << @spoils_of_war
   end
 end
