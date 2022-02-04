@@ -18,11 +18,11 @@ RSpec.describe Deck do
     expect(deck.rank_of_card_at(2)).to eq(14)
     expect(deck.cards).to eq(cards)
     expect(deck.high_ranking_cards).to eq([card1, card3])
-    # expect(deck.count_cards).to eq(1)
-    # expect(deck.high_card_count).to eq(2)
-    expect(deck.percent_high_ranking).to eq(2/3)
+    expect(deck.percent_hicgh_ranking).to eq(66.67)
     expect(deck.remove_card).to eq(card1)
-    expect(deck.cards).to eq([card2, card3])
+    # expect(deck.cards).to eq([card2, card3])
+    # expect(deck.high_ranking_cards).to eq(card3)
+    # expect(deck.percent_high_ranking). to eq(1/2)
   end
 
 end
