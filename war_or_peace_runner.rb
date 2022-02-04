@@ -23,18 +23,24 @@ i = 0
  end
 
 shuffled_cards = deck_of_cards.shuffle
-deck1 = shuffled_cards[0..25]
-deck2 = shuffled_cards[26..51]
+deck1 = Deck.new(shuffled_cards[0..25])
+deck2 = Deck.new(shuffled_cards[26..51])
+
+#mock cards for trouble shooting
+# deck1 = Deck.new(shuffled_cards[0..3])
+# deck2 = Deck.new(shuffled_cards[4..7])
 
 # binding.pry
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
-
+turn = Turn.new(player1, player2)
 user_response = $stdin.gets.chomp
 
 if user_response == "GO"
-  turn = Turn.new(player1, player2)
+
   game = Game.new(turn)
+  # binding.pry
+  @turn = turn
   game.start
 else
   print "Your loss!"

@@ -11,11 +11,12 @@ require 'pry'
 #commented .cards in line 26 27
 
 class Turn
-  attr_reader :player1, :player2, :spoils_of_war
+  attr_reader :player1, :player2, :spoils_of_war, :spoils_count
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
+
 
   end
 # binding.pry
@@ -25,7 +26,9 @@ class Turn
   # player1_2 = @player1.deck.cards[2].rank
   # player2_2 = @player2.deck.cards[2].rank
 # binding.pry
+
   def type
+    # binding.pry
      @player1_c = @player1.deck.cards
      @player2_c = @player2.deck.cards
 
@@ -77,14 +80,14 @@ class Turn
       #binding.pry
       spoils_of_war << @player1.deck.remove_card
       spoils_of_war << @player2.deck.remove_card
-    elsif type == :war
 
+    elsif type == :war
       3.times do
         spoils_of_war << @player1.deck.remove_card
         spoils_of_war << @player2.deck.remove_card
+      # binding.pry
       end
       # binding.pry
-
     elsif type ==:mutually_assured_destruction
       3.times do
         @player1.deck.remove_card
@@ -94,11 +97,18 @@ class Turn
 
   end
 
+  def spoils_count
+    @spoils_count = spoils_of_war.count.to_s
+  end
+# binding.pry
+
   def award_spoils(winner)
-    spoils_of_war.each do |spoiled_card|
-      # binding.pry
-      winner.deck.cards << spoiled_card
-    end
+# binding.pry everything is ok
+
+    winner.deck.cards.concat(@spoils_of_war)
+  # binding.pry
+    @spoils_of_war.clear
+  # binding.pry
   end
 
 end

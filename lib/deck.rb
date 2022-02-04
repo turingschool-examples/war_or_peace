@@ -3,7 +3,7 @@ require_relative 'card'
 
 class Deck
 
-  attr_reader :cards, :rank_of_card_at, :high_ranking_cards, :percent_high_ranking
+  attr_reader :cards#, :rank_of_card_at, :high_ranking_cards, :percent_high_ranking
   def initialize(cards)
     @cards = cards
   end
@@ -26,7 +26,7 @@ class Deck
     # big_cards= high_ranking_cards
     num_high = high_ranking_cards.count
     num_tot = cards.count
-    @percent_high_ranking = num_high/num_tot
+    @percent_high_ranking = ((num_high.to_f/num_tot.to_f)*100).round(2)
   end
 
   def remove_card

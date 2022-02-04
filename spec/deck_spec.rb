@@ -30,7 +30,7 @@ RSpec.describe Deck do
   end
 
   it "calcualtes % of high ranking cards" do
-    expect(deck.percent_high_ranking).to eq(2/3)
+    expect(deck.percent_high_ranking).to eq(66.67)
   end
 
   it "removes 1st card" do
@@ -38,7 +38,7 @@ RSpec.describe Deck do
   end
 
   it "checks the remaning high ranking cards percentage" do
-    expect(deck.percent_high_ranking).to eq(1/2)
+    expect(deck.percent_high_ranking).to eq(50.00)
   end
 
   it "adds a card at last" do
@@ -50,6 +50,6 @@ RSpec.describe Deck do
   end
 
   it "checks the current high ranking cards percentage" do
-    expect(deck.percent_high_ranking).to eq(1/3)
+    expect(deck.percent_high_ranking).to eq(33.33)
   end
 end
