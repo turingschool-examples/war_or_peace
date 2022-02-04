@@ -14,21 +14,24 @@ class Turn
   def type
     if @player1.deck.cards[0].rank != @player2.deck.cards[0].rank
       :basic
-    elsif @player1.deck.cards[2] != @player2.deck.cards[2]
+    elsif @player1.deck.cards[2].rank != @player2.deck.cards[2].rank
       :war
     else
-      self.mutually_assured_destruction
       :mutually_assured_destruction
     end
   end
 
-  def winner  #this method is only accurate until #pile_cards is called
+  def winner  
      if @player1.deck.cards[0].rank > @player2.deck.cards[0].rank
-       @player1
-     elsif @player1.deck.cards[0].rank < @player2.deck.cards[0].rank
-      @player2
-     else
-      "No Winner"
+        @player1
+      elsif @player1.deck.cards[0].rank < @player2.deck.cards[0].rank
+        @player2
+      elsif @player1.deck.cards[2].rank > @player2.deck.cards[2].rank
+        @player1
+      elsif @player1.deck.cards[2].rank < @player2.deck.cards[2].rank
+        @player2
+      else
+        "No Winner"
      end
   end
 
