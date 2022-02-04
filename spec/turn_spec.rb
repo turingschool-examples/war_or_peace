@@ -39,5 +39,13 @@ RSpec.describe Turn do
       @turn.pile_cards
       expect(@turn.spoils_of_war).to eq([@card1, @card3])
     end
+
+    it "#award_spoils to the winner" do
+      winner = @turn.winner
+      @turn.pile_cards
+      @turn.award_spoils(winner)
+      # require "pry"; binding.pry
+      expect(@player1.deck.cards.count).to eq(5)
+    end
   end
 end

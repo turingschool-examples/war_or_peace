@@ -185,7 +185,9 @@ for a :mutually_assured_destruction turn, each player will remove three cards fr
 award_spoils: this method will add each of the cards in the @spoils_of_war array to the winner of the turn.
 The three interaction patterns below highlight the behavior of each type of turn.
 
-#turn type :basic
+:::::::::#turn type :basic::::::::::::::::::::::;
+
+
 pry(main)> require './lib/card'
 #=> true
 pry(main)> require './lib/deck'
@@ -253,7 +255,13 @@ pry(main)> player1.deck
 #=> #<Deck:0x007fa3eda472c8 @cards=[#<Card:0x007fa3eda519a8...>, #<Card:0x007fa3edb263d8...>, #<Card:0x007fa3eda89308...>, #<Card:0x007fa3edaa0df0...>, #<Card:0x007fa3ed98d9b8...>]>
 pry(main)> player2.deck
 #=> #<Deck:0x007fa3ee11ee48 @cards=[#<Card:0x007fa3ee14ef80...>, #<Card:0x007fa3eda3e1f0...>, #<Card:0x007fa3edad1cc0...>]>
+
+
+***************************************
 # turn type :war
+***************************************
+
+
 pry(main)> require './lib/card'
 #=> true
 pry(main)> require './lib/deck'
@@ -313,7 +321,15 @@ pry(main)> player1.deck
 
 pry(main)> player2.deck
 #=> #<Deck:0x007fc42a248678 @cards=[#<Card:0x007fc42a1b4c98...>, #<Card:0x007fc42a170fe8...>, #<Card:0x007fc42a0f1b58...>, #<Card:0x007fc42a2149e0...>, #<Card:0x007fc42a205508...>, #<Card:0x007fc42aa85a98...>, #<Card:0x007fc42a1e4790...>]>
+
+
+
+****************************************
 # turn type :mutually_assured_destruction
+****************************************
+
+
+
 pry(main)> require './lib/card'
 #=> true
 pry(main)> require './lib/deck'
