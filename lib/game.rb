@@ -16,5 +16,13 @@ class Game
     p "Type 'GO' to start the game!"
     p "------------------------------------------------------------------"
     user_input = gets.chomp
+    if user_input == "GO"
+      run_game
+    end
   end
+
+  def run_game
+
+  end
+
 end

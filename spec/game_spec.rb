@@ -26,8 +26,6 @@ RSpec.describe Game do
 
       game = Game.new(player1, player2)
 
-      binding.pry
-
       expect(game.player1).to eq(player1)
       expect(game.player2).to eq(player2)
     end

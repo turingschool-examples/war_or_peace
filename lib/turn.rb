@@ -12,31 +12,51 @@ class Turn
     @spoils_of_war = []
   end
 
+  def turn_is_basic?
+    @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+  end
+
+  def turn_is_war?
+    @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) &&
+    @player1.deck.rank_of_card_at(2) != @player2.deck.rank_of_card_at(2)
+  end
+
+  def turn_is_mad?
+    @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) &&
+    @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
+  end
+
   def type
-    @type = :type
-    if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+    if turn_is_basic?
       @type = :basic
-    elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) != @player2.deck.rank_of_card_at(2)
+    elsif turn_is_war?
       @type = :war
-    elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
+    elsif turn_is_mad?
       @type = :mutually_assured_destruction
     end
-    return @type
+  end
+
+  def basic_winner
+    if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
+      @player1
+    else
+      @player2
+    end
+  end
+
+  def war_winner
+    if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
+      @player1
+    else
+      @player2
+    end
   end
 
   def winner
-    if @type == :basic && @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
-      @winner = @player1
-      @winner
-    elsif @type == :basic && @player1.deck.rank_of_card_at(0) < @player2.deck.rank_of_card_at(0)
-      @winner = @player2
-      @winner
-    elsif @type == :war && @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
-      @winner = @player1
-      @winner
-    elsif @type == :war && @player1.deck.rank_of_card_at(2) < @player2.deck.rank_of_card_at(2)
-      @winner = @player2
-      @winner
+    if @type == :basic
+      basic_winner
+    elsif @type == :war
+      war_winner
     elsif @type == :mutually_assured_destruction
       "No Winner."
     end
@@ -61,7 +81,7 @@ class Turn
 
   def award_spoils(winner)
     @spoils_of_war.each do |card|
-      @winner.deck.add_card(card)
+      winner.deck.add_card(card)
     end
   end
 
