@@ -1,7 +1,7 @@
 require './lib/card'
 
 class Deck
-  attr_reader :cards, :rank_of_card_at, :high_ranking_cards, :percent_high_ranking, :face_cards
+  attr_reader :cards, :rank_of_card_at, :high_ranking_cards, :percent_high_ranking, :face_cards, :remove_card
   def initialize(cards)
     @cards = cards
   end
@@ -27,4 +27,10 @@ class Deck
     total = face_cards.count / cards.count.to_f * 100
     return total.round(2)
   end
+
+  def remove_card
+    @cards.delete_at(0)
+
+  end
+
 end
