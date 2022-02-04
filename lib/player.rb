@@ -7,4 +7,12 @@ class Player
     @deck = deck
   end
 
+  def has_lost?
+    if @deck.cards.size == 0
+      return true
+    else
+      false
+    end
+  end
+
 end
