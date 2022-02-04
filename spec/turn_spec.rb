@@ -45,9 +45,9 @@ RSpec.describe Turn do
     expect(deck2.cards).to eq(cards2)
   end
 
-  # it 'has spoils of war method' do
-  #   expect(turn.spoils_of_war).to eq(cards_won)
-  # end
+  it 'has spoils of war method' do
+    expect(turn.spoils_of_war).to eq([])
+  end
 
 end
 
