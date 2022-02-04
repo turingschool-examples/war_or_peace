@@ -4,7 +4,6 @@ class Turn
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
-
   end
 
   def type
@@ -26,7 +25,6 @@ class Turn
   end
 
   def pile_cards
-
     cards = [@player1.deck.cards.delete_at(0),  @player2.deck.cards.delete_at(0)]
     cards.each do |card|
       @spoils_of_war.push(card)
