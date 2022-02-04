@@ -40,7 +40,7 @@ player2 = Player.new("Aurora", deck2)
 turn = Turn.new(player1, player2)
 turn.start
 
-if turn.input == "GO"
+if turn.input.upcase == "GO"
   p "Time to go to War (or Peace)!"
 else
   loop do
