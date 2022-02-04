@@ -38,4 +38,30 @@ RSpec.describe Turn do
     expect(@turn.spoils_of_war).to eq([])
   end
 
+  it "#type sets to :basic" do
+
+    expect(@turn.type).to eq(:basic)
+
+  end
+
+  xit "#spoils_of_war is populated" do
+    card1 = Card.new(:heart, 'Jack', 11)
+    card3 = Card.new(:heart, '9', 9)
+    deck1 = Deck.new([card1])
+    deck2 = Deck.new([card3])
+    player1 = Player.new("Megan",  deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(@player1,@player2)
+    result = [player1.deck.cards[0].value,player2.deck.cards[0].value]
+    turn.type
+    turn.pile_cards
+    p card1
+    p turn.spoils_of_war
+    expect(turn.spoils_of_war).to eq(result)
+  end
+
+  xit "#award_spoils" do
+
+  end
+
 end
