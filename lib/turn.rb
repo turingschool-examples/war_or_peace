@@ -26,12 +26,16 @@ class Turn
   end
 
   def pile_cards
-    cards = [@player1.deck.cards.first,  @player2.deck.cards.first]
+
+    cards = [@player1.deck.cards.delete_at(0),  @player2.deck.cards.delete_at(0)]
     cards.each do |card|
       @spoils_of_war.push(card)
     end
   end
 
-
-
+  def award_spoils(winner)
+    @spoils_of_war.each do |spoil|
+      winner.deck.cards.push(spoil)
+    end
+  end
 end
