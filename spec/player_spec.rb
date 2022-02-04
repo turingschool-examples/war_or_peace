@@ -11,8 +11,15 @@ deck = Deck.new(cards)
 player = Player.new('Clarisa', deck)
 
 RSpec.describe Player do
-  it "creates new player" do
+  it 'creates new player' do
     expect(player).to be_an_instance_of(Player)
   end
-  
+
+  it 'determines if player has lost' do
+    expect(player.has_lost?).to eq(false)
+  end
+
 end
+
+# require 'pry'; binding.pry
+# 0
