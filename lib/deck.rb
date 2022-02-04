@@ -35,7 +35,7 @@ class Deck
     #this should return the card to be transfered to the spoils pile while removing it from the player's hand at the same time!
   end
 
-  def add_card(card)
-    @cards << card
+  def add_card(spoils)
+    @cards += spoils
   end
 end
