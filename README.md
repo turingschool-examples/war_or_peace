@@ -8,6 +8,10 @@ This is the starter repo for the BE Mod1 **War or Peace** project.
 
 2/3 1:42 : fixed high_ranking_cards and percent_high_ranking to work with add_card and remove_card. just need to write tests for them
 
+2/3 2:15pm : finished tests for iteration 1, created files for iteration 2 (player.rb and player_spec.rb)
+
+2/3 4:17pm : finished first part of iteration 2 (player class and player_spec tests) created turn.rb and turn_spec.rb
+
 
 
 Xpry(main)> require './lib/card'
