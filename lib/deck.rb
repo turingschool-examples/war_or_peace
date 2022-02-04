@@ -2,7 +2,7 @@ require 'rspec'
 require 'pry'
 
 class Deck
-  attr_reader :cards, :cards_above_eleven
+  attr_reader :cards
 # create the deck object template with an argument
   def initialize(cards)
     @cards = cards
