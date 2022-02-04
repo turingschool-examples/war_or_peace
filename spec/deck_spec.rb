@@ -48,7 +48,7 @@ RSpec.describe Deck do
 
       expected = @card1
 
-      expect(@deck.remove_cards).to eq(expected)
+      expect(@deck.remove_card).to eq(expected)
 
     end
 
@@ -56,7 +56,7 @@ RSpec.describe Deck do
 
       expected = @deck.cards.append
 
-      expect(@deck.add_cards).to eq(expected)
+      expect(@deck.add_card).to eq(expected)
 
     end
 
