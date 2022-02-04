@@ -1,10 +1,14 @@
+require 'pry'
+
 class Turn
-  attr_reader :player1, :player2, :spoils_of_war
+  attr_reader :player1, :player2, :spoils_of_war, :winner
   def initialize(player1, player2)
     #do stuff[
     @spoils_of_war = []
     @player1 = player1
     @player2 = player2
+    @winner = winner()
+    @type = type()
   end
 
   def type()
@@ -20,22 +24,23 @@ class Turn
   def winner ()
     if type() == :basic
       if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
-        return @player1
+        @winner = @player1
       else
-        return @player2
+        @winner = @player2
       end
     elsif type() == :war
       if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
-        return @player1
+        @winner = @player1
       else
-        return @player2
+        @winner = @player2
       end
     else
-      return "No Winner"
+      @winner = "No Winner"
     end
   end
 
   def pile_cards ()
+    winner
     if(type()==:basic)
       card_in_transit = @player1.deck.remove_card
       @spoils_of_war << card_in_transit
@@ -59,6 +64,9 @@ class Turn
     end
 
   def award_spoils()
-    #give the spoils to the winner
+    if (@type == :basic || @type == :war)
+      @winner.deck.add_card(@spoils_of_war)
+    end
+    # binding.pry
   end
 end
