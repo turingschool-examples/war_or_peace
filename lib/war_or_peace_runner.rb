@@ -1,9 +1,7 @@
 require_relative 'card'
 require_relative 'deck'
+require_relative 'player'
 
-
-deck1 = []
-deck2 = []
 
 def create_deck
 
@@ -34,3 +32,9 @@ end
 
 deck1 = create_deck
 deck2 = create_deck
+
+player1 = Player.new("Maven", deck1)
+player2 = Player.new("Adam", deck2)
+
+puts player1
+puts player2
