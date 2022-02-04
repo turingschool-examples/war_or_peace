@@ -39,5 +39,31 @@ class Turn
       puts 'No winner'
     end
   end
+
+  def pile_cards
+
+    if player1.deck.cards[0].rank != player2.deck.cards[0].rank
+      @spoils_of_war << player1.deck.cards[0]
+      player1.deck.cards.shift
+      @spoils_of_war << player2.deck.cards[0]
+      player2.deck.cards.shift
+
+    elsif player1.deck.cards[0].rank == player2.deck.cards[0].rank
+      @spoils_of_war << player1.deck.cards[0]
+      @spoils_of_war << player1.deck.cards[1]
+      @spoils_of_war << player1.deck.cards[2]
+      player1.deck.cards.shift(3)
+      @spoils_of_war << player2.deck.cards[0]
+      @spoils_of_war << player2.deck.cards[1]
+      @spoils_of_war << player2.deck.cards[2]
+      player2.deck.cards.shift(3)
+
+    elsif player1.deck.cards[0].rank == player2.deck.cards[0].rank && player1.deck.cards[2].rank == player2.deck.cards[2].rank
+      player1.deck.cards.shift(3)
+      player2.deck.cards.shift(3)
+    'No Winner'
+    end
+
+  end
 end
 # binding.pry
