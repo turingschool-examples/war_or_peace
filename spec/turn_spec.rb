@@ -29,8 +29,16 @@ RSpec.describe Turn do
     expect(turn).to be_an_instance_of(Turn)
   end
 
-  # it 'determines if player has lost' do
-  #   expect(player.has_lost?).to eq(false)
+  it 'can read player1' do
+    expect(turn.player1).to eq(player1)
+  end
+  # #can read decks
+  # it '------------' do
+  #   expect(turn.spoils_of_war).to eq(cards_won)
+  # end
+  #
+  # it 'has spoils of war method' do
+  #   expect(turn.spoils_of_war).to eq(cards_won)
   # end
 
 end
