@@ -1,10 +1,11 @@
 class Turn
-  attr_reader :player1, :player2, :spoils_of_war
+  attr_reader :player1, :player2, :spoils_of_war, :input
 
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
+    @input = nil
   end
 
   def type
@@ -18,7 +19,11 @@ class Turn
   end
 
   def winner
-    if type == :basic
+    if player1.has_lost?
+      player2
+    elsif player2.has_lost?
+      player1
+    elsif type == :basic
       if @player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
         player1
       else
@@ -65,5 +70,16 @@ class Turn
       player2.deck.cards << @spoils_of_war
       player2.deck.cards.flatten!
     end
+
+    @spoils_of_war.clear
+  end
+
+  def start
+    puts "Welcome to War! (or Peace) This game will be played with 52 cards."
+    puts "The players today are Megan and Aurora."
+    puts "Type 'GO' to start the game!"
+    puts "------------------------------------------------------------------"
+
+    @input = gets.chomp
   end
 end
