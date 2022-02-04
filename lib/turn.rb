@@ -94,5 +94,8 @@ class Turn
     end
   end
 
+  def start
+    
+  end
 
 end
