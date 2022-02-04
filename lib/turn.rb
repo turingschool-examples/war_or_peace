@@ -1,10 +1,10 @@
 class Turn
 
-  attr_reader :name, :deck
+  attr_reader :player1, :player2
 
-  def initialize(name, deck)
-    @name = name
-    @deck = deck
+  def initialize(player1, player2)
+    @player1 = player1
+    @player2 = player2
   end
 
 end
