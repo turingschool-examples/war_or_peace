@@ -32,6 +32,10 @@ RSpec.describe Turn do
   it 'can read player1' do
     expect(turn.player1).to eq(player1)
   end
+
+  it 'can read player2' do
+    expect(turn.player2).to eq(player2)
+  end
   # #can read decks
   # it '------------' do
   #   expect(turn.spoils_of_war).to eq(cards_won)
