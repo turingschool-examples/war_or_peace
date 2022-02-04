@@ -50,6 +50,9 @@ while ((player1.deck.cards).length >= 0) &&
   player1_deck_size = player1.deck.cards.length
   player2_deck_size = player2.deck.cards.length
 
+p player1_deck_size
+p player2_deck_size
+
   if player1_deck_size == 0 || player2_deck_size == 0
     break
   end

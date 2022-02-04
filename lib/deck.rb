@@ -11,7 +11,11 @@ class Deck
   # take one argument that represents the index location of a card to be used
   def rank_of_card_at (index)
 #    puts "index is #{@cards[index].rank}"
+    if @cards[index]
       return @cards[index].rank
+    else
+      return 0
+    end
   end
 
   # return an array of cards in the deck that have a rank
