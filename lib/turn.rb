@@ -43,7 +43,9 @@ class Turn
       player2.deck.cards.shift
     elsif type == :war
       @spoils_of_war << player1.deck.cards[0..2]
+      player1.deck.cards.shift(3)
       @spoils_of_war << player2.deck.cards[0..2]
+      player2.deck.cards.shift(3)
       @spoils_of_war.flatten!
     elsif type == :mutually_assured_destruction
       3.times do
