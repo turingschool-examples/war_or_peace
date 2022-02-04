@@ -38,7 +38,9 @@ class Turn
   def pile_cards
     if type == :basic
       @spoils_of_war << player1.deck.cards[0]
+      player1.deck.cards.shift
       @spoils_of_war << player2.deck.cards[0]
+      player2.deck.cards.shift
     elsif type == :war
       @spoils_of_war << player1.deck.cards[0..2]
       @spoils_of_war << player2.deck.cards[0..2]
@@ -50,6 +52,16 @@ class Turn
       3.times do
         player2.deck.remove_card
       end
+    end
+  end
+
+  def award_spoils(winner)
+    if winner == player1
+      player1.deck.cards << @spoils_of_war
+      player1.deck.cards.flatten!
+    elsif winner == player2
+      player2.deck.cards << @spoils_of_war
+      player2.deck.cards.flatten!
     end
   end
 end
