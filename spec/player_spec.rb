@@ -29,4 +29,12 @@ RSpec.describe Player do
       expect(player.deck.cards).to eq([])
     end
   end
+
+  context 'test' do
+    it 'can create a card' do
+      test_deck = Deck.new
+      test_deck.create_card(1, :diamond, 'Queen', 12)
+      expect(test_deck.card1.value).to eq('Queen')
+    end
+  end
 end

@@ -1,5 +1,5 @@
 class Deck
-  attr_reader :cards
+  attr_reader :cards, :card1
   def initialize(cards = [])
     @cards = cards
   end
@@ -32,4 +32,20 @@ class Deck
   def add_card(new_card)
     cards << new_card
   end
+
+  def create_cards
+    @cards.tap do |cards|
+      [:club, :spade, :heart, :diamond].each do |suit|
+        {"2" => 2, "3" => 3, "4" => 4, "5" => 5, "6" => 6, "7" => 7, "8" => 8, "9" => 9, "10" => 10, "Jack" => 11, "Queen" => 12, "King" => 13, "Ace" => 14}.each do |value, rank|
+          cards << Card.new(suit, value, rank)
+        end
+      end
+    end
+  end
+
+
+
+  # def make_deck
+  #   52.times do
+
 end
