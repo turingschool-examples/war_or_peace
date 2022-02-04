@@ -25,7 +25,12 @@ class Deck
     ((high_cards.count.to_f / @cards.count) * 100).round(2)
   end
 
+  def remove_card #(using .shift to remove first element from an array)
+    @cards.shift
+  end
 
-
+  def add_card #(add one card to bottom/end of deck. can use << or .push)
+    
+  end
 
 end
