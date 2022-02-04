@@ -24,7 +24,7 @@ RSpec.describe Game do
         game = Game.new("Megan", "Aurora")
         game.build_deck
 
-        expect(game.built_deck.count).to eq(52)
+        expect(game.built_deck.cards.count).to eq(52)
         expect(game.built_deck.percent_high_ranking).to eq(30.77)
     end
 
