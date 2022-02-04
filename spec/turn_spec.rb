@@ -179,9 +179,9 @@ RSpec.describe 'exists' do
       turn = Turn.new(player1, player2)
       turn.pile_cards
 
-      expec(turn.spoils_of_war).to eq([card1, card3])
+      expect(turn.spoils_of_war).to eq([card1, card3])
       expect(turn.player1.deck.cards).to eq([card2, card5, card8])
-      espect(turn.player2.deck.cards).to eq([card4, card6, card7])
+      expect(turn.player2.deck.cards).to eq([card4, card6, card7])
     end
 
     it 'stacks for :war' do
@@ -226,7 +226,6 @@ RSpec.describe 'exists' do
 
       turn = Turn.new(player1, player2)
       turn.pile_cards
-
       expect(turn.spoils_of_war).to eq([])
       expect(turn.player1.deck.cards).to eq([card8])
       expect(turn.player2.deck.cards).to eq([card7])

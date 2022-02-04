@@ -36,8 +36,27 @@ class Turn
   end
 
   def pile_cards ()
-    #piles cards in @spoils_of_war
-  end
+    if(type()==:basic)
+      card_in_transit = @player1.deck.remove_card
+      @spoils_of_war << card_in_transit
+      card_in_transit = @player2.deck.remove_card
+      @spoils_of_war << card_in_transit
+    elsif(type()==:war)
+      3.times do
+        card_in_transit = @player1.deck.remove_card
+        @spoils_of_war << card_in_transit
+      end
+      3.times do
+        card_in_transit = @player2.deck.remove_card
+        @spoils_of_war << card_in_transit
+      end
+    else
+      3.times do
+        @player1.deck.remove_card
+        @player2.deck.remove_card
+        end
+      end
+    end
 
   def award_spoils()
     #give the spoils to the winner
