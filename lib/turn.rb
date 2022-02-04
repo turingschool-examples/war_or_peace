@@ -23,7 +23,7 @@ class Turn
 #a method built to find card rank of a player
   def find_rank_of_card(player, index)
     # binding.pry
-     player.deck[index].rank
+     player.deck.deck[index].rank
   end
 # binding.pry
 # binding.pry
@@ -74,14 +74,14 @@ class Turn
   def pile_cards
     if @type == :basic
       #binding.pry
-      spoils_of_war << @player1.deck.remove_card #had extra .cards here
+      @spoils_of_war << @player1.deck.remove_card #had extra .cards here
 
-      spoils_of_war << @player2.deck.remove_card
+      @spoils_of_war << @player2.deck.remove_card
     elsif @type == :war
 
       3.times do
-        spoils_of_war << @player1.deck.remove_card
-        spoils_of_war << @player2.deck.remove_card
+        @spoils_of_war << @player1.deck.remove_card
+        @spoils_of_war << @player2.deck.remove_card
       end
       # binding.pry
 
@@ -91,24 +91,19 @@ class Turn
         @player2.deck.remove_card
       end
     end
-
   end
 
   def award_spoils(winner)
     if @type == :war
-      spoils_of_war.each do |spoiled_card|
-      # binding.pry
-        winner.deck.deck   << spoiled_card
-        spoils_of_war.shift
+      6.times do
+        winner.deck.deck   << @spoils_of_war.shift
       end
     elsif @type == :basic
-      spoils_of_war.each do |spoiled_card|
+      2.times do
       # binding.pry
-        winner.deck.deck   << spoiled_card
-        spoils_of_war.shift
+        winner.deck.deck   << @spoils_of_war.shift
       end
-
     end
-
   end
+
 end
