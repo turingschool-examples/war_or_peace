@@ -21,14 +21,30 @@ class Turn
 
     elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
       return :war
-
-    else
-      
     end
-
-
   end
 
+  def winner
+    if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
 
+      if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
+        @player1.name
+      else
+        @player2.name
+      end
+
+    elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
+        'No Winner'
+
+    else
+
+      if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
+        @player1.name
+      else
+        @player2.name
+      end
+    end
+
+  end
 
 end
