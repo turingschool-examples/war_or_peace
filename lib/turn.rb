@@ -25,6 +25,8 @@ class Turn
       return @player1
     elsif @player1.deck.rank_of_card_at(2) < @player2.deck.rank_of_card_at(2) == true
       return @player2
+    else
+      return "No Winner"
     end
   end
 
@@ -39,7 +41,8 @@ class Turn
       cards.each do |card|
         @spoils_of_war.push(card)
       end
-
+    elsif type == :mutally_assured_destruction
+      cards = [@player1.deck.cards.shift, @player1.deck.cards.shift, @player1.deck.cards.shift, @player2.deck.cards.shift, @player2.deck.cards.shift, @player2.deck.cards.shift]
     end
   end
 
