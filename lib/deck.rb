@@ -1,7 +1,7 @@
 require './lib/card'
 
 class Deck
-  attr_reader :cards, :rank_of_card_at, :high_ranking_cards, :percent_high_ranking, :face_cards, :remove_card
+  attr_reader :cards, :rank_of_card_at, :high_ranking_cards, :percent_high_ranking, :face_cards, :remove_card, :add_card
   def initialize(cards)
     @cards = cards
   end
@@ -30,7 +30,9 @@ class Deck
 
   def remove_card
     @cards.delete_at(0)
-
   end
 
+  def add_card
+    @cards << card
+  end 
 end

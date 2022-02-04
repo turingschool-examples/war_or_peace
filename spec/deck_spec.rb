@@ -43,7 +43,17 @@ RSpec.describe Deck do
 
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
-    expect (cards.delete_at(0))  
+    expect (cards.delete_at(0))
   end
+
+  it "can add a card to the deck" do
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    card4 = Card.new(:club, '5', 5)
+
+    cards = [card2, card3]
+    deck = Deck.new(cards)
+    expect cards << card4
+  end 
 
 end
