@@ -42,17 +42,19 @@ player2 = Player.new('Aurora', player2_deck)
 # Take a turn
 turn_count = 0
 turn = Turn.new(player1, player2)
-while ((player1.deck.cards).length > 0) &&
-      ((player2.deck.cards).length > 0) &&
-      turn_count <= 100000
 
-player1_deck_size = player1.deck.cards.length
-player2_deck_size = player2.deck.cards.length
+while ((player1.deck.cards).length >= 0) &&
+      ((player2.deck.cards).length >= 0) &&
+      turn_count < 100000
 
-  puts "Player1 card count = #{player1.deck.cards.length}"
-  puts "Player2 card count = #{player2.deck.cards.length}"
+  player1_deck_size = player1.deck.cards.length
+  player2_deck_size = player2.deck.cards.length
+
+  if player1_deck_size == 0 || player2_deck_size == 0
+    break
+  end
+
   turn_count += 1
-#  binding.pry
   round_type = turn.type
   round_winner = turn.winner
   turn.pile_cards
@@ -71,12 +73,13 @@ player2_deck_size = player2.deck.cards.length
     puts "Turn #{turn_count}: *mutually_assured_destruction* 6 cards removed from play"
   end
 
-  if player1_deck_size == 1
-    puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
-  elsif player2_deck_size == 1
-    puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
 
-  end
+end
 
-
+if player1_deck_size == 0
+ puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
+elsif player2_deck_size == 0
+ puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
+elsif turn_count == 100000
+ puts "---- DRAW ----"
 end
