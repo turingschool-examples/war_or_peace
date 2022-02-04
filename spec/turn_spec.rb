@@ -24,7 +24,7 @@ player2 = Player.new('Aurora', deck2)
 
 turn = Turn.new(player1, player2)
 
-winner = Turn.winner
+winner = turn.winner
 
 RSpec.describe Turn do
   it 'creates new turn' do
