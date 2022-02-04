@@ -1,20 +1,20 @@
 
-require './lib/card'
+require_relative 'card'
 
 class Deck
 
-  attr_reader :cards, :rank_of_card_at, :high_ranking_cards, :percent_high_ranking
-  def initialize(cards)
-    @cards = cards
+  attr_reader :deck, :rank_of_card_at, :high_ranking_cards, :percent_high_ranking
+  def initialize(deck)
+    @deck = deck
   end
 
   def rank_of_card_at(index)
-    @rank_of_card_at = cards[index].rank
+    @rank_of_card_at = deck[index].rank
   end
 
   def high_ranking_cards
     big_cards = [] #must define before each loop
-    @cards.each do |card|
+    @deck.each do |card|
       if card.rank >= 11
         big_cards << card
       end
@@ -25,15 +25,15 @@ class Deck
   def percent_high_ranking
     # big_cards= high_ranking_cards
     num_high = high_ranking_cards.count
-    num_tot = cards.count
+    num_tot = deck.count
     @percent_high_ranking = num_high/num_tot
   end
 
   def remove_card
-    cards.shift #shows removed cards if no return cards
+    deck.shift #shows removed cards if no return cards
   end
 
   def add_card(new_card)
-    @cards << new_card
+    @deck << new_card
   end
 end
