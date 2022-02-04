@@ -8,9 +8,9 @@ class Turn
   end
 
   def type
-    if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+    if @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
       :mutally_assured_destruction
-    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+    elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
      :war
    else
      :basic
@@ -18,10 +18,15 @@ class Turn
   end
 
   def winner
-    if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0) == true
-      return player1
-    elsif player1.deck.rank_of_card_at(0) < player2.deck.rank_of_card_at(0) == true
-      return player2
+    if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0) == true
+      return @player1
+    elsif @player1.deck.rank_of_card_at(0) < @player2.deck.rank_of_card_at(0) == true
+      return @player2
     end
   end
+
+  def pile_cards
+    [@player1.deck.cards.first,  @player2.deck.cards.first]
+  end
+
 end
