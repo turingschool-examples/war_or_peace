@@ -7,4 +7,14 @@ class Deck
   def rank_of_card_at(location)
     cards[location].rank
   end
+
+  def high_ranking_cards
+    high_rank = []
+    cards.each do |card|
+      if card.rank > 10
+        high_rank << card
+      end
+    end
+    high_rank
+  end
 end
