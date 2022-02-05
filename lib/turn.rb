@@ -35,6 +35,7 @@ class Turn
       end
 
     elsif type == :war
+
       if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
         return player1
       elsif player1.deck.rank_of_card_at(2) < player2.deck.rank_of_card_at(2)
