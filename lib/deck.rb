@@ -30,4 +30,8 @@ class Deck
     end
     ((high_rank_cards.count.to_f / total_cards.to_f).round(4))*100
   end
+
+  def add_card(new_card)
+    cards << new_card
+  end
 end
