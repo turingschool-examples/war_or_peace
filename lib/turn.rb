@@ -33,6 +33,7 @@ attr_reader :player1, :player2, :spoils_of_war
       else
         return @player2
       end
+      #MAd begins
     elsif type == :mutually_assured_destruction
       "No Winner"
     elsif type == :war
@@ -73,4 +74,27 @@ attr_reader :player1, :player2, :spoils_of_war
       @player2.deck.cards.delete_at(2)
     end
   end
+
+  def award_spoils(winner)
+    if winner == @player1
+      @spoils_of_war.each do |card|
+        @player1.deck.cards << card
+      end
+    else
+      @spoils_of_war.each do |card|
+        @player2.deck.cards << card
+      end
+    end
+
+
+
+    # winner
+    # if @player1.deck.cards[0].rank > @player2.deck.cards[0].rank
+    #   @spoils_of_war.each do |card|
+    #     @player1.deck.cards << card
+    #   end
+    # end
+  end
+
+
 end
