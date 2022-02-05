@@ -13,27 +13,28 @@ class Turn
     @spoils_of_war = []
   end
 
+  def both_players_have_same_rank_at(index)
+    player1.deck.rank_of_card_at(index) == player2.deck.rank_of_card_at(index)
+  end
+
   def type
 
-    if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
+    if !both_players_have_same_rank_at(0)
       return :basic
-    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) != player2.deck.rank_of_card_at(2)
+    elsif both_players_have_same_rank_at(0) && !both_players_have_same_rank_at(2)
       return :war
-    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+    elsif both_players_have_same_rank_at(0) && both_players_have_same_rank_at(2)
       return :mutually_assured_desctruction
     end
-
   end
 
   def winner
     if type == :basic
-
       if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
         return player1
       elsif player1.deck.rank_of_card_at(0) < player2.deck.rank_of_card_at(0)
         return player2
       end
-
     elsif type == :war
 
       if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
