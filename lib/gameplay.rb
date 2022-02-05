@@ -20,11 +20,15 @@ class Gameplay
       # binding.pry
       if turn.type == :mutually_assured_destruction && turn.type != :basic
         turn.pile_cards
-        puts "kjhjbhfkhfjwefcjkhskfhkjefhkfkhsfkjsdkjhffskdksd"
+        puts "kjhjbhfkhfjwefcjkhskfhkjefhkfkhsfkjsdkjhffskdksdkjhjbhfkhfjwefcjkhskfhkjefhkfkhsfkjsdkjhffskdksdkjhjbhfkhfjwefcjkhskfhkjefhkfkhsfkjsdkjhffskdksdkjhjbhfkhfjwefcjkhskfhkjefhkfkhsfkjsdkjhffskdksd"
       elsif turn.type == :war
         turn.winner
         turn.pile_cards
-        puts "Turn #{turn_counter}: WAR - #{turn.winner.name} won #{turn.spoils_of_war.length} cards"
+        if turn.winner == player1
+          puts "Turn #{turn_counter}: WAR - #{player1.name} won #{turn.spoils_of_war.length} cards"
+        elsif turn.winner == player2
+          puts "Turn #{turn_counter}: WAR - #{player2.name} won #{turn.spoils_of_war.length} cards"
+        end
         turn.award_spoils
       elsif turn.type == :basic && turn.type != :mutually_assured_destruction
         turn.winner
@@ -36,8 +40,7 @@ class Gameplay
         end
         turn.award_spoils
       end
-      # turn.winner
-
     end
+    puts "game over"
   end
 end

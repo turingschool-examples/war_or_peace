@@ -4,9 +4,7 @@ class Deck
     @cards = cards
   end
   def rank_of_card_at(index)
-    if index != nil
       @cards[index].rank
-    end
     # require 'pry'; binding.pry
   end
 
