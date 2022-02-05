@@ -2,6 +2,7 @@ require 'pry'
 require './lib/card'
 require './lib/deck'
 
+
 class Player
   attr_reader :name, :deck
 
@@ -11,8 +12,8 @@ class Player
   end
 
   def has_lost?
-    deck.cards.count < 1
+    deck.cards.length == 0
   end
-    
+
 end
 # binding.pry

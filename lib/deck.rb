@@ -13,7 +13,7 @@ class Deck
     values = %w(2 3 4 5 6 7 8 9 10 Jack Queen King Ace)
     ranks = 1..13
     suits = [:hearts, :diamonds, :spades, :clubs]
-
+    
     values.zip(ranks).each do |value, rank|
       suits.each do |suit|
         all_card_arguments = Card.new(suit, value, rank)
@@ -24,7 +24,11 @@ class Deck
   end
 
   def rank_of_card_at(card)
-     @cards[card].rank
+    if @cards[card]
+      @cards[card].rank
+    else
+     0
+    end
   end
 
   def high_ranking_cards
