@@ -1,4 +1,4 @@
-require './card'
+require './lib/card'
 
 class Deck
   attr_reader :cards, :rank_of_card_at, :high_ranking_cards, :percent_high_ranking, :remove_card, :add_card
@@ -11,8 +11,13 @@ class Deck
   #   @cards[rank].rank
   # end
   def rank_of_card_at(rank)
-    @rank_of_card_at = cards.fetch(rank)
-    @rank_of_card_at.rank
+    if cards[2] == nil
+      1
+    else
+      @rank_of_card_at = cards.fetch(rank)
+      @rank_of_card_at.rank
+    end
+
   end
 
   def high_ranking_cards

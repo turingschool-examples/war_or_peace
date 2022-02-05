@@ -24,3 +24,5 @@ This is the starter repo for the BE Mod1 **War or Peace** project.
 2/4 5:25pm : finished with mentor, :war turn.award_spoils(winner) should be working properly, discount double check test and code
 
 2/5 6:50pm: finished :war type tests and code
+
+2/5 9:25pm: created all 52 cards (pain) and decks. starting on Start class/method

@@ -1,5 +1,5 @@
-require './card'
-require './deck'
+require './lib/card'
+require './lib/deck'
 
 class Player
   attr_reader :name, :deck #:has_lost?

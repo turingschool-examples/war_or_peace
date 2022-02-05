@@ -1,6 +1,6 @@
-require './card'
-require './deck'
-require './player'
+require './lib/card'
+require './lib/deck'
+require './lib/player'
 
 class Turn
   attr_reader :player1, :player2, :basic, :war, :mutually_assured_destruction, :winner, :pile_cards, :spoils_of_war
