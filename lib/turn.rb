@@ -4,7 +4,7 @@ require './deck'
 require './player'
 
 class Turn
-  attr_reader :player1, :player2, :spoils_of_war, :cards_won, :remove_card
+  attr_reader :player1, :player2, :spoils_of_war, :cards_won, :remove_card, :winner
 
   def initialize(p1, p2)
     @player1 = p1
@@ -30,7 +30,7 @@ class Turn
         @winner = @player2
       end
     elsif type == :mutually_assured_destruction
-      puts "No winner"
+      puts 'No winner'
       @player1 && @player2
     else type == :war
       if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
@@ -47,13 +47,13 @@ class Turn
         @spoils_of_war << @player2.deck.cards.shift
     elsif type == :mutually_assured_destruction
         3.times do
-          player1.deck.cards.shift
-          player2.deck.cards.shift
+          @player1.deck.cards.shift
+          @player2.deck.cards.shift
         end
     elsif type == :war
         3.times do
-          @spoils_of_war.push(@player1.deck.cards.shift)
-          @spoils_of_war.push(@player2.deck.cards.shift)
+          @spoils_of_war << @player1.deck.cards.shift
+          @spoils_of_war << @player2.deck.cards.shift
         end
     end
   end
