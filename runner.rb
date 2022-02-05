@@ -1,4 +1,4 @@
-
+require './lib/game'
 require './lib/card'
 require './lib/deck'
 require './lib/player'
@@ -23,5 +23,6 @@ player2 = Player.new('Winston', deck2)
 
 turn = Turn.new(player1, player2)
 
+game = Game.new(turn)
 
-turn.start
+game.start
