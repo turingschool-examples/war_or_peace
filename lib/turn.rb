@@ -46,7 +46,6 @@ attr_reader :player1, :player2, :spoils_of_war
   end
 
   def pile_cards()
-    type
     if type == :basic
       @spoils_of_war << @player1.deck.cards[0]
       @player1.deck.cards.delete_at(0)
