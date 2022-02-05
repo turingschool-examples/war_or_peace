@@ -45,7 +45,7 @@ class Gameplay
 
     if player1.has_lost?
       puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
-    elsif player2.has_lost?
+    else
       puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
     end
   end

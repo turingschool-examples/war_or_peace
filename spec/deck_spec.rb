@@ -22,6 +22,20 @@ require 'pry'
      expect(deck.high_ranking_cards).to eq ([card1, card3])
      expect(deck.percent_high_ranking).to eq (66.67)
    end
+   describe '#remove_card' do
+    it 'removes the first card from the deck' do
+      deck = Deck.new(cards)
+      removed = deck.remove_card
+      expect(deck.cards.include?(removed)).to eq(false)
+    end
+
+    it 'removes from high ranking list' do
+      deck = Deck.new(cards)
+      removed = deck.remove_card
+      # binding.pry
+      expect(deck.high_ranking_cards.include?(removed)).to eq(false)
+    end
+   end
 
    it 'can remove and add cards' do
      deck = Deck.new(cards)
@@ -34,5 +48,4 @@ require 'pry'
      expect(deck.rank_of_card_at(2)).to eq(5)
      expect(deck.percent_high_ranking).to eq (33.33)
    end
-
  end
