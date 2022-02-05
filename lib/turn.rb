@@ -10,20 +10,16 @@ attr_reader :player1, :player2, :spoils_of_war
     @player2 = player2
     @spoils_of_war = []
   end
-  # potential pseudocode solution for the three symbols
-  # If criteria for basic then assign something to basic
-  #    return something = :basic
-  # If criteria for war then assign something to war
-  #   return something = :war
-  # If criteria for war then assign something to MAD
-  #   return something = :mutually_assured_destruction
+
   def type()
     #when the rank of the card at index 0 (first card) for player1 does NOT equal the rank of the card at index 0 for player2, the type of the Turn class is :basic
-    # it should return :basic when using pry to interact
+    # :basic type
     if @player1.deck.cards[0].rank != @player2.deck.cards[0].rank
         :basic
+    # MAD type
     elsif @player1.deck.cards[0].rank == @player2.deck.cards[0].rank && @player1.deck.cards[2].rank == @player2.deck.cards[2].rank
       :mutually_assured_destruction
+    # :war type
     elsif @player1.deck.cards[0].rank == @player2.deck.cards[0].rank
       :war
     end
@@ -48,6 +44,16 @@ attr_reader :player1, :player2, :spoils_of_war
       else
         return @player2
       end
+    end
+  end
+
+  def pile_cards()
+# for a :basic turn, each player will send one card (the top card) to the spoils pile
+    if @player1.deck.cards[0].rank != @player2.deck.cards[0].rank
+      @spoils_of_war << @player1.deck.cards[0]
+      @player1.deck.cards.delete_at(0)
+      @spoils_of_war << @player2.deck.cards[0]
+      @player2.deck.cards.delete_at(0)
     end
   end
 
