@@ -79,10 +79,12 @@ attr_reader :player1, :player2, :spoils_of_war
       @spoils_of_war.each do |card|
         @player1.deck.cards << card
       end
+      @spoils_of_war.clear
     elsif winner == @player2
       @spoils_of_war.each do |card|
         @player2.deck.cards << card
       end
+      @spoils_of_war.clear
     end
 
   end
