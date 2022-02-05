@@ -15,9 +15,11 @@ card7 = Card.new(:heart, '3', 3)
 card8 = Card.new(:diamond, '2', 2)
 deck1 = Deck.new([card1, card2, card5, card8])
 deck2 = Deck.new([card3, card4, card6, card7])
+deck3 = Deck.new([])
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
-turn = Turn.new(player1, player2)
+discard = Player.new("Discard", deck3)
+turn = Turn.new(player1, player2, discard)
 
 RSpec.describe Turn do
 
@@ -43,7 +45,7 @@ RSpec.describe Turn do
     expect(turn.spoils_of_war).to eq([card1, card3])
   end
 
-  it "rewards spoils to the winner" do
+  it "rewards spoils to the winner" do(player1)
     turn.award_spoils(player1)
     expect(player1.deck.cards).to eq([card2, card5, card8, card1, card3])
     expect(player2.deck.cards).to eq([card4, card6, card7])

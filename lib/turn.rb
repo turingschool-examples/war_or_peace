@@ -12,9 +12,11 @@ require 'pry'
 
 class Turn
   attr_reader :player1, :player2, :spoils_of_war, :spoils_count
-  def initialize(player1, player2)
+  def initialize(player1, player2, discard)
+
     @player1 = player1
     @player2 = player2
+    @discard = discard
     @spoils_of_war = []
 
 
@@ -31,17 +33,17 @@ class Turn
     # binding.pry
      @player1_c = @player1.deck.cards
      @player2_c = @player2.deck.cards
-
-     if @player1_c[0].rank != @player2_c[0].rank
-       :basic
-     else
-       if @player1_c[2].rank != @player2_c[2].rank
-         :war
+     if @player1_c.count >= 3 and @player2_c.count >= 3
+       if @player1_c[0].rank != @player2_c[0].rank
+         :basic
        else
-         :mutually_assured_destruction
+         if @player1_c[2].rank != @player2_c[2].rank
+           :war
+         else
+           :mutually_assured_destruction
+         end
        end
      end
-    #
     # if find_rank_of_card(@player1, 0) != find_rank_of_card(@player2, 0)
     #   return :basic
     # elsif find_rank_of_card(@player1, 0) == find_rank_of_card(@player2, 0) && find_rank_of_card(@player1, 2) == find_rank_of_card(@player2, 2)
@@ -107,11 +109,21 @@ class Turn
 # binding.pry
 
   def award_spoils(winner)
+    winner
+
 # binding.pry everything is ok
-    winner.deck.cards.concat(spoils_of_war)
+    # if winner == []
+      if winner == @player1 || winner == @player2
+        winner.deck.cards.concat(spoils_of_war)
+      elsif winner == "No Winner"
+        @discard.deck.cards.concat(spoils_of_war)
+      end
+
+ end
+    # end
   # binding.pry
     # spoils_of_war.clear
   # binding.pry
-  end
+
 
 end

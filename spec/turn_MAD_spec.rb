@@ -16,9 +16,11 @@ card7 = Card.new(:heart, '3', 3)
 card8 = Card.new(:diamond, '2', 2)
 deck1 = Deck.new([card1, card2, card5, card8])
 deck2 = Deck.new([card4, card3, card6, card7])
+deck3 = Deck.new([])
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
-turn = Turn.new(player1, player2)
+discard = Player.new("Discard", deck3)
+turn = Turn.new(player1, player2, discard)
 
 RSpec.describe Turn do
 

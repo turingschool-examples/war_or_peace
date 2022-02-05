@@ -1,13 +1,13 @@
 
 require_relative 'card'
-
+require 'pry'
 class Deck
 
   attr_reader :cards#, :rank_of_card_at, :high_ranking_cards, :percent_high_ranking
   def initialize(cards)
     @cards = cards
   end
-
+# binding.pry 
   def rank_of_card_at(index)
     @rank_of_card_at = cards[index].rank
   end
