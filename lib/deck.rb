@@ -1,16 +1,16 @@
 # require "./lib/card"
 # require 'pry'
 
-class Card
-  attr_reader :suit, :value, :rank
-
-  def initialize(suit, value, rank)
-    @suit   = suit
-    @value  = value
-    @rank   = rank
-  end
-
-end
+# class Card
+#   attr_reader :suit, :value, :rank
+#
+#   def initialize(suit, value, rank)
+#     @suit   = suit
+#     @value  = value
+#     @rank   = rank
+#   end
+#
+# end
 
 
 class Deck
@@ -70,35 +70,35 @@ class Deck
 
 end
 
-card1 = Card.new(:diamond, 'Queen', 12)
-card2 = Card.new(:spade, '3', 3)
-card3 = Card.new(:heart, 'Ace', 14)
-
-cards = [card1, card2, card3]
-
-deck = Deck.new(cards)
-# #
-puts deck.high_ranking_cards
-puts ""
-puts deck.cards
-puts ""
-# puts deck.count_cards
+# card1 = Card.new(:diamond, 'Queen', 12)
+# card2 = Card.new(:spade, '3', 3)
+# card3 = Card.new(:heart, 'Ace', 14)
+#
+# cards = [card1, card2, card3]
+#
+# deck = Deck.new(cards)
+# # #
+# puts deck.high_ranking_cards
 # puts ""
-# puts deck.high_card_count
-puts deck.percent_high_ranking
-
-deck.remove_card
-puts ""
-puts deck.cards
-puts ""
-puts deck.high_ranking_cards
-puts ""
-puts deck.percent_high_ranking
-
-card4 = Card.new(:club, "5", 5)
-puts ""
-deck.add_card(card4)
-puts ""
-puts deck.cards
-puts ""
-puts deck.percent_high_ranking
+# puts deck.cards
+# puts ""
+# # puts deck.count_cards
+# # puts ""
+# # puts deck.high_card_count
+# puts deck.percent_high_ranking
+#
+# deck.remove_card
+# puts ""
+# puts deck.cards
+# puts ""
+# puts deck.high_ranking_cards
+# puts ""
+# puts deck.percent_high_ranking
+#
+# card4 = Card.new(:club, "5", 5)
+# puts ""
+# deck.add_card(card4)
+# puts ""
+# puts deck.cards
+# puts ""
+# puts deck.percent_high_ranking
