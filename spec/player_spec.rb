@@ -14,6 +14,9 @@ RSpec.describe Player do
       player = Player.new('Clarisa', deck)
 
       expect(player).to be_a(Player)
+      expect(player.name).to eq('Clarisa')
+      expect(player.deck).to eq(deck)
+      expect(player.has_lost?).to be(false)
     end
   end
 end
