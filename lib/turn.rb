@@ -55,7 +55,10 @@ end
         @player2.deck.cards.shift
       end
     end
+  end
 
-
+  def award_spoils(winner)
+    winner.deck.cards << @spoils_of_war
+    winner.deck.cards.flatten!
   end
 end
