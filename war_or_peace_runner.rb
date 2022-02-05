@@ -18,3 +18,4 @@ if ready == 'GO'
 else
   puts "You can't just enter #{ready} and expect something to happen."
 end
+# a comment of some sort
