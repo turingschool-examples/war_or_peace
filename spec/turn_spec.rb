@@ -1,4 +1,5 @@
 require 'rspec'
+require 'pry'
 require './lib/card'
 require './lib/deck'
 require './lib/player'
@@ -69,6 +70,7 @@ RSpec.describe Turn do
   end
 
   it 'confirms pile cards method functionality' do
+    turn.type
     turn.pile_cards
     expect(turn.spoils_of_war.count).to eq(2)
   end
@@ -84,7 +86,11 @@ RSpec.describe Turn do
   end
 
   it 'awards spoils to winner' do
-    turn.award_spoils(winner)
-    expect(winner.deck.cards).to include([card1, card2, card5, card8, card3])
+    turn.award_spoils(player1)
+    expect(winner.deck.cards.count).to eq(5)
   end
+
+  it 'confirms player decks after awarding spoils' do
+    turn.award_spoils(player1)
+    expect(player1.deck.cards)
 end

@@ -30,5 +30,5 @@ class Deck
   def add_card(new_card)
     @cards.append(new_card)
   end
-  
+
 end
