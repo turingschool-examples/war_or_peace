@@ -77,7 +77,7 @@ require "pry"
 # end
 
 describe Turn do
-  xit "war baby!" do
+  it "war baby!" do
     card1 = Card.new(:heart, "Jack", 11)
     card2 = Card.new(:heart, "10", 10)
     card3 = Card.new(:heart, "9", 9)
@@ -94,7 +94,7 @@ describe Turn do
     expect(turn.type).to eq(:war)
   end
 
-  xit "what did I win" do
+  it "what did I win" do
     card1 = Card.new(:heart, "Jack", 11)
     card2 = Card.new(:heart, "10", 10)
     card3 = Card.new(:heart, "9", 9)
@@ -113,7 +113,7 @@ describe Turn do
   end
   #
   #
-  xit "new hand" do
+  it "new hand" do
     card1 = Card.new(:heart, "Jack", 11)
     card2 = Card.new(:heart, "10", 10)
     card3 = Card.new(:heart, "9", 9)
@@ -149,21 +149,15 @@ describe Turn do
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
-    # puts player1.deck.rank_of_card_at(0)
-    # puts player1.deck.rank_of_card_at(2)
-    # puts player2.deck.rank_of_card_at(0)
-    # puts player2.deck.rank_of_card_at(2)
-    puts turn.type
-    puts ""
     winner = turn.winner
-    # puts turn.type
-    turn.pile_cards
-    puts ""
-    puts turn.type
-
-    # expect(turn.type).to eq(:mutally_assured_destruction)
+    expect(turn.type).to eq(:mutally_assured_destruction)
     expect(turn.winner).to eq("No winner")
-    # expect(turn.spoils_of_war).to eq([])
+
+    turn.pile_cards
+
+    expect(turn.spoils_of_war).to eq([])
+    expect(player1.deck.cards).to eq([card8])
+    expect(player2.deck.cards).to eq([card7])
 
   end
 

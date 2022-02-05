@@ -111,35 +111,33 @@ class Turn
   end
 
   def pile_cards
-    puts winner
     puts type
     puts ""
-      if type == :basic
-        spoils_of_war << player1.deck.cards.shift
-        spoils_of_war << player2.deck.cards.shift
-      elsif type == :war
-        3.times do
-          spoils_of_war << player1.deck.cards.shift
-          spoils_of_war << player2.deck.cards.shift
-        end
-      elsif type == :mutally_assured_destruction
-        3.times do
+    if type == :mutally_assured_destruction
+      3.times do
           player1.deck.cards.shift
           player2.deck.cards.shift
-        end
       end
+    elsif type == :war
+      3.times do
+          spoils_of_war << player1.deck.cards.shift
+          spoils_of_war << player2.deck.cards.shift
+      end
+    elsif type == :basic
+        spoils_of_war << player1.deck.cards.shift
+        spoils_of_war << player2.deck.cards.shift
+    end
+    puts type
   end
 
-def award_spoils(winner)
-
-  @spoils_of_war.each do |win|
-    winner.deck.cards << win
+  def award_spoils(winner)
+    @spoils_of_war.each do |win|
+      winner.deck.cards << win
+    end
   end
 end
 
 # require "pry"; binding.pry
-
-end
 
 # card1 = Card.new(:heart, "Jack", 11)
 # card2 = Card.new(:heart, "10", 10)
