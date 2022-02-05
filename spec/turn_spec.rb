@@ -27,6 +27,7 @@ turn = Turn.new(player1, player2)
 winner = turn.winner
 
 RSpec.describe Turn do
+
   it 'creates new turn' do
     expect(turn).to be_an_instance_of(Turn)
   end
@@ -73,14 +74,17 @@ RSpec.describe Turn do
   end
 
   xit 'confirms pile cards method functionality for m.a.d scenario' do
-    turn.pile_cards
-    expect(cards1.count). to eq(1)
-    expect(cards2.count). to eq(1)
+    expect(cards1.count).to eq(1)
+    expect(cards2.count).to eq(1)
   end
 
   it 'confirms correct spoils' do
-    turn.pile_cards
-    expect(turn.spoils_of_war). to include(card1)
-    expect(turn.spoils_of_war). to include(card3)
+    expect(turn.spoils_of_war).to include(card1)
+    expect(turn.spoils_of_war).to include(card3)
+  end
+
+  it 'awards spoils to winner' do
+    turn.award_spoils(winner)
+    expect(winner.deck.cards).to include([card1, card2, card5, card8, card3])
   end
 end

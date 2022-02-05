@@ -1,18 +1,10 @@
 class Turn
-  attr_reader :cards_won, :spoils_of_war
+  attr_reader :player1, :player2, :spoils_of_war, :cards_won, :remove_card
 
   def initialize(p1, p2)
     @player1 = p1
     @player2 = p2
     @spoils_of_war = []
-  end
-
-  def player1
-    @player1
-  end
-
-  def player2
-    @player2
   end
 
   def type
@@ -29,7 +21,7 @@ class Turn
     if type == :basic
       if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
         @player1
-      else @player1.deck.rank_of_card_at(0) < @player2.deck.rank_of_card_at(0)
+      elsif @player1.deck.rank_of_card_at(0) < @player2.deck.rank_of_card_at(0)
         @player2
       end
     elsif type == :mutually_assured_destruction
@@ -38,7 +30,7 @@ class Turn
     else type == :war
       if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
         @player1
-      else @player1.deck.rank_of_card_at(2) < @player2.deck.rank_of_card_at(2)
+      elsif @player1.deck.rank_of_card_at(2) < @player2.deck.rank_of_card_at(2)
         @player2
       end
     end
@@ -51,17 +43,18 @@ class Turn
     elsif type == :mutually_assured_destruction
         3.times do
           player1.deck.remove_card
-        end
-        3.times do
           player2.deck.remove_card
         end
     elsif type == :war
         3.times do
           @spoils_of_war << @player1.deck.remove_card
-        end
-        3.times do
           @spoils_of_war << @player2.deck.remove_card
         end
+
     end
+  end
+
+  def award_spoils(winner)
+    winner.deck.cards << @spoils_of_war
   end
 end
