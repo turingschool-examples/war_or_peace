@@ -55,13 +55,13 @@ RSpec.describe Turn do
     expect(turn.type).to eq(:basic)
   end
 
-  # it 'confirms war turn type functionality' do
-  #   expect(turn.type).to eq(:war)
-  # end
-  #
-  # it 'confirms m.a.d turn type functionality' do
-  #   expect(turn.type).to eq(:mutually_assured_destruction)
-  # end
+  xit 'confirms war turn type functionality' do
+    expect(turn.type).to eq(:war)
+  end
+
+  xit 'confirms m.a.d turn type functionality' do
+    expect(turn.type).to eq(:mutually_assured_destruction)
+  end
 
   it 'confirms winner method functionality' do
     expect(turn.winner).to eq(player1)
@@ -71,7 +71,11 @@ RSpec.describe Turn do
     turn.pile_cards
     expect(turn.spoils_of_war.count).to eq(2)
   end
-end
 
+  xit 'confirms pile cards method functionality for m.a.d scenario' do
+    turn.pile_cards
+    expect(cards1.count). to eq(1)
+    expect(cards2.count). to eq(1)
+  end
+end
 # require 'pry'; binding.pry
-# 0
