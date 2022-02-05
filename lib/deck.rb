@@ -17,4 +17,17 @@ class Deck
     end
     high_rank
   end
+
+  def percent_high_ranking
+    total_cards = cards.count
+    high_rank_cards = []
+    # high_rank_cards = 0
+    # binding.pry
+    cards.each do |card|
+      if card.rank > 10
+        high_rank_cards << card
+      end
+    end
+    ((high_rank_cards.count.to_f / total_cards.to_f).round(4))*100
+  end
 end
