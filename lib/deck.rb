@@ -1,7 +1,7 @@
 require './card'
 
 class Deck
-  attr_reader :cards, :rank_of_card_at, :high_ranking_cards, :percent_high_ranking, :remove_card, :add_card
+  attr_reader :cards, :high_ranking_cards, :percent_high_ranking, :remove_card, :add_card
 
   def initialize(cards)
     @cards = cards
@@ -12,7 +12,7 @@ class Deck
   # end
   def rank_of_card_at(rank)
     @rank_of_card_at = cards.fetch(rank)
-      @rank_of_card_at.rank
+    @rank_of_card_at.rank
   end
 
   def high_ranking_cards
@@ -22,14 +22,14 @@ class Deck
         face_cards << card# @cards.delete(card)
       end
     end
-    return face_cards
+    face_cards
   end
 
   def percent_high_ranking
     high_ranking_cards
     # total_cards = @cards
     total = high_ranking_cards.count / @cards.count.to_f * 100
-      return total.round(2)
+    total.round(2)
 
   end
 
