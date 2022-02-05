@@ -28,10 +28,19 @@ Type 'GO' to start the game!"
  
   
   player1 = Player.new("Megan", deck1)
-  binding.pry
   player2 = Player.new("Aurora", deck2)
   
-  
-  
-  
-  
+  until player1.has_lost? == true || player2.has_lost? == true
+    turn = Turn.new(player1, player2)
+     turn.pile_cards
+     winner = turn.winner
+     turn.award_spoils(winner)
+     
+     if turn.type == :mutually_assured_destruction 
+       puts "#{turn.type.upcase}! #{turn.spoils_of_war.count} Cards have been burned!!"
+     else 
+      puts "#{turn.type.upcase}! #{turn.spoils_of_war.count} Cards have been awarded to #{turn.winner.name}!!"
+     end 
+     binding.pry
+     
+  end 
