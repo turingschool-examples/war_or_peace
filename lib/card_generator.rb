@@ -19,14 +19,14 @@ class CardGenerator
 
     @card_data.each do |line|
       card_arr = line.lines(',')
+
       suit = card_arr[0].delete(',')
       rank = card_arr[1].delete(',')
       value = card_arr[2].to_i
+
       @cards << Card.new(suit, rank, value)
     end
 
-
   end
-
 
 end

@@ -63,6 +63,7 @@ class Turn
         player2.deck.remove_card
       end
     end
+
   end
 
   def award_spoils(winner)
@@ -76,13 +77,15 @@ class Turn
     p "Welcome to War! (or Peace) This game will be played with 52 cards."
     p "The players today are #{player1.name} and #{player2.name}."
     p "Type 'GO' to start the game!"
+
     user_input = gets.chomp
     turn_count = 0
+
     player1.deck.cards.shuffle!
     player2.deck.cards.shuffle!
 
-
     if user_input == 'GO'
+
       until @player1.has_lost? == true || @player2.has_lost? == true || turn_count == 1000000 do
         turn_count += 1
         @spoils_of_war.clear
@@ -99,6 +102,7 @@ class Turn
           p "Turn#{turn_count}: *mutually assured destruction*: 6 cards removed from play."
           pile_cards
         end
+
       end
 
     else
@@ -117,4 +121,5 @@ class Turn
       p "GAME OVER"
     end
   end
+
 end
