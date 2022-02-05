@@ -160,7 +160,7 @@ RSpec.describe Turn do
     expect(turn.spoils_of_war).to eq([card1, card4])
   end
 
-  it 'can add the top three cards from each players deck (:MAD turn)' do
+  it 'can remove the top three cards from each players deck (:MAD turn)' do
     card1 = Card.new(:heart, 'Ace', 14)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -195,6 +195,7 @@ RSpec.describe Turn do
     turn.pile_cards
     expect(turn.spoils_of_war).to eq([card1, card2, card5,card4, card3, card6])
   end
+
   it 'can add the cards from the spoils_of_war array to the winners cards (:basic)' do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
@@ -212,7 +213,9 @@ RSpec.describe Turn do
     winner = turn.winner
     turn.pile_cards
     turn.award_spoils(winner)
+    binding.pry
     expect(player1.deck.cards).to eq([card2, card5, card8, card1, card3])
+    expect(player2.deck.cards).to eq([card4, card6, card7])
   end
 
 

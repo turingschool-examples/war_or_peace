@@ -46,7 +46,14 @@ attr_reader :player1, :player2, :spoils_of_war
   end
 
   def pile_cards()
-    if type == :basic
+    if type == :mutually_assured_destruction
+      @player1.deck.cards.delete_at(0)
+      @player1.deck.cards.delete_at(1)
+      @player1.deck.cards.delete_at(2)
+      @player2.deck.cards.delete_at(0)
+      @player2.deck.cards.delete_at(1)
+      @player2.deck.cards.delete_at(2)
+    elsif type == :basic
       @spoils_of_war << @player1.deck.cards[0]
       @player1.deck.cards.delete_at(0)
       @spoils_of_war << @player2.deck.cards[0]
@@ -61,13 +68,6 @@ attr_reader :player1, :player2, :spoils_of_war
       @spoils_of_war << @player2.deck.cards[0]
       @spoils_of_war << @player2.deck.cards[1]
       @spoils_of_war << @player2.deck.cards[2]
-      @player2.deck.cards.delete_at(0)
-      @player2.deck.cards.delete_at(1)
-      @player2.deck.cards.delete_at(2)
-    elsif type == :mutually_assured_destruction
-      @player1.deck.cards.delete_at(0)
-      @player1.deck.cards.delete_at(1)
-      @player1.deck.cards.delete_at(2)
       @player2.deck.cards.delete_at(0)
       @player2.deck.cards.delete_at(1)
       @player2.deck.cards.delete_at(2)
@@ -87,5 +87,18 @@ attr_reader :player1, :player2, :spoils_of_war
 
   end
 
+  # def start
+  #   p "Welcome to War! (or Peace) This game will be played with 52 cards."
+  #   p "The players today are #{player1.name} and #{player2.name}."
+  #   p "Type 'GO' to start the game!"
+  #   p "------------------------------------------------------------------"
+  #
+  #   input = gets.chomp
+  #
+  #   if input == 'GO' || input == 'go'
+  #     puts "Let's go"
+  #   end
+  #
+  # end
 
 end
