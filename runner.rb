@@ -1,19 +1,37 @@
-require "./lib/card"
-require "./lib/deck"
-require "./lib/player"
+require 'pry'
+require 'rspec'
+require './lib/deck.rb'
+require './lib/card.rb'
+require './lib/player.rb'
+require './lib/turn.rb'
+require './lib/card_maker.rb'
 
-card1 = Card.new(:diamond, 'Queen', 12)
-card2 = Card.new(:spade, '3', 3)
-card3 = Card.new(:heart, 'Ace', 14)
-deck = Deck.new([card1, card2, card3])
-player = Player.new('Clarisa', deck)
-p player.has_lost?
-p player.deck.remove_card
-p player.deck 
-p player.has_lost?
-p player.deck.remove_card
-p player.deck 
-p player.has_lost?
-p player.deck.remove_card
-p player.deck 
-p player.has_lost?
+
+p "Welcome to War! (or Peace) This game will be played with 52 cards.
+The players today are Megan and Aurora.
+Type 'GO' to start the game!"
+
+# input = gets.chomp
+# 
+# if input == "Go"
+  puts "Lets start"
+
+  cards = card_maker
+  half = []
+  cards.shuffle!
+  26.times do
+    half << cards.pop
+  end
+  
+  deck1 = Deck.new(cards)
+  deck2 = Deck.new(half)
+ 
+  
+  player1 = Player.new("Megan", deck1)
+  binding.pry
+  player2 = Player.new("Aurora", deck2)
+  
+  
+  
+  
+  
