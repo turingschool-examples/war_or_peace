@@ -77,5 +77,10 @@ RSpec.describe Turn do
     expect(cards1.count). to eq(1)
     expect(cards2.count). to eq(1)
   end
+
+  it 'confirms correct spoils' do
+    turn.pile_cards
+    expect(turn.spoils_of_war). to include(card1)
+    expect(turn.spoils_of_war). to include(card3)
+  end
 end
-# require 'pry'; binding.pry
