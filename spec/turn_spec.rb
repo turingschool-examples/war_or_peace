@@ -46,7 +46,7 @@ RSpec.describe Turn do
       # binding.pry
       turn.pile_cards
       turn.award_spoils
-      expect(player1.deck.cards).to include(card3)
+      expect(player1.deck.cards.count).to eq(6)
       expect(turn.spoils_of_war).to eq([])
     end
   end
@@ -117,8 +117,7 @@ RSpec.describe Turn do
       expect(player1.deck.cards).to eq([card8])
       expect(player2.deck.cards).to eq([card7])
     end
-
   end
 end
 
-binding.pry
+# binding.pry
