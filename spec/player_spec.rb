@@ -17,6 +17,12 @@ RSpec.describe Player do
       expect(player.name).to eq('Clarisa')
       expect(player.deck).to eq(deck)
       expect(player.has_lost?).to be(false)
+      player.deck.remove_card
+      expect(player.has_lost?).to be(false)
+      player.deck.remove_card
+      expect(player.has_lost?).to be(false)
+      player.deck.remove_card
+      expect(player.has_lost?).to be(true)
     end
   end
 end
