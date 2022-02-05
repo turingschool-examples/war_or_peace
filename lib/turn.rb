@@ -29,17 +29,18 @@ class Turn
   end
 
   def winner
+
     if type == :basic
       if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
         return player1
-      elsif player1.deck.rank_of_card_at(0) < player2.deck.rank_of_card_at(0)
+      else
         return player2
       end
     elsif type == :war
 
       if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
         return player1
-      elsif player1.deck.rank_of_card_at(2) < player2.deck.rank_of_card_at(2)
+      else
         return player2
       end
 
@@ -105,9 +106,8 @@ class Turn
         end
 
       end
-
     else
-      p "Type GO to see a war!!"
+      p "Invalid input, try again"
     end
 
     if player1.deck.cards.count == 0
