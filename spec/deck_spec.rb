@@ -23,8 +23,8 @@ RSpec.describe Deck do
 
     it "rank_of_card_at" do
 
-      expect(@deck.rank_of_card_at(0)).to eq(@card1)
-      expect(@deck.rank_of_card_at(1)).to eq(@card2)
+      expect(@deck.rank_of_card_at(0)).to eq(@card1.rank)
+      expect(@deck.rank_of_card_at(1)).to eq(@card2.rank)
 
     end
 

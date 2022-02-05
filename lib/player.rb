@@ -1,3 +1,4 @@
+require './lib/deck'
 
 class Player
 

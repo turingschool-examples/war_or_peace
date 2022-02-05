@@ -1,16 +1,16 @@
-
+require './lib/card'
 class Deck
 
   attr_reader :cards
 
-  def initialize(start_cards)
+  def initialize(start_cards = [])
 
     @cards = start_cards
 
   end
 
   def rank_of_card_at(place)
-      @cards[place]
+      @cards[place].rank
   end
 
   def high_ranking_cards
