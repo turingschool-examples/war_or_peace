@@ -220,6 +220,31 @@ RSpec.describe Turn do
 
   end
 
+  it "awards the winner with cards" do #award_spoils
+    card1 = Card.new(:diamond, 'Queen', 12) #passes :mad
+    card2 = Card.new(:spade, '3', 3)        #passes :basic
+    card3 = Card.new(:heart, 'Ace', 14)     #passes :war
+    card_array1 = [card1, card2, card3]
+    deck1 = Deck.new(card_array1)
+    player1 = Player.new('Clarisa', deck1)
+
+    card4 = Card.new(:club, '5', 12)
+    card5 = Card.new(:spade, '10', 10)
+    card6 = Card.new(:heart, 'Jack', 11)
+    card_array2 = [card4, card5, card6]
+    deck2 = Deck.new(card_array2)
+    player2 = Player.new('Cory', deck2)
+
+    turn = Turn.new(player1, player2)
+
+    the_winner = turn.winner
+    turn.pile_cards
+    turn.award_spoils(the_winner)
+
+    expect(turn.spoils_of_war).to eq([])
+    expect(card_array1.length).to eq(6)
+    expect(card_array2.length).to eq(0)
+  end
 
 
 end

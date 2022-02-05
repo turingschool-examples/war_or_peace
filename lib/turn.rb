@@ -44,6 +44,7 @@ class Turn
       else
         @player2
       end
+
     end
 
   end
@@ -63,7 +64,7 @@ class Turn
       @player2.deck.remove_card
       @player2.deck.remove_card
 
-    elsif @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
+    elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
 
       @spoils_of_war << @player1.deck.remove_card
       @spoils_of_war << @player1.deck.remove_card
@@ -73,8 +74,21 @@ class Turn
       @spoils_of_war << @player2.deck.remove_card
 
     end
+  end
+
+  def award_spoils(who_won)
+
+    if who_won == 'No Winner'
 
 
+    else
+
+      @spoils_of_war.length.times do
+        who_won.deck.cards << @spoils_of_war
+      end
+
+      @spoils_of_war = []
+    end
   end
 
 end
