@@ -1,7 +1,0 @@
- #require_relative 'card'
-# #require './lib/deck'
-require_relative 'card'
-require_relative 'deck'
-require_relative 'player'
-require_relative 'turn'
-require 'pry'
