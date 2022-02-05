@@ -1,7 +1,7 @@
 require './card'
 
 class Deck
-  attr_reader :cards, :high_ranking_cards, :percent_high_ranking, :remove_card, :add_card
+  attr_reader :cards, :rank_of_card_at, :high_ranking_cards, :percent_high_ranking, :remove_card, :add_card
 
   def initialize(cards)
     @cards = cards
