@@ -27,7 +27,7 @@ end
       @player2.deck.cards[0].rank
       @player1
     elsif @player1.deck.cards[0].rank <
-      @player2.deck.cards[0]
+      @player2.deck.cards[0].rank
       @player2
     elsif @player1.deck.cards[2].rank >
       @player2.deck.cards[2].rank

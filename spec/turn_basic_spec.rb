@@ -56,10 +56,24 @@ RSpec.describe Turn do
     let(:deck2) {Deck.new([card4, card3, card6, card7])}
     let(:player1) {Player.new("Megan", deck1)}
     let(:player2) {Player.new("Aurora", deck2)}
+    let(:spoils_of_war) {[]}
     let(:turn) {Turn.new(player1, player2)}
 
     it 'returns the appropriate Turn type' do
       expect(turn.type).to eq(:war)
     end
+
+    it "determines the winner" do
+      expect(turn.winner).to eq(player2)
+    end
+
+    it "piles the used cards" do
+      expect(turn.spoils_of_war).to eq(spoils_of_war)
+    end
+
+    it 'awards spoils to the winner' do
+      expect(turn.winner.deck.cards).to eq(player2.deck.cards)
+    end
+
   end
 end
