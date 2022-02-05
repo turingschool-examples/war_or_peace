@@ -83,12 +83,12 @@ class Turn
   end
 
   def type
-    if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+    if player1.deck.rank_of_card_at(0)  == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+        :mutally_assured_destruction
+    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
         :war
     elsif player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
         :basic
-    elsif player1.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(0) && player2.deck.rank_of_card_at(2)
-        :mutally_assured_destruction
     end
   end
 
@@ -111,6 +111,9 @@ class Turn
   end
 
   def pile_cards
+    puts winner
+    puts type
+    puts ""
       if type == :basic
         spoils_of_war << player1.deck.cards.shift
         spoils_of_war << player2.deck.cards.shift
@@ -119,10 +122,10 @@ class Turn
           spoils_of_war << player1.deck.cards.shift
           spoils_of_war << player2.deck.cards.shift
         end
-      else
+      elsif type == :mutally_assured_destruction
         3.times do
-          player1.deck.cards.delete[0]
-          player2.deck.cards.delete[0]
+          player1.deck.cards.shift
+          player2.deck.cards.shift
         end
       end
   end
@@ -132,8 +135,9 @@ def award_spoils(winner)
   @spoils_of_war.each do |win|
     winner.deck.cards << win
   end
-  # require "pry"; binding.pry
 end
+
+# require "pry"; binding.pry
 
 end
 
