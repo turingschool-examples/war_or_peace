@@ -25,8 +25,6 @@ player2 = Player.new('Aurora', deck2)
 
 turn = Turn.new(player1, player2)
 
-winner = turn.winner
-
 RSpec.describe Turn do
 
   it 'confirms m.a.d turn type functionality' do
@@ -34,33 +32,17 @@ RSpec.describe Turn do
   end
 
   it 'confirms winner method functionality' do
-    expect(turn.winner).to output('No winner')
+    expect(turn.winner).to eq(player1 && player2)
   end
 
   it 'confirms pile cards method functionality' do
     turn.type
     turn.pile_cards
-    expect(turn.spoils_of_war.count).to eq(2)
+    expect(turn.spoils_of_war.count).to eq(0)
   end
 
-  xit 'confirms pile cards method functionality for m.a.d scenario' do
-    expect(cards1.count).to eq(1)
-    expect(cards2.count).to eq(1)
-  end
-
-  it 'confirms correct spoils' do
-    expect(turn.spoils_of_war).to include(card1)
-    expect(turn.spoils_of_war).to include(card3)
-  end
-
-  it 'awards spoils to winner' do
-    turn.award_spoils(player1)
-    expect(winner.deck.cards.count).to eq(5)
-  end
-
-  it 'confirms player decks after awarding spoils' do
-    turn.award_spoils(player1)
-    expect(player1.deck.cards.count).to eq(5)
-    expect(player2.deck.cards.count).to eq(3)
+  it 'confirms player decks after m.a.d scenario' do
+    expect(player1.deck.cards.count).to eq(1)
+    expect(player2.deck.cards.count).to eq(1)
   end
 end

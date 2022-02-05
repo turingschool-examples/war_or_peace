@@ -74,7 +74,7 @@ RSpec.describe Turn do
 
   it 'confirms player decks after awarding spoils' do
     turn.award_spoils(player1)
-    expect(player1.deck.cards.count).to eq(5)
-    expect(player2.deck.cards.count).to eq(3)
+    expect(player1.deck.cards.count).to eq(1)
+    expect(player2.deck.cards.count).to eq(7)
   end
 end
