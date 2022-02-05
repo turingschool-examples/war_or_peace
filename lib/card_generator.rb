@@ -2,22 +2,14 @@ require './lib/card'
 require 'pry'
 
 class CardGenerator
-  attr_accessor :card_data, :cards
+  attr_accessor :cards
 
   def initialize(filename)
     @cards = []
-    @card_data = []
-    @card_count = 0
 
     reader = File.open(filename)
-    data = reader.readlines.map(&:chomp)
-    @card_data << data
-    @card_data.flatten!
-
-    reader.close
-
-
-    @card_data.each do |line|
+    reader.readlines.each do |line|
+      line.chomp
       card_arr = line.lines(',')
 
       suit = card_arr[0].delete(',')
@@ -26,6 +18,8 @@ class CardGenerator
 
       @cards << Card.new(suit, rank, value)
     end
+
+    reader.close
 
   end
 
