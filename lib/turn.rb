@@ -9,12 +9,20 @@ class Turn
   end
 
   def type
-    if @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
-      :mutually_assured_destruction
-    elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
-      :war
+    if player1.deck.cards.count < 3 && player2.deck.cards.count < 3
+      :draw
+    elsif player1.deck.cards.count < 3 && player2.deck.cards.count >= 3
+      :player1_loses
+    elsif player2.deck.cards.count < 3 && player1.deck.cards.count >= 3
+      :player2_loses
     else
-      :basic
+      if @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
+        :mutually_assured_destruction
+      elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
+        :war
+      else
+        :basic
+      end
     end
   end
 
@@ -83,3 +91,36 @@ class Turn
     @input = gets.chomp
   end
 end
+
+#
+# def type
+#   if @player1.deck.cards.count >= 3 && @player2.deck.cards.count >= 3
+#     if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+#       :basic
+#     elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) != @player2.deck.rank_of_card_at(2)
+#       :war
+#     else
+#       :mutually_assured_destruction
+#     end
+#   elsif @player1.deck.cards.count == 2 || @player2.deck.cards.count == 2
+#     if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+#       :basic
+#     elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(1) != @player2.deck.rank_of_card_at(1)
+#       :war
+#     else
+#       :mutually_assured_destruction
+#     end
+#   elsif @player1.deck.cards.count == 1 || @player2.deck.cards.count == 1
+#     if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
+#       player2.has_lost? == true
+#     elsif @player2.deck.rank_of_card_at(0) > @player1.deck.rank_of_card_at(0)
+#       player1.has_lost? == true
+#     else
+#       if @player1.deck.cards.count > @player2.deck.cards.count
+#         player2.has_lost? == true
+#       if @player2.deck.cards.count > @player1.deck.cards.count
+#         player1.has_lost? == true
+#       end
+#     end
+#   end
+# end

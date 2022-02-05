@@ -324,4 +324,46 @@ RSpec.describe Turn do
     expect(player2.deck.cards).to eq([card7])
     expect(turn.spoils_of_war).to eq([])
   end
+
+  it "can handle turns where both players have < 3 cards" do
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10)
+    card3 = Card.new(:heart, '9', 9)
+    card4 = Card.new(:diamond, 'Jack', 11)
+
+    deck1 = Deck.new([card1, card2])
+    deck2 = Deck.new([card3, card4])
+
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+
+    turn = Turn.new(player1, player2)
+
+    expect(turn.type).to eq(:draw)
+  end
+
+  it "can handle turns where either player has < 3 cards" do
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10)
+    card3 = Card.new(:heart, '9', 9)
+    card4 = Card.new(:diamond, 'Jack', 11)
+
+    deck1 = Deck.new([card1, card2, card3])
+    deck2 = Deck.new([card4])
+
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+
+    turn = Turn.new(player1, player2)
+
+    expect(turn.type).to eq(:player2_loses)
+
+    player1 = Player.new("Megan", deck2)
+    player2 = Player.new("Aurora", deck1)
+
+    turn = Turn.new(player1, player2)
+
+    expect(turn.type).to eq(:player1_loses)
+  end
+
 end
