@@ -1,11 +1,14 @@
 require 'rspec'
 require 'pry'
-require_relative './lib/card'
-require_relative './lib/deck'
-require_relative './lib/player'
-require_relative './lib/turn'
+require './lib/card'
+require './lib/deck'
+require './lib/player'
+require './lib/turn'
+require './lib/game'
 
-RSpec describe Game do
+RSpec.describe Game do
+
+
   let(:card1) {Card.new(:heart, '2', 2)}
   let(:card2) {Card.new(:heart, '3', 3)}
   let(:card3) {Card.new(:heart, '4', 4)}
@@ -62,8 +65,15 @@ RSpec describe Game do
   let(:card51) {Card.new(:spade, 'King', 13)}
   let(:card52) {Card.new(:spade, 'Ace', 14)}
 
-  let(:deck1) {Deck.new([cards])}
-  it "adds all cards to a single deck" do
-    :cards << cards
-  end 
+  let(:deck1) {Deck.new([card1, card3, card5, card7, card9, card11, card13, card15, card17, card19, card21, card23, card25, card27, card29, card31, card33, card35, card37, card39, card41, card43, card45, card47, card49, card51])}
+  let(:deck2) {Deck.new([card2, card4, card6, card8, card10, card12, card14, card16, card18, card20, card22, card24, card26, card28, card30, card32, card34, card36, card38, card40, card42, card44, card46, card48, card50, card52])}
+  let(:player1) {Player.new("Megan", deck1)}
+  let(:player2) {Player.new("Aurora", deck2)}
+  let(:spoils_of_war) {[]}
+  let(:turn) {Turn.new(player1, player2)}
+  let(:game) {Game.new}
+
+  it 'exists' do
+    expect(game).to be_a(Game)
+  end
 end
