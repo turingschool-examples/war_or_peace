@@ -21,8 +21,21 @@ deck2.cards.flatten!
 player1 = Player.new('Rupert', deck1)
 player2 = Player.new('Winston', deck2)
 
+player1.deck.cards.shuffle!
+player2.deck.cards.shuffle!
+
 turn = Turn.new(player1, player2)
 
 game = Game.new(turn)
 
-game.start
+p "Welcome to War! (or Peace) This game will be played with 52 cards."
+p "The players today are #{turn.player1.name} and #{turn.player2.name}."
+p "Type 'GO' to start the game!"
+
+user_input = gets.chomp
+
+if user_input == 'GO'
+  game.start
+else
+  p 'Invalid input, try again'
+end
