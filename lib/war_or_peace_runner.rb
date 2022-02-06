@@ -96,11 +96,10 @@ class Turn
         :war
       elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0) #&& @player1.deck.cards.empty? == false && @player2.deck.cards.empty? == false
         :basic
-      elsif
-        :draw
+      # elsif
+        # :draw
       end
-    elsif
-      :draw
+    else
     end
   end
 
@@ -182,14 +181,14 @@ class WeFight
           puts "Turn #{@round_count}: WAR - #{@round.winner.name} has won 6 cards."
         elsif @round.type == :basic
           puts "Turn #{@round_count}: #{@round.winner.name} has won 2 cards."
-        elsif @round.type == :draw
-          break
+        # elsif @round.type == :draw
+          # break
         end
       @round.pile_cards
       winner = @round.winner
       @round.award_spoils(winner)
     end
-    # binding.pry
+    binding.pry
 
     if @player1.has_lost? == true
       puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
