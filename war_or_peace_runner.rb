@@ -2,11 +2,12 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/start'
 require 'pry'
 
 
 
-full_deck =[
+full_deck = [
 card1 = Card.new(:diamond, '2', 2),
 card2 = Card.new(:diamond, '3', 3),
 card3 = Card.new(:diamond, '4', 4),
@@ -62,8 +63,8 @@ card52 = Card.new(:club, 'Ace', 14)]
 
 
 
-player1_deck = []
-player2_deck = []
+deck1 = []
+deck2 = []
 
 def shuffle(full_deck_goes_here)
 
@@ -76,23 +77,38 @@ shuffled_deck = shuffle(full_deck)
 
 26.times do
   x = 0
-  player1_deck << shuffled_deck[x]
+  deck1 << shuffled_deck[x]
   x += 1
 end
 
 26.times do
   y = 26
-  player2_deck << shuffled_deck[y]
+  deck2 << shuffled_deck[y]
   y += 1
 end
 
-puts player1_deck.length
-puts player2_deck.length
+player1_deck = Deck.new(deck1)
+player2_deck = Deck.new(deck2)
 
+p1_name = ""
+p2_name = ""
 
+p "What is the name of player 1?"
+p1_name = gets.chomp
 
+p "what is the name of player 2?"
+p2_name = gets.chomp
 
-# p "Welcome to War! (or Peace) This game will be played with 52 cards.
-# The players today are #{turn.player1.name} and #{turn.player2.name}.
-# Type 'GO' to start the game!
-# ------------------------------------------------------------------"
+player1 = Player.new(p1_name, player1_deck)
+player2 = Player.new(p2_name, player2_deck)
+turn = Turn.new(player1, player2)
+game = Start.new(turn)
+
+p "Welcome to War! (or Peace)"
+p "This game will be played with 52 cards. The players today are #{player1.name} and #{player2.name}."
+p "Type 'GO' to start the game!"
+p "------------------------------------------------------------------"
+
+start_game = gets.chomp
+
+game.start(start_game)
