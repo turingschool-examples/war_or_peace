@@ -4,12 +4,7 @@ require './lib/player'
 require './lib/turn'
 require './lib/create_deck'
 
-# require_relative 'card'
-# require_relative 'deck'
-# require_relative 'player'
-# require_relative 'turn'
-# require_relative 'create_deck'
-#
+
 
 
 class Start
@@ -101,7 +96,7 @@ class Start
       if turn.type == :basic
         winner = turn.winner
         turn.award_spoils(winner)
-        p "Turn #{counter}: #{turn.winner.name} won 2 cards count: #{player1.deck.cards.count} & #{player2.deck.cards.count}"
+        p "Turn #{counter}: #{turn.winner.name} won 2 cards"
         turn.award_spoils(winner)
       elsif turn.type == :war
         winner = turn.winner
@@ -116,15 +111,8 @@ class Start
         p "#{player2.name} has won the game!"
       elsif player2.has_lost? == true
         p "#{player1.name} has won the game!"
-# require 'pry'; binding.pry
-
-
-        else counter == 10000
-
-
-
-        
-
+      elsif counter == 1000000
+        p '---- DRAW ----'
 
 
     end
