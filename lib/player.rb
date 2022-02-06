@@ -9,10 +9,9 @@ class Player
   def has_lost?
     if deck.cards.count > 0
       false
-    elsif deck.cards[2] ==  nil
+    elsif if turn.type == :mutually_assured_destruction &&    deck.cards.count < 3
       true
-    else
-      true
+    end
     end
   end
 end
