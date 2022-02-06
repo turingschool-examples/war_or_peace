@@ -72,8 +72,8 @@ RSpec.describe Game do
     player1 = Player.new('Megan', deck1)
     player2 = Player.new('Aurora', deck2)
 
-    new_game = Game.new(player1)
+    new_game = Game.new(player1, player2)
 
-    expect{new_game.start_game}.to output("Turn 1: Megan won 2 cards\n").to_stdout
+    expect{new_game.start_game}.to output("Turn 1: Aurora won 2 cards\n").to_stdout
   end
 end
