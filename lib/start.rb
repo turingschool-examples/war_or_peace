@@ -11,12 +11,13 @@ class Start
     @game = turn
   end
 
-  def start(user_input_GO!)
+  def start(user_input_GO)
     if user_input_GO == 'GO'
 
 
 
-    puts 'This works'
+      puts 'This works'
+    end
   end
 
 end
