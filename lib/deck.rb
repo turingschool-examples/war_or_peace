@@ -1,3 +1,9 @@
+require './lib/card'
+require './lib/deck'
+require './lib/player'
+require './lib/turn'
+require './lib/start'
+
 class Deck
 
   attr_reader :cards

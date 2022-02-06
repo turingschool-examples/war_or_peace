@@ -66,23 +66,16 @@ card52 = Card.new(:club, 'Ace', 14)]
 deck1 = []
 deck2 = []
 
-def shuffle(full_deck_goes_here)
+shuffled_deck = full_deck.shuffle!
 
-  full_deck_goes_here.shuffle!
-
-end
-
-shuffled_deck = shuffle(full_deck)
-
-
+x = 0
 26.times do
-  x = 0
   deck1 << shuffled_deck[x]
   x += 1
 end
 
+y = 26
 26.times do
-  y = 26
   deck2 << shuffled_deck[y]
   y += 1
 end
