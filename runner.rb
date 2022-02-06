@@ -28,11 +28,11 @@ def lets_play()
     #Provide output for the user...
     #binding.pry
     if turn.type == :basic
-      p "#{turn_counter}. #{turn.winner.name} won 2 cards"
+      p "#{turn_counter+1}. #{turn.winner.name} won 2 cards"
     elsif turn.type == :war
-      p "#{turn_counter}. WAR - #{turn.winner.name} won 6 cards"
+      p "#{turn_counter+1}. WAR - #{turn.winner.name} won 6 cards"
     else
-      p "#{turn_counter}. *mutually assured destruction* 6 cards removed from play"
+      p "#{turn_counter+1}. *mutually assured destruction* 6 cards removed from play"
     end
     #... then do the work to change the game state, and determine if the game is over
     turn.pile_cards
