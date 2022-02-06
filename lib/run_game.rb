@@ -36,19 +36,13 @@ class RunGame
 
       turns.pile_cards
         if turns.type == :basic
-
-          if turns.winner.name == "Megan"
-            puts "Turn #{turn_number}: Megan won 2 cards"
-          elsif turns.winner.name == "Aurora"
-            puts "Turn #{turn_number}: Aurora won 2 cards"
-          end
-
           turns.award_spoils(turns.winner)
+        puts "Turn #{turn_number + 1}: #{turns.winner.name} won 2 cards"
 
         elsif turns.type == :war
-          exact_winner = turns.winner
-          puts "Turn #{turn_number}: WAR - #{exact_winner.name} won 6 cards"
-          turns.award_spoils(exact_winner)
+          # exact_winner = turns.winner
+          turns.award_spoils(turns.winner)
+          puts "Turn #{turn_number + 1}: WAR - #{turns.winner.name} won 6 cards"
 
 
         elsif turns.type == :mutually_assured_destruction
