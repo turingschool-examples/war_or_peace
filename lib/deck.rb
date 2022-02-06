@@ -6,12 +6,11 @@ card3 = Card.new(:heart, 'Ace', 14)
 
 cards = [ card1, card2, card3 ]
 
-    class Deck
-      attr_reader :cards
-      def initialize(c)
-        @cards = c
-      end
-    end
+class Deck
+  attr_reader :cards
+  def initialize(c)
+    @cards = c
+  end
+end
 
-
-deck = Deck.new(cards)
+deck = Deck.new("cards")
