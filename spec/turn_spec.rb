@@ -32,7 +32,7 @@ RSpec.describe Turn do
     expect(@turn.player2.deck).to eq(@deck2)
   end
 
-  xit 'identifies turn type basic' do
+  it 'identifies turn type basic' do
     expect(@turn.type).to eq(:basic)
   end
 
@@ -105,5 +105,15 @@ RSpec.describe Turn do
     expect(@winner).to eq(@player2)
     expect(@player1.deck.cards).to eq([@card8])
     expect(@player2.deck.cards).to eq([@card7, @card1, @card4, @card2, @card3, @card5, @card6])
+  end
+
+  it 'disregards spoils_of_war for mutually_assured_destruction' do
+    winner = @turn.winner
+    @turn.pile_cards
+    @turn.award_spoils(@winner)
+
+    expect(@winner).to eq("No Winner")
+    expect(@player1.deck.cards).to eq([@card8])
+    expect(@player2.deck.cards).to eq([@card7])
   end
 end
