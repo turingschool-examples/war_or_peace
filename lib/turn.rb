@@ -35,4 +35,9 @@ class Turn
       puts "No Winner"
     end
   end
+
+  def pile_cards
+    @spoils_of_war << player1.deck.remove_card
+    @spoils_of_war << player2.deck.remove_card 
+  end
 end
