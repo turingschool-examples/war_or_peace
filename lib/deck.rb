@@ -1,5 +1,6 @@
 require './lib/card.rb'
 require 'rspec'
+require 'pry'
 
 class Deck
 
@@ -10,10 +11,12 @@ class Deck
     @cards = cards
   end
 
-  def rank_of_card_at (location)
-    # card array of format (:suit, "face value", rank)
-    rank = @cards[location].rank
-    return rank
+  def rank_of_card_at (index)
+    if @cards[index] == nil
+      return nil
+    else
+      return @cards[index].rank
+    end
   end
 
   def high_ranking_cards()
