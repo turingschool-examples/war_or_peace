@@ -1,5 +1,9 @@
 require 'rspec'
 
+require './lib/card'
+require './lib/deck'
+require './lib/player'
+require './lib/turn'
 class Card
   attr_reader :suit, :value, :rank
 

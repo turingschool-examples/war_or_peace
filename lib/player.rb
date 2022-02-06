@@ -1,7 +1,11 @@
 require 'rspec'
 require 'pry'
-require './lib/deck'
+# require './lib/deck'
+# require './lib/card'
 require './lib/card'
+require './lib/deck'
+require './lib/player'
+require './lib/turn'
 
 class Player
 attr_reader :name, :deck, :player

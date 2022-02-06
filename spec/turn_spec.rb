@@ -213,7 +213,6 @@ RSpec.describe Turn do
     winner = turn.winner
     turn.pile_cards
     turn.award_spoils(winner)
-    binding.pry
     expect(player1.deck.cards).to eq([card2, card5, card8, card1, card3])
     expect(player2.deck.cards).to eq([card4, card6, card7])
   end
