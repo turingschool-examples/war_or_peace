@@ -4,7 +4,7 @@ class Deck
 
   attr_reader :cards
 
-  def initialize(start_cards = [])
+  def initialize(start_cards)
 
     @cards = start_cards
 
