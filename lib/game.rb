@@ -9,7 +9,13 @@ class Game
   end
 
   def start_game
-    puts "Turn 1: #{@turn.winner.name} won 2 cards"
+    @turn.type
+    @turn.winner
+    @turn.pile_cards
+    spoils = @turn.spoils_of_war.count
+    winner = @turn.winner
+    @turn.award_spoils(winner)
+    puts "Turn 1: #{@turn.winner.name} won #{spoils} cards"
 
 
 
