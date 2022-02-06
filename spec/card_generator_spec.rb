@@ -6,7 +6,7 @@ require 'pry'
 
 RSpec.describe CardGenerator do
   describe '#initialize' do
-    xit 'can create a full deck with .txt' do
+    it 'can create a full deck with .txt' do
       filename = './data/cards.txt'
 
       unshuffled_deck = CardGenerator.new(filename).cards
@@ -17,7 +17,7 @@ RSpec.describe CardGenerator do
       expect(player1_deck.cards.length).to eq(52)
     end
 
-    xit 'can create cards with readable attributes with .txt' do
+    it 'can create cards with readable attributes with .txt' do
       filename = './data/cards.txt'
 
       unshuffled_deck = CardGenerator.new(filename).cards
@@ -43,7 +43,7 @@ RSpec.describe CardGenerator do
       expect(player1_deck.cards.length).to eq(52)
     end
 
-    it 'can create cards with readable attributes with .txt' do
+    it 'can create cards with readable attributes with .csv' do
       filename = './data/cards.csv'
 
       unshuffled_deck = CardGenerator.new(filename).cards
