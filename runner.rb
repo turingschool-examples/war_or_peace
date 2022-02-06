@@ -13,6 +13,8 @@ generator = CardGenerator.new(filename)
 deck1 = Deck.new([])
 deck2 = Deck.new([])
 
+generator.cards.shuffle!
+
 deck1.cards << generator.cards[0..25]
 deck2.cards << generator.cards[26..51]
 deck1.cards.flatten!
@@ -20,9 +22,6 @@ deck2.cards.flatten!
 
 player1 = Player.new('Rupert', deck1)
 player2 = Player.new('Winston', deck2)
-
-player1.deck.cards.shuffle!
-player2.deck.cards.shuffle!
 
 turn = Turn.new(player1, player2)
 
@@ -34,7 +33,7 @@ p "Type 'GO' to start the game!"
 
 user_input = gets.chomp
 
-if user_input == 'GO'
+if user_input.upcase == 'GO'
   game.start
 else
   p 'Invalid input, try again'
