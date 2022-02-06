@@ -1,9 +1,9 @@
-require 'rspec'
+# require 'rspec'
 require './lib/card'
 require './lib/deck'
 require './lib/player'
-require './lib/turn'
-require './lib/start'
+# require './lib/turn'
+require './lib/game'
 require 'pry'
 
 standard_deck = [
@@ -69,5 +69,15 @@ deck2 = Deck.new(cards2)
 player1 = Player.new('Megan', deck1)
 player2 = Player.new('Aurora', deck2)
 
-game = Start.new
-game.start_game 
+p "Welcome to War! (or Peace) This game will be played with #{standard_deck.count} cards."
+p "The players today are #{player1.name} and #{player2.name}."
+p "Type 'GO' to start the game!"
+p "--------------------------------------------------------------------------------------"
+
+go = gets.chomp
+if go == 'GO' || 'go'
+  new_game = Start.new
+  new_game.start_game
+else go != 'GO' || 'go'
+  p 'Type "GO"'
+end
