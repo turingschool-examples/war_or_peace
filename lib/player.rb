@@ -1,7 +1,5 @@
 require 'rspec'
 require 'pry'
-# require './lib/deck'
-# require './lib/card'
 require './lib/card'
 require './lib/deck'
 require './lib/player'

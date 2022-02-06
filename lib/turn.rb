@@ -29,18 +29,18 @@ attr_reader :player1, :player2, :spoils_of_war
     type
     if type == :basic
       if @player1.deck.cards[0].rank > @player2.deck.cards[0].rank
-        return @player1
+        @player1
       else
-        return @player2
+        @player2
       end
       #MAd begins
     elsif type == :mutually_assured_destruction
       "No Winner"
     elsif type == :war
         if @player1.deck.cards[2].rank > @player2.deck.cards[2].rank
-          return @player1
+          @player1
         else
-          return @player2
+          @player2
         end
     end
   end
