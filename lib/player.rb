@@ -9,8 +9,10 @@ class Player
   def has_lost?
     if deck.cards.count > 0
       false
+    elsif deck.cards[2] ==  nil
+      true
     else
-      true  
+      true
     end
   end
 end
