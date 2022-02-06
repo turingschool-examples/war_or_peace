@@ -15,5 +15,4 @@ RSpec.describe Card do
     expect(card.value).to eq('Queen')
     expect(card.rank).to eq(12)
   end
-  # require "pry";binding.pry
 end

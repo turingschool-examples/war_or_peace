@@ -22,7 +22,6 @@ RSpec.describe Turn do
     player2 = Player.new("Aurora", deck2)
 
     turn = Turn.new(player1, player2)
-    # binding.pry
 
     it 'can determine who its 2 players are' do
       expect(turn.player1.name).to eq("Megan")
@@ -43,7 +42,6 @@ RSpec.describe Turn do
     end
 
     it 'can give the winner the spoils of war' do
-      # binding.pry
       turn.pile_cards
       turn.award_spoils
       expect(player1.deck.cards.count).to eq(6)
@@ -119,5 +117,3 @@ RSpec.describe Turn do
     end
   end
 end
-
-# binding.pry

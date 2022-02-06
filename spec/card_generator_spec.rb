@@ -10,7 +10,6 @@ RSpec.describe CardGenerator do
   it 'can generate_cards' do
     deck = CardGenerator.new('./cards.txt')
     deck.create_cards
-    # binding.pry
     expect(deck.cards[0].suit).to eq(:club)
   end
 
@@ -18,7 +17,6 @@ RSpec.describe CardGenerator do
     cards = CardGenerator.new('./cards.txt')
     cards.create_cards
     deck = Deck.new(cards)
-    # binding.pry
     expect(deck.cards.cards[0].suit).to eq(:club)
   end
 
@@ -26,6 +24,6 @@ RSpec.describe CardGenerator do
     deck = CardGenerator.new('./cards.txt')
     deck.create_cards
     deck.cards.shuffle!
-    expect(deck.cards[0].rank).to be == 2
+    expect(deck.cards[0].rank && deck.cards[13].rank && deck.cards[26].rank && deck.cards[39].rank).not_to eq(2)
   end
 end

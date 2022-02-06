@@ -13,7 +13,6 @@ puts "The players today are Morgan and Aurora."
 puts "Type 'GO' to start the game!"
 puts "------------------------------------------------------------------"
 ready = gets.chomp.upcase
-# binding.pry
 if ready == 'GO'
   go.start
 else

@@ -21,17 +21,14 @@ player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
 
 turn = Turn.new(player1, player2)
-# binding.pry
 turn_counter = 0
 until player1.has_lost? == true || player2.has_lost? == true || turn_counter == 1000000 do
 
 turn_counter += 1
 turn.spoils_of_war.clear
-# binding.pry
   if turn.type == :mutually_assured_destruction && turn.type != :basic
     turn.pile_cards
-    puts "kjhjbhfkhfjwefcjkhskfhkjefhkfkhsfkjsdkjhffskdksd"
-    binding.pry
+    puts "mutually assured destruction"
   elsif turn.type == :war
     turn.winner
     turn.pile_cards
