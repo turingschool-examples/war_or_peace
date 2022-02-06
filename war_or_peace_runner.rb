@@ -117,7 +117,7 @@ require 'pry'
 #         spade_card14
 #       ]
 
-filename = './data/cards.txt'
+filename = './data/cards.csv'
 unshuffled_deck = CardGenerator.new(filename).cards
 
 shuffled_deck = unshuffled_deck.shuffle
