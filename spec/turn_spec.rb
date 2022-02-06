@@ -27,7 +27,7 @@ RSpec.describe Turn do
       expect(@turn).to be_a(Turn)
     end
 
-    it 'returns the appropriate turn type' do
+    it 'returns the appropriate turn #type' do
       expect(@turn.type).to eq(:basic)
     end
 
@@ -44,7 +44,6 @@ RSpec.describe Turn do
       winner = @turn.winner
       @turn.pile_cards
       @turn.award_spoils(winner)
-      # require "pry"; binding.pry
       expect(@player1.deck.cards).to eq([@card2, @card5, @card8, @card1, @card3])
     end
   end
@@ -115,7 +114,6 @@ RSpec.describe Turn do
     end
 
     it 'returns the appropriate turn type' do
-      # require "pry"; binding.pry
       expect(@turn.type).to eq(:mutually_assured_destruction)
     end
 

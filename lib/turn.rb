@@ -21,7 +21,7 @@ class Turn
     end
   end
 
-  def winner  
+  def winner
      if @player1.deck.cards[0].rank > @player2.deck.cards[0].rank
         @player1
       elsif @player1.deck.cards[0].rank < @player2.deck.cards[0].rank
@@ -55,6 +55,5 @@ class Turn
   def award_spoils(winner)
     winner.deck.cards << @spoils_of_war
     winner.deck.cards.flatten!
-    # require "pry"; binding.pry
   end
 end
