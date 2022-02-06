@@ -33,7 +33,7 @@ class WeFight
       winner = @round.winner
       @round.award_spoils(winner)
     end
-    binding.pry
+    # binding.pry
 
     if @player1.has_lost? == true
       puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"

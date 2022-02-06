@@ -63,8 +63,8 @@ class Turn
         winner.deck.cards << win
       end
     elsif winner == "No winner"
-      @spoils_of_war.each do |mad|
-        @discard_pile << mad
+      6.times do
+        @discard_pile << @spoils_of_war
       end
     else
     end
