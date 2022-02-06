@@ -19,9 +19,24 @@ The players today are Megan and Aurora.
 Type 'GO' to start the game!
 ------------------------------------------------------------------"
 
+# game= Start.new
+# game.start
+# require 'pry'; binding.pry
 
-game= Start.new
-game.start
+
+
+starter = gets.chomp.upcase
+if starter == "GO"
+
+  game= Start.new
+
+
+  game.start
+  # require 'pry'; binding.pry
+
+else
+  return "Please Try Again!"
+end
 #
 require 'pry'; binding.pry
 

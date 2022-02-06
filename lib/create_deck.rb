@@ -123,7 +123,7 @@ player2 = Player.new("Aurora", deck2)
 
 # require 'pry'; binding.pry
 
-p 'this sucks'
+
 
 
 

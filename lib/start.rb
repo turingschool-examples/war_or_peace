@@ -4,6 +4,12 @@ require './lib/player'
 require './lib/turn'
 require './lib/create_deck'
 
+# require_relative 'card'
+# require_relative 'deck'
+# require_relative 'player'
+# require_relative 'turn'
+# require_relative 'create_deck'
+#
 
 
 class Start
@@ -61,63 +67,67 @@ class Start
     card51 = Card.new(:club, 'King', 13),
     card52 = Card.new(:club, 'Ace', 14)]
 
+
+    # deck1 = Deck.new([card39, card44, card38])
+    # deck2 = Deck.new([card52, card43, card51])
+
+
+    #
+    # player1 = Player.new("Megan", deck1)
+    # player2 = Player.new("Aurora", deck2)
+
     shuffled_deck = unshuffled_deck.shuffle
 
     p1_deck = shuffled_deck.slice!(1, 26).to_a
     p2_deck = shuffled_deck.slice!(1, 26).to_a
-    deck1 = Deck.new(p1_deck)
-    deck2 = Deck.new(p2_deck)
-
-    # player1 = Player.new("Megan", deck1)
-    # player2 = Player.new("Aurora", deck2)
 
 
 
-    # shuffled_deck = unshuffled_deck.shuffle
-    #
-    # p1_deck = shuffled_deck.slice!(1, 26).to_a
-    # p2_deck = shuffled_deck.slice!(1, 26).to_a
-    # deck1 = Deck.new(p1_deck)
-    # deck2 = Deck.new(p2_deck)
-
-    player1 = Player.new("Megan", deck1)
-    player2 = Player.new("Aurora", deck2)
+    player1 = Player.new("Megan", Deck.new(p1_deck))
+    player2 = Player.new("Aurora", Deck.new(p2_deck))
 
 
-    # turn = Turn.new(player1, player2)
+
     counter = 0
 
 
-
-    until player1.has_lost? == true || player2.has_lost? == true && counter == 1000
+    until player1.has_lost? == true || player2.has_lost? == true || counter == 10000
       counter += 1
       turn = Turn.new(player1, player2)
-      turn.pile_cards
-      winner = turn.winner
-      unless turn.type == :mutually_assured_destruction
-        turn.award_spoils(winner)
-      end
-      
-      if turn.type == :basic
 
-        p "Turn Number: #{counter}. Turn Type: #{turn.type}. Winner: #{turn.winner.name}. Cards Won: 2"
+      turn.pile_cards
+# require 'pry'; binding.pry
+
+      if turn.type == :basic
+        winner = turn.winner
+        turn.award_spoils(winner)
+        p "Turn #{counter}: #{turn.winner.name} won 2 cards count: #{player1.deck.cards.count} & #{player2.deck.cards.count}"
         turn.award_spoils(winner)
       elsif turn.type == :war
-
-        p "Turn Number: #{counter}. Turn Type: #{turn.type}. Winner: #{turn.winner.name}. Cards Won: 6"
-
+        winner = turn.winner
+        turn.award_spoils(winner)
+        p "Turn #{counter}: WAR - #{turn.winner.name} won 6 cards"
       elsif turn.type == :mutually_assured_destruction
-
-        return  "Turn Number: #{counter}. Turn Type: #{turn.type}. Everyone loses."
+        p "Mutually Assured Destruction! Everyone loses."
       else
         return "Error!"
       end
+      if player1.has_lost? == true
+        p "#{player2.name} has won the game!"
+      elsif player2.has_lost? == true
+        p "#{player1.name} has won the game!"
+# require 'pry'; binding.pry
+
+
+        else counter == 10000
+
+
+
+        
+
+
+
+    end
     end
   end
-
 end
-
-
-# requrie 'pry'; binding.pry
-
-p 'buns'

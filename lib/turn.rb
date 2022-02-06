@@ -24,7 +24,7 @@ class Turn
 
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) != player2.deck.rank_of_card_at(2)
       return :war
-    else player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player2.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+    else player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
       return :mutually_assured_destruction
     end
   end
@@ -33,25 +33,33 @@ class Turn
 
   def winner
     # require 'pry'; binding.pry
-    if type == :basic && player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-      return @player1
-    elsif type == :basic && player1.deck.rank_of_card_at(0) < player2.deck.rank_of_card_at(0)
-      return @player2
-    elsif type == :war && player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-      return @player1
-    elsif  type == :war && player1.deck.rank_of_card_at(2) < player2.deck.rank_of_card_at(2)
-      return @player2
+    if type == :basic
+      if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+        return @player1
+      else
+        return @player2
+      end  # elsif type == :basic && player1.deck.rank_of_card_at(0) < player2.deck.rank_of_card_at(0)
+    #   return @player2
+    elsif type == :war
+      if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+        return @player1
+      else
+        return @player2
+      end  # elsif  type == :war && player1.deck.rank_of_card_at(2) < player2.deck.rank_of_card_at(2)
+    #   return @player2
     else type == :mutually_assured_destruction
-      return "No Winner"
+      # return "No Winner"
     end
   end
 
   def pile_cards
     if type == :basic
+      # @spoils_of_war = []
       @spoils_of_war << @player1.deck.remove_card
       @spoils_of_war << @player2.deck.remove_card
     elsif type == :war
       3.times do
+        # @spoils_of_war = []
         @spoils_of_war << @player1.deck.remove_card
         @spoils_of_war << @player2.deck.remove_card
       end
@@ -64,6 +72,7 @@ class Turn
   end
 
   def award_spoils(winner)
+    # require 'pry'; binding.pry
     winner.deck.cards.concat(@spoils_of_war)
     @spoils_of_war.clear
   end
