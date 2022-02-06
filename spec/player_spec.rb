@@ -12,13 +12,11 @@ RSpec.describe Player do
 
     it 'has a name and a deck' do
       player = Player.new('Clarisa', deck)
-      # binding.pry
       expect(player.name).to eq('Clarisa')
       expect(player.deck).to eq(deck)
     end
     it 'can determine if it has lost' do
       player = Player.new('Clarisa', deck)
-      # binding.pry
       expect(player.has_lost?).to eq(false)
       player.deck.remove_card
       expect(player.has_lost?).to eq(false)
@@ -27,14 +25,6 @@ RSpec.describe Player do
       player.deck.remove_card
       expect(player.has_lost?).to eq(true)
       expect(player.deck.cards).to eq([])
-    end
-  end
-
-  context 'test' do
-    it 'can create a card' do
-      test_deck = Deck.new
-      test_deck.create_card(1, :diamond, 'Queen', 12)
-      expect(test_deck.card1.value).to eq('Queen')
     end
   end
 end

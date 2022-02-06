@@ -1,28 +1,17 @@
-
-
-
-
-# require './lib/card_generator'
-# filename = "cards.txt"
-
-
-
-
-
 class Gameplay
   def start
-    cards = CardGenerator.new('./cards.txt')
-    cards.create_cards
-    deck = Deck.new(cards)
+    all_cards = CardGenerator.new('./cards.txt')
+    all_cards.create_cards
+    deck = Deck.new(all_cards)
 
     # binding.pry
     # deck.create_cards
 
 
-    deck.cards.cards.shuffle!
+    deck.all_cards.cards.shuffle!
 
-    deck1 = Deck.new(deck.cards.cards[0..25])
-    deck2 = Deck.new(deck.cards.cards[26..51])
+    deck1 = Deck.new(deck.all_cards.cards[0..25])
+    deck2 = Deck.new(deck.all_cards.cards[26..51])
 
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
@@ -31,14 +20,12 @@ class Gameplay
     # binding.pry
     turn_counter = 0
     until player1.has_lost? == true || player2.has_lost? == true || turn_counter == 1000000 do
-
-
       turn_counter += 1
       # binding.pry
       if turn.type == :mutually_assured_destruction && turn.type != :basic
         turn.pile_cards
           puts "Turn #{turn_counter}: *mutually assured destruction* 6 cards removed from play"
-          # sleep(0.02)
+          sleep(1)
       elsif turn.type == :war
         turn.winner
         turn.pile_cards
@@ -48,7 +35,7 @@ class Gameplay
           puts "Turn #{turn_counter}: WAR - #{player2.name} won #{turn.spoils_of_war.length} cards"
         end
         turn.award_spoils
-        # sleep(0.02)
+        sleep(0.02)
       elsif turn.type == :basic && turn.type != :mutually_assured_destruction
         turn.winner
         turn.pile_cards
@@ -58,7 +45,7 @@ class Gameplay
           puts "Turn #{turn_counter}: #{player2.name} won #{turn.spoils_of_war.length} cards"
         end
         turn.award_spoils
-        # sleep(0.02)
+        sleep(0.02)
       end
     end
 
