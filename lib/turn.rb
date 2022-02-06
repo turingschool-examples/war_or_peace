@@ -1,4 +1,8 @@
+require "./deck"
+require "./card"
+require "./player"
 require "pry"
+
 class Turn
   attr_reader :player1, :player2, :spoils_of_war, :discard_pile
 
@@ -42,17 +46,17 @@ class Turn
   def pile_cards
     if type == :mutually_assured_destruction
       3.times do
-        @spoils_of_war << @player1.deck.cards.shift
-        @spoils_of_war << @player2.deck.cards.shift
+        @discard_pile << @player1.deck.remove_card
+        @discard_pile << @player2.deck.remove_card
       end
     elsif type == :war
       3.times do
-        @spoils_of_war << player1.deck.cards.shift
-        @spoils_of_war << player2.deck.cards.shift
+        @spoils_of_war << @player1.deck.remove_card
+        @spoils_of_war << @player2.deck.remove_card
       end
     elsif type == :basic
-        @spoils_of_war << player1.deck.cards.shift
-        @spoils_of_war << player2.deck.cards.shift
+        @spoils_of_war << @player1.deck.remove_card
+        @spoils_of_war << @player2.deck.remove_card
     else
     end
   end
@@ -61,10 +65,6 @@ class Turn
     if winner == @player1 || winner == @player2
       @spoils_of_war.each do |win|
         winner.deck.cards << win
-      end
-    elsif winner == "No winner"
-      6.times do
-        @discard_pile << @spoils_of_war
       end
     else
     end
