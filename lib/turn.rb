@@ -63,4 +63,7 @@ class Turn
       "No Winner"
     end
   end
+
+  def pile_cards
+  end
 end
