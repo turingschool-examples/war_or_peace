@@ -87,7 +87,6 @@ RSpec.describe Turn do
   end
 
   it 'awards spoils_of_war to the winner for :basic' do
-
     @turn.pile_cards
     @turn.award_spoils(@winner)
 

@@ -155,7 +155,7 @@ def run
   elsif player2.has_lost?
     puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
   else
-    puts '---- DRAW ----'
+    puts '---- DRAW ----
   end
 end
-end
+end 
