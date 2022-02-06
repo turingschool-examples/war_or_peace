@@ -36,6 +36,7 @@ class Deck
       [:club, :spade, :heart, :diamond].each do |suit|
         {"2" => 2, "3" => 3, "4" => 4, "5" => 5, "6" => 6, "7" => 7, "8" => 8, "9" => 9, "10" => 10, "Jack" => 11, "Queen" => 12, "King" => 13, "Ace" => 14}.each do |value, rank|
           card << Card.new(suit, value, rank)
+          # puts "#{value}, #{suit}, #{rank}"
         end
       end
     end
