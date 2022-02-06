@@ -126,8 +126,13 @@ RSpec.describe Turn do
       player1 = Player.new("Megan", deck1)
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
-      
+
       expect(turn.type).to eq(:mutually_assured_destruction)
+      expect(turn.winner).to eq("No Winner")
+      turn.pile_cards
+      expect(turn.spoils_of_war).to eq([])
+      expect(player1.deck).to eq(deck1)
+      expect(player2.deck).to eq(deck2)
     end
   end
 end
