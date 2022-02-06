@@ -1,20 +1,24 @@
-require 'rspec'
-require './lib/card'
-require './lib/deck'
-require './lib/player'
-require './lib/turn'
-require './war_or_peace_runner'
 require 'pry'
 
-class Start
+class Game
 
   def initialize
-    @player1 = player1
-    @player2 = player2
-    @standard_deck = standard_deck
+    # @player1 = player1
+    # @player2 = player2
+    # @standard_deck = standard_deck
   end
 
   def start_game
+    p "Turn 1:"
 
+
+
+
+    # if turn.counter < 10000000
+    #
+    # Turn.new
+    # else
+    #   puts "1M turns reached. It's a draw."
+    # end
   end
 end

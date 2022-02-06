@@ -1,7 +1,4 @@
 require 'pry'
-require './lib/card'
-require './lib/deck'
-require './lib/player'
 
 class Turn
   attr_reader :player1, :player2, :spoils_of_war, :cards_won, :remove_card, :winner
