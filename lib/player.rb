@@ -12,7 +12,6 @@ class Player
     @deck = deck
   end
   def has_lost?
-    # require 'pry'; binding.pry
     if @deck.cards.empty?
       return true
     else false

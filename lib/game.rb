@@ -2,11 +2,8 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
-# require './lib/game'
 require './lib/card_generator'
 require './lib/standard_deck'
-# require './lib/card.txt'
-# require './war_or_peace_runner'
 
 class Game
   attr_reader :card_split_1, :card_split_2, :hand1, :hand2, :player1, :player2
@@ -25,24 +22,11 @@ class Game
     @hand2 = Deck.new(card_split_2)
     @player1 = Player.new('Megan', hand1)
     @player2 = Player.new('Aurora', hand2)
-    # require 'pry'; binding.pry
   end
 
   def start
-
     play_count = 0
-
     turn = Turn.new(@player1, @player2)
-
-#     1000000.times do
-#       play_count += 1
-#       turn.spoils_of_war.clear
-#       turn.pile_cards
-#       turn.award_spoils(winner)
-# puts "turn:#{play_count} winner:#{winner.name} "
-#     end
-#     # require 'pry'; binding.pry
-
     until @player1.has_lost? == true || @player2.has_lost? == true || play_count == 1000000
       play_count +=1
       turn.spoils_of_war.clear

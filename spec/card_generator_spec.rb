@@ -11,8 +11,8 @@ RSpec.describe CardGenerator do
 
   it "makes all 52 cards" do
     here_we_go = CardGenerator.new
-
-    binding.pry
+    here_we_go.make_cards
+    here_we_go.make_cards
     expect(here_we_go.cards.length).to be(52)
   end
 end
