@@ -1,5 +1,5 @@
-#!/Users/johnhennerich/.rbenv/shims/ruby
-require 'pry'
+#!/usr/bin/ruby
+
 require './lib/card'
 require './lib/deck'
 require './lib/player'

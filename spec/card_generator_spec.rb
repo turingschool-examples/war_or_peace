@@ -11,7 +11,7 @@ RSpec.describe CardGenerator do
   end
 
   xit "has has cards" do
-    
+
     filename = "cards.txt"
     create_deck = CardGenerator.new(filename)
     cards = CardGenerator.new(filename).cards
