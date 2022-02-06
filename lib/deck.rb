@@ -1,3 +1,5 @@
+require "./card"
+
 class Deck
 
    attr_reader :cards, :index, :high_cards, :new_card
@@ -7,10 +9,12 @@ class Deck
   end
 
   def rank_of_card_at(index)
-    if cards.nil? == false
+    # card53 = Card.new(:hearts, "Fake", 1)
+    if cards[index].nil? == false
       cards[index].rank
     else
-      rank_of_card_at = 1
+      rank = 1
+      # cards[index] = card53
     end
   end
 

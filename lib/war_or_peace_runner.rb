@@ -11,25 +11,25 @@ class WeFight
     @player1 = player1
     @player2 = player2
     @round = Turn.new(@player1, @player2)
+    @card53 = Card.new(:hearts, "Fake", 1)
   end
 
   def start
 
     @round_count = 0
 
-    until @player1.has_lost? == true || @player2.has_lost? == true || @round_count == 1000 || @player1.deck.cards.count <= 1 || @player2.deck.cards.count <= 1 do
+    until @player1.has_lost? == true || @player2.has_lost? == true || @round_count == 10000 || @player1.deck.cards.count < 1 || @player2.deck.cards.count < 1 do
       @round_count += 1
-        # binding.pry
-        if @round.type == :mutually_assured_destruction
-          puts "Turn #{@round_count}: *mutually assured destruction* 6 cards removed from play."
-        elsif @round.type == :war
-          puts "Turn #{@round_count}: WAR - #{@round.winner.name} has won 6 cards."
-        elsif @round.type == :basic
-          puts "Turn #{@round_count}: #{@round.winner.name} has won 2 cards."
-        end
-        # binding.pry
+            if @round.type == :mutually_assured_destruction
+              puts "Turn #{@round_count}: *mutually assured destruction* 6 cards removed from play."
+            elsif @round.type == :war
+              puts "Turn #{@round_count}: WAR - #{@round.winner.name} has won 6 cards."
+            elsif @round.type == :basic
+              puts "Turn #{@round_count}: #{@round.winner.name} has won 2 cards."
+            else
+              break
+            end
       @round.pile_cards
-      # binding.pry
       winner = @round.winner
       @round.award_spoils(winner)
     end
@@ -39,7 +39,7 @@ class WeFight
       puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
     elsif @player2.has_lost? == true
       puts "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
-    elsif @round_count == 1000
+    elsif @round_count == 10000
       puts "--- Draw ---"
     elsif @round.type == :basic
       puts "Not enough cards to continue play."

@@ -69,6 +69,5 @@ class Turn
     else
     end
     @spoils_of_war.clear
-    @discard_pile.clear
   end
 end
