@@ -74,9 +74,10 @@ puts "The players today are #{player1.name} and #{player2.name}."
 puts "Type 'GO' to start the game!"
 puts "--------------------------------------------------------------------------------------"
 
-go = gets.chomp
+# go = gets.chomp
+go = 'GO'
 if go == 'GO' || 'go'
-  new_game = Game.new
+  new_game = Game.new(player1)
   new_game.start_game
 else go != 'GO' || 'go'
   puts 'Type "GO"'
