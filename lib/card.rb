@@ -8,5 +8,3 @@ class Card
   end
 
 end
-
-card = Card.new(:diamond, 'Queen', 12)
