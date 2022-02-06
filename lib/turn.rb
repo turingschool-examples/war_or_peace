@@ -39,7 +39,7 @@ class Turn
   end
 
   def pile_cards
-    #binding.pry
+
     if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0) || @player1.deck.rank_of_card_at(0).rank < @player2.deck.rank_of_card_at(0).rank
 
       return @spoils_of_war << @player1.deck.cards[0] << @player2.deck.cards[0]
@@ -54,6 +54,13 @@ class Turn
 
   def award_spoils
 
+    if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
+      @player1.deck.cards << @spoils_of_war
+    elsif @player1.deck.rank_of_card_at(0) < @player2.deck.rank_of_card_at(0)
+      @player2.deck.cards << @spoils_of_war
+    end
+
   end
+
 
 end

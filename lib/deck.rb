@@ -1,4 +1,5 @@
 require './lib/card'
+
 class Deck
 
   attr_reader :cards
@@ -51,3 +52,21 @@ class Deck
   end
 
 end
+
+card1 = Card.new(:diamond, 'Queen', 12)
+card2 = Card.new(:spade, 'King', 13)
+card3 = Card.new(:heart, '3', 3)
+
+card4 = Card.new(:club, '9', 9)
+
+cards = Deck.new([card1,card2,card3,card4])
+
+
+# puts card1.rank
+# puts card2.rank
+# puts card4
+#
+# puts cards.rank_of_card_at(1)
+#
+# puts cards.remove_card
+#puts cards.percent_high_ranking
