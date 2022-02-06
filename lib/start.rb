@@ -5,7 +5,7 @@ require './lib/turn'
 require './lib/start'
 
 class Start
-  attr_reader :game
+  attr_reader :game, :turn_count
 
   def initialize(turn)
     @game = turn
@@ -16,17 +16,22 @@ class Start
 
     if user_input_GO == 'GO'
 
-      if @game.type == :basic
-        @turn_count += 1
-        puts "Turn #{@turn_count}: #{@game.winner} won 2 cards"
+      until @game.player1.deck.cards.length < 1 || @game.player2.deck.cards.length < 1
 
-      elsif @game.type == :mutually_assured_destruction
-        @turn_count += 1
-        puts "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
 
-      elsif @game.type == :war
-        @turn_count += 1
-        puts "Turn #{@turn_count}: WAR - #{@game.winner} won 6 cards"
+        if @game.type == :basic
+          @turn_count += 1
+          puts "Turn #{@turn_count}: #{@game.winner} won 2 cards"
+
+        elsif @game.type == :mutually_assured_destruction
+          @turn_count += 1
+          puts "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
+
+        elsif @game.type == :war
+          @turn_count += 1
+          puts "Turn #{@turn_count}: WAR - #{@game.winner} won 6 cards"
+        end
+
       end
 
 
