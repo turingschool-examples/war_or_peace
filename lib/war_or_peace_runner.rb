@@ -20,7 +20,11 @@ class Deck
   end
 
   def rank_of_card_at(index)
-    cards[index].rank
+    if cards[index].nil? == false
+      cards[index].rank
+    else cards[index].nil? == true
+      rank_of_card_at = 1
+    end
   end
 
   def high_ranking_cards
@@ -86,11 +90,11 @@ class Turn
 
   def type
     if @player1.deck.cards.count >= 1 && @player2.deck.cards.count >= 1
-      if @player1.deck.rank_of_card_at(0)  == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2) && @player1.deck.cards.count >= 3 && @player2.deck.cards.count >= 3
+      if @player1.deck.rank_of_card_at(0)  == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2) #&& @player1.deck.cards.count >= 3 && @player2.deck.cards.count >= 3
         :mutually_assured_destruction
-      elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.cards.count >= 3 && @player2.deck.cards.count >= 3
+      elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) #&& @player1.deck.cards.count >= 3 && @player2.deck.cards.count >= 3
         :war
-      elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0) && @player1.deck.cards.empty? == false && @player2.deck.cards.empty? == false
+      elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0) #&& @player1.deck.cards.empty? == false && @player2.deck.cards.empty? == false
         :basic
       elsif
         :draw
@@ -171,7 +175,7 @@ class WeFight
 
     until @player1.has_lost? == true || @player2.has_lost? == true || @round_count == 1000 || @player1.deck.cards.count <= 1 || @player2.deck.cards.count <= 1 do
       @round_count += 1
-        binding.pry
+        # binding.pry
         if @round.type == :mutually_assured_destruction
           puts "Turn #{@round_count}: *mutually assured destruction* 6 cards removed from play."
         elsif @round.type == :war
