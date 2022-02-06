@@ -6,6 +6,7 @@ def welcome_banner
   puts " Welcome to War! (or Peace) This game will be played with 52 cards."
   puts "   The players today are Megan and Aurora."
   puts "   Type 'GO' to start the game!"
+  puts "   Type 1 to play the game using the file cards.txt"
   puts "---------------------------------------------------------------------"
   puts ""
 end

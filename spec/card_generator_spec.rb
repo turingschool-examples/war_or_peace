@@ -1,17 +1,20 @@
 require 'rspec'
 require './lib/card'
+require './lib/card_generator'
 
-RSpec.describe Card do
+RSpec.describe CardGenerator do
   it "exists" do
-    card = Card.new(:diamond, 'Queen', 12)
+    filename = "cards.txt"
+    create_deck = CardGenerator.new(filename)
 
-    expect(card).to be_an_instance_of(Card)
+    expect(create_deck).to be_an_instance_of(CardGenerator)
   end
 
-  it "has readable attributes" do
-    card = Card.new(:diamond, 'Queen', 12)
+  it "has has cards" do
+    create_deck = CardGenerator.new(filename)
+    cards = CardGenerator.new(filename).cards
 
-    expect(card.suit).to eq(:diamond)
+    expect(cards.suit).to eq(:diamond)
     expect(card.value).to eq('Queen')
     expect(card.rank).to eq(12)
   end
