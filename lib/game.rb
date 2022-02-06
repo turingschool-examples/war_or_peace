@@ -13,7 +13,7 @@ class Game
   def start
     turn_count = 0
 
-    until turn.player1.has_lost? == true || turn.player2.has_lost? == true || turn_count == 1000000 do
+    until turn.player1.has_lost? || turn.player2.has_lost? || turn_count == 1000000 do
       turn_count += 1
       turn.spoils_of_war.clear
 
@@ -42,6 +42,8 @@ class Game
       p "#{turn.player1.name}: #{turn.player1.deck.cards.count} cards"
       p "#{turn.player2.name}: #{turn.player2.deck.cards.count} cards"
       p "GAME OVER"
+    elsif turn_count == 1000000
+      p "~~~~~~~DRAW~~~~~~~"
     end
   end
 
