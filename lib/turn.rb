@@ -38,6 +38,10 @@ class Turn
 
   def pile_cards
     @spoils_of_war << player1.deck.remove_card
-    @spoils_of_war << player2.deck.remove_card 
+    @spoils_of_war << player2.deck.remove_card
+  end
+
+  def award_spoils(winner)
+    winner.deck.cards << spoils_of_war
   end
 end
