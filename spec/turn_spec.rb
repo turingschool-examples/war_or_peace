@@ -188,7 +188,6 @@ RSpec.describe Turn do
     turn = Turn.new(player1, player2)
     winner = turn.winner
     turn.pile_cards
-    # require 'pry';binding.pry
     expect(turn.spoils_of_war).to eq([card1, card2, card5, card4, card3, card6])
   end
 
@@ -228,6 +227,7 @@ RSpec.describe Turn do
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
+    # require"pry";binding.pry
 
     expect(turn.type).to eq(:mutally_assured_destruction)
   end
@@ -247,6 +247,8 @@ RSpec.describe Turn do
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
     winner = turn.winner
+    # require 'pry'; binding.pry
+
     expect(turn.winner).to eq("No Winner")
   end
 

@@ -1,3 +1,10 @@
+require './lib/card'
+require './lib/deck'
+require './lib/player'
+require './lib/turn'
+require './lib/game'
+require './lib/standard_deck'
+
 class Deck
   attr_reader :cards
   def initialize(cards)
@@ -6,8 +13,12 @@ class Deck
 
 
   def rank_of_card_at(place)
+    if cards[2] == nil
+      return 1
+    end
     @cards[place].rank
   end
+  
 
   def high_ranking_cards
     face_cards = []

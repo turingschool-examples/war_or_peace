@@ -1,11 +1,18 @@
+require './lib/card'
+require './lib/deck'
+require './lib/player'
+require './lib/turn'
+require './lib/game'
+require './lib/standard_deck'
+
 class Player
   attr_reader :name, :deck
   def initialize(name, deck)
     @name = name
     @deck = deck
   end
-
   def has_lost?
+    # require 'pry'; binding.pry
     if @deck.cards.empty?
       return true
     else false

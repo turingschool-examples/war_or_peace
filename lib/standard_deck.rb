@@ -1,3 +1,6 @@
+require './lib/card'
+require './lib/standard_deck'
+
 class StandardDeck
   attr_reader :standard_deck
   def initialize
@@ -53,9 +56,6 @@ class StandardDeck
     card50 = Card.new(:diamond, 'Queen', 12)
     card51 = Card.new(:diamond, 'King', 13)
     card52 = Card.new(:diamond, 'Ace', 14)
-    @standard_deck = Deck.new([card01, card02, card03, card04, card05, card06, card07, card08, card09, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20, card21, card22, card23, card24, card25, card26, card27, card28, card29, card30, card31, card32, card33, card34, card35, card36, card37, card38, card39, card40, card41, card42, card43, card44, card45, card46, card47, card48, card49, card50, card51, card52])
+    @standard_deck = [card01, card02, card03, card04, card05, card06, card07, card08, card09, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20, card21, card22, card23, card24, card25, card26, card27, card28, card29, card30, card31, card32, card33, card34, card35, card36, card37, card38, card39, card40, card41, card42, card43, card44, card45, card46, card47, card48, card49, card50, card51, card52]
   end
-
-
-
 end
