@@ -53,13 +53,13 @@ class Deck
 
 end
 
-card1 = Card.new(:diamond, 'Queen', 12)
-card2 = Card.new(:spade, 'King', 13)
-card3 = Card.new(:heart, '3', 3)
-
-card4 = Card.new(:club, '9', 9)
-
-cards = Deck.new([card1,card2,card3,card4])
+# card1 = Card.new(:diamond, 'Queen', 12)
+# card2 = Card.new(:spade, 'King', 13)
+# card3 = Card.new(:heart, '3', 3)
+#
+# card4 = Card.new(:club, '9', 9)
+#
+# cards = Deck.new([card1,card2,card3,card4])
 
 
 # puts card1.rank
