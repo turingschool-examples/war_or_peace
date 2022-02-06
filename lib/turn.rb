@@ -1,4 +1,6 @@
 require 'pry'
+require './lib/deck.rb'
+require './lib/card.rb'
 
 class Turn
   attr_reader :player1, :player2, :spoils_of_war, :winner
@@ -7,11 +9,12 @@ class Turn
     @spoils_of_war = []
     @player1 = player1
     @player2 = player2
-    @winner = winner()
     @type = type()
+    @winner = winning_player()
   end
 
   def type()
+    #binding.pry
     if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
       @type = :basic
     elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
@@ -21,15 +24,24 @@ class Turn
     end
   end
 
-  def winner ()
+  def winning_player()
     if type() == :basic
       if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
         @winner = @player1
       else
         @winner = @player2
       end
+      #This happened in testing, more than once. Someone ran out of cards on War and broke the game.
+      #Executive decision - if someone runs out of cards and cannot complete a war or mad scenario, they lose.
+      #checking these conditions before running war or mad should stop that from happening again. I think?
+      #If not all these comments will make it easy to find where I broke it more.
+    elsif @player1.deck.rank_of_card_at(2) == nil && @player2.deck.rank_of_card_at(2) != nil
+      @winner = @player2
+    elsif @player2.deck.rank_of_card_at(2) == nil && @player1.deck.rank_of_card_at(2) != nil
+      @winner = @player1
+      #now stop breaking, code!
     elsif type() == :war
-      if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
+      if@player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
         @winner = @player1
       else
         @winner = @player2
