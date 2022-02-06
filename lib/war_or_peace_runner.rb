@@ -90,7 +90,7 @@ class Turn
         :mutually_assured_destruction
       elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.cards.count >= 3 && @player2.deck.cards.count >= 3
         :war
-      elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0) && @player1.deck.cards.count >= 1 && @player2.deck.cards.count >= 1
+      elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0) && @player1.deck.cards.empty? == false && @player2.deck.cards.empty? == false
         :basic
       elsif
         :draw
@@ -171,7 +171,7 @@ class WeFight
 
     until @player1.has_lost? == true || @player2.has_lost? == true || @round_count == 1000 || @player1.deck.cards.count <= 1 || @player2.deck.cards.count <= 1 do
       @round_count += 1
-        # binding.pry
+        binding.pry
         if @round.type == :mutually_assured_destruction
           puts "Turn #{@round_count}: *mutually assured destruction* 6 cards removed from play."
         elsif @round.type == :war
@@ -185,7 +185,7 @@ class WeFight
       winner = @round.winner
       @round.award_spoils(winner)
     end
-    binding.pry
+    # binding.pry
 
     if @player1.has_lost? == true
       puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
