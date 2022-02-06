@@ -1,3 +1,4 @@
+require 'pry'
 require './lib/deck'
 require './lib/card'
 
@@ -21,8 +22,8 @@ RSpec.describe Deck do
   end
 
   it 'returns card rank' do
-    expect(@deck.rank_of_cards_at(0)).to eq(12)
-    expect(@deck.rank_of_cards_at(2)).to eq(14)
+    expect(@deck.rank_of_card_at(0)).to eq(12)
+    expect(@deck.rank_of_card_at(2)).to eq(14)
   end
 
   it 'returns a high ranking card' do

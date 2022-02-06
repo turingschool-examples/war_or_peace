@@ -1,3 +1,4 @@
+require 'pry'
 require './lib/deck'
 require './lib/card'
 require './lib/player'
@@ -5,7 +6,6 @@ require './lib/turn'
 
 RSpec.describe Turn do
   before :each do
-
     @card1 = Card.new(:heart, 'Jack', 11)
     @card2 = Card.new(:heart, '10', 10)
     @card3 = Card.new(:heart, '9', 9)
@@ -30,5 +30,23 @@ RSpec.describe Turn do
     expect(@turn.player1.deck).to eq(@deck1)
     expect(@turn.player2.name).to eq('Aurora')
     expect(@turn.player2.deck).to eq(@deck2)
+  end
+
+  xit 'identifies turn type basic' do
+    expect(@turn.type).to eq(:basic)
+    expect(@turn.type).to eq(:war)
+    expect(@turn.type).to eq(:mutually_assured_destruction)
+  end
+
+  it 'identifies basic turn winner' do
+    expect(@turn.winner).to eq(player1)
+  end
+
+  it 'identifies war turn winner' do
+    expect(@turn.winner).to eq(player2)
+  end
+
+  it 'identifies mutally assured destruction turn winner' do
+    expect(@turn.winner).to eq("No Winner")
   end
 end
