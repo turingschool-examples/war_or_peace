@@ -18,7 +18,7 @@ class WeFight
 
     @round_count = 0
 
-    until @player1.has_lost? == true || @player2.has_lost? == true || @round_count == 10000 || @player1.deck.cards.count < 1 || @player2.deck.cards.count < 1 do
+    until @player1.has_lost? == true || @player2.has_lost? == true || @round_count == 1000000 || @player1.deck.cards.count < 1 || @player2.deck.cards.count < 1 do
       @round_count += 1
             if @round.type == :mutually_assured_destruction
               puts "Turn #{@round_count}: *mutually assured destruction* 6 cards removed from play."
@@ -39,7 +39,7 @@ class WeFight
       puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
     elsif @player2.has_lost? == true
       puts "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
-    elsif @round_count == 10000
+    elsif @round_count == 1000000
       puts "--- Draw ---"
     elsif @round.type == :basic
       puts "Not enough cards to continue play."
