@@ -11,14 +11,12 @@ class Deck
     @cards = cards
   end
 
-
   def rank_of_card_at(place)
     if cards[2] == nil
       return 1
     end
     @cards[place].rank
   end
-
 
   def high_ranking_cards
     face_cards = []

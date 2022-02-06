@@ -38,7 +38,7 @@ class Game
           puts "Turn #{play_count}: *mutually assured destruction* 6 cards removed from play"
           turn.pile_cards
         else
-          puts "Turn #{play_count}: WAR - #{card_czar.name} won 6 cards - M has #{player1.deck.cards.count}, A has #{player2.deck.cards.count}"
+          puts "Turn #{play_count}: WAR - #{card_czar.name} won 6 cards"
         end
       elsif turn.type == :basic
         turn.pile_cards
@@ -48,7 +48,7 @@ class Game
           puts "Turn #{play_count}: *mutually assured destruction* 6 cards removed from play"
           turn.pile_cards
         else
-          puts "Turn #{play_count}: #{card_czar.name} won 2 cards - M has #{player1.deck.cards.count}, A has #{player2.deck.cards.count}"
+          puts "Turn #{play_count}: #{card_czar.name} won 2 cards"
         end
       elsif turn.type == :mutally_assured_destruction
         turn.pile_cards
