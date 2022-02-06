@@ -1,9 +1,12 @@
 require './lib/card_generator'
 
 RSpec.describe CardGenerator do
-  it "can create objects" do
-    cards = CardGenerator.new
+  it "can create cards" do
 
-    expect(cards).to be_an_instance_of(CardGenerator)
+  filename = "cards.txt"
+
+  cards = CardGenerator.new(filename).cards
+
+  expect(cards).to be_an_instance_of(CardGenerator)
   end
 end
