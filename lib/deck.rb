@@ -1,18 +1,3 @@
-# require "./lib/card"
-# require 'pry'
-
-# class Card
-#   attr_reader :suit, :value, :rank
-#
-#   def initialize(suit, value, rank)
-#     @suit   = suit
-#     @value  = value
-#     @rank   = rank
-#   end
-#
-# end
-
-
 class Deck
 
    attr_reader :cards, :index, :high_cards, :new_card
@@ -22,7 +7,11 @@ class Deck
   end
 
   def rank_of_card_at(index)
-    pick1 = cards[index].rank
+    if cards.nil? == false
+      cards[index].rank
+    else
+      rank_of_card_at = 1
+    end
   end
 
   def high_ranking_cards

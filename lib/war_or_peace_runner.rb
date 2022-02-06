@@ -1,160 +1,9 @@
+require "./card"
+require "./deck"
+require "./turn"
+require "./player"
+
 require "pry"
-
-class Card
-  attr_reader :suit, :value, :rank
-
-  def initialize(suit, value, rank)
-    @suit   = suit
-    @value  = value
-    @rank   = rank
-  end
-
-end
-
-class Deck
-
-   attr_reader :cards, :index, :high_cards, :new_card
-
-  def initialize(cards)
-    @cards = cards
-  end
-
-  def rank_of_card_at(index)
-    if cards[index].nil? == false
-      cards[index].rank
-    else cards[index].nil? == true
-      rank_of_card_at = 1
-    end
-  end
-
-  def high_ranking_cards
-    @high_cards = []
-    cards.each do |strong|
-      if strong.rank >= 11
-        high_cards << strong
-      end
-    end
-    return high_cards
-  end
-
-  def percent_high_ranking
-    hcount = 0
-    card_count = cards.count
-
-    cards.each do |str|
-      if str.rank >= 11
-        hcount += 1
-      end
-    end
-
-    percent = ((hcount.to_f / card_count) * 100).round(2)
-  end
-
-  def remove_card
-    cards.shift
-  end
-
-  def add_card(new_card)
-    cards.push(new_card)
-  end
-
-end
-
-class Player
-  attr_reader :name, :deck
-
-  def initialize(name, deck)
-    @name = name
-    @deck = deck
-  end
-
-  def has_lost?
-    # require "pry"; binding.pry
-    if deck.cards.empty?
-      true
-    else
-      false
-    end
-  end
-end
-
-class Turn
-  attr_reader :player1, :player2, :spoils_of_war, :discard_pile
-
-  def initialize(player1, player2)
-    @player1        = player1
-    @player2        = player2
-    @spoils_of_war  = []
-    @discard_pile   = []
-  end
-
-  def type
-    if @player1.deck.cards.count >= 1 && @player2.deck.cards.count >= 1
-      if @player1.deck.rank_of_card_at(0)  == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2) #&& @player1.deck.cards.count >= 3 && @player2.deck.cards.count >= 3
-        :mutually_assured_destruction
-      elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) #&& @player1.deck.cards.count >= 3 && @player2.deck.cards.count >= 3
-        :war
-      elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0) #&& @player1.deck.cards.empty? == false && @player2.deck.cards.empty? == false
-        :basic
-      # elsif
-        # :draw
-      end
-    else
-    end
-  end
-
-  def winner
-    if type == :basic
-      if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-        player1
-      else
-        player2
-      end
-    elsif type == :war
-      if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-        player1
-      else
-        player2
-      end
-    elsif type == :mutually_assured_destruction
-      "No winner"
-    else
-      "Draw"
-    end
-  end
-
-  def pile_cards
-    if type == :mutually_assured_destruction
-      3.times do
-        @spoils_of_war << @player1.deck.cards.shift
-        @spoils_of_war << @player2.deck.cards.shift
-      end
-    elsif type == :war
-      3.times do
-        @spoils_of_war << player1.deck.cards.shift
-        @spoils_of_war << player2.deck.cards.shift
-      end
-    elsif type == :basic
-        @spoils_of_war << player1.deck.cards.shift
-        @spoils_of_war << player2.deck.cards.shift
-    else
-    end
-  end
-
-  def award_spoils(winner)
-    if winner == @player1 || winner == @player2
-      @spoils_of_war.each do |win|
-        winner.deck.cards << win
-      end
-    elsif winner == "No winner"
-      @spoils_of_war.each do |mad|
-        @discard_pile << mad
-      end
-    else
-    end
-    @spoils_of_war = []
-  end
-end
 
 class WeFight
 
@@ -168,10 +17,6 @@ class WeFight
 
     @round_count = 0
 
-    # binding.pry
-
-    # @round = Turn.new(@player1, @player2)
-
     until @player1.has_lost? == true || @player2.has_lost? == true || @round_count == 1000 || @player1.deck.cards.count <= 1 || @player2.deck.cards.count <= 1 do
       @round_count += 1
         # binding.pry
@@ -181,10 +26,10 @@ class WeFight
           puts "Turn #{@round_count}: WAR - #{@round.winner.name} has won 6 cards."
         elsif @round.type == :basic
           puts "Turn #{@round_count}: #{@round.winner.name} has won 2 cards."
-        # elsif @round.type == :draw
-          # break
         end
+        # binding.pry
       @round.pile_cards
+      # binding.pry
       winner = @round.winner
       @round.award_spoils(winner)
     end
@@ -199,9 +44,9 @@ class WeFight
     elsif @round.type == :basic
       puts "Not enough cards to continue play."
       if @player1.deck.cards.count > @player2.deck.cards.count
-        puts "#{@player1.name} has more cards!"
+        puts "#{@player1.name} has more cards and wins the game!"
       else
-        puts "#{@player2.name} has more cards!"
+        puts "#{@player2.name} has more cards and wins the game!"
       end
     end
 
