@@ -50,7 +50,7 @@ RSpec.describe Turn do
     end
   end
 
-  describe '#turn_is' do
+  describe '#turn_is_helper_methods' do
     it 'can determine turn type basic' do
       card1 = Card.new(:heart, 'Jack', 11)
       card2 = Card.new(:heart, '10', 10)

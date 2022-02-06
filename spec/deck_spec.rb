@@ -36,7 +36,7 @@ RSpec.describe Deck do
     end
   end
 
-  describe '#calculate_percent_high_ranking' do
+  describe '#percent_high_ranking' do
     it "can determine the percentage of high ranking cards" do
 
       @deck.high_ranking_cards
