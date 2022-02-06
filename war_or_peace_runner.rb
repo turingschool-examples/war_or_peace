@@ -62,8 +62,6 @@ card52 = Card.new(:spade, 'Ace', 14)
 starting_deck.shuffle!
 deck1 = Deck.new([])
 deck2 = Deck.new([])
-player1 = Player.new("Megan", deck1)
-player2 = Player.new("Aurora", deck2)
 
 26.times do |deal_to_deck1|
   deck1.cards << starting_deck.pop
@@ -73,12 +71,18 @@ end
   deck2.cards <<  starting_deck.pop
 end
 
+player1 = Player.new("Megan", deck1)
+player2 = Player.new("Aurora", deck2)
+# turn = Turn.new(player1, player2)
+
 p "Welcome to War! (or Peace) This game will be played with 52 cards."
 p "The players today are Megan and Aurora."
 p "Type 'GO' to start the game!"
 p "------------------------------------------------------------------"
-gets.chomp
+user_input = gets.chomp
 
-if gets.chomp == "GO"
+if user_input == "GO"
   Turn.new(player1, player2)
+else
+  puts "Incorrect Input"
 end

@@ -1,7 +1,8 @@
 class Turn
   attr_reader :player1,
               :player2,
-              :spoils_of_war
+              :spoils_of_war,
+              :start
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
@@ -47,10 +48,31 @@ class Turn
       @spoils_of_war << player2.deck.remove_card
       @spoils_of_war << player2.deck.remove_card
       @spoils_of_war << player2.deck.remove_card
+    elsif type == :mutually_assured_destruction
+      player1.deck.remove_card
+      player1.deck.remove_card
+      player1.deck.remove_card
+      player2.deck.remove_card
+      player2.deck.remove_card
+      player2.deck.remove_card
     end
   end
 
   def award_spoils(winner)
     winner.deck.cards << spoils_of_war
+  end
+
+  def start
+    turn_count = 0
+    if player1.has_lost? == true
+      p "~*~*~*~#{player2.name} has won the game!~*~*~*~"
+    elsif player2.has_lost? == true
+      p "~*~*~*~#{player1.name} has won the game!~*~*~*~"
+    elsif turn_count == 1000000
+      p "Draw - Game Over"
+    else
+      turn_count += 1
+      p "Turn #{turn_count}:"
+    end
   end
 end
