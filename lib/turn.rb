@@ -13,6 +13,7 @@ class Turn
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
+    
   end
   
   def type
@@ -44,7 +45,7 @@ class Turn
         player2
       end 
     else type == :mutually_assured_destruction
-      "KaBoom!!!!"
+      
     end  
         
     
