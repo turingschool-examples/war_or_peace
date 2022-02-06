@@ -1,4 +1,5 @@
 #'./lib/game'
+require './lib/card_generator'
 
 class Game
 def welcome_banner
@@ -14,16 +15,22 @@ end
 def user_input
   input = gets.chomp
   input = input.upcase
-  if input == "GO"
-    return true
+
+  if (input == "GO" || input == "1" )
+    return  input
   else
     return false
   end
 
 end
 
+def make_deck(kind_of_deck)
+  if kind_of_deck == "file"
+    gen_cards = CardGenerator.new('./cards.txt')
+    cards = gen_cards.cards
 
-  def start
+  elsif kind_of_deck == "normal"
+
     # array of possible suits
     suits = [:heart, :spade, :diamond, :club]
     #array to hold cards of each suit
@@ -45,16 +52,19 @@ end
         cards << Card.new(suit, 'Ace',14)
     end
 
+  end
     #Shuffle the cards and split into to decks
     a = cards.shuffle
     deck1,deck2 = a.each_slice( (a.size/2).round ).to_a
     #create 2 decks to pass to players
-    player1_deck = Deck.new(deck1)
-    player2_deck = Deck.new(deck2)
+    @player1_deck = Deck.new(deck1)
+    @player2_deck = Deck.new(deck2)
+end
 
+  def start
     #create 2 players
-    player1 = Player.new('Megan', player1_deck)
-    player2 = Player.new('Aurora', player2_deck)
+    player1 = Player.new('Megan', @player1_deck)
+    player2 = Player.new('Aurora',@player2_deck)
 
     # Take a turn
     turn_count = 0
