@@ -17,43 +17,49 @@ class Turn
 
   def type
 
-    if @player1.deck.cards.length < 3 || @player2.deck.cards.length < 3 && @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
-      return :draw
+    if @player1.deck.cards.length < 3 || @player2.deck.cards.length < 3
+      :draw
 
-    elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
-      return :mutually_assured_destruction
+    else
 
-    elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
-      return :war
+      if @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
+        return :mutually_assured_destruction
 
-    elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
-      return :basic
+      elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
+        return :war
+
+      elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+        return :basic
+      end
+
     end
 
   end
 
-  def winner #mad   war   basic
+  def winner
 
-    if @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
-      'No Winner'
+      if @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
+        'No Winner'
 
-    elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
+      elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
 
-      if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
-        @player1
-      else
-        @player2
+        if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
+          @player1
+        else
+          @player2
+        end
+
+      elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+
+        if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
+          @player1
+        else
+          @player2
+        end
+
       end
 
-    elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
-
-      if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
-        @player1
-      else
-        @player2
-      end
-
-    end
+    
 
   end
 
@@ -103,5 +109,16 @@ class Turn
       @spoils_of_war = []
     end
   end
+
+  def winner_of_game
+
+    if @player1.deck.cards.length > @player2.deck.cards.length
+      @player1.name
+    else
+      @player2.name
+    end
+
+  end
+
 
 end

@@ -104,5 +104,5 @@ p "------------------------------------------------------------------"
 
 start_game = gets.chomp
 
-game.start(start_game)
 # binding.pry
+game.start(start_game)
