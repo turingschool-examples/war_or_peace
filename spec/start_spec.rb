@@ -65,46 +65,35 @@ RSpec.describe Start do
   player1 = Player.new("Megan", Deck.new(p1_deck))
   player2 = Player.new("Aurora", Deck.new(p2_deck))
   turn = Turn.new(player1, player2)
-
   it "Start Class Test" do
       game= Start.new
     expect(game).to be_an_instance_of(Start)
   end
-
   it "card1 Class Test" do
-
     expect(card1).to be_an_instance_of(Card)
   end
   it "card26 Class Test" do
-
     expect(card26).to be_an_instance_of(Card)
   end
   it "card52 Class Test" do
-
     expect(card52).to be_an_instance_of(Card)
   end
   it "player1 Class Test" do
-
     expect(player1).to be_an_instance_of(Player)
   end
   it "player2 Class Test" do
-
     expect(player2).to be_an_instance_of(Player)
   end
   it "deck 1 Class Test" do
-
     expect(Deck.new(p1_deck)).to be_an_instance_of(Deck)
   end
   it "deck 2 Class Test" do
-
     expect(Deck.new(p2_deck)).to be_an_instance_of(Deck)
   end
   it "Turn Class Test" do
-
     expect(turn).to be_an_instance_of(Turn)
   end
-
-
+# rest of code for Start Class
 counter = 0
 until player1.has_lost? == true || player2.has_lost? == true || counter == 10000
 counter += 1
@@ -134,11 +123,9 @@ turn.pile_cards
   end
 
   it "counter Greater Than Test" do
-
     expect(counter).to be > 1
   end
   it "counter Less Than Test" do
-
     expect(counter).to be < 1000000
   end
 end
