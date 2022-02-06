@@ -63,6 +63,10 @@ class Turn
       @player1.deck.cards << @spoils_of_war
     elsif @player1.deck.rank_of_card_at(0) < @player2.deck.rank_of_card_at(0)
       @player2.deck.cards << @spoils_of_war
+    elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
+      @player1.deck.cards << @spoils_of_war
+    elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) < @player2.deck.rank_of_card_at(2)
+      @player2.deck.cards << @spoils_of_war
     elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
       return []
     end

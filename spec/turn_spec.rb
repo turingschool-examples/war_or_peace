@@ -117,10 +117,10 @@ RSpec.describe Turn do
     end
 
     it 'turn war: player decks' do
-      expect(@player1.deck).to eq(@turn.player1.deck)
-      expect(@player2.deck).to eq(@turn.player2.deck)
+      expect(@player2.deck.cards).to eq(@turn.award_spoils)
+      @player1.deck.remove_card
+      expect(@player1.deck.cards).to eq(@turn.player1.deck.cards)
     end
-
   end
 
   context 'war turn' do
@@ -170,8 +170,18 @@ RSpec.describe Turn do
     end
 
     it 'turn mad: player decks' do
-      expect(@player1.deck).to eq(@turn.player1.deck)
-      expect(@player2.deck).to eq(@turn.player2.deck)
+      @player2.deck.remove_card
+      @player2.deck.remove_card
+      @player2.deck.remove_card
+
+      expect(@player2.deck.cards).to eq(@turn.player2.deck.cards)
+
+
+      @player1.deck.remove_card
+      @player1.deck.remove_card
+      @player1.deck.remove_card
+
+      expect(@player1.deck.cards).to eq(@turn.player1.deck.cards)
     end
 
   end
