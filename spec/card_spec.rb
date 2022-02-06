@@ -15,4 +15,10 @@ RSpec.describe Card do
     expect(card.value).to eq('Queen')
     expect(card.rank).to eq(12)
   end
+
+  it "also exists" do
+    blah = Card.new(:hearts, "Ace", 14)
+
+    expect(blah).to be_an_instance_of(Card)
+  end
 end

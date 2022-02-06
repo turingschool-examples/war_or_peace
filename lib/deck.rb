@@ -33,19 +33,8 @@ class Deck
       end
     end
     return high_cards
-    # high_cards.clear
   end
-  # binding.pry
 
-
-  # def count_cards
-  #   return cards.count
-  # end
-  #
-  # def high_card_count
-  #   return high_cards.count
-  # end
-  #
   def percent_high_ranking
     hcount = 0
     card_count = cards.count
@@ -54,7 +43,6 @@ class Deck
       if str.rank >= 11
         hcount += 1
       end
-      # binding.pry
     end
 
     percent = ((hcount.to_f / card_count) * 100).round(2)
