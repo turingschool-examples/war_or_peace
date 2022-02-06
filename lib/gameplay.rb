@@ -1,17 +1,17 @@
 class Gameplay
   def start
-    all_cards = CardGenerator.new('./cards.txt')
-    all_cards.create_cards
-    deck = Deck.new(all_cards)
+    cards = CardGenerator.new('./cards.txt')
+    cards.create_cards
+    deck = Deck.new(cards)
 
+    # deck = Deck.new
     # binding.pry
     # deck.create_cards
 
+    deck.cards.cards.shuffle!
 
-    deck.all_cards.cards.shuffle!
-
-    deck1 = Deck.new(deck.all_cards.cards[0..25])
-    deck2 = Deck.new(deck.all_cards.cards[26..51])
+    deck1 = Deck.new(deck.cards.cards[0..25])
+    deck2 = Deck.new(deck.cards.cards[26..51])
 
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
@@ -25,7 +25,7 @@ class Gameplay
       if turn.type == :mutually_assured_destruction && turn.type != :basic
         turn.pile_cards
           puts "Turn #{turn_counter}: *mutually assured destruction* 6 cards removed from play"
-          sleep(1)
+          sleep(0.02)
       elsif turn.type == :war
         turn.winner
         turn.pile_cards
