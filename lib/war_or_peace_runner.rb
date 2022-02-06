@@ -88,7 +88,7 @@ class Turn
     if @player1.deck.cards.count >= 1 && @player2.deck.cards.count >= 1
       if @player1.deck.rank_of_card_at(0)  == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2) && @player1.deck.cards.count >= 3 && @player2.deck.cards.count >= 3
         :mutually_assured_destruction
-      elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.cards.count >= 2 && @player2.deck.cards.count >= 2
+      elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.cards.count >= 3 && @player2.deck.cards.count >= 3
         :war
       elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0) && @player1.deck.cards.count >= 1 && @player2.deck.cards.count >= 1
         :basic
@@ -185,20 +185,20 @@ class WeFight
       winner = @round.winner
       @round.award_spoils(winner)
     end
-    # binding.pry
+    binding.pry
 
     if @player1.has_lost? == true
-      p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+      puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
     elsif @player2.has_lost? == true
-      p "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+      puts "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
     elsif @round_count == 1000
-      p "--- Draw ---"
+      puts "--- Draw ---"
     elsif @round.type == :basic
-      p "Not enough cards to continue play."
+      puts "Not enough cards to continue play."
       if @player1.deck.cards.count > @player2.deck.cards.count
-        puts "#{@player1.name} has won!"
+        puts "#{@player1.name} has more cards!"
       else
-        puts "#{@player2.name} has won!"
+        puts "#{@player2.name} has more cards!"
       end
     end
 
