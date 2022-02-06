@@ -69,15 +69,15 @@ deck2 = Deck.new(cards2)
 player1 = Player.new('Megan', deck1)
 player2 = Player.new('Aurora', deck2)
 
-p "Welcome to War! (or Peace) This game will be played with #{standard_deck.count} cards."
-p "The players today are #{player1.name} and #{player2.name}."
-p "Type 'GO' to start the game!"
-p "--------------------------------------------------------------------------------------"
+puts "Welcome to War! (or Peace) This game will be played with #{standard_deck.count} cards."
+puts "The players today are #{player1.name} and #{player2.name}."
+puts "Type 'GO' to start the game!"
+puts "--------------------------------------------------------------------------------------"
 
 go = gets.chomp
 if go == 'GO' || 'go'
   new_game = Game.new
   new_game.start_game
 else go != 'GO' || 'go'
-  p 'Type "GO"'
+  puts 'Type "GO"'
 end

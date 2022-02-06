@@ -7,9 +7,11 @@ require './lib/turn'
 require './lib/game'
 require './war_or_peace_runner'
 
-Rspec.describe Game do
+RSpec.describe Game do
 
   it 'prints turn' do
-    expect(turn).to be_an_instance_of(Turn)
+    new_game = Game.new
+
+    expect{new_game.start_game}.to output("Turn 1:\n").to_stdout
   end
 end

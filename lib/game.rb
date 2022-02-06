@@ -9,7 +9,7 @@ class Game
   end
 
   def start_game
-    p "Turn 1:"
+    puts "Turn 1:"
 
 
 
