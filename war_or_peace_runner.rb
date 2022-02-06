@@ -6,4 +6,4 @@ require './lib/turn'
 
 game = Game.new
 puts start.greeting
-start.begin_game(gets.chomp)
+game.begin_game(gets.chomp)
