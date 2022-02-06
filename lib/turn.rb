@@ -16,7 +16,7 @@ class Turn
 
   def type
     if @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
-      return "MAD"
+      return "Mutually Assured Destruction"
 
     elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
       return "war"
@@ -37,7 +37,7 @@ class Turn
     elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) < @player2.deck.rank_of_card_at(2)
       return @player2
     elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
-      return "Mutally Assured Desstruction"
+      return "Mutually Assured Destruction"
     end
 
   end
@@ -63,6 +63,8 @@ class Turn
       @player1.deck.cards << @spoils_of_war
     elsif @player1.deck.rank_of_card_at(0) < @player2.deck.rank_of_card_at(0)
       @player2.deck.cards << @spoils_of_war
+    elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
+      return []
     end
 
   end

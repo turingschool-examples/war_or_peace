@@ -102,16 +102,18 @@ RSpec.describe Turn do
       expect(@turn.winner).to eq(@player2)
     end
 
-    # it 'turn war: pile of cards' do
-    #   expect(@turn.pile_cards).to eq(@turn.player2.deck.cards[-1..-6])
-    # end
+    it 'turn war: pile of cards' do
+      expect(@turn.spoils_of_war).to eq([])
+      @turn.pile_cards
+      expect(@turn.spoils_of_war).to eq([@player1.deck.cards[0..2],@player2.deck.cards[0..2]])
+    end
 
     it 'turn war: spoils of war' do
       expect(@turn.spoils_of_war).to eq(@turn.player2.deck.cards[-1..-6])
     end
 
     it 'turn war: winner' do
-      expect(@turn.award_spoils).to eq(@spoils_of_war)
+      expect(@turn.winner).to eq(@player2)
     end
 
     it 'turn war: player decks' do
@@ -145,27 +147,29 @@ RSpec.describe Turn do
 
     end
 
-    xit 'turn mad: type' do
-      expect(@turn.type).to eq('war')
+    it 'turn mad: type' do
+      expect(@turn.type).to eq("Mutually Assured Destruction")
     end
 
-    xit 'turn mad: winner' do
-      expect(@turn.winner).to eq(@player2)
+    it 'turn mad: winner' do
+      expect(@turn.winner).to eq("Mutually Assured Destruction")
     end
 
-    # it 'turn war: pile of cards' do
-    #   expect(@turn.pile_cards).to eq(@turn.player2.deck.cards[-1..-6])
-    # end
-
-    xit 'turn mad: spoils of war' do
-      expect(@turn.spoils_of_war).to eq(@turn.player2.deck.cards[-1..-6])
+    it 'turn mad: pile of cards' do
+      expect(@turn.spoils_of_war).to eq([])
+      @turn.pile_cards
+      expect(@turn.spoils_of_war).to eq([@player1.deck.cards[0..2],@player2.deck.cards[0..2]])
     end
 
-    xit 'turn mad: winner' do
-      expect(@turn.award_spoils).to eq(@spoils_of_war)
+    it 'turn mad: spoils of war' do
+      expect(@turn.spoils_of_war).to eq([])
     end
 
-    xit 'turn mad: player decks' do
+    it 'turn mad: winner' do
+      expect(@turn.winner).to eq("Mutually Assured Destruction")
+    end
+
+    it 'turn mad: player decks' do
       expect(@player1.deck).to eq(@turn.player1.deck)
       expect(@player2.deck).to eq(@turn.player2.deck)
     end
