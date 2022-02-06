@@ -11,7 +11,7 @@ attr_reader :player1, :player2, :spoils_of_war
     @spoils_of_war = []
   end
 
-  def type()
+  def type
     # :basic type
     if @player1.deck.cards[0].rank != @player2.deck.cards[0].rank
       :basic
@@ -25,7 +25,7 @@ attr_reader :player1, :player2, :spoils_of_war
 
   end
 
-  def winner()
+  def winner
     type
     if type == :basic
       if @player1.deck.cards[0].rank > @player2.deck.cards[0].rank
@@ -33,7 +33,6 @@ attr_reader :player1, :player2, :spoils_of_war
       else
         @player2
       end
-      #MAd begins
     elsif type == :mutually_assured_destruction
       "No Winner"
     elsif type == :war
@@ -45,7 +44,7 @@ attr_reader :player1, :player2, :spoils_of_war
     end
   end
 
-  def pile_cards()
+  def pile_cards
     if type == :mutually_assured_destruction
       @player1.deck.cards.delete_at(0)
       @player1.deck.cards.delete_at(1)
@@ -88,19 +87,5 @@ attr_reader :player1, :player2, :spoils_of_war
     end
 
   end
-
-  # def start
-  #   p "Welcome to War! (or Peace) This game will be played with 52 cards."
-  #   p "The players today are #{player1.name} and #{player2.name}."
-  #   p "Type 'GO' to start the game!"
-  #   p "------------------------------------------------------------------"
-  #
-  #   input = gets.chomp
-  #
-  #   if input == 'GO' || input == 'go'
-  #     puts "Let's go"
-  #   end
-  #
-  # end
 
 end
