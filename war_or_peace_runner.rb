@@ -3,6 +3,7 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 require './lib/gameplay'
+require './lib/card_generator'
 require 'pry'
 
 
