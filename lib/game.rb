@@ -2,16 +2,22 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
-require './lib/game'
+# require './lib/game'
+require './lib/card_generator'
 require './lib/standard_deck'
+# require './lib/card.txt'
+# require './war_or_peace_runner'
 
 class Game
-attr_reader :card_split_1, :card_split_2, :hand1, :hand2, :player1, :player2
+  attr_reader :card_split_1, :card_split_2, :hand1, :hand2, :player1, :player2
   def initialize
-    fresh_cards = StandardDeck.new
+    fresh_cards = CardGenerator.new
+    fresh_cards.make_cards
+    fresh_cards.make_cards
+    new_deck = fresh_cards.cards
     shuffled_cards = []
     52.times do
-      shuffled_cards << fresh_cards.standard_deck.sample
+      shuffled_cards << new_deck.sample
     end
     @card_split_1 = shuffled_cards[0..25]
     @card_split_2 = shuffled_cards[26..51]
@@ -19,6 +25,7 @@ attr_reader :card_split_1, :card_split_2, :hand1, :hand2, :player1, :player2
     @hand2 = Deck.new(card_split_2)
     @player1 = Player.new('Megan', hand1)
     @player2 = Player.new('Aurora', hand2)
+    # require 'pry'; binding.pry
   end
 
   def start

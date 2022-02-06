@@ -3,7 +3,7 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 require './lib/game'
-require './lib/standard_deck'
+require './lib/card_generator'
 
 class Turn
   attr_reader :player1, :player2, :spoils_of_war, :MAD

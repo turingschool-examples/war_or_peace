@@ -32,7 +32,7 @@ Ace, heart, 14
 7, club, 7
 8, club, 8
 9, club, 9
-10, club, 10,
+10, club, 10
 Jack, club, 11
 Queen, club, 12
 King, club, 13

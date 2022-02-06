@@ -3,7 +3,7 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 require './lib/game'
-require './lib/standard_deck'
+require './lib/card_generator'
 
 class Deck
   attr_reader :cards
@@ -18,7 +18,7 @@ class Deck
     end
     @cards[place].rank
   end
-  
+
 
   def high_ranking_cards
     face_cards = []
