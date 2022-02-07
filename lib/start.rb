@@ -51,8 +51,6 @@ class Start
           puts "Turn #{@turn_number}:"+" WAR - #{winner.name} won #{turn.spoils_of_war.count} cards."
           turn.award_spoils(winner)
         end
-        p "#{@player1.name} #{@player1.deck.cards.count}"
-        p "#{@player2.name} #{@player2.deck.cards.count}"
         game_over
       end
 
