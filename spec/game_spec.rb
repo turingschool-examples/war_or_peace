@@ -69,13 +69,22 @@ RSpec.describe Game do
 
     expect{new_game.play_game}.to output(
       <<~EXPECTED
-      "Turn 1: WAR - Aurora won 6 cards\n*~* Aurora has won the game! *~*\n"
+        Turn 1: WAR - Aurora won 6 cards\n*~* Aurora has won the game! *~*
+      EXPECTED
     ).to_stdout
   end
 
-  xit 'determining correct output when turn 3 is MAD' do
-    cards1 = [Card.new(:heart, '7', 7),Card.new(:heart, '7', 7),Card.new(:heart, '7', 7)]
-    cards2 = [Card.new(:spade, '7', 7),Card.new(:heart, '7', 7),Card.new(:heart, '7', 7)]
+  it 'determining correct output when turn 3 is MAD' do
+    cards1 = [
+      Card.new(:heart, '8', 8),
+      Card.new(:heart, '7', 7),Card.new(:heart, '7', 7),Card.new(:heart, '7', 7),
+      Card.new(:heart, '7', 7),Card.new(:heart, '7', 7),Card.new(:heart, '7', 7)
+    ]
+    cards2 = [
+      Card.new(:heart, '7', 7),
+      Card.new(:heart, '7', 7),Card.new(:heart, '7', 7),Card.new(:heart, '8', 8),
+      Card.new(:heart, '7', 7),Card.new(:heart, '7', 7),Card.new(:heart, '7', 7)
+    ]
 
     deck1 = Deck.new(cards1)
     deck2 = Deck.new(cards2)
@@ -85,6 +94,15 @@ RSpec.describe Game do
 
     new_game = Game.new(player1, player2)
 
-    expect{new_game.play_game}.to output("Turn 1: WAR - Aurora won 6 cards\n*~* Aurora has won the game! *~*\n").to_stdout
+    expect{new_game.play_game}.to output(
+      <<~EXPECTED
+        Turn 1: Megan won 2 cards
+        Turn 2: WAR - Aurora won 6 cards
+        Turn 3: *MAD* 6 cards removed from play
+        Turn 4: Megan won 2 cards
+        Turn 5: *MAD* 6 cards removed from play
+        *~* Aurora has won the game! *~*
+      EXPECTED
+    ).to_stdout
   end
 end
