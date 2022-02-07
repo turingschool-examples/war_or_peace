@@ -9,13 +9,19 @@ class Game
   end
 
   def start_game(x)
-    @turn.type
+    type = @turn.type
     winner = @turn.winner
     @turn.pile_cards
     spoils = @turn.spoils_of_war.count
     @turn.award_spoils(winner)
+    if type == :basic
     puts "Turn #{x+1}: #{winner.name} won #{spoils} cards"
+  elsif type == :war
+    puts "Turn #{x+1}: WAR - #{winner.name} won #{spoils} cards"
+  elsif type == :mutually_assured_destruction
+    puts "*MAD* #{spoils} cards removed from play"
   end
+end 
 
   def play_game
     1000000.times do |turn_num|
