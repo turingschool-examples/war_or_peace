@@ -72,14 +72,14 @@ RSpec.describe Turn do
     expect(turn.spoils_of_war).to include(card3)
   end
 
-  it 'awards spoils to winner' do
-    turn.award_spoils(player1)
-    expect(winner.deck.cards.count).to eq(5)
-  end
-
-  it 'confirms player decks after awarding spoils' do
-    turn.award_spoils(player1)
-    expect(player1.deck.cards.count).to eq(5)
-    expect(player2.deck.cards.count).to eq(3)
-  end
+  # xit 'awards spoils to winner' do
+  #   turn.award_spoils(player1)
+  #   expect(winner.deck.cards.count).to eq(5)
+  # end
+  #
+  # xit 'confirms player decks after awarding spoils' do
+  #   turn.award_spoils(player1)
+  #   expect(player1.deck.cards.count).to eq(5)
+  #   expect(player2.deck.cards.count).to eq(3)
+  # end
 end
