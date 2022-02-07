@@ -71,7 +71,7 @@ RSpec.describe Game do
   let(:player2) {Player.new("Aurora", deck2)}
   let(:spoils_of_war) {[]}
   let(:turn) {Turn.new(player1, player2)}
-  let(:game) {Game.new(turn)}
+  let(:game) {Game.new}
 
   it 'exists' do
     expect(game).to be_a(Game)

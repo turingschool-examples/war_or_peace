@@ -7,8 +7,12 @@ class Deck
   end
 
   def rank_of_card_at(rank)
-    @rank_of_card_at = cards.fetch(rank)
-    @rank_of_card_at.rank
+    if cards[2] == nil
+      1
+    else
+      cards[rank].rank 
+
+    end
     #Implied return of specific rank value
   end
 

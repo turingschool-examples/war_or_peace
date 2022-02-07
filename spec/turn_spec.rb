@@ -35,7 +35,9 @@ RSpec.describe Turn do
     end
 
     it "piles the used cards" do
-      expect(turn.spoils_of_war).to eq(spoils_of_war)
+      turn.pile_cards
+
+      expect(turn.spoils_of_war).to eq([card1, card3])
     end
 
     it 'awards spoils to the winner' do
@@ -68,7 +70,9 @@ RSpec.describe Turn do
     end
 
     it "piles the used cards" do
-      expect(turn.spoils_of_war).to eq(spoils_of_war)
+      turn.pile_cards
+
+      expect(turn.spoils_of_war).to eq([card1, card4, card2, card3, card5, card6])
     end
 
     it 'awards spoils to the winner' do
@@ -101,7 +105,9 @@ RSpec.describe Turn do
     end
 
     it "piles the used cards" do
-      expect(turn.spoils_of_war).to eq(spoils_of_war)
+      turn.pile_cards
+
+      expect(turn.spoils_of_war).to eq([])
     end
   end
 end

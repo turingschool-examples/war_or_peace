@@ -61,21 +61,23 @@ require './lib/game'
   card51 = Card.new(:spade, 'King', 13)
   card52 = Card.new(:spade, 'Ace', 14)
 
-  deck1 = Deck.new([card1, card3, card5, card7, card9, card11, card13, card15, card17, card19, card21, card23, card25, card27, card29, card31, card33, card35, card37, card39, card41, card43, card45, card47, card49, card51])
+  cards = [card1, card3, card5, card7, card9, card11, card13, card15, card17, card19, card21, card23, card25, card27, card29, card31, card33, card35, card37, card39, card41, card43, card45, card47, card49, card51, card2, card4, card6, card8, card10, card12, card14, card16, card18, card20, card22, card24, card26, card28, card30, card32, card34, card36, card38, card40, card42, card44, card46, card48, card50, card52]
 
-  deck2 = Deck.new([card2, card4, card6, card8, card10, card12, card14, card16, card18, card20, card22, card24, card26, card28, card30, card32, card34, card36, card38, card40, card42, card44, card46, card48, card50, card52])
+  cards.shuffle!
 
-  # deck1 = Deck.new([card1, card2, card5, card6, card7])
-  # deck2 = Deck.new([card14, card15, card6, card8, card9])
+  deck1 = Deck.new(cards[0..25])
+  deck2 = Deck.new(cards[26..51])
 
+  # Testing
+  # deck1 = Deck.new([card1, card2, card3, card4, card5, card6, card8])
+  # deck2 = Deck.new([card1, card2, card3, card4, card5, card7, card9])
 
   player1 = Player.new("Megan", deck1)
   player2 = Player.new("Aurora", deck2)
 
-
   turn = Turn.new(player1, player2)
-  game = Game.new(turn)
 
+  game = Game.new
 
   p "Welcome to War! (or Peace). This game will be played with 52 cards."
   p "The players today are Megan and Aurora."
@@ -86,4 +88,4 @@ require './lib/game'
     puts "Did you mean to say GO?"
   end
 
-  game.start
+  game.start(turn)

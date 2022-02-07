@@ -11,7 +11,7 @@ class Player
 
   def has_lost?
     #if (@deck.cards.count) == 0
-    @deck.cards.count == 0
+    @deck.cards.count <= 2
     #   return true
     # else
     #   return false
