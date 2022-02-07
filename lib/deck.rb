@@ -5,10 +5,11 @@ class Deck
   end
 
   def rank_of_card_at(card_location)
-    # if @cards[card_location] == nil
-    # end
-    # binding.pry
-    @cards[card_location].rank
+    if @cards[card_location] != nil
+      @cards[card_location].rank
+    elsif @cards[card_location] == nil
+      return 0
+    end
   end
 
   def high_ranking_cards
