@@ -5,17 +5,20 @@ require './lib/turn'
 require './lib/card_generator'
 
 class Game
-  attr_reader :turn
-  def initialize(turn)
-    @turn = turn
+  attr_reader :player1, :player2
+  attr_accessor :turns
+  def initialize(player1, player2)
+    @player1 = player1
+    @player2 = player2
+    @turns = []
   end
 
   def start
     turn_count = 0
 
-    until turn.player1.has_lost? || turn.player2.has_lost? || turn_count == 1000000 do
+    until player1.has_lost? || player2.has_lost? || turn_count == 1000000 do
       turn_count += 1
-      turn.spoils_of_war.clear
+      turn = Turn.new(player1, player2)
 
       if turn.type == :basic
         p "Turn#{turn_count}: #{turn.winner.name} won 2 cards"
@@ -29,7 +32,7 @@ class Game
         p "Turn#{turn_count}: *mutually assured destruction*: 6 cards removed from play."
         turn.pile_cards
       end
-
+      @turns << turn
     end
 
     if turn.player1.deck.cards.count == 0
@@ -48,3 +51,5 @@ class Game
   end
 
 end
+
+# binding.pry
