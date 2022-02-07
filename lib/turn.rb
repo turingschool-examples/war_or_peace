@@ -12,20 +12,23 @@ attr_reader :player1, :player2, :spoils_of_war
   end
 
   def type
-    # :basic type
+
+  if @player1.deck.cards.count < 3 || @player2.deck.cards.count < 3
+    :draw
+  else
     if @player1.deck.cards[0].rank != @player2.deck.cards[0].rank
       :basic
-    # MAD type
     elsif @player1.deck.cards[0].rank == @player2.deck.cards[0].rank && @player1.deck.cards[2].rank == @player2.deck.cards[2].rank
       :mutually_assured_destruction
-    # :war type
     elsif @player1.deck.cards[0].rank == @player2.deck.cards[0].rank
       :war
     end
+  end
 
   end
 
   def winner
+    # binding.pry
     type
     if type == :basic
       if @player1.deck.cards[0].rank > @player2.deck.cards[0].rank
