@@ -23,6 +23,6 @@ describe Game do
     game = Game.new
     game.begin_game('begin')
 
-    expect(game.begin_game('begin')).to eq("Invalid response:\nPlease try again and type 'GO'")
+    expect(game.begin_game('begin')).to eq("Invalid response:\nwaPlease try again and type 'GO'")
   end
 end

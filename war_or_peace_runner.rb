@@ -5,5 +5,5 @@ require './lib/player'
 require './lib/turn'
 
 game = Game.new
-puts start.greeting
+puts game.greeting
 game.begin_game(gets.chomp)
