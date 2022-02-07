@@ -386,8 +386,10 @@ pry(main)> player1.deck
 pry(main)> player2.deck
 #=> #<Deck:0x007fadb1086f40 @cards=[#<Card:0x007fadaf130858...>]>
 
+*************************************************
+**************Iteration 3************************
+*************************************************
 
-Iteration 3
 Play the Game!
 So far we’ve focused on modeling the data, classes, and methods that make up our game. However we haven’t done much in the way of setting up the game to be played. Now, we will tackle that problem.
 
