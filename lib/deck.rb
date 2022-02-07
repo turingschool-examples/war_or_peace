@@ -13,7 +13,7 @@ class Deck
   end
 
   def rank_of_card_at(ndex)
-    ndex
+    cards[ndex].rank
   end
 
   def high_ranking_cards()
@@ -30,4 +30,6 @@ class Deck
 
 end
 
-deck = Deck.new("cards")
+deck = Deck.new(cards)
+
+deck.rank_of_card_at(0)
