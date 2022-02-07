@@ -33,7 +33,7 @@ class Turn
         return @player2
       end
     else
-      return "No winner"
+      return "No Winner"
     end
   end
 

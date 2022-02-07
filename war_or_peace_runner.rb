@@ -1,8 +1,9 @@
 require 'pry'
-require './lib/deck'
-require './lib/player'
-require './lib/turn'
-require './lib/card'
+require './lib/deck.rb'
+require './lib/player.rb'
+require './lib/turn.rb'
+require './lib/card.rb'
+
 
 card1 = Card.new(:heart, 'Ace', 14)
 card2 = Card.new(:heart, 'King', 13)
@@ -62,4 +63,37 @@ card51 = Card.new(:diamond, '3', 3)
 card52 = Card.new(:diamond, '2', 2)
 
 complete_deck = [card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20, card21, card22, card23, card24, card25, card26, card27, card28, card29, card30, card31, card32, card33, card34, card35, card36, card37, card38, card39, card40, card41, card42, card43, card44, card45, card46, card47, card48, card49, card50, card51, card52]
-binding.pry
+random_deck = complete_deck.shuffle
+#deck1 = Deck.new([card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20, card21, card22, card23, card24, card25, card26])
+#deck2 = Deck.new([card27, card28, card29, card30, card31, card32, card33, card34, card35, card36, card37, card38, card39, card40, card41, card42, card43, card44, card45, card46, card47, card48, card49, card50, card51, card52])
+deck1 = Deck.new(random_deck[0..25])
+deck2 = Deck.new(random_deck[26..51])
+player1 = Player.new("Megan", deck1)
+player2 = Player.new("Aurora", deck2)
+
+p 'Welcome to War! (or Peace) This game will be played with 52 cards.'
+p 'The players today are Megan and Aurora.'
+p "Type 'GO' to start the game!"
+p '------------------------------------------------------------------'
+
+p ''
+p ''
+p ''
+turn = Turn.new(player1, player2)
+@turn_counter = 0
+while turn.player1.has_lost? == false && turn.player2.has_lost? == false && @turn_counter < 1000001
+  turn = Turn.new(player1, player2)
+  winner = turn.winner
+  if turn.type == 'basic'
+    p  "#{turn.winner.name} won 2 cards"
+  elsif turn.type == 'war'
+    p "WAR - #{turn.winner.name} won 2 cards"
+  else
+    p "*mutually assured destruction* 6 cards removed from play"
+  end
+  turn.pile_cards
+  if turn.winner == player1 || turn.winner == player2
+    turn.award_spoils(winner)
+  end
+  @turn_counter += 1
+end
