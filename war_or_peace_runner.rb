@@ -96,3 +96,11 @@ loop do
   @turn_counter += 1
   break if turn.player1.has_lost? == true || turn.player2.has_lost? == true || @turn_counter > 1000000
 end
+
+if turn.player1.has_lost? == true
+  p "*~*~*~* #{turn.player2.name} has won the game! *~*~*~*"
+elsif turn.player2.has_lost? == true
+  p "*~*~*~* #{turn.player1.name} has won the game! *~*~*~*"
+else
+  p "---- DRAW ----"
+end
