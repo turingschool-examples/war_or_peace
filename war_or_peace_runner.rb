@@ -77,22 +77,22 @@ p '------------------------------------------------------------------'
 p ""
 p ""
 p ""
+go = gets
 turn = Turn.new(player1, player2)
-@turn_counter = 0
-while turn.player1.has_lost? == false && turn.player2.has_lost? == false && @turn_counter < 1000001
-  turn = Turn.new(player1, player2)
-  winner = turn.winner
+@turn_counter = 1
+winner = turn.winner
+loop do
   if turn.type == 'basic'
-    p  "#{turn.winner.name} won 2 cards"
+    p  "Turn #{@turn_counter}: #{turn.winner.name} won 2 cards"
   elsif turn.type == 'war'
-    p "WAR - #{turn.winner.name} won 6 cards"
+    p "Turn #{@turn_counter}: WAR - #{turn.winner.name} won 6 cards"
   else
-    p "*mutually assured destruction* 6 cards removed from play"
+    p "Turn #{@turn_counter}: *mutually assured destruction* 6 cards removed from play"
   end
   turn.pile_cards
   if winner == player1 || winner == player2
     turn.award_spoils(winner)
   end
   @turn_counter += 1
+  break if turn.player1.has_lost? == true || turn.player2.has_lost? == true || @turn_counter > 1000000
 end
-p "game done"
