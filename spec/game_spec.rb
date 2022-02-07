@@ -67,6 +67,24 @@ RSpec.describe Game do
 
     new_game = Game.new(player1, player2)
 
+    expect{new_game.play_game}.to output(
+      <<~EXPECTED
+      "Turn 1: WAR - Aurora won 6 cards\n*~* Aurora has won the game! *~*\n"
+    ).to_stdout
+  end
+
+  xit 'determining correct output when turn 3 is MAD' do
+    cards1 = [Card.new(:heart, '7', 7),Card.new(:heart, '7', 7),Card.new(:heart, '7', 7)]
+    cards2 = [Card.new(:spade, '7', 7),Card.new(:heart, '7', 7),Card.new(:heart, '7', 7)]
+
+    deck1 = Deck.new(cards1)
+    deck2 = Deck.new(cards2)
+
+    player1 = Player.new('Megan', deck1)
+    player2 = Player.new('Aurora', deck2)
+
+    new_game = Game.new(player1, player2)
+
     expect{new_game.play_game}.to output("Turn 1: WAR - Aurora won 6 cards\n*~* Aurora has won the game! *~*\n").to_stdout
   end
 end
