@@ -61,7 +61,7 @@ standard_deck = [
   card52 = Card.new(:club, 'Ace', 14)]
 
 cards1 = standard_deck.sample(26)
-cards2 = standard_deck.sample(26)
+cards2 = (standard_deck - cards1).shuffle
 
 deck1 = Deck.new(cards1)
 deck2 = Deck.new(cards2)
@@ -77,8 +77,8 @@ puts "--------------------------------------------------------------------------
 # go = gets.chomp
 go = 'GO'
 if go == 'GO' || 'go'
-  new_game = Game.new(player1)
-  new_game.start_game
+  new_game = Game.new(player1,player2)
+  new_game.play_game
 else go != 'GO' || 'go'
   puts 'Type "GO"'
 end
