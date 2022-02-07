@@ -25,7 +25,7 @@ class Game
 end
 
   def play_game
-    1500.times do |turn_num|
+    500.times do |turn_num|
       start_game(turn_num)
       $turn_num = turn_num
       if @player1.has_lost? == true
@@ -34,7 +34,7 @@ end
       elsif @player2.has_lost? == true
         puts "*~* #{@player1.name} has won the game! *~*"
         break
-      elsif turn_num == 1500-1
+      elsif turn_num == 500-1
         puts "--- DRAW ---"
       end
     end
