@@ -80,5 +80,5 @@ if go == 'GO' || go == 'go'
   new_game = Game.new(player1,player2)
   new_game.play_game
 else go != 'GO' || go != 'go'
-  puts 'Type "GO"'
+  puts 'Try again...'
 end
