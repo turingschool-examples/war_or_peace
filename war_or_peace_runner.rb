@@ -1,5 +1,5 @@
 require './lib/game'
-
+# This runner takes two user inputs for names, and then starts the game after a user input of 'GO'.
 p "Welcome to War! (or Peace) This game will be played with 52 cards."
 p "The players today are: "
 print "PLAYER 1: "

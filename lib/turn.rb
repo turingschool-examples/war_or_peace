@@ -1,3 +1,4 @@
+#This class takes in two Player objects and handles the turn logic for the game.
 class Turn
     attr_reader :player1, :player2, :spoils_of_war, :saved_type
     def initialize(player1, player2)
@@ -6,7 +7,7 @@ class Turn
         @spoils_of_war = []
         saved_type = :nil
     end
-
+    #This method determines the turn type.  Either a basic turn, a war turn, MAD, or it will automatically empty a player's deck if war happens while they have less than three cards in deck.
     def type
         if player1.deck.cards.count < 3 || player2.deck.cards.count < 3
             @saved_type = :game_over
@@ -26,7 +27,7 @@ class Turn
             end
         end
     end
-
+    #This method determines who wins the turn, based on the type of turn provided.
     def winner
         if self.type == :basic
             if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
@@ -50,7 +51,7 @@ class Turn
             return "No Winner"
         end
     end
-
+    #This method takes cards from the top of each player's deck depending on the type of round and either adds them to the spoils, or removes them from the game entirely.
     def pile_cards
         if self.type == :basic
             spoils_of_war.append(player1.deck.remove_card)
@@ -71,7 +72,7 @@ class Turn
             end
         end
     end
-
+    #This method, if the type of turn was basic or war, will give the won cards to the winner of the turn.
     def award_spoils
         if saved_type == :basic
             if spoils_of_war[0].rank > spoils_of_war[1].rank
