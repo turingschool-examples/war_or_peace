@@ -15,7 +15,12 @@ class Deck
   end
 # determine the rank of a card by looking at the index value of the cards array
   def rank_of_card_at(card_at)
-    @cards[card_at].rank
+    # check for nil scenario and set rank to lose
+    if @cards[card_at].rank == nil
+      1
+    else
+      @cards[card_at].rank
+    end
   end
 # return the card objects of all the high ranking cards and store them in the cards_above_eleven local variable
   def high_ranking_cards

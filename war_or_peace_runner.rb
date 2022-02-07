@@ -83,5 +83,5 @@ player2 = Player.new("Aurora", deck2)
 turn = Turn.new(player1, player2)
 
 game1 = Start.new(turn)
-
+# binding.pry
 game1.start_game

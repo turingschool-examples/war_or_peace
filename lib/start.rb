@@ -34,25 +34,26 @@ class Start
     input = gets.chomp
     # play the game
     if input == 'GO'
-        until @player1.has_lost? == true || @player2.has_lost? == true || @turn_number == 1000000
-          winner = turn.winner
-          if turn.type == :mutually_assured_destruction
-            @turn_number += 1
-            turn.pile_cards
-            puts "Turn #{@turn_number}:*mutually assured destruction* 6 cards removed from play."
-          elsif turn.type == :basic
-            @turn_number += 1
-            turn.pile_cards
-            puts "Turn #{@turn_number}:"+" #{winner.name} won #{turn.spoils_of_war.count} cards."
-            turn.award_spoils(winner)
-          elsif turn.type == :war
-            @turn_number += 1
-            turn.pile_cards
-            puts "Turn #{@turn_number}:"+" WAR - #{winner.name} won #{turn.spoils_of_war.count} cards."
-            turn.award_spoils(winner)
-          game_over
-          end
-
+      until @player1.has_lost? == true || @player2.has_lost? == true || @turn_number == 1000000
+        winner = turn.winner
+        if turn.type == :mutually_assured_destruction
+          @turn_number += 1
+          turn.pile_cards
+          puts "Turn #{@turn_number}:*mutually assured destruction* 6 cards removed from play."
+        elsif turn.type == :basic
+          @turn_number += 1
+          turn.pile_cards
+          puts "Turn #{@turn_number}:"+" #{winner.name} won #{turn.spoils_of_war.count} cards."
+          turn.award_spoils(winner)
+        elsif turn.type == :war
+          @turn_number += 1
+          turn.pile_cards
+          puts "Turn #{@turn_number}:"+" WAR - #{winner.name} won #{turn.spoils_of_war.count} cards."
+          turn.award_spoils(winner)
+        end
+        p "#{@player1.name} #{@player1.deck.cards.count}"
+        p "#{@player2.name} #{@player2.deck.cards.count}"
+        game_over
       end
 
     end
