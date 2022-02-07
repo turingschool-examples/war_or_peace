@@ -11,6 +11,23 @@ class Deck
   def initialize(c)
     @cards = c
   end
+
+  def rank_of_card_at(ndex)
+    ndex
+  end
+
+  def high_ranking_cards()
+  end
+
+  def percent_high_ranking
+  end
+
+  def remove_card
+  end
+
+  def add_card
+  end
+
 end
 
 deck = Deck.new("cards")
