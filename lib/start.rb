@@ -68,6 +68,7 @@ class Start
     card52 = Card.new(:spade, 'Ace', 14)
     ]
     starting_deck.shuffle!
+
     deck1 = Deck.new([])
     deck2 = Deck.new([])
 
@@ -75,9 +76,11 @@ class Start
       deck1.cards << starting_deck.pop
     end
 
+
     26.times do |deal_to_deck2|
       deck2.cards <<  starting_deck.pop
     end
+
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)

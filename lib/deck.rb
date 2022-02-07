@@ -4,11 +4,11 @@ class Deck
     @cards = cards
   end
 
-  def rank_of_card_at(location)
+  def rank_of_card_at(rank)
     if cards[2] == nil
       1
     else
-      cards[location].rank
+      cards[rank].rank
     end
   end
 
@@ -25,8 +25,6 @@ class Deck
   def percent_high_ranking
     total_cards = cards.count
     high_rank_cards = []
-    # high_rank_cards = 0
-    # binding.pry
     cards.each do |card|
       if card.rank > 10
         high_rank_cards << card

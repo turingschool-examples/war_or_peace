@@ -58,7 +58,8 @@ class Turn
   end
 
   def award_spoils(winner)
-    winner.deck.cards << spoils_of_war
-    @spoils_of_war.clear
+    until @spoils_of_war.empty?
+    winner.deck.cards << spoils_of_war.shift
+    end
   end
 end
