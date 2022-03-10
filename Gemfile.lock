@@ -23,10 +23,11 @@ GEM
 
 PLATFORMS
   universal-darwin-21
+  x86_64-darwin-19
 
 DEPENDENCIES
   pry
   rspec
 
 BUNDLED WITH
-   2.3.8
+   2.3.6

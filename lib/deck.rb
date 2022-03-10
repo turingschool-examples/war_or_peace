@@ -5,20 +5,26 @@ class Deck
     end
 
     def rank_of_card_at(index)
-        @cards[index].rank
+        if @cards[index] == nil
+            puts 'You lost'
+        else 
+            @cards[index].rank 
+        end 
     end 
 
     def high_ranking_cards
-        @cards.map do |card|
-            card if card.rank >= 10  
-        end.compact! 
+        @cards.select {|card| card.rank > 10}
     end
     
     def percent_high_ranking
-        ((self.high_ranking_cards.length/@cards.length.to_f)*100).round(2)       
+        (self.high_ranking_cards.length/@cards.length.to_f*100).round(2)       
     end
     
     def remove_card
-        @cards.delete(@cards[0])
-    end 
+        @cards.delete_at(0)
+    end  
+
+    def add_card(card)
+        @cards << card
+    end
 end 
