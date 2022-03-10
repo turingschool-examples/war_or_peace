@@ -22,6 +22,7 @@ GEM
     rspec-support (3.11.0)
 
 PLATFORMS
+  ruby
   universal-darwin-21
   x86_64-darwin-19
 

@@ -17,7 +17,7 @@ RSpec.describe Card do
 
   it "has readable attributes" do
 
-    expect(@deck.cards).to eq([@card1, @card2, @card3])
+    expect(@deck.cards).to eq(@cards)
   end
 
   it "has rank_of_card_at" do
