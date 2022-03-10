@@ -1,3 +1,4 @@
+require 'start'
 class Turn
 
   attr_reader :player1, 
@@ -39,9 +40,9 @@ class Turn
         else
           self.player2
         end 
-    end
-    # if the turn has a type of :basic, it will return whichever player has a higher rank_of_card_at(0)
-    #   if the turn has a type of :war the winner will be whichever player has a higher rank_of_card_at(2)
+      end
+      # if the turn has a type of :basic, it will return whichever player has a higher rank_of_card_at(0)
+      #   if the turn has a type of :war the winner will be whichever player has a higher rank_of_card_at(2)
     #   if the turn has a type of :mutually_assured_destruction the method will return No Winner.
   end
 

@@ -45,7 +45,7 @@ RSpec.describe Card do
   end
 
   it "has add_card" do
-    card = Card.new(:clubs, 'Ace', 14)
+    card = Card.new(:club, 'Ace', 14)
     expect(@deck.add_card(card).last).to eq(card)
     expect(@deck.cards).to eq([@card1, @card2, @card3, card])
     expect(@deck.high_ranking_cards).to eq([@card1,@card3,card])

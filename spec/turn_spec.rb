@@ -128,8 +128,6 @@ RSpec.describe Card do
     turn3.pile_cards
     expect(turn3.player1.deck.cards).to eq([])
     expect(turn3.player2.deck.cards).to eq([])
-
-    # turn.award_spoils(turn.winner)
   end 
 
   it 'award spoils' do
@@ -138,7 +136,7 @@ RSpec.describe Card do
     card3 = Card.new(:heart, 'Ace', 14)  
     card4 = Card.new(:diamond, 'Jack', 11) 
     card5 = Card.new(:heart, '8', 8)  
-    card6 = Card.new(:clubs, 'Queen', 12) 
+    card6 = Card.new(:club, 'Queen', 12) 
     card7 = Card.new(:heart, '3', 3) 
     card8 = Card.new(:diamond, '2', 2)    
     deck1 = Deck.new([card1, card2, card5])
