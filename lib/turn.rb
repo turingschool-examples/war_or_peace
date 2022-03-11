@@ -1,4 +1,3 @@
-require 'start'
 class Turn
 
   attr_reader :player1, 

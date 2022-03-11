@@ -1,6 +1,7 @@
 require './lib/card'
 require './lib/player'
 require './lib/start'
+require './lib/deck'
 require 'pry'
 
 values = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Qeen', 'King']
@@ -14,22 +15,25 @@ cards = []
     cards << Card.new(suits.sample, values.sample, rank.sample) 
 end 
 
-player1_deck = []
-player2_deck = []
+deck1 = []
+deck2 = []
 
 26.times do  |i|
-    player1_deck << cards.sample
+    deck1 << cards.sample
 end 
 
-player2_deck << cards - player1_deck
+deck2.concat(cards - deck1)
 
-# player1 = Player.new(gets.chomp, player1_deck)
-# player2 = Player.new(gets.chomp, player2_deck)
+player1_deck = Deck.new(deck1)
+player2_deck = Deck.new(deck2)
 
+puts 'Please input name for player 1'
+player1 = Player.new(gets.chomp, player1_deck)
+puts 'Please input name for player 2'
+player2 = Player.new(gets.chomp, player2_deck)
+game = Start.new(player1,player2)
 
-# @player1 = Player.new(player1, player2_deck)
-# @player2 = Player.new(player2, player1_deck)
-
+game.start_game
 
 # checking if there are dups
 # array_uniq = cards.uniq => true
