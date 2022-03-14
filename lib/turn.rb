@@ -13,25 +13,45 @@ class Turn
     def type
         if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
             return :basic
-        elsif 
-            @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
-            return :mutually_assured_destruction
         elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
-            return :war
+            if @player1.deck.cards.length < 3 || @player2.deck.cards.length < 3
+                #does not account for if both decks have exactly 1 or exactly 2 cards
+                return :war
+            elsif @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
+                return :mutually_assured_destruction
+            else
+                return :war
+            end
+                
         end
+        
+        #this was my previous version. It gave errors if either deck had less than 3 cards
+        # elsif 
+        #     @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
+        #     return :mutually_assured_destruction
+        # elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
+        #     return :war
+        # end
     end
 # winner: this method will determine the winner of the turn.
 # if the turn has a type of :basic, it will return whichever player has a higher rank_of_card_at(0)
 # if the turn has a type of :war the winner will be whichever player has a higher rank_of_card_at(2)
 # if the turn has a type of :mutually_assured_destruction the method will return No Winner.
     def winner
+        #change self.type to a variable so we don't have to call the function over and over agin
         if self.type == :basic 
             return @player1 if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
-            return @player1 if @player1.deck.rank_of_card_at(0) < @player2.deck.rank_of_card_at(0)
-        elsif self.type :war 
-            return @player1 if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
-            return @player1 if @player1.deck.rank_of_card_at(2) < @player2.deck.rank_of_card_at(2)
-        elsif self.type :mutually_assured_destruction
+            return @player2 if @player1.deck.rank_of_card_at(0) < @player2.deck.rank_of_card_at(0)
+        # this would still have a problem if they both had exactly two cards left and had a war on the 2nd to last card
+        elsif self.type == :war 
+            if @player1.deck.cards.length < 3 || @player2.deck.cards.length < 3
+                return @player1 if @player1.deck.cards.length > @player2.deck.cards.length
+                return @player2 if @player1.deck.cards.length < @player2.deck.cards.length
+            else
+                return @player1 if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
+                return @player2 if @player1.deck.rank_of_card_at(2) < @player2.deck.rank_of_card_at(2)
+            end
+        elsif self.type == :mutually_assured_destruction
             "No Winner"        
         end
     end
@@ -41,6 +61,40 @@ class Turn
 # for a :basic turn, each player will send one card (the top card) to the spoils pile
 # for a :war turn, each player will send three cards (the top three cards) to the spoils pile
 # for a :mutually_assured_destruction turn, each player will remove three cards from play (the top three cards in their deck). These cards are not sent to the spoils pile, they are simply removed from each players’ deck.
-# award_spoils: this method will add each of the cards in the @spoils_of_war array to the winner of the turn.
 
+    def pile_cards
+        if self.type == :basic
+            @spoils_of_war << @player1.deck.cards[0]
+            #binding.pry
+            @spoils_of_war << @player2.deck.cards[0]
+            #binding.pry 
+            @player1.deck.remove_card
+            @player2.deck.remove_card
+        elsif self.type == :war
+            @spoils_of_war.concat(@player1.deck.cards[0..2])
+            #binding.pry
+            @spoils_of_war.concat(@player2.deck.cards[0..2])
+            3.times do @player1.deck.remove_card
+            end
+            3.times do @player2.deck.remove_card
+            end
+        else
+           3.times do @player1.deck.remove_card
+           end
+           3.times do @player2.deck.remove_card
+           end
+
+        end
+
+    end
+
+    # award_spoils: this method will add each of the cards in the @spoils_of_war array to the winner of the turn.
+    # need to fix this. I either need to delete the cards in this method, which requires calling a bunch of shit again,
+    # or I need to have a variable for the winner.
+
+    
+    # def award_spoils
+    #     binding.pry
+    #     self.winner.deck.cards.concat(@spoils_of_war)
+    # end
 end
