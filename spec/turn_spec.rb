@@ -146,19 +146,24 @@ RSpec.describe Player do
         turn2 = Turn.new(player_a, player_b) 
         turn2.pile_cards
         turn2.award_spoils
-        expect(turn2.player1.deck.cards).to eq([@card1,@card2,@card3,@card1,@card2,@card3])
+        #binding.pry
+        expect(turn2.player1.deck.cards).to eq([@card1,@card2,@card3,@card6,@card5,@card4])
         expect(turn2.player2.deck.cards).to eq([])
         
-        # #turn type should be mutual distruction
-        # cards_c=[@card1,@card2,@card3]
-        # deck_c = Deck.new(cards_c)
-        # deck_d = Deck.new(cards_c)
-        # player_c = Player.new('Va', deck_c)
-        # player_d = Player.new('M', deck_d)
+        #turn type should be mutual distruction
+        cards_c=[@card1,@card2,@card3]
+        deck_c = Deck.new(cards_c)
+        deck_d = Deck.new(cards_c)
+        player_c = Player.new('Va', deck_c)
+        player_d = Player.new('M', deck_d)
         
-        # turn2 = Turn.new(player_c, player_d) 
+        turn2 = Turn.new(player_c, player_d) 
         
-        # expect(turn2.spoils_of_war).to eq([])
+        turn2.pile_cards
+        turn2.award_spoils
+        expect(turn2.player1.deck.cards).to eq([])
+        expect(turn2.player2.deck.cards).to eq([])
+        expect(turn2.spoils_of_war).to eq([])
     end
     
 end

@@ -33,6 +33,7 @@ class Turn
         #     return :war
         # end
     end
+
 # winner: this method will determine the winner of the turn.
 # if the turn has a type of :basic, it will return whichever player has a higher rank_of_card_at(0)
 # if the turn has a type of :war the winner will be whichever player has a higher rank_of_card_at(2)
@@ -62,27 +63,21 @@ class Turn
 # for a :war turn, each player will send three cards (the top three cards) to the spoils pile
 # for a :mutually_assured_destruction turn, each player will remove three cards from play (the top three cards in their deck). These cards are not sent to the spoils pile, they are simply removed from each players’ deck.
 
+#maybe adjust to call spoils and give spoils the winner inside this function
     def pile_cards
         if self.type == :basic
             @spoils_of_war << @player1.deck.cards[0]
             #binding.pry
             @spoils_of_war << @player2.deck.cards[0]
             #binding.pry 
-            @player1.deck.remove_card
-            @player2.deck.remove_card
         elsif self.type == :war
             @spoils_of_war.concat(@player1.deck.cards[0..2])
             #binding.pry
             @spoils_of_war.concat(@player2.deck.cards[0..2])
-            3.times do @player1.deck.remove_card
-            end
-            3.times do @player2.deck.remove_card
-            end
+            
         else
-           3.times do @player1.deck.remove_card
-           end
-           3.times do @player2.deck.remove_card
-           end
+          
+           "No Spoils"
 
         end
 
@@ -92,9 +87,26 @@ class Turn
     # need to fix this. I either need to delete the cards in this method, which requires calling a bunch of shit again,
     # or I need to have a variable for the winner.
 
-    
-    # def award_spoils
-    #     binding.pry
-    #     self.winner.deck.cards.concat(@spoils_of_war)
-    # end
+
+     def award_spoils
+        who_won = self.winner
+        if self.type == :basic
+            @player1.deck.remove_card
+            @player2.deck.remove_card
+            who_won.deck.cards.concat(spoils_of_war)
+        elsif self.type == :war
+            3.times do @player1.deck.remove_card
+            end
+            3.times do @player2.deck.remove_card
+            end
+            who_won.deck.cards.concat(spoils_of_war)
+        else
+             3.times do @player1.deck.remove_card
+           end
+           3.times do @player2.deck.remove_card
+           end
+            "No Spoils Awarded"
+         end
+
+    end
 end
