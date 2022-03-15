@@ -25,7 +25,8 @@ class Turn
 
   def winner
     if self.type == :mutually_assured_destruction
-      'No Winner'
+      puts 'No Winner'
+      return 'No Winner'
     elsif self.type == :war
       # binding.pry
        if self.player2.deck.rank_of_card_at(2) - self.player1.deck.rank_of_card_at(2) < 0
@@ -47,30 +48,32 @@ class Turn
 
   def pile_cards
     if self.type == :basic
-      spoils_of_war << (self.player1.deck.cards[0])
-      # self.player1.deck.remove_card
-      spoils_of_war << (self.player2.deck.cards[0]) 
-      # self.player2.deck.remove_card
+      spoils_of_war << (@player1.deck.cards[0])
+      spoils_of_war << (@player2.deck.cards[0]) 
+      @player1.deck.remove_card
+      @player2.deck.remove_card
+      self.award_spoils(self.winner)
     elsif self.type == :war
-      spoils_of_war.concat(self.player1.deck.cards[0..2]).uniq
-      spoils_of_war.concat(self.player2.deck.cards[0..2]).uniq
-        # 3.times do self.player2.deck.remove_card end
+      spoils_of_war.concat(@player1.deck.cards[0..2]) 
+      spoils_of_war.concat(@player2.deck.cards[0..2])
+      @player1.deck.cards.delete_at(2)
+      @player1.deck.remove_card
+      @player2.deck.cards.delete_at(2)
+      @player2.deck.remove_card
+      self.award_spoils(self.winner)
     else
-      3.times do self.player1.deck.remove_card end 
-        3.times do self.player2.deck.remove_card end 
-        end 
+      3.times do @player1.deck.remove_card end 
+      3.times do @player2.deck.remove_card end
+    end 
             
   # when this method is called, cards will be sent from the players’ decks into the @spoils_of_war based on these rules
   # for a :basic turn, each player will send one card (the top card) to the spoils pile
   # for a :war turn, each player will send three cards (the top three cards) to the spoils pile
   # for a :mutually_assured_destruction turn, each player will remove three cards from play (the top three cards in their deck). These cards are not sent to the spoils pile, they are simply removed from each players’ deck.
-end
+  end
 
   def award_spoils(winner)
-    if self.winner != 'No Winner' && self.type == :basic
-      winner.deck.remove_card
-      winner.deck.cards.concat(spoils_of_war)
-    end 
+      winner.deck.cards.concat(@spoils_of_war) unless winner == 'No Winner'  
     # this method will add each of the cards in the @spoils_of_war array to the winner of the turn.
   end
 end

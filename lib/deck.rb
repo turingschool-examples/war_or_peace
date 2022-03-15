@@ -6,7 +6,14 @@ class Deck
     end
 
     def rank_of_card_at(index)
-        @cards[index].rank if !@cards.empty?
+        if @cards.empty?
+            puts 'You lose'
+            return 'You lose'
+        elsif @cards.length < 3
+            @cards[0].rank 
+        else
+            @cards[index].rank 
+        end 
     end 
 
     def high_ranking_cards

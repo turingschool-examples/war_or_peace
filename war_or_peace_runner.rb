@@ -38,4 +38,4 @@ game.start_game
 # checking if there are dups
 # array_uniq = cards.uniq => true
 # puts array_uniq == cards => false
-# puts player1_deck.any?{|x| player2_deck.include?(x)}
+# puts player1_deck.any?{|x| player2_deck.include?(x)}q

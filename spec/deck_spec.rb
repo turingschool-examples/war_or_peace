@@ -1,8 +1,9 @@
 require 'rspec'
 require './lib/deck'
+require './lib/card'
 require 'pry'
 
-RSpec.describe Card do
+RSpec.describe Deck do
   before :each do 
     @card1 = Card.new(:diamond, 'Queen', 12)
     @card2 = Card.new(:spade, '3', 3) 
@@ -21,9 +22,13 @@ RSpec.describe Card do
   end
 
   it "has rank_of_card_at" do
-
     expect(@deck.rank_of_card_at(0)).to eq(12)
     expect(@deck.rank_of_card_at(2)).to eq(14)
+    deck1 = Deck.new([@card1, @card2])
+    expect(deck1.rank_of_card_at(2)).to eq(deck1.cards[0].rank)
+    deck1.remove_card
+    deck1.remove_card
+    expect(deck1.rank_of_card_at(2)).to eq('You lose')
   end
 
   it "has high_ranking_cards" do
@@ -51,6 +56,4 @@ RSpec.describe Card do
     expect(@deck.high_ranking_cards).to eq([@card1,@card3,card])
     expect(@deck.percent_high_ranking).to eq(75.0)
   end
-
-
 end
