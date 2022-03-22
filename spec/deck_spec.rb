@@ -28,7 +28,7 @@ RSpec.describe Deck do
     end
     it 'can remove a card from the deck' do
       @deck.remove_card
-      expect(@deck.cards.length).to eq[3]
+      expect(@deck.cards.length).to eq(3)
     end
   end
 end
