@@ -1,5 +1,5 @@
 class Deck
-  attr_accessor :cards
+  attr_reader :cards
 
   def initialize(cards)
     @cards = cards
@@ -14,10 +14,14 @@ class Deck
   end
 
   def percent_high_ranking
-    (high_ranking_cards.length.to_f / @cards.length) * 100
+    ((high_ranking_cards.length.to_f / @cards.length) * 100).round(2)
   end
 
   def remove_card
     @cards.shift
+  end
+
+  def add_card(card)
+    @cards << card
   end
 end

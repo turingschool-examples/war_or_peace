@@ -2,7 +2,7 @@ require 'rspec'
 require './lib/deck'
 require './lib/card'
 
-RSpec.describe Deck do
+describe Deck do
   before(:each) do
     @card1 = Card.new(:diamond, 'Queen', 12)
     @card2 = Card.new(:spade, 'Queen', 12)
@@ -29,6 +29,11 @@ RSpec.describe Deck do
     it 'can remove a card from the deck' do
       @deck.remove_card
       expect(@deck.cards.length).to eq(3)
+    end
+    it 'can add a card to the deck' do
+      card5 = Card.new(:heart, '10', 10)
+      @deck.add_card(card5)
+      expect(@deck.cards.length).to eq(5)
     end
   end
 end
