@@ -12,9 +12,13 @@ RSpec.describe Deck do
     @deck = Deck.new(sample_cards)
   end
 
-  describe 'Tests' do
-    it 'exists' do
+  describe 'Test' do
+    it 'it exists' do
       expect(@deck).to be_instance_of(Deck)
+    end
+    it 'it gives rank of card at index' do
+      expect(@deck.rank_of_card_at(0)).to eq(12)
+      expect(@deck.rank_of_card_at(3)).to eq(14)
     end
   end
 end
