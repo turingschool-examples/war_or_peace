@@ -16,9 +16,12 @@ RSpec.describe Deck do
     it 'it exists' do
       expect(@deck).to be_instance_of(Deck)
     end
-    it 'it gives rank of card at index' do
+    it 'it returns rank of card at index' do
       expect(@deck.rank_of_card_at(0)).to eq(12)
       expect(@deck.rank_of_card_at(3)).to eq(14)
+    end
+    if 'it returns high ranking cards' do
+      expect(@deck.high_ranking_cards).to eq()
     end
   end
 end
