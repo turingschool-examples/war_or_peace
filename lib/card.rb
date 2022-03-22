@@ -9,4 +9,8 @@ class Card
     @value    = value
     @rank     = rank
   end
+
+  def suit
+    return @suit
+  end
 end
