@@ -20,3 +20,5 @@ class Card
   end
 
 end
+
+require 'pry'; binding.pry
