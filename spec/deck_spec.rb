@@ -23,5 +23,8 @@ RSpec.describe Deck do
     it 'it returns high ranking cards' do
       expect(@deck.high_ranking_cards).to eq([@card1, @card2, @card4])
     end
+    it 'it returns percentage of high ranking cards' do
+      expect(@deck.percent_high_ranking).to eq(75)
+    end
   end
 end
