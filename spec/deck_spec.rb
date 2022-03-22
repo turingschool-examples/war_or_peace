@@ -1,4 +1,6 @@
 require 'rspec'
+require './lib/deck'
+require './lib/card'
 
 RSpec.describe Deck do
   before(:each) do
@@ -7,8 +9,12 @@ RSpec.describe Deck do
     card3 = Card.new(:spade, '3', 3)
     card4 = Card.new(:heart, 'Ace', 14)
     sample_cards = [card1, card2, card3, card4]
-    deck = Deck.new(sample_cards)
+    @deck = Deck.new(sample_cards)
   end
-  it 'exists' do
+
+  describe 'Tests' do
+    it 'exists' do
+      expect(@deck).to be_instance_of(Deck)
+    end
   end
 end
