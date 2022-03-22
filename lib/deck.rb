@@ -7,4 +7,12 @@ class Deck
     @cards = cards
   end
 
+  def rank_of_card_at(index)
+    rank = @cards[index].rank
+    return rank
+  end
+
+  
+
+
 end
