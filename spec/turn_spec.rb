@@ -34,5 +34,9 @@ describe Turn do
     it 'it returns the winner' do
       expect(@turn.winner).to eq(@player1)
     end
+    it 'it piles up cards' do
+      @turn.pile_cards
+      expect(@turn.spoils_of_war).to eq([@card1, @card3])
+    end
   end
 end
