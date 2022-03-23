@@ -1,6 +1,7 @@
 require './lib/card'
 require './lib/deck'
 require './lib/player'
+require './pry'
 
 class Turn
 
@@ -18,6 +19,7 @@ class Turn
   def type
     p1_rank = @player1.deck.rank_of_card_at(0)
     p2_rank = @player2.deck.rank_of_card_at(0)
+    #binding.pry
     type = :basic
     if (p1_rank == p2_rank)
       type = :war
