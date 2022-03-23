@@ -15,4 +15,12 @@ RSpec.describe Card do
     expect(card.value).to eq('Queen')
     expect(card.rank).to eq(12)
   end
+
+  it "prints the cards name" do
+    card = Card.new(:diamond, 'Queen', 12)
+    expect(card.print_name).to eq("Queen of Diamond")
+
+
+  end
+
 end
