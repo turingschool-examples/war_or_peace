@@ -66,6 +66,6 @@ deck2 = Deck.new(shuffled_cards[26..51])
 player1 = Player.new('Megan', deck1)
 player2 = Player.new('Aurora', deck2)
 
-p player1.deck.cards.length
-p '------'
-p player2.deck.cards.length
+p 'Welcome to War! (or Peace) This game will be played with 52 cards.'
+p 'The players today are megan and Aurora.'
+p "Type 'GO' to start the game!"
