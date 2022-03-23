@@ -10,7 +10,4 @@ class Card
     @rank     = rank
   end
 
-  def suit
-    return @suit
-  end
 end
