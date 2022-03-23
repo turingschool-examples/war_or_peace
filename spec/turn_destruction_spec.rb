@@ -46,6 +46,12 @@ describe Turn do
   it "tells me what type of turn this is" do
 
     expect(@turn.type).to eq(:mutually_assured_destruction)
+    # require 'pry'; binding.pry
+  end
+
+  it "tells me who the winner is" do
+
+    expect(@turn.winner).to eq("No Winner")
     require 'pry'; binding.pry
   end
 

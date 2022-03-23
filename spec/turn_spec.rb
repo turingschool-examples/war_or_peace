@@ -23,7 +23,7 @@ describe Turn do
     player2 = Player.new("Aurora", deck2)
 
     @turn = Turn.new(player1, player2)
-
+    # require 'pry'; binding.pry
 
 
 
@@ -45,7 +45,13 @@ describe Turn do
 
   it "tells me what type of turn this is" do
     expect(@turn.type).to eq(:basic)
-    # require 'pry'; binding.pry 
+    # require 'pry'; binding.pry
+  end
+
+  it "tells me who the winner is" do
+
+    expect(@turn.winner).to eq(@turn.player1)
+    require 'pry'; binding.pry
   end
 
 end

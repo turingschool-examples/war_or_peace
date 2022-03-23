@@ -48,4 +48,10 @@ describe Turn do
     # require 'pry'; binding.pry
   end
 
+  it "tells me who the winner is" do
+
+    expect(@turn.winner).to eq(@turn.player2)
+    require 'pry'; binding.pry
+  end
+
 end
