@@ -5,10 +5,13 @@ class Deck
   end
 
   def rank_of_card_at(index)
-    return @cards[index].rank
+    @cards[index].rank
   end
 
   def high_ranking_cards
+    @cards.select do |card|
+      card.rank >= 11
+      end
   end
 
   def percent_high_ranking
