@@ -58,4 +58,10 @@ cards = {
   card52: Card.new(:diamond, 'Ace', 14)
 }
 
-puts cards.length
+shuffled_cards = cards.to_a.shuffle.to_h
+
+p cards
+p cards.length
+p '---------------------------------------'
+p shuffled_cards
+p shuffled_cards.length
