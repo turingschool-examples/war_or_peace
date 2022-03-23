@@ -16,8 +16,11 @@ describe Player do
     it 'exists' do
       expect(@player).to be_instance_of(Player)
     end
-    it 'gets players name' do
+    it 'returns players name' do
       expect(@player.name).to eq('Clarisa')
+    end
+    it 'returns player' do
+      expect(@player.deck).to eq(@deck)
     end
   end
 end
