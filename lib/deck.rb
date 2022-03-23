@@ -9,7 +9,7 @@ class Deck
   end
 
   def high_ranking_cards
-  high_ranking_cards =  @cards.select do |card|
+    high_ranking_cards =  @cards.select do |card|
       card.rank >= 11
       end
   end
@@ -22,7 +22,9 @@ class Deck
     cards.shift
   end
 
-  def add_card
+  def add_card(new_card)
+    @cards << new_card
+
   end
 
 end

@@ -6,5 +6,4 @@ attr_reader :suit, :value, :rank
    @value = value
    @rank = rank
  end
-
 end
