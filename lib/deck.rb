@@ -19,7 +19,11 @@ class Deck
         high_rank << card
       end
     end
-    return high_rank 
+    return high_rank
+  end
+
+  def remove_card
+    cards.shift
   end
 
 end
