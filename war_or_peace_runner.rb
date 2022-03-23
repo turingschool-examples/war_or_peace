@@ -63,10 +63,9 @@ shuffled_cards = cards.shuffle
 deck1 = Deck.new(shuffled_cards[0..25])
 deck2 = Deck.new(shuffled_cards[26..51])
 
-p cards.length
-p '--------'
-p shuffled_cards.length
-p '----------'
-p deck1.cards.length
-p '-----------'
-p deck2.cards.length
+player1 = Player.new('Megan', deck1)
+player2 = Player.new('Aurora', deck2)
+
+p player1.deck.cards.length
+p '------'
+p player2.deck.cards.length
