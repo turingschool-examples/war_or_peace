@@ -17,7 +17,7 @@ describe Player do
     expect(player1).to be_an_instance_of(Player)
   end
 
-  it 'can access attributes' do
+  it 'can read attributes' do
     card1 = Card.new(:diamond, "Queen", 12)
     card2 = Card.new(:spade, "3", 3)
     card3 = Card.new(:heart, "Ace", 14)
