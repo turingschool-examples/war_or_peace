@@ -13,7 +13,7 @@ describe Player do
   end
 
   describe 'Test' do
-    it 'exists' do
+    it 'it exists' do
       expect(@player).to be_instance_of(Player)
     end
     it 'returns players name' do

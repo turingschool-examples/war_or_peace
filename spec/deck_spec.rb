@@ -13,7 +13,7 @@ describe Deck do
   end
 
   describe 'Test' do
-    it 'exists' do
+    it 'it exists' do
       expect(@deck).to be_instance_of(Deck)
     end
     it 'returns rank of card at index' do
