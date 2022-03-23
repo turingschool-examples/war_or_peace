@@ -5,18 +5,12 @@ class Player
     @deck = deck
   end
 
-#   def has_lost?
-#     if cards == 0
-#       true
-#     else
-#       false
-#   end
+  def has_lost?
+    if @deck.cards == []
+      true
+    else
+      false
+    end
+  end
+
 end
-
-
-
-
-
-# def remove_card
-#   @lost -= 1
-# end
