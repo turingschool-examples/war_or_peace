@@ -23,6 +23,32 @@ class Deck
     return high_cards
   end
 
+  def percent_high_ranking
+    percentage = 0.00
+    count = 0.00
+    cards.each do |card|
+      if card.rank >= 11
+        # require 'pry'; binding.pry
+        count += 1
+      end
+    end
+    percentage = (count / cards.count) * 100
+    # require 'pry'; binding.pry
+    return percentage.round(2)
+
+  end
+
+  def remove_card
+    cards.shift
+    # require 'pry'; binding.pry
+  end
+
+  def add_card(card)
+    cards.push(card)
+    return card
+    # require 'pry'; binding.pry
+  end
+
 
 
 
