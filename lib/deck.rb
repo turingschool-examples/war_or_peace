@@ -1,7 +1,7 @@
 # deck of cards
 
 class Deck
-    attr_reader :suit, :value, :rank
+    attr_reader :cards
     def initialize(cards)
         @cards = card[]
     end
