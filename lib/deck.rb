@@ -1,4 +1,4 @@
-# a single deck
+# deck of cards
 
 class Deck
     attr_reader :suit, :value, :rank
