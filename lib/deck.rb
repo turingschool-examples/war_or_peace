@@ -37,6 +37,10 @@ class Deck
     return percent.round(2)
   end
 
+  def remove_card
+    @cards.shift
+  end
+
 end
 
 # card1 = Card.new(:hearts, "Ace", 14)
