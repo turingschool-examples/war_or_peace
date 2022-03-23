@@ -8,4 +8,14 @@ class Deck
   def rank_of_card_at(card_number)
     cards[card_number].rank
   end
+
+  def high_ranking_cards
+    high_ranking_array = []
+    cards.each do |card|
+      if card.rank > 11
+        high_ranking_array << card
+      end
+    end
+    return high_ranking_array
+  end
 end
