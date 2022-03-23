@@ -2,6 +2,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/game'
 
 cards = [
   card1 = Card.new(:heart, '2', 2),
@@ -66,6 +67,5 @@ deck2 = Deck.new(shuffled_cards[26..51])
 player1 = Player.new('Megan', deck1)
 player2 = Player.new('Aurora', deck2)
 
-p 'Welcome to War! (or Peace) This game will be played with 52 cards.'
-p 'The players today are megan and Aurora.'
-p "Type 'GO' to start the game!"
+game = Game.new
+game.start(player1, player2)
