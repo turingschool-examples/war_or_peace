@@ -2,8 +2,8 @@
 
 class Card
     # The next line will have the same function as:
-    # def value 
-    #     @value
+    # def <method> 
+    #     @<attribute>
     # end
 attr_reader :suit, :value, :rank
 

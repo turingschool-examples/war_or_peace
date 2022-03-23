@@ -2,26 +2,33 @@
 require './lib/card.rb'
 
 class Deck
-    attr_reader :cards
+    attr_reader :cards # :suit, :value, :rank
     def initialize(cards)
-        @cards = card[]
+        @cards = []
     end
 
-    def rank_of_card_at()
+    def rank_of_card_at
+
     end
 
-    def high_ranking_cards()
+    def high_ranking_cards
+        if rank > 10
+            true
+        end
     end
 
-    def percent_high_ranking()
+    def percent_high_ranking
+
     end
 
     def remove_card
-        @card.pop
+        @cards.pop
     end
 
-    def add_card()
+    def add_card(deck)
+        @cards << deck
+        
     end
-
 
 end
+
