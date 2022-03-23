@@ -28,5 +28,8 @@ describe Turn do
     it 'it exists' do
       expect(@turn).to be_instance_of(Turn)
     end
+    it 'it returns the turn type' do
+      expect(@turn.type).to eq(:basic)
+    end
   end
 end
