@@ -38,5 +38,11 @@ describe Turn do
       @turn.pile_cards
       expect(@turn.spoils_of_war).to eq([@card1, @card3])
     end
+    it 'it awards spoils' do
+      winner = @turn.winner
+      @turn.pile_cards
+      @turn.award_spoils(winner)
+      expect(@player1.deck.cards.length).to eq(5)
+    end
   end
 end
