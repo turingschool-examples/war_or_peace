@@ -22,5 +22,8 @@ describe Player do
     it 'returns player' do
       expect(@player.deck).to eq(@deck)
     end
+    it 'returns if a player has lost or not' do
+      expect(@player.has_lost?).to eq(false)
+    end
   end
 end
