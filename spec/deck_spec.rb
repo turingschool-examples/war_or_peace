@@ -13,17 +13,17 @@ describe Deck do
   end
 
   describe 'Test' do
-    it 'it exists' do
+    it 'exists' do
       expect(@deck).to be_instance_of(Deck)
     end
-    it 'it returns rank of card at index' do
+    it 'returns rank of card at index' do
       expect(@deck.rank_of_card_at(0)).to eq(12)
       expect(@deck.rank_of_card_at(3)).to eq(14)
     end
-    it 'it returns high ranking cards' do
+    it 'returns high ranking cards' do
       expect(@deck.high_ranking_cards).to eq([@card1, @card2, @card4])
     end
-    it 'it returns percentage of high ranking cards' do
+    it 'returns percentage of high ranking cards' do
       expect(@deck.percent_high_ranking).to eq(75)
     end
     it 'can remove a card from the deck' do
