@@ -20,4 +20,8 @@ class Deck
     (high_ranking_cards.count.fdiv(@cards.count) * 100).round(2)
   end
 
+  def remove_card
+    @cards.shift
+  end
+
 end
