@@ -28,7 +28,7 @@ describe Player do
     expect(@player).to be_an_instance_of(Player)
     # require 'pry'; binding.pry
   end
-  it "exists" do
+  it "checks if someone has lost" do
 
 
     #remove three cards and test to see if the player has lost each time
