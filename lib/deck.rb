@@ -1,4 +1,5 @@
 require './lib/card'
+require 'pry'
 
 class Deck
 
@@ -15,15 +16,25 @@ class Deck
     return rank
   end
 
+  #returns array integers representing the rank of the highest ranking cards
   def high_ranking_cards
-    high_cards = []
+    high_card_ranks = []
     @cards.each do |card|
       rank = card.rank
+      #Check if the rank of the current card is 11 or greate
+      #if true add that rank to the array high_card_ranks
       if card.rank >=11
-        high_cards << rank
+        high_card_ranks << rank
       end
     end
-    return high_cards
+    return high_card_ranks
+  end
+
+  def percent_high_ranking
+    num_high_rank_cards = high_ranking_cards.length
+    num_cards = @cards.length
+    percent = (num_high_rank_cards.to_f / num_cards.to_f) * 100
+    return percent.round(2)
   end
 
 end
