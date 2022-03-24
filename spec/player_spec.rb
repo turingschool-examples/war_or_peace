@@ -29,7 +29,7 @@ RSpec.describe Player do
 
   describe 'play sequence till player is without cards' do
 
-    it "has has_lost? " do
+    it "has_lost? " do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -40,7 +40,7 @@ RSpec.describe Player do
       expect(player.has_lost?).to be(false)
     end
 
-    it "has has_lost? " do
+    it "has_lost? " do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -53,7 +53,7 @@ RSpec.describe Player do
       expect(player.has_lost?).to be(false)
     end
 
-    it "has has_lost? " do
+    it "has_lost? " do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -67,7 +67,7 @@ RSpec.describe Player do
       expect(player.has_lost?).to be(false)
     end
 
-    it "has has_lost? " do
+    it "has_lost? " do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
