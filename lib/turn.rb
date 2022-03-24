@@ -32,4 +32,31 @@ class Turn
     return type
   end
 
+  def winner
+    t = type
+    result = ""
+    if(t == :basic)
+      p1_rank = @player1.deck.rank_of_card_at(0)
+      p2_rank = @player2.deck.rank_of_card_at(0)
+      if(p1_rank > p2_rank)
+        result = @player1
+      else
+        result = @player2
+      end
+    elsif(t == :war)
+      p1_rank_2 = @player1.deck.rank_of_card_at(2)
+      p2_rank_2 = @player2.deck.rank_of_card_at(2)
+      if(p1_rank_2 > p1_rank_2)
+        result = @player1
+      else
+        result = @player2
+      end
+    else
+      result = "No Winner"
+    end
+    return result
+  end
+
+
+
 end
