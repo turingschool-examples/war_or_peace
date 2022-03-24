@@ -17,40 +17,24 @@ class Turn
     p2_rank = @player2.deck.rank_of_card_at(0)
     if (p1_rank == p2_rank)
       @type = :war
-      p1_rank_2 = @player1.deck.rank_of_card_at(2)
-      p2_rank_2 = @player2.deck.rank_of_card_at(2)
-      if (p1_rank_2 == p2_rank_2)
-        @type = :mutually_assured_destruction
+      #if player 1 or 2 does not have 2 cards left don't check for them
+      #will handle this case differently in winner
+      if((@player1.deck.cards.length < 3) || (@player2.deck.cards.length < 3))
+        #don't check for mutual destruction, not possible in this case
+      else
+        p1_rank_2 = @player1.deck.rank_of_card_at(2)
+        p2_rank_2 = @player2.deck.rank_of_card_at(2)
+        if (p1_rank_2 == p2_rank_2)
+          @type = :mutually_assured_destruction
+        end
       end
     end
   end
 
-=begin
-  #Determine the type of play based on the first cards from each player's deck
-  #if the first cards are the same rank check the third card in each deck
-  def type
-    p1_rank = @player1.deck.rank_of_card_at(0)
-    p2_rank = @player2.deck.rank_of_card_at(0)
-    #binding.pry
-    type = :basic
-    if (p1_rank == p2_rank)
-      type = :war
-      p1_rank_2 = @player1.deck.rank_of_card_at(2)
-      p2_rank_2 = @player2.deck.rank_of_card_at(2)
-      if (p1_rank_2 == p2_rank_2)
-        type = :mutually_assured_destruction
-      end
-    end
-    return type
-  end
-=end
-
-  #determines that player that won the turn and
+  #determines the player that won the turn and
   #returns the player that won or "No winner"
   def winner
-    t = type
     result = ""
-    # if(t == :basic)
     if(@type == :basic)
       p1_rank = @player1.deck.rank_of_card_at(0)
       p2_rank = @player2.deck.rank_of_card_at(0)
@@ -59,14 +43,26 @@ class Turn
       else
         result = @player2
       end
-    #elsif(t == :war)
     elsif(@type == :war)
-      p1_rank_2 = @player1.deck.rank_of_card_at(2)
-      p2_rank_2 = @player2.deck.rank_of_card_at(2)
-      if(p1_rank_2 > p1_rank_2)
-        result = @player1
-      else
+      #in the first two conditionals, when there is a player that does not have
+      # enough cards to compare the 3, make the other palyer the Winner
+      # and put the type to basic so only one card will be removed from each player
+      if(@player1.deck.cards.length < 3)
+        #puts("player 1 doesnt have enough cards")
         result = @player2
+        @type = :basic
+      elsif(@player2.deck.cards.length < 3)
+        #puts("player 2 doesn't have enough cards")
+        result = @player1
+        @type = :basic
+      else
+        p1_rank_2 = @player1.deck.rank_of_card_at(2)
+        p2_rank_2 = @player2.deck.rank_of_card_at(2)
+        if(p1_rank_2 > p1_rank_2)
+          result = @player1
+        else
+          result = @player2
+        end
       end
     else
       result = "No Winner"
@@ -78,12 +74,9 @@ class Turn
   #and add them to spoils_of_war
   #otherwise remove three cards from each players deck from play
   def pile_cards
-    #t = type
-    #if(t == :basic)
     if(@type == :basic)
       @spoils_of_war << @player1.deck.remove_card
       @spoils_of_war << @player2.deck.remove_card
-    #elsif(t == :war)
     elsif(@type == :war)
       3.times do
         @spoils_of_war << @player1.deck.remove_card
@@ -106,6 +99,5 @@ class Turn
       winner.deck.add_card(card)
     end
   end
-
 
 end

@@ -28,11 +28,12 @@ end
 
 deck1 = Deck.new(cards.shuffle)
 deck2 = Deck.new(cards.shuffle)
-player1 = Player.new("Nadine", deck1)
-player2 = Player.new("Taylor", deck2)
+player1 = Player.new("Nadine", deck2)
+player2 = Player.new("Taylor", deck1)
 
-puts("Welcome to War! (or Peace) This game will be played with 52
-cards. \t The players today are #{player1.name} and #{player2.name}. \t
+#Message output to terminal
+puts("Welcome to War! (or Peace) This game will be played with 52 cards.
+The players today are #{player1.name} and #{player2.name}.
 Type 'GO' to start the game!")
 user_input = gets.chomp
 #Check that the user entered a valid statement
@@ -44,5 +45,4 @@ end
 if user_input == "GO"
   play_game = GamePlay.new(player1, player2)
   play_game.start
-  puts("In if ")
 end

@@ -15,8 +15,9 @@ class GamePlay
   def start
     result = "---- DRAW ----"
     i = 1
+    max_turns = 10001
     #Go though up to 1000 turns
-    while i < 1000
+    while i < max_turns
       #create a turn
       turn = Turn.new(@player1, @player2)
       #run thorugh all the methods to play a turn
@@ -33,10 +34,15 @@ class GamePlay
       end
       #determine if someone and break out of the loop if that is the case
       if (@player1.has_lost? || @player2.has_lost?)
+
         result = "*~*~*~* #{winner.name} has won the game! *~*~*~*"
+        puts result
         break
       end
       i += 1
+      if (i == max_turns)
+        puts result
+      end
     end
     return result
   end
