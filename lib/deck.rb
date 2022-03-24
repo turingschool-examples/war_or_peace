@@ -6,20 +6,37 @@ class Deck
 
   def rank_of_card_at (index)
     cards[index].rank
-    # rank_card = cards[index]
-    # return rank_card.rank
   end
 
-  # def high_ranking_cards #face cards
-  # end
-  #
-  # def percent_high_ranking
-  # end
-  #
-  # def remove_card
-  # end
-  #
-  # def add_card
-  # end
+  def high_ranking_cards
+    high_cards = []
+    cards.each do |card|
+      if card.rank > 9
+        high_cards << card
+      end
+    end
+    return high_cards
+  end
+
+  def percent_high_ranking
+    high_cards = []
+    low_cards = []
+    cards.each do |card|
+      if card.rank > 9
+        high_cards << card
+      else
+        low_cards << card
+      end
+    end
+    return ((high_cards.count.to_f / cards.count.to_f) * 100).round(2)
+  end
+
+  def remove_card
+    cards.shift
+  end
+
+  def add_card(addition)
+    cards << addition
+  end
 
 end
