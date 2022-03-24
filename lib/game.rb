@@ -10,7 +10,7 @@ class Game
 
   def start(player1, player2)
     turn = Turn.new(player1, player2)
-    until turn.player1.has_lost? || turn.player2.has_lost? || @round == 1_000_000
+    until turn.player1.has_lost? || turn.player2.has_lost? || @round == 1_000_001
       winner = turn.winner
       type = turn.type
       turn.pile_cards
