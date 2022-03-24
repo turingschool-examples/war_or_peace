@@ -8,6 +8,7 @@ RSpec.describe Deck do
     @card = Card.new(:diamond, 'Queen', 12)
     @card2 = Card.new(:spade, '3', 3)
     @card3 = Card.new(:heart, 'Ace', 14)
+    @card4 = Card.new(:club, '5', 5)
     @cards = [@card, @card2, @card3]
     @deck = Deck.new(@cards)
   end
@@ -39,5 +40,9 @@ RSpec.describe Deck do
     expect(@deck.remove_card).to eq(@card)
   end
 
+  it "adds card to bottom of deck" do
+    @deck.add_card(@card4)
+    expect(@deck.cards.length).to eq(4)
+  end
 
 end
