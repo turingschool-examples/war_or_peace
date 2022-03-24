@@ -20,18 +20,36 @@ class Turn
   def winner
     if type == :basic
       if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-        player1.name
+        player1
       else
-        player2.name
+        player2
       end
     elsif type == :war
       if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-        player1.name
+        player1
       else
-        player2.name
+        player2
       end
     else
       "No Winner"
     end
   end
+
+  def pile_cards
+    if type == :basic
+      @spoils_of_war << player1.deck.cards.shift
+      @spoils_of_war << player2.deck.cards.shift
+    elsif type == :war
+      @spoils_of_war << player1.deck.cards.shift(3)
+      @spoils_of_war << player2.deck.cards.shift(3)
+    else
+      player1.deck.cards.shift(3)
+      player2.deck.cards.shift(3)
+    end
+  end
+
+  def award_spoils(winner)
+    winner.deck.cards << @spoils_of_war
+  end
+
 end
