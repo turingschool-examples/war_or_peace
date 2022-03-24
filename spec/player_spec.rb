@@ -25,32 +25,4 @@ RSpec.describe Player do
     expect(@player1).to be_an_instance_of(Player)
   end
 
-  it "has readable attributes" do
-    # @card = Card.new(:diamond, 'Queen', 12)
-    # @card2 = Card.new(:spade, '3', 3)
-    # @card3 = Card.new(:heart, 'Ace', 14)
-    # @cards = [@card, @card2, @card3]
-    # @deck = Deck.new(@cards)
-
-    # expect(@deck.rank_of_card_at(0)).to eq('Queen')
-    expect(@deck.rank_of_card_at(0)).to eq(12)
-  end
-
-  it "lists all high ranking cards" do
-    expect(@deck.high_ranking_cards.length).to eq(2)
-  end
-
-  it "gives percentage of high ranking cards" do
-    expect(@deck.percent_high_ranking).to eq(66.67)
-  end
-
-  it "removes card from top of deck" do
-    expect(@deck.remove_card).to eq(@card)
-  end
-
-  it "adds card to bottom of deck" do
-    @deck.add_card(@card4)
-    expect(@deck.cards.length).to eq(4)
-  end
-
 end
