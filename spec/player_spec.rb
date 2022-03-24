@@ -32,4 +32,9 @@ RSpec.describe Player do
     expect(@player1.has_lost?).to eq(true)
   end
 
+  it "doesn't lose when deck has at least one card" do
+    expect(@player1.has_lost?).to eq(false)
+  end
+
+
 end
