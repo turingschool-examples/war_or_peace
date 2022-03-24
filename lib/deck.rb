@@ -1,10 +1,26 @@
 # deck of cards
 require './lib/card.rb'
 
+class Card
+    # The next line will have the same function as:
+    # def <method> 
+    #     @<attribute>
+    # end
+attr_reader :suit, :value, :rank
+
+  def initialize(suit, value, rank)
+    @suit = suit
+    @value = value
+    @rank = rank
+  end
+end
+
 class Deck
-    attr_reader :cards, :suit, :value, :rank
+    attr_reader :cards # :suit, :value, :rank
+    attr_accessor :suit, :value, :rank
+
     def initialize(cards)
-        @cards = []
+        @cards = cards
     end
 
     def rank_of_card_at(number)
@@ -17,7 +33,7 @@ class Deck
     def high_ranking_cards
         high_rank = []
         @cards.each do |high|
-            if card.rank > 10
+            if cards.rank > 10
                 high_rank << high
             end
             high_rank
@@ -33,7 +49,7 @@ class Deck
     end
 
     def add_card(deck)
-        @cards << deck
+        
     end
 
 end
