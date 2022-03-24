@@ -31,8 +31,4 @@ class Deck
   def add_card
     @cards.push.last
   end
-
-# card = Card.new(:heart, 'Jack', 11)
-# deck = Deck.new(cards)
-# deck.high_ranking_cards(card)
 end
