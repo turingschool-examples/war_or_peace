@@ -34,6 +34,5 @@ class Game
     elsif @round == 1_000_001
       p '--- DRAW ---'
     end
-    'game over'
   end
 end
