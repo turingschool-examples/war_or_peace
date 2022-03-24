@@ -21,25 +21,53 @@ describe Deck do
 
     expect(@deck.cards).to eq(@cards)
   end
+  describe '#rank_of_card_at' do
+    it 'has a rank value' do
 
-  it 'has a rank value' do
-
-    expect(@deck.rank_of_card_at(0)).to eq(12)
-    expect(@deck.rank_of_card_at(2)).to eq(14)
+      expect(@deck.rank_of_card_at(0)).to eq(12)
+      expect(@deck.rank_of_card_at(2)).to eq(14)
+    end
   end
 
-  it 'can separate high ranked cards' do
+  describe '#high_ranking_cards' do
+    it 'can separate high ranked cards' do
 
-    expect(@deck.high_ranking_cards).to eq([@card1, @card3])
-
+      expect(@deck.high_ranking_cards).to eq([@card1, @card3])
+    end
   end
 
-  it 'can remove top card' do
+  describe '#remove_card' do
+    it 'can remove top card' do
 
-    expect(@deck.remove_card).to eq(@card1)
-    expect(@deck.cards).to eq([@card2, @card3])
-    expect(@deck.high_ranking_cards).to eq([@card3])
+      expect(@deck.remove_card).to eq(@card1)
+      expect(@deck.cards).to eq([@card2, @card3])
+      expect(@deck.high_ranking_cards).to eq([@card3])
+    end
   end
+
+  describe '#add_card' do
+    it 'can add cards to deck' do
+      @deck.remove_card
+      card4 = Card.new(:club, '5', 5)
+
+      expect(@deck.add_card(card4)).to eq([@card2, @card3, card4])
+    end
+  end
+  describe '#percent_high_ranking' do
+    it 'shows percentage of high ranked cards in a  deck' do
+
+
+      expect(@deck.percent_high_ranking).to eq(66.67)
+       @deck.remove_card
+
+      expect(@deck.percent_high_ranking).to eq(50.00)
+       card4 = Card.new(:club, '5', 5)
+       @deck.add_card(card4)
+
+      expect(@deck.percent_high_ranking).to eq(33.33)
+    end
+  end
+
 
 
 end
