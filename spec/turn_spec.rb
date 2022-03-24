@@ -2,6 +2,7 @@ require 'rspec'
 require './lib/card'
 require './lib/deck'
 require './lib/player'
+require './lib/turn'
 require 'pry'
 
 RSpec.describe Turn do
@@ -14,11 +15,11 @@ RSpec.describe Turn do
     @card6 = Card.new(:diamond, 'Queen', 12)
     @card7 = Card.new(:heart, '3', 3)
     @card8 = Card.new(:diamond, '2', 2)
-    @deck1 = Deck.new([card1, card2, card5, card8])
-    @deck2 = Deck.new([card3, card4, card6, card7])
-    @player1 = Player.new("Megan", deck1)
-    @player2 = Player.new("Aurora", deck2)
-    @turn = Turn.new(player1, player2)
+    @deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    @deck2 = Deck.new([@card3, @card4, @card6, @card7])
+    @player1 = Player.new("Megan", @deck1)
+    @player2 = Player.new("Aurora", @deck2)
+    @turn = Turn.new(@player1, @player2)
   end
 
   it "exists" do
