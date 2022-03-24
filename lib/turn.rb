@@ -5,15 +5,27 @@ require './pry'
 
 class Turn
 
-  attr_reader :player1, :player2, :spoils_of_war
+  attr_reader :player1, :player2, :spoils_of_war, :type
 
   #Initialize takes in two player objects
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
+    @type = :basic
+    p1_rank = @player1.deck.rank_of_card_at(0)
+    p2_rank = @player2.deck.rank_of_card_at(0)
+    if (p1_rank == p2_rank)
+      @type = :war
+      p1_rank_2 = @player1.deck.rank_of_card_at(2)
+      p2_rank_2 = @player2.deck.rank_of_card_at(2)
+      if (p1_rank_2 == p2_rank_2)
+        @type = :mutually_assured_destruction
+      end
+    end
   end
 
+=begin
   #Determine the type of play based on the first cards from each player's deck
   #if the first cards are the same rank check the third card in each deck
   def type
@@ -31,13 +43,15 @@ class Turn
     end
     return type
   end
+=end
 
   #determines that player that won the turn and
   #returns the player that won or "No winner"
   def winner
     t = type
     result = ""
-    if(t == :basic)
+    # if(t == :basic)
+    if(@type == :basic)
       p1_rank = @player1.deck.rank_of_card_at(0)
       p2_rank = @player2.deck.rank_of_card_at(0)
       if(p1_rank > p2_rank)
@@ -45,7 +59,8 @@ class Turn
       else
         result = @player2
       end
-    elsif(t == :war)
+    #elsif(t == :war)
+    elsif(@type == :war)
       p1_rank_2 = @player1.deck.rank_of_card_at(2)
       p2_rank_2 = @player2.deck.rank_of_card_at(2)
       if(p1_rank_2 > p1_rank_2)
@@ -63,11 +78,13 @@ class Turn
   #and add them to spoils_of_war
   #otherwise remove three cards from each players deck from play
   def pile_cards
-    t = type
-    if(t == :basic)
+    #t = type
+    #if(t == :basic)
+    if(@type == :basic)
       @spoils_of_war << @player1.deck.remove_card
       @spoils_of_war << @player2.deck.remove_card
-    elsif(t == :war)
+    #elsif(t == :war)
+    elsif(@type == :war)
       3.times do
         @spoils_of_war << @player1.deck.remove_card
       end
