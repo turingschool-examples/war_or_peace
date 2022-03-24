@@ -13,13 +13,15 @@ def rank_of_card_at(index)
 end
 
 def high_ranking_cards
+  # @cards.find_all { |card| card.rank >= 11}
   @cards.find_all do |card|
-    card.rank >= 11
+     card.rank >= 11
+   end
 end
 
 def percent_high_ranking
-  percent = 0.0
-  percent = @cards.high_ranking_cards / @cards.length
+  decimal = high_ranking_cards.length.to_f / @cards.length.to_f
+  percent = (decimal * 100).round(2)
 end
 
 def remove_card
@@ -30,5 +32,4 @@ def add_card(card)
   @cards.push(card)
 end
 
-end
 end
