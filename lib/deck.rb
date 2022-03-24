@@ -19,20 +19,17 @@ class Deck
       end
     end
     return high_ranking
-
-    # if card.rank > 11
-    #   high_ranking_cards << card
   end
-  # end
-  #
-  # def percent_high_ranking
-  #   percent_high_ranking <<
-  #   high_ranking_cards % @cards
-  # end
-  #
-  # def remove_card
-  #   @cards.shift
-  # end
+
+  def percent_high_ranking
+    percent = high_ranking_cards.count.to_f/@cards.count.to_f*100
+    return percent.ceil(2)
+
+  end
+
+  def remove_card
+    @cards.shift
+  end
   #
   # def add_card
   # end
