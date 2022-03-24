@@ -32,6 +32,8 @@ class Turn
     return type
   end
 
+  #determines that player that won the turn and
+  #returns the player that won or "No winner"
   def winner
     t = type
     result = ""
@@ -55,6 +57,29 @@ class Turn
       result = "No Winner"
     end
     return result
+  end
+
+  #if type is :basic or :war remove cards from each player
+  #and add them to spoils_of_war
+  #otherwise remove three cards from each players deck from play
+  def pile_cards
+    t = type
+    if(t == :basic)
+      @spoils_of_war << @player1.deck.remove_card
+      @spoils_of_war << @player2.deck.remove_card
+    elsif(t == :war)
+      3.times do
+        @spoils_of_war << @player1.deck.remove_card
+      end
+      3.times do
+        @spoils_of_war << @player2.deck.remove_card
+      end
+    else
+      3.times do
+        @player1.deck.remove_card
+        @player2.deck.remove_card
+      end
+    end
   end
 
 
