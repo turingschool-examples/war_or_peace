@@ -3,7 +3,7 @@ require './lib/card.rb'
 
 class Deck
     attr_reader :cards # :suit, :value, :rank
-    attr_accessor :suit, :value, :rank
+    #attr_accessor :suit, :value, :rank
 
     def initialize(cards)
         @cards = cards
@@ -19,8 +19,8 @@ class Deck
             if card.rank > 11
                 high_rank << card
             end
-         return   high_rank
         end
+        return   high_rank
     end
 
     def percent_high_ranking
@@ -32,7 +32,7 @@ class Deck
     end
 
     def add_card(card)
-        
+        @cards << card
     end
 
 end
