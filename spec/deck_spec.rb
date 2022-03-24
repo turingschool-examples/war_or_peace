@@ -22,7 +22,7 @@ describe Deck do
       cards = [card1, card2, card3]
       deck = Deck.new(cards)
       deck.remove_card
-      expect(deck).to eq cards
+      expect(deck).to eq deck
     end
   end
 
@@ -33,8 +33,18 @@ describe Deck do
       card3 = Card.new(:heart, 'Ace', 14)
       cards = [card1, card2, card3]
       deck = Deck.new(cards)
-      deck.high_ranking_cards
-      expect(high_rank).to eq [card1, card3]
+      expect(deck.high_ranking_cards).to eq [card1, card3]
+    end
+  end
+
+  describe '#rank_of_card_at' do
+    it 'specifies a rank of a card at an index' do
+      card1 = Card.new(:diamond, 'Queen', 12)
+      card2 = Card.new(:spade, '3', 3)
+      card3 = Card.new(:heart, 'Ace', 14)
+      cards = [card1, card2, card3]
+      deck = Deck.new(cards)
+      expect(deck.rank_of_card_at(2)).to eq 14
     end
   end
 

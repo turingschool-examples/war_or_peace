@@ -10,19 +10,16 @@ class Deck
     end
 
     def rank_of_card_at(number)
-        @cards.each_with_index do |spot|
-        end
-
-
+        @cards[number].rank
     end
 
     def high_ranking_cards
         high_rank = []
-        @cards.each do |high|
-            if @cards > 10
-                high_rank << high
+        @cards.each do |card|
+            if card.rank >= 11
+                high_rank << card
             end
-            high_rank
+         return   high_rank
         end
     end
 
@@ -34,7 +31,7 @@ class Deck
         @cards.pop
     end
 
-    def add_card(deck)
+    def add_card(card)
         
     end
 
