@@ -6,9 +6,7 @@ class Deck
   end
 
   def rank_of_card_at(index)
-
     @cards[index].rank
-    #rank_of_card_at << @cards.rank
   end
 
   def high_ranking_cards
@@ -24,15 +22,15 @@ class Deck
   def percent_high_ranking
     percent = high_ranking_cards.count.to_f/@cards.count.to_f*100
     return percent.ceil(2)
-
   end
 
   def remove_card
     @cards.shift
   end
-  #
-  # def add_card
-  # end
+
+  def add_card
+    @cards.push.last
+  end
 
 # card = Card.new(:heart, 'Jack', 11)
 # deck = Deck.new(cards)
