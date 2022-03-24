@@ -64,13 +64,37 @@ class Turn
       end
       # require 'pry'; binding.pry
     else
+      3.times do
+        player1.deck.cards.shift
+      end
+      3.times do
+        player2.deck.cards.shift
+      end
+    end
+  end
+
+  def award_spoils
+     # awarded_spoils = spoils_of_war
+     # turn_winner = winner
+
+     require 'pry'; binding.pry
+
+    if spoils_of_war.count==0
+
+    elsif (spoils_of_war.count == 2 && spoils_of_war[0].rank > spoils_of_war[1].rank) || spoils_of_war[0].rank > spoils_of_war[3].rank
+      spoils_of_war.each do |spoil_card|
+
+        player1.deck.cards.push(spoil_card)
+      end
+    else
+      spoils_of_war.each do |spoil_card|
+
+        player2.deck.cards.push(spoil_card)
+        # require 'pry'; binding.pry
+      end
     end
 
 
   end
-
-
-
-
 
 end

@@ -57,9 +57,29 @@ describe Turn do
   it "tells me what is in spoils of war" do
 
     @turn.pile_cards
-    require 'pry'; binding.pry
+    # require 'pry'; binding.pry
 
     expect(@turn.spoils_of_war).to eq([@card1, @card2, @card5, @card4, @card3, @card6])
+  end
+
+  it "tells me what the players have after piling cards" do
+
+    @turn.pile_cards
+    # require 'pry'; binding.pry
+
+    expect(@turn.player1.deck.cards).to eq([@card8])
+    expect(@turn.player2.deck.cards).to eq([@card7])
+  end
+
+  it "makes sure spoils are added correctly" do
+    # require 'pry'; binding.pry
+    @turn.pile_cards
+    # require 'pry'; binding.pry
+    @turn.award_spoils
+    require 'pry'; binding.pry
+
+    expect(@turn.player1.deck.cards).to eq([@card8])
+    expect(@turn.player2.deck.cards).to eq([@card7, @card1, @card2, @card5, @card4, @card3, @card6])
   end
 
 end
