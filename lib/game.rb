@@ -31,7 +31,7 @@ class Game
       p "*~*~*~* #{turn.player2.name} has won the game! *~*~*~*"
     elsif turn.player2.has_lost?
       p "*~*~*~* #{turn.player1.name} has won the game! *~*~*~*"
-    elsif @round == 1_000_000
+    elsif @round == 1_000_001
       p '--- DRAW ---'
     end
   end
