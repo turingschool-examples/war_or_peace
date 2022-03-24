@@ -24,4 +24,12 @@ RSpec.describe Player do
     expect(@player1).to be_an_instance_of(Player)
   end
 
+  it "loses when deck is empty" do
+    @player1.deck.remove_card
+    @player1.deck.remove_card
+    @player1.deck.remove_card
+    @player1.deck.remove_card
+    expect(@player1.has_lost?).to eq(true)
+  end
+
 end
