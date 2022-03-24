@@ -3,8 +3,7 @@ require './lib/card'
 require './lib/deck'
 
 class Player
-  attr_reader :cards,
-              :deck,
+  attr_reader :deck,
               :name
 
   def initialize(name, deck)
@@ -15,6 +14,4 @@ class Player
   def has_lost?
     deck.cards.count == 0
   end
-
-
 end
