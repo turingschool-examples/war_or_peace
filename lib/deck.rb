@@ -1,5 +1,4 @@
 class Deck
-
   attr_reader :cards
 
   def initialize(cards)
@@ -11,9 +10,7 @@ class Deck
   end
 
   def high_ranking_cards
-    high_ranking_cards = @cards.select do |card|
-      card.rank > 10
-    end
+    high_ranking_cards = @cards.select { |card| card.rank > 10}
   end
 
   def percent_high_ranking
