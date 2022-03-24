@@ -2,18 +2,25 @@
 require './lib/card.rb'
 
 class Deck
-    attr_reader :cards # :suit, :value, :rank
+    attr_reader :cards, :suit, :value, :rank
     def initialize(cards)
         @cards = []
     end
 
-    def rank_of_card_at
+    def rank_of_card_at(number)
+        @cards.each_with_index do |spot|
+        end
+
 
     end
 
     def high_ranking_cards
-        if rank > 10
-            true
+        high_rank = []
+        @cards.each do |high|
+            if card.rank > 10
+                high_rank << high
+            end
+            high_rank
         end
     end
 
@@ -27,7 +34,6 @@ class Deck
 
     def add_card(deck)
         @cards << deck
-        
     end
 
 end
