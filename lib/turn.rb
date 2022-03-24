@@ -77,7 +77,7 @@ class Turn
      # awarded_spoils = spoils_of_war
      # turn_winner = winner
 
-     require 'pry'; binding.pry
+     # require 'pry'; binding.pry
 
     if turn_winner == player1
 
