@@ -32,6 +32,12 @@ RSpec.describe Deck do
   end
 
   it "gives percentage of high ranking cards" do
-    expect(@deck.percent_high_ranking).to eq(66.6)
+    expect(@deck.percent_high_ranking).to eq(66.67)
   end
+
+  it "removes card from top of deck" do
+    expect(@deck.remove_card).to eq(@card)
+  end
+
+
 end
