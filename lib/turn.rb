@@ -31,7 +31,7 @@ class Turn
         player2
       end
     else
-      "No Winner"
+      "No Winner :("
     end
   end
 
@@ -40,16 +40,19 @@ class Turn
       @spoils_of_war << player1.deck.cards.shift
       @spoils_of_war << player2.deck.cards.shift
     elsif type == :war
-      @spoils_of_war << player1.deck.cards.shift(3)
-      @spoils_of_war << player2.deck.cards.shift(3)
+      3.times do @spoils_of_war << player1.deck.cards.shift end
+      3.times do @spoils_of_war << player2.deck.cards.shift end
     else
-      player1.deck.cards.shift(3)
-      player2.deck.cards.shift(3)
+      3.times do player1.deck.cards.shift end
+      3.times do player2.deck.cards.shift end
     end
   end
 
   def award_spoils(winner)
-    winner.deck.cards << @spoils_of_war
+    @spoils_of_war.each do |element|
+      winner.deck.cards << element
+    # winner.deck.cards << @spoils_of_war ...WHY DIS NO WORKY???????
+    end
   end
 
 end
