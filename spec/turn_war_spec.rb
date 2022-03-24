@@ -76,7 +76,7 @@ describe Turn do
     @turn.pile_cards
     # require 'pry'; binding.pry
     @turn.award_spoils
-    require 'pry'; binding.pry
+    # require 'pry'; binding.pry
 
     expect(@turn.player1.deck.cards).to eq([@card8])
     expect(@turn.player2.deck.cards).to eq([@card7, @card1, @card2, @card5, @card4, @card3, @card6])

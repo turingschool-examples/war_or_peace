@@ -23,6 +23,7 @@ describe Turn do
     @player2 = Player.new("Aurora", @deck2)
 
     @turn = Turn.new(@player1, @player2)
+    @turn_winner = Turn.new(@player1, @player2).winner
     # require 'pry'; binding.pry
 
 
@@ -73,9 +74,9 @@ describe Turn do
   it "makes sure spoils are added correctly" do
     # require 'pry'; binding.pry
     @turn.pile_cards
-    # require 'pry'; binding.pry
-    @turn.award_spoils
     require 'pry'; binding.pry
+    @turn.award_spoils(@turn_winner)
+     require 'pry'; binding.pry
 
     expect(@turn.player1.deck.cards).to eq([@card2, @card5, @card8, @card1, @card3])
     expect(@turn.player2.deck.cards).to eq([@card4, @card6, @card7])

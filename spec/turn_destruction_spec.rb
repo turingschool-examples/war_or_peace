@@ -66,7 +66,7 @@ describe Turn do
   it "tells me what the players have after piling cards" do
 
     @turn.pile_cards
-    require 'pry'; binding.pry
+    # require 'pry'; binding.pry
 
     expect(@turn.player1.deck.cards).to eq([@card8])
     expect(@turn.player2.deck.cards).to eq([@card7])
@@ -77,7 +77,7 @@ describe Turn do
     @turn.pile_cards
     # require 'pry'; binding.pry
     @turn.award_spoils
-    require 'pry'; binding.pry
+    # require 'pry'; binding.pry
 
     expect(@turn.player1.deck.cards).to eq([@card8])
     expect(@turn.player2.deck.cards).to eq([@card7])

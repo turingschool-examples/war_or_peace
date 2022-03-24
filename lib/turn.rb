@@ -73,25 +73,28 @@ class Turn
     end
   end
 
-  def award_spoils
+  def award_spoils(turn_winner)
      # awarded_spoils = spoils_of_war
      # turn_winner = winner
 
      require 'pry'; binding.pry
 
-    if spoils_of_war.count==0
+    if turn_winner == player1
 
-    elsif (spoils_of_war.count == 2 && spoils_of_war[0].rank > spoils_of_war[1].rank) || spoils_of_war[0].rank > spoils_of_war[3].rank
       spoils_of_war.each do |spoil_card|
 
         player1.deck.cards.push(spoil_card)
       end
-    else
+
+    elsif turn_winner == player2
+
       spoils_of_war.each do |spoil_card|
 
         player2.deck.cards.push(spoil_card)
         # require 'pry'; binding.pry
       end
+    else
+
     end
 
 
