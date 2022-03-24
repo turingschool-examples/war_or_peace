@@ -24,7 +24,7 @@ describe Deck do
       cards = [card1, card2, card3]
       deck = Deck.new(cards)
       deck.remove_card
-      expect(deck).to eq deck
+      expect(deck.cards).to eq [card2, card3]
     end
   end
 
@@ -61,7 +61,7 @@ describe Deck do
       deck = Deck.new(cards)
       # pry.break
       deck.add_card(card4)
-      expect(deck).to eq deck
+      expect(deck.cards).to eq [card1, card2, card3, card4]
     end
   end
 
@@ -71,9 +71,10 @@ describe Deck do
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
       card4 = Card.new(:heart, '4', 4)
-      cards = [card1, card2, card3]
+      cards = [card1, card2, card3, card4]
       deck = Deck.new(cards)
-      
+      expect(deck.percent_high_ranking).to eq 0.50
+
     end
   end
 
