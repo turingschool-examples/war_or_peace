@@ -52,7 +52,7 @@ describe Turn do
   it "tells me who the winner is" do
 
     expect(@turn.winner).to eq("No Winner")
-    require 'pry'; binding.pry
+    # require 'pry'; binding.pry
   end
 
 end

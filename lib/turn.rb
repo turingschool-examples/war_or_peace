@@ -24,15 +24,8 @@ class Turn
   end
 
   def winner
-    turn_type = ""
-    if player1.deck.cards[0].rank != player2.deck.cards[0].rank
-      # require 'pry'; binding.pry
-      turn_type = :basic
-    elsif (player1.deck.cards[0].rank == player2.deck.cards[0].rank) && (player1.deck.cards[2].rank == player2.deck.cards[2].rank)
-      turn_type = :mutually_assured_destruction
-    else
-      turn_type = :war
-    end
+    # require 'pry'; binding.pry
+    turn_type = type
 
     if turn_type == :basic
       if player1.deck.cards[0].rank > player2.deck.cards[0].rank
@@ -51,6 +44,32 @@ class Turn
     end
 
   end
+
+  def pile_cards
+    turn_type = type
+    turn_winner = winner
+
+    if turn_type == :basic
+      # require 'pry'; binding.pry
+      spoils_of_war.push(player1.deck.cards.shift)
+      spoils_of_war.push(player2.deck.cards.shift)
+      # require 'pry'; binding.pry
+    elsif turn_type == :war
+      # require 'pry'; binding.pry
+      3.times do
+        spoils_of_war.push(player1.deck.cards.shift)
+      end
+      3.times do
+        spoils_of_war.push(player2.deck.cards.shift)
+      end
+      # require 'pry'; binding.pry
+    else
+    end
+
+
+  end
+
+
 
 
 
