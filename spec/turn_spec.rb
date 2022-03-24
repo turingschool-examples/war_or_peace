@@ -268,4 +268,5 @@ describe Turn do
       expect(player2.deck.cards).to eq([card7, card1, card2, card5, card4, card3, card6])
     end
   end
+
 end
