@@ -5,7 +5,6 @@ class Deck
 
   def initialize(cards)
     @cards = cards
-
   end
 
   def rank_of_card_at(index)
@@ -13,10 +12,10 @@ class Deck
     card.rank
   end
 
-  def high_ranking_cards
+  def high_ranking_cards #Find out why I can't use this method in percent high ranking (maybe move high_rank to @variable?)
     high_rank = []
     @cards.each do |card|
-      if card.rank >= 10
+      if card.rank >= 11
         high_rank << card
       end
     end

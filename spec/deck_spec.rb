@@ -8,8 +8,8 @@ describe Deck do
     @card2 = Card.new(:spade, '3', 3)
     @card3 = Card.new(:heart, 'Ace', 14)
     @cards = [@card1, @card2, @card3]
-
     @deck = Deck.new(@cards)
+#These variables reload before each test so I don't have to retype them
   end
 
   it 'exists' do
@@ -54,7 +54,7 @@ describe Deck do
     end
   end
   describe '#percent_high_ranking' do
-    it 'shows percentage of high ranked cards in a  deck' do
+    it 'shows what percentage of a deck is high rank' do
 
 
       expect(@deck.percent_high_ranking).to eq(66.67)
