@@ -82,6 +82,12 @@ class Turn
     end
   end
 
-
+  #add all the cards in spoils_of_war to the winner
+  #winner is a player object
+  def award_spoils(winner)
+    @spoils_of_war.each do |card|
+      winner.deck.add_card(card)
+    end
+  end
 
 end
