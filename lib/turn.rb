@@ -62,5 +62,13 @@ class Turn
     end
   end
 
+  def award_spoils(winning_player)
+
+    @spoils_of_war.each do |card|
+      winning_player.deck.add_card(card)
+    end
+    @spoils_of_war.clear()
+  end
+
 
 end
