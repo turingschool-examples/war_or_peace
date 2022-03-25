@@ -1,7 +1,7 @@
 require 'rspec'
-require './lib/player'
 require './lib/card'
 require './lib/deck'
+require './lib/player'
 require 'pry'
 
 describe Player do
@@ -61,10 +61,6 @@ describe Player do
     deck = Deck.new(cards)
     name = "Clarisa"
 
-    # 3.times do 
-    #   deck = deck.remove_card
-    #   return deck
-    # end
     player1 = Player.new(name, deck)
 
 
