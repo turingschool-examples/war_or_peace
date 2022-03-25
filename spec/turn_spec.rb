@@ -81,5 +81,40 @@ RSpec.describe Turn do
     expect(@turn.winner(@turn.type)).to eq("No Winner")
   end
 
+  it "#pile_cards during basic turn will send 1 card from"\
+      " both players to spoils" do
+    @deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    @deck2 = Deck.new([@card3, @card4, @card6, @card7])
+    @player1 = Player.new("Megan", @deck1)
+    @player2 = Player.new("Aurora", @deck2)
+    @turn = Turn.new(@player1, @player2)
+    type = @turn.type
+    @turn.pile_cards(type)
+    expect(@turn.spoils_of_war.length).to eq(2)
+  end
 
-end
+  it "#pile_cards during war turn will send 3 cards from"\
+      " both players to spoils" do
+    @deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    @deck2 = Deck.new([@card4, @card3, @card6, @card7])
+    @player1 = Player.new("Megan", @deck1)
+    @player2 = Player.new("Aurora", @deck2)
+    @turn = Turn.new(@player1, @player2)
+    type = @turn.type
+    @turn.pile_cards(type)
+    expect(@turn.spoils_of_war.length).to eq(6)
+  end
+
+  it "#pile_cards during MAD turn will remove 3 cards from"\
+      " both players" do
+    @deck1 = Deck.new([@card1, @card2, @card8, @card5])
+    @deck2 = Deck.new([@card4, @card3, @card7, @card6])
+    @player1 = Player.new("Megan", @deck1)
+    @player2 = Player.new("Aurora", @deck2)
+    @turn = Turn.new(@player1, @player2)
+    type = @turn.type
+    @turn.pile_cards(type)
+    expect(@turn.spoils_of_war.length).to eq(0)
+  end
+
+      end
