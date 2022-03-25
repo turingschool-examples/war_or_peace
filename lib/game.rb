@@ -5,13 +5,13 @@ require './lib/turn'
 require './lib/card_generator'
 
 class Game
-  def initialize
+  def initialize(player1_name, player2_name)
     @round = 1
     @shuffled_cards = CardGenerator.new('cards.txt').cards.shuffle
     @deck1 = Deck.new(@shuffled_cards[0..25])
     @deck2 = Deck.new(@shuffled_cards[26..51])
-    @player1 = Player.new('Megan', @deck1)
-    @player2 = Player.new('Aurora', @deck2)
+    @player1 = Player.new(player1_name, @deck1)
+    @player2 = Player.new(player2_name, @deck2)
   end
 
   def start
