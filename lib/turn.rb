@@ -17,11 +17,15 @@ class Turn
   def type
     if(@player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0))
       return :basic
-    elsif(@player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
-       && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2))
+
+    elsif((@player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)) &&
+       (@player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)))
        return :mutually_assured_destruction
+
      else
        return :war
+     end
+
   end
 
 
