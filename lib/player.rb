@@ -1,3 +1,4 @@
+require 'pry'
 require './lib/deck'
 
 class Player
