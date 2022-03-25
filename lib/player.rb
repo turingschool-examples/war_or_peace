@@ -9,7 +9,7 @@ class Player
   end
 
   def has_lost?
-    if deck.cards.count >= 1
+    if @deck.cards.length >= 1
       false
     else
       true
