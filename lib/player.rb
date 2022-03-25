@@ -4,8 +4,14 @@ class Player
   @name = name
   @deck = deck
   end
-end
+
 
 def has_lost?
-  
+  if @deck.cards.count == 0
+    p true
+  else
+    p false
+  end
 end
+end 
+# player = Player.new('Clarisa', deck)
