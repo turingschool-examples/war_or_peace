@@ -20,15 +20,20 @@ class Deck
   end
 
   def percent_high_ranking
-    # binding.pry
+
     percent = (high_ranking_cards.count.to_f / @cards.count.to_f) * 100
     percent.round(2)
   end
 
   def remove_card
     # binding.pry
-    # @cards.delete_at(0)
-    @cards.shift
+    @cards.delete_at(0)
+    # @cards.shift
+  end
+
+  def add_card(new_card)
+    # binding.pry
+    @cards.push(new_card)
   end
 
 end
