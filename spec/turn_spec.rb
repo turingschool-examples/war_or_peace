@@ -117,4 +117,31 @@ RSpec.describe Turn do
     expect(@turn.spoils_of_war.length).to eq(0)
   end
 
+  it "#award_spoils sends cards from spoils to winner" do
+    @deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    @deck2 = Deck.new([@card3, @card4, @card6, @card7])
+    @player1 = Player.new("Megan", @deck1)
+    @player2 = Player.new("Aurora", @deck2)
+    @turn = Turn.new(@player1, @player2)
+    type = @turn.type
+    @turn.pile_cards(type)
+    winner = @turn.winner(@turn.type)
+    @turn.award_spoils(winner)
+    expect(@player2.deck.cards.length).to eq(5)
+  end
+
+  it "#award_spoils should empty spoils after" do
+    @deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    @deck2 = Deck.new([@card3, @card4, @card6, @card7])
+    @player1 = Player.new("Megan", @deck1)
+    @player2 = Player.new("Aurora", @deck2)
+    @turn = Turn.new(@player1, @player2)
+    type = @turn.type
+    @turn.pile_cards(type)
+    winner = @turn.winner(@turn.type)
+    @turn.award_spoils(winner)
+    expect(@turn.spoils_of_war.length).to eq(0)
+  end
+
+
       end
