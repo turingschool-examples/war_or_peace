@@ -3,28 +3,30 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 require './lib/game_play'
+require './lib/card_generator'
 require './pry'
 
-suits = [:heart, :diamond, :spade, :club]
-cards = []
-#create 52 cards of a deck and store in cards array
-suits.each do |suit|
-  13.times do |i|
-    index = i + 2
-    if(index == 11)
-      cards << Card.new(suit, "Jack", index)
-    elsif(index == 12)
-      cards << Card.new(suit, "Queen", index)
-    elsif(index == 13)
-      cards << Card.new(suit, "King", index)
-    elsif(index == 14)
-      cards << Card.new(suit, "Ace", index)
-    else
-      cards << Card.new(suit, index.to_s, index)
-    end
-  end
-end
+# suits = [:heart, :diamond, :spade, :club]
+# cards = []
+# #create 52 cards of a deck and store in cards array
+# suits.each do |suit|
+#   13.times do |i|
+#     index = i + 2
+#     if(index == 11)
+#       cards << Card.new(suit, "Jack", index)
+#     elsif(index == 12)
+#       cards << Card.new(suit, "Queen", index)
+#     elsif(index == 13)
+#       cards << Card.new(suit, "King", index)
+#     elsif(index == 14)
+#       cards << Card.new(suit, "Ace", index)
+#     else
+#       cards << Card.new(suit, index.to_s, index)
+#     end
+#   end
+# end
 
+cards = CardGenerator.new("cards.txt").cards
 
 deck1 = Deck.new(cards.shuffle)
 deck2 = Deck.new(cards.shuffle)
