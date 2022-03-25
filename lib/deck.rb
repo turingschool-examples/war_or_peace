@@ -7,7 +7,11 @@ class Deck
   end
 
   def rank_of_card_at(location)
-    return cards[location].rank
+    if @cards[location] == nil
+      return 0
+    else
+      return cards[location].rank
+    end
   end
 
   def high_ranking_cards

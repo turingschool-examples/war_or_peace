@@ -86,10 +86,10 @@ end
 
 
 # p "Enter player 1 Name:"
-player_1_name = "Jim"
+player_1_name = "Megan"
 #
 # p "Enter player 1 Name:"
-player_2_name = "Sophia"
+player_2_name = "Aurora"
 
 player1 = Player.new(player_1_name, deck1)
 player2 = Player.new(player_2_name, deck2)
@@ -123,5 +123,5 @@ else
     # end
   end
 
-# require 'pry'; binding.pry
+require 'pry'; binding.pry
 end

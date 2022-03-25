@@ -61,6 +61,7 @@ class Game
 
     if @turn_counter == 100000
       @game_over = true
+      # require 'pry'; binding.pry
       "---- DRAW ----"
 
 
