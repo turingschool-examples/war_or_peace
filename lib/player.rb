@@ -12,6 +12,7 @@ class Player
   end
 
   def has_lost?
+    #question here - should I use @deck or deck for the formula below?
     return deck.cards.count <= 0
   end
 

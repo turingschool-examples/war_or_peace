@@ -116,11 +116,7 @@ else
     p new_game.start
     # require 'pry'; binding.pry
 
-    # if new_game.turn_counter % 500 == 0
-    #   require 'pry'; binding.pry
-    #   player1 = Player.new(player_1_name, player1.deck.cards.shuffle)
-    #   player2 = Player.new(player_2_name, player2.deck.cards.shuffle)
-    # end
+
   end
 
 require 'pry'; binding.pry

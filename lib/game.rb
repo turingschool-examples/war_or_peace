@@ -39,11 +39,15 @@ class Game
     war_turn.pile_cards
     war_turn.award_spoils(war_turn_winner)
 
-
+    # if @turn_counter % 500 == 0
+    #   require 'pry'; binding.pry
+    #   @player1 = Player.new(@player1.name, @player1.deck.cards.shuffle)
+    #   @player2 = Player.new(@player2.name, @player2.deck.cards.shuffle)
+    #   require 'pry'; binding.pry
+    # end
 
     return turn_message
     # require 'pry'; binding.pry
-
   end
 
   def start
@@ -58,6 +62,8 @@ class Game
     #     p "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
     #     @game_over = true
     #   end
+
+
 
     if @turn_counter == 100000
       @game_over = true
