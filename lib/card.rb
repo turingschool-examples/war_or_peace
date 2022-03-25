@@ -1,10 +1,12 @@
 class Card
-  attr_reader :suit, :rank, :value
-  def initialize(suit, rank, value)
+  attr_reader :suit, :value, :rank
+  def initialize(suit, value, rank)
     @suit = suit
-    @rank = rank
     @value = value
+    @rank = rank
   end
+# ----- ATTEMPT -----
+  # Code for attempt at making card class carry all arrays for deck & game.
   # def suit(suit)
   #   @suit = [:spade, :heart, :diamond, :club]
   # end
@@ -16,4 +18,8 @@ class Card
   # end
 end
 card = Card.new(:diamond, 'Queen', 12)
+
 p card
+p card.suit
+p card.value
+p card.rank
