@@ -60,7 +60,7 @@ RSpec.describe Turn do
     @player1 = Player.new("Megan", @deck1)
     @player2 = Player.new("Aurora", @deck2)
     @turn = Turn.new(@player1, @player2)
-    expect(@turn.winner(:basic).name).to eq("Megan")
+    expect(@turn.winner(@turn.type).name).to eq("Megan")
   end
 
   it "winner will be higher second card on war turn" do
@@ -69,16 +69,16 @@ RSpec.describe Turn do
     @player1 = Player.new("Megan", @deck1)
     @player2 = Player.new("Aurora", @deck2)
     @turn = Turn.new(@player1, @player2)
-    expect(@turn.winner(:war).name).to eq("Aurora")
+    expect(@turn.winner(@turn.type).name).to eq("Aurora")
   end
 
   it "will end with no winner" do
-    @deck1 = Deck.new([@card1, @card2, @card5, @card8])
-    @deck2 = Deck.new([@card3, @card4, @card6, @card7])
+    @deck1 = Deck.new([@card1, @card2, @card7, @card5])
+    @deck2 = Deck.new([@card4, @card3, @card8, @card6])
     @player1 = Player.new("Megan", @deck1)
     @player2 = Player.new("Aurora", @deck2)
     @turn = Turn.new(@player1, @player2)
-    expect(@turn.winner(:mutually_assured_destruction)).to eq("No Winner")
+    expect(@turn.winner(@turn.type)).to eq("No Winner")
   end
 
 
