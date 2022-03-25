@@ -15,8 +15,8 @@ class Player
     end
   end
 
-  def remove_card
-    @deck.cards.delete_at(0)
-  end
+  # def remove_card
+  #   @deck.cards.delete_at(0)
+  # end
 
 end

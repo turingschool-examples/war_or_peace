@@ -45,6 +45,7 @@ RSpec.describe Player do
     cards = [card1, card2, card3]
     deck = Deck.new([card1, card2, card3])
     player = Player.new('Clarisa', deck)
+    player.deck.remove_card
 
     expect(player.has_lost?).to eq false
   end
@@ -56,8 +57,8 @@ RSpec.describe Player do
     cards = [card1, card2, card3]
     deck = Deck.new([card1, card2, card3])
     player = Player.new('Clarisa', deck)
-
-    expect(player.deck.remove_card).to eq card1
+    player.deck.remove_card
+    expect(player.deck.remove_card).to eq card2
   end
 
   it "returns whether or not the player has lost" do
@@ -67,6 +68,8 @@ RSpec.describe Player do
     cards = [card1, card2, card3]
     deck = Deck.new([card1, card2, card3])
     player = Player.new('Clarisa', deck)
+    player.deck.remove_card
+    player.deck.remove_card
 
     expect(player.has_lost?).to eq false
   end
@@ -78,8 +81,10 @@ RSpec.describe Player do
     cards = [card1, card2, card3]
     deck = Deck.new([card1, card2, card3])
     player = Player.new('Clarisa', deck)
+    player.deck.remove_card
+    player.deck.remove_card
 
-    expect(player.deck.remove_card).to eq card1
+    expect(player.deck.remove_card).to eq card3
   end
 
   it "returns whether or not the player has lost" do
@@ -89,7 +94,10 @@ RSpec.describe Player do
     cards = [card1, card2, card3]
     deck = Deck.new([card1, card2, card3])
     player = Player.new('Clarisa', deck)
-binding.pry 
+    binding.pry
+    player.deck.remove_card
+    player.deck.remove_card
+    player.deck.remove_card
     expect(player.has_lost?).to eq true
   end
 
