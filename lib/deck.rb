@@ -5,6 +5,7 @@ class Deck
 
   def initialize(cards)
     @cards = cards
+    @high_ranking_cards = high_ranking_cards
   end
 
   def rank_of_card_at(index)
@@ -12,22 +13,27 @@ class Deck
   end
 
   def high_ranking_cards
-    @high_ranking_cards = []
+    @high_rank = []
     @cards.each do |card|
       if card.rank > 10
-        @high_ranking_cards << card
+        @high_rank << card
       end
     end
-    return @high_ranking_cards
-
-    def percent_high_ranking
-      @percent_high_ranking = ((@high_ranking_cards.legnth / @cards.count) * 100).to_i
-    end
-    return @percent_high_ranking
+  return @high_rank
   end
 
-  # def remove_card
-  #   @card.pop
-  # end
+  def percent_high_ranking
+    percent = ((@high_rank.count.to_f / @cards.count) *100).round(2)
+  end
+
+  def remove_card
+    @cards.shift
+    @cards
+  end
+
+  def add_card(new_card)
+    @cards << new_card
+  end
+
 
 end
