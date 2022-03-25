@@ -7,7 +7,7 @@ require './lib/game_play'
 
 describe GamePlay do
 
-  xit "exists" do
+  it "exists" do
     card1 = Card.new(:heart, "Jack", 11)
     card2 = Card.new(:heart, "10", 10)
     card3 = Card.new(:heart, "9", 9)
@@ -27,7 +27,7 @@ describe GamePlay do
   end
 
   describe "#start" do
-    xit "runs an entire game and returns a string designating the winner" do
+    it "runs an entire game and returns a string designating the winner" do
       card1 = Card.new(:heart, "Jack", 11)
       card2 = Card.new(:heart, "10", 10)
       card3 = Card.new(:heart, "9", 9)
@@ -46,7 +46,7 @@ describe GamePlay do
       expect(play.start).to eq("*~*~*~* Megan has won the game! *~*~*~*")
     end
 
-    xit "runs an entire game that results in a draw" do
+    it "runs an entire game that results in a draw" do
       card1 = Card.new(:heart, "Jack", 11)
       card2 = Card.new(:heart, "2", 2)
       card3 = Card.new(:heart, "4", 4)
@@ -65,7 +65,7 @@ describe GamePlay do
       expect(play.start).to eq("---- DRAW ----")
     end
 
-    xit "handles the case when one player does not have enough cards when type is war" do
+    it "handles the case when one player does not have enough cards when type is war" do
       card1 = Card.new(:heart, "Jack", 11)
       card2 = Card.new(:heart, "2", 2)
       card3 = Card.new(:diamond, "Jack", 11)
