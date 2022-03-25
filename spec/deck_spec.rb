@@ -73,7 +73,7 @@ describe Deck do
     cards = [card1, card2, card3]
   #
     deck = Deck.new(cards)
-    expect (deck.add_card).to eq(card4)
+    expect(deck.add_card(card4)).to eq([card1, card2, card3, card4])
   end
 
 
