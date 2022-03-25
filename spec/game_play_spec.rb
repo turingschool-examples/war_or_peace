@@ -7,7 +7,7 @@ require './lib/game_play'
 
 describe GamePlay do
 
-  it "exists" do
+  xit "exists" do
     card1 = Card.new(:heart, "Jack", 11)
     card2 = Card.new(:heart, "10", 10)
     card3 = Card.new(:heart, "9", 9)
@@ -27,7 +27,7 @@ describe GamePlay do
   end
 
   describe "#start" do
-    it "runs an entire game and returns a string designating the winner" do
+    xit "runs an entire game and returns a string designating the winner" do
       card1 = Card.new(:heart, "Jack", 11)
       card2 = Card.new(:heart, "10", 10)
       card3 = Card.new(:heart, "9", 9)
@@ -46,7 +46,7 @@ describe GamePlay do
       expect(play.start).to eq("*~*~*~* Megan has won the game! *~*~*~*")
     end
 
-    it "runs an entire game that results in a draw" do
+    xit "runs an entire game that results in a draw" do
       card1 = Card.new(:heart, "Jack", 11)
       card2 = Card.new(:heart, "2", 2)
       card3 = Card.new(:heart, "4", 4)
@@ -65,7 +65,7 @@ describe GamePlay do
       expect(play.start).to eq("---- DRAW ----")
     end
 
-    it "handles the case when one player does not have enough cards when type is war" do
+    xit "handles the case when one player does not have enough cards when type is war" do
       card1 = Card.new(:heart, "Jack", 11)
       card2 = Card.new(:heart, "2", 2)
       card3 = Card.new(:diamond, "Jack", 11)
@@ -82,6 +82,23 @@ describe GamePlay do
       play = GamePlay.new(player1, player2)
 
       expect(play.start).to eq("*~*~*~* Aurora has won the game! *~*~*~*")
+    end
+
+    it "calls a draw if both players are out of cards" do
+      card1 = Card.new(:heart, "Jack", 11)
+      card2 = Card.new(:heart, "2", 2)
+      card3 = Card.new(:diamond, "Jack", 11)
+      card4 = Card.new(:diamond, "Ace", 14)
+      card5 = Card.new(:heart, "King", 13)
+      card6 = Card.new(:diamond, "King", 13)
+      deck1 = Deck.new([card1, card2, card5])
+      deck2 = Deck.new([card3, card4, card6])
+      player1 = Player.new("Megan", deck1)
+      player2 = Player.new("Aurora", deck2)
+
+      play = GamePlay.new(player1, player2)
+
+      expect(play.start).to eq("---- DRAW ----")
     end
   end
 

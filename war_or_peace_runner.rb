@@ -28,13 +28,14 @@ end
 
 deck1 = Deck.new(cards.shuffle)
 deck2 = Deck.new(cards.shuffle)
-player1 = Player.new("Nadine", deck2)
-player2 = Player.new("Taylor", deck1)
+player1 = Player.new("Nadine", deck1)
+player2 = Player.new("Taylor", deck2)
 
 #Message output to terminal
 puts("Welcome to War! (or Peace) This game will be played with 52 cards.
 The players today are #{player1.name} and #{player2.name}.
-Type 'GO' to start the game!")
+Type 'GO' to start the game!
+----------------------------------------------------------------")
 user_input = gets.chomp
 #Check that the user entered a valid statement
 while (user_input != "GO") && (user_input != "exit")

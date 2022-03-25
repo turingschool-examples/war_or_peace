@@ -15,7 +15,7 @@ class GamePlay
   def start
     result = "---- DRAW ----"
     i = 1
-    max_turns = 10001
+    max_turns = 1001
     #Go though up to 1000 turns
     while i < max_turns
       #create a turn
@@ -32,12 +32,17 @@ class GamePlay
       else
         puts "Turn #{i}: *mutually assured destruction* 6 cards removed from play"
       end
-      #determine if someone and break out of the loop if that is the case
+      #determine if a player has won and break out of the loop if that is the case
       if (@player1.has_lost? || @player2.has_lost?)
-
-        result = "*~*~*~* #{winner.name} has won the game! *~*~*~*"
-        puts result
-        break
+        #if both players have lost it is a draw
+        if (@player1.has_lost? == @player2.has_lost?)
+          puts result
+          break
+        else
+          result = "*~*~*~* #{winner.name} has won the game! *~*~*~*"
+          puts result
+          break
+        end
       end
       i += 1
       if (i == max_turns)
