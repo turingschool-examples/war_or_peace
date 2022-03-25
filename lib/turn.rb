@@ -7,32 +7,33 @@ class Turn
   attr_reader :player1,
               :player2,
               :spoils_of_war
-              :type
 
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
+    @turn_type = nil
   end
 
   def type
     if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
-      @type = :mutually_assured_destruction
+      @turn_type = :mutually_assured_destruction
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
-      @type = :war
+      @turn_type = :war
     else
-      @type = :basic
+      @turn_type = :basic
     end
   end
 
   def winner
-    if @type = :basic
+    # binding.pry
+    if @turn_type == :basic
       if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
         player1
       else
         player2
       end
-    elsif @type = :war
+    elsif @turn_type == :war
       if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
         player1
       else
@@ -42,13 +43,14 @@ class Turn
       "No Winner"
     end
   end
-# binding.pry
+
   def pile_cards
-    binding.pry
-    if type = :basic
+    # binding.pry
+    if @turn_type == :basic
       @spoils_of_war << player1.deck.cards.shift << player2.deck.cards.shift
-    elsif type = :war
+    elsif @turn_type == :war
       @spoils_of_war << player1.deck.cards.shift(3) << player2.deck.cards.shift(3)
+      @spoils_of_war.flatten!
     else
       player1.deck.cards.shift(3)
       player2.deck.cards.shift(3)
@@ -56,8 +58,11 @@ class Turn
   end
 
   def award_spoils(winner)
-    # binding.pry
+    if winner = "No Winner"
+      "Mutually Assured Destruction"
+    else
     winner.deck.cards << @spoils_of_war
+    end
   end
 
 end
