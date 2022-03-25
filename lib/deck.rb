@@ -19,8 +19,16 @@ class Deck
   return face_cards
   end
 
-  def percent_ranking_cards
+  def percent_high_ranking
+    # binding.pry
+    percent = (high_ranking_cards.count.to_f / @cards.count.to_f) * 100
+    percent.round(2)
+  end
 
+  def remove_card
+    # binding.pry
+    # @cards.delete_at(0)
+    @cards.shift
   end
 
 end
