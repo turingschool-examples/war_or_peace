@@ -6,4 +6,4 @@ require './lib/game'
 
 newgame = Game.new
 
-newgame.start_game
+newgame.start

@@ -8,7 +8,7 @@ attr_reader :standard_deck, :deck1, :deck2
     @deck2 = []
   end
 
-  def start_game
+  def start
     p "Welcome to War! (or Peace) This game will be played with 52 cards."
     p "The players today are Megan and Aurora."
     p "Type 'GO' to start the game!"
