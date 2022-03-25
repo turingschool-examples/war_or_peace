@@ -9,7 +9,7 @@ require './lib/game'
 
 # require 'pry'; binding.pry
 
-card1 = (Card.new(:heart, 'Ace', 14))
+card1 = Card.new(:heart, 'Ace', 14)
 card2 = Card.new(:heart, '2', 2)
 card3 = Card.new(:heart, '3', 3)
 card4 = Card.new(:heart, '4', 4)
@@ -65,22 +65,63 @@ card50 = Card.new(:diamond, 'Jack', 11)
 card51 = Card.new(:diamond, 'Queen', 12)
 card52 = Card.new(:diamond, 'King', 13)
 
+deck1 = Deck.new([])
+deck2 = Deck.new([])
+
 complete_deck = Deck.new([card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20, card21, card22, card23, card24, card25, card26, card27, card28, card29, card30, card31, card32, card33, card34, card35, card36, card37, card38, card39, card40, card41, card42, card43, card44, card45, card46, card47, card48, card49, card50, card51, card52])
+shuffled_deck = Deck.new(complete_deck.cards.shuffle)
+# shuffled_deck = complete_deck
+
+deck_counter = shuffled_deck.cards.count / 2
+
+# require 'pry'; binding.pry
+
+deck_counter.times do
+  deck1.cards.push(shuffled_deck.cards.shift)
+  deck2.cards.push(shuffled_deck.cards.shift)
+end
 
 
 # require 'pry'; binding.pry
 
 
 # p "Enter player 1 Name:"
-# player_1_name = gets.chomp
+player_1_name = "Jim"
 #
 # p "Enter player 1 Name:"
-# player_1_name = gets.chomp
-#
-#
-# p "Welcome to War! (or Peace) This game will be played with 52 cards."
-# p "The players today are Megan and Aurora."
-# p "Type 'Go' to start the game!"
-#
-# starter_input = gets.chomp
-# p starter_input
+player_2_name = "Sophia"
+
+player1 = Player.new(player_1_name, deck1)
+player2 = Player.new(player_2_name, deck2)
+
+new_game = Game.new(player1, player2)
+
+# require 'pry'; binding.pry
+
+p "Welcome to War! (or Peace) This game will be played with 52 cards."
+p "The players today are #{player_1_name} and #{player_2_name}."
+
+# require 'pry'; binding.pry
+
+p "Type 'Go' to start the game!"
+
+starter_input = gets.chomp
+
+if starter_input != 'Go'
+  p "Invalid Input"
+
+else
+  while new_game.game_over == false
+    # require 'pry'; binding.pry
+    p new_game.start
+    # require 'pry'; binding.pry
+
+    # if new_game.turn_counter % 500 == 0
+    #   require 'pry'; binding.pry
+    #   player1 = Player.new(player_1_name, player1.deck.cards.shuffle)
+    #   player2 = Player.new(player_2_name, player2.deck.cards.shuffle)
+    # end
+  end
+
+# require 'pry'; binding.pry
+end

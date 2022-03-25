@@ -15,25 +15,26 @@ class Turn
   def type
     if player1.deck.cards[0].rank != player2.deck.cards[0].rank
       # require 'pry'; binding.pry
-      return :basic
+       :basic
     elsif (player1.deck.cards[0].rank == player2.deck.cards[0].rank) && (player1.deck.cards[2].rank == player2.deck.cards[2].rank)
-      return :mutually_assured_destruction
+      # require 'pry'; binding.pry
+       :mutually_assured_destruction
     else
-      return :war
+       :war
     end
   end
 
   def winner
     # require 'pry'; binding.pry
-    turn_type = type
+    # turn_type = type
 
-    if turn_type == :basic
+    if type == :basic
       if player1.deck.cards[0].rank > player2.deck.cards[0].rank
         return player1
       else
         return player2
       end
-    elsif turn_type == :war
+    elsif type == :war
       if player1.deck.cards[2].rank > player2.deck.cards[2].rank
         return player1
       else
