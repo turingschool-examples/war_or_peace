@@ -12,7 +12,7 @@ describe Player do
     expect(player.name).to eq('Clarisa')
   end
 
-  xit "check for a loss" do
+  it "check for a loss" do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
