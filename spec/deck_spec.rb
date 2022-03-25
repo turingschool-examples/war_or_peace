@@ -49,12 +49,28 @@ RSpec.describe Deck do
     expect(deck.percent_high_ranking).to eq(66.67)
   end
 
-  xit 'remove the top card from the deck' do
+  it 'can remove the top card from the deck' do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
-    expect(deck.remove_card).to eq([card1])
+    expect(deck.remove_card).to eq(card1)
+    expect(deck.cards).to eq([card2, card3])
+    expect(deck.high_ranking_cards).to eq([card3])
+    expect(deck.percent_high_ranking).to eq(50)
+  end
+
+  it 'can add one card to the bottom of the deck' do
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+    card4 = Card.new(:club, '5', 5)
+    expect(deck.add_card(card4)).to eq(cards)
+    expect(deck.cards).to eq([card1, card2, card3, card4])
+    expect(deck.high_ranking_cards).to eq([card1, card3])
+    expect(deck.percent_high_ranking).to eq(50)
   end
 end
