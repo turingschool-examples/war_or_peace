@@ -92,32 +92,38 @@ attr_reader :standard_deck, :deck1, :deck2
     @deck1 = Deck.new(@standard_deck[0..25])
     @deck2 = Deck.new(@standard_deck[26..51])
   end
-  #
-  # def start_turns
-  #   player1 = Player.new('Megan', deck1)
-  #   player2 = Player.new('Aurora', deck2)
-  # #
-  # # turns = 0
-  # # while turns <= 1000000000
-  # #   until player1.has_lost? || player2.has_lost?
-  # #     turns += 1
-  # #     if type == :basic
-  # #       p "Turn #{turns}: #{Turn.winner} won 2 cards."
-  # #     elsif type == :war
-  # #       p "Turn #{turns}: #{Turn.winner} won 6 cards."
-  # #     else
-  # #       p "Turn #{turns}: *mutually assured destruction* 6 cards removed from play"
-  # #     end
-  # #   end
-  # #
-  # #   if player1.has_lost?
-  # #     p "*~*~*~* #{player2} has won the game! *~*~*~*"
-  # #   elsif player2.has_lost
-  # #     p "*~*~*~* #{player1} has won the game! *~*~*~*"
-  # #   elsif turns == 1000000000
-  # #     p "---- DRAW ----"
-  # #   end
-  # #
-  # # end
-  # end
+
+  def start_turns
+    player1 = Player.new('Megan', deck1)
+    player2 = Player.new('Aurora', deck2)
+    turns = 0
+
+    # while turns <= 1000
+      until player1.has_lost? || player2.has_lost? || turns == 1000
+        turn = Turn.new(player1, player2)
+        turn.pile_cards
+        turn.award_spoils(turn.winner)
+        turns += 1
+        if turn.type == :basic
+          p "Turn #{turns}: #{turn.winner.name} won 2 cards."
+        elsif turn.type == :war
+          p "Turn #{turns}: #{turn.winner.name} won 6 cards."
+        elsif turn.type == :mutually_assured_destruction
+          p "Turn #{turns}: *mutually assured destruction* 6 cards removed from play"
+        end
+      end
+
+      if player1.has_lost?
+        p "*~*~*~* #{turn.player2.name} has won the game! *~*~*~*"
+        # break
+      elsif player2.has_lost?
+        p "*~*~*~* #{turn.player1.name} has won the game! *~*~*~*"
+        # break
+      elsif turns == 1000
+        p "---- DRAW ----"
+        # break
+    # end
+    end
+  end
+
 end

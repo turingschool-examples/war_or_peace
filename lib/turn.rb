@@ -30,8 +30,9 @@ class Turn
       else
         player2
       end
-    else
-      "No Winner :("
+    elsif type == :mutually_assured_destruction
+      # require 'pry'; binding.pry
+      "No Winner"
     end
   end
 
@@ -50,8 +51,13 @@ class Turn
 
   def award_spoils(winner)
     @spoils_of_war.each do |element|
-      winner.deck.cards << element
-    # winner.deck.cards << @spoils_of_war ...WHY DIS NO WORKY???????
+      if type == :basic
+        winner.deck.cards << element
+      elsif type == :war
+        winner.deck.cards << element
+      else
+
+      end
     end
   end
 

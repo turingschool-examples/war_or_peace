@@ -27,4 +27,11 @@ RSpec.describe Game do
     expect(game.deck1.cards.length).to eq(26)
     expect(game.deck2.cards.length).to eq(26)
   end
+
+  xit "starts the game"
+    game = Game.new
+    game.create_deck
+    game.split_deck
+    game.start_turns
+  end 
 end
