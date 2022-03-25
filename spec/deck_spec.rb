@@ -7,7 +7,7 @@ RSpec.describe Deck do
 
   context "my tests" do
 
-    it "existsand has cards" do
+    it "exists and has cards" do
       card1 = Card.new(:club, 'King', 13)
       card2 = Card.new(:spade, 'Three', 3)
       card3 = Card.new(:diamond, 'Eight', 8)
