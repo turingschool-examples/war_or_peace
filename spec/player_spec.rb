@@ -48,13 +48,14 @@ RSpec.describe Player do
       cards = [card1, card2, card3]
       deck = Deck.new(cards)
       player = Player.new('Caden', deck)
+      expect(player.has_lost?).to eq(false)
       player.deck.remove_card
+      expect(player.has_lost?).to eq(false)
       player.deck.remove_card
+      expect(player.has_lost?).to eq(false)
       player.deck.remove_card
       expect(player.has_lost?).to eq true
     end
-
-    it "can determine if "
   end
   context "interaction pattern" do
   end
