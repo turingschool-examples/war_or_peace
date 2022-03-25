@@ -2,15 +2,21 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/card_generator'
 
 class Game
   def initialize
     @round = 1
+    @shuffled_cards = CardGenerator.new('cards.txt').cards.shuffle
+    @deck1 = Deck.new(@shuffled_cards[0..25])
+    @deck2 = Deck.new(@shuffled_cards[26..51])
+    @player1 = Player.new('Megan', @deck1)
+    @player2 = Player.new('Aurora', @deck2)
   end
 
-  def start(player1, player2)
-    turn = Turn.new(player1, player2)
-    until turn.player1.has_lost? || turn.player2.has_lost? || @round == 1_000_001
+  def start
+    until @player1.has_lost? || @player2.has_lost? || @round == 1_000_001
+      turn = Turn.new(@player1, @player2)
       winner = turn.winner
       type = turn.type
       turn.pile_cards
