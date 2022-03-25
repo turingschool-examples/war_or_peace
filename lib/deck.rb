@@ -10,7 +10,7 @@ class Deck
     if @cards[location] == nil
       return 0
     else
-      return cards[location].rank
+      return @cards[location].rank
     end
   end
 

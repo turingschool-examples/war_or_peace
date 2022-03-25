@@ -5,6 +5,7 @@ require './lib/player'
 require './lib/turn'
 require './lib/game'
 require './lib/card_generator'
+require 'CSV'
 
 describe CardGenerator do
 
@@ -17,9 +18,15 @@ describe CardGenerator do
   end
 
   it "uploads the cards" do
-    filename = "cards.txt"
-    cards = CardGenerator.new(filename).cards
-    expect(cards.length).to eq(52)
+    # require 'pry'; binding.pry
+    @filename = "cards.txt"
+    # require 'pry'; binding.pry
+    deck = CardGenerator.new(@filename)
+    # require 'pry'; binding.pry
+    tester_deck = deck.generate_cards
+
+    # require 'pry'; binding.pry
+    expect(tester_deck.cards.length).to eq(52)
 
   end
 

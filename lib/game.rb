@@ -39,12 +39,12 @@ class Game
     war_turn.pile_cards
     war_turn.award_spoils(war_turn_winner)
 
-    # if @turn_counter % 500 == 0
-    #   require 'pry'; binding.pry
-    #   @player1 = Player.new(@player1.name, @player1.deck.cards.shuffle)
-    #   @player2 = Player.new(@player2.name, @player2.deck.cards.shuffle)
-    #   require 'pry'; binding.pry
-    # end
+    if @turn_counter % 500 == 0
+      # require 'pry'; binding.pry
+      @player1 = Player.new(@player1.name, Deck.new(@player1.deck.cards.shuffle))
+      @player2 = Player.new(@player2.name, Deck.new(@player2.deck.cards.shuffle))
+      # require 'pry'; binding.pry
+    end
 
     return turn_message
     # require 'pry'; binding.pry
@@ -73,10 +73,12 @@ class Game
 
     elsif @player1.has_lost?
       @game_over = true
+      # require 'pry'; binding.pry
       "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
 
     elsif @player2.has_lost?
       @game_over = true
+      # require 'pry'; binding.pry
       "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
 
     else

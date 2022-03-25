@@ -84,17 +84,16 @@ class Turn
     if turn_winner == player1
 
       spoils_of_war.each do |spoil_card|
-
         player1.deck.cards.push(spoil_card)
       end
 
     else
 
       spoils_of_war.each do |spoil_card|
-
         player2.deck.cards.push(spoil_card)
         # require 'pry'; binding.pry
       end
+      
     end
 
 
