@@ -7,10 +7,15 @@ attr_reader :name, :deck
   end
 
   def has_lost?
-    if deck.cards.count > 1
+    if deck.cards.count >= 1
       false
+    else
+      true
     end
   end
-# in theory it makes sense to say we want this to be deck.cards.__ but where does
-# it pull cards from?
+
+  def remove_card
+    deck.cards.shift
+  end
+
 end
