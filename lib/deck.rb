@@ -1,3 +1,4 @@
+require 'pry'
 class Deck
   attr_reader :cards
   def initialize(cards)
@@ -31,4 +32,4 @@ class Deck
     @cards.push(cards)
   end
 
-  end
+end
