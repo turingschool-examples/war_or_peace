@@ -19,10 +19,7 @@ attr_reader :standard_deck, :deck1, :deck2
     if response == 'GO'
       create_deck
       split_deck
-      p @standard_deck
-      p deck1
-      p deck2
-      # start_turns
+      start_turns
       break
     elsif response == 'NO'
       p "Fine, I didn't want to play with you anyway."
@@ -91,48 +88,36 @@ attr_reader :standard_deck, :deck1, :deck2
     @standard_deck.shuffle!
   end
 
-  #
-  # def shuffle_deck
-  #   @standard_deck.shuffle!
-  #   @standard_deck.shuffle!
-  # end
-  # #
   def split_deck
     @deck1 = Deck.new(@standard_deck[0..25])
     @deck2 = Deck.new(@standard_deck[26..51])
   end
   #
   # def start_turns
-  #   @standard_deck.shuffle!
-  #   @standard_deck.shuffle!
-  #   deck1 = Deck.new(@standard_deck[0..25])
-  #   deck2 = Deck.new(@standard_deck[26..51])
   #   player1 = Player.new('Megan', deck1)
   #   player2 = Player.new('Aurora', deck2)
-  #
-  # turns = 0
-  # while turns <= 1000000000
-  #   until player1.has_lost? || player2.has_lost?
-  #     turns += 1
-  #     if type == :basic
-  #       p "Turn #{turns}: #{Turn.winner} won 2 cards."
-  #     elsif type == :war
-  #       p "Turn #{turns}: #{Turn.winner} won 6 cards."
-  #     else
-  #       p "Turn #{turns}: *mutually assured destruction* 6 cards removed from play"
-  #     end
-  #   end
-  #
-  #   if player1.has_lost?
-  #     p "*~*~*~* #{player2} has won the game! *~*~*~*"
-  #   elsif player2.has_lost
-  #     p "*~*~*~* #{player1} has won the game! *~*~*~*"
-  #   elsif turns == 1000000000
-  #     p "---- DRAW ----"
-  #   end
-  #
-  # end
-  #
-  #
+  # #
+  # # turns = 0
+  # # while turns <= 1000000000
+  # #   until player1.has_lost? || player2.has_lost?
+  # #     turns += 1
+  # #     if type == :basic
+  # #       p "Turn #{turns}: #{Turn.winner} won 2 cards."
+  # #     elsif type == :war
+  # #       p "Turn #{turns}: #{Turn.winner} won 6 cards."
+  # #     else
+  # #       p "Turn #{turns}: *mutually assured destruction* 6 cards removed from play"
+  # #     end
+  # #   end
+  # #
+  # #   if player1.has_lost?
+  # #     p "*~*~*~* #{player2} has won the game! *~*~*~*"
+  # #   elsif player2.has_lost
+  # #     p "*~*~*~* #{player1} has won the game! *~*~*~*"
+  # #   elsif turns == 1000000000
+  # #     p "---- DRAW ----"
+  # #   end
+  # #
+  # # end
   # end
 end
