@@ -9,6 +9,14 @@ class Player
     end
 
     def has_lost?
-        false
+        if @deck.cards.count <= 0
+            true
+        else
+            false
+        end
     end
+
+    def deck_remove_card
+        @deck.cards.shift
+    end 
 end
