@@ -33,6 +33,12 @@ RSpec.describe Player do
     deck = Deck.new(cards)
     player = Player.new('Clarissa', deck)
     expect(player.has_lost?).to be false
+    player.deck.remove_card
+    expect(player.has_lost?).to be false
+    player.deck.remove_card
+    expect(player.has_lost?).to be false
+    player.deck.remove_card
+    expect(player.has_lost?).to be true 
   end
 
 
