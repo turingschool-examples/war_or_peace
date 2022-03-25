@@ -8,7 +8,7 @@ class Deck
   end
 
   def rank_of_card_at(index)
-    @rank[index].rank
+    @cards[index].rank
   end
   #
   def high_ranking_cards
@@ -32,7 +32,7 @@ class Deck
   end
 
   def add_card()
-    @cards.add(card)
+    @cards.append(card)
   end
 
 end
