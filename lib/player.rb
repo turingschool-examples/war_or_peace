@@ -8,10 +8,10 @@ class Player
 
 def has_lost?
   if @deck.cards.count == 0
-    p true
+     true
   else
-    p false
+     false
   end
 end
-end 
+end
 # player = Player.new('Clarisa', deck)
