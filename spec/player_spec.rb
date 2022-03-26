@@ -21,7 +21,7 @@ describe Player do
 
   end
 
-  it "has a deck" do
+  it "can check that it has a deck" do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
@@ -35,7 +35,7 @@ describe Player do
     expect(player1.deck).to be_an_instance_of(Deck)
   end
 
-  it "checks to see if player lost" do
+  it "can check to see if player lost" do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
@@ -51,7 +51,7 @@ describe Player do
 
   end
 
-  it "checks to see if player won" do
+  it "can check to see if player won" do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
