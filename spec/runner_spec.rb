@@ -27,18 +27,6 @@ describe Game do
     war = Game.new
     expect(war).to be_an_instance_of(Game)
   end
-  # xit 'has suits and values' do
-  #   war = Game.new
-  #
-  #   expect(war.suits).to eq([:heart, :diamond, :spade, :club])
-  #   expect(war.values).to eq(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'])
-  # end
-  # xit 'has players names' do
-  #   war = Game.new
-  #
-  #   expect(war.player1).to eq('Megan')
-  #   expect(war.player2).to eq('Aurora')
-  # end
   describe '#populate_deck' do
     it 'generates 52 cards' do
       war = Game.new
@@ -91,7 +79,6 @@ describe Game do
       war = Game.new
       deck1 = Deck.new([@card1, @card2, @card5, @card8])
       deck2 = Deck.new([@card3, @card4, @card6, @card7])
-
       player1 = Player.new('Megan', deck1)
       player2 = Player.new('Aurora', deck2)
       war.player1 = player1
@@ -99,11 +86,8 @@ describe Game do
 
       expect(war.next_turn?).to eq(true)
 
-      deck1 = Deck.new([])
-      deck2 = Deck.new([@card3, @card4, @card6, @card7])
-
+      deck1 = Deck.new([]) #Refactor, make losing deck? @?
       player1 = Player.new('Megan', deck1)
-      player2 = Player.new('Aurora', deck2)
       war.player1 = player1
       war.player2 = player2
 
@@ -131,10 +115,10 @@ describe Game do
       war.player1 = player1
       war.player2 = player2
 
-      turn_count = 1000000
+      turn_count = 1000001
       war.turn_count = turn_count
 
-      expect(war.match).to eq(puts "Turn limit reached, Turn:#{@turn_count}")
+      expect(war.match).to eq(puts '----DRAW----')
     end
     it 'displays correct winning player' do
       war = Game.new
@@ -155,7 +139,6 @@ describe Game do
       war.player1 = player1
       war.player2 = player2
       expect(war.match).to eq(puts "#{@player1.name} has won the game!")
-
     end
   end
 end

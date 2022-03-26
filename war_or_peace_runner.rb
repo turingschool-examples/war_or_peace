@@ -67,8 +67,8 @@ class Game
 
   def match
     # @turn_count = 0
-    while next_turn? && turn_count < 1000000
-      turn_count += 1
+    while next_turn? && turn_count <= 1000000
+      @turn_count += 1
       turn = Turn.new(@player1, @player2)
       turn.type
       turn.pile_cards
@@ -87,7 +87,7 @@ class Game
     elsif @player2.has_lost?
       puts "#{@player1.name} has won the game!"
     else
-      puts "Turn limit reached, Turn:#{@turn_count}"
+      puts "----DRAW----"
     end
   end
 
@@ -108,9 +108,9 @@ class Game
   end
 end
 
-#
-# war = Game.new
-# war.start
+
+war = Game.new
+war.start
 # populate_deck
 #
 # puts @cards.count
