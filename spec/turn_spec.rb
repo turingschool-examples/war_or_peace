@@ -293,7 +293,8 @@ describe Turn do
     turn.pile_cards
     turn.award_spoils(winner)
 
-    # expect(turn.player1.deck.cards).to eq([])
+    expect(turn.player1.deck.cards).to eq([card8])
+    expect(turn.player2.deck.cards).to eq([card7, card1, card2, card5, card4, card3, card6])
   end
 
 
