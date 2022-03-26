@@ -9,8 +9,7 @@ class Deck
   end
 
   def rank_of_card_at(index)
-    card = @cards[index]
-    return card.rank
+    cards[index].rank
   end
 
   def high_ranking_cards
@@ -24,14 +23,15 @@ class Deck
   end
 
   def percent_high_ranking
-    (high_ranking_cards.count / @cards.count) * 100
+    decimal = (high_ranking_cards.count.to_f / @cards.count)
+    percentage = (decimal * 100).round(2)
   end
 
   def remove_card
-    card.pop
+    cards.shift
   end
 
-  def add_card
-    card.push
+  def add_card(card)
+    cards.push(card)
   end
 end
