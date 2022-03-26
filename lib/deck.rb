@@ -27,7 +27,7 @@ class Deck
 
   def remove_card
     # binding.pry
-    @cards.delete_at(0)
+    @cards.shift
     # @cards.shift
   end
 
