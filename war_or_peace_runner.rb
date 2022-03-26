@@ -1,6 +1,5 @@
 require './lib/turn.rb'
 
-stack_of_cards = []
 
 # Found an example of this on Google and had to modify accordingly for our card class
 # -------------------------------------
@@ -12,6 +11,9 @@ stack_of_cards = []
 #   end
 # end
 # -------------------------------------
+
+stack_of_cards = []
+
 values = %w{2 3 4 5 6 7 8 9 10 Jack Queen King Ace} #'%w{}' will turn this line into a string with less steps 
 suits = %w{spade heart diamond club}
 suits.each do |suit| 
