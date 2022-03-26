@@ -29,7 +29,7 @@ class Turn
             else
                 player2
             end
-        elsif type == :mutually_assured_destruction
+        else
              "No Winner"
         end  
     end
@@ -45,7 +45,7 @@ class Turn
             3.times do
                 @spoils_of_war << player2.deck.cards.shift
             end
-        elsif type == :mutually_assured_destruction
+        else
             3.times do
                 player1.deck.cards.shift
             end
@@ -62,5 +62,4 @@ class Turn
             player2.deck.cards.concat(spoils_of_war)
         end
     end
-
 end
