@@ -77,5 +77,6 @@ RSpec.describe Turn do
     turn = Turn.new(player1, player2)
 
     expect(turn.type).to eq(:mutually_assured_destruction)
+    expect(turn.winner).to eq("No Winner")
   end
 end
