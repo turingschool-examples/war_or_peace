@@ -28,11 +28,10 @@ class Deck
   end
 
   def remove_card
-
+    card.pop
   end
 
   def add_card
-    
-
+    card.push
   end
 end
