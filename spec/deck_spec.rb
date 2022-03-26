@@ -2,15 +2,16 @@ require 'rspec'
 require './lib/deck'
 require './lib/card'
 
-
 RSpec.describe Deck do
   it "exists" do
     deck = Deck.new([])
+
     expect(deck).to be_an_instance_of(Deck)
   end
 
   it "has readable attributes" do
    deck = Deck.new([])
+
    expect(deck.cards).to eq([])
   end
 
@@ -20,6 +21,7 @@ RSpec.describe Deck do
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
+
     expect(deck.rank_of_card_at(0)).to eq 12
   end
 
@@ -29,6 +31,7 @@ RSpec.describe Deck do
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
+
     expect(deck.high_ranking_cards).to eq [card1, card3]
   end
 
@@ -39,6 +42,7 @@ RSpec.describe Deck do
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
+
     expect(deck.percent_high_ranking).to eq 66.67
   end
 
@@ -48,6 +52,7 @@ RSpec.describe Deck do
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
+
     expect(deck.cards).to eq([card1, card2, card3])
     deck.remove_card
     expect(deck.cards).to eq ([card2, card3])
@@ -60,6 +65,7 @@ RSpec.describe Deck do
     card4 = Card.new(:club, '5', 5)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
+
     expect(deck.cards).to eq([card1, card2, card3])
     deck.add_card(card4)
     expect(deck.cards).to eq ([card1, card2, card3, card4])
