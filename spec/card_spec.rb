@@ -8,7 +8,7 @@ RSpec.describe Card do
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
 
-    expect(card).to be_an_instance_of(Card)
+  expect(card1).to be_an_instance_of(Card)
   end
 
   it "has readable attributes" do
