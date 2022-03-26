@@ -53,15 +53,15 @@ class Turn
     end
   end
 
-  # def award_spoils(winner)
-  #   require "pry";binding.pry
-  #   if winner == player1
-  #     player1.deck.cards << spoils_of_war
-  #   elsif
-  #     player2.deck.cards << spoils_of_war
-  #   elsif 'No Winner'
-  #
-  #   end
-  # end
-
+  def award_spoils(winner)
+    require "pry";binding.pry
+    if winner == player1
+      spoils_of_war.each do |spoiler|
+        player1.deck.cards << spoiler
+      end
+      require "pry";binding.pry
+    else
+      player2.deck.cards << spoils_of_war
+    end
+  end
 end
