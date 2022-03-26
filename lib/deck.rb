@@ -29,7 +29,6 @@ class Deck
   end
 
   def add_card(card)
-    #require "pry"; binding.pry
    cards.push(card)
   end
 end
