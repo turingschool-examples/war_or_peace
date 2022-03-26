@@ -3,11 +3,11 @@ class Player
               :deck
 
   def initialize(name, deck)
-  @name = name
-  @deck = deck
+    @name = name
+    @deck = deck
   end
 
-  def has_lost
+  def has_lost?
     @deck.cards.length == 0
   end
 end
