@@ -137,8 +137,8 @@ describe Turn do
       turn.winner
       turn.pile_cards
 
-      expect(turn.award_spoils(@player1)).to eq("No winner. No spoils.")
-      expect(turn.award_spoils(@player1)).to eq("No winner. No spoils.")
+      expect(turn.award_spoils(turn.winner)).to eq([])
+      expect(turn.award_spoils(turn.winner)).to eq([])
       expect(@player1.deck.cards).to eq([@card8])
       expect(player2.deck.cards).to eq([@card7])
     end

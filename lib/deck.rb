@@ -9,7 +9,11 @@ class Deck
 
   def rank_of_card_at(index)
     card = cards[index]
-    card.rank
+    if card.nil?
+      0
+    else
+      card.rank
+    end
   end
 
   def high_ranking_cards #Find out why I can't use this method in percent high ranking (maybe move high_rank to @variable?)

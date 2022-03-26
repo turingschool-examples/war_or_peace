@@ -41,18 +41,18 @@ class Turn
       else
         @winner = @player2
       end
-     else #@type = :mutually_assured_destruction
-      return 'No Winner'
+    else #@type == :mutually_assured_destruction
+      return "No Winner"
     end
   end
 
   def pile_cards
     if @type == :basic
-      @spoils_of_war << @player1.deck.cards.shift
-      @spoils_of_war << @player2.deck.cards.shift
+      @spoils_of_war << @player1.deck.remove_card
+      @spoils_of_war << @player2.deck.remove_card
     elsif @type == :war
-      3.times {@spoils_of_war << @player1.deck.cards.shift}
-      3.times {@spoils_of_war << @player2.deck.cards.shift}
+      3.times {@spoils_of_war << @player1.deck.remove_card}
+      3.times {@spoils_of_war << @player2.deck.remove_card}
       # @spoils_of_war << @player1.deck.cards.shift(3)
       # @spoils_of_war << @player2.deck.cards.shift(3)
       # @player1.deck.cards[0..2]. each {|move| @spoils_of_war << move}
@@ -61,8 +61,8 @@ class Turn
       # @spoils_of_war << (@player2.deck.cards[0..2]
       # @spoils_of_war.join
     else
-      3.times {@spoils_of_war << @player1.deck.cards.shift}
-      3.times {@spoils_of_war << @player2.deck.cards.shift}
+      3.times {@spoils_of_war << @player1.deck.remove_card}
+      3.times {@spoils_of_war << @player2.deck.remove_card}
       # @player1.deck.cards[0..2]. each {|move| @spoils_of_war << move}
       # @player2.deck.cards[0..2]. each {|move| @spoils_of_war << move}
       @spoils_of_war = []
@@ -73,7 +73,7 @@ class Turn
 #spoils of war equals an empty array even
   def award_spoils(winner)
     if @type == :mutually_assured_destruction
-      "No winner. No spoils."
+      @spoils_of_war = []
     else
       winner.deck.cards << @spoils_of_war
       winner.deck.cards.flatten!
