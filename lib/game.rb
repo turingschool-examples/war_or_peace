@@ -77,9 +77,10 @@ class Game
     puts "The players today are Megan and Aurora."
     puts "Type 'GO' to start the game!"
     puts "------------------------------------------------------------------"
-    start_game = gets.chomp
 
-    if start_game == "GO"
+    go_check = gets.chomp
+
+    if go_check == "GO"
       make_deck
     else "That ain't it bro, you gotta type GO"
       self.start_game
