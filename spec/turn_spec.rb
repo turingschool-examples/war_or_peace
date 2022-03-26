@@ -115,14 +115,4 @@ RSpec.describe Turn do
     expect(turn.winner).to eq(player1)
     expect(turn.award_spoils(winner)).to eq(player1.deck.cards)
   end
-
-
-
-
-
-
-
-
-
-
 end
