@@ -12,7 +12,7 @@ class Deck
   end
 
   def remove_card
-    cards.shift
+    @cards.shift
   end
 
   def rank_of_card_at(index)
