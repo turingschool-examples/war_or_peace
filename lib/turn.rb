@@ -46,11 +46,18 @@ class Turn
     elsif type == :mutually_assured_destruction
       player1.deck.cards.shift(3)
       player2.deck.cards.shift(3)
-    end 
+    end
   end
 
-
-
-
-
+  def award_spoils(winner)
+    if winner == player1
+      player1.deck.cards <<
+      spoils_of_war
+    elsif winner == player2
+      player2.deck.cards <<
+      spoils_of_war
+    else type
+      :mutually_assured_destruction
+    end
+  end
 end
