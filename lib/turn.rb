@@ -49,6 +49,14 @@ class Turn
     if type == :basic
       spoils_of_war.push(player1.deck.cards.shift)
       spoils_of_war.push(player2.deck.cards.shift)
+    elsif type == :mutually_assured_destruction
+      3.times do
+        player1.deck.cards.shift
+      end
+      3.times do
+        player2.deck.cards.shift
+      end
+      spoils_of_war
     elsif type == :war
       3.times do
         spoils_of_war << player1.deck.cards.shift
@@ -57,10 +65,8 @@ class Turn
         spoils_of_war << player2.deck.cards.shift
       end
       spoils_of_war
-
-    elsif type == :mutually_assured_destruction
-      spoils_of_war
     end
+
   end
 
   def award_spoils(winner)
