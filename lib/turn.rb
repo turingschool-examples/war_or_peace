@@ -61,7 +61,4 @@ class Turn
     else player2.deck.cards << spoils
     end
   end
-
-
-
 end
