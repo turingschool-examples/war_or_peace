@@ -8,45 +8,58 @@ class Turn
         @player1 = player1
         @player2 = player2
         @spoils_of_war = []
-        @type = type
     end
 
     def type
-       return :basic if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0) 
-       return :war if @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
-       return :mutually_assured_destruction if :war == true && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at  
+       return :basic if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0) 
+       return :war if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+       return :mutually_assured_destruction if :war == true && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at  
     end
 
     def winner
-        if @type == :basic
-            if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
-                @player1
+        if type == :basic
+            if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+                player1
             else
-                @player2
+                player2
             end
-        elsif @type == :war
-            if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
-                @player1
+        elsif type == :war
+            if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+                player1
             else
-                @player2
+                player2
             end
-        else @type == :mutually_assured_destruction
-            p "No Winner"
+        elsif type == :mutually_assured_destruction
+             "No Winner"
         end  
     end
     
     def pile_cards
-        if @type == :basic
+        if type == :basic
             @spoils_of_war << player1.deck.cards.shift
             @spoils_of_war << player2.deck.cards.shift
-        elsif @type == :war
+        elsif type == :war
             3.times do
-                @spoils_of_war << player1.decks.cards.shift
+                @spoils_of_war << player1.deck.cards.shift
             end
             3.times do
-                @spoils_of_war << player2.decks.cards.shift
+                @spoils_of_war << player2.deck.cards.shift
             end
-        else @type == :mutually_assured_destruction
+        elsif type == :mutually_assured_destruction
+            3.times do
+                player1.deck.cards.shift
+            end
+            3.times do 
+                player2.deck.cards.shift
+            end
+        end
+    end
+
+    def award_spoils(winner)
+        if winner == player1
+            player1.deck.cards.concat(spoils_of_war)
+        else
+            player2.deck.cards.concat(spoils_of_war)
         end
     end
 
