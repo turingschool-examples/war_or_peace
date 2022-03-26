@@ -127,7 +127,7 @@ RSpec.describe Turn do
   end
 
   describe '#pile_cards' do
-    xit "sends cards from deck to spoils of war" do
+    it "sends cards from deck to spoils of war" do
       card1 = Card.new(:heart, 'Jack', 11)
       card2 = Card.new(:heart, '10', 10)
       card3 = Card.new(:heart, '9', 9)
@@ -141,12 +141,15 @@ RSpec.describe Turn do
       player1 = Player.new("Megan", deck1)
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
-      expect(turn.pile_cards).to eq([card1, card3])
+      expect(turn.type).to eq(:basic)
+      expect(turn.winner).to eq(player1)
+      turn.pile_cards
+      expect(turn.spoils_of_war).to eq([card1, card3])
     end
   end
 
   describe '#award_spoils' do
-    xit "sends cards from spoils of war to winner deck" do
+    it "sends cards from spoils of war to winner deck" do
       card1 = Card.new(:heart, 'Jack', 11)
       card2 = Card.new(:heart, '10', 10)
       card3 = Card.new(:heart, '9', 9)
@@ -160,7 +163,15 @@ RSpec.describe Turn do
       player1 = Player.new("Megan", deck1)
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
-      expect(turn.award_spoils(player1)).to eq([])
+      winner = turn.winner
+      expect(turn.spoils_of_war).to eq([])
+      turn.pile_cards
+      expect(turn.spoils_of_war).to eq([card1, card3])
+      turn.award_spoils(winner)
+      expect(player1.deck.cards).to eq([card2, card5, card8, card1, card3])
+      expect(player2.deck.cards).to eq([card4, card6, card7])
+
+
     end
   end
 
