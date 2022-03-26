@@ -6,6 +6,10 @@ class Deck
   end
 
   def rank_of_card_at(card_number)
+    if cards.length == 0 || cards.length < card_number
+      0
+    end
+
     @cards[card_number].rank
   end
 
