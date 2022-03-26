@@ -15,8 +15,8 @@ require 'pry'
 # @player2 = 'Aurora'
 
 class Game
-    attr_reader :all_cards, :deck1, :deck2, :player1, :player2
-    attr_writer :deck1, :deck2, :player1, :player2
+    attr_reader :all_cards, :deck1, :deck2, :player1, :player2, :turn_count
+    attr_writer :deck1, :deck2, :player1, :player2, :turn_count
   def initialize
     @suits = [:heart, :diamond, :spade, :club]
     @values = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13']
@@ -25,6 +25,7 @@ class Game
     @deck2
     @player1
     @player2
+    @turn_count = 0
   end
 
   def populate_deck
@@ -65,20 +66,20 @@ class Game
   end
 
   def match
-    turn_count = 0
+    # @turn_count = 0
     while next_turn? && turn_count < 1000000
       turn_count += 1
       turn = Turn.new(@player1, @player2)
       turn.type
       turn.pile_cards
       if turn.type == :basic
-        puts "Turn #{turn_count}: #{turn.winner.name} won #{turn.spoils_of_war.count} cards"
+        puts "Turn #{@turn_count}: #{turn.winner.name} won #{turn.spoils_of_war.count} cards"
         turn.award_spoils(turn.winner)
       elsif turn.type == :war
-        puts "Turn #{turn_count}: WAR - #{turn.winner.name} won #{turn.spoils_of_war.count} cards"
+        puts "Turn #{@turn_count}: WAR - #{turn.winner.name} won #{turn.spoils_of_war.count} cards"
         turn.award_spoils(turn.winner)
       else
-        puts "Turn #{turn_count}: *mutually assured destruction* 6 cards removed from play"
+        puts "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
       end
     end
     if @player1.has_lost?
@@ -86,7 +87,7 @@ class Game
     elsif @player2.has_lost?
       puts "#{@player1.name} has won the game!"
     else
-      puts "I don't know how, but no one won or lost."
+      puts "Turn limit reached, Turn:#{@turn_count}"
     end
   end
 

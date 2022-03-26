@@ -121,8 +121,41 @@ describe Game do
     end
   end
   describe '#match' do
-    xit 'ends if turn count is  1mil or more' do
-      
+    it 'ends if turn count is 1mil or more' do
+      war = Game.new
+      deck1 = Deck.new([@card1, @card2, @card5, @card8])
+      deck2 = Deck.new([@card3, @card4, @card6, @card7])
+
+      player1 = Player.new('Megan', deck1)
+      player2 = Player.new('Aurora', deck2)
+      war.player1 = player1
+      war.player2 = player2
+
+      turn_count = 1000000
+      war.turn_count = turn_count
+
+      expect(war.match).to eq(puts "Turn limit reached, Turn:#{@turn_count}")
+    end
+    it 'displays correct winning player' do
+      war = Game.new
+      deck1 = Deck.new([])
+      deck2 = Deck.new([@card3, @card4, @card6, @card7])
+
+      player1 = Player.new('Megan', deck1)
+      player2 = Player.new('Aurora', deck2)
+      war.player1 = player1
+      war.player2 = player2
+
+      expect(war.match).to eq(puts "#{@player2.name} has won the game!")
+      deck1 = Deck.new([])
+      deck2 = Deck.new([@card3, @card4, @card6, @card7])
+
+      player1 = Player.new('Megan', deck2)
+      player2 = Player.new('Aurora', deck1) #Refactor swapped decks
+      war.player1 = player1
+      war.player2 = player2
+      expect(war.match).to eq(puts "#{@player1.name} has won the game!")
+
     end
   end
 end
