@@ -56,12 +56,14 @@ class Turn
     p @spoils_of_war
   end
 
-  def award_spoils
+  def award_spoils(winner)
     binding.pry
     if winner == player1
       player1.deck << @spoils_of_war
+      deck1
     elsif winner == player2
       player2.deck << @spoils_of_war
+      deck2
     end
     binding.pry
   end
