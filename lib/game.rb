@@ -82,7 +82,10 @@ class Game
 
     if go_check == "GO"
       make_deck
-    else "That ain't it bro, you gotta type GO"
+    else
+      puts "That ain't it bro, you gotta type GO!"
+      puts "Press Enter to try again"
+    gets.chomp
       self.start_game
     end
   end
