@@ -8,7 +8,7 @@ class Deck
 
   def rank_of_card_at(location)
     if @cards[location] == nil
-      return 0
+      return 0 
     else
       return @cards[location].rank
     end

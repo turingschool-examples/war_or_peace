@@ -26,10 +26,6 @@ describe Turn do
     @turn_winner = Turn.new(@player1, @player2).winner
     # require 'pry'; binding.pry
 
-
-
-
-
   end
 
   it "exists" do

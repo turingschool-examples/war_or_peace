@@ -36,6 +36,7 @@ class Turn
         return player2
       end
     elsif type == :war
+      # require 'pry'; binding.pry
       if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
         return player1
       else
@@ -88,15 +89,10 @@ class Turn
       end
 
     else
-
       spoils_of_war.each do |spoil_card|
         player2.deck.cards.push(spoil_card)
         # require 'pry'; binding.pry
       end
-      
     end
-
-
   end
-
 end

@@ -39,7 +39,7 @@ class Game
     war_turn.pile_cards
     war_turn.award_spoils(war_turn_winner)
 
-    if @turn_counter % 500 == 0
+    if @turn_counter % 26 == 0
       # require 'pry'; binding.pry
       @player1 = Player.new(@player1.name, Deck.new(@player1.deck.cards.shuffle))
       @player2 = Player.new(@player2.name, Deck.new(@player2.deck.cards.shuffle))

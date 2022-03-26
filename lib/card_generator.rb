@@ -26,7 +26,7 @@ class CardGenerator
         # require 'pry'; binding.pry
       array.each do |card_counter|
         # require 'pry'; binding.pry
-        new_deck.cards.push (Card.new(card_counter[0], card_counter[1], card_counter[2]))
+        new_deck.cards.push (Card.new(card_counter[0], card_counter[1], card_counter[2].to_i))
         # return new_deck
       end
       return new_deck
