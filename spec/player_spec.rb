@@ -47,5 +47,4 @@ it "checks to see if player lost" do
   player = Player.new('Clarisa', deck)
   expect(player.has_lost?).to eq(false)
 end
-
 end
