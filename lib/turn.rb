@@ -20,7 +20,7 @@ class Turn
       :basic
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
       :mutually_assured_destruction
-    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) != player2.deck.rank_of_card_at(2)
       :war
     end
   end
@@ -50,22 +50,26 @@ class Turn
       spoils_of_war.push(player1.deck.cards.shift)
       spoils_of_war.push(player2.deck.cards.shift)
     elsif type == :war
-      3.times do
-        spoils_of_war.push(player1.deck.cards)
-      end
-      3.times do
-        spoils_of_war.push(player2.deck.cards
-      end
+      # 3.times do
+        spoils_of_war << player1.deck.cards.shift
+      # end
+      # 3.times do
+      #   spoils_of_war << player2.deck.cards.shift
+      # end
+
     elsif type == :mutually_assured_destruction
       spoils_of_war
     end
   end
-  #
+
   # def award_spoils(winner)
   #   if winner == player1
-  #     player1.deck.cards << spoils_of_war #.join can be used?
-  #   else winner == player2
-  #     player2.deck.cards << spoils_of_war
+  #     spoils_of_war.each do|spoils|
+  #       player1.deck.cards << spoils #.join can be used?
+  #     end
+  #   else spoils_of_war.each do|spoils|
+  #     player2.deck.cards << spoils
+        # end
   #   end
   # end
 end
