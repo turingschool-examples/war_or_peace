@@ -1,5 +1,6 @@
 require 'rspec'
-require './lib/deck.rb'
+require './lib/card'
+require './lib/deck'
 require 'pry'
 
 describe Deck do
