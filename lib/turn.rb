@@ -13,12 +13,12 @@ class Turn
   end
 
   def type
-    if (player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0))
+    if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
       @type = :basic
-    elsif (player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0))
-      @type = :war
-    elsif (player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)) && (player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2))
+    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
       @type = :mutually_assured_destruction
+    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+      @type = :war
     end
   end
 
@@ -45,23 +45,29 @@ class Turn
       spoils_of_war << player1.deck.cards.shift
       spoils_of_war << player2.deck.cards.shift
     elsif type == :war
-      spoils_of_war << player1.deck.cards.shift(0, 1, 2)
-      spoils_of_war << player2.deck.cards.shift(0, 1, 2)
+      3.times do
+      spoils_of_war << player1.deck.cards.shift
+      spoils_of_war << player2.deck.cards.shift
+      end
     elsif type == :mutually_assured_destruction
-      player1.deck.cards.shift(0, 1, 2)
-      player2.deck.cards.shift(0, 1, 2)
+      3.times do
+      player1.deck.cards.shift
+      player2.deck.cards.shift
+      end
     end
   end
 
   def award_spoils(winner)
-    require "pry";binding.pry
+    # require "pry";binding.pry
     if winner == player1
       spoils_of_war.each do |spoiler|
         player1.deck.cards << spoiler
       end
-      require "pry";binding.pry
+      # require "pry";binding.pry
     else
-      player2.deck.cards << spoils_of_war
+      spoils_of_war.each do |spoiler|
+        player2.deck.cards << spoiler
+      end
     end
   end
 end
