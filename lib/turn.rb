@@ -20,7 +20,7 @@ class Turn
       :basic
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
       :mutually_assured_destruction
-    else player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
       :war
     end
   end
@@ -44,19 +44,22 @@ class Turn
       'No winner'
     end
   end
-  #
-  # def pile_cards
-  #   if @type == :basic
-  #     @spoils_of_war << player1.deck.cards.shift
-  #     @spoils_of_war << player2.deck.cards.shift
-  #   elsif @type == :war
-  #     @spoils_of_war << player1.deck.cards.shift(0, 1, 2)
-  #     @spoils_of_war << player2.deck.cards.shift(0, 1, 2)
-  #   else
-  #     player1.deck.cards.shift(0, 1, 2)
-  #     player2.deck.cards.shift(0, 1, 2)
-  #   end
-  # end
+
+  def pile_cards
+    if type == :basic
+      spoils_of_war.push(player1.deck.cards.shift)
+      spoils_of_war.push(player2.deck.cards.shift)
+    elsif type == :war
+      3.times do
+        spoils_of_war.push(player1.deck.cards)
+      end
+      3.times do
+        spoils_of_war.push(player2.deck.cards
+      end
+    elsif type == :mutually_assured_destruction
+      spoils_of_war
+    end
+  end
   #
   # def award_spoils(winner)
   #   if winner == player1
