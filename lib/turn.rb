@@ -39,12 +39,13 @@ class Turn
   end
 
   def pile_cards
-    @spoils_of_war = spoils_of_war 
-    if type == :basic
+    binding.pry 
+    spoils_of_war = spoils_of_war[]
+    if turn.type == :basic
       spoils_of_war << deck1.delete_at[0] && deck2.delete_at[0]
-    elsif type == :war
+    elsif turn.type == :war
       spoils_of_war << deck1.delete_at[0..2] && deck2.delete_at[0..2]
-    elsif type == :mutually_assured_destruction
+    elsif turn.type == :mutually_assured_destruction
       spoils_of_war << deck.delete_at[0..2] && deck2.delete_at[0..2]
     end
   end
