@@ -16,7 +16,7 @@ class Deck
     if card.rank >= 11
     high_rank << card
   end
-end
+  end
   return high_rank
 end
 
@@ -25,11 +25,11 @@ end
   percent.round(2)
   end
 
-def remove_card
+  def remove_card
   cards.shift
-end
+  end
 
-def add_card(card)
+  def add_card(card)
   @cards << card
-end
+  end
 end
