@@ -5,7 +5,7 @@ require './lib/player'
 require './lib/turn'
 
 RSpec.describe Turn do
-
+describe ':basic turn' do
     it 'exists' do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)  
@@ -116,11 +116,12 @@ RSpec.describe Turn do
         player2 = Player.new("Aurora", deck2)
         turn = Turn.new(player1, player2) 
         winner = turn.winner
-        
+
         turn.pile_cards
         turn.award_spoils(winner)
         expect(turn.player1.deck.cards).to eq([card2, card5, card8, card1, card3])
     end
+end
 end
 
 
