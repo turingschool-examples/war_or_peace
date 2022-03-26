@@ -9,6 +9,7 @@ RSpec.describe Deck do
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
+
     expect(deck).to be_an_instance_of(Deck)
   end
 
@@ -18,6 +19,7 @@ RSpec.describe Deck do
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
+
     expect(deck.cards).to eq([card1, card2, card3])
   end
 
@@ -27,6 +29,7 @@ RSpec.describe Deck do
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
+
     expect(deck.rank_of_card_at(0)).to eq(12)
     expect(deck.rank_of_card_at(2)).to eq(14)
   end
@@ -37,6 +40,7 @@ RSpec.describe Deck do
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
+
     expect(deck.high_ranking_cards).to eq([card1, card3])
   end
 
@@ -46,6 +50,7 @@ RSpec.describe Deck do
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
+
     expect(deck.percent_high_ranking).to eq(66.67)
   end
 
@@ -55,6 +60,7 @@ RSpec.describe Deck do
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
+
     expect(deck.remove_card).to eq(card1)
     expect(deck.cards).to eq([card2, card3])
     expect(deck.high_ranking_cards).to eq([card3])
@@ -68,6 +74,7 @@ RSpec.describe Deck do
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
     card4 = Card.new(:club, '5', 5)
+
     expect(deck.add_card(card4)).to eq(cards)
     expect(deck.cards).to eq([card1, card2, card3, card4])
     expect(deck.high_ranking_cards).to eq([card1, card3])
