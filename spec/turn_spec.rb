@@ -115,6 +115,7 @@ describe Turn do
 
     expect(turn.winner).to eq(player1)
 
+    # here i decided to run 3 expectations in 1 test
     # redefine variables to test a war scenario
     # deck 2 array changes here
     # separate tests could be added
@@ -136,10 +137,6 @@ describe Turn do
 
     expect(turn.winner).to eq('No winner')
   end
-
-
-
-
 
   it "Can pile cards" do
     card1 = Card.new(:heart, 'Jack', 11)
@@ -177,8 +174,6 @@ describe Turn do
     # turn = Turn.new(player1, player2)
     #
     # expect(turn.pile_cards).to eq
-    #
-    #
   end
 
   it "can pile cards in a war" do
@@ -198,10 +193,8 @@ describe Turn do
     player2 = Player.new("Aurora", deck2)
 
     turn = Turn.new(player1, player2)
-    # winner = turn.winner
 
-    expect(turn.type).to eq(:war)  #this one works
-    # puts(spoils) this helped me realize it was comparing array
+    expect(turn.type).to eq(:war)
     expect(turn.pile_cards).to eq([card1, card2, card5, card4, card3, card6])
   end
 
@@ -222,10 +215,8 @@ describe Turn do
     player2 = Player.new("Aurora", deck2)
 
     turn = Turn.new(player1, player2)
-    # winner = turn.winner
 
-    expect(turn.type).to eq(:mutually_assured_destruction)  #this one works
-    # puts(spoils) this helped me realize it was comparing array
+    expect(turn.type).to eq(:mutually_assured_destruction)
     expect(turn.pile_cards).to eq([])
   end
 
@@ -255,6 +246,7 @@ describe Turn do
     expect(turn.player1.deck.cards).to eq([card2, card5, card8, card1, card3])
     #
     # using this way broke, going back to lengthy version :(
+    # leaving for refactor later. brain.function => fried
 
     # deck1 = Deck.new([card1, card2, card5, card8])
     # deck2 = Deck.new([card4, card3, card6, card7])
@@ -265,7 +257,7 @@ describe Turn do
     # expect(turn.type).to eq(:war)
     # turn.award_spoils(winner)
 
-    # this is where it broke
+    # this is where it broke. fix after figuring out
 
     # expect(turn.player1.deck.cards).to eq([])
   end
@@ -290,6 +282,7 @@ describe Turn do
     winner = turn.winner
 
     expect(turn.type).to eq(:war)
+
     turn.pile_cards
     turn.award_spoils(winner)
 
@@ -318,10 +311,9 @@ describe Turn do
     winner = turn.winner
 
     expect(turn.type).to eq(:mutually_assured_destruction)
+
     turn.pile_cards
     turn.award_spoils(winner)
-
-    # puts turn.player1.deck.cards
 
     expect(turn.player1.deck.cards).to eq([card8])
     expect(turn.player2.deck.cards).to eq([card7])
@@ -330,35 +322,4 @@ describe Turn do
     # to see who will win the last turn and player2 be awarded card 8
 
   end
-
-
 end
-
-
-
-# i think this is a duplicate i forgot i wrote
-# lets move this down for now
-# xit "can tell what turn it is" do
-#   card1 = Card.new(:heart, 'Jack', 11)
-#   card2 = Card.new(:heart, '10', 10)
-#   card3 = Card.new(:heart, '9', 9)
-#   card4 = Card.new(:diamond, 'Jack', 11)
-#   card5 = Card.new(:heart, '8', 8)
-#   card6 = Card.new(:diamond, 'Queen', 12)
-#   card7 = Card.new(:heart, '3', 3)
-#   card8 = Card.new(:diamond, '2', 2)
-#
-#   deck1 = Deck.new([card1, card2, card5, card8])
-#   deck2 = Deck.new([card3, card4, card6, card7])
-#
-#   player1 = Player.new("Megan", deck1)
-#   player2 = Player.new("Aurora", deck2)
-#
-#   turn = Turn.new(player1, player2)
-#
-#   expect(turn.type).to eq(:basic)
-#
-# end
-#
-#
-#

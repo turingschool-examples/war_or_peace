@@ -13,9 +13,6 @@ class Turn
   end
 
   def type
-    # @basic = basic   unsure why i added these...
-    # @war = war
-    # @mutually_assured_destruction = mutually_assured_destruction
     if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
       :basic
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
