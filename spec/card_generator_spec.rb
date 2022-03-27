@@ -15,5 +15,6 @@ describe CardGenerator do
     cards = CardGenerator.new(filename)
 
     expect(cards.cards.length).to eq(52)
+    expect(cards.cards[0]).to be_an_instance_of(Card)
   end
 end

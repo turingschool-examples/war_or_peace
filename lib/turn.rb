@@ -58,7 +58,7 @@ class Turn
       else
         p1_rank_2 = @player1.deck.rank_of_card_at(2)
         p2_rank_2 = @player2.deck.rank_of_card_at(2)
-        if(p1_rank_2 > p1_rank_2)
+        if(p1_rank_2 > p2_rank_2)
           result = @player1
         else
           result = @player2

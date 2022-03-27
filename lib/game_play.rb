@@ -15,7 +15,7 @@ class GamePlay
   def start
     result = "---- DRAW ----"
     i = 1
-    max_turns = 501
+    max_turns = 100001
     #Go though up to 1000 turns
     while i < max_turns
       #create a turn

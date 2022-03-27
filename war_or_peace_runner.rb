@@ -6,6 +6,7 @@ require './lib/game_play'
 require './lib/card_generator'
 require './pry'
 
+#Create cards for the decks
 # suits = [:heart, :diamond, :spade, :club]
 # cards = []
 # #create 52 cards of a deck and store in cards array
@@ -26,6 +27,7 @@ require './pry'
 #   end
 # end
 
+#Create cards for the decks by reading in the info from a text file
 cards = CardGenerator.new("cards.txt").cards
 
 deck1 = Deck.new(cards.shuffle)
