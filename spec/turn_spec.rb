@@ -42,7 +42,7 @@ RSpec.describe Turn do
     expect(turn.spoils_of_war).to eq([])
   end
 
-  it "can have different types" do
+  it "can have a type" do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -57,7 +57,9 @@ RSpec.describe Turn do
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
     expect(turn.type).to eq(:basic)
+  end
 
+  it "can have another type" do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -72,7 +74,9 @@ RSpec.describe Turn do
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
     expect(turn.type).to eq(:war)
+  end
 
+  it "can have yet another type" do 
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)

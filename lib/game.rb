@@ -1,18 +1,16 @@
-require 'rspec'
-require './lib/card'
-require './lib/deck'
-require './lib/player'
-require './lib/turn'
-require './lib/game'
-require 'pry'
+class Game
+  attr_reader :standard_deck, :player1, :player2
 
-RSpec.describe Game do
-  it "exists" do
-    game = Game.new
-    expect(game).to be_an_instance_of(Game)
+  def initialize
+    @standard_deck = standard_deck
+    @player1 = player1
+    @player2 = player2
   end
-
-  it "has a standard deck of 52 cards" do
+    #Deck.new([card1, card2...])
+    #how to make all these cards and then put into a deck?
+    #prob not in initialize block?  where?
+  def create_deck
+    #standard_deck = []
     card1 = Card.new(:heart, '2', 2)
     card2 = Card.new(:heart, '3', 3)
     card3 = Card.new(:heart, '4', 4)
@@ -65,20 +63,7 @@ RSpec.describe Game do
     card50 = Card.new(:spade, 'Queen', 12)
     card51 = Card.new(:spade, 'King,', 13)
     card52 = Card.new(:spade, 'Ace', 14)
-    standard_deck = Deck.new([card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20, card21, card22, card23, card24, card25, card26, card27, card28, card29, card30, card31, card32, card33, card34, card35, card36, card37, card38, card39, card40, card41, card42, card43, card44, card45, card46, card47, card48, card49, card50, card51, card52])
-    game = Game.new
-    expect(standard_deck).to eq(deck.new)
+    standard_deck = Deck.new[card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20, card21, card22, card23, card24, card25, card26, card27, card28, card29, card30, card31, card32, card33, card34, card35, card36, card37, card38, card39, card40, card41, card42, card43, card44, card45, card46, card47, card48, card49, card50, card51, card52]
   end
-
-
-
-
-
-
-
-
-
-
-
 
 end
