@@ -22,13 +22,11 @@ RSpec.describe Game do
     expect(game).to be_an_instance_of(Game)
   end
 
-describe "#start" do
-  it "start should run until player_lost? is fulfilled" do
-    game = Game.new(@player1, @player2)
-    game.start
-    expect(@player1.deck.cards.length).to eq(0)
+  describe "#start" do
+    it "start should run until player_lost? is fulfilled" do
+      game = Game.new(@player1, @player2)
+      game.start
+      expect(@player1.deck.cards.length).to eq(0)
+    end
   end
-end
-
-
 end
