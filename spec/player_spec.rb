@@ -3,7 +3,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 
-Rspec.describe Player do
+RSpec.describe Player do
 
     it 'exists' do
       card1 = Card.new(:diamond, 'Queen', 12)
