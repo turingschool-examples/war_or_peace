@@ -6,7 +6,7 @@ class CardGenerator
 
   def cards
     File.open("#{@file}").readlines
-    File.readlines("#{@file}", chomp: true)
+    file_data = File.readlines("#{@file}", chomp: true)
   end
 
 end
