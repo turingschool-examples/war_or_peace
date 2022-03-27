@@ -5,7 +5,7 @@ require './lib/turn'
 
 class GamePlay
 
-  #
+  #Pass in two player objects to the initialize method
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
@@ -45,6 +45,7 @@ class GamePlay
         end
       end
       i += 1
+      #If max_turns has been reached and there is no winner output the result Draw
       if (i == max_turns)
         puts result
       end
