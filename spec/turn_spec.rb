@@ -84,7 +84,7 @@ describe Turn do
       winner = turn.winner
       expect(winner).to eq(player1)
     end
-    xit "piles the cards :basic" do
+    it "piles the cards :basic" do
       card1 = Card.new(:heart, 'Jack', 11)
       card2 = Card.new(:heart, '10', 10)
       card3 = Card.new(:heart, '9', 9)
@@ -107,6 +107,7 @@ describe Turn do
       turn.spoils_of_war
       # binding.pry
       expect(turn.spoils_of_war).to eq([card1, card3])
+      # UN-NEEDED CODE
       # expect(player1.deck.cards).to eq([card2, card5, card8])
       # expect(player2.deck.cards).to eq([card4, card6, card7])
       # expect(turn.pile_cards).to eq([card1, card3])
@@ -192,7 +193,7 @@ describe Turn do
         turn = Turn.new(player1, player2)
         # turn.type
         winner = turn.winner
-        binding.pry
+        #binding.pry
         turn.pile_cards
 
         expect(turn.spoils_of_war).to eq([card1, card2, card5, card4, card3, card6])
