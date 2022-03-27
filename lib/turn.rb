@@ -53,4 +53,17 @@ attr_reader :player1, :player2, :spoils_of_war
       end
     end
 
+    def award_spoils(winner) #need the parenthesis so it passes the parameter through it
+      if winner == player1
+        spoils_of_war.each do |spoils| #checking one card at a time
+        player1.deck.cards << spoils
+        end
+      else
+        spoils_of_war.each do |spoils|
+        player1.deck.cards << spoils
+        end
+      end
+    end 
+
+
 end
