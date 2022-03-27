@@ -33,9 +33,10 @@ end
 
 player1 =Player.new('Megan', deck1)
 player2 =Player.new('Aurora', deck2)
-player1.deck.cards.shuffle
-player2.deck.cards.shuffle
+player1.deck.cards.shuffle!
+player2.deck.cards.shuffle!
 turn = Turn.new(player1, player2)
+turn_count = 0
 
 
 p "Welcome to War! (or Peace) This game will be played with 52 cards."
@@ -46,12 +47,15 @@ p "------------------------------------------------------------------"
 game = gets.chomp
     if game == "GO" || "go"
       while player1.deck.cards.length > 0 || player2.deck.cards.length > 0 do
+        turn_count += 1
+        if turn_count == 100
+          puts "DRAW"
+          return
+        end
         turn_type = turn.type
         turn_winner = turn.winner
-        binding.pry
         puts turn_winner
       end
-      # game = Game.new(player1, player2)
     else
       puts "Please type 'GO' to start!"
     end
