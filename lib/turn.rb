@@ -1,3 +1,5 @@
+require './lib/player'
+
 class Turn
   attr_reader :player1,
               :player2,
@@ -44,7 +46,7 @@ class Turn
     if type == :basic
       spoils_of_war << player1.deck.remove_card
       spoils_of_war << player2.deck.remove_card
-      
+
     elsif type == :war
       3.times do
         spoils_of_war << player1.deck.remove_card
