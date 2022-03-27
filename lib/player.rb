@@ -11,7 +11,7 @@ class Player
 
   def remove_card
     @deck.shift
-  end 
+  end
 
   def has_lost?
      deck.cards.size == 0
