@@ -8,8 +8,23 @@ require 'pry'
 
 RSpec.describe Game do
   it 'exists' do
-    game = Game.new('Megan', 'Aurora')
+    game = Game.new('Basil', 'Thyme')
 
     expect(game).to be_an_instance_of(Game)
   end
+
+  it 'can create decks' do
+    game = Game.new('Basil', 'Thyme')
+
+    expect(game.create_deck).to be_an_instance_of(Deck)
+  end
+
+  it 'can put cards into decks' do
+    game = Game.new('Basil', 'Thyme')
+
+    game.create_deck
+    game.split_deck
+    binding.pry
+  end
+
 end
