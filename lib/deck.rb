@@ -5,7 +5,6 @@ class Deck
   attr_reader :cards
 
   def initialize(cards)
-    # binding.pry
     @cards = cards
   end
 
@@ -16,7 +15,6 @@ class Deck
       "No card found at index"
     end
   end
-#binding.pry
   def high_ranking_cards
     high_cards = []
     cards.each do |card|

@@ -90,7 +90,7 @@ describe 'deck empty' do
     player.deck.remove_card
     player.deck.remove_card
 
-    expect(player.deck.cards.count).to eq 0
+    expect(player.deck.cards.length).to eq 0
     expect(player.deck.cards).to eq([])
   end
 end
