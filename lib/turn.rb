@@ -49,9 +49,10 @@ class Turn
     else
       type == :mutually_assured_destruction
       3.times do
-        player1.deck.remove_card
-        player2.deck.remove_card
+        spoils_of_war << player1.deck.remove_card
+        spoils_of_war << player2.deck.remove_card
       end
+      spoils_of_war.clear #this clears one so no one gets the cards
     end
   end
 
