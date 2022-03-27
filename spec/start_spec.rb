@@ -25,7 +25,7 @@ RSpec.describe Start do
     expect(game).to be_an_instance_of(Start)
   end
 
-  it "starts a new game" do
+  it "adds players to a new game" do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)

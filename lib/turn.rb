@@ -9,11 +9,12 @@ class Turn
   def type
     if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
       return :basic
-    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) &&
-      player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2) #omit first argument because it is duplicate logic from the first if statement
-      return :mutually_assured_destruction
-    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+    elsif player1.deck.cards.count < 3 || player2.deck.cards.count < 3
+      return :not_enough_cards
+    elsif player1.deck.rank_of_card_at(2) != player2.deck.rank_of_card_at(2)
       return :war
+    elsif player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+      return :mutually_assured_destruction
     else
       raise "Err. Turn type cannot be established." #raise returns an error and stops running code
     end

@@ -4,13 +4,6 @@ class Start
     @player1 = player1
     @player2 = player2
     @turn_index = 0
-    @player1_basic_win = "#{player1.name} won 2 cards"
-    @player1_war_win = "WAR - #{player1.name} won 6 cards"
-    @player2_basic_win = "#{player2.name} won 2 cards"
-    @player2_war_win = "WAR - #{player2.name} won 6 cards"
-    @no_one_wins_in_war = "*mutually assured destruction* 6 cards removed from play"
-    @player1_win_game = "*~*~*~* #{player1.name} has won the game! *~*~*~*"
-    @player2_win_game = "*~*~*~* #{player2.name} has won the game! *~*~*~*"
   end
 
   def start
@@ -23,27 +16,34 @@ class Start
       game_start = gets.chomp
 
       if game_start == "GO"
-        1000.times do
+        1000000.times do
           if player1.has_lost? == false && player2.has_lost? == false
             turn = Turn.new(player1, player2)
             if turn.type == :basic
               p "Turn #{@turn_index += 1}: #{turn.winner.name} won 2 cards"
+              winner = turn.winner
               turn.pile_cards
-              turn.award_spoils(turn.winner)
+              turn.award_spoils(winner)
             elsif turn.type == :war
               p "Turn #{@turn_index += 1}: WAR - #{turn.winner.name} won 6 cards"
+              winner = turn.winner
               turn.pile_cards
-              turn.award_spoils(turn.winner)
+              turn.award_spoils(winner)
             elsif turn.type == :mutually_assured_destruction
               p "Turn #{@turn_index += 1}: *mutually assured destruction* 6 cards removed from play"
               turn.pile_cards
+            elsif turn.type == :not_enough_cards
+              p "Draw. Someone ran out of cards."
+              break
             else
               raise p "Err."
             end
           elsif player1.has_lost? == true
             p "*~*~*~* #{player2.name} has won the game! *~*~*~*"
+            exit
           elsif player2.has_lost? == true
             p "*~*~*~* #{player1.name} has won the game! *~*~*~*"
+            exit
           else
             raise "Err. Winner unknown."
           end
