@@ -6,7 +6,7 @@ require 'pry'
 
 describe Turn do
 
-  xit 'is an instance of turn' do
+  it 'is an instance of turn' do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -24,7 +24,7 @@ describe Turn do
     expect(turn).to be_an_instance_of(Turn)
   end
 
-  xit "player1" do
+  it "player1" do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -42,7 +42,7 @@ describe Turn do
     expect(turn.player1).to eq(player1)
   end
 
-  xit "player2" do
+  it "player2" do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -60,7 +60,7 @@ describe Turn do
     expect(turn.player2).to eq(player2)
   end
 
-  xit "spoils is empty array" do
+  it "spoils is empty array" do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -78,7 +78,7 @@ describe Turn do
     expect(turn.spoils_of_war).to eq([])
   end
 
-  xit "is soooo basic" do
+  it "is soooo basic" do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -96,7 +96,7 @@ describe Turn do
     expect(turn.type).to eq(:basic)
   end
 
-  xit 'player1 is the winner' do
+  it 'player1 is the winner' do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
