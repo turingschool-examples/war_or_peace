@@ -3,6 +3,7 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 require 'pry'
+require 'rspec'
 
 
 unshuffled_cards =
@@ -61,8 +62,9 @@ card51 = Card.new(:spades, 'Ace', 14)]
 
 shuffled_cards = unshuffled_cards.shuffle
 
-cards1 << shuffled_cards.shift(0..25)
-cards2 << shuffled_cards.shift(26..51)
+cards1 = shuffled_cards[0..25]
+cards2 = shuffled_cards[26..51]
+binding.pry
 deck1 = Deck.new(cards1)
 deck2 = Deck.new(cards2)
 player1 = Player.new("Schmendrick", deck1)
@@ -74,3 +76,9 @@ p "The players today are Schmendrick and Lady Amalthea."
 p "Type 'GO' to start the game!"
 
 user_input = gets.chomp.upcase
+if user_input == "GO"
+  game = Game.new(player1, player2)
+  game.start
+else
+  p "Only 'GO' can start the game!"
+end

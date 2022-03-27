@@ -1,11 +1,6 @@
-require './lib/card'
-require './lib/deck'
-require './lib/player'
-require './lib/turn'
-
 
 class Game
-  attr_reader :turn_counter
+  attr_reader :turn_counter, :player1, :player2
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
@@ -13,8 +8,19 @@ class Game
   end
 
   def start
-  end
+    until player1.has_lost? || player2.has_lost?
+      turn.type
+      turn.pile_cards
+      turn.winner
+      turn.award_spoils
+    end
 
-  def turns
+      if turn.type
+        :basic
+      elseif turn.type
+       :war
+      else
+        :mutually_assured_destruction
+      end
   end
 end

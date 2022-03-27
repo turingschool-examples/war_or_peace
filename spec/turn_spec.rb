@@ -22,7 +22,7 @@ RSpec.describe Turn do
   end
 
   describe '#type' do
-    it "determines turn type" do
+    it "has a basic turn type" do
       card1 = Card.new(:heart, 'Jack', 11)
       card2 = Card.new(:heart, '10', 10)
       card3 = Card.new(:heart, '9', 9)
@@ -68,10 +68,9 @@ RSpec.describe Turn do
       turn = Turn.new(player1, player2)
       expect(turn.type).to eq(:mutually_assured_destruction)
     end
-  end
 
   describe '#winner' do
-    it "determines winner of turn" do
+    it "determines winner of basic turn" do
       card1 = Card.new(:heart, 'Jack', 11)
       card2 = Card.new(:heart, '10', 10)
       card3 = Card.new(:heart, '9', 9)
@@ -120,7 +119,6 @@ RSpec.describe Turn do
       expect(turn.type).to eq(:mutually_assured_destruction)
       expect(turn.winner).to eq("No Winner")
     end
-  end
 
   describe '#pile_cards' do
     it "sends cards from deck to spoils of war" do
@@ -142,10 +140,10 @@ RSpec.describe Turn do
       turn.pile_cards
       expect(turn.spoils_of_war).to eq([card1, card3])
     end
-  end
+
 
   describe '#award_spoils' do
-    it "sends cards from spoils of war to winner deck" do
+    it "awards spoils on a basic turn" do
       card1 = Card.new(:heart, 'Jack', 11)
       card2 = Card.new(:heart, '10', 10)
       card3 = Card.new(:heart, '9', 9)
@@ -212,6 +210,9 @@ RSpec.describe Turn do
       turn.award_spoils(winner)
       expect(player1.deck.cards).to eq([card8])
       expect(player2.deck.cards).to eq([card7])
+      end
+     end
     end
+   end
   end
 end
