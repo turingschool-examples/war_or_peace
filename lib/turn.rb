@@ -53,18 +53,18 @@ class Turn
 
  def pile_cards
    if type == :basic
-     spoils_of_war << player1.deck.cards.shift
-     spoils_of_war << player2.deck.cards.shift
+     spoils_of_war << @player1.deck.cards.shift
+     spoils_of_war << @player2.deck.cards.shift
    elsif type == :war
      3.times do
-       spoils_of_war << player1.deck.cards.shift
-       spoils_of_war << player2.deck.cards.shift
+       spoils_of_war << @player1.deck.cards.shift
+       spoils_of_war << @player2.deck.cards.shift
      end
      spoils_of_war
    else type == :mutually_assured_destruction
      3.times do
-       @spoils_of_war << player1.deck.cards.shift
-       @spoils_of_war << player2.deck.cards.shift
+       @spoils_of_war << @player1.deck.cards.shift
+       @spoils_of_war << @player2.deck.cards.shift
      end
      @spoils_of_war.clear
    end
@@ -77,26 +77,5 @@ class Turn
    else
      @player2.deck.cards.concat(spoils_of_war)
    end
-
-   # if type == :basic
-   #   @player1.deck.cards.delete_at(0)
-   #   @player2.deck.cards.delete_at(0)
-   # elsif type == :war
-   #   3.times do
-   #     @player1.deck.cards.delete_at(0)
-   #   3.times do
-   #     @player2.deck.cards.delete_at(0)
-   # elsif :mutually_assured_destruction
-   #   3.times do
-   #     @player1.deck.cards.delete_at(0)
-   #   3.times do
-   #     @player2.deck.cards.delete_at(0)
-   # elsif type == :player1_winner
-   #   @player2.deck.cards.clear
-   # else
-   #   @player2.deck.cards.clear
-   # end
-   #
-   # @spoils_of_war.clear
  end
 end
