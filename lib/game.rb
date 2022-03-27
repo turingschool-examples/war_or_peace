@@ -5,17 +5,17 @@ require './lib/turn'
 require 'pry'
 
 class Game
-  attr_reader :player1, :player2, :full_deck, :turn_count
+  attr_reader :player1, :player2, :turn_count, :full_deck
   def initialize(player1, player2)
     @player1 = Player.new(player1, @deck1)
     @player2 = Player.new(player2, @deck2)
 
 
-    @full_deck = []
+    # @full_deck = []
     @turn_counter = 0
 
-  end
-  def make_deck
+  # end
+  # def make_deck
     card1 = Card.new(:diamond, "Ace", 14)
     card2 = Card.new(:diamond, "2", 2)
     card3 = Card.new(:diamond, "3", 3)
@@ -73,9 +73,11 @@ class Game
     card52 = Card.new(:spade, "King", 13)
 
     @full_deck = Deck.new([card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20, card21, card22, card23, card24, card25, card26, card27, card28, card29, card30, card31, card32, card33, card34, card35, card36, card37, card38, card39, card40, card41, card42, card43, card44, card45, card46, card47, card48, card49, card50, card51, card52])
+    # return full_deck
+  end
 
-    full_deck
-
+  def make_new_deck
+    return @full_deck
 
   end
 
@@ -87,9 +89,16 @@ class Game
 
   end
 
-  def split_deck
+  def shuffle_deck
+    shuffled_deck = make_new_deck.shuffle
 
   end
+  #
+  # def split_deck
+  #   @deck1 = Deck.new(@shuffled_deck[0..25])
+  #   @deck2 = Deck.new(@shuffled_deck[25..51])
+  #
+  # end
 
 
 
