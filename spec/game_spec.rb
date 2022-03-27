@@ -7,13 +7,15 @@ require './lib/game'
 
 describe Game do
   it "exists" do
+    game = Game.new('Megan', 'Aurora')
 
-
-    game = Game.new('')
-
-
+    expect(game).to be_an_instance_of(Game)
   end
 
+  xit "can make a deck of 52 cards" do
+
+  
+  end
 end
 
 

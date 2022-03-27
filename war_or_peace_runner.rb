@@ -6,18 +6,24 @@ require './lib/turn'
 require './lib/game'
 
 puts "Enter name of player 1"
-player1 = gets.chomp
+player1_name = gets.chomp
 puts "Enter name of player 2"
-player2 = gets.chomp
+player2_name = gets.chomp
 
-p "Welcome to War (or Peace) This game will be played with 52 cards.
-The players today are #{player1} and #{player2}.
-Type 'GO' to start the game!"
+# p "Welcome to War (or Peace) This game will be played with 52 cards."
+# p "The players today are #{player1_name} and #{player2_name}."
+# p "Type 'GO' to start the game!"
 
 action = gets.chomp
 
-if action.upcase == "GO"
-  p "Game will start (when coded)"
-else
-  p "wrong word "
-end
+full_deck = Game.make_deck
+puts full_deck
+
+random_deck = full_deck.shuffle
+
+#
+# if action.upcase == "GO"
+#
+# else
+#   p "wrong word"
+# end

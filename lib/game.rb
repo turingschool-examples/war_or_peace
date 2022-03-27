@@ -5,12 +5,14 @@ require './lib/turn'
 require 'pry'
 
 class Game
-  attr_reader :player1, :player2, :turn_counter
-  def initialize
+  attr_reader :player1, :player2, :turn_count
+  def initialize(player1, player2)
+    @player1 = Player.new(player1, @deck1)
+    @player2 = Player.new(player2, @deck2)
+    @turn_counter = 0
 
   end
   def make_deck
-    @stack_of_cards = Deck.new([])
     card1 = Card.new(:diamond, "Ace", 14)
     card2 = Card.new(:diamond, "2", 2)
     card3 = Card.new(:diamond, "3", 3)
@@ -67,7 +69,10 @@ class Game
     card51 = Card.new(:spade, "Queen", 12)
     card52 = Card.new(:spade, "King", 13)
 
-    @full_deck = Deck.new([card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20, card21, card22, card23, card24, card25, card26, card27, card28, card29, card30, card31, card32, card33, card34, card35, card36, card37, card38, card39, card40, card41, card42, card43, card44, card45, card46, card47, card48, card49, card50, card51, card52])
+    full_deck = Deck.new([card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20, card21, card22, card23, card24, card25, card26, card27, card28, card29, card30, card31, card32, card33, card34, card35, card36, card37, card38, card39, card40, card41, card42, card43, card44, card45, card46, card47, card48, card49, card50, card51, card52])
+
+    full_deck
+
 
   end
 
@@ -78,6 +83,10 @@ class Game
   def takes_turn
 
   end
+
+  def split_deck
+  end
+
 
 
 
