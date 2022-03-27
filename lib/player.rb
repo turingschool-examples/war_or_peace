@@ -6,11 +6,15 @@ class Player
   end
 
   def name
-    @player_name = @name
+    return name
+  end
+
+  def count
+    count
   end
 
   def has_lost?
-    if @deck.cards.count == 0
+    if deck.cards.count == 0
       true
     else
       false
