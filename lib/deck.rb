@@ -9,7 +9,7 @@ class Deck
   end
 
   def rank_of_card_at(index)
-    @cards[index].rank
+      @cards[index].rank
   end
 #binding.pry
   def high_ranking_cards
