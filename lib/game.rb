@@ -35,6 +35,14 @@ class Game
 
         end
     end
+
+    if turn.player1.deck.cards.count == 0
+      p "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+    elsif turn.player2.deck.cards.count == 0
+      p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+    elsif turn_count == 1000000
+      p "---- DRAW ----"
+    end
   end
 end
     # binding.pry

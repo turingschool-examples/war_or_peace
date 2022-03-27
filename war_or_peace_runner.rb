@@ -75,8 +75,8 @@ cards2.shuffle!
 deck1 = Deck.new(cards1)
 deck2 = Deck.new(cards2)
 
-player1 = Player.new('meg', deck1)
-player2 = Player.new('aur', deck2)
+player1 = Player.new('Megan', deck1)
+player2 = Player.new('Aurora', deck2)
 
 game = Game.new(player1, player2)
 
