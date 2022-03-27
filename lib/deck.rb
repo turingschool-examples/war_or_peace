@@ -10,6 +10,10 @@ class Deck
   def rank_of_card_at(index)
     @cards[index].rank
   end
+  def percent_high_ranking
+    percent = high_ranking_cards.length.to_f / cards.length.to_f
+    (percent * 100).round(2)
+  end
   def add_card(card)
     @cards << card
   end
@@ -34,10 +38,7 @@ class Deck
   #   false
   #   end
   # end
-  def percent_high_ranking
-    percent = high_ranking_cards.count.to_f / @cards.count
-    (percent * 66.67).round(2)
-  end
+  # Need better solution - keep getting 100 instead of 66.67
 end
 
   # end

@@ -112,6 +112,7 @@ describe Turn do
       # expect(player2.deck.cards).to eq([card4, card6, card7])
       # expect(turn.pile_cards).to eq([card1, card3])
     end
+  describe "run :basic #award_spoils method"
     it "awards :basic spoils to the winner" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
@@ -156,7 +157,8 @@ describe Turn do
 
         expect(turn.type).to eq(:war)
       end
-
+    end
+    describe "runs :war #winner method" do
       it "tells us the :war winner" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
@@ -176,7 +178,7 @@ describe Turn do
 
         expect(winner).to eq(player2)
       end
-
+    describe "runs :war #pile_cards method" do
       it "piles the cards :war" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
@@ -191,16 +193,18 @@ describe Turn do
         player1 = Player.new("Megan", deck1)
         player2 = Player.new("Aurora", deck2)
         turn = Turn.new(player1, player2)
-        # turn.type
         winner = turn.winner
-        #binding.pry
+        expect(turn.type).to eq(:war)
         turn.pile_cards
-
-        expect(turn.spoils_of_war).to eq([card1, card2, card5, card4, card3, card6])
         expect(player1.deck.cards).to eq([card8])
         expect(player2.deck.cards).to eq([card7])
+        expect(turn.spoils_of_war).to eq([card1, card4, card2, card3, card5, card6])
+        turn.award_spoils(winner)
+        expect(player1.deck.cards).to eq([card8])
+        expect(player2.deck.cards).to eq([card7, card1, card4, card2, card3, card5, card6])
       end
-
+    end
+    describe "runs war #award_spoils method"
       it "awards :war spoils to winner" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
@@ -217,10 +221,19 @@ describe Turn do
         turn = Turn.new(player1, player2)
         turn.type
         winner = turn.winner
+        expect(turn.type).to eq(:war)
+        # expect(turn.spoils_of_war).to eq([])
         turn.pile_cards
+        expect(turn.spoils_of_war).to eq([card1, card3])
         turn.award_spoils(winner)
-        expect(turn.spoils_of_war).to eq([])
-        expect(player1.deck.cards).to eq([card8])
-        expect(player2.deck.cards).to eq([card7])
+        expect(player1.deck.cards).to eq([card1, card3])
+        expect(player2.deck.cards).to eq([card4, card6, card7])
+        # turn.pile_cards
+        # turn.award_spoils(winner)
+        # expect(turn.spoils_of_war).to eq([])
+        # expect(player1.deck.cards).to eq([card8])
+        # expect(player2.deck.cards).to eq([card7])
+        # expect(winner).to eq(player2)
+        # binding.pry
       end
     end
