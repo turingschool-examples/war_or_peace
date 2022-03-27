@@ -3,7 +3,6 @@ require './lib/deck'
 require './lib/card'
 
 RSpec.describe Deck do
-
   describe '#initialize' do
     it "exits" do
       deck = Deck.new(@cards)
