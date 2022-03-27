@@ -56,13 +56,14 @@ class Turn
   end
 
   def award_spoils(winner)
-    if winner = player1.deck.card
+
+    if winner == player1
       spoils_of_war.each do |award|
-      winner << award.shift.push
+      player1.deck.cards << award
       end
-    elsif winner = player2.deck.cards
-      winner.each do |award|
-        winner << award.shift.push
+    elsif winner == player2
+      spoils_of_war.each do |award|
+        player2.deck.cards << award
     end
   end
   end
