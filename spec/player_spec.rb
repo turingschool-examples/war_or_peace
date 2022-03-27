@@ -2,7 +2,7 @@ require "rspec"
 require "./lib/card"
 require "./lib/deck"
 require "./lib/player"
-# require "pry"
+require "pry"
 
 RSpec.describe Player do
   it "exists" do
