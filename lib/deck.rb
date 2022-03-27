@@ -20,9 +20,6 @@ class Deck
       0
     else @cards[index].rank
     end
-    # cards[index].each do |card|
-    #   puts card.rank
-    # end
   end
 
   def high_ranking_card
