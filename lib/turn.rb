@@ -60,13 +60,6 @@ class Turn
         spoils_of_war << @player2.deck.remove_card
       end
       spoils_of_war.clear
-      # 3.times do
-      #   player1.deck.remove_card
-      # end
-      # 3.times do
-      #   player2.deck.remove_card
-      # end
-      # spoils_of_war
     end
   end
 
@@ -75,7 +68,6 @@ class Turn
      spoils_of_war.each do |spoils|
        @player1.deck.cards << spoils
      end
-     # binding.pry
    elsif winner == @player2
      spoils_of_war.each do |spoils|
        @player2.deck.cards << spoils
