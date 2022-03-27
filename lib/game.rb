@@ -2,6 +2,7 @@ class Game
   attr_reader :cards, :standard_deck, :player1, :player2
 
   def initialize(player1, player2)
+    @cards = cards
     @standard_deck = standard_deck
     @player1 = player1
     @player2 = player2
@@ -61,5 +62,29 @@ class Game
     card51 = Card.new(:spade, 'King,', 13)
     card52 = Card.new(:spade, 'Ace', 14)
     @standard_deck = Deck.new([card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20, card21, card22, card23, card24, card25, card26, card27, card28, card29, card30, card31, card32, card33, card34, card35, card36, card37, card38, card39, card40, card41, card42, card43, card44, card45, card46, card47, card48, card49, card50, card51, card52])
+  end
+
+  def shuffle_deck
+    #this method should randomize the order of the cards in the standard_deck array
+    standard_deck.shuffle
+  end
+
+  def split_deck
+    #this method should be able to split the shuffled deck into two and assign each half to the two players
+    deck1 = Deck.new(standard_deck.cards[0..25])
+    deck2 = Deck.new(standard_deck.cards[26..52])
+  end
+
+  def create_player
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+  end
+
+  def start
+    #this method should display text to the user, get them to type "GO", and run the runner file a defined number of times until a win or a draw occurs 
+    puts "Welcome to War! (or Peace) This game will be played with 52 cards.
+    The players today are Megan and Aurora.
+    Type 'GO' to start the game!
+    ------------------------------------------------------------------"
   end
 end

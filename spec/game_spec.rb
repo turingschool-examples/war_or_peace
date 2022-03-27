@@ -26,4 +26,16 @@ RSpec.describe Game do
     expect(game.create_deck).to eq(game.standard_deck)
     expect(game.standard_deck.cards.count).to eq(52)
   end
+
+  it "can shuffle a standard deck" do
+    #this test does not pass as written
+    deck1 = []
+    deck2 = []
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    game = Game.new(player1, player2)
+    standard_deck = []
+    expect(game.shuffle_deck).not_to eq(game.standard_deck)
+    expect(game.shuffle_deck.cards.count).to eq(52)
+  end
 end
