@@ -12,7 +12,7 @@ attr_reader :player1, :player2, :spoils_of_war
       :basic
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
       :mutually_assured_destruction
-    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) != player2.deck.rank_of_card_at(2)
+    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
       :war
     end
   end
@@ -35,5 +35,22 @@ attr_reader :player1, :player2, :spoils_of_war
       end
     end
 
-  
+    def pile_cards
+      if type == :basic
+        spoils_of_war << player1.deck.remove_card
+        spoils_of_war << player2.deck.remove_card
+      elsif type == :war
+        3.times do
+          spoils_of_war << player1.deck.remove_card
+          spoils_of_war << player2.deck.remove_card
+        end
+      else type == :mutually_assured_destruction
+        3.times do
+          spoils_of_war << player1.deck.remove_card
+          spoils_of_war << player2.deck.remove_card
+        end
+        spoils_of_war.clear #this is clearing the cards so no one gets one
+      end
+    end
+
 end
