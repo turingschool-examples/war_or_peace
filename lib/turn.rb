@@ -1,3 +1,4 @@
+require './lib/player'
 class Turn
 attr_reader :player1, :player2, :spoils_of_war
 
@@ -63,7 +64,7 @@ attr_reader :player1, :player2, :spoils_of_war
         player1.deck.cards << spoils
         end
       end
-    end 
+    end
 
 
 end
