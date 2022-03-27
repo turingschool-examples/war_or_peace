@@ -4,6 +4,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/start'
 
  #automatic deck creation begin...run only one or the other (automatic or manual)
  # suits = [:spade, :club, :heart, :diamond]
@@ -73,6 +74,20 @@ require './lib/turn'
  card51 = Card.new(:diamond, 'King', 13)
  card52 = Card.new(:diamond, 'Ace', 14)
  full_deck = [card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20, card21, card22, card23, card24, card25, card26, card27, card28, card29, card30, card31, card32, card33, card34, card35, card36, card37, card38, card39, card40, card41, card42, card43, card44, card45, card46, card47, card48, card49, card50, card51, card52]
-binding.pry
- full_deck.shuffle
+ shuffled_deck = full_deck.shuffle
+ shuffled_deck1 = []
+ shuffled_deck2 = []
+ 26.times do
+   shuffled_deck1 << shuffled_deck.shift
+   shuffled_deck2 << shuffled_deck.shift
+ end
+ deck1 = Deck.new(shuffled_deck1)
+ deck2 = Deck.new(shuffled_deck2)
  #manual deck creation end
+
+ player1 = Player.new("Megan", deck1)
+ player2 = Player.new("Aurora", deck2)
+
+ game = Start.new(player1, player2)
+
+ game.start
