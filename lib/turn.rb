@@ -20,6 +20,9 @@ class Turn
 
 
   def winner
+    if player1.deck.cards == [] || player2.deck.cards == []
+      return
+    end
     if type == :basic
       if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
         player1
@@ -41,19 +44,17 @@ class Turn
     if type == :basic
       spoils_of_war << player1.deck.remove_card
       spoils_of_war << player2.deck.remove_card
-    elsif
-      type == :war
+    elsif type == :war
       3.times do
         spoils_of_war << player1.deck.remove_card
         spoils_of_war << player2.deck.remove_card
       end
-    else
-      type == :mutually_assured_destruction
+    elsif type == :mutually_assured_destruction
       3.times do
         spoils_of_war << player1.deck.remove_card
         spoils_of_war << player2.deck.remove_card
       end
-      spoils_of_war.clear #this clears one so no one gets the cards
+      spoils_of_war.clear #this clears so no one gets the cards
     end
   end
 
@@ -62,11 +63,12 @@ class Turn
       spoils_of_war.each do |spoils|
       player1.deck.cards << spoils
       end
-    else winner == player2
+    elsif winner == player2
       spoils_of_war.each do |spoils|
       player2.deck.cards << spoils
       end
     end
+      @spoils_of_war = []
   end
 
 
