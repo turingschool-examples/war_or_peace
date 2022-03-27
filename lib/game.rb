@@ -69,24 +69,74 @@ class Game
          card37, card38, card39, card40, card41, card42, card43, card44, card45,
          card46, card47, card48, card49, card50, card51, card52]
 
-      @deck_filled.shuffle
+      @deck_filled.shuffle!
     end
 
   def start_game
-    puts "Welcome to War! (or Peace) This game will be played with 52 cards."
+    puts ""
+    puts "Welcome to War! (or Peace)"
+    puts "This game will be played with 52 cards."
     puts "The players today are Megan and Aurora."
     puts "Type 'GO' to start the game!"
-    puts "------------------------------------------------------------------"
+    puts "---------------------------------------"
 
     go_check = gets.chomp
 
     if go_check == "GO"
       make_deck
+      run_game
     else
+      puts " "
       puts "That ain't it bro, you gotta type GO!"
       puts "Press Enter to try again"
-    gets.chomp
+      gets.chomp
       self.start_game
+    end
+  end
+
+  def run_game
+    deck1 = Deck.new(@deck_filled[0..25])
+    deck2 = Deck.new(@deck_filled[26..51])
+    player1 = Player.new("Nick", deck1)
+    player2 = Player.new("Sarah", deck2)
+
+    @game_turn = 0
+
+    loop do
+      @game_turn += 1
+      turn = Turn.new(player1,player2)
+      @turn_type = turn.type
+      if @turn_type == :basic or @turn_type == :war
+        @turn_winner = turn.winner.name
+      end
+      turn.pile_cards
+      turn.award_spoils
+      turn_output
+
+      if player1.has_lost?
+        puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
+        break
+      elsif player2.has_lost?
+        puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
+        break
+      end
+
+      if @game_turn == 1000000
+        p "---- DRAW ----"
+        break
+      end
+    end
+  end
+
+  def turn_output
+    if @turn_type == :basic
+      p "Turn #{@game_turn}: #{@turn_winner} has won 2 cards!"
+    elsif @turn_type == :war
+      p "Turn #{@game_turn}: WAR - #{@turn_winner} won 6 cards!"
+    elsif @turn_type == :mutually_assured_destruction
+      p "Turn #{@game_turn}: *Mutually Assured Destruction* 6 cards removed from play!"
+    elsif @turn_type == :draw
+      p "Turn #{@game_turn}: Draw! Shuffling Decks..."
     end
   end
 

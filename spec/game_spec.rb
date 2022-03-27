@@ -19,9 +19,11 @@ RSpec.describe Game do
     expect(@game.deck_filled[0]).not_to eq(card1)
   end
 
-  it "checks start_game method" do
-  @game = Game.new
-  @game.start_game
-  expect(@game.deck_filled.length).to eq(52)
+  it "checks that players exist in game" do
+    @game = Game.new
+    @game.make_deck
+    @game.run_game
+    expect(@game.run_game.player1).to be_an_instance_of(Game)
+    expect(@game.run_game.player2).to be_an_instance_of(Game)
   end
 end
