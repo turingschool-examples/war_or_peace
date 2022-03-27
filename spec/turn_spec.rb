@@ -69,4 +69,8 @@ describe Turn do
     expect(player1.deck).to eq(player1.deck {@cards = [card2, card5, card8, card1, card3]})
     expect(player2.deck).to eq(player2.deck {@cards = [card4, card6, card7]})
   end
+
+  xit "can start a game" do
+    turn.start
+  end
 end
