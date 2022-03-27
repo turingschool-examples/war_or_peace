@@ -76,7 +76,7 @@ RSpec.describe Turn do
     expect(turn.type).to eq(:war)
   end
 
-  it "can have yet another type" do 
+  it "can have yet another type" do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
