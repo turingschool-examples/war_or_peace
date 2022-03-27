@@ -8,35 +8,44 @@ require 'pry'
 
 
 class Game
+  attr_reader :turn_count, :player1, :player2
   def initialize (player1, player2)
-  @turn_count = turn_count
+  @turn_count = 0
+  @player1 = player1
+  @player2 = player2
   end
 
 
   def start
-    turn = turn.new(0)
-    winner = turn.winner
-    pile_cards = turn.pile_cards
-    spoils_of_war = turn.spoils_of_war(winner)
 
-    until player1.has_lost? || player2.has_lost? || turn_count = 1000001
+
+    until player1.has_lost? || player2.has_lost? || turn_count == 1000001
+      turn = Turn.new(player1, player2)
+      type = turn.type
+      winner = turn.winner
+
+
       p "Turn #{@turn_count}: "
       if type == :basic
-        p "#{turn.winner.name} has won 2 cards"
+        p "#{winner.name} has won 2 cards"
       elsif type == :war
-        p "WAR - #{turn.winner.name} has won 6 cards"
+        p "WAR - #{winner.name} has won 6 cards"
       else type == :mutually_assured_destruction
         p "*mutually assured destruction* 6 cards removed from play"
       end
+      @turn_count += 1
+    end
+
+    turn.pile_cards
+
+    turn.spoils_of_war
 
       if player1.has_lost?
         p "#{player2.name} has won!"
       elsif player2.has_lost?
         p "#{player1.name} has won!"
-      else turn.count == 1000001
+      else @turn_count == 1000001
         p "This game is a draw!"
-
       end
-      @turn_count += 1
   end
 end
