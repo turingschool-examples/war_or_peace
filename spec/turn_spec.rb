@@ -32,7 +32,7 @@ require 'pry'
     expect(turn.spoils_of_war).to eq([])
   end
 
-  xit "turn type basic, determines turn winner, awards spoils to winner" do
+  it "turn type basic, determines turn winner, awards spoils to winner" do
 
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
     deck2 = Deck.new([@card3, @card4, @card6, @card7])
