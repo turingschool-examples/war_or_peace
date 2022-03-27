@@ -24,5 +24,6 @@ RSpec.describe Game do
     game = Game.new(player1, player2)
     standard_deck = []
     expect(game.create_deck).to eq(game.standard_deck)
+    expect(game.standard_deck.cards.count).to eq(52)
   end
 end
