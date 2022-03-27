@@ -29,34 +29,30 @@ class Turn
   def winner
     result = ""
     if(@type == :basic)
-      p1_rank = @player1.deck.rank_of_card_at(0)
-      p2_rank = @player2.deck.rank_of_card_at(0)
-      if(p1_rank > p2_rank)
+      if(@player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0))
         result = @player1
       else
         result = @player2
       end
     elsif(@type == :war)
-      #in the first two conditionals, when there is a player that does not have
-      # enough cards to compare the 3, make the other palyer the Winner
+      #If a player has less than 3 cars left, make the other palyer the Winner
       # and put the type to basic so only one card will be removed from each player
       if(@player1.deck.cards.length < 3)
-        #puts("player 1 doesnt have enough cards")
         result = @player2
         @type = :basic
       elsif(@player2.deck.cards.length < 3)
-        #puts("player 2 doesn't have enough cards")
         result = @player1
         @type = :basic
+      #If both players have more than 3 cards left this else branch will execute
       else
-        p1_rank_2 = @player1.deck.rank_of_card_at(2)
-        p2_rank_2 = @player2.deck.rank_of_card_at(2)
-        if(p1_rank_2 > p2_rank_2)
+        #Check which players 3rd card is highest and make them the winner
+        if(@player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2))
           result = @player1
         else
           result = @player2
         end
       end
+    #If it is not :basic or :war it is :mutually_assured_destruction and there is no winner
     else
       result = "No Winner"
     end

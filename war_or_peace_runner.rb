@@ -29,9 +29,10 @@ require './pry'
 
 #Create cards for the decks by reading in the info from a text file
 cards = CardGenerator.new("cards.txt").cards
-
-deck1 = Deck.new(cards.shuffle)
-deck2 = Deck.new(cards.shuffle)
+cards = cards.shuffle
+#split the cards into two decks
+deck1 = Deck.new(cards[0..25])
+deck2 = Deck.new(cards[26..51])
 player1 = Player.new("Nadine", deck1)
 player2 = Player.new("Taylor", deck2)
 
