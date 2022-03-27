@@ -1,4 +1,7 @@
 require './lib/turn.rb'
+require './lib/game.rb'
+require 'rspec'
+require 'pry'
 
 
 # Found an example of this on Google and had to modify accordingly for our card class
@@ -82,4 +85,37 @@ end
 # -------------------------------------
 
 
-p stack_of_cards
+cards1 = stack_of_cards[0..25].shuffle
+
+cards2 = stack_of_cards[26..52].shuffle
+
+deck1 = Deck.new(cards1)
+
+deck2 = Deck.new(cards2)
+
+player1 = Player.new('Capernicus', deck1)
+
+player2 = Player.new('Warwick', deck2)
+
+game = Game.new(player1, player2)
+
+#binding.pry
+
+puts "Welcome to War! (or Peace) This game will be played with 52 cards."
+
+puts "The players today are Megan and Aurora."
+
+puts "Type 'GO' to start the game!"
+print ">"
+go = $stdin.gets.chomp
+
+if %w{go Go GO gO}.include?(go)
+
+game.start
+
+else
+    puts "You're really missing out!"
+
+end
+
+ 

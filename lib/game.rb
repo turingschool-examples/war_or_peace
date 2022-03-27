@@ -1,15 +1,17 @@
-require './war_or_peace_runner.rb'
+require './lib/turn.rb'
 
 
 class Game
 
-    def initialize
+    def initialize(player1, player2)
         @round = 1
+        @player1 = player1
+        @player2 = player2
     end
 
     def start
-        until player1.has_lost? || player2.has_lost? || round == 1,000,000
-            turn = Turn.new(player1, player2)
+        until @player1.has_lost? || @player2.has_lost? || @round == 1_000_000
+            turn = Turn.new(@player1, @player2)
             winner = turn.winner
             type = turn.type
             turn.pile_cards
@@ -29,8 +31,10 @@ class Game
                 puts "*~*~*~* #{turn.player2.name} has won the game! *~*~*~*"
             elsif turn.player2.has_lost?
                 puts "*~*~*~* #{turn.player1.name} has won the game! *~*~*~*"
-            elsif @round == 1,000,000
+            elsif @round == 1_000_000
                 puts "--- DRAW ---"
+            end
+        end
     end 
 
     

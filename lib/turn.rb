@@ -42,7 +42,7 @@ class Turn
         elsif type == :war
             3.times {@spoils_of_war << player1.deck.remove_card && @spoils_of_war << player2.deck.remove_card}
         elsif type == :mutually_assured_destruction
-            3.times {player1.deck.cards.shift} && 3.times {player1.deckcards.shift}
+            3.times {player1.deck.cards.shift} && 3.times {player1.deck.cards.shift}
         end
     end
 

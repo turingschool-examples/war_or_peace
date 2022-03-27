@@ -10,7 +10,11 @@ class Deck
     end
 
     def rank_of_card_at(number)
-        @cards[number].rank
+        if @cards[number].nil? #I don't know what this means but it made me add this line: `rank_of_card_at': undefined method `rank' for nil:NilClass (NoMethodError)
+        0
+        else
+           @cards[number].rank
+        end
     end
 
     def high_ranking_cards
