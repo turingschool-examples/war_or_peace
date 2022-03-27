@@ -26,7 +26,6 @@ attr_reader :player1,
       winner = turn.winner(type)
       turn.pile_cards(type)
       turn.award_spoils(winner)
-
       if(type == :basic)
         puts "Turn #{turn_number}: #{winner.name} won 2 cards"
       elsif(type == :war)
