@@ -74,18 +74,7 @@ RSpec.describe Game do
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     game = Game.new(player1, player2)
-    standard_deck= Deck.new([])
+    standard_deck = []
     expect(game.create_deck).to eq(standard_deck)
   end
-
-
-
-
-
-
-
-
-
-
-
 end
