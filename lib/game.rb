@@ -41,11 +41,11 @@ class Game
     turn.spoils_of_war
 
       if player1.has_lost?
-        p "#{player2.name} has won!"
+        p "*-*-*_*#{player2.name} has won!*-*-*_*"
       elsif player2.has_lost?
-        p "#{player1.name} has won!"
+        p "*-*-*_*#{player1.name} has won!*-*-*_*"
       else @turn_count == 1000001
-        p "This game is a draw!"
+        p "----This game is a draw!----"
       end
   end
 end
