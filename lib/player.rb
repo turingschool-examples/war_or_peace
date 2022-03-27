@@ -1,3 +1,6 @@
+require 'pry'
+require './lib/deck'
+
 class Player
 attr_reader :name, :deck
 

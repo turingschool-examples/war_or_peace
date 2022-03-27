@@ -1,6 +1,4 @@
 require 'pry'
-require './lib/card'
-require './lib/deck'
 require './lib/player'
 
 class Turn
