@@ -5,11 +5,16 @@ class Deck
   attr_reader :cards
 
   def initialize(cards)
+    # binding.pry
     @cards = cards
   end
 
   def rank_of_card_at(index)
+    if index - 1 <= @cards.length
       @cards[index].rank
+    else
+      "No card found at index"
+    end
   end
 #binding.pry
   def high_ranking_cards

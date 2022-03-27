@@ -7,11 +7,13 @@ class Player
               :name
 
   def initialize(name, deck)
+    # binding.pry
     @name = name
     @deck = deck
   end
 
   def has_lost?
-    deck.cards.count == 0
+    # binding.pry
+    deck.cards.length == 0
   end
 end

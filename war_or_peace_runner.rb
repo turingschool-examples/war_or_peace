@@ -3,7 +3,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
-
+# require './lib/card_generator'
 
 card1 = Card.new(:heart, '2', 2)
 card2 = Card.new(:heart, '3', 3)
@@ -59,12 +59,23 @@ card51 = Card.new(:club, 'King', 13)
 card52 = Card.new(:club, 'Ace', 14)
 
 full_deck = Deck.new([card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20, card21, card22, card23, card24, card25, card26, card27, card28, card29, card30, card31, card32, card33, card34, card35, card36, card37, card38, card39, card40, card41, card42, card43, card44, card45, card46, card47, card48, card49, card50, card51,  card52].shuffle)
-# full_deck = Deck.new([card1, card2, card3, card4, card5, card6, card7, card8, card9, card10].shuffle)
+
+# full_deck = Deck.new([card1, card2, card3, card4, card5, card6
+
+# full_deck = Deck.new([])
+#
+# counter = 0
+#
+# 52.times do
+#   counter += 1
+#   full_deck.cards << "card#{counter}"
+# end
+# full_deck.cards.shuffle
 
 cards1 = []
 cards2 = []
 
-cards1,cards2 = full_deck.cards.each_slice(full_deck.cards.size/2.0).to_a
+ cards1,cards2 = full_deck.cards.each_slice(full_deck.cards.size/2).to_a
 
 deck1 = Deck.new(cards1)
 deck2 = Deck.new(cards2)
@@ -84,24 +95,6 @@ turn.start
 count = 0
 loop do
   count += 1
-
-  # print "Turn #{count}: "
-  # # turn.type
-  # if turn.type == :basic
-  #   puts "#{turn.winner.name} won 2 cards"
-  #   turn.pile_cards
-  #   turn.award_spoils(turn.winner)
-  # elsif turn.type == :war
-  #   puts "WAR - #{turn.winner.name} won 6 cards"
-  #   turn.pile_cards
-  #   turn.award_spoils(turn.winner)
-  # elsif turn.type == :mutually_assured_destruction
-  #   # binding.pry
-  #   puts "*Mutually Assured Destruction* 6 cards removed from play"
-  #   # binding.pry
-  #   turn.pile_cards
-  # end
-
   if player1.has_lost?
     puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
     break
@@ -124,9 +117,27 @@ loop do
       # binding.pry
       turn.pile_cards
     end
-  elsif count == 1000
-    binding.pry
+  elsif count == 10000
+    # binding.pry
     puts "----DRAW----"
     break
   end
 end
+
+
+# print "Turn #{count}: "
+# # turn.type
+# if turn.type == :basic
+#   puts "#{turn.winner.name} won 2 cards"
+#   turn.pile_cards
+#   turn.award_spoils(turn.winner)
+# elsif turn.type == :war
+#   puts "WAR - #{turn.winner.name} won 6 cards"
+#   turn.pile_cards
+#   turn.award_spoils(turn.winner)
+# elsif turn.type == :mutually_assured_destruction
+#   # binding.pry
+#   puts "*Mutually Assured Destruction* 6 cards removed from play"
+#   # binding.pry
+#   turn.pile_cards
+# end
