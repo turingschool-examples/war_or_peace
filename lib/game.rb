@@ -10,8 +10,10 @@ class Game
 
   def initialize(p1_name, p2_name)
     @turn_count = 0
-    @player1 = Player.new(p1_name, @deck1)
-    @player2 = Player.new(p2_name, @deck2)
+    # @player1 = Player.new(p1_name, @deck1)
+    # @player2 = Player.new(p2_name, @deck2)
+    @player1 = p1_name
+    @player2 = p2_name
   end
 
   def start
@@ -23,11 +25,11 @@ class Game
           turn.award_spoils(winner)
 
           if type == :basic
-            puts "Turn #{@round}: #{winner.name} won 2 cards"
+            puts "Turn #{@turn_count}: #{winner.name} won 2 cards"
           elsif type == :war
-            puts "Turn #{@round}: WAR - #{winner.name} won 6 cards"
+            puts "Turn #{@turn_count}: WAR - #{winner.name} won 6 cards"
           elsif type == :mutually_assured_destruction
-            puts "Turn #{@round}: *mutually assured destruction* 6 cards removed from play"
+            puts "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
           end
 
           @turn_count += 1

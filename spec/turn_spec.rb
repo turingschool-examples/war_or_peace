@@ -195,7 +195,7 @@ describe Turn do
    turn = Turn.new(player1, player2)
    winner = turn.winner
 
-   binding.pry
+
    expect(turn.winner).to eq('No winner.')
    expect(turn.spoils_of_war).to eq([])
    turn.pile_cards

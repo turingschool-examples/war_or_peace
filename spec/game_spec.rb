@@ -27,7 +27,6 @@ describe Game do
   end
 
   it "starts" do
-    game = Game.new('Aaron', 'Beth')
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -39,7 +38,10 @@ describe Game do
 
     deck1 = Deck.new([card1, card2, card5, card8])
     deck2 = Deck.new([card3, card4, card6, card7])
+    player1 = Player.new('p1_name', deck1)
+    player2 = Player.new('p2_name', deck2)
+    game = Game.new(player1, player2)
     game.start
-    expect(game.type).to eq(:basic)
+    expect(game).to be_an_instance_of(Game)
   end
 end
