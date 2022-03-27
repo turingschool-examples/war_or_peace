@@ -3,11 +3,11 @@ require './lib/deck.rb'
 require './lib/player.rb'
 require './lib/turn.rb'
 class Game
-  attr_reader :playe
-  def initialize (player_a, player_b)
+  attr_reader :turn_count, :player1, :player2
+  def initialize (player1, player2)
     @turn_count = turn_count
-    @player_a = player_a
-    @player_b = player_b
+    @player1 = player1
+    @player2 = player2
 
   def start
     turn = Turn.new(player1, player2)
@@ -15,6 +15,8 @@ class Game
     turn.pile_cards
     turn.award_spoils(winner)
     until player_a.has_lost? || player_b.has_lost? || turn_count == 1000001
+
+      p "Turn #{turn_count}:"
       if type == :basic
         p "Basic - #{player.name} won 2 cards"
 
@@ -26,11 +28,11 @@ class Game
 
     @turn_count += 1
     end
-      if turn.player_b.has_lost?
-        p "#{turn.player_a.name} has won!"
+      if turn.player2.has_lost?
+        p "#{turn.player1.name} has won!"
 
-    elsif turn.player_a.has_lost?
-        p "#{turn.player_b.name} has won!"
+    elsif turn.player1.has_lost?
+        p "#{turn.player2.name} has won!"
 
     elsif @turn_count == 1000001
       p "DRAW"
