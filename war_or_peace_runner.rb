@@ -3,7 +3,6 @@ require './lib/deck.rb'
 require './lib/player.rb'
 require './lib/turn.rb'
 require './lib/game.rb'
-require 'pry'
 
 
 card1 = Card.new(:club, 'Ace', 14)
@@ -87,5 +86,4 @@ until ready == input
 end
 
 game = Game.new(@player1, @player2)
-binding.pry
 game.start
