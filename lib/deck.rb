@@ -2,41 +2,37 @@ require './lib/card.rb'
 
 class Deck
 
-  attr_reader :cards, :suit, :value, :rank
+  attr_reader :cards
 
   def initialize (cards)
-    @cards = cards[]
+    @cards = cards
   end
 
-  def cards
-    @cards
-  end
-
-  rank_of_card_at = []
-  def rank_of_card_at
-    card.each do |rank|
-      rank_of_card_at = rank
-    end
-    p rank_of_card_at 
-
+  def rank_of_card_at (index)
+    #I want index here to put the card rank when i run this test
+    @cards[index].rank
   end
 
   def high_ranking_cards
-    if rank > 10
-      true
-    end
+    high_rank = []
+    cards.each do |card|
+      if card.rank > 10
+        high_rank << card
+      end
+      end
+      return high_rank
   end
 
   def percent_high_ranking
-
+    percent_high = high_ranking_cards.size.to_f / @cards.size.to_f * 100
+    percent_high.round(2)
   end
 
   def remove_card
-    @cards.pop
+    @cards.shift
   end
 
-  def add_card
-    @cards.append
+  def add_card(card)
+    @cards.push(card)
   end
-
 end
