@@ -3,6 +3,7 @@ require './lib/deck.rb'
 require './lib/player.rb'
 require './lib/turn.rb'
 require './lib/game.rb'
+require 'pry'
 
 
 card1 = Card.new(:club, 'Ace', 14)
@@ -66,19 +67,25 @@ deck = [card1, card2, card3, card4, card5,
   card36, card37, card38, card39, card40, card41,
   card42, card43, card44, card45, card46, card47,
   card48, card49, card50, card51, card52].shuffle
-deck1 = deck[0..25]
-deck2 = deck[26..51]
-player1 = Player.new('Megan', @deck1)
-player2 = Player.new('Aurora', @deck2)
+@deck1 = Deck.new(deck[0..25])
+@deck2 = Deck.new(deck[26..51])
 
 puts 'Welcome to War!(or Peace) This game will be played with 52 cards'
-
-puts 'The players today are Megan and Aurora'
+puts "What are the player's names?"
+p1_name = gets.chomp
+p2_name = gets.chomp
+@player1 = Player.new(p1_name, @deck1)
+@player2 = Player.new(p2_name, @deck2)
+puts "The players today are #{p1_name} and #{p2_name}"
 
 input = nil
-ready = "Go"
+ready = "GO"
 until ready == input
-  puts "Type 'Go' to start the game!"
+  puts "Type 'GO' to start the game!"
   p ">"
   input = gets.chomp.upcase
 end
+
+game = Game.new(@player1, @player2)
+binding.pry
+game.start

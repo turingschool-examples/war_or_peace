@@ -9,8 +9,10 @@ class Deck
   end
 
   def rank_of_card_at (index)
-    #I want index here to put the card rank when i run this test
-    @cards[index].rank
+    if @cards[index].nil?
+      0
+    else @cards[index].rank
+    end
   end
 
   def high_ranking_cards
