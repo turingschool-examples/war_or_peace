@@ -38,4 +38,14 @@ class Turn
       end
     end
   end
+
+  def pile_of_cards
+    @spoils_of_war << player1.deck.remove_card1
+    if type == :basic
+    elsif type == :mutually_assured_destruction
+    else type == :war
+
+
+    end
+  end
 end
