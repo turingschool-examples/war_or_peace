@@ -42,14 +42,13 @@ describe Deck do
       expect(deck.high_ranking_cards[0,2]).to eq(cards)
     end
   describe "#percent_high_ranking" do
-    it "shows percentage of high rank cards" do
+    it "outputs the percentage of high rank cards" do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
       cards = [card1, card2, card3]
       deck = Deck.new(cards)
       expect(deck.percent_high_ranking).to eq(66.67)
-      expect(deck.cards).to eq(66.67)
     end
   end
   describe "#add_card" do
