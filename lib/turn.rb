@@ -71,9 +71,10 @@ class Turn
       spoils_of_war.each do|spoils|
         player1.deck.cards << spoils #.join can be used?
       end
-    elsif spoils_of_war.each do|spoils|
-      player2.deck.cards << spoils
-        end
+    else
+      spoils_of_war.each do|spoils|
+        player2.deck.cards << spoils
+      end
     end
   end
 end
