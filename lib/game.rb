@@ -8,12 +8,13 @@ class Game
 
   attr_reader :player1, :player2, :turn_count, :full_deck, :deck1, :deck2
 
-  def initialize(p1_name, p2_name)
+  def initialize(player1, player2)
     @turn_count = 0
-    # @player1 = Player.new(p1_name, @deck1)
-    # @player2 = Player.new(p2_name, @deck2)
-    @player1 = p1_name
-    @player2 = p2_name
+    @player1 = player1
+    @player2 = player2
+    # @player1 = p1_name
+    # @player2 = p2_name
+
   end
 
   def start
