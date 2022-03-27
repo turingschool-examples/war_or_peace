@@ -53,19 +53,21 @@ class Turn
         player2.deck.remove_card
       end
     end
-    p @spoils_of_war
+    # p @spoils_of_war
   end
 
   def award_spoils(winner)
-    binding.pry
+    # binding.pry
     if winner == player1
-      player1.deck << @spoils_of_war
-      deck1
-    elsif winner == player2
-      player2.deck << @spoils_of_war
-      deck2
+      spoils_of_war.each do|spoils|
+      player1.deck.cards << spoils
+      end
+    else
+      spoils_of_war.each do|spoils|
+      player2.deck.cards << spoils
+      end
     end
-    binding.pry
+
   end
 
 end
