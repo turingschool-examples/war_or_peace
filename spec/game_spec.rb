@@ -59,6 +59,44 @@ describe Game do
       expect(war.deck1 != do_you_wanna_play_a.deck1).to eq(true)
       expect(war.deck2 != do_you_wanna_play_a.deck2).to eq(true)
     end
+    it 'produces correct rank/value for named cards' do
+      war = Game.new
+      war.suits = [:spade]
+      war.values = ['Ace']
+      war.populate_deck
+
+      expect(war.all_cards[0].rank).to eq(14)
+      expect(war.all_cards[0].value).to eq('Ace')
+      expect(war.all_cards[0].suit).to eq(:spade)
+
+      war = Game.new
+      war.suits = [:diamond]
+      war.values = ['Queen']
+      war.populate_deck
+
+      expect(war.all_cards[0].rank).to eq(12)
+      expect(war.all_cards[0].value).to eq('Queen')
+      expect(war.all_cards[0].suit).to eq(:diamond)
+
+      war = Game.new
+      war.suits = [:heart]
+      war.values = ['Jack']
+      war.populate_deck
+
+      expect(war.all_cards[0].rank).to eq(11)
+      expect(war.all_cards[0].value).to eq('Jack')
+      expect(war.all_cards[0].suit).to eq(:heart)
+
+      war = Game.new
+      war.suits = [:club]
+      war.values = ['King']
+      war.populate_deck
+
+      expect(war.all_cards[0].rank).to eq(13)
+      expect(war.all_cards[0].value).to eq('King')
+      expect(war.all_cards[0].suit).to eq(:club)
+
+    end
   end
   describe '#create_players' do
     it 'Generates players with names and decks' do

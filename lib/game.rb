@@ -6,11 +6,12 @@ require 'pry'
 
 
 class Game
-    attr_reader :all_cards, :deck1, :deck2, :player1, :player2, :turn_count
-    attr_writer :deck1, :deck2, :player1, :player2, :turn_count
+    attr_reader :all_cards, :deck1, :deck2, :player1, :player2, :turn_count, :suits, :values
+    attr_writer :deck1, :deck2, :player1, :player2, :turn_count, :suits, :values
+
   def initialize
     @suits = [:heart, :diamond, :spade, :club]
-    @values = [ '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'] #You forgot jack, queen, king, and ace
+    @values = [ '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']
     @all_cards = []
     @deck1
     @deck2
@@ -23,7 +24,7 @@ class Game
     if @all_cards == []
       @suits.each do |current_suit|
         suit = current_suit
-        @values.each do |current_value| #if value is jqk rank can be set manually?
+        @values.each do |current_value|
           value = current_value
           if value == 'Jack'
             rank = 11
@@ -97,13 +98,13 @@ class Game
     deal
     create_players
     puts 'Welcome to War! (or Peace) This game will be played with 52 cards.'
-    puts "The players today are #{@player1} and #{@player2}"
+    puts "The players today are #{@player1.name} and #{@player2.name}"
     puts "Type 'GO' to start the game!"
     response = gets.chomp!
     if response == 'GO'
       match
     else
-      "That's not a vaid response, please reload game"
+      puts "That's not a vaid response, please reload game"
     end
   end
 end
