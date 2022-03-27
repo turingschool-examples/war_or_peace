@@ -122,10 +122,8 @@ describe Turn do
    expect(turn.spoils_of_war).to eq([])
    turn.pile_cards
    expect(turn.spoils_of_war).to eq([card1, card3])
-   # turn.award_spoils(winner)
-   # expect(turn.player1.deck.cards).to eq([card2, card5, card8, card1, card3])
  end
-# binding.pry
+
  it "awards spoils on basic" do
    card1 = Card.new(:heart, 'Jack', 11)
    card2 = Card.new(:heart, '10', 10)
@@ -144,13 +142,11 @@ describe Turn do
    turn = Turn.new(player1, player2)
    winner = turn.winner
 
-   # binding.pry
    expect(turn.type).to eq(:basic)
    turn.pile_cards
    expect(turn.spoils_of_war).to eq([card1, card3])
    turn.award_spoils(winner)
    expect(turn.player1.deck.cards).to eq([card2, card5, card8, card1, card3])
-   # expect(turn.player2.deck).to eq([card4, card6, card7])
  end
 
  it "awards spoils on war" do
