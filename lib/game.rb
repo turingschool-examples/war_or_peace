@@ -12,8 +12,7 @@ class Game
     @turn_count = 0
     @player1 = player1
     @player2 = player2
-    # @player1 = p1_name
-    # @player2 = p2_name
+
 
   end
 
