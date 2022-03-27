@@ -3,7 +3,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 
-describe Player do
+Rspec.describe Player do
 
     it 'exists' do
       card1 = Card.new(:diamond, 'Queen', 12)
@@ -11,7 +11,7 @@ describe Player do
       card3 = Card.new(:heart, 'Ace', 14)
       deck = Deck.new([card1, card2, card3])
       player = Player.new('Clarisa', deck)
-    expect(player).to be_an_instance_of(Player)
+      expect(player).to be_an_instance_of(Player)
   end
 
   it 'has a name' do

@@ -4,7 +4,7 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 
-describe Turn do
+Rspec.describe Turn do
   before :each do
     @card1 = Card.new(:heart, 'Jack', 11)
     @card2 = Card.new(:heart, '10', 10)

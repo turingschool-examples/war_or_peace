@@ -2,7 +2,7 @@ require 'rspec'
 require './lib/card'
 require './lib/deck'
 
-describe Deck do
+Rspec.describe Deck do
   before :each do
     @card1 = Card.new(:diamond, 'Queen', 12)
     @card2 = Card.new(:spade, '3', 3)
@@ -67,7 +67,4 @@ describe Deck do
       expect(@deck.percent_high_ranking).to eq(33.33)
     end
   end
-
-
-
 end
