@@ -236,12 +236,14 @@ describe '#test mutually_assured_destruction' do
     turn = Turn.new(player1, player2)
     turn.type
 
-    expect(turn.winner).to eq "No Winner"
+    expect(winner = turn.winner).to eq "No Winner"
 
     turn.pile_cards
 
     expect(turn.spoils_of_war).to eq []
-    expect(turn.discard).to eq [card1, card2, card5, card4, card3, card6]
+
+    turn.award_spoils(winner)
+
     expect(player1.deck.cards).to eq [card8]
     expect(player2.deck.cards).to eq [card7]
   end
