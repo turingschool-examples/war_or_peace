@@ -94,7 +94,7 @@ class Game
 
     @shuffled_deck = @full_deck.cards.shuffle
     @deck1.push(@shuffled_deck[0..25])
-    @deck2.push(@shuffled_deck[25..51])
+    @deck2.push(@shuffled_deck[26..51])
     # # @deck1.flatten
 
     # 26.times do
