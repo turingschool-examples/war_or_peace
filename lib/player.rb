@@ -11,6 +11,7 @@ class Player
       true
     else
       false
+      puts "*~*~*~* #{@name} has won the game! *~*~*~*"
     end
   end
 end

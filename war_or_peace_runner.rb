@@ -56,6 +56,10 @@ game = gets.chomp.upcase
         turn_winner = turn.winner
         turn.pile_cards
         turn.award_spoils(turn_winner)
+        if turn_winner == "No Winner"
+          puts "No Winner"
+          return
+        end
         puts "Turn #{turn_count} #{turn_winner.name} won #{turn.spoils_of_war.length} cards"
         puts turn_winner.deck.cards.length
       end
