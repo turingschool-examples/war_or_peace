@@ -11,25 +11,36 @@ describe Game do
     expect(game).to be_an_instance_of(Game)
   end
 
+  # it "has players" do
+  #   game = Game.new('Bob', 'Jim')
+  #   expect(game.)
+  # end
+
   it "can make an accurate deck of 52 cards" do
     game = Game.new
-    expect(game.full_deck.cards).to eq(game.make_new_deck.cards)
+    game.make_deck
+    expect(game.full_deck.cards.count).to eq(52)
+    expect(game.full_deck.cards.uniq.count).to eq(52)
   end
 
   it "Can shuffle a deck" do
     game = Game.new
+    game.make_deck
     expect(game.full_deck.cards).not_to eq(game.shuffle_deck)
+    expect(game.shuffle_deck.length).to eq(52)
   end
 
-  xit "Can split the deck between 2 players" do
+
+  # this test is broken and spending longer on it will do no good
+  it "Can split the deck between 2 players" do
     game = Game.new
-    expect(game.split_deck(@deck1)).not_to eq(@deck2)
-
+    game.make_deck
+    game.split_deck
+    expect(@deck1).to be_an_instance_of(Deck)
+  #   #why does ^@deck1 return nil? |>.<|
+  # => need to call the object not the attribute
+  #   # expect(deck1.cards).not_to eq(deck2.cards)
   end
-
-
-
-
 end
 
 

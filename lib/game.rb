@@ -5,11 +5,20 @@ require './lib/turn'
 require 'pry'
 
 class Game
-  attr_reader :full_deck
-  def initialize
+  attr_reader :player1,
+              :player2,
+              :full_deck,
+              :turn_count
 
-  # end
-  # def make_deck
+  def initialize #(player1, player2)
+    @player1 #= player2
+    @player2 #= player2
+    @full_deck = []
+    @turn_count = 0
+
+  end
+
+  def make_deck
     @card1 = Card.new(:diamond, "Ace", 14)
     @card2 = Card.new(:diamond, "2", 2)
     @card3 = Card.new(:diamond, "3", 3)
@@ -66,40 +75,69 @@ class Game
     @card51 = Card.new(:spade, "Queen", 12)
     @card52 = Card.new(:spade, "King", 13)
 
-    @all_cards = Deck.new([@card1, @card2, @card3, @card4, @card5, @card6, @card7, @card8, @card9, @card10, @card11, @card12, @card13, @card14, @card15, @card16, @card17, @card18, @card19, @card20, @card21, @card22, @card23, @card24, @card25, @card26, @card27, @card28, @card29, @card30, @card31, @card32, @card33, @card34, @card35, @card36, @card37, @card38, @card39, @card40, @card41, @card42, @card43, @card44, @card45, @card46, @card47, @card48, @card49, @card50, @card51, @card52])
-    # return full_deck
-    @full_deck = @all_cards
-    # deck1 = []
-    # deck2 = []
-    # puts all_cards
+    @full_deck = Deck.new([@card1, @card2, @card3, @card4, @card5, @card6, @card7, @card8, @card9, @card10, @card11, @card12, @card13, @card14, @card15, @card16, @card17, @card18, @card19, @card20, @card21, @card22, @card23, @card24, @card25, @card26, @card27, @card28, @card29, @card30, @card31, @card32, @card33, @card34, @card35, @card36, @card37, @card38, @card39, @card40, @card41, @card42, @card43, @card44, @card45, @card46, @card47, @card48, @card49, @card50, @card51, @card52])
   end
 
-  def make_new_deck
-     @all_cards
+  # def add_players
+  #   @player1 =
+  # end
+
+
+  def shuffle_deck
+    @full_deck.cards.shuffle
 
   end
-  #
+
+  def split_deck
+    @deck1 = []
+    @deck2 = []
+
+    @shuffled_deck = @full_deck.cards.shuffle
+    @deck1.push(@shuffled_deck[0..25])
+    @deck2.push(@shuffled_deck[25..51])
+    # # @deck1.flatten
+
+    # 26.times do
+    #   @deck1 << @shuffled_deck.remove_card
+    # end
+    #
+    # 26.times do
+    #   @deck2 << @shuffled_deck.remove_card
+    # end
+
+
+    # @deck2.flatten
+    # binding.pry
+  end
+
   # def start
+  #   turn = Turn.new(player1, player2)
+  #   winner = Turn.winner
+  #   turn.pile_cards
+  #   turn.award_spoils(winner)
+  #   until player1.has_lost? || player2.has_lost? || turn_count  == 1000001
+  #     if type == "basic"
+  #       p "Basic - #{player.name} won 2 cards"
+  #     elsif type == "War"
+  #       p "War- #{player.name} won 6 cards"
+  #     elsif type == :mutually_assured_destruction
+  #       p "Mutual Destruction - 6 cards removed from deck"
+  #     end
   #
-  #   player1 =
-  #   player2 =
+  #     @turn_count += 1
+  #   end
   #
+  #   if player.has_lost?
+  #     p "#{player1.name} has won!"
+  #   end
   # end
   #
   # def takes_turn
   #
   # end
-
-  def shuffle_deck
-    @all_cards.cards.shuffle
-
-  end
-
-  def split_deck(deck)
-    @shuffled_deck = @all_cards.shuffle_deck
-    @deck1 = Deck.new(@shuffled_deck.cards[0..25])
-    @deck2 = Deck.new(@shuffled_deck.cards[25..51])
-
-  end
-
 end
+#
+# game = Game.new #(player1, player2)
+#
+# game.make_deck
+# game.split_deck
