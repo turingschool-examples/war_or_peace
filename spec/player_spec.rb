@@ -2,7 +2,6 @@ require 'rspec'
 require './lib/card'
 require './lib/deck'
 require './lib/player'
-require 'pry'
 RSpec.describe Player do
 
     it "creates player" do
@@ -24,7 +23,6 @@ RSpec.describe Player do
       player.deck.remove_card
       player.deck.remove_card
       player.deck.remove_card
-      binding.pry
       expect(player.has_lost?).to eq(true)
       player.deck.cards << card1
       expect(player.has_lost?).to eq(false)

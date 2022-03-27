@@ -6,11 +6,11 @@ class Deck
   end
 
   def rank_of_card_at(card_number)
-    if cards.length == 0 || cards.length < card_number
+    if @cards.length < card_number +1
       0
-    end
-
+    else
     @cards[card_number].rank
+    end
   end
 
   def high_ranking_cards
@@ -28,7 +28,7 @@ class Deck
   end
 
   def remove_card
-    @cards = @cards.drop(1)
+    @cards.shift
   end
 
 end

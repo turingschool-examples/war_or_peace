@@ -4,7 +4,6 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 require './lib/card_generator'
-require 'pry'
 RSpec.describe CardGenerator do
   it "exists" do
     filename = "cards.txt"

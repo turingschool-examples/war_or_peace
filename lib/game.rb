@@ -20,11 +20,11 @@ class Game
       first_turn.pile_cards
       first_turn.award_spoils(first_turn.winner)
 
-    while !@player1.has_lost? && !@player2.has_lost?
+    while !@player1.has_lost? && !@player2.has_lost? && i < 1000000
       i += 1
       current_turn = Turn.new(@player1,@player2)
       if @player1.has_lost? || @player2.has_lost?
-        return
+        break
       end
       if current_turn.type == :mutually_assured_destruction
         puts "Turn #{i.to_s}: *mutually assured destruction* 6 cards removed from play"
@@ -37,12 +37,14 @@ class Game
       current_turn.award_spoils(current_turn.winner)
     end
 
-    if @player1.has_lost?
+    if i > 1000000
+      puts "---- DRAW ----"
+    elsif @player1.has_lost?
       winner_of_game = @player2
     else
       winner_of_game = @player1
     end
-    puts "*~*~*~* #{current_turn.winner.name} has won the game! *~*~*~*"
+    puts "*~*~*~* #{winner_of_game.name} has won the game! *~*~*~*"
   end
 
 end
