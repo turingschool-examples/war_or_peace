@@ -40,7 +40,4 @@ RSpec.describe Player do
     player.deck.remove_card
     expect(player.has_lost?).to be true
   end
-
-
-
 end

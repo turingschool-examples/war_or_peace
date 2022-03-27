@@ -69,5 +69,4 @@ RSpec.describe Deck do
     deck = Deck.new(cards)
     expect(deck.add_card).to eq(cards)
   end
-
 end
