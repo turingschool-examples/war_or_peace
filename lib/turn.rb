@@ -56,7 +56,7 @@ class Turn
     end
   end
 
-  # def award_spoils
-  # end
+  def award_spoils
+  end
 
 end
