@@ -158,7 +158,7 @@ RSpec.describe Turn do
 
     turn.pile_cards
     turn.award_spoils(winner)
-    # binding.pry
+    # binding.pry #use binding.pry then player1 to see what cards they have
     expect(player1.deck.cards).to eq([card2, card5, card8, card1, card3])
   end
 
@@ -181,7 +181,7 @@ RSpec.describe Turn do
 
     turn.pile_cards
     turn.award_spoils(winner)
-    # binding.pry #use binding.pry then player1 to see what cards they have
+    # binding.pry
     expect(player1.deck.cards).to eq([card8, card1, card4, card2, card3, card5, card6])
   end
 
