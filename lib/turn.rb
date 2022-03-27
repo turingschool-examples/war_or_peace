@@ -1,9 +1,12 @@
+require 'pry'
+
 class Turn
-  attr_reader :player1, :player2, :spoils_of_war
+  attr_reader :player1, :player2, :spoils_of_war, :count
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
+    # @count = 0
   end
 
    def type
@@ -46,5 +49,26 @@ class Turn
 
    def award_spoils(winner)
      winner.deck.cards << spoils_of_war
+   end
+
+   def start
+     puts "Welcome to War! (or Peace) This game will be played with 52 cards."
+     puts "The players today are #{player1.name} and #{player2.name}"
+     puts "Type 'GO' to start the game!"
+     ARGV.clear
+     user_input = gets.chomp.upcase
+     if user_input == 'GO'
+       # until player1.deck.cards == [] || player2.deck.cards == [] || @count == 1000000
+       #   turn.pile_cards
+       #   turn.winner
+       #   winner = turn.winner
+       #   turn.award_spoils(winner)
+       #   tunr.count += 1
+       # end
+
+     else
+        puts "Incorrect input, type 'GO' to start the game!"
+     end
+
    end
 end
