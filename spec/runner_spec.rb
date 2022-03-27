@@ -1,7 +1,0 @@
-require 'rspec'
-require 'pry'
-require './lib/card'
-require './lib/deck'
-require './lib/player'
-require './lib/turn'
-require './war_or_peace_runner'

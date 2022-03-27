@@ -7,7 +7,6 @@ require './lib/turn'
 require './lib/game'
 
 
-
 describe Game do
   before :each do
     @card1 = Card.new(:heart, 'Jack', 11)

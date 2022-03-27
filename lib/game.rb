@@ -92,7 +92,6 @@ class Game
     end
   end
 
-
   def start
     populate_deck
     deal
