@@ -18,13 +18,6 @@ RSpec.describe Deck do
   end
 
   it "has readable attributes" do
-    # @card = Card.new(:diamond, 'Queen', 12)
-    # @card2 = Card.new(:spade, '3', 3)
-    # @card3 = Card.new(:heart, 'Ace', 14)
-    # @cards = [@card, @card2, @card3]
-    # @deck = Deck.new(@cards)
-
-    # expect(@deck.rank_of_card_at(0)).to eq('Queen')
     expect(@deck.rank_of_card_at(0)).to eq(12)
   end
 
