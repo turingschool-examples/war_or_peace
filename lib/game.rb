@@ -1,3 +1,4 @@
+require 'rspec'
 require './lib/card'
 require './lib/deck'
 require './lib/player'
@@ -81,58 +82,50 @@ class Game
         @deck1 = Deck.new(@unshuffled_deck.cards.shuffle[0..25])
         @deck2 = Deck.new(@unshuffled_deck.cards.shuffle[26..52])
     end 
+#turn
+#winner
+#award spoils(pile_cards)
+    def new_turn
+        loop do
+            @player1 = Player.new('Geraldine', deck1)
+            @player2 = Player.new('Ivy', deck2)
+            turn = Turn.new(@player1, @player2)
+            winner = turn.winner
+            turn.pile_cards
+            turn.award_spoils(winner)
+            turn_counter += 1
 
-    def assign_deck
-        @player1 = Player.new('Megan', @deck1)
-        @player2 = Player.new('Aurora', @deck2)
+            if turn.type == :basic
+            p "Turn #{turn_counter}: #{turn.winner.name} won 2 cards"
+            elsif turn.type == :war
+            p "Turn #{turn_counter}: WAR - #{turn.winner.name} won 6 cards"
+            else
+            p "Turn #{turn_counter}: *mutually assured destruction* 6 cards removed from play"
+             end  
+
+        if turn.winner == "No Winner"
+            p "---- DRAW ----"
+            break
+        else
+            p "*~*~*~* #{turn.winner} has won the game! *~*~*~*"
+            break
+        end
+        end 
+    end
+    
+
+    def start
+        game.set_up_deck
+        game.split_deck
+        game.new_turn
+
+        @player1 = Player.new('Geraldine', deck1)
+        @player2 = Player.new('Ivy', deck2)
+
+        @turn_counter = 0
+        until @player1.has_lost? == true || @player2.has_lost? == true|| turn_counter == 1000000 do
+            game.new_turn
+        end
     end
 
-    def new_turn
-    end 
-    
-    def start
-        p "Welcome to War! (or Peace)" 
-        p "This game will be played with 52 cards."
-        p "The players today are Megan and Aurora."
-        p "Type 'GO' to start the game!"
-        p "------------------------------------------------------------------"
-
-        user_response = gets.chomp
-            if user_response == "GO"
-                until @player1.has_lost? == true || @player2.has_lost? || turn_counter == 1000000 do
-                    start new_turn
-                end
-            else
-              p "Invalid input"
-            end 
-        end
-
-
-
-    #     loop do
-    #         response = gets.chomp 
-    #             if response == "GO"
-    #                 split_deck 
-    #                 takes_turn
-    #                 break 
-    #             else
-    #                 p 'okay!'
-    #             end
-    #         end
-    #     end
-
-    # end
-
-    # def takes_turn
-    #     if @turn = :mutually_assured_destruction
-    #         p ---- DRAW ----
-    #         p "*~*~*~* Aurora has won the game! *~*~*~*"
-    #     else
-    # end
-
 end
-
-
-# game.set_up_deck
-# game.split_deck
-# binding.pry

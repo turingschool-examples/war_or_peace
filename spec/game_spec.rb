@@ -104,9 +104,8 @@ RSpec.describe Game do
         game.split_deck
 
         expect(game.deck1.cards.length).to eq(26)
-        expect(game.deck2.cards.length).to eq(26)
-        
+        expect(game.deck2.cards.length).to eq(26) 
     end
 
-
+        
 end 
