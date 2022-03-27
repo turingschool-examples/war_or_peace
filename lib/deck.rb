@@ -1,13 +1,13 @@
 require './lib/card'
 class Deck
-  attr_reader :cards 
+  attr_reader :cards
   def initialize(cards)
     @cards = cards
   end
 
-def rank_of_card_at(index)
-  cards[index].rank
-end
+  def rank_of_card_at(index)
+    cards[index].rank
+  end
 
 
   def high_ranking_cards
@@ -27,7 +27,7 @@ end
 
   def remove_card
     cards.shift
-end
+  end
 
   def add_card(card)
     cards << card

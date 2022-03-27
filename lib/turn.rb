@@ -1,6 +1,6 @@
 require './lib/player'
 class Turn
-attr_reader :player1, :player2, :spoils_of_war
+  attr_reader :player1, :player2, :spoils_of_war
 
   def initialize(player1, player2)
     @player1 = player1
@@ -33,38 +33,36 @@ attr_reader :player1, :player2, :spoils_of_war
       end
     elsif type == :mutually_assured_destruction
         "No Winner"
-      end
     end
+  end
 
-    def pile_cards
-      if type == :basic
+  def pile_cards
+    if type == :basic
+      spoils_of_war << player1.deck.remove_card
+      spoils_of_war << player2.deck.remove_card
+    elsif type == :war
+      3.times do
         spoils_of_war << player1.deck.remove_card
         spoils_of_war << player2.deck.remove_card
-      elsif type == :war
-        3.times do
-          spoils_of_war << player1.deck.remove_card
-          spoils_of_war << player2.deck.remove_card
-        end
-      else type == :mutually_assured_destruction
-        3.times do
-          spoils_of_war << player1.deck.remove_card
-          spoils_of_war << player2.deck.remove_card
-        end
+    end
+    else type == :mutually_assured_destruction
+      3.times do
+        spoils_of_war << player1.deck.remove_card
+        spoils_of_war << player2.deck.remove_card
+      end
         spoils_of_war.clear #this is clearing the cards so no one gets one
-      end
     end
+  end
 
-    def award_spoils(winner) #need the parenthesis so it passes the parameter through it
-      if winner == player1
-        spoils_of_war.each do |spoils| #checking one card at a time
-        player1.deck.cards << spoils
-        end
-      else
-        spoils_of_war.each do |spoils|
-        player1.deck.cards << spoils
-        end
-      end
+  def award_spoils(winner) #need the parenthesis so it passes the parameter through it
+    if winner == player1
+      spoils_of_war.each do |spoils| #checking one card at a time
+      player1.deck.cards << spoils
     end
-
-
+    else
+      spoils_of_war.each do |spoils|
+      player1.deck.cards << spoils
+    end
+    end
+  end
 end

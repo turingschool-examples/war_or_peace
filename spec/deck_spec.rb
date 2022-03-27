@@ -78,5 +78,4 @@ RSpec.describe Deck do
       expect(deck.cards).to eq([card1,card2, card3, card4])
     end
   end
-
 end
