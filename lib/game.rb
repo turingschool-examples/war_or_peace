@@ -81,6 +81,9 @@ class Game
   #
   # def start
   #
+  #   player1 =
+  #   player2 =
+  #
   # end
   #
   # def takes_turn
@@ -91,11 +94,12 @@ class Game
     @all_cards.cards.shuffle
 
   end
-  #
-  # def split_deck
-  #   @deck1 = Deck.new(@shuffled_deck[0..25])
-  #   @deck2 = Deck.new(@shuffled_deck[25..51])
-  #
-  # end
+
+  def split_deck(deck)
+    @shuffled_deck = @all_cards.shuffle_deck
+    @deck1 = Deck.new(@shuffled_deck.cards[0..25])
+    @deck2 = Deck.new(@shuffled_deck.cards[25..51])
+
+  end
 
 end
