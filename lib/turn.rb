@@ -13,10 +13,6 @@ class Turn
   end
 
   def type
-    # player1_card1 = @player1.deck.rank_of_card_at(0)
-    # player2_card1 = @player2.deck.rank_of_card_at(0)
-    # player1_card3 = @player1.deck.rank_of_card_at(2)
-    # player2_card3 = @player2.deck.rank_of_card_at(2)
     if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
       @type = :basic
     else
@@ -53,39 +49,19 @@ class Turn
     elsif @type == :war
       3.times {@spoils_of_war << @player1.deck.remove_card}
       3.times {@spoils_of_war << @player2.deck.remove_card}
-      # @spoils_of_war << @player1.deck.cards.shift(3)
-      # @spoils_of_war << @player2.deck.cards.shift(3)
-      # @player1.deck.cards[0..2]. each {|move| @spoils_of_war << move}
-      # @player2.deck.cards[0..2]. each {|move| @spoils_of_war << move}
-      # @spoils_of_war << @player1.deck.cards[0..2] << @player2.deck.cards[0..2]
-      # @spoils_of_war << (@player2.deck.cards[0..2]
-      # @spoils_of_war.join
     else
       3.times {@spoils_of_war << @player1.deck.remove_card}
       3.times {@spoils_of_war << @player2.deck.remove_card}
-      # @player1.deck.cards[0..2]. each {|move| @spoils_of_war << move}
-      # @player2.deck.cards[0..2]. each {|move| @spoils_of_war << move}
       @spoils_of_war = []
     end
-    # else
   end
 
-#spoils of war equals an empty array even
   def award_spoils(winner)
     if @type == :mutually_assured_destruction
       @spoils_of_war = []
     else
       winner.deck.cards << @spoils_of_war
       winner.deck.cards.flatten!
-
     end
   end
-
-
-  # def winner
-  #   if @type == :basic && @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
-  #     @winner = @player1
-  #   elsif @type == :basic && @player2.deck.rank_of_card_at(0) > @player1.deck.rank_of_card_at(0)
-  #   end
-  # end
 end

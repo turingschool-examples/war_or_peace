@@ -6,8 +6,6 @@ class Player
   def initialize(name, deck)
     @name = name
     @deck = deck
-    # @lost = false
-    # binding.pry
   end
 
   def has_lost?

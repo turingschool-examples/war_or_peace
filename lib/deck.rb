@@ -16,7 +16,7 @@ class Deck
     end
   end
 
-  def high_ranking_cards #Find out why I can't use this method in percent high ranking (maybe move high_rank to @variable?)
+  def high_ranking_cards
     high_rank = []
     @cards.each do |card|
       if card.rank >= 11
@@ -34,13 +34,7 @@ class Deck
     cards.push(new_card)
   end
 
-  def percent_high_ranking #Try to make this less ugly if you can, why can't use high_ranking_cards?
-    # high_rank = []
-    # @cards.each do |card|
-    #   if card.rank >= 10
-    #     high_rank << card
-    #   end
-    # end
+  def percent_high_ranking
     num_of_cards = (@cards.count).to_f
     num_of_h_r = (high_ranking_cards.count).to_f
     per_high =  num_of_h_r / num_of_cards
