@@ -5,6 +5,7 @@ class Turn
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
+
   end
 
   def type
@@ -67,5 +68,6 @@ class Turn
       end
     end
   end
+
 
 end
