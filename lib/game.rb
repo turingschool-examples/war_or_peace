@@ -6,9 +6,9 @@ require 'pry'
 
 class Game
     attr_reader :player1, :player2, :unshuffled_deck, :deck1, :deck2, :turn_counter
-    def initialize
-        @player1
-        @player2
+    def initialize(player1, player2)
+        @player1 = player1
+        @player2 = player2
         @unshuffled_deck = []
         @deck1 = []
         @deck2 = []
@@ -74,7 +74,6 @@ class Game
         @unshuffled_deck = Deck.new(full_deck)
 
         @unshuffled_deck.shuffle_cards
-
        
     end
 
@@ -86,19 +85,30 @@ class Game
     def assign_deck
         @player1 = Player.new('Megan', @deck1)
         @player2 = Player.new('Aurora', @deck2)
-    binding.pry
     end
+
+    def new_turn
+    end 
     
+    def start
+        p "Welcome to War! (or Peace)" 
+        p "This game will be played with 52 cards."
+        p "The players today are Megan and Aurora."
+        p "Type 'GO' to start the game!"
+        p "------------------------------------------------------------------"
 
-    
+        user_response = gets.chomp
+            if user_response == "GO"
+                until @player1.has_lost? == true || @player2.has_lost? || turn_counter == 1000000 do
+                    start new_turn
+                end
+            else
+              p "Invalid input"
+            end 
+        end
 
 
-    # def start
-    # p "Welcome to War! (or Peace) 
-    # p This game will be played with 52 cards.
-    # p The players today are Megan and Aurora.
-    # p Type 'GO' to start the game!
-    # # p ------------------------------------------------------------------"
+
     #     loop do
     #         response = gets.chomp 
     #             if response == "GO"
@@ -122,8 +132,7 @@ class Game
 
 end
 
-game = Game.new
 
-game.set_up_deck
-game.split_deck
-binding.pry
+# game.set_up_deck
+# game.split_deck
+# binding.pry

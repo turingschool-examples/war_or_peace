@@ -1,7 +1,7 @@
 require 'rspec'
 require './lib/game'
 
-game = Game.new
+new_game = Game.new(player1, player2)
 
 game.set_up_deck
 game.split_deck
