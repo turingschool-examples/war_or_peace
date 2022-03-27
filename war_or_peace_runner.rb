@@ -44,8 +44,8 @@ p "The players today are Megan and Aurora."
 p "Type 'GO' to start the game!"
 p "------------------------------------------------------------------"
 
-game = gets.chomp
-    if game == "GO" || "go"
+game = gets.chomp.upcase
+    if game == "GO"
       while player1.deck.cards.length > 0 || player2.deck.cards.length > 0 do
         turn_count += 1
         if turn_count == 100
@@ -54,7 +54,10 @@ game = gets.chomp
         end
         turn_type = turn.type
         turn_winner = turn.winner
-        puts turn_winner
+        turn.pile_cards
+        turn.award_spoils(turn_winner)
+        puts "Turn #{turn_count} #{turn_winner.name} won #{turn.spoils_of_war.length} cards"
+        puts turn_winner.deck.cards.length
       end
     else
       puts "Please type 'GO' to start!"
