@@ -182,7 +182,7 @@ RSpec.describe Turn do
     expect(turn.spoils_of_war).to eq([])
   end
 
-  it 'can award spoils on a basic turn' do
+  it 'can award spoils' do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
