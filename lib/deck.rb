@@ -32,4 +32,8 @@ class Deck
     def add_card(card)
         @cards << card
     end
+
+    def shuffle_cards
+        @cards.shuffle!
+    end     
 end
