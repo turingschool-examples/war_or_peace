@@ -36,7 +36,7 @@ describe Game do
     game = Game.new
     game.make_deck
     game.split_deck
-    expect(@deck1).to be_an_instance_of(Deck)
+    expect(@deck2).to be_an_instance_of(Deck)
   #   #why does ^@deck1 return nil? |>.<|
   # => need to call the object not the attribute
   #   # expect(deck1.cards).not_to eq(deck2.cards)
