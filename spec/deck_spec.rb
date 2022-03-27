@@ -1,6 +1,7 @@
 require 'rspec'
 require './lib/deck'
 require './lib/card'
+require './lib/war_or_peace_runner'
 require 'pry'
 
 describe Deck do

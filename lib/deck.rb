@@ -1,3 +1,6 @@
+require './lib/deck'
+require './lib/card'
+require 'pry'
 class Deck
   attr_reader :cards#just another way to have methods available
 
