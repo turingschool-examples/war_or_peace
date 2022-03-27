@@ -31,7 +31,6 @@ RSpec.describe Player do
       deck = Deck.new([card1, card2, card3])
       player = Player.new('Clarisa', deck)
     expect(player.has_lost?).to be(false)
-
     end
   end
 end

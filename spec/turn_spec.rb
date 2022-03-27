@@ -21,10 +21,6 @@ RSpec.describe Turn do
     expect(turn).to be_an_instance_of(Turn)
   end
 
-  # it "has readable attributes" do
-  #   expect().to eq()
-  # end
-
   describe '#type' do
     it "determines turn type" do
       card1 = Card.new(:heart, 'Jack', 11)
@@ -218,5 +214,4 @@ RSpec.describe Turn do
       expect(player2.deck.cards).to eq([card7])
     end
   end
-
 end

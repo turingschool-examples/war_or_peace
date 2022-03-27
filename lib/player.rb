@@ -11,7 +11,6 @@ def has_lost?
      true
   else
      false
-  end
+   end
+ end
 end
-end
-# player = Player.new('Clarisa', deck)
