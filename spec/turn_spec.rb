@@ -361,7 +361,7 @@ RSpec.describe Turn do
     expect(player2.deck.cards).to eq([card7])
   end
 
-  it "checks type for nil value" do
+  it "checks type if player does not have enough cards" do
     card1 = Card.new(:spade, '2', 2)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:spade, '4', 4)
