@@ -13,7 +13,6 @@ describe Game do
 
   it "makes deck" do
     game = Game.new('Aaron', 'Beth')
-    # binding.pry
     game.make_deck
     expect(game.full_deck.length).to eq(52)
   end
