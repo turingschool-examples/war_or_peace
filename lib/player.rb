@@ -1,3 +1,5 @@
+require './lib/deck'
+
 class Player
   attr_reader :deck,
               :name
