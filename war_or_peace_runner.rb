@@ -23,6 +23,7 @@ random_deck = full_deck.shuffle
 
 #
 # if action.upcase == "GO"
+p "Turn #{turn}"
 #
 # else
 #   p "wrong word"
