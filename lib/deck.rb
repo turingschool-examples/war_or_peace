@@ -16,12 +16,12 @@ class Deck
     return rank
   end
 
-  #returns array integers representing the rank of the highest ranking cards
+  #Returns array of integers listing the ranks of card in the deck >= 11
   def high_ranking_cards
     high_card_ranks = []
     @cards.each do |card|
       rank = card.rank
-      #Check if the rank of the current card is 11 or greate
+      #Check if the rank of the current card is 11 or greater
       #if true add that rank to the array high_card_ranks
       if card.rank >=11
         high_card_ranks << rank
@@ -30,6 +30,7 @@ class Deck
     return high_card_ranks
   end
 
+  #Return a float representing the precent of cards in the deck with a rank >= 11
   def percent_high_ranking
     num_high_rank_cards = high_ranking_cards.length
     num_cards = @cards.length
@@ -37,20 +38,14 @@ class Deck
     return percent.round(2)
   end
 
+  #Remove a card from the front of the deck
   def remove_card
     @cards.shift
   end
 
+  #Takes in a card object to add to the array of cards in the deck
   def add_card(card)
     @cards << card
   end
 
 end
-
-# card1 = Card.new(:hearts, "Ace", 14)
-# card2 = Card.new(:hearts, "Two", 2)
-# cards = [card1, card2]
-#
-# deck = Deck.new(cards)
-#
-# high = deck.high_ranking_cards

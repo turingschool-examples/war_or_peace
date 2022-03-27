@@ -13,25 +13,18 @@ class Turn
     @player2 = player2
     @spoils_of_war = []
     @type = :basic
-    p1_rank = @player1.deck.rank_of_card_at(0)
-    p2_rank = @player2.deck.rank_of_card_at(0)
-    if (p1_rank == p2_rank)
+    #Determine if the turn is war, or mutually assured destruction instead of basic
+    if (@player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0))
       @type = :war
-      #if player 1 or 2 does not have 2 cards left don't check for them
-      #will handle this case differently in winner
-      if((@player1.deck.cards.length < 3) || (@player2.deck.cards.length < 3))
-        #don't check for mutual destruction, not possible in this case
-      else
-        p1_rank_2 = @player1.deck.rank_of_card_at(2)
-        p2_rank_2 = @player2.deck.rank_of_card_at(2)
-        if (p1_rank_2 == p2_rank_2)
-          @type = :mutually_assured_destruction
+      #If there are enough cards in both decks check the third card for equivalence
+      if((@player1.deck.cards.length > 2) && (@player2.deck.cards.length > 2))
+        if (@player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2))
+            @type = :mutually_assured_destruction
         end
       end
     end
   end
 
-  #determines the player that won the turn and
   #returns the player that won or "No winner"
   def winner
     result = ""
