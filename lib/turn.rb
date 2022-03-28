@@ -62,10 +62,12 @@ class Turn
     if winner == player1
       spoils_of_war.each do |card|
       player1.deck.cards << card
+      p player1.name
       end
     else
       spoils_of_war.each do |card|
       player2.deck.cards << card
+      p player2.name
       end
     end
 
