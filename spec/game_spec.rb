@@ -18,9 +18,9 @@ RSpec.describe Game do
     game = Game.new(player1, player2)
     expect(game).to be_an_instance_of(Game)
   end
-
-  describe '#start'
-    it "starts the turn" do
-    end
+  # 
+  # describe '#start'
+  #   it "starts the turn" do
+  #   end
 
 end
