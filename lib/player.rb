@@ -1,4 +1,4 @@
-require './lib/deck'
+require './deck'
 
 #require 'pry'
 

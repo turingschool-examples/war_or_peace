@@ -1,4 +1,4 @@
-require './lib/turn'
+require './turn'
 
 dealer_deck = Deck.new([
   Card.new(:heart, '2', 2),
@@ -56,19 +56,22 @@ dealer_deck = Deck.new([
 ])
 
 #shuffled
+shuffled_deck = []
+
 dealer_deck.cards.each_with_index do |value, index|
   pos = Random.new.rand(0..51)
   x = dealer_deck.cards[index]
   y = dealer_deck.cards[pos]
   dealer_deck.cards[pos] = x
   dealer_deck.cards[index] = y
+  shuffled_deck = dealer_deck
 end
 
 #deal
 deck1 = Deck.new([])
 deck2 = Deck.new([])
 
-dealer_deck.cards.each_with_index do |value, index|
+shuffled_deck.cards.each_with_index do |value, index|
   if index%2 == 0 #% = modulus (gets the remainder)
     deck1.cards << value
   else
@@ -86,13 +89,16 @@ player2 = Player.new("Aurora", deck2)
 
 turns = 1
 
- while turns < 5
+ while turns < 1000001
 
   if player1.deck.cards.length == 52
     puts "#{player1.name} Won"
+    break
   elsif player2.deck.cards.length == 52
     puts "#{player2.name} Won"
+    break
   else # play game
+
 
   turn = Turn.new(player1, player2)
   type = turn.type
@@ -102,11 +108,12 @@ turns = 1
   turn.award_spoils(winner)
 
   if type == :basic
-    puts "Turn#{turns}: #{winner.player.name} won 2 cards"
-  elsif type == mutually_assured_destruction
+    puts "Turn#{turns}: #{winner.name} won 2 cards"
+  elsif type == :mutually_assured_destruction
     puts "Turn#{turns}: *mutually assured destruction* 6 cards removed from play"
   else
-    puts "Turn#{turns}: #{winner.player.name} won 6 cards"
+
+    puts "Turn#{turns}: #{winner.name} won 6 cards"
   end
 
   turns += 1

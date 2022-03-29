@@ -1,4 +1,4 @@
-require './lib/card'
+require './card'
 
 
 class Deck
