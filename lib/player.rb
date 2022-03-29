@@ -7,11 +7,11 @@ class Player
   end
 
   def has_lost?
-    if deck.cards.length == 0
-      true
-    else
+    if deck.cards.length > 0
       false
+    else
       puts "*~*~*~* #{@name} has won the game! *~*~*~*"
-    end
+      true
+      end
   end
 end

@@ -44,18 +44,22 @@ class Turn
     if type == :basic
       spoils_of_war << player1.deck.remove_card
       spoils_of_war << player2.deck.remove_card
+      return spoils_of_war.length
     elsif type == :war
       3.times do
         spoils_of_war << player1.deck.remove_card
         spoils_of_war << player2.deck.remove_card
       end
+      return spoils_of_war.length
     elsif type == :mutually_assured_destruction
       3.times do
         spoils_of_war << player1.deck.remove_card
         spoils_of_war << player2.deck.remove_card
       end
+      return spoils_of_war.length
       spoils_of_war.clear #this clears so no one gets the cards
     end
+
   end
 
   def award_spoils(winner)
@@ -68,8 +72,6 @@ class Turn
       player2.deck.cards << spoils
       end
     end
-      @spoils_of_war = []
+    spoils_of_war.clear
   end
-
-
 end

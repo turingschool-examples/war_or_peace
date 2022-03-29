@@ -10,7 +10,7 @@ deck1 = Deck.new([])
 deck2 = Deck.new([])
 
 suits.each do |suit|
-  13.times do |i| 
+  13.times do |i|
     if i.even?
       deck1.cards << Card.new(suit, values[i], i+1)
     else
@@ -34,24 +34,31 @@ p "------------------------------------------------------------------"
 
 game = gets.chomp.upcase
     if game == "GO"
-      while player1.deck.cards.length > 0 || player2.deck.cards.length > 0 do
+      while player1.has_lost? == false || player2.has_lost? == false do
+        if player1.has_lost? || player2.has_lost?
+          return
+        end
         turn_count += 1
-        if turn_count == 10000
+        if turn_count == 1000000
           puts "DRAW"
           return
         end
 
         turn_type = turn.type
         turn_winner = turn.winner
-        turn.pile_cards
+        cards_won = turn.pile_cards
+
         turn.award_spoils(turn_winner)
 
         if turn_type == :war
-          puts "Turn #{turn_count}: WAR - #{turn_winner.name} won cards"
+          puts "Turn #{turn_count}: WAR - #{turn_winner.name} won #{cards_won} cards"
         elsif turn_type == :mutually_assured_destruction
           puts "*mutually assured destruction* cards removed from play"
         elsif turn_type == :basic
-          puts "Turn #{turn_count}: #{turn_winner.name} won cards"
+
+          # binding.pry
+
+          puts "Turn #{turn_count}: #{turn_winner.name} won #{cards_won} cards"
         end
       end
     else

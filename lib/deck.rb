@@ -10,6 +10,10 @@ class Deck
     if @cards == []
       return
     else
+      if @cards[index] == nil
+        remove_card
+        return
+      end
       @cards[index].rank
     end
   end
