@@ -55,8 +55,8 @@ game = gets.chomp.upcase
         elsif turn_type == :mutually_assured_destruction
           puts "*mutually assured destruction* cards removed from play"
         elsif turn_type == :basic
-
-          # binding.pry
+          if turn_winner.nil?
+          end
 
           puts "Turn #{turn_count}: #{turn_winner.name} won #{cards_won} cards"
         end

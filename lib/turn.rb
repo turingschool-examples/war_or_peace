@@ -56,8 +56,8 @@ class Turn
         spoils_of_war << player1.deck.remove_card
         spoils_of_war << player2.deck.remove_card
       end
-      return spoils_of_war.length
-      spoils_of_war.clear #this clears so no one gets the cards
+      spoils_of_war.clear
+      return spoils_of_war.length  
     end
 
   end

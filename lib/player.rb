@@ -12,6 +12,6 @@ class Player
     else
       puts "*~*~*~* #{@name} has won the game! *~*~*~*"
       true
-      end
+    end
   end
 end
