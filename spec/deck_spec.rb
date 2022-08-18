@@ -9,7 +9,8 @@ RSpec.describe Card do
     @card2 = Card.new(:spade, '3', 3) 
     @card3 = Card.new(:heart, 'Ace', 14) 
     @card4 = Card.new(:club, '5', 5)
-    @deck = Deck.new(cards)
+    @cards = ([@card1, @card2, @card3])
+    @deck = Deck.new(@cards)  
   end 
 
   it "exists" do
@@ -17,15 +18,17 @@ RSpec.describe Card do
   end
 
   it "has readable attributes" do
-
-
-    cards = ([@card1, @card2, @card3])
-
+    
+    # require 'pry'; binding.pry
+    expect(@deck.cards).to eq([@card1, @card2, @card3])
     expect(@deck.rank_of_card_at(0)).to eq(12)
     expect(@deck.rank_of_card_at(2)).to eq(14)
     expect(@deck.high_ranking_cards).to eq([@card1, @card3])
-    expect(@deck.percent_high_ranking).to eq([@card3])
-
+    expect(@deck.percent_high_ranking).to eq(66.67)
+  end 
+  
+  it 'can add and remove cards' do  
+    @deck.remove_card
     @deck.add_card(@card4)
-
-  end
+  end 
+end
