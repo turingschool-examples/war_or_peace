@@ -1,5 +1,4 @@
-require 'rspec'
-require './lib/card'
+require 'spec_helper'
 
 RSpec.describe Card do
   it "exists" do
@@ -15,4 +14,7 @@ RSpec.describe Card do
     expect(card.value).to eq('Queen')
     expect(card.rank).to eq(12)
   end
+  
+  
+  
 end
