@@ -50,7 +50,8 @@ until counter == 1_000_000
     puts "this type #{turn.type} DID NOT MATCH"
   end
 
-  turn.pile_cards
+  turn.award_spoils(turn.pile_cards)
+
   # HOW CAN SPOILS BE AWARDED TO THE WINNER OF THE TURN PRIOR TO PILING CARDS?
 
   break if player1.has_lost? || player2.has_lost?

@@ -65,19 +65,23 @@ class Turn
   end
 
   def pile_cards
-    case type
+    hand_winner = winner
+    case type 
     when :basic
       p1_card = @player1.deck.cards.shift
       p2_card = @player2.deck.cards.shift
       @spoils_of_war.push(p1_card, p2_card)
+      hand_winner
     when :war
       p1_cards = @player1.deck.cards.shift(3)
       p2_cards = @player2.deck.cards.shift(3)
       @spoils_of_war.concat(p1_cards, p2_cards)
+      hand_winner
     when :mutually_assured_destruction
       @player1.deck.cards.slice!(0, 3)
       @player2.deck.cards.slice!(0, 3)
-    end
+      'No Winner'
+    end 
   end
 
   def award_spoils(hand_winner)
