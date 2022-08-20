@@ -66,3 +66,21 @@ elsif player2.has_lost?
 elsif counter == 1_000_000
   puts '---- DRAW ----'
 end
+
+until counter == 1_000_000
+  turn = Turn.new(player1, player2)
+  case turn.winner
+  when 'No Winner'
+    # code here
+  when turn.player1
+    # code here
+  when turn.player2
+    # code here
+  else
+    'turn.winner failed'
+  end
+  
+  break if player1.has_lost? || player2.has_lost?
+  
+  counter += 1
+end 
