@@ -15,11 +15,11 @@ class Turn
       player1_third_card = @player1.deck.cards[2].rank
       player2_third_card = @player2.deck.cards[2].rank
 
-      if player1_first_card == player2_first_card && player1_third_card == player2_third_card
+      if (player1_first_card == player2_first_card) && (player1_third_card == player2_third_card)
         :mutually_assured_destruction
-      elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+      elsif player1_first_card != player2_first_card
         :basic
-      elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
+      elsif player1_first_card == player2_first_card
         :war
       end
     elsif @player1.deck.cards.count < 3 || @player2.deck.cards.count < 3
@@ -85,5 +85,6 @@ class Turn
 
   def award_spoils(hand_winner)
     hand_winner.deck.cards.concat(@spoils_of_war)
+    @spoils_of_war.clear
   end
 end

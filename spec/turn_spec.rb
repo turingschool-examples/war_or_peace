@@ -41,15 +41,14 @@ RSpec.describe 'iteration 2' do
       it 'determines the winner' do
         turn = Turn.new(player1, player2)
         expect(turn.winner.name).to eq('Megan')
+        expect(turn.type).to eq(:basic)
       end
     end
 
     context '#award_spoils' do
       it 'awards contents of @spoils_of_war to winner' do
         turn = Turn.new(player1, player2)
-        winner_of_hand = turn.winner
-        turn.pile_cards
-        turn.award_spoils(winner_of_hand)
+        turn.award_spoils(turn.pile_cards)
         # require 'pry';binding.pry
         expect(player1.deck.cards.length).to eq(5)
         expect(player2.deck.cards.length).to eq(3)
@@ -76,6 +75,7 @@ RSpec.describe 'iteration 2' do
         turn = Turn.new(player1, player2)
         # require 'pry'; binding.pry
         expect(turn.winner).to eq(player2)
+        expect(turn.type).to eq(:war)
       end
     end
 
@@ -165,6 +165,7 @@ RSpec.describe 'iteration 2' do
     context '#winner' do
       it "returns string 'No Winner'" do
         expect(turn.winner).to eq('No Winner')
+        expect(turn.type).to eq(:mutually_assured_destruction)
       end
       
       it 'does not change the turn#type' do
@@ -278,7 +279,8 @@ RSpec.describe 'iteration 2' do
       it 'returns the winner of the hand' do
         turn = Turn.new(player1, player2)
         hand_winner = turn.winner
-        expect(turn.pile_cards).to eq(hand_winner)
+        expect(turn.type).to eq(:basic)
+        expect(turn.winner).to eq(player1)      
       end
     end
     
@@ -298,6 +300,21 @@ RSpec.describe 'iteration 2' do
         expect(turn.type).to eq(:mutually_assured_destruction)
         expect(turn.pile_cards).to eq('No Winner')
       end
+    end
+  end
+  
+  context '#award_spoils' do
+    it 'returns the deck of the winner' do
+      require 'pry'; binding.pry
+      turn = Turn.new(player1, player2)
+        hand_winner = turn.winner
+        expect(turn.winner).to eq(player1)
+        expect(turn.type).to eq(:basic)
+        expect(player1.deck.cards.length).to eq(4)
+        expect(turn.spoils_of_war).to eq([])
+        expect(turn.award_spoils(turn.pile_cards).count).to eq(0)
+        # expect(turn.winner.deck.cards.length).to eq(5)
+        expect(turn.type).to eq(:basic)
     end
   end
 end
