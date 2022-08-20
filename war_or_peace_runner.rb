@@ -36,135 +36,25 @@ game.start(player1, player2)
 
 counter = 1
 
-until player1.has_lost? || player2.has_lost? || counter == 1_000_000
-  turn = Turn.new(player1, player2)
-  if turn.type == :war && player1.deck.cards.count >= 3 && player2.deck.cards.count >= 3
-    case turn.type
-    when :mutually_assured_destruction
-      turn.pile_cards
-      puts "Turn #{counter}: *mutually assured destruction* 6 cards removed from play"
-    when :war
-      if player1.deck.cards.count > 3 && player2.deck.cards.count > 3
-        turn.pile_cards
-        turn.award_spoils(turn.winner)
-        puts "Turn #{counter}: WAR - #{turn.winner.name} won #{turn.spoils_of_war.count} cards"
-      elsif player1.deck.cards.count < 3 || player2.deck.cards.count < 3
-        if player1.deck.cards.count < 3
-          player2.deck.cards.concat(player1.deck.cards)
-          player1.deck = []
-          break
-        elsif player2.deck.cards.count < 3
-          player1.deck.cards.concat(player2.deck.cards)
-          player2.deck = []
-          break
-        end
-        break
-      end
-    when :basic
-      turn.pile_cards
-      break if player1.deck.cards.length == 0 || player2.deck.cards.length == 0
+turn = Turn.new(player1, player2)
+until counter == 1_000_000
+  winner_of_hand = turn.winner
+  turn.pile_cards
 
-      if turn.winner != 'No Winner' && turn.winner != 'something fishy'
-        turn.award_spoils(turn.winner)
-        puts "Turn #{counter}: #{turn.winner.name} won #{turn.spoils_of_war.count} cards"
-        puts "#{player1.name} has #{player1.deck.cards.count} cards"
-        puts "#{player2.name} has #{player2.deck.cards.count} cards"
-      elsif turn.winner == 'No Winner'
-        turn.winner
-
-      elsif turn.winner == 'something fishy'
-        break
-
-      end
-    else
-      'error in turn.type case statement'
-    end
-  elsif turn.type == :basic && player1.deck.cards.count >= 3 && player2.deck.cards.count >= 3
-    case turn.type
-    when :mutually_assured_destruction
-      turn.pile_cards
-      puts "Turn #{counter}: *mutually assured destruction* 6 cards removed from play"
-    when :war
-      if player1.deck.cards.count > 3 && player2.deck.cards.count > 3
-        turn.pile_cards
-        turn.award_spoils(turn.winner)
-        puts "Turn #{counter}: WAR - #{turn.winner.name} won #{turn.spoils_of_war.count} cards"
-      elsif player1.deck.cards.count < 3 || player2.deck.cards.count < 3
-        if player1.deck.cards.count < 3
-          player2.deck.cards.concat(player1.deck.cards)
-          player1.deck = []
-          break
-        elsif player2.deck.cards.count < 3
-          player1.deck.cards.concat(player2.deck.cards)
-          player2.deck = []
-          break
-        end
-        break
-      end
-    when :basic
-      turn.pile_cards
-      break if player1.deck.cards.length == 0 || player2.deck.cards.length == 0
-
-      if turn.winner != 'No Winner' && turn.winner != 'something fishy'
-        turn.award_spoils(turn.winner)
-        puts "Turn #{counter}: #{turn.winner.name} won #{turn.spoils_of_war.count} cards"
-        puts "#{player1.name} has #{player1.deck.cards.count} cards"
-        puts "#{player2.name} has #{player2.deck.cards.count} cards"
-      elsif turn.winner == 'No Winner'
-        turn.winner
-
-      elsif turn.winner == 'something fishy'
-        break
-
-      end
-    else
-      'error in turn.type case statement'
-    end
-  elsif turn.type == :mutually_assured_destruction && player1.deck.cards.count >= 3 && player2.deck.cards.count >=3
-    case turn.type
-    when :mutually_assured_destruction
-      turn.pile_cards
-      puts "Turn #{counter}: *mutually assured destruction* 6 cards removed from play"
-    when :war
-      if player1.deck.cards.count > 3 && player2.deck.cards.count > 3
-        turn.pile_cards
-        turn.award_spoils(turn.winner)
-        puts "Turn #{counter}: WAR - #{turn.winner.name} won #{turn.spoils_of_war.count} cards"
-      elsif player1.deck.cards.count < 3 || player2.deck.cards.count < 3
-        if player1.deck.cards.count < 3
-          player2.deck.cards.concat(player1.deck.cards)
-          player1.deck = []
-          break
-        elsif player2.deck.cards.count < 3
-          player1.deck.cards.concat(player2.deck.cards)
-          player2.deck = []
-          break
-        end
-        break
-      end
-    when :basic
-      turn.pile_cards
-      break if player1.deck.cards.length == 0 || player2.deck.cards.length == 0
-
-      if turn.winner != 'No Winner' && turn.winner != 'something fishy'
-        turn.award_spoils(turn.winner)
-        puts "Turn #{counter}: #{turn.winner.name} won #{turn.spoils_of_war.count} cards"
-        puts "#{player1.name} has #{player1.deck.cards.count} cards"
-        puts "#{player2.name} has #{player2.deck.cards.count} cards"
-      elsif turn.winner == 'No Winner'
-        turn.winner
-
-      elsif turn.winner == 'something fishy'
-        break
-
-      end
-    else
-      'error in turn.type case statement'
-    end
+  case turn.type
+  when :mutually_assured_destruction
+    puts "Turn #{counter}: *mutually assured destruction* 6 cards removed from play"
+  when :war
+    puts "Turn #{counter}: WAR - #{winner_of_hand.name} won #{turn.spoils_of_war.count} cards"
+    turn.award_spoils(winner_of_hand)
+  when :basic
+    puts "Turn #{counter}: #{winner_of_hand.name} won #{turn.spoils_of_war.count} cards"
+    turn.award_spoils(winner_of_hand)
   else
-    puts 'edge case'
-    break
+    puts "this type #{turn.type} DID NOT MATCH"
   end
+
+  break if player1.has_lost? || player2.has_lost?
 
   counter += 1
 end
@@ -176,5 +66,3 @@ elsif player2.has_lost?
 elsif counter == 1_000_000
   puts '---- DRAW ----'
 end
-
-

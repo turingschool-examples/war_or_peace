@@ -8,42 +8,32 @@ class Turn
   end
 
   def type
-    if @player1.has_lost? || @player2.has_lost?
-      :endgame
-    elsif @player1.deck.cards.count <= 2 || @player2.deck.cards.count <= 2
-
-      p1_card_0 = @player1.deck.rank_of_card_at(0)
-      p2_card_0 = @player2.deck.rank_of_card_at(0)
-
-      if p1_card_0 == p2_card_0
-        :endgame
-      else
-        :basic
-      end
-
-    else
-      p1_card_0 = @player1.deck.rank_of_card_at(0)
-      p2_card_0 = @player2.deck.rank_of_card_at(0)
-
-      p1_card_2 = @player1.deck.rank_of_card_at(2)
-      p2_card_2 = @player2.deck.rank_of_card_at(2)
-
-      if p1_card_0 == p2_card_0 && p1_card_2 == p2_card_2
+    if @player1.deck.cards.count >= 3 && @player2.deck.cards.count >= 3
+      player1_first_card = @player1.deck.cards[0].rank
+      player2_first_card = @player2.deck.cards[0].rank
+      player1_third_card = @player1.deck.cards[2].rank
+      player2_third_card = @player2.deck.cards[2].rank
+      
+      if player1_first_card == player2_first_card && player1_third_card == player2_third_card
         :mutually_assured_destruction
-      elsif p1_card_0 == p2_card_0
-        :war
-      elsif p1_card_0 != p2_card_0
+      elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
         :basic
+      elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
+        :war
+      end
+    elsif @player1.deck.cards.count < 3 || @player2.deck.cards.count < 3
+      if  @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+        :basic
+      elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
+        :war
       end
     end
   end
 
   def winner
-    if type == :endgame
-      'something fishy'
-    elsif type == :basic
-      p1_card = @player1.deck.cards[0].rank
-      p2_card = @player2.deck.cards[0].rank
+    if type == :basic
+      p1_card = @player1.deck.rank_of_card_at(0)
+      p2_card = @player2.deck.rank_of_card_at(0)
       case p2_card <=> p1_card
       when -1
         @player1
@@ -51,13 +41,21 @@ class Turn
         @player2
       end
     elsif type == :war
-      p1_card_2 = @player1.deck.rank_of_card_at(2)
-      p2_card_2 = @player2.deck.rank_of_card_at(2)
-      case p2_card_2 <=> p1_card_2
-      when -1
-        @player1
-      when 1
+      if player1.deck.cards.count >= 3 && player2.deck.cards.count >= 3
+        p1_card_2 = @player1.deck.rank_of_card_at(2)
+        p2_card_2 = @player2.deck.rank_of_card_at(2)
+        case p2_card_2 <=> p1_card_2
+        when -1
+          @player1
+        when 1
+          @player2
+        end
+      elsif player1.deck.cards.count < 3
         @player2
+      elsif player2.deck.cards.count < 3
+        @player1
+      else
+        'something in :winner#war logic'
       end
     elsif type == :mutually_assured_destruction
       'No Winner'
