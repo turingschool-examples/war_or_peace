@@ -71,11 +71,26 @@ until counter == 1_000_000
   turn = Turn.new(player1, player2)
   case turn.winner
   when 'No Winner'
-    # code here
+    puts "Turn #{counter}: *mutually assured destruction* 6 cards removed from play"
+    turn.pile_cards
   when turn.player1
-    # code here
+    if turn.type == :war
+      puts "Turn #{counter}: WAR - #{turn.winner.name} won 6 cards"
+    elsif turn.type == :basic
+      puts "Turn #{counter}: #{turn.winner.name} won 2 cards"
+    else
+      'somethign really wrong'
+    end
+    turn.award_spoils(turn.pile_cards)
   when turn.player2
-    # code here
+    if turn.type == :war
+      puts "Turn #{counter}: WAR - #{turn.winner.name} won 6 cards"
+    elsif turn.type == :basic
+      puts "Turn #{counter}: #{turn.winner.name} won 2 cards"
+    else
+      'somethign really wrong'
+    end
+    turn.award_spoils(turn.pile_cards)
   else
     'turn.winner failed'
   end
