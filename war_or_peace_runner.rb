@@ -45,18 +45,17 @@ until counter == 1_000_000
   case turn_type
   when :mutually_assured_destruction
     puts "Turn #{counter}: *mutually assured destruction* 6 cards removed from play"
-    turn.pile_cards
-  when :war
-    turn.pile_cards
-    puts "Turn #{counter}: WAR - #{winner_of_hand.name} won #{turn.spoils_of_war.count} cards"
     
+  when :war
+    puts "Turn #{counter}: WAR - #{winner_of_hand.name} won #{turn.spoils_of_war.count} cards"
   when :basic
-    turn.pile_cards
     puts "Turn #{counter}: #{winner_of_hand.name} won #{turn.spoils_of_war.count} cards"
   else
     puts "this type #{turn.type} DID NOT MATCH"
   end
 
+  turn.pile_cards
+  
   break if player1.has_lost? || player2.has_lost?
 
   counter += 1
