@@ -55,7 +55,7 @@ class Turn
       elsif player2.deck.cards.count < 3
         @player1
       else
-        'something in :winner#war logic'
+        'something in :winner logic'
       end
     elsif type == :mutually_assured_destruction
       'No Winner'

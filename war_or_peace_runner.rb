@@ -37,6 +37,7 @@ game.start(player1, player2)
 counter = 1
 
 turn = Turn.new(player1, player2)
+current_turn = turn
 until counter == 1_000_000
   turn_type = turn.type
   winner_of_hand = turn.winner
@@ -45,16 +46,16 @@ until counter == 1_000_000
   case turn_type
   when :mutually_assured_destruction
     puts "Turn #{counter}: *mutually assured destruction* 6 cards removed from play"
-    
   when :war
-    puts "Turn #{counter}: WAR - #{winner_of_hand.name} won #{turn.spoils_of_war.count} cards"
+    puts "Turn #{counter}: WAR - #{winner_of_hand.name} won 6 cards"
   when :basic
-    puts "Turn #{counter}: #{winner_of_hand.name} won #{turn.spoils_of_war.count} cards"
+    puts "Turn #{counter}: #{winner_of_hand.name} won 2 cards"
   else
     puts "this type #{turn.type} DID NOT MATCH"
   end
 
   turn.pile_cards
+  current_turn.award_spoils(current_turn.winner)
   
   break if player1.has_lost? || player2.has_lost?
 
