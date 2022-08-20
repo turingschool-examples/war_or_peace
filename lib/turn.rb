@@ -80,7 +80,7 @@ class Turn
     end
   end
 
-  def award_spoils(winner)
-    winner.deck.cards.concat(@spoils_of_war) if winner
+  def award_spoils(hand_winner)
+    hand_winner.deck.cards.concat(@spoils_of_war)
   end
 end

@@ -110,9 +110,9 @@ RSpec.describe 'iteration 2' do
         player1 = Player.new('Megan', deck1)
         player2 = Player.new('Aurora', deck2)
         turn = Turn.new(player1, player2)
-        expect(turn.type).to eq(:mutually_assured_destruction)
+        expect(turn.type).to eq(:war)
         turn.pile_cards
-        expect(turn.type).to eq(:mutually_assured_destruction)
+        expect(turn.type).not_to eq(:war)
       end
     end
 
@@ -163,6 +163,10 @@ RSpec.describe 'iteration 2' do
     context '#winner' do
       it "returns string 'No Winner'" do
         expect(turn.winner).to eq('No Winner')
+      end
+      
+      it 'does not change the turn#type' do
+        expect(turn.type).to eq(:mutually_assured_destruction)
       end
     end
 
