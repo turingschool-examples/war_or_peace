@@ -37,7 +37,7 @@ game.start(player1, player2)
 counter = 1
 
 turn = Turn.new(player1, player2)
-until counter == 1_000_000
+until counter == 10000
 
   case turn.type
   when :mutually_assured_destruction

@@ -13,7 +13,7 @@ class Turn
       player2_first_card = @player2.deck.cards[0].rank
       player1_third_card = @player1.deck.cards[2].rank
       player2_third_card = @player2.deck.cards[2].rank
-      
+
       if player1_first_card == player2_first_card && player1_third_card == player2_third_card
         :mutually_assured_destruction
       elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
@@ -66,22 +66,20 @@ class Turn
 
   def pile_cards
     hand_winner = winner
-    case type 
+    case type
     when :basic
       p1_card = @player1.deck.cards.shift
       p2_card = @player2.deck.cards.shift
       @spoils_of_war.push(p1_card, p2_card)
-      hand_winner
     when :war
       p1_cards = @player1.deck.cards.shift(3)
       p2_cards = @player2.deck.cards.shift(3)
       @spoils_of_war.concat(p1_cards, p2_cards)
-      hand_winner
     when :mutually_assured_destruction
       @player1.deck.cards.slice!(0, 3)
       @player2.deck.cards.slice!(0, 3)
-      'No Winner'
-    end 
+    end
+    hand_winner
   end
 
   def award_spoils(hand_winner)

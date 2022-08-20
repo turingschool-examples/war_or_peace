@@ -15,10 +15,12 @@ RSpec.describe 'iteration 2' do
   let(:deck3) { Deck.new([card1, card2]) }
   let(:deck4) { Deck.new([card4, card3, card6, card7]) }
   let(:deck5) { Deck.new([card4]) }
+  let(:deck6) { Deck.new([card1, card2, card6, card1]) }
   let(:player1) { Player.new('Megan', deck1) }
   let(:player2) { Player.new('Aurora', deck2) }
   let(:player3) { Player.new('April', deck3) }
   let(:player4) { Player.new('Maddie', deck4) }
+  let(:player5) { Player.new('Aurora', deck6) }
   let(:turn) { Turn.new(player3, player4) }
 
   context 'Turn :basic' do
@@ -183,6 +185,8 @@ RSpec.describe 'iteration 2' do
         expect(turn.spoils_of_war).to eq([])
       end
     end
+    
+    
   end
   
   context 'both players have >= 3 cards' do
@@ -265,6 +269,34 @@ RSpec.describe 'iteration 2' do
         turn.pile_cards
         turn.award_spoils(winner_of_hand)
         expect(player1.has_lost?).to be true
+      end
+    end
+  end
+  
+  context '#pile_cards' do
+    context ':basic' do
+      it 'returns the winner of the hand' do
+        turn = Turn.new(player1, player2)
+        hand_winner = turn.winner
+        expect(turn.pile_cards).to eq(hand_winner)
+      end
+    end
+    
+    context ':war' do
+      it 'returns the hand winner' do
+        turn = Turn.new(player1, player5)
+        expect(turn.type).to eq(:war)
+        hand_winner = turn.winner
+        expect(turn.pile_cards).to eq(hand_winner)
+      end
+    end
+    
+    context ':mutually_assured_destruction' do
+      it "returns 'No Winner'" do
+        turn = Turn.new(player1, player1)
+        hand_winner = turn.winner
+        expect(turn.type).to eq(:mutually_assured_destruction)
+        expect(turn.pile_cards).to eq('No Winner')
       end
     end
   end
