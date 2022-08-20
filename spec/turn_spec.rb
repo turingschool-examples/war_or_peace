@@ -40,8 +40,10 @@ RSpec.describe 'iteration 2' do
     context '#winner' do
       it 'determines the winner' do
         turn = Turn.new(player1, player2)
-        expect(turn.winner.name).to eq('Megan')
         expect(turn.type).to eq(:basic)
+        expect(turn.winner.name).to eq('Megan')
+        turn.pile_cards
+        # require 'pry'; binding.pry
       end
     end
 
@@ -305,7 +307,7 @@ RSpec.describe 'iteration 2' do
   
   context '#award_spoils' do
     it 'returns the deck of the winner' do
-      require 'pry'; binding.pry
+      # require 'pry'; binding.pry
       turn = Turn.new(player1, player2)
         hand_winner = turn.winner
         expect(turn.winner).to eq(player1)
@@ -315,6 +317,15 @@ RSpec.describe 'iteration 2' do
         expect(turn.award_spoils(turn.pile_cards).count).to eq(0)
         # expect(turn.winner.deck.cards.length).to eq(5)
         expect(turn.type).to eq(:basic)
+    end
+  end
+  
+  context '#pile_cards' do
+    it 'does something cool' do
+      turn = Turn.new(player1, player2)
+      expect(turn.type).to eq(:basic)
+      expect(turn.winner).to eq(player1)
+      expect(turn.pile_cards).to eq(player1)
     end
   end
 end
