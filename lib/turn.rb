@@ -1,7 +1,7 @@
 class Turn
   attr_reader :player1, :player2
   attr_accessor :spoils_of_war
-  
+
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
@@ -32,24 +32,29 @@ class Turn
   end
 
   def winner
-    if type == :basic
+    case type
+    when :basic
       p1_card = @player1.deck.rank_of_card_at(0)
       p2_card = @player2.deck.rank_of_card_at(0)
-      case p2_card <=> p1_card
-      when -1
+
+      if p2_card < p1_card
         @player1
-      when 1
+      elsif p2_card > p1_card
         @player2
+      else
+        'no one wins'
       end
-    elsif type == :war
+    when :war
       if player1.deck.cards.count >= 3 && player2.deck.cards.count >= 3
         p1_card_2 = @player1.deck.rank_of_card_at(2)
         p2_card_2 = @player2.deck.rank_of_card_at(2)
-        case p2_card_2 <=> p1_card_2
-        when -1
+
+        if p2_card < p1_card
           @player1
-        when 1
+        elsif p2_card > p1_card
           @player2
+        else
+          'no one wins'
         end
       elsif player1.deck.cards.count < 3
         @player2
@@ -58,7 +63,8 @@ class Turn
       else
         'something in :winner logic'
       end
-    elsif type == :mutually_assured_destruction
+
+    when :mutually_assured_destruction
       'No Winner'
     else
       'else clause in winner method'
