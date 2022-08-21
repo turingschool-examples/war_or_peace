@@ -74,13 +74,9 @@ class Turn
   def pile_cards
     case type
     when :basic
-      p1_card = @player1.deck.cards.remove_card
-      p2_card = @player2.deck.cards.remove_card
-      @spoils_of_war.push(p1_card, p2_card)
+      @spoils_of_war.push(@player1.deck.cards.shift, @player2.deck.cards.shift)
     when :war
-      p1_cards = @player1.deck.cards.shift(3)
-      p2_cards = @player2.deck.cards.shift(3)
-      @spoils_of_war.concat(p1_cards, p2_cards)
+      @spoils_of_war.concat(@player1.deck.cards.shift(3),  @player2.deck.cards.shift(3))
     when :mutually_assured_destruction
       @player1.deck.cards.slice!(0, 3)
       @player2.deck.cards.slice!(0, 3)

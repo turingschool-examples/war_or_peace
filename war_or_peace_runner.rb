@@ -41,27 +41,34 @@ turn = Turn.new(player1, player2)
 # an until loop is created that will go until the counter reaches 10,000
 until counter >= 1_000_000
   # evaluate the turn#winner
-  case turn.winner
+  previous_turn = turn
+  previous_winner = turn.winner
+  case previous_winner
 
-  when turn.player1
+  when player1
     if turn.type == :war
       puts "Turn #{counter}: WAR - #{turn.winner.name} won 6 cards"
-      turn.award_spoils(turn.pile_cards)
+      previous_turn.pile_cards
+      turn.award_spoils(previous_winner)
+      
     elsif turn.type == :basic
       puts "Turn #{counter}: #{turn.winner.name} won 2 cards"
-      turn.award_spoils(turn.pile_cards)
+      previous_turn.pile_cards
+      turn.award_spoils(previous_winner)
     else
       'somethign really wrong'
     end
 
-  when turn.player2
+  when player2
 
     if turn.type == :war
       puts "Turn #{counter}: WAR - #{turn.winner.name} won 6 cards"
-      turn.award_spoils(turn.pile_cards)
+      previous_turn.pile_cards
+      turn.award_spoils(previous_winner)
     elsif turn.type == :basic
       puts "Turn #{counter}: #{turn.winner.name} won 2 cards"
-      turn.award_spoils(turn.pile_cards)
+      previous_turn.pile_cards
+      turn.award_spoils(previous_winner)
     else
       'somethign really wrong'
     end
@@ -69,7 +76,7 @@ until counter >= 1_000_000
 
     puts "Turn #{counter}: *mutually assured destruction* 6 cards removed from play"
 
-    turn.award_spoils(turn.pile_cards)
+    turn.pile_cards
   else
     'turn.winner failed'
   end
