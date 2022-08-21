@@ -14,3 +14,5 @@ Traceback (most recent call last):
 - What if the turn.type became an instance variable?
 
 - The issue is #pile_cards fundamentally changes the instance of `Turn`, by triggering a new `Turn#type`
+
+- learning how to write longer git commit messages
