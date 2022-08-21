@@ -3,6 +3,7 @@ require './lib/deck'
 require './lib/turn'
 require './lib/player'
 require './lib/engine'
+require 'pry'
 
 def create_full_deck
   values = %w[2 3 4 5 6 7 8 9 10 Jack Queen King Ace]
@@ -66,13 +67,13 @@ end
 until counter >= 1_000_000
   # evaluate the turn#winner
   turn.award_spoils(turn.pile_cards)
+  
   break if turn.player1.has_lost? || turn.player2.has_lost?
   case turn.winner
 
   when player1
     if turn.type == :war
       puts "Turn #{counter}: WAR - #{turn.winner.name} won 6 cards"
-
     elsif turn.type == :basic
       puts "Turn #{counter}: #{turn.winner.name} won 2 cards"
     else

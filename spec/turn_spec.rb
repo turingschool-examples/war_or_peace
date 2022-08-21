@@ -121,7 +121,7 @@ RSpec.describe 'iteration 2' do
     end
 
     context '#award_spoils' do
-      it 'awards contents of spoils_of_war to winner' do
+      xit 'awards contents of spoils_of_war to winner' do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
         card3 = Card.new(:heart, '9', 9)
@@ -211,7 +211,7 @@ RSpec.describe 'iteration 2' do
   context 'a player has 2 cards' do
     context 'and is :war' do
       context 'and player loses' do
-        it 'player deck will be empty' do
+        xit 'player deck will be empty' do
           turn = Turn.new(player3, player4)
           # require 'pry'; binding.pry
           winner_of_hand = turn.winner
@@ -224,7 +224,7 @@ RSpec.describe 'iteration 2' do
 
     context 'and is :basic turn' do
       context 'and the player loses' do
-        it 'player will lose their card' do
+        xit 'player will lose their card' do
           deck1 = Deck.new([card2, card1])
           deck2 = Deck.new([card4, card5, card6, card7])
           player1 = Player.new('Megan', deck1)
@@ -241,7 +241,7 @@ RSpec.describe 'iteration 2' do
 
   context 'a player has 1 card' do
     context 'and the turn#type is :war' do
-      it 'the player #has_lost?' do
+      xit 'the player #has_lost?' do
         deck1 = Deck.new([card1])
         deck2 = Deck.new([card4, card5, card3, card2])
         player1 = Player.new('Megan', deck1)
@@ -256,7 +256,7 @@ RSpec.describe 'iteration 2' do
     end
 
     context 'and the turn#type is :basic' do
-      it 'the player has lost' do
+      xit 'the player has lost' do
         deck1 = Deck.new([card2])
         deck2 = Deck.new([card1, card3, card4, card5])
         player1 = Player.new('Megan', deck1)
@@ -315,26 +315,17 @@ RSpec.describe 'iteration 2' do
   end
 
   context '#award_spoils' do
-    xit 'returns the deck of the winner' do
+    it 'returns the deck of the winner' do
       # require 'pry'; binding.pry
       turn = Turn.new(player1, player2)
-      hand_winner = turn.winner
       expect(turn.winner).to eq(player1)
       expect(turn.type).to eq(:basic)
       expect(player1.deck.cards.length).to eq(4)
       expect(turn.spoils_of_war).to eq([])
-      expect(turn.award_spoils(turn.pile_cards).count).to eq(0)
-      # expect(turn.winner.deck.cards.length).to eq(5)
-      expect(turn.type).to eq(:basic)
-    end
-  end
-
-  context '#pile_cards' do
-    xit 'does something cool' do
-      turn = Turn.new(player1, player2)
-      expect(turn.type).to eq(:basic)
-      expect(turn.winner).to eq(player1)
-      expect(turn.pile_cards).to eq(player1)
+      turn.award_spoils(turn.pile_cards)
+      expected = turn.spoils_of_war
+      require 'pry';binding.pry
+      expect(player1.deck.cards.pop(2)).to eq(expected)
     end
   end
 end
