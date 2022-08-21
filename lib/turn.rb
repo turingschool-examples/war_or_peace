@@ -72,7 +72,6 @@ class Turn
   end
 
   def pile_cards
-    hand_winner = winner
     case type
     when :basic
       p1_card = @player1.deck.cards.shift
@@ -86,7 +85,6 @@ class Turn
       @player1.deck.cards.slice!(0, 3)
       @player2.deck.cards.slice!(0, 3)
     end
-    hand_winner
   end
 
   def award_spoils(hand_winner)
