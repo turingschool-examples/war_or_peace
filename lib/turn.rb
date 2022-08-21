@@ -46,8 +46,8 @@ class Turn
       end
     when :war
       if player1.deck.cards.count >= 3 && player2.deck.cards.count >= 3
-        p1_card_2 = @player1.deck.rank_of_card_at(2)
-        p2_card_2 = @player2.deck.rank_of_card_at(2)
+        p1_card = @player1.deck.rank_of_card_at(2)
+        p2_card = @player2.deck.rank_of_card_at(2)
 
         if p2_card < p1_card
           @player1
