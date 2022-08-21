@@ -61,7 +61,7 @@ class Turn
     elsif type == :mutually_assured_destruction
       'No Winner'
     else
-      'somthing in winner method'
+      'else clause in winner method'
     end
   end
 
