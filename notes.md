@@ -16,3 +16,5 @@ Traceback (most recent call last):
 - The issue is #pile_cards fundamentally changes the instance of `Turn`, by triggering a new `Turn#type`
 
 - learning how to write longer git commit messages
+
+- OK, now Code is my default git commit message editor
