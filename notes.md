@@ -12,3 +12,5 @@ Traceback (most recent call last):
 - so again, turn#pile_cards is changing the turn#type within the algorithm. Try to isolate this....
 
 - What if the turn.type became an instance variable?
+
+- The issue is #pile_cards fundamentally changes the instance of `Turn`, by triggering a new `Turn#type`
