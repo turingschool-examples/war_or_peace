@@ -9,7 +9,7 @@ attr_reader :cards
   @cards
   end
 
-  def new_deck(card)
+  def new_card(card)
     @cards << card
   end
 

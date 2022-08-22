@@ -22,13 +22,30 @@ RSpec.describe Card do
     expect(deck.cards?).to be_empty
   end
 
-   it "Can have a card in a deck" do
+   it "can have a card in a deck" do
       deck = Deck.new
       card = Card.new(:heart, 'Jack', 11)
 
-      deck.new_deck(card)
+      deck.new_card(card)
       expect(deck.cards?.count).to eq (1)
-
-
    end
+
+   it "can have multiple cars in a deck" do
+    deck = Deck.new
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+
+    deck.new_card(card1)
+    deck.new_card(card2)
+    deck.new_card(card3)
+
+    expect(deck.cards?.count).to eq(3)
+   end
+
+
+
+
+
+
 end
