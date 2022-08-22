@@ -35,71 +35,34 @@ game = Engine.new
 
 game.start(player1, player2)
 
+turn = Turn.new(player1, player2)
 
 counter = 1
 
-# a new turn is created with player1 and player2
-turn = Turn.new(player1, player2)
-case turn.winner
-when player1
-  if turn.type == :war
-    puts "Turn #{counter}: WAR - #{turn.winner.name} won 6 cards"
-  elsif turn.type == :basic
-    puts "Turn #{counter}: #{turn.winner.name} won 2 cards"
+until counter == 1_000_000
+
+  break if player1.has_lost? || player2.has_lost?
+
+  winner = turn.winner
+
+  case turn.type
+  when :basic
+    turn.pile_cards
+    puts "turn #{counter}: #{winner.name} won #{turn.spoils_of_war.count} cards"
+    turn.award_spoils(winner)
+  when :war
+    turn.pile_cards
+    puts "turn #{counter}: WAR - #{winner.name} won #{turn.spoils_of_war.count} cards"
+    turn.award_spoils(winner)
+  when :mutually_assured_destruction
+    turn.pile_cards
+    puts '*mutually assured destruction* 6 cards removed from play'
   else
-    'somethign really wrong'
+    'big oops'
   end
-when player2
-  if turn.type == :war
-    puts "Turn #{counter}: WAR - #{turn.winner.name} won 6 cards"
-  elsif turn.type == :basic
-    puts "Turn #{counter}: #{turn.winner.name} won 2 cards"
-  else
-    'somethign really wrong'
-  end
-when 'No Winner'
-  puts "Turn #{counter}: *mutually assured destruction* 6 cards removed from play"
-else
-  # do this
-end
-
-# an until loop is created that will go until the counter reaches 10,000
-until counter >= 1_000_000
-  # evaluate the turn#winner
-  turn.award_spoils(turn.pile_cards)
-  
-  break if turn.player1.has_lost? || turn.player2.has_lost?
-  case turn.winner
-
-  when player1
-    if turn.type == :war
-      puts "Turn #{counter}: WAR - #{turn.winner.name} won 6 cards"
-    elsif turn.type == :basic
-      puts "Turn #{counter}: #{turn.winner.name} won 2 cards"
-    else
-      'somethign really wrong'
-    end
-
-  when player2
-
-    if turn.type == :war
-      puts "Turn #{counter}: WAR - #{turn.winner.name} won 6 cards"
-    elsif turn.type == :basic
-      puts "Turn #{counter}: #{turn.winner.name} won 2 cards"
-    else
-      'somethign really wrong'
-    end
-  when 'No Winner'
-
-    puts "Turn #{counter}: *mutually assured destruction* 6 cards removed from play"
-
-  else
-    'turn.winner failed'
-  end
-
-  
 
   counter += 1
+
 end
 
 if player1.has_lost?
@@ -109,24 +72,4 @@ elsif player2.has_lost?
 elsif counter >= 1_000_000
   puts "Turn #{counter}: #{turn.winner.name} won 2 cards"
   puts '---- DRAW ----'
-end
-
-
-until counter == 1000000
-  
-  break if player1.has_lost? || player2.has_lost?
-  
-  turn = Turn.new(player1, player2)
-  winner = turn.winner
-  
-  case turn.type
-  when :basic
-    # code here
-  when :war
-    # code here
-  when :mutually_assured_destruction
-    # code here
-  else
-    # message here
-  end
 end
