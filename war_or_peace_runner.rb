@@ -38,7 +38,7 @@ game.start(player1, player2)
 
 counter = 1
 
-# a new turn is created with player1 and player2
+
 turn = Turn.new(player1, player2)
 case turn.winner
 when player1
