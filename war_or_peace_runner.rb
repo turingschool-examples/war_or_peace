@@ -110,3 +110,23 @@ elsif counter >= 1_000_000
   puts "Turn #{counter}: #{turn.winner.name} won 2 cards"
   puts '---- DRAW ----'
 end
+
+
+until counter == 1000000
+  
+  break if player1.has_lost? || player2.has_lost?
+  
+  turn = Turn.new(player1, player2)
+  winner = turn.winner
+  
+  case turn.type
+  when :basic
+    # code here
+  when :war
+    # code here
+  when :mutually_assured_destruction
+    # code here
+  else
+    # message here
+  end
+end
