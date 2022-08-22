@@ -1,6 +1,6 @@
-class Card < Deck
-  require './lib/deck'
+require 'deck.rb'
 
+class Card < Deck
   attr_reader :suit, :value, :rank
 
   def initialize(suit, value, rank)
