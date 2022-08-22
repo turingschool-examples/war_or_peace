@@ -13,4 +13,8 @@ attr_reader :cards
     @cards << card
   end
 
+  def rank_of_card_at(card)
+    card.rank
+  end
+
 end

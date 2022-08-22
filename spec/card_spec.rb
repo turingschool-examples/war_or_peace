@@ -32,19 +32,34 @@ RSpec.describe Card do
 
    it "can have multiple cars in a deck" do
     deck = Deck.new
-    card1 = Card.new(:diamond, 'Queen', 12)
-    card2 = Card.new(:spade, '3', 3)
-    card3 = Card.new(:heart, 'Ace', 14)
+    card_1 = Card.new(:diamond, 'Queen', 12)
+    card_2 = Card.new(:spade, '3', 3)
+    card_3 = Card.new(:heart, 'Ace', 14)
 
-    deck.new_card(card1)
-    deck.new_card(card2)
-    deck.new_card(card3)
+    deck.new_card(card_1)
+    deck.new_card(card_2)
+    deck.new_card(card_3)
 
     expect(deck.cards?.count).to eq(3)
    end
 
+   it 'can call rank' do
+    deck = Deck.new
+    card_1 = Card.new(:diamond, 'Queen', 12)
+    card_2 = Card.new(:spade, '3', 3)
+    card_3 = Card.new(:heart, 'Ace', 14)
 
+    deck.new_card(card_1)
+    deck.new_card(card_2)
+    deck.new_card(card_3)
 
+    deck.rank_of_card_at(card_1)
+    deck.rank_of_card_at(card_3)
+
+    expect(card_1.rank).to eq (12)
+    expect(card_3.rank).to eq (14)
+
+   end
 
 
 
