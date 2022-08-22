@@ -40,11 +40,11 @@ turn = Turn.new(player1, player2)
 counter = 1
 
 until counter == 1_000_000
-
+  
   break if player1.has_lost? || player2.has_lost?
 
   winner = turn.winner
-
+  
   case turn.type
   when :basic
     turn.pile_cards

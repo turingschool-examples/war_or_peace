@@ -1,5 +1,6 @@
 class Player
-  attr_accessor :name, :deck
+  attr_accessor :deck, :has_lost
+  attr_reader :name
   
   def initialize(name, deck)
     @name = name
