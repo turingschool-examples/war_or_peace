@@ -1,4 +1,5 @@
 require 'rspec'
+require 'pry'
 require './lib/card'
 
 RSpec.describe Card do
