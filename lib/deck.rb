@@ -7,7 +7,7 @@ attr_reader :cards, :high_ranking_cards
   end
 
   def sim_deck
-  @cards
+    @cards
   end
 
   def add_card(card)
@@ -26,8 +26,8 @@ attr_reader :cards, :high_ranking_cards
   end
 
   def percentage_high_ranking
-  high_rank_count = @high_ranking_cards.count
-  card_count = @cards.count
-  (Float(high_rank_count)/card_count * 100).round
+    high_rank_count = @high_ranking_cards.count
+    card_count = @cards.count
+    (Float(high_rank_count)/card_count * 100).round
   end
 end
