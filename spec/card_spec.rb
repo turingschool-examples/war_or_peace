@@ -19,7 +19,7 @@ RSpec.describe Card do
 
   it "has no cards when created" do
     deck = Deck.new
-    expect(deck.sim_deck).to be_empty
+    expect(deck.cards).to be_empty
   end
 
    it "can have a card in a deck" do
@@ -27,7 +27,7 @@ RSpec.describe Card do
       card = Card.new(:heart, 'Jack', 11)
 
       deck.add_card(card)
-      expect(deck.sim_deck.count).to eq (1)
+      expect(deck.cards.count).to eq (1)
    end
 
    it "can have multiple cars in a deck" do
@@ -40,7 +40,7 @@ RSpec.describe Card do
     deck.add_card(card_2)
     deck.add_card(card_3)
 
-    expect(deck.sim_deck.count).to eq(3)
+    expect(deck.cards.count).to eq(3)
    end
 
    it 'can call rank' do
@@ -77,7 +77,7 @@ RSpec.describe Card do
     deck.add_card(card_5)
     deck.add_card(card_6)
 
-    expect(deck.sim_deck.count).to eq(6)
+    expect(deck.cards.count).to eq(6)
     expect(deck.high_ranking_cards.count).to eq(3)
     expect(deck.high_ranking_cards).to eq([card_1, card_3, card_4])
   end
