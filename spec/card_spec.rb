@@ -122,6 +122,7 @@ RSpec.describe Card do
 
     expect(deck.cards.count).to eq(3)
     expect(player.name).to eq("Clarisa")
+    expect(deck.cards).to eq([card_1, card_2, card_3])
   end
 
 end
