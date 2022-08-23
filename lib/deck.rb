@@ -3,7 +3,6 @@ attr_reader :cards
 
   def initialize(cards = [])
   @cards = cards
-  @high_rank = false
   @high_ranking_cards =[]
 
   end
@@ -14,11 +13,9 @@ attr_reader :cards
 
   def add_card(card)
     @cards << card
-    if card.rank >= 11
-      @high_rank = true
-      @high_ranking_cards << card
-    else
-      false
+    @high_ranking_cards = cards.select do |card|
+     card.rank >= 11
+
     end
 
   end
