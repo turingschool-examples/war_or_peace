@@ -1,6 +1,7 @@
 require 'rspec'
 require './lib/card'
 require 'deck'
+require 'player'
 
 RSpec.describe Card do
   it "exists" do
@@ -111,5 +112,13 @@ RSpec.describe Card do
     expect(deck.percentage_high_ranking).to eq(43.0)
   end
 
+  it " " do
 
+    card_1 = Card.new(:diamond, 'Queen', 12)
+    card_2 = Card.new(:spade, '3', 3)
+    card_3 = Card.new(:heart, 'Ace', 14)
+    deck = Deck.new([card_1, card_2, card_3])
+    player = Player.new('Clarisa', deck)
+
+  end
 end
