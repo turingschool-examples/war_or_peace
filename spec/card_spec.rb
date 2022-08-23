@@ -112,7 +112,7 @@ RSpec.describe Card do
     expect(deck.percentage_high_ranking).to eq(43.0)
   end
 
-  it " " do
+  it "creates a player with a deck of cards " do
 
     card_1 = Card.new(:diamond, 'Queen', 12)
     card_2 = Card.new(:spade, '3', 3)
@@ -120,5 +120,8 @@ RSpec.describe Card do
     deck = Deck.new([card_1, card_2, card_3])
     player = Player.new('Clarisa', deck)
 
+    expect(deck.cards.count).to eq(3)
+    expect(player.name).to eq("Clarisa")
   end
+
 end

@@ -1,7 +1,7 @@
 require 'deck.rb'
 require 'card.rb'
 
-class Player < Deck
+class Player
   attr_reader :name , :deck
 
   def initialize(name, deck)
