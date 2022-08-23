@@ -43,7 +43,7 @@ RSpec.describe Card do
     expect(deck.cards.count).to eq(3)
    end
 
-   it 'can call rank' do
+   it "can call rank" do
     deck = Deck.new
     card_1 = Card.new(:diamond, 'Queen', 12)
     card_2 = Card.new(:spade, '3', 3)
@@ -61,7 +61,7 @@ RSpec.describe Card do
 
    end
 
-  it 'can check for high ranking cards' do
+  it "can check for high ranking cards" do
     deck = Deck.new
     card_1 = Card.new(:diamond, 'Queen', 12)
     card_2 = Card.new(:spade, '3', 3)
@@ -77,9 +77,39 @@ RSpec.describe Card do
     deck.add_card(card_5)
     deck.add_card(card_6)
 
+    deck.high_ranking_cards
+
     expect(deck.cards.count).to eq(6)
     expect(deck.high_ranking_cards.count).to eq(3)
     expect(deck.high_ranking_cards).to eq([card_1, card_3, card_4])
   end
+
+  it "can check for the percentage of high ranking cards" do
+    deck = Deck.new
+    card_1 = Card.new(:diamond, 'Queen', 12)
+    card_2 = Card.new(:spade, '3', 3)
+    card_3 = Card.new(:heart, 'Ace', 14)
+    card_4 = Card.new(:club, 'King', 13)
+    card_5 = Card.new(:diamond, '7', 7)
+    card_6 = Card.new(:heart, '8', 8)
+    card_7 = Card.new(:heart, '2', 2)
+
+    deck.add_card(card_1)
+    deck.add_card(card_2)
+    deck.add_card(card_3)
+    deck.add_card(card_4)
+    deck.add_card(card_5)
+    deck.add_card(card_6)
+    deck.add_card(card_7)
+
+    deck.high_ranking_cards
+    deck.percentage_high_ranking
+
+    expect(deck.cards.count).to eq(7)
+    expect(deck.high_ranking_cards.count).to eq(3)
+    expect(deck.high_ranking_cards).to eq([card_1, card_3, card_4])
+    expect(deck.percentage_high_ranking).to eq(43.0)
+  end
+
 
 end
