@@ -7,6 +7,7 @@ class Player
   def initialize(name, deck)
     @name = name
     @deck = deck.cards
+
   end
 
   def has_lost?
