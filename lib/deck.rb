@@ -8,13 +8,12 @@ attr_reader :cards, :high_ranking_cards
 
   def rank_of_card_at(card)
     card.rank
-    if card.rank >= 11
-      @high_ranking_cards << card
-    end
   end
 
   def high_ranking_cards
-    @high_ranking_cards
+    @high_ranking_cards = @cards.select do |card|
+    card.rank >= 11
+    end
   end
 
   def percentage_high_ranking
@@ -26,5 +25,4 @@ attr_reader :cards, :high_ranking_cards
   def add_card(card)
      @cards << card
   end
-
 end
