@@ -40,6 +40,7 @@ RSpec.describe Turn do
       turn = Turn.new(player1, player2)
       expect(turn.player1).to eq(player1)
       expect(turn.player2).to eq(player2)
+      expect(turn.type).to eq(:basic)
     end
 
   end
