@@ -55,15 +55,7 @@ RSpec.describe Card do
     cards = [card_1, card_2, card_3]
     deck = Deck.new(cards)
 
-    deck.rank_of_card_at(card_1)
-    deck.rank_of_card_at(card_2)
-    deck.rank_of_card_at(card_3)
-
     deck.high_ranking_cards
-
-    expect(card_1.rank).to eq (12)
-    expect(card_2.rank).to eq (3)
-    expect(card_3.rank).to eq (14)
 
     expect(deck.cards.count).to eq(3)
     expect(deck.cards).to eq([card_1, card_2, card_3])
@@ -77,14 +69,6 @@ RSpec.describe Card do
     card_3 = Card.new(:heart, 'Ace', 14)
     cards = [card_1, card_2, card_3]
     deck = Deck.new(cards)
-
-    deck.rank_of_card_at(card_1)
-    deck.rank_of_card_at(card_2)
-    deck.rank_of_card_at(card_3)
-
-    expect(card_1.rank).to eq (12)
-    expect(card_2.rank).to eq (3)
-    expect(card_3.rank).to eq (14)
 
     deck.high_ranking_cards
     deck.percentage_high_ranking
@@ -103,14 +87,6 @@ RSpec.describe Card do
     card_4 = Card.new(:club, '5', 5)
     cards = [card_1, card_2, card_3]
     deck = Deck.new(cards)
-
-    deck.rank_of_card_at(card_1)
-    deck.rank_of_card_at(card_2)
-    deck.rank_of_card_at(card_3)
-
-    expect(card_1.rank).to eq (12)
-    expect(card_2.rank).to eq (3)
-    expect(card_3.rank).to eq (14)
 
     deck.high_ranking_cards
     deck.percentage_high_ranking
@@ -139,14 +115,6 @@ RSpec.describe Card do
     cards = [card_1, card_2, card_3]
     deck = Deck.new(cards)
     player = Player.new('Clarisa', deck)
-
-    deck.rank_of_card_at(card_1)
-    deck.rank_of_card_at(card_2)
-    deck.rank_of_card_at(card_3)
-
-    expect(card_1.rank).to eq (12)
-    expect(card_2.rank).to eq (3)
-    expect(card_3.rank).to eq (14)
 
     deck.high_ranking_cards
 
@@ -186,7 +154,6 @@ RSpec.describe Card do
 
     expect(player.deck).to be_empty
     expect(player.has_lost?).to be true
-
   end
 
   it 'is a game of two players' do
@@ -207,27 +174,8 @@ RSpec.describe Card do
 
     turn = Turn.new(player_1, player_2)
 
-    deck_1.rank_of_card_at(card_1)
-    deck_1.rank_of_card_at(card_2)
-    deck_2.rank_of_card_at(card_3)
-    deck_2.rank_of_card_at(card_4)
-    deck_1.rank_of_card_at(card_5)
-    deck_2.rank_of_card_at(card_6)
-    deck_2.rank_of_card_at(card_7)
-    deck_1.rank_of_card_at(card_8)
-
-    expect(card_1.rank).to eq (11)
-    expect(card_2.rank).to eq (10)
-    expect(card_3.rank).to eq (9)
-    expect(card_4.rank).to eq (11)
-    expect(card_5.rank).to eq (8)
-    expect(card_6.rank).to eq (12)
-    expect(card_7.rank).to eq (3)
-    expect(card_8.rank).to eq (2)
-
     deck_1.high_ranking_cards
     deck_2.high_ranking_cards
-
 
     expect(player_1.name).to eq("Megan")
     expect(deck_1.cards.count).to eq(4)
@@ -239,11 +187,10 @@ RSpec.describe Card do
     expect(player_2.deck).to eq([card_3, card_4, card_6, card_7])
     expect(deck_2.high_ranking_cards).to eq([card_4, card_6])
 
-
     expect(turn.player_1).to eq(player_1)
     expect(turn.player_2).to eq(player_2)
-
   end
+
   it 'has an no spoils of war yet' do
     card_1 = Card.new(:heart, 'Jack', 11 )
     card_2 = Card.new(:heart, '10', 10)
@@ -262,28 +209,9 @@ RSpec.describe Card do
 
     turn = Turn.new(player_1, player_2)
 
-    deck_1.rank_of_card_at(card_1)
-    deck_1.rank_of_card_at(card_2)
-    deck_2.rank_of_card_at(card_3)
-    deck_2.rank_of_card_at(card_4)
-    deck_1.rank_of_card_at(card_5)
-    deck_2.rank_of_card_at(card_6)
-    deck_2.rank_of_card_at(card_7)
-    deck_1.rank_of_card_at(card_8)
-
-    expect(card_1.rank).to eq (11)
-    expect(card_2.rank).to eq (10)
-    expect(card_3.rank).to eq (9)
-    expect(card_4.rank).to eq (11)
-    expect(card_5.rank).to eq (8)
-    expect(card_6.rank).to eq (12)
-    expect(card_7.rank).to eq (3)
-    expect(card_8.rank).to eq (2)
-
     deck_1.high_ranking_cards
     deck_2.high_ranking_cards
     turn.spoils_of_war
-
 
     expect(player_1.name).to eq("Megan")
     expect(deck_1.cards.count).to eq(4)
@@ -319,24 +247,6 @@ RSpec.describe Card do
 
     turn = Turn.new(player_1, player_2)
 
-    deck_1.rank_of_card_at(card_1)
-    deck_1.rank_of_card_at(card_2)
-    deck_2.rank_of_card_at(card_3)
-    deck_2.rank_of_card_at(card_4)
-    deck_1.rank_of_card_at(card_5)
-    deck_2.rank_of_card_at(card_6)
-    deck_2.rank_of_card_at(card_7)
-    deck_1.rank_of_card_at(card_8)
-
-    expect(card_1.rank).to eq (11)
-    expect(card_2.rank).to eq (10)
-    expect(card_3.rank).to eq (9)
-    expect(card_4.rank).to eq (11)
-    expect(card_5.rank).to eq (8)
-    expect(card_6.rank).to eq (12)
-    expect(card_7.rank).to eq (3)
-    expect(card_8.rank).to eq (2)
-
     turn.spoils_of_war
     turn.type
 
@@ -347,7 +257,6 @@ RSpec.describe Card do
     expect(player_2.name).to eq("Aurora")
     expect(deck_2.cards.count).to eq(4)
     expect(player_2.deck).to eq([card_3, card_4, card_6, card_7])
-
 
     expect(turn.player_1).to eq(player_1)
     expect(turn.player_2).to eq(player_2)
@@ -373,25 +282,6 @@ RSpec.describe Card do
     player_2 = Player.new("Aurora", deck_2)
 
     turn = Turn.new(player_1, player_2)
-
-    deck_1.rank_of_card_at(card_1)
-    deck_1.rank_of_card_at(card_2)
-    deck_2.rank_of_card_at(card_3)
-    deck_2.rank_of_card_at(card_4)
-    deck_1.rank_of_card_at(card_5)
-    deck_2.rank_of_card_at(card_6)
-    deck_2.rank_of_card_at(card_7)
-    deck_1.rank_of_card_at(card_8)
-
-    expect(card_1.rank).to eq (11)
-    expect(card_2.rank).to eq (10)
-    expect(card_3.rank).to eq (9)
-    expect(card_4.rank).to eq (11)
-    expect(card_5.rank).to eq (8)
-    expect(card_6.rank).to eq (12)
-    expect(card_7.rank).to eq (3)
-    expect(card_8.rank).to eq (2)
-
     turn.spoils_of_war
     turn.type
     turn.winner
@@ -431,23 +321,49 @@ RSpec.describe Card do
 
     turn = Turn.new(player_1, player_2)
 
-    deck_1.rank_of_card_at(card_1)
-    deck_1.rank_of_card_at(card_2)
-    deck_2.rank_of_card_at(card_3)
-    deck_2.rank_of_card_at(card_4)
-    deck_1.rank_of_card_at(card_5)
-    deck_2.rank_of_card_at(card_6)
-    deck_2.rank_of_card_at(card_7)
-    deck_1.rank_of_card_at(card_8)
+    turn.spoils_of_war
+    turn.type
+    turn.winner
 
-    expect(card_1.rank).to eq (11)
-    expect(card_2.rank).to eq (10)
-    expect(card_3.rank).to eq (9)
-    expect(card_4.rank).to eq (11)
-    expect(card_5.rank).to eq (8)
-    expect(card_6.rank).to eq (12)
-    expect(card_7.rank).to eq (3)
-    expect(card_8.rank).to eq (2)
+    expect(player_1.name).to eq("Megan")
+    expect(deck_1.cards.count).to eq(4)
+    expect(player_1.deck).to eq([card_1, card_2, card_5, card_8])
+
+    expect(player_2.name).to eq("Aurora")
+    expect(deck_2.cards.count).to eq(4)
+    expect(player_2.deck).to eq([card_3, card_4, card_6, card_7])
+
+    expect(turn.player_1).to eq(player_1)
+    expect(turn.player_2).to eq(player_2)
+
+    expect(turn.spoils_of_war).to be_empty
+    expect(turn.type).to eq(:basic)
+    expect(turn.winner).to eq(player_1)
+
+    turn.pile_cards
+    turn.spoils_of_war
+    expect(turn.spoils_of_war).to eq([card_1, card_3])
+    expect(player_1.deck).to eq([card_2, card_5, card_8])
+    expect(player_2.deck).to eq([card_4, card_6, card_7])
+  end
+
+  it 'creates a pile of cards from the game' do
+    card_1 = Card.new(:heart, 'Jack', 11 )
+    card_2 = Card.new(:heart, '10', 10)
+    card_3 = Card.new(:heart, '9', 9)
+    card_4 = Card.new(:diamond, 'Jack', 11)
+    card_5 = Card.new(:heart, '8', 8)
+    card_6 = Card.new(:diamond, 'Queen', 12)
+    card_7 = Card.new(:heart, '3', 3)
+    card_8 = Card.new(:diamond, '2', 2)
+
+    deck_1 = Deck.new([card_1, card_2, card_5, card_8])
+    deck_2 = Deck.new([card_3, card_4, card_6, card_7])
+
+    player_1 = Player.new("Megan", deck_1)
+    player_2 = Player.new("Aurora", deck_2)
+
+    turn = Turn.new(player_1, player_2)
 
     turn.spoils_of_war
     turn.type
@@ -473,6 +389,9 @@ RSpec.describe Card do
     expect(turn.spoils_of_war).to eq([card_1, card_3])
     expect(player_1.deck).to eq([card_2, card_5, card_8])
     expect(player_2.deck).to eq([card_4, card_6, card_7])
+
+    # turn.award_spoils
+
   end
 
   end
