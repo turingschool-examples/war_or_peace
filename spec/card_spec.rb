@@ -189,7 +189,7 @@ RSpec.describe Card do
 
   end
 
-  it ' ' do
+  it 'is a game of two players' do
     card_1 = Card.new(:heart, 'Jack', 11 )
     card_2 = Card.new(:heart, '10', 10)
     card_3 = Card.new(:heart, '9', 9)
@@ -228,12 +228,16 @@ RSpec.describe Card do
     deck_1.high_ranking_cards
 
     expect(player_1.name).to eq("Megan")
-    expect(player_1.deck).to eq([card_1, card_2, card_5, card_8])
     expect(deck_1.cards.count).to eq(4)
+    expect(player_1.deck).to eq([card_1, card_2, card_5, card_8])
     expect(deck_1.high_ranking_cards).to eq([card_1])
 
     expect(player_2.name).to eq("Aurora")
+    expect(deck_2.cards.count).to eq(4)
     expect(player_2.deck).to eq([card_3, card_4, card_6, card_7])
+
+    expect(turn.player_1).to eq(player_1)
+    expect(turn.player_2).to eq(player_2)
 
   end
 end
