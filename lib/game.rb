@@ -20,20 +20,25 @@ class Game
     puts ''
   end
   
-  def game_over
+  def game_over?
     @turn.player1.has_lost? || @turn.player2.has_lost?
   end
   
   def endgame?
-    if turn.player1.deck.cards.length < 3 || turn.player2.deck.cards.length < 3
-      true
-    else
-      false
-    end
+    turn.player1.deck.cards.length < 3 || turn.player2.deck.cards.length < 3
+    
   end
   
   def three_card_endgame?
-    false
+    turn.player1.deck.cards.length == 3 || turn.player2.deck.cards.length == 3
+  end
+  
+  def two_card_endgame?
+    turn.player1.deck.cards.length == 2 || turn.player2.deck.cards.length == 2
+  end
+  
+  def one_card_endgame?
+    turn.player1.deck.cards.length == 1 || turn.player2.deck.cards.length == 1
   end
   
 end

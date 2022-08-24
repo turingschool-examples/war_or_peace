@@ -46,17 +46,34 @@ RSpec.describe Game do
     end
   end
   
-  describe '#game_over' do
-    it 'determines if game over' do
-      expect(game.game_over).to be false
+  describe '#game_over?' do
+    it 'determines if game over?' do
+      expect(game.game_over?).to be false
       game.turn.player1.deck.cards = []
-      expect(game.game_over).to be true
+      expect(game.game_over?).to be true
     end
   end
   
   describe '#three_card_endgame?' do
     it 'determines if either player has exactly 3 cards' do
       expect(game.three_card_endgame?).to be false
+      game.turn.player1.deck.cards = [card1, card2, card3]
+      expect(game.three_card_endgame?).to be true
+    end
+  end
+  
+  describe '#two_card_endgame?' do
+    it 'determines if either player has exactly 2 cards' do
+      expect(game.two_card_endgame?).to be false
+      game.turn.player1.deck.cards = [card1, card2]
+      expect(game.two_card_endgame?).to be true
+    end
+  end
+  describe '#one_card_endgame?' do
+    it 'determines if either player has exactly 1 card' do
+      expect(game.one_card_endgame?).to be false
+      game.turn.player1.deck.cards = [card1]
+      expect(game.one_card_endgame?).to be true
     end
   end
 end

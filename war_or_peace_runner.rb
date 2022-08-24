@@ -31,34 +31,29 @@ deck2 = Deck.new(all_cards)
 player1 = Player.new('Megan', deck1)
 player2 = Player.new('Aurora', deck2)
 
-game = Engine.new
+turn = Turn.new(player1, player2)
+game = Game.new(turn)
 
 game.start(player1, player2)
-
-turn = Turn.new(player1, player2)
 
 counter = 1
 
 until counter == 1_000_000
-  
-  break if player1.has_lost? || player2.has_lost?
 
-  winner = turn.winner
-  
-  case turn.type
-  when :basic
-    turn.pile_cards
-    puts "turn #{counter}: #{winner.name} won #{turn.spoils_of_war.count} cards"
-    turn.award_spoils(winner)
-  when :war
-    turn.pile_cards
-    puts "turn #{counter}: WAR - #{winner.name} won #{turn.spoils_of_war.count} cards"
-    turn.award_spoils(winner)
-  when :mutually_assured_destruction
-    turn.pile_cards
-    puts '*mutually assured destruction* 6 cards removed from play'
+  break if game.game_over?
+
+  if game.three_card_endgame?
+
+  elsif game.three_card_endgame? && game.turn_type == :mutually_assured_destruction
+    # push card from loser to winner
+    break
+  elsif game.two_card_endgame? && game.turn_type == :war
+    # push cards from loser to winner
+    break
+
   else
-    'big oops'
+    game.turn.pile_cards
+    game.award_spoils(game.hand_winner)
   end
 
   counter += 1
@@ -70,6 +65,6 @@ if player1.has_lost?
 elsif player2.has_lost?
   puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
 elsif counter >= 1_000_000
-  puts "Turn #{counter}: #{turn.winner.name} won 2 cards"
+  puts "Turn #{counter}: #{game.hand_winner} won 2 cards"
   puts '---- DRAW ----'
 end
