@@ -17,9 +17,4 @@ class Player
       true
     end
   end
-
-  def remove_card
-    @deck.shift
-  end
-
 end
