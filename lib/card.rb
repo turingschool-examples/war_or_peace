@@ -9,4 +9,5 @@ class Card
 end
 
 
+
 # example card = Card.new(:diamond, 'Queen', 12)
