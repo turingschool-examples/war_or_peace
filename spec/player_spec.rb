@@ -26,7 +26,7 @@ RSpec.describe Player do
     end
   end
 
-  describe "#has_lost" do 
+  describe "#has_lost?" do 
     it "Returns correct boolean based on players deck" do 
       card1 = Card.new(:diamond, "Queen", 12)
       card2 = Card.new(:spade, "3", 3)
