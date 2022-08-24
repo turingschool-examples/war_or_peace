@@ -25,4 +25,9 @@ attr_reader :cards, :high_ranking_cards
   def add_card(card)
      @cards << card
   end
+
+  def remove_card
+    @cards.shift
+  end
+
 end
