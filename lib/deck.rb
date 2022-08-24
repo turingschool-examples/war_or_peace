@@ -18,11 +18,14 @@ class Deck
   end
   def percent_high_ranking
     high_cards = []
+    percent = 0.0
     @cards.each do |card|
       if(card.rank > 10)
         high_cards << card
       end
     end
-    @percent = high_cards.length / @cards.length
+    percent = high_cards.length.to_f/@cards.length.to_f
+    percent *= 100
+    percent.round(2)
   end
 end
