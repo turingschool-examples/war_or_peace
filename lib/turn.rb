@@ -25,6 +25,13 @@ class Turn
     end
   end
 
+  def winner
+    if type == :basic && player_1.deck[0].rank > player_2.deck[0].rank
+      player_1
+    elsif type == :basic && player_2.deck[0].rank > player_1.deck[0].rank
+    player_2
+    end
+  end
 
 
 
