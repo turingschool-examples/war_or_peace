@@ -384,7 +384,7 @@ RSpec.describe Card do
     expect(player_2.deck).to eq([card_4, card_6, card_7])
   end
 
-  it 'creates a pile of cards from the game' do
+  it 'awards spoils to the winner' do
     card_1 = Card.new(:heart, 'Jack', 11 )
     card_2 = Card.new(:heart, '10', 10)
     card_3 = Card.new(:heart, '9', 9)
@@ -427,8 +427,10 @@ RSpec.describe Card do
     expect(player_1.deck).to eq([card_2, card_5, card_8])
     expect(player_2.deck).to eq([card_4, card_6, card_7])
 
-  #   # turn.award_spoils
+    turn.award_spoils(player_1)
 
+    expect(player_1.deck).to eq([card_2, card_5, card_8, card_1, card_3])
+    expect(turn.spoils_of_war).to be_empty
   end
 
   end
