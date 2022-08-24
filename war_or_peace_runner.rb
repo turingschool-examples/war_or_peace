@@ -2,7 +2,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/turn'
 require './lib/player'
-require './lib/engine'
+require './lib/game'
 require 'pry'
 
 def create_full_deck
@@ -37,24 +37,42 @@ game = Game.new(turn)
 game.start(player1, player2)
 
 counter = 1
+until counter == 10_000
 
-until counter == 1_000_000
-
-  break if game.game_over?
-
-  if game.three_card_endgame?
-
-  elsif game.three_card_endgame? && game.turn_type == :mutually_assured_destruction
-    # push card from loser to winner
+  if game.game_over? # game over
     break
-  elsif game.two_card_endgame? && game.turn_type == :war
-    # push cards from loser to winner
+  elsif game.three_card_endgame? # potential endgame
+    # handle the situation when turn type is :m_a_d and player with 3 cards loses
+    puts 'three card endgame'
     break
-
-  else
-    game.turn.pile_cards
-    game.award_spoils(game.hand_winner)
+  elsif game.two_card_endgame? # potential endgame
+    # handle the situation when turn_type is :war && player with 2 cards loses
+    puts 'two card endgame'
+    break
+  elsif game.one_card_endgame? # potential endgame
+    # this method does not currently exist, but if only one card remains and it's :war or :basic and they lose, game_over
+    puts 'one card endgame'
+    break
+  else # "middle" game play
+    case game.turn_type
+    when :mutually_assured_destruction
+      game.turn.pile_cards
+      puts 'No winner: mutually assured destruction 6 cards removed'
+    when :war
+      game.turn.pile_cards
+      puts "turn #{counter}: WAR -  #{game.hand_winner.name} won #{game.turn.spoils_of_war.count} cards"
+      game.turn.award_spoils(game.hand_winner)
+    when :basic
+      game.turn.pile_cards
+      puts "turn #{counter}: #{game.hand_winner.name} won #{game.turn.spoils_of_war.count} cards"
+      game.turn.award_spoils(game.hand_winner)
+    else
+      'uh oh'
+    end
   end
+
+  turn = Turn.new(game.turn.player1, game.turn.player2)
+  game = Game.new(turn)
 
   counter += 1
 
@@ -64,7 +82,7 @@ if player1.has_lost?
   puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
 elsif player2.has_lost?
   puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
-elsif counter >= 1_000_000
-  puts "Turn #{counter}: #{game.hand_winner} won 2 cards"
+elsif counter >= 10_000
+  puts "Turn #{counter}: #{game.hand_winner.name} won 2 cards"
   puts '---- DRAW ----'
 end
