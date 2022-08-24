@@ -3,13 +3,13 @@ require 'card.rb'
 require 'player.rb'
 
 class Turn
- attr_reader :player_1, :player_2, :spoils_of_war, :pile_cards_arr
+ attr_reader :player_1, :player_2, :spoils_of_war
 
  def initialize(player_1 , player_2)
     @player_1 = player_1
     @player_2 = player_2
     @spoils_of_war_arr = []
-    @pile_cards_arr = []
+
   end
 
   def spoils_of_war
@@ -43,6 +43,17 @@ class Turn
     end
   end
 
+  def award_spoils(winner)
+    if winner == player_1
+     @spoils_of_war_arr.select do |spoil|
+        player_1.deck << spoil
+      end
 
-
+      elsif winner == player_2
+      @spoils_of_war_arr.select do |spoil|
+      player_2.deck << spoil
+      end
+    end
+      @spoils_of_war_arr = []
+  end
 end
