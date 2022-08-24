@@ -339,6 +339,7 @@ RSpec.describe Card do
 
     turn.spoils_of_war
     turn.type
+    turn.winner
 
     expect(player_1.name).to eq("Megan")
     expect(deck_1.cards.count).to eq(4)
@@ -354,6 +355,7 @@ RSpec.describe Card do
 
     expect(turn.spoils_of_war).to be_empty
     expect(turn.type).to eq(:basic)
+    expect(turn.winner).to eq(player_1)
   end
 
 end
