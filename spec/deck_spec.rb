@@ -20,6 +20,9 @@ RSpec.describe Deck do
     card3 = Card.new(:diamond, '8', 8)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
+    
+    require 'pry'; binding.pry
+    
 
     expect(deck.rank_of_card_at(0)).to eq(14)
     expect(deck.rank_of_card_at(2)).to eq(8)
@@ -32,7 +35,8 @@ RSpec.describe Deck do
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
     
-    expect(deck.high_ranking_cards).to be([card0, card2])
+    # Should this be refactored test for the same object?
+    expect(deck.high_ranking_cards).to eq([card1, card3]) 
   end
   
   it 'has a method to return the percentage of high 
@@ -42,7 +46,7 @@ RSpec.describe Deck do
     card3 = Card.new(:diamond, 'Queen', 12)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
-    
+    # Refactor to round to two decimals
     expect(deck.percent_high_ranking).to eq(2/3)
   end
   it 'has a method to remove one card from the top of the deck' do
@@ -53,7 +57,7 @@ RSpec.describe Deck do
     deck = Deck.new(cards)
     
     expect(deck.remove_card).to eq(card1)
-    expect(deck.cards).to eq(cards.shift)
+    expect(deck.cards).to eq([card2, card3])
   end
   
   it 'has a method to add one card to the bottom of the deck' do
