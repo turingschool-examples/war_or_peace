@@ -1,24 +1,16 @@
 class Deck
 attr_reader :cards, :high_ranking_cards
 
-  def initialize(cards = [])
-  @cards = cards
-  @high_ranking_cards =[]
-  end
-
-  def sim_deck
-    @cards
-  end
-
-  def add_card(card)
-    @cards << card
-    @high_ranking_cards = cards.select do |card|
-     card.rank >= 11
-    end
+  def initialize(cards)
+    @cards = cards
+    @high_ranking_cards =[]
   end
 
   def rank_of_card_at(card)
     card.rank
+    if card.rank >= 11
+      @high_ranking_cards << card
+    end
   end
 
   def high_ranking_cards
@@ -30,4 +22,9 @@ attr_reader :cards, :high_ranking_cards
     card_count = @cards.count
     (Float(high_rank_count)/card_count * 100).round
   end
+
+  def add_card(card)
+     @cards << card
+  end
+
 end
