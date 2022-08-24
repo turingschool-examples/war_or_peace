@@ -4,8 +4,11 @@ class Deck
 
   def initialize(cards)
     @cards = []
-  end 
-end
+  end
+
+  def add_to_deck(card)
+    @cards << card
+  end
 #     @rank_of_card_at = rank_of_card_at
 #     @high_ranking_cards = []
 #     @percent_high_ranking = percent_high_ranking
@@ -22,3 +25,4 @@ end
 #       @high_ranking_cards << card
 #
 # end
+end

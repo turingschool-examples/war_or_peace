@@ -10,4 +10,4 @@ end
 
 
 
-# example card = Card.new(:diamond, 'Queen', 12)
+# example card = Card.new(:heart, 'Jack', 11)
