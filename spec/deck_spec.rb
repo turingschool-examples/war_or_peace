@@ -8,20 +8,31 @@ RSpec.describe Deck do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+    expect(deck).to be_a Deck
+  end
+  #
+  # it "#has a card rank" do
+  #   deck.rank_of_card_at(0)
+  #   expect
+  # end
+
+  it "#rank_of_card_at" do
+
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3)
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+    expect(deck.rank_of_card_at(0)).to eq(12)
+    expect(deck.rank_of_card_at(1)).to eq(3)
+    expect(deck.rank_of_card_at(2)).to eq(14)
+
   end
 
-  it "#has a card rank" do
-    deck.rank_of_card_at(0)
-    expect
-  end
-
-  it "#has high ranking cards" do
-    deck.high_ranking_cards
-    expect(@high_ranking_cards).to eq (card1, card3)
-  end
-
-  it "#has a percentage of high ranking cards" do
+  xit "#has a percentage of high ranking cards" do
     deck.percent_high_ranking
-    expect(@percent_high_ranking).to eq 66.67%
+    expect(@percent_high_ranking).to eq("66.67%")
   end
 end
