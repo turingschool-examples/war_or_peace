@@ -1,7 +1,7 @@
 require "rspec"
 require "./lib/player"
 
-RSpec.desribe Player do
+RSpec.describe Player do
   describe "#initialize" do
     it "exists" do 
       card1 = Card.new(:diamond, "Queen", 12)
@@ -22,7 +22,7 @@ RSpec.desribe Player do
       player = Player.new("Clarisa", deck)
 
       expect(player.name).to eq "Clarisa"
-      expect(player.deck).to eq [card1, card2, card3]
+      expect(player.deck).to eq deck
     end
   end
 end
