@@ -67,7 +67,23 @@ RSpec.describe Deck do
       deck = Deck.new(cards)
       #require 'pry'; binding.pry
       #why is this step removing from cards- not a copy
+      #expect(deck.remove_card).to eq(cards[0])
       expect(deck.remove_card).to eq(card1)
+    end
+  end
+
+  describe '#add_card' do
+    it "can add card to bottom(end)" do
+      card1 = Card.new(:diamond, 'Queen', 12)
+      card2 = Card.new(:spade, '3', 3)
+      card3 = Card.new(:heart, 'Ace', 14)
+      cards = [card1, card2, card3]
+      deck = Deck.new(cards)
+      deck.remove_card
+      card4 = Card.new(:club, '5', 5)
+      deck.add_card(card4)
+      #deck.cards is the same as cards
+      expect(deck.cards).to eq([card2, card3, card4])
     end
   end
 end
