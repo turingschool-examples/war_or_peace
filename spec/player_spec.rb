@@ -24,7 +24,19 @@ RSpec.describe do
     expect(@player.deck).to eq(@deck)
   end
 
-  xit 'can tell when a player has lost' do 
-    expect(@player.has_lost).to eq(false)
-  end
+  it 'can tell when a player has lost' do 
+    expect(@player.has_lost?).to eq(false)
+
+    @player.deck.remove_card
+
+    expect(@player.has_lost?).to eq(false)
+
+    @player.deck.remove_card
+
+    expect(@player.has_lost?).to eq(false)
+
+    @player.deck.remove_card
+
+    expect(@player.has_lost?).to eq(true)
+  end  
 end
