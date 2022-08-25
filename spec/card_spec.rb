@@ -38,8 +38,8 @@ RSpec.describe Card do
     cards = [card_1, card_2, card_3]
     deck = Deck.new(cards)
 
-    deck.rank_of_card_at(card_1)
-    deck.rank_of_card_at(card_3)
+    deck.rank_of_card_at(0)
+    deck.rank_of_card_at(2)
 
     expect(deck.cards).to eq([card_1, card_2, card_3])
     expect(card_1.rank).to eq (12)
@@ -101,11 +101,12 @@ RSpec.describe Card do
     deck.high_ranking_cards
     deck.percentage_high_ranking
 
+
     expect(deck.cards).to eq([card_1, card_2, card_3, card_4])
     expect(deck.high_ranking_cards.count).to eq(2)
     expect(deck.high_ranking_cards).to eq([card_1, card_3])
     expect(deck.percentage_high_ranking).to eq(50.0)
-  end
+   end
 
   it "can remove a card(s) to the deck" do
     card_1 = Card.new(:diamond, 'Queen', 12)
@@ -331,7 +332,6 @@ RSpec.describe Card do
     expect(deck_2.cards.count).to eq(4)
     expect(player_2.deck).to eq([card_3, card_4, card_6, card_7])
 
-
     expect(turn.player_1).to eq(player_1)
     expect(turn.player_2).to eq(player_2)
 
@@ -379,9 +379,9 @@ RSpec.describe Card do
 
     turn.pile_cards
     turn.spoils_of_war
-    expect(turn.spoils_of_war).to eq([card_1, card_3])
-    expect(player_1.deck).to eq([card_2, card_5, card_8])
-    expect(player_2.deck).to eq([card_4, card_6, card_7])
+    expect(turn.spoils_of_war).to eq([card_8, card_7])
+    expect(player_1.deck).to eq([card_1, card_2, card_5])
+    expect(player_2.deck).to eq([card_3, card_4, card_6])
   end
 
   it 'awards spoils to the winner' do
@@ -423,16 +423,68 @@ RSpec.describe Card do
 
     turn.pile_cards
     turn.spoils_of_war
-    expect(turn.spoils_of_war).to eq([card_1, card_3])
-    expect(player_1.deck).to eq([card_2, card_5, card_8])
-    expect(player_2.deck).to eq([card_4, card_6, card_7])
+    expect(turn.spoils_of_war).to eq([card_8, card_7])
+    expect(player_1.deck).to eq([card_1, card_2, card_5])
+    expect(player_2.deck).to eq([card_3, card_4, card_6])
 
     turn.award_spoils(player_1)
 
-    expect(player_1.deck).to eq([card_2, card_5, card_8, card_1, card_3])
+    expect(player_1.deck).to eq([card_1, card_2, card_5, card_8, card_7])
     expect(turn.spoils_of_war).to be_empty
   end
 
+  it 'plays a game of war' do
+    card_1 = Card.new(:heart, 'Jack', 11)
+    card_2 = Card.new(:heart, '10', 10)
+    card_3 = Card.new(:heart, '9', 9)
+    card_4 = Card.new(:diamond, 'Jack', 11)
+    card_5 = Card.new(:heart, '8', 8)
+    card_6 = Card.new(:diamond, 'Queen', 12)
+    card_7 = Card.new(:heart, '3', 3)
+    card_8 = Card.new(:diamond, '2', 2)
+
+    deck_1 = Deck.new([card_1, card_2, card_5, card_8])
+    deck_2 = Deck.new([card_4, card_3, card_6, card_7])
+
+    player_1 = Player.new("Megan", deck_1)
+    player_2 = Player.new("Aurora", deck_2)
+
+    turn = Turn.new(player_1, player_2)
+
+    turn.spoils_of_war
+    turn.type
+    turn.winner
+
+    expect(player_1.name).to eq("Megan")
+    expect(deck_1.cards.count).to eq(4)
+    expect(player_1.deck).to eq([card_1, card_2, card_5, card_8])
+
+    expect(player_2.name).to eq("Aurora")
+    expect(deck_2.cards.count).to eq(4)
+    expect(player_2.deck).to eq([card_4, card_3, card_6, card_7])
+
+    expect(turn.player_1).to eq(player_1)
+    expect(turn.player_2).to eq(player_2)
+
+    expect(turn.spoils_of_war).to be_empty
+    expect(turn.type).to eq(:war)
+    expect(turn.winner).to eq(player_2)
+
+    turn.pile_cards
+    turn.spoils_of_war
+
+    expect(turn.spoils_of_war).to eq([card_2, card_5, card_8, card_3, card_6, card_7])
+    expect(player_1.deck).to eq([card_1])
+    expect(player_2.deck).to eq([card_4])
+
+    turn.award_spoils(player_2)
+
+    expect(player_2.deck).to eq([card_4, card_2, card_5, card_8, card_3, card_6, card_7])
+    expect(turn.spoils_of_war).to be_empty
+
+
   end
+
+end
 
 
