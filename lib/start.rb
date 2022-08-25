@@ -1,0 +1,3 @@
+# start method - while no one has lost continue the turn...
+# print specific lines based on what kind of turn
+# if no player has all cards after 1,000,000 turns, the result of the game is a draw
