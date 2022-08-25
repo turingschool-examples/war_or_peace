@@ -23,7 +23,6 @@ class Game
             @deck1.add_card(@deck.shift)
             @deck2.add_card(@deck.shift)
         end 
-        binding.pry
     end 
 
     def start
@@ -32,7 +31,11 @@ class Game
             The players today are Megan and Aurora. \n
             Type 'GO' to start the game! \n
             ------------------------------------------------------------------"
-        gets.chomp
+
+        until gets.chomp == 'GO' do 
+            puts '*womp, womp* try again'
+        end
+
         deal
         i = 0
         until @player1.has_lost? || @player2.has_lost? || i == 1000000 do 
@@ -61,8 +64,3 @@ class Game
 end 
 
 game = Game.new
-
-# game.deal 
-# puts game.deck1.cards[0].value
-# game.full_deck.shuffle
-# puts game.full_deck[0].rank 

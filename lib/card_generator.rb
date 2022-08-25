@@ -14,7 +14,6 @@ class CardGenerator
              card = line.split(',').map { |item| item.strip }
              card[2] = card[2].to_i
              card[1] = card[1].downcase.to_sym
-            #  binding.pry
              cards << Card.new(card[1],card[0],card[2])
         end
         cards
