@@ -1,3 +1,8 @@
+require './lib/card.rb'
+require './lib/deck.rb'
+require './lib/player.rb'
+require './lib/turn.rb'
+
 card1 = Card.new(:heart, 'Ace', 14)
 card2 = Card.new(:heart, 'King', 13)
 card3 = Card.new(:heart, 'Queen', 12)
@@ -53,3 +58,20 @@ card49 = Card.new(:spade, '5', 5)
 card50 = Card.new(:spade, '4', 4)
 card51 = Card.new(:spade, '3', 3)
 card52 = Card.new(:spade, '2', 2)
+
+deck1 = Deck.new([card1, card3])
+deck2 = Deck.new([card2, card4])
+# HOW TO RANDOMLY ASSIGN CARDS TO DECK
+
+player1 = Player.new('Megan', deck1)
+player2 = Player.new('Aurora', deck2)
+
+
+p "Welcome to War! (or Peace) This game will be played with 52 cards."
+p "The players today are #{player1.name} and #{player2.name}."
+p "Type 'GO' to start the game!"
+
+
+# start method - while no one has lost continue the turn...
+# print specific lines based on what kind of turn
+# if no player has all cards after 1,000,000 turns, the result of the game is a draw
