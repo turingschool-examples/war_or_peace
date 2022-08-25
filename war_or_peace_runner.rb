@@ -38,6 +38,7 @@ class Game
 
         deal
         i = 0
+        
         until @player1.has_lost? || @player2.has_lost? || i == 1000000 do 
             i += 1
             turn = Turn.new(@player1, @player2)
@@ -45,7 +46,9 @@ class Game
             
 
             print "Turn #{i}: "
-            if turn.type == :mutually_assured_destruction
+            if turn.type == :redo 
+                puts "Redo - Not enough cards for WAR"
+            elsif turn.type == :mutually_assured_destruction
                 puts "*mutually assured destruction* 6 cards removed from play"
             elsif turn.type == :war
                 puts "WAR - #{winner.name} won 6 cards"
@@ -58,8 +61,8 @@ class Game
 
         end 
         return puts "---- DRAW ----" if i == 1000000
-        winner = [@player1, @player2].find { |player| player.has_lost? == false }
-        puts "*~*~*~* #{winner.name} has won the game! *~*~*~*"
+        game_winner = [@player1, @player2].find { |player| player.has_lost? == false }
+        puts "*~*~*~* #{game_winner.name} has won the game! *~*~*~*"
     end 
 end 
 
