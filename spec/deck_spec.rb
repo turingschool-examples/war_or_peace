@@ -1,6 +1,6 @@
 require 'rspec'
-require './lib/deck'
 require './lib/card'
+require './lib/deck'
 
 RSpec.describe Deck do
 
