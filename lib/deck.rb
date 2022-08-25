@@ -9,7 +9,7 @@ class Deck
     end
 
     def high_ranking_cards
-        cards.select{ |high_rank| high_rank.rank > 10}.map{ |high_rank| high_rank }
+        cards.select{ |card| card.rank > 10}
     end
 
     def percent_high_ranking
