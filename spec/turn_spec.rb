@@ -1,14 +1,6 @@
 require 'rspec'
 require 'pry'
-require './lib/turn'
-# require_relative './lib/card'
-# require_relative './lib/deck'
-# require_relative './lib/player'
-# require './spec_helper'
-
-# RSpec.configure do |config|
-#     config.include Setup
-# end 
+require '../lib/turn'
 
 RSpec.describe Turn do 
     it 'has a basic turn' do
@@ -65,7 +57,7 @@ RSpec.describe Turn do
         turn.pile_cards
         expect(turn.spoils_of_war).to eq([card1, card2, card5, card4, card3, card6])
         turn.award_spoils(winner)
-        expect(deck2.cards).to eq([card7, card1, card2, card5, card4, card3, card6])
+        expect(deck2.cards.all? { |card| [card7, card1, card2, card5, card4, card3, card6].include?(card) }).to eq(true)
         expect(deck1.cards.include?(card4)).to eq(false)
     end 
 

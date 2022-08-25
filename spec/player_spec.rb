@@ -1,5 +1,5 @@
 require 'rspec'
-require './lib/player'
+require '../lib/player'
 
 RSpec.describe Player do 
     describe '#initialize' do 
