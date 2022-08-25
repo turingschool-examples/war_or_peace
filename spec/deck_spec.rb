@@ -79,5 +79,21 @@ RSpec.describe Deck do
             expect(deck.cards).to eq([card1, card2, card3, card4])
         end 
     end 
+    describe '#top_card_to_bottom' do 
+        it 'puts the top card on bottom' do
+            card1 = Card.new(:diamond, 'Queen', 12)
+            card2 = Card.new(:spade, '3', 3)
+            card3 = Card.new(:heart, 'Ace', 14)
+            cards = [card1, card2, card3]
+            deck = Deck.new(cards)
 
+            expect(deck.cards[0]).to eq(card1)
+
+            deck.top_card_to_bottom
+
+            expect(deck.cards[2]).to eq(card1)
+            expect(deck.cards[1]).to eq(card3)
+            expect(deck.cards[0]).to eq(card2)
+        end 
+    end
 end 

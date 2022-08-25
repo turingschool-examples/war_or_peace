@@ -28,4 +28,7 @@ class Deck
         @cards << card 
     end 
 
+    def top_card_to_bottom
+        @cards.rotate!
+    end 
 end 
