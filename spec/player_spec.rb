@@ -20,7 +20,7 @@ RSpec.describe Player do
       deck = Deck.new([card1, card2, card3])
       player = Player.new('Clarisa', deck)
       expect(player.name).to eq("Clarisa")
-      expect(player.deck).to eq(deck.cards)
+      expect(player.deck).to eq(deck)
     end
   end
   describe '#has_lost?' do
