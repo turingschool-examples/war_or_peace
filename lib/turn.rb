@@ -2,6 +2,7 @@ class Turn
   attr_reader :player1,
               :player2,
               :spoils_of_war
+
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
@@ -31,4 +32,22 @@ class Turn
       return 'No Winner'
     end
   end
+
+  def pile_cards
+    if type == :basic
+      spoils_of_war << player1.deck.cards.shift
+      spoils_of_war << player2.deck.cards.shift
+    elsif type == :war
+      spoils_of_war << player1.deck.cards.take(3)
+      spoils_of_war << player2.deck.cards.take(3)
+    else
+      3.times do
+        player1.deck.cards.shift
+        player2.deck.cards.shift
+      end
+    end
+  end
+
+
+
 end
