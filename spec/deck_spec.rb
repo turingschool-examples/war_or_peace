@@ -13,10 +13,19 @@ RSpec.describe Deck do
 
   describe '#initialize' do
     it "exists" do
+      # card1 = Card.new(:diamond, 'Queen', 12)
+      # card2 = Card.new(:spade, '3', 3)
+      # card3 = Card.new(:heart, 'Ace', 14)
+      # cards = [card1, card2, card3]
+      # deck = Deck.new(cards)
       expect(@deck).to be_an_instance_of(Deck)
     end
     it "has readable cards attribute" do
-      expect(@deck.cards).to eq(@cards)
+      expect(@deck.cards).to eq([@card1, @card2, @card3])
+    end
+    it "has readable cards with different cards" do
+      @deck.remove_card
+      expect(@deck.cards).to eq([@card2, @card3])
     end
   end
 
@@ -42,9 +51,14 @@ RSpec.describe Deck do
 
   describe '#remove_card' do
     it "can remove top card" do
-      #require 'pry'; binding.pry
+      # card1 = Card.new(:diamond, 'Queen', 12)
+      # card2 = Card.new(:spade, '3', 3)
+      # card3 = Card.new(:heart, 'Ace', 14)
+      # cards = [card1, card2, card3]
+      # deck = Deck.new(cards)
+      # require 'pry'; binding.pry
       #why is this step removing from cards- not a copy
-      #expect(deck.remove_card).to eq(cards[0])
+      # expect(deck.remove_card).to eq(cards[0])
       expect(@deck.remove_card).to eq(@card1)
     end
   end
