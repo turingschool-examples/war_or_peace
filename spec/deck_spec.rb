@@ -41,7 +41,7 @@ RSpec.describe Deck do
       card3 = Card.new(:heart, 'Ace', 14)
       cards = [card1, card2, card3]
       deck = Deck.new(cards)
-      expect(deck.high_ranking_cards).to eq(cards[0], cards[2])
+      expect(deck.high_ranking_cards).to eq([cards[0], cards[2]])
     end
   end
 
