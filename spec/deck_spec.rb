@@ -36,5 +36,11 @@ RSpec.describe Deck do
   it 'can remove a card from the deck' do 
     expect(@deck.remove_card).to eq(@card1)
   end
+
+  it 'add one card to the bottom of the deck' do 
+    @deck.add_card(@card4)
+
+    expect(@deck.cards).to eq(@cards)
+  end
   
 end
