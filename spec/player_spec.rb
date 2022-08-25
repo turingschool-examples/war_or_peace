@@ -8,7 +8,7 @@ RSpec.describe Player do
     @card2 = Card.new(:spade, '3', 3)
     @card3 = Card.new(:heart, 'Ace', 14)
     @cards = [@card1, @card2, @card3]
-end
+  end
 
   it 'exists' do
     deck = Deck.new(@cards)
@@ -40,7 +40,7 @@ end
 
     expect(player.has_lost?).to be(false)
     player.deck.remove_card
-    
+
     expect(player.has_lost?).to be(true)
   end
 end
