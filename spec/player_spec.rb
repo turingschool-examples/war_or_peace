@@ -2,7 +2,6 @@ require 'rspec'
 require './lib/card'
 require './lib/deck'
 require './lib/player'
-require 'pry'
 
 RSpec.describe Player do
     it 'has cards and a deck' do
