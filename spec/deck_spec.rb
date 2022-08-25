@@ -38,10 +38,11 @@ RSpec.describe Deck do
     end 
   end 
 
-  
-  # xit 'returns percentage cards of high ranking card' do
-  #   deck_1 = Deck.new(["card1", "card2"])
-  #   deck_1.rank_of_card_at(0)
-  # end 
-
+  describe '#percent_high_ranking' do 
+    it 'returns percentage of high ranking card' do
+      deck_1 = Deck.new(@cards)
+      
+      expect(deck_1.percent_high_ranking).to eq(66)
+    end 
+  end 
 end 
