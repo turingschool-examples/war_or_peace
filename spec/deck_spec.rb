@@ -15,7 +15,7 @@ RSpec.describe Deck do
         expect(card3).to be_an_instance_of(Card)
     end
 
-    it "has cards as part of the deck" do
+    it 'has cards as part of the deck' do
         card1 = Card.new(:diamond, 'Queen', 12)
         card2 = Card.new(:spade, '3', 3)
         card3 = Card.new(:heart, 'Ace', 14)
@@ -23,6 +23,15 @@ RSpec.describe Deck do
         deck = Deck.new([card1, card2, card3])
         expect(deck).to be_an_instance_of(Deck)
         expect(deck.cards).to eq([card1, card2, card3])
+    end
+
+    it 'has a rank for each card' do
+        card1 = Card.new(:diamond, 'Queen', 12)
+        card2 = Card.new(:spade, '3', 3)
+        card3 = Card.new(:heart, 'Ace', 14)
+
+        deck = Deck.new([card1, card2, card3])
+        expect(deck.rank_of_card_at(0)).to eq(12)
     end
 
 end
