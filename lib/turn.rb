@@ -8,6 +8,7 @@ class Turn
     @spoils_of_war = []
   end
 
+  # refactor this next
   def type
     if @player1.deck.cards.count >= 3 && @player2.deck.cards.count >= 3
       player1_first_card = @player1.deck.cards[0].rank
