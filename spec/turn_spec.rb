@@ -113,9 +113,6 @@ RSpec.describe Turn do
       turn.award_spoils(winner)
       expect(player1.deck.cards.length).to eq(5)
       expect(player2.deck.cards.length).to eq(3)
-      # is this the best way to test the award_spoils method?
     end
   end
 end
-
-# QUESTION: ITERATION 2 PROVIDES 3 INTERACTION PATTERNS. SHOULD I BE INCLUDING EACH OF THE THREE IN MY TESTING? JUST FOCUS ON ONE FOR TESTING?
