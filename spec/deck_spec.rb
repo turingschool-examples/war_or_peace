@@ -45,4 +45,12 @@ RSpec.describe Deck do
       expect(deck_1.percent_high_ranking).to eq(66)
     end 
   end 
+
+  describe '#remove_card' do 
+    it 'removes the top card from the deck' do 
+      deck_1 = Deck.new(@cards)
+
+      expect(deck_1.remove_card).to eq(@card1)
+    end 
+  end 
 end 
