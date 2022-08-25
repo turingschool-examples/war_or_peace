@@ -3,54 +3,28 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/card_generator'
 
 class Game 
-    attr_reader :full_deck, :deck1, :deck2
+    attr_reader :deck, :deck1, :deck2
 
     def initialize
-        @full_deck = new_deck.shuffle!
-        # @deck1 = Deck.new([@full_deck[0..25]])
-        # @deck2 = Deck.new([@full_deck[26..51]])
+        @deck = CardGenerator.new('cards.txt').cards
         @deck1 = Deck.new([])
         @deck2 = Deck.new([])
-        self.deal
         @player1 = Player.new('Megan', @deck1)
         @player2 = Player.new('Aurora', @deck2)
         start
     end 
 
-    def new_deck
-        deck = []
-        [:diamond, :heart, :spade, :club].each do |suit|
-            ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'].each do |value|
-                deck << Card.new(suit, value, rank_reader(value))
-            end 
-        end
-        deck
-    end 
-
-    def rank_reader(value)
-        return 14 if value == 'Ace'
-        return 13 if value == 'King'
-        return 12 if value == 'Queen'
-        return 11 if value == 'Jack'
-        return value.to_i
-    end 
-
-    def shuffle
-        @full_deck.shuffle!
-    end
-
-    def deal
-        52.times do |i|
-            # binding.pry
-            if i.odd?
-                @deck1.add_card(@full_deck.shift)
-            else 
-                @deck2.add_card(@full_deck.shift)
-            end 
+    def deal 
+        @deck.shuffle!
+        26.times do
+            @deck1.add_card(@deck.shift)
+            @deck2.add_card(@deck.shift)
         end 
-    end
+        binding.pry
+    end 
 
     def start
         puts `clear`
@@ -59,6 +33,7 @@ class Game
             Type 'GO' to start the game! \n
             ------------------------------------------------------------------"
         gets.chomp
+        deal
         i = 0
         until @player1.has_lost? || @player2.has_lost? || i == 1000000 do 
             i += 1
