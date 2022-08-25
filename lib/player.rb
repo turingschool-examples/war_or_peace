@@ -4,5 +4,11 @@ class Player
     @name = name
     @deck = deck
   end
-
+  def has_lost?
+    if @deck.cards.empty? == true
+      true
+    else
+      false
+    end
+  end
 end
