@@ -5,6 +5,7 @@ require './lib/deck'
 RSpec.describe Deck do
   describe '#initialize' do
     it "exists" do
+      #any way to avoid having to retype all of this for every test?
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
       card3 = Card.new(:heart, 'Ace', 14)
@@ -52,6 +53,7 @@ RSpec.describe Deck do
       card3 = Card.new(:heart, 'Ace', 14)
       cards = [card1, card2, card3]
       deck = Deck.new(cards)
+      #rounding?
       expect(deck.percent_high_ranking).to eq(66.67)
     end
   end
@@ -63,7 +65,9 @@ RSpec.describe Deck do
       card3 = Card.new(:heart, 'Ace', 14)
       cards = [card1, card2, card3]
       deck = Deck.new(cards)
-      expect(deck.remove_card).to eq(deck[0])
+      #require 'pry'; binding.pry
+      #why is this step removing from cards- not a copy
+      expect(deck.remove_card).to eq(card1)
     end
   end
 end
