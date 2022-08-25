@@ -7,6 +7,7 @@ RSpec.describe Deck do
     @card1 = Card.new(:diamond, 'Queen', 12)
     @card2 = Card.new(:spade, '3', 3)
     @card3 = Card.new(:heart, 'Ace', 14) 
+    @card4 = Card.new(:club, '5', 5)
     @cards = [@card1, @card2, @card3]
     @deck = Deck.new(@cards)
   end
@@ -28,5 +29,12 @@ RSpec.describe Deck do
     expect(@deck.high_ranking_cards).to eq([@card1, @card3])
   end
 
+  it 'can list percent of high ranking cards' do 
+    expect(@deck.percent_high_ranking).to eq(66.67)
+  end
+
+  it 'can remove a card from the deck' do 
+    expect(@deck.remove_card).to eq(@card1)
+  end
   
 end
