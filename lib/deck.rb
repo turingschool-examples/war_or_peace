@@ -1,7 +1,7 @@
 class Deck 
   attr_reader :high_ranking_card, :percent_high_ranking
   attr_accessor :cards
-  
+
   def initialize(cards)
     @cards = cards
   end 
@@ -21,18 +21,18 @@ class Deck
   end
   
   def percent_high_ranking
-    high_cards = []
-    @cards.each do |card| 
-      if card.rank >= 11
-        high_cards << card
-      end 
-    end
+    # high_cards = []
+    # @cards.each do |card| 
+    #   if card.rank >= 11
+    #     high_cards << card
+    #   end 
+    # end
 
-    percent = ((high_cards.length.to_f / @cards.length.to_f) * 100).to_i
-    percent
-
-    # percent = ((@cards.high_ranking_card.length.to_f / @cards.length.to_f) * 100).to_i
+    # percent = ((high_cards.length.to_f / @cards.length.to_f) * 100).to_i
     # percent
+
+    percent = ((high_ranking_card.length.to_f / @cards.length.to_f) * 100).to_i
+    percent
   end 
 
   def remove_card 
