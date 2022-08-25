@@ -1,4 +1,4 @@
-require "./card.rb"
+require "./lib/card.rb"
 #require "pry"
 
 class Deck 

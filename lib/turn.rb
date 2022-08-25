@@ -1,6 +1,6 @@
-require "./card.rb"
-require "./deck.rb"
-require "./player.rb"
+require "./lib/card.rb"
+require "./lib/deck.rb"
+require "./lib/player.rb"
 
 class Turn 
   attr_reader :player1,

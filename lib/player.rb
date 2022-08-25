@@ -1,5 +1,5 @@
-require "./card.rb"
-require "./deck.rb"
+require "./lib/card.rb"
+require "./lib/deck.rb"
 
 class Player 
   attr_reader :name,
