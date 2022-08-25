@@ -1,5 +1,5 @@
 class Deck 
-  attr_reader :cards 
+  attr_reader :cards, :high_ranking_card, :percent_high_ranking
 
   def initialize(cards)
     @cards = cards
@@ -29,5 +29,16 @@ class Deck
 
     percent = ((high_cards.length.to_f / @cards.length.to_f) * 100).to_i
     percent
+
+    # percent = ((@cards.high_ranking_card.length.to_f / @cards.length.to_f) * 100).to_i
+    # percent
   end 
+
+  def remove_card 
+    @cards.shift
+  end 
+
+  def add_card(card)
+    @cards << card
+  end
 end 
