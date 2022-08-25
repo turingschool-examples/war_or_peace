@@ -60,3 +60,17 @@ card52 = Card.new(:heart, 'Ace', 14)
 ]
 
 play_deck = unshuffled_deck.shuffle
+deck_p1 = []
+deck_p2 = []
+count1 = 0
+count2 = 26
+26.times do
+  deck_p1 << play_deck[count1]
+  count1 += 1
+end
+26.times do
+  deck_p2 << play_deck[count2]
+  count2 += 1
+end
+player1 = Player.new('Ryan', deck_p1)
+player2 = Player.new('Ash', deck_p2)
