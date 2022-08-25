@@ -1,7 +1,7 @@
 class Deck 
   attr_reader :cards, :add_card, :new_card, :index_location, :rank_of_card_at
   def initialize(cards)
-    @cards = [] 
+    @cards = cards  
     @new_card = Card.new(:suit, :value, :rank) 
      
   end 
