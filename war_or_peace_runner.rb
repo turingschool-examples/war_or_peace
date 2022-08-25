@@ -2,6 +2,7 @@ require "./lib/card"
 require "./lib/deck"
 require "./lib/player"
 require "./lib/turn"
+require "./lib/game"
 
 
 # Create the standard 52 cards
@@ -77,3 +78,11 @@ deck2 = Deck.new(cards2)
 # create two players 
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
+
+# play game
+print "Welcome to War! (or Peace) This game will be played with 52 cards.\nThe players today are Megan and Aurora.\nType 'GO' to start the game!\n------------------------------------------------------------------\n"
+user_input = gets.chomp 
+
+# if user_input == "GO"
+#   game.start(player1, player2)
+# end 
