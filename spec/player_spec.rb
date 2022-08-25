@@ -9,6 +9,7 @@ RSpec.describe Player do
     @card1 = Card.new(:diamond, 'Queen', 12)
     @card2 = Card.new(:spade, '3', 3) 
     @card3 = Card.new(:heart, 'Ace', 14)
+    @cards = [@card1, @card2, @card3]
     @deck = Deck.new([@card1, @card2, @card3])
   end
 
@@ -26,6 +27,11 @@ RSpec.describe Player do
     it 'can have a different name' do 
       player2 = Player.new('John', @deck)
       expect(player2.name).to eq('John')
+    end 
+
+    it 'has a deck' do 
+      player = Player.new('Clarisa', @deck)
+      expect(player.deck).to eq(@deck)
     end 
   end 
 
