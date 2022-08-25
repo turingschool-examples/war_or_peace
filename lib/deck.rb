@@ -1,13 +1,14 @@
 class Deck
-attr_reader :cards, :high_ranking_cards
+attr_reader :cards, :high_ranking_cards, :rank, :top_c
 
   def initialize(cards)
     @cards = cards
     @high_ranking_cards =[]
+
   end
 
-  def rank_of_card_at(card)
-    card.rank
+  def rank_of_card_at(index)
+    @cards[index].rank
   end
 
   def high_ranking_cards
@@ -29,5 +30,4 @@ attr_reader :cards, :high_ranking_cards
   def remove_card
     @cards.shift
   end
-
 end
