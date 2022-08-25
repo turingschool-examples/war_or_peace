@@ -13,6 +13,6 @@ RSpec.describe CardGenerator do
         cards = CardGenerator.new(filename)
         expect(cards.generate_deck).to be_a(Array)
         expect(cards.cards[0]).to be_an_instance_of(Card)
-        expect(cards.cards[0].suit).to eq('Heart')
+        expect(cards.cards[0].suit).to eq(:heart)
     end 
 end 
