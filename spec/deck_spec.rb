@@ -33,9 +33,12 @@ RSpec.describe Deck do
   describe '#high_ranking_card' do
     it 'returns an array of high ranking cards' do 
       deck_1 = Deck.new(@cards)
-
+      
+      expect(deck_1.high_ranking_card).to eq([@card1, @card3])
     end 
   end 
+
+  
   # xit 'returns percentage cards of high ranking card' do
   #   deck_1 = Deck.new(["card1", "card2"])
   #   deck_1.rank_of_card_at(0)
