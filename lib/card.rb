@@ -5,6 +5,7 @@ class Card
     @suit = suit
     @value = value
     @rank = rank
+    
    end
 end
 
