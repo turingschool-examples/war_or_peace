@@ -5,5 +5,4 @@ class Card
     @value = value
     @rank = rank
   end
-
 end
