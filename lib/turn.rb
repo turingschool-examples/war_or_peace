@@ -37,6 +37,7 @@ class Turn
 
   def pile_cards
     if @turn_type == :basic
+      #spoils_of_war << @player_one.deck.remove_card ?
       spoils_of_war << @player_one.deck.card_list[0]
       @player_one.deck.card_list.delete_at(0)
 
@@ -60,6 +61,7 @@ class Turn
     spoils_of_war = []
     @turn_winner.deck.card_list.flatten!
     @turn_winner = nil
+    # each turn is an instence no need for nil
   end
 end
 

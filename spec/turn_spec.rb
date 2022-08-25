@@ -162,7 +162,7 @@ RSpec.describe Turn do
     player_1 = Player.new('Megan', deck_1)
     player_2 = Player.new('Aurora', deck_2)
     turn = Turn.new(player_1, player_2)
-
+    
     turn.type
     expect(turn.winner).to eq(player_2)
   end

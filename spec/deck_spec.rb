@@ -80,6 +80,7 @@ RSpec.describe Deck do
     cards = [card_1, card_2, card_3]
     deck = Deck.new(cards)
     card_4 = Card.new(:club, 'Five', 5)
+    
     expect(deck.card_list).to eq(cards)
     deck.remove_card
     deck.add_card(card_4)
