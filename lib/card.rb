@@ -10,6 +10,20 @@ class Card
   end
 end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # I dont want to make every card by hand...
 # cards = []
 # suits = [:spades, :hearts, :diamonds, :clubs]
