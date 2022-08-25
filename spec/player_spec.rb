@@ -21,4 +21,26 @@ end
     player = Player.new('Clarisa', deck)
     expect(player.name).to eq('Clarisa')
   end
+
+  it 'has a deck' do
+    deck = Deck.new(@cards)
+    player = Player.new('Clarisa', deck)
+    expect(player.deck).to eq(deck)
+  end
+
+  it 'has not lost by default' do
+    deck = Deck.new(@cards)
+    player = Player.new('Clarisa', deck)
+    # require "pry"; binding.pry
+    expect(player.has_lost?).to be(false)
+    player.deck.remove_card
+
+    expect(player.has_lost?).to be(false)
+    player.deck.remove_card
+
+    expect(player.has_lost?).to be(false)
+    player.deck.remove_card
+    
+    expect(player.has_lost?).to be(true)
+  end
 end
