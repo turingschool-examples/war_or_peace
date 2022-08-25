@@ -40,4 +40,17 @@ class Turn
       end
     end
   end
+
+  def pile_cards 
+    if self.type == :basic
+      @spoils_of_war << @player1.deck.cards.shift
+      @spoils_of_war << @player2.deck.cards.shift
+    elsif self.type == :war 
+      3.times {@spoils_of_war << @player1.deck.cards.shift}
+      3.times {@spoils_of_war << @player2.deck.cards.shift}
+    else 
+      3.times {@player1.deck.cards.delete_at(0)}
+      3.times {@player2.deck.cards.delete_at(0)}
+    end
+  end
 end 
