@@ -196,9 +196,9 @@ RSpec.describe Turn do
 
     turn.pile_cards
 
-    expect(turn.spoils_of_war).to eq([card_8, card_7])
-    expect(player_1.deck.cards).to eq([card_1, card_2, card_5])
-    expect(player_2.deck.cards).to eq([card_3, card_4, card_6])
+    expect(turn.spoils_of_war).to eq([card_1, card_3])
+    expect(player_1.deck.cards).to eq([card_2, card_5, card_8])
+    expect(player_2.deck.cards).to eq([card_4, card_6, card_7])
   end
 
   it 'awards spoils to the winner' do
@@ -234,13 +234,13 @@ RSpec.describe Turn do
 
     turn.pile_cards
 
-    expect(turn.spoils_of_war).to eq([card_8, card_7])
-    expect(player_1.deck.cards).to eq([card_1, card_2, card_5])
-    expect(player_2.deck.cards).to eq([card_3, card_4, card_6])
+    expect(turn.spoils_of_war).to eq([card_1, card_3])
+    expect(player_1.deck.cards).to eq([card_2, card_5, card_8])
+    expect(player_2.deck.cards).to eq([card_4, card_6, card_7])
 
     turn.award_spoils(player_1)
 
-    expect(player_1.deck.cards).to eq([card_1, card_2, card_5, card_8, card_7])
+    expect(player_1.deck.cards).to eq([card_2, card_5, card_8, card_1, card_3])
     expect(turn.spoils_of_war).to be_empty
   end
 
@@ -277,14 +277,14 @@ RSpec.describe Turn do
 
     turn.pile_cards
 
-    expect(turn.spoils_of_war).to eq([card_2, card_5, card_8, card_3, card_6, card_7])
-    expect(player_1.deck.cards).to eq([card_1])
-    expect(player_2.deck.cards).to eq([card_4])
+    expect(turn.spoils_of_war).to eq([card_1, card_2, card_5, card_4, card_3, card_6])
+    expect(player_1.deck.cards).to eq([card_8])
+    expect(player_2.deck.cards).to eq([card_7])
 
     turn.award_spoils(player_2)
 
-    expect(player_2.deck.cards).to eq([card_4, card_2, card_5, card_8, card_3, card_6, card_7])
-    expect(player_1.deck.cards).to eq([card_1])
+    expect(player_2.deck.cards).to eq([card_7, card_1, card_2, card_5, card_4, card_3, card_6])
+    expect(player_1.deck.cards).to eq([card_8])
     expect(turn.spoils_of_war).to be_empty
 
   end
@@ -317,8 +317,8 @@ RSpec.describe Turn do
 
     turn.pile_cards
     expect(turn.spoils_of_war).to be_empty
-    expect(player_1.deck.cards).to eq([card_1])
-    expect(player_2.deck.cards).to eq([card_4])
+    expect(player_1.deck.cards).to eq([card_8])
+    expect(player_2.deck.cards).to eq([card_7])
   end
 
 end
