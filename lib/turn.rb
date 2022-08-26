@@ -17,14 +17,20 @@ class Turn
   end
 
   def type
-    if player_1.deck.rank_of_card_at(0) != player_2.deck.rank_of_card_at(0)
-    :basic
-    elsif player_1.deck.rank_of_card_at(0) == player_2.deck.rank_of_card_at(0) && player_1.deck.rank_of_card_at(2) != player_2.deck.rank_of_card_at(2)
+    player_1_first_card = player_1.deck.rank_of_card_at(0)
+    player_2_first_card = player_2.deck.rank_of_card_at(0)
+    player_1_third_card = player_1.deck.rank_of_card_at(2)
+    player_2_third_card = player_2.deck.rank_of_card_at(2)
+
+    if player_1_first_card != player_2_first_card
+      :basic
+    elsif player_1_first_card == player_2_first_card && player_1_third_card != player_2_third_card
       :war
-    elsif player_1.deck.rank_of_card_at(0) == player_2.deck.rank_of_card_at(0) && player_1.deck.rank_of_card_at(2) == player_2.deck.rank_of_card_at(2)
+    elsif player_1_first_card == player_2_first_card && player_1_third_card == player_2_third_card
       :mutually_assured_destruction
     end
   end
+
 
   def winner
     if type == :basic && player_1.deck.rank_of_card_at(0) > player_2.deck.rank_of_card_at(0)
@@ -46,7 +52,6 @@ class Turn
       @spoils_of_war_arr << player_2.deck.cards.last
       player_1.deck.cards.pop
       player_2.deck.cards.pop
-
     elsif type == :war
       @spoils_of_war_arr << player_1.deck.cards.last(3)
       @spoils_of_war_arr << player_2.deck.cards.last(3)
@@ -66,10 +71,10 @@ class Turn
       end
 
     elsif winner == player_2
-    @spoils_of_war_arr.select do |spoil|
-    player_2.deck.cards << spoil
+      @spoils_of_war_arr.select do |spoil|
+        player_2.deck.cards << spoil
+      end
     end
-    end
-      @spoils_of_war_arr = []
+    @spoils_of_war_arr = []
   end
 end
