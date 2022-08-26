@@ -16,6 +16,7 @@ RSpec.describe Turn do
 
     expect(turn).to be_an_instance_of(Turn)
   end
+
   it 'is a game of two players' do
     card_1 = Card.new(:heart, 'Jack', 11 )
     card_2 = Card.new(:heart, '10', 10)
@@ -35,9 +36,6 @@ RSpec.describe Turn do
     player_2 = Player.new("Aurora", deck_2)
 
     turn = Turn.new(player_1, player_2)
-
-    deck_1.high_ranking_cards
-    deck_2.high_ranking_cards
 
     expect(player_1.name).to eq("Megan")
     expect(deck_1.cards.count).to eq(4)
@@ -73,10 +71,6 @@ RSpec.describe Turn do
     player_2 = Player.new("Aurora", deck_2)
 
     turn = Turn.new(player_1, player_2)
-
-    deck_1.high_ranking_cards
-    deck_2.high_ranking_cards
-    turn.spoils_of_war
 
     expect(player_1.name).to eq("Megan")
     expect(deck_1.cards.count).to eq(4)
@@ -117,8 +111,6 @@ RSpec.describe Turn do
 
     deck_1.rank_of_card_at(0)
     deck_2.rank_of_card_at(0)
-    turn.spoils_of_war
-    turn.type
 
     expect(player_1.name).to eq("Megan")
     expect(deck_1.rank_of_card_at(0)).to eq(11)
@@ -152,9 +144,6 @@ RSpec.describe Turn do
     player_2 = Player.new("Aurora", deck_2)
 
     turn = Turn.new(player_1, player_2)
-    turn.spoils_of_war
-    turn.type
-    turn.winner
 
     expect(player_1.name).to eq("Megan")
     expect(deck_1.cards.count).to eq(4)
@@ -190,10 +179,6 @@ RSpec.describe Turn do
 
     turn = Turn.new(player_1, player_2)
 
-    turn.spoils_of_war
-    turn.type
-    turn.winner
-
     expect(player_1.name).to eq("Megan")
     expect(deck_1.cards.count).to eq(4)
     expect(player_1.deck.cards).to eq([card_1, card_2, card_5, card_8])
@@ -210,7 +195,7 @@ RSpec.describe Turn do
     expect(turn.winner).to eq(player_1)
 
     turn.pile_cards
-    turn.spoils_of_war
+
     expect(turn.spoils_of_war).to eq([card_8, card_7])
     expect(player_1.deck.cards).to eq([card_1, card_2, card_5])
     expect(player_2.deck.cards).to eq([card_3, card_4, card_6])
@@ -234,10 +219,6 @@ RSpec.describe Turn do
 
     turn = Turn.new(player_1, player_2)
 
-    turn.spoils_of_war
-    turn.type
-    turn.winner
-
     expect(player_1.name).to eq("Megan")
     expect(player_1.deck.cards).to eq([card_1, card_2, card_5, card_8])
 
@@ -252,7 +233,7 @@ RSpec.describe Turn do
     expect(turn.winner).to eq(player_1)
 
     turn.pile_cards
-    turn.spoils_of_war
+
     expect(turn.spoils_of_war).to eq([card_8, card_7])
     expect(player_1.deck.cards).to eq([card_1, card_2, card_5])
     expect(player_2.deck.cards).to eq([card_3, card_4, card_6])
@@ -281,10 +262,6 @@ RSpec.describe Turn do
 
     turn = Turn.new(player_1, player_2)
 
-    turn.spoils_of_war
-    turn.type
-    turn.winner
-
     expect(player_1.name).to eq("Megan")
     expect(player_1.deck.cards).to eq([card_1, card_2, card_5, card_8])
 
@@ -299,7 +276,6 @@ RSpec.describe Turn do
     expect(turn.winner).to eq(player_2)
 
     turn.pile_cards
-    turn.spoils_of_war
 
     expect(turn.spoils_of_war).to eq([card_2, card_5, card_8, card_3, card_6, card_7])
     expect(player_1.deck.cards).to eq([card_1])
@@ -313,39 +289,36 @@ RSpec.describe Turn do
 
   end
 
-  # it 'plays a game of mutually assured destruction' do
-  #   card_1 = Card.new(:heart, 'Jack', 11)
-  #   card_2 = Card.new(:heart, '10', 10)
-  #   card_3 = Card.new(:heart, '9', 9)
-  #   card_4 = Card.new(:diamond, 'Jack', 11)
-  #   card_5 = Card.new(:heart, '8', 8)
-  #   card_6 = Card.new(:diamond, '8', 8)
-  #   card_7 = Card.new(:heart, '3', 3)
-  #   card_8 = Card.new(:diamond, '2', 2)
+  it 'plays a game of mutually assured destruction' do
+    card_1 = Card.new(:heart, 'Jack', 11)
+    card_2 = Card.new(:heart, '10', 10)
+    card_3 = Card.new(:heart, '9', 9)
+    card_4 = Card.new(:diamond, 'Jack', 11)
+    card_5 = Card.new(:heart, '8', 8)
+    card_6 = Card.new(:diamond, '8', 8)
+    card_7 = Card.new(:heart, '3', 3)
+    card_8 = Card.new(:diamond, '2', 2)
 
-  #   deck_1 = Deck.new([card_1, card_2, card_5, card_8])
-  #   deck_2 = Deck.new([card_4, card_3, card_6, card_7])
+    deck_1 = Deck.new([card_1, card_2, card_5, card_8])
+    deck_2 = Deck.new([card_4, card_3, card_6, card_7])
 
-  #   player_1 = Player.new("Megan", deck_1)
-  #   player_2 = Player.new("Aurora", deck_2)
+    player_1 = Player.new("Megan", deck_1)
+    player_2 = Player.new("Aurora", deck_2)
 
-  #   turn = Turn.new(player_1, player_2)
+    turn = Turn.new(player_1, player_2)
 
-  #   expect(player_1.name).to eq("Megan")
-  #   expect(player_1.deck.cards).to eq([card_1, card_2, card_5, card_8])
-  #   expect(player_2.name).to eq("Aurora")
-  #   expect(player_2.deck.cards).to eq([card_4, card_3, card_6, card_7])
+    expect(player_1.name).to eq("Megan")
+    expect(player_1.deck.cards).to eq([card_1, card_2, card_5, card_8])
+    expect(player_2.name).to eq("Aurora")
+    expect(player_2.deck.cards).to eq([card_4, card_3, card_6, card_7])
 
-  #   turn.type
-  #   turn.winner
-  #   turn.pile_cards
-  #   turn.spoils_of_war
+    expect(turn.type).to eq(:mutually_assured_destruction)
+    expect(turn.winner).to eq("No Winner")
 
-  #   # expect(turn.type).to eq(:mutually_assured_destruction)
-  #   expect(turn.winner).to eq("No Winner")
-  #   expect(turn.spoils_of_war).to be_empty
-  #   expect(player_1.deck.cards).to eq([card_1])
-  #   expect(player_2.deck.cards).to eq([card_4])
-  # end
+    turn.pile_cards
+    expect(turn.spoils_of_war).to be_empty
+    expect(player_1.deck.cards).to eq([card_1])
+    expect(player_2.deck.cards).to eq([card_4])
+  end
 
 end
