@@ -34,12 +34,12 @@ it 'tests player has lost' do
   expect(player.has_lost?).to eq(false)
   player.deck.remove_card
   expect(deck.cards).to eq([card3])
-  
+
   expect(player.has_lost?).to eq(false)
   player.deck.remove_card
     # require 'pry'; binding.pry 
   expect(player.has_lost?).to eq(true)
-
+    # require 'pry'; binding.pry 
 end 
 
 
