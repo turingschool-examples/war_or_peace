@@ -52,5 +52,6 @@ class Turn
     def award_spoils(winner)
         return if winner == 'No winner' || winner == 'redo'
         @spoils_of_war.shuffle.each { |spoil| winner.deck.cards << spoil }
+        #shuffling spoils makes it so there are no longer infinite games
     end 
 end 
