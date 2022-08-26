@@ -42,7 +42,6 @@ it "can check for high ranking cards" do
   deck = Deck.new(cards)
 
   expect(deck.cards).to eq([card_1, card_2, card_3])
-  expect(deck.high_ranking_cards.count).to eq(2)
   expect(deck.high_ranking_cards).to eq([card_1, card_3])
 end
 
@@ -101,6 +100,5 @@ it "can remove a card(s) to the deck" do
   expect(deck.high_ranking_cards.count).to eq(1)
   expect(deck.high_ranking_cards).to eq([card_3])
   expect(deck.percentage_high_ranking).to eq(33.0)
-
 end
 end
