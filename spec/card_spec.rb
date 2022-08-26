@@ -19,8 +19,6 @@ RSpec.describe Card do
     expect(card.rank).to eq(12)
   end
 
-
-
   it "creates a player with a deck of cards " do
 
     card_1 = Card.new(:diamond, 'Queen', 12)
