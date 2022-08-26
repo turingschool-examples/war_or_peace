@@ -8,7 +8,9 @@ class Turn
     @spoils_of_war = []
   end
 
+  # refactor this next
   def type
+    # is this even necessary? If the logic is "baked" into the game loop.....
     if @player1.deck.cards.count >= 3 && @player2.deck.cards.count >= 3
       player1_first_card = @player1.deck.cards[0].rank
       player2_first_card = @player2.deck.cards[0].rank
@@ -77,7 +79,7 @@ class Turn
     when :basic
       @spoils_of_war.push(@player1.deck.cards.shift, @player2.deck.cards.shift)
     when :war
-      @spoils_of_war.concat(@player1.deck.cards.shift(3),  @player2.deck.cards.shift(3))
+      @spoils_of_war.concat(@player1.deck.cards.shift(3), @player2.deck.cards.shift(3))
     when :mutually_assured_destruction
       @player1.deck.cards.slice!(0, 3)
       @player2.deck.cards.slice!(0, 3)
@@ -86,7 +88,7 @@ class Turn
   end
 
   def award_spoils(hand_winner)
-    hand_winner.concat(@spoils_of_war)
+    hand_winner.deck.cards.concat(@spoils_of_war)
     @spoils_of_war.clear
   end
 end
