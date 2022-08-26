@@ -61,4 +61,8 @@ class Turn
       3.times {@player2.deck.cards.delete_at(0)}
     end
   end
+
+  def award_spoils(winner)
+    winner.deck.cards.concat(@spoils_of_war)
+  end
 end 
