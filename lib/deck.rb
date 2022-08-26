@@ -16,4 +16,12 @@ attr_reader :cards
      (high_ranking_cards.count.fdiv(@cards.count)*100).round(2)
   end
 
+  def remove_card
+    @cards.shift
+  end
+
+  def add_card(new_card_to_deck)
+    @cards.push(new_card_to_deck)
+  end
+
 end
