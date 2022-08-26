@@ -72,5 +72,23 @@ end
   deck_p2 << play_deck[count2]
   count2 += 1
 end
-player1 = Player.new('Ryan', deck_p1)
-player2 = Player.new('Ash', deck_p2)
+
+deck1 = Deck.new(deck_p1)
+deck2 = Deck.new(deck_p2)
+
+player1 = Player.new('Ryan', deck1)
+player2 = Player.new('Ash', deck2)
+
+turn = Turn.new(player1, player2)
+play = Play.new(turn)
+
+p "Welcome to War! (or Peace) This game will be played with 52 cards."
+p "The players today are #{player1.name} and #{player2.name}."
+p "Type 'GO' to start the game!"
+p "------------------------------------------------------------------"
+
+until(gets.chomp.upcase == 'GO')
+  p 'Please input GO'
+end
+
+play.start
