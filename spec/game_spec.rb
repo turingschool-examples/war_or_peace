@@ -8,6 +8,31 @@ require './lib/game'
 RSpec.describe Game do
   describe "initialize game" do
     
+    it "is an instance of its class" do
+      card1 = Card.new(:spade, 'Ace', 14)
+      card4 = Card.new(:club, '10', 10)
+      deck1 = Deck.new(card1)
+      deck2 = Deck.new(card4)
+      player1 = Player.new('John', deck1)
+      player2 = Player.new('Paul', deck2)
+      game = Game.new(player1, player2)
+      
+      expect(game).to be_an_instance_of(Game)
+    end
+    
+    it "it has 2 players" do
+      card1 = Card.new(:spade, 'Ace', 14)
+      card4 = Card.new(:club, '10', 10)
+      deck1 = Deck.new(card1)
+      deck2 = Deck.new(card4)
+      player1 = Player.new('John', deck1)
+      player2 = Player.new('Paul', deck2)
+      game = Game.new(player1, player2)
+      
+      expect(game.player1).to eq(player1)
+      expect(game.player2).to eq(player2)
+    end
+    
     it "#start" do
       card1 = Card.new(:spade, 'Ace', 14)
       card2 = Card.new(:heart, 'Jack', 11)

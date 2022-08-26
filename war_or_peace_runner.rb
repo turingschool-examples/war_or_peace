@@ -62,15 +62,9 @@ full_deck << card50 = Card.new(:diamond, 'Queen', 12)
 full_deck << card51 = Card.new(:diamond, 'King', 13)
 full_deck << card52 = Card.new(:diamond, 'Ace', 14)
 
-# p full_deck[0]
-# p full_deck[1]
-# p full_deck[2]
 
+# Shuffle deck, and distribute to 2 instances of deck class
 full_deck.shuffle!
-
-# p full_deck[0]
-# p full_deck[1]
-# p full_deck[2]
 
 deck1 = Deck.new
 deck2 = Deck.new
@@ -83,12 +77,10 @@ end
   deck2.cards << full_deck.shift
 end
 
-# p full_deck
-
+# Pass 2 decks to 2 instnaces of player class
 player1 = Player.new('John', deck1)
 player2 = Player.new('Ringo', deck2)
 
-# p player1
-
+# Create instance of game with above players and call start method
 game = Game.new(player1, player2)
 game.start
