@@ -36,5 +36,20 @@ RSpec.describe Player do
     end 
   end 
 
+  describe '#has_lost?' do 
+    it 'returns true if the player lost' do 
+      player = Player.new('Clarisa', @deck)
+      expect(player.deck.cards).to eq([@card1, @card2, @card3])
+      player.deck.remove_card 
+      expect(player.deck.cards).to eq([@card2, @card3])
+      expect(player.has_lost?).to be false 
+      player.deck.remove_card 
+      expect(player.deck.cards).to eq([@card3])
+      expect(player.has_lost?).to be false  
+      player.deck.remove_card 
+      expect(player.deck.cards).to eq([])
+      expect(player.has_lost?).to be true
+    end 
+  end
 
 end  
