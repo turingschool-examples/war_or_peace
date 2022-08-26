@@ -229,6 +229,142 @@ RSpec.describe Turn do
 
     end
 
+    it "for :basic turns it moves top card in each deck to spoils pile" do
+
+        card1 = Card.new(:heart, 'Jack', 11)
+        card2 = Card.new(:heart, '10', 10)
+        card3 = Card.new(:heart, '9', 9)
+        card4 = Card.new(:diamond, 'Jack', 11)
+        card5 = Card.new(:heart, '8', 8)
+        card6 = Card.new(:diamond, 'Queen', 12)
+        card7 = Card.new(:heart, '3', 3)
+        card8 = Card.new(:diamond, '2', 2)
+
+        
+
+        deck1 = Deck.new([card1, card2, card5, card8])
+        deck2 = Deck.new([card3, card4, card6, card7])
+
+
+        player1 = Player.new("Megan", deck1)
+        player2 = Player.new("Aurora", deck2)
+
+        turn =Turn.new(player1, player2)
+
+        expect(turn.type).to eq(:basic)
+
+        turn.pile_cards
+
+        expect(player1.deck.cards).to eq([card2, card5, card8])
+        expect(player2.deck.cards).to eq([card4, card6, card7])
+        
+        expect(turn.spoils_of_war).to include(card1, card3)
+        #^include works better for the following tests to avoid the need to worry about card order while checking
+
+    end
+
+    it "for :war turns it moves top 3 cards in each deck to spoils pile" do
+
+        card1 = Card.new(:heart, '10', 10)
+        card2 = Card.new(:spade, '10', 10)
+        card3 = Card.new(:diamond, '10', 10)
+        card4 = Card.new(:diamond, 'Jack', 11)
+        card5 = Card.new(:heart, '8', 8)
+        card6 = Card.new(:diamond, 'Queen', 12)
+        card7 = Card.new(:heart, '3', 3)
+        card8 = Card.new(:diamond, '2', 2)
+
+        
+
+        deck1 = Deck.new([card1, card2, card5, card8])
+        deck2 = Deck.new([card3, card4, card6, card7])
+
+
+        player1 = Player.new("Megan", deck1)
+        player2 = Player.new("Aurora", deck2)
+
+        turn = Turn.new(player1, player2)
+
+        expect(turn.type).to eq(:war)
+
+
+        turn.pile_cards
+
+        expect(turn.spoils_of_war).to include(card1, card2, card5, card3, card4, card6)
+        #include would be better to avoid having to worry about order
+    end
+
+    it "for :mutually_assured_destruction turns three cards from each deck are just removed" do
+
+        card1 = Card.new(:heart, '10', 10)
+        card2 = Card.new(:spade, '10', 10)
+        card3 = Card.new(:diamond, '10', 10)
+        card4 = Card.new(:diamond, 'Jack', 11)
+        card5 = Card.new(:heart, 'Queen', 12)
+        card6 = Card.new(:diamond, 'Queen', 12)
+        card7 = Card.new(:heart, '3', 3)
+        card8 = Card.new(:diamond, '2', 2)
+
+        
+
+        deck1 = Deck.new([card1, card2, card5, card8])
+        deck2 = Deck.new([card3, card4, card6, card7])
+
+
+        player1 = Player.new("Megan", deck1)
+        player2 = Player.new("Aurora", deck2)
+
+        turn = Turn.new(player1, player2)
+
+        expect(turn.type).to eq(:mutually_assured_destruction)
+
+
+        turn.pile_cards
+
+        expect(deck1.cards).to eq ([card8])
+        expect(deck2.cards).to eq ([card7])
+
+        expect(turn.spoils_of_war).not_to include(card1, card2, card3, card4, card5, card6)
+
+    end
+
+    xit "awards cards in the spoils of war to winner of a turn" do
+
+
+        card1 = Card.new(:heart, 'Jack', 11)
+        card2 = Card.new(:heart, '10', 10)
+        card3 = Card.new(:heart, '9', 9)
+        card4 = Card.new(:diamond, 'Jack', 11)
+        card5 = Card.new(:heart, '8', 8)
+        card6 = Card.new(:diamond, 'Queen', 12)
+        card7 = Card.new(:heart, '3', 3)
+        card8 = Card.new(:diamond, '2', 2)
+    
+            
+    
+        deck1 = Deck.new([card1, card2, card5, card8])
+        deck2 = Deck.new([card3, card4, card6, card7])
+    
+    
+        player1 = Player.new("Megan", deck1)
+        player2 = Player.new("Aurora", deck2)
+    
+        turn = Turn.new(player1, player2)
+    
+        expect(turn.type).to eq(:basic)
+
+        turn.pile_cards
+    
+        expect(turn.winner).to eq(player2)
+
+        turn.award_spoils
+
+        expect(turn.player2.deck.card).to include(card1, card3, card4, card6, card7)
+        expect(turn.spoils_of_war).to eq([])
+
+    end
+
+
 
 
 end
