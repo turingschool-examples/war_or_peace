@@ -13,7 +13,7 @@ class Game
   end
 
   def run
-    while @turn_count != 1_000_000 do
+    while @turn_count != 1_000 do
       @current_turn.type
       @current_turn.winner
       @current_turn.pile_cards
@@ -21,7 +21,6 @@ class Game
       
       if @current_turn.turn_type == :basic
         puts "Turn #{@turn_count}: Basic - #{@current_turn.turn_winner.name} wins #{@current_turn.spoils_of_war.length} cards."
-        # This is a workaround because I cant get the expect(value).output to work
         @turn_return = "Turn #{@turn_count}: Basic - #{@current_turn.turn_winner.name} wins #{@current_turn.spoils_of_war.length} cards."
       elsif @current_turn.turn_type == :war
         puts "Turn #{@turn_count}: WAR! - #{@current_turn.turn_winner.name} wins #{@current_turn.spoils_of_war.length} cards."
@@ -29,6 +28,13 @@ class Game
       elsif @current_turn.turn_type == :mutually_assured_destruction
         puts "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
         @turn_return = "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
+      elsif @current_turn.turn_type == :loss
+        if @current_turn.player_one.deck.card_list.length > @current_turn.player_two.deck.card_list.length
+          puts "*~*~*~* #{@current_turn.player_one.name} has won the game! *~*~*~*"
+          break
+        elsif current_turn.player_one.deck.card_list.length < @current_turn.player_two.deck.card_list.length
+          puts "*~*~*~* #{@current_turn.player_two.name} has won the game! *~*~*~*"
+        end
       end
 
       @current_turn.award_spoils

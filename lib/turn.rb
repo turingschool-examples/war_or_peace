@@ -11,6 +11,8 @@ class Turn
   def type
     if @player_one.deck.rank_of_card_at(0) != @player_two.deck.rank_of_card_at(0)
       @turn_type = :basic
+    elsif @player_one.deck.rank_of_card_at(0) == @player_two.deck.rank_of_card_at(0) && @player_one.deck.card_list.length < 3 || @player_two.deck.card_list.length < 3
+      @turn_type = :loss
     elsif @player_one.deck.rank_of_card_at(0) == @player_two.deck.rank_of_card_at(0) && @player_one.deck.rank_of_card_at(2) == @player_two.deck.rank_of_card_at(2)
       @turn_type = :mutually_assured_destruction
     elsif @player_one.deck.rank_of_card_at(0) == @player_two.deck.rank_of_card_at(0)
@@ -59,7 +61,7 @@ class Turn
 
   def award_spoils
     if @turn_type == :war || @turn_type == :basic
-    @turn_winner.deck.card_list << spoils_of_war
+    @turn_winner.deck.card_list << spoils_of_war.shuffle!
     @spoils_of_war = []
     @turn_winner.deck.card_list.flatten!
     # @turn_winner = nil

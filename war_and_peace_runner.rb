@@ -7,7 +7,6 @@ require './lib/player'
 require './lib/game'
 
 # Create 52 cards.
-# Put this in game class. call game.create_card
 card_inputs = []
 suits = [:spade, :heart, :diamond, :club]
 values_ranks = [['Ace', 14], ['King', 13], ['Queen', 12], ['Jack', 11], 
@@ -24,26 +23,20 @@ card_inputs.shuffle!
 cards = card_inputs.map do |input|
   Card.new(input[0], input[1], input[2])
 end
-# p cards.length
-
-# Get txt file inport from Learn to Program pg 71
-# filename = 
-
-test_card_1 = Card.new(:spade)
-
 
 # Create two decks
 deck_1 = Deck.new(cards[0, 26])
 deck_2 = Deck.new(cards[26, 26])
-# p deck_1.card_list.length
-# p deck_1.card_list.length
 
 # Create two players
 player_1 = Player.new('Megan', deck_1)
 player_2 = Player.new('Aurora', deck_2)
-turn = Turn.new(player_1, player_2)
-game = Game.new(turn)
 
+# Create one turn
+turn = Turn.new(player_1, player_2)
+
+# Create one game
+game = Game.new(turn)
 
 # start
 puts 'Welcome to War! (or Peace). This game will be played with 52 cards.'
