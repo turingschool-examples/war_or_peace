@@ -1,5 +1,5 @@
 class Deck
-attr_reader :cards, :high_ranking_cards, :rank, :rank_of_card_at
+attr_reader :cards, :high_ranking_cards, :rank
 
   def initialize(cards)
     @cards = cards
