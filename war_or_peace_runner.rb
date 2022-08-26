@@ -3,6 +3,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/game.rb'
 
 # Create deck of 52 cards
 
@@ -89,3 +90,5 @@ player2 = Player.new('Ringo', deck2)
 
 # p player1
 
+game = Game.new(player1, player2)
+game.start
