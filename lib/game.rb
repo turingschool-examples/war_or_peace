@@ -50,7 +50,6 @@ class Game
       puts '-------------------------------------------------------------------'
       user_input = gets.chomp.downcase
       if user_input == 'go'
-        #run game
         self.run
         break
       else

@@ -9,7 +9,7 @@ require './lib/game'
 # Create 52 cards.
 # Put this in game class. call game.create_card
 card_inputs = []
-suits = [:spades, :hearts, :diamonds, :clubs]
+suits = [:spade, :heart, :diamond, :club]
 values_ranks = [['Ace', 14], ['King', 13], ['Queen', 12], ['Jack', 11], 
                 ['Ten', 10], ['Nine', 9], ['Eight', 8], ['Seven', 7], ['Six', 6], 
                 ['Five', 5], ['Four', 4], ['Three', 3], ['Two', 2]]
@@ -28,6 +28,9 @@ end
 
 # Get txt file inport from Learn to Program pg 71
 # filename = 
+
+test_card_1 = Card.new(:spade)
+
 
 # Create two decks
 deck_1 = Deck.new(cards[0, 26])

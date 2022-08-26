@@ -58,11 +58,13 @@ class Turn
   end
 
   def award_spoils
+    if @turn_type == :war || @turn_type == :basic
     @turn_winner.deck.card_list << spoils_of_war
     @spoils_of_war = []
     @turn_winner.deck.card_list.flatten!
     # @turn_winner = nil
     # each turn is an instence no need for nil
+    end
   end
 end
 
