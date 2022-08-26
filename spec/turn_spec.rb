@@ -250,6 +250,4 @@ RSpec.describe Turn do
         expect(player1.deck.cards).to eq([card8])
         expect(player2.deck.cards).to eq([card7])
     end
-
-
 end
