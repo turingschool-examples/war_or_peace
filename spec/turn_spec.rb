@@ -51,15 +51,36 @@ RSpec.describe Player do
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
     expect(turn.winner).to eq(player1)
+    # require "pry"; binding.pry
   end
 
-  it 'pile cards' do
+  it 'pile cards basic' do
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
     deck2 = Deck.new([@card3, @card4, @card6, @card7])
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
+    turn.pile_cards
+    expect(turn.spoils_of_war).to eq([@card1, @card3])
   end
 
+  it 'pile cards war' do
+    deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    deck2 = Deck.new([@card4, @card3, @card6, @card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    turn.pile_cards
+    expect(turn.spoils_of_war).to eq([@card1, @card2, @card5, @card4, @card3, @card6])
+  end
 
+  # it 'pile cards mutually assured destruction' do
+  #   deck1 = Deck.new([@card1, @card2, @card5, @card8])
+  #   deck2 = Deck.new([@card4, @card3, @card6, @card7])
+  #   player1 = Player.new("Megan", deck1)
+  #   player2 = Player.new("Aurora", deck2)
+  #   turn = Turn.new(player1, player2)
+  #   turn.pile_cards
+  #   expect(turn.spoils_of_war).to eq([@card1, @card2, @card5, @card4, @card3, @card6])
+  # end
 end
