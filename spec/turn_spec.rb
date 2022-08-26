@@ -24,7 +24,26 @@ RSpec.describe Turn do
   describe '#initialize' do 
     it 'is an instance of turn' do
       turn = Turn.new(@player1, @player2)
+      
       expect(turn).to be_instance_of Turn
     end
-  end 
+
+    it 'has a first player' do
+      turn = Turn.new(@player1, @player2)
+      
+      expect(turn.player1).to eq(@player1)
+    end 
+
+    it 'has a second player' do
+      turn = Turn.new(@player1, @player2) 
+      
+      expect(turn.player2).to eq(@player2)
+    end 
+
+    it 'has no spoils of war by default' do
+      turn = Turn.new(@player1, @player2)
+      
+      expect(turn.spoils_of_war).to eq []
+    end 
+  end  
 end 
