@@ -1,8 +1,5 @@
 require 'rspec'
 require './lib/card.rb'
-require 'deck.rb'
-require 'player.rb'
-require 'turn.rb'
 
 RSpec.describe Card do
   it "exists" do
