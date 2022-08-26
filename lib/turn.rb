@@ -1,10 +1,11 @@
 class Turn
-  attr_reader :player_one, :player_two, :spoils_of_war
+  attr_reader :player_one, :player_two, :spoils_of_war, :turn_type, :turn_winner
   def initialize(player_one, player_two)
     @player_one = player_one
     @player_two = player_two
     @spoils_of_war = []
     @turn_type = nil
+    @turn_winner = nil
   end
 
   def type
@@ -58,9 +59,9 @@ class Turn
 
   def award_spoils
     @turn_winner.deck.card_list << spoils_of_war
-    spoils_of_war = []
+    @spoils_of_war = []
     @turn_winner.deck.card_list.flatten!
-    @turn_winner = nil
+    # @turn_winner = nil
     # each turn is an instence no need for nil
   end
 end

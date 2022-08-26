@@ -19,7 +19,7 @@ class Deck
   # Return percentage of cards that are high ranking (>= 11)
   def percent_high_ranking
     high_count = @card_list.count do |card|
-      card.rank >= 11
+     card.rank >= 11
     end
     ((high_count.to_f / @card_list.length.to_f) * 100).round(2)
   end
