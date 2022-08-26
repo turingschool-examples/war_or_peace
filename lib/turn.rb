@@ -3,10 +3,7 @@ class Turn
     def initialize(player1, player2)
         @player1 = player1
         @player2 = player2
-    end
-
-    def spoils_of_war
-        []
+        @spoils_of_war = []
     end
 
     def type
@@ -31,4 +28,14 @@ class Turn
             return No Winner
         end
     end
+
+    def pile_cards
+        if type == :basic
+            players = [@player1, @player2]
+            players.each do |card|
+                @spoils_of_war << card.deck.cards.shift
+            end
+        end        
+    end
+
 end
