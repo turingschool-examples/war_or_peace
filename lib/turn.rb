@@ -48,19 +48,19 @@ class Turn
 
   def pile_cards
     if type == :basic
-      @spoils_of_war_arr << player_1.deck.cards.last
-      @spoils_of_war_arr << player_2.deck.cards.last
-      player_1.deck.cards.pop
-      player_2.deck.cards.pop
+      @spoils_of_war_arr << player_1.deck.cards.first
+      @spoils_of_war_arr << player_2.deck.cards.first
+      player_1.deck.cards.shift
+      player_2.deck.cards.shift
     elsif type == :war
-      @spoils_of_war_arr << player_1.deck.cards.last(3)
-      @spoils_of_war_arr << player_2.deck.cards.last(3)
+      @spoils_of_war_arr << player_1.deck.cards.first(3)
+      @spoils_of_war_arr << player_2.deck.cards.first(3)
       @spoils_of_war_arr = @spoils_of_war_arr.flatten
-      player_1.deck.cards.pop(3)
-      player_2.deck.cards.pop(3)
+      player_1.deck.cards.shift(3)
+      player_2.deck.cards.shift(3)
     elsif type == :mutually_assured_destruction
-      player_1.deck.cards.pop(3)
-      player_2.deck.cards.pop(3)
+      player_1.deck.cards.shift(3)
+      player_2.deck.cards.shift(3)
     end
   end
 
