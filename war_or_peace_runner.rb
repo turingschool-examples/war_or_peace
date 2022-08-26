@@ -5,9 +5,9 @@ require "./lib/turn"
 require "./lib/game"
 
 
-# Create the standard 52 cards
+# # Create the standard 52 cards
 all_cards = []
-    # hearts
+#     # hearts
 all_cards << card1 = Card.new(:heart, "2", 2)
 all_cards << card2 = Card.new(:heart, "3", 3)
 all_cards << card3 = Card.new(:heart, "4", 4)
@@ -21,7 +21,7 @@ all_cards << card10 = Card.new(:heart, "Jack", 11)
 all_cards << card11 = Card.new(:heart, "Queen", 12)
 all_cards << card12 = Card.new(:heart, "King", 13)
 all_cards << card13 = Card.new(:heart, "Ace", 14)
-    # clubs
+# #     # clubs
 all_cards << card14 = Card.new(:club, "2", 2)
 all_cards << card15 = Card.new(:club, "3", 3)
 all_cards << card16 = Card.new(:club, "4", 4)
@@ -35,7 +35,7 @@ all_cards << card23 = Card.new(:club, "Jack", 11)
 all_cards << card24 = Card.new(:club, "Queen", 12)
 all_cards << card25 = Card.new(:club, "King", 13)
 all_cards << card26 = Card.new(:club, "Ace", 14)
-    # diamonds
+# #     # diamonds
 all_cards << card27 = Card.new(:diamond, "2", 2)
 all_cards << card28 = Card.new(:diamond, "3", 3)
 all_cards << card29 = Card.new(:diamond, "4", 4)
@@ -49,7 +49,7 @@ all_cards << card36 = Card.new(:diamond, "Jack", 11)
 all_cards << card37 = Card.new(:diamond, "Queen", 12)
 all_cards << card38 = Card.new(:diamond, "King", 13)
 all_cards << card39 = Card.new(:diamond, "Ace", 14)
-    # spades
+# #     # spades
 all_cards << card40 = Card.new(:spade, "2", 2)
 all_cards << card41 = Card.new(:spade, "3", 3)
 all_cards << card42 = Card.new(:spade, "4", 4)
@@ -64,14 +64,15 @@ all_cards << card50 = Card.new(:spade, "Queen", 12)
 all_cards << card51 = Card.new(:spade, "King", 13)
 all_cards << card52 = Card.new(:spade, "Ace", 14)
 
-# shuffle 3 times
+# # shuffle 3 times
 shuffled_once = all_cards.shuffle
 shuffled_twice = shuffled_once.shuffle
 shuffled_thrice = shuffled_twice.shuffle
 
-# split cards into two Decks
+# # split cards into two Decks
 cards1 = shuffled_thrice[0..25]
 cards2 = shuffled_thrice[26..51]
+
 deck1 = Deck.new(cards1)
 deck2 = Deck.new(cards2)
 
@@ -82,7 +83,14 @@ player2 = Player.new("Aurora", deck2)
 # play game
 print "Welcome to War! (or Peace) This game will be played with 52 cards.\nThe players today are Megan and Aurora.\nType 'GO' to start the game!\n------------------------------------------------------------------\n"
 user_input = gets.chomp 
+count = 0
+until user_input == "GO" || count == 3 do 
+  print "\n"
+  count += 1
+  user_input = gets.chomp 
+end 
 
-# if user_input == "GO"
-#   game.start(player1, player2)
-# end 
+if user_input == "GO"
+  game = Game.new(player1, player2)
+  game.start
+end 
