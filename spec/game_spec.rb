@@ -106,10 +106,19 @@ RSpec.describe Game do
   end
   
   describe '#two_card_endgame' do
-    it 'can return :basic or :war' do
-      expect(game.two_card_endgame).to eq(:basic)
-      game.turn.player2.deck = game.turn.player1.deck
-      expect(game.two_card_endgame).to eq("not allowed")
+    # it 'can return :basic or :war' do
+    #   expect(game.two_card_endgame).to eq(:basic)
+    #   game.turn.player2.deck = game.turn.player1.deck
+    #   expect(game.two_card_endgame).to eq("not allowed")
+    # end
+    
+    it 'pushes 2 card to the winner when :war' do
+      game.turn.player2.deck = Deck.new([card1, card2])
+      # binding.pry
+      game.two_card_endgame(1)
+      # binding.pry
+      expect(game.turn.player1.deck.cards.length).to eq(6) 
+      # binding.pry
     end
   end
 
@@ -164,3 +173,4 @@ RSpec.describe Game do
     end
   end
 end
+

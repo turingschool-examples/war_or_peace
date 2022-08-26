@@ -48,12 +48,17 @@ class Game
     end
   end
   
-  def two_card_endgame
+  def two_card_endgame(counter)
     case turn.type
     when :basic
-      :basic
+      normal_game_play(counter)
     when :war
-      :war
+      if hand_winner == turn.player1
+      turn.player1.deck.cards.concat(turn.player2.deck.cards.pop(2))
+      elsif hand_winner == turn.player2
+        turn.player2.deck.cards.concat(turn.player1.deck.cards.pop(2))
+      end
+      
     else
       'not allowed'
     end
