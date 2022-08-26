@@ -11,6 +11,7 @@ RSpec.describe Deck do
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
     expect(deck).to be_a Deck
+    expect(deck.cards).to eq(cards)
   end
 
   it "#rank_of_card_at" do
@@ -48,7 +49,6 @@ RSpec.describe Deck do
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
-    # require "pry"; binding.pry
     expect(deck.cards).to eq(cards)
     expect(deck.remove_card).to eq(card1)
     expect(deck.cards).to eq([card2, card3])
@@ -62,7 +62,6 @@ RSpec.describe Deck do
     card4 = Card.new(:club, '5', 5)
     cards = [card2, card3]
     deck = Deck.new(cards)
-    # require "pry"; binding.pry
     expect(deck.add_card(card4)).to eq([card2, card3, card4])
     expect(deck.high_ranking_cards).to eq([card3])
     expect(deck.percent_high_ranking).to eq(33.33)
