@@ -51,5 +51,4 @@ RSpec.describe Player do
       expect(player.has_lost?).to be true
     end 
   end
-
 end  
