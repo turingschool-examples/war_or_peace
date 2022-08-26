@@ -25,6 +25,18 @@ RSpec.describe 'iteration 2' do
   let(:turn) { Turn.new(player3, player4) }
 
   context 'Turn :basic' do
+  let(:card1) { Card.new(:heart, 'Jack', 11) }
+  let(:card2) { Card.new(:heart, '10', 10) }
+  let(:card3) { Card.new(:heart, '9', 9) }
+  let(:card4) { Card.new(:diamond, 'Jack', 11) }
+  let(:card5) { Card.new(:heart, '8', 8) }
+  let(:card6) { Card.new(:diamond, 'Queen', 12) }
+  let(:card7) { Card.new(:heart, '3', 3) }
+  let(:card8) { Card.new(:diamond, '2', 2) }
+  let(:deck1) { Deck.new([card1, card2, card5, card8]) }
+  let(:deck2) { Deck.new([card3, card4, card6, card7]) }
+    
+    
     context '#init' do
       it 'exists' do
         expect(turn).to be_a(Turn)
