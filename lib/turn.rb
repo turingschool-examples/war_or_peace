@@ -25,6 +25,10 @@ class Turn
         end 
     end 
 
+    #I added a redo turn type in this because I was receiving error messages when one player had < 3 cards and a war turn got called.
+    #I made up a rule that if there weren't enough cards to execute a war turn, both players put the top card on the bottom 
+    #of their deck and resume play like normal. 
+
     def winner 
         if type == :redo
             return 'redo'

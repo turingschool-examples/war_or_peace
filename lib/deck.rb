@@ -31,4 +31,6 @@ class Deck
     def top_card_to_bottom
         @cards.rotate!
     end 
+    #needed to add this method in order to make my new rules and redo method work. 
+    #further explained in turn.rb file
 end 
