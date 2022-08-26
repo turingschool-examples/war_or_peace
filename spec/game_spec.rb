@@ -21,7 +21,7 @@ RSpec.describe Game do
       player1 = Player.new('John', deck1)
       player2 = Player.new('Paul', deck2)
       game = Game.new(player1, player2)
-      # turn = Turn.new(player1, player2)
+      
       game.start
       
       expect(player2.has_lost?).to eq(true)
