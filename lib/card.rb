@@ -13,4 +13,8 @@ end
 # use pull requests
 
 # rspec spec/card_spec.rb
+# 
 
+# percent_high_ranking: this method will return the percentage of cards that are high ranking
+# remove_card: this method will remove the top card from the deck
+# add_card: this method will add one card to the bottom (end) of the deck
