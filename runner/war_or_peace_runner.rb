@@ -70,7 +70,18 @@ card_50 = Card.new(:club, "Ace", 14)
 card_51 = Card.new(:heart, "Ace", 14)
 card_52 = Card.new(:diamond, "Ace", 14)
 
-deck = [card_1, card_2, card_3, card_4, card_5, card_6, card_7, card_8, card_9, card_10, card_11, card_12, card_13, card_14, card_15, card_16, card_17, card_18, card_19, card_20, card_21, card_22, card_23, card_24, card_25, card_26, card_27, card_28, card_29, card_30, card_31, card_32, card_33, card_34, card_35, card_36, card_37, card_38, card_39, card_40, card_41, card_42, card_43, card_44, card_45, card_46, card_47, card_48, card_49, card_50, card_51, card_52])
+deck = [card_1, card_2, card_3, card_4, card_5, card_6, card_7, card_8, card_9, card_10, card_11, card_12, card_13, card_14, card_15, card_16, card_17, card_18, card_19, card_20, card_21, card_22, card_23, card_24, card_25, card_26, card_27, card_28, card_29, card_30, card_31, card_32, card_33, card_34, card_35, card_36, card_37, card_38, card_39, card_40, card_41, card_42, card_43, card_44, card_45, card_46, card_47, card_48, card_49, card_50, card_51, card_52]
+
+deck_1 = Deck.new(deck.shuffle.slice(0, 25))
+deck_2 = Deck.new(deck.shuffle.slice(26, 51))
+
+player_1 = Player.new("Megan", deck_1)
+player_2 = Player.new("Aurora", deck_2)
+
+
+
+
+
 
 
 
