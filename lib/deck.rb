@@ -1,6 +1,7 @@
 require 'pry'
 class Deck
-  attr_reader :cards
+  attr_reader :cards,
+              :high_ranking_cards
   def initialize(cards)
     @cards = cards
   end
@@ -10,11 +11,17 @@ class Deck
   end
 
   def high_ranking_cards
-     high_cards = []
+     high_rank = []
        @cards.each do |card|
-         if card.rank >=11
-           high_cards << card
+         if card.rank >= 11
+           high_rank << card
+        end
+    end
+    high_rank
+   end
   end
- end
- high_cards
-end
+
+
+#   end
+#  end
+# end
