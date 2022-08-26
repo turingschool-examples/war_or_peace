@@ -1,11 +1,13 @@
 class Deck
   attr_reader :cards
   def initialize(cards)
-    @cards = [cards]
+    @cards = cards
   end
-  # def rank_of_card_at
+  def rank_of_card_at(index)
+    return @cards[index].rank
+  end
+  # def high_ranking_cards = []
   # end
-  # def high_ranking_cards
   # end
   # def percent_high_ranking
   # end

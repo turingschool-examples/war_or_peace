@@ -19,6 +19,14 @@ RSpec.describe Deck do
       # binding.pry
       expect(deck).to be_an_instance_of(Deck)
     end
+    it '2. Gives rank of card' do
+      cards = [@card1, @card2, @card3]
+      deck = Deck.new(cards)
+
+      expect(deck.rank_of_card_at(0)).to eq(12)
+      expect(deck.rank_of_card_at(2)).to eq(14)
+    end
+    # rank of card at
   end
 
   
