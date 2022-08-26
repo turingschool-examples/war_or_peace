@@ -43,8 +43,7 @@ until counter == 10_000
   if game.game_over? # game over
     break
   elsif game.two_card_endgame? # potential endgame
-    # handle the situation when turn_type is :war && player with 2 cards loses
-    puts 'two_card_endgame'
+    game.two_card_endgame(counter)
     break
   elsif game.one_card_endgame? # potential endgame
     game.one_card_endgame
