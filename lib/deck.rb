@@ -1,6 +1,6 @@
 class Deck 
   attr_reader :high_ranking_card, :percent_high_ranking
-  attr_accessor :cards
+  attr_accessor :cards, :rank_of_card_at
 
   def initialize(cards)
     @cards = cards
