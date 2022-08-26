@@ -29,9 +29,10 @@ RSpec.describe Player do
       expect(player2.name).to eq('John')
     end 
 
-    it 'has a deck' do 
+    it 'has a deck that contains cards' do 
       player = Player.new('Clarisa', @deck)
       expect(player.deck).to eq(@deck)
+      expect(player.deck.cards).to eq([@card1, @card2, @card3])
     end 
   end 
 
