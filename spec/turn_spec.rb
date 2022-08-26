@@ -195,4 +195,11 @@ RSpec.describe 'iteration 2' do
       end
     end
   end
+  
+  describe '#init' do
+    it 'can start with a player with no cards' do
+      turn.player1.deck.cards = []
+      expect(turn.player1.deck.cards.length).to eq(0) 
+    end
+  end
 end
