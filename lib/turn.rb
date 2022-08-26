@@ -14,7 +14,7 @@ class Turn
   end
 
   def type 
-    if player1.deck.cards.length >= 2 && player2.deck.cards.length >= 2
+    if player1.deck.cards.length >= 3 && player2.deck.cards.length >= 3
       if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
         :mutually_assured_destruction
       elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
@@ -35,11 +35,19 @@ class Turn
     if self.type == :mutually_assured_destruction
       "No Winner"
     elsif self.type == :war
-      if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-        player1
+      if player1.deck.cards.length >= 3 && player2.deck.cards.length >= 3
+        if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+          player1
+        else 
+          player2
+        end
       else 
-        player2
-      end
+        if player1.deck.cards.last.rank > player2.deck.cards.last.rank
+          player1
+        else
+          player2
+        end
+      end 
     else
       if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
         player1
@@ -49,13 +57,21 @@ class Turn
     end
   end
 
-  def pile_cards 
+  def pile_cards
     if self.type == :basic
       @spoils_of_war << @player1.deck.cards.shift
       @spoils_of_war << @player2.deck.cards.shift
-    elsif self.type == :war 
-      3.times {@spoils_of_war << @player1.deck.cards.shift}
-      3.times {@spoils_of_war << @player2.deck.cards.shift}
+    elsif self.type == :war
+      count = 0
+      until count == 3 || @player1.deck.cards[0] == nil
+        @spoils_of_war << @player1.deck.cards.shift 
+        count += 1
+      end
+      count = 0
+      until count == 3 || @player2.deck.cards[0] == nil
+         @spoils_of_war << @player2.deck.cards.shift
+         count += 1
+      end 
     else 
       3.times {@player1.deck.cards.delete_at(0)}
       3.times {@player2.deck.cards.delete_at(0)}

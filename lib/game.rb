@@ -34,10 +34,10 @@ class Game
       return 3
     elsif @player1.has_lost? 
       puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
-      return 1
+      return 2
     else 
       puts "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
-      return 2
+      return 1
     end
   end
 end
