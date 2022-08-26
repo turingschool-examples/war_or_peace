@@ -1,3 +1,4 @@
+require 'pry'
 class Turn
     attr_reader :player1, :player2, :spoils_of_war
     def initialize(player1, player2)
@@ -54,4 +55,5 @@ class Turn
         (winner.deck.cards << spoils_of_war).flatten!
         @spoils_of_war = []
     end
+
 end
