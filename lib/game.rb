@@ -18,30 +18,46 @@ attr_reader :turn, :num_of_turns
     p "Type 'GO' to start the game!"
     p  "------------------------------------------------------------------"
 
-    driver = gets.chomp.upcase
+    user = gets.chomp.upcase
 
-    if driver == "GO"
+    if user == "GO"
       play
     else
-     p "Type 'GO'"
+     puts "Type 'GO'"
     end
   end
 
-  # def play
-  #   @num_of_turns
-  #   @turn
-  #   until turn.player_1.has_lost? || turn.player_2.has_lost?
+  def play
 
+    until turn.player_1.has_lost? || turn.player_2.has_lost?
+      if turn.type == :basic
+        turn.winner
+        turn.pile_cards
+        turn.award_spoils(turn.winner)
+        @num_of_turns += 1
+        p "Turn #{num_of_turns}: BASIC - #{turn.winner.name} won 2 cards"
+      elsif turn.type == :war
+        turn.winner
+        turn.pile_cards
+        turn.award_spoils(turn.winner)
+        @num_of_turns += 1
+        p "Turn #{num_of_turns}: WAR - #{turn.winner.name} won 6 cards"
+      elsif turn.type == :mutually_assured_destruction
+        turn.pile_cards
+        @num_of_turns += 1
+        p "Turn #{num_of_turns}: *mutually assured destruction* 6 cards removed from play"
+      end
 
-  # end
+      break if @num_of_turns == 100000
 
+    end
 
-
-
-
-
-
-
-
-
+    if turn.player_1.has_lost? == true
+      p "*~*~*~* #{turn.player_2.name} has won the game!*~*~*~*"
+    elsif turn.player_2.has_lost? == true
+      p "*~*~*~* #{turn.player_1.name} has won the game!*~*~*~*"
+    else
+      p "----DRAW----"
+    end
+  end
 end

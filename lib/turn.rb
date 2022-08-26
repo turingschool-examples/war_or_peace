@@ -17,6 +17,7 @@ class Turn
   end
 
   def type
+    binding.pry
     player_1_first_card = player_1.deck.rank_of_card_at(0)
     player_2_first_card = player_2.deck.rank_of_card_at(0)
     player_1_third_card = player_1.deck.rank_of_card_at(2)
@@ -28,6 +29,11 @@ class Turn
       :war
     elsif player_1_first_card == player_2_first_card && player_1_third_card == player_2_third_card
       :mutually_assured_destruction
+    elsif player_1_first_card == player_2_first_card && player_1.deck.length < 3
+      :player_1_does_not_have_enough_cards_to_go_to_war
+    elsif player_1_first_card == player_2_first_card && player_2.deck.length < 3
+      :player_2_does_not_have_enough_cards_to_go_to_war
+
     end
   end
 
@@ -41,6 +47,10 @@ class Turn
       player_1
     elsif type == :war && player_2.deck.rank_of_card_at(2) > player_1.deck.rank_of_card_at(2)
       player_2
+    elsif type == :player_1_does_not_have_enough_cards_to_go_to_war
+      player_1.has_lost? == true
+    elsif type == :player_2_does_not_have_enough_cards_to_go_to_war
+      player_2.has_lost? == true
     else
       "No Winner"
     end
@@ -61,6 +71,10 @@ class Turn
     elsif type == :mutually_assured_destruction
       player_1.deck.cards.shift(3)
       player_2.deck.cards.shift(3)
+    elsif type == :player_1_does_not_have_enough_cards_to_go_to_war
+      "Game over"
+    elsif type == :player_2_does_not_have_enough_cards_to_go_to_war
+      "Game over"
     end
   end
 
