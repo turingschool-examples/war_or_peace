@@ -3,8 +3,8 @@ require "./lib/card.rb"
 require "./lib/deck.rb"
 
 RSpec.describe Deck do
+  describe '#initialize' do
     it "exists" do
-      expect(deck.cards).to eq([])
       card1 = Card.new(:diamond, "Queen", 12)
       card2 = Card.new(:spade, "3", 3)
       card3 = Card.new(:heart, "Ace", 14)
@@ -14,25 +14,48 @@ RSpec.describe Deck do
     end
 
     it "contains cards" do
-      expect(deck.cards).to eq([])
       card1 = Card.new(:diamond, "Queen", 12)
       card2 = Card.new(:spade, "3", 3)
       card3 = Card.new(:heart, "Ace", 14)
       cards = [card1, card2, card3]
       deck = Deck.new(cards)
       expect(deck.cards).to eq([card1, card2, card3])
-
     end
-
-    # xit "contains cards" do
-    #   card4 = Card.new(:club, "King", 13)
-    #   card5 = Card.new(:spade, "8", 8)
-    #   deck.add_to_deck(card4)
-    #   deck.add_to_deck(card5)
-    #   expect(deck.cards).to eq([card1, card2, card3, card4, card5])
-    # end
   end
 
+  describe '#rank of card at a certain index position' do
+    it "checks a cards rank based on the cards index position" do
+      card1 = Card.new(:diamond, "Queen", 12)
+      card2 = Card.new(:spade, "3", 3)
+      card3 = Card.new(:heart, "Ace", 14)
+      cards = [card1, card2, card3]
+      deck = Deck.new(cards)
+      expect(deck.cards).to eq([card1, card2, card3])
+      deck.rank_of_card_at(0)
+      expect(deck.rank_of_card_at(0)).to eq(12)
+      expect(deck.rank_of_card_at(1)).to eq(3)
+    end
+  end
+
+  describe '#high_ranking_cards' do
+    it "will return an array of cards in the deck with a rank >= 11" do
+      card1 = Card.new(:diamond, "Queen", 12)
+      card2 = Card.new(:spade, "3", 3)
+      card3 = Card.new(:heart, "Ace", 14)
+      cards = [card1, card2, card3]
+      deck = Deck.new(cards)
+      deck.high_ranking_cards
+
+
+      expect(deck.high_ranking_cards).to eq([card1, card3])
+      #itterate through the deck
+      #identify cards with a rank >11
+      #push cards with a rank >11 into an array called high_ranking_cards
+      #return the array of cards in the deck that have a rank >11
+
+  end
+  end
+end
   #   it "checks a cards rank based on the cards index position" do
   #     deck = Deck.new(@cards)
   #     card1 = Card.new(:diamond, "Queen", 12)

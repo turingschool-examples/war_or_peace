@@ -5,13 +5,20 @@ class Deck
     @cards = cards
   end
 
-  # def add_to_deck(card)
-  #   @cards << card
-  # end
+  def rank_of_card_at(index)
+    @cards[index].rank
+  end
 
-  # def rank_of_card_at(card_index)
-  #   card.rank
-  # end
+  def high_ranking_cards
+    @high_rank_cards = []
+    @cards.each do |card|
+      if card.rank >= 11
+        @high_rank_cards << card
+      end
+    # require "pry";binding.pry
+  end
+
+  end
 
 
   #   @rank_of_card_at = rank_of_card_at
