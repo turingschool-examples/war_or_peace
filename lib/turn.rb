@@ -50,6 +50,9 @@ class Turn
       end
     end
   end
-  def award_spoils
+  def award_spoils(winner)
+    @spoils_of_war.each do |spoils_card|
+      winner.deck.add_card(spoils_card)
+    end
   end
 end
