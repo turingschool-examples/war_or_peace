@@ -90,7 +90,7 @@ RSpec.describe Game do
   end
 
   describe '#three_card_endgame?' do
-    it 'determines if either player has exactly 3 cards' do
+    xit 'determines if either player has exactly 3 cards' do
       expect(game.three_card_endgame?).to be false
       game.turn.player1.deck.cards = [card1, card2, card3]
       expect(game.three_card_endgame?).to be true
@@ -102,6 +102,14 @@ RSpec.describe Game do
       expect(game.two_card_endgame?).to be false
       game.turn.player1.deck.cards = [card1, card2]
       expect(game.two_card_endgame?).to be true
+    end
+  end
+  
+  describe '#two_card_endgame' do
+    it 'can return :basic or :war' do
+      expect(game.two_card_endgame).to eq(:basic)
+      game.turn.player2.deck = game.turn.player1.deck
+      expect(game.two_card_endgame).to eq("not allowed")
     end
   end
 

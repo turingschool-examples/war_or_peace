@@ -47,6 +47,17 @@ class Game
       turn.player1.deck.cards << turn.player2.deck.cards.pop
     end
   end
+  
+  def two_card_endgame
+    case turn.type
+    when :basic
+      :basic
+    when :war
+      :war
+    else
+      'not allowed'
+    end
+  end
 
   def normal_game_play(counter)
     case turn_type
