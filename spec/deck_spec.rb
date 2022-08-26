@@ -9,6 +9,7 @@ RSpec.describe Deck do
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)  
+      # require 'pry'; binding.pry 
 
     expect(deck.cards).to eq([card1, card2, card3])
 
@@ -76,11 +77,18 @@ RSpec.describe Deck do
     deck = Deck.new(cards) 
 
     expect(deck.cards).to eq([card1, card2, card3])
-    expect(deck.remove_card).to eq(card1)
-    expect(deck.remove_card).to eq(card2)
-    expect(deck.cards).to eq([card3])
+    # expect(deck.remove_card).to eq(card1)
+    deck.remove_card
 
-  #  require 'pry'; binding.pry
+    expect(deck.cards).to eq([card2, card3])
+
+    expect(deck.high_ranking_cards).to eq([card3])
+
+    # require 'pry'; binding.pry 
+
+    expect(deck.percent_high_ranking).to eq(50.0)
+
+   
   end 
 
 end 
