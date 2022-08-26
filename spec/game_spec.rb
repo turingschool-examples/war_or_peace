@@ -35,7 +35,7 @@ RSpec.describe Turn do
     expect(game.turn_count).to eq(1)
   end
 
-  #
+  # Use stub
   xit 'can start a game' do
     card_1 = Card.new(:heart, 'Jack', 11)
     card_2 = Card.new(:heart, 'Ten', 10)
