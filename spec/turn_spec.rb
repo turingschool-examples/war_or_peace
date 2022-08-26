@@ -64,7 +64,7 @@ RSpec.describe Turn do
       expect(winner).to eq(player2)
     end
     it "can recognize the winner of a :mutually_assured_destruction turn" do
-      ard1 = Card.new(:heart, 'Jack', 11)
+      card1 = Card.new(:heart, 'Jack', 11)
       card2 = Card.new(:heart, '10', 10)
       card3 = Card.new(:heart, '9', 9)
       card4 = Card.new(:diamond, 'Jack', 11)
