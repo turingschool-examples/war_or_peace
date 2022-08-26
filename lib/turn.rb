@@ -38,7 +38,6 @@ class Turn
      @player1.deck.cards.shift(3)
      @player2.deck.cards.shift(3)
     elsif type == :war
-      # require "pry"; binding.pry
       @spoils_of_war << @player1.deck.cards.shift(3)
       @spoils_of_war << @player2.deck.cards.shift(3)
       @spoils_of_war.flatten!
@@ -46,5 +45,9 @@ class Turn
       @spoils_of_war << @player1.deck.cards.shift()
       @spoils_of_war << @player2.deck.cards.shift()
     end
+  end
+
+  def award_spoils
+
   end
 end
