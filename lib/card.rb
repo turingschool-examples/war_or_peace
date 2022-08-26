@@ -8,4 +8,5 @@ class Card < Deck
     @value = value
     @rank = rank
   end
+
 end
