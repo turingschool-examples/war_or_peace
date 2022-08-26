@@ -31,7 +31,7 @@ RSpec.describe Deck do
   end
 
   it 'return the percentage of cards that are high ranking' do
-    require 'pry';binding.pry
+    # require 'pry';binding.pry
     expect(deck.percent_high_ranking).to eq 66.67
   end
   # #=> 66.67

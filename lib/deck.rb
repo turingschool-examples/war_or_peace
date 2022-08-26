@@ -13,7 +13,7 @@ attr_reader :cards
   end
 
   def percent_high_ranking
-
+     (high_ranking_cards.count.fdiv(@cards.count)*100).round(2)
   end
 
 end
