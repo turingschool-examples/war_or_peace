@@ -17,7 +17,6 @@ it "can have a deck of multiple cards" do
 
   deck = Deck.new(cards)
 
-  expect(deck.cards.count).to eq(3)
   expect(deck.cards).to eq([card_1, card_2, card_3])
  end
 
@@ -27,9 +26,6 @@ it "can have a deck of multiple cards" do
   card_3 = Card.new(:heart, 'Ace', 14)
   cards = [card_1, card_2, card_3]
   deck = Deck.new(cards)
-
-  deck.rank_of_card_at(0)
-  deck.rank_of_card_at(2)
 
   expect(deck.cards).to eq([card_1, card_2, card_3])
   expect(deck.rank_of_card_at(0)).to eq (12)
@@ -45,9 +41,6 @@ it "can check for high ranking cards" do
   cards = [card_1, card_2, card_3]
   deck = Deck.new(cards)
 
-  deck.high_ranking_cards
-
-  expect(deck.cards.count).to eq(3)
   expect(deck.cards).to eq([card_1, card_2, card_3])
   expect(deck.high_ranking_cards.count).to eq(2)
   expect(deck.high_ranking_cards).to eq([card_1, card_3])
@@ -60,12 +53,7 @@ it "can check for the percentage of high ranking cards" do
   cards = [card_1, card_2, card_3]
   deck = Deck.new(cards)
 
-  deck.high_ranking_cards
-  deck.percentage_high_ranking
-
-  expect(deck.cards.count).to eq(3)
   expect(deck.cards).to eq([card_1, card_2, card_3])
-  expect(deck.high_ranking_cards.count).to eq(2)
   expect(deck.high_ranking_cards).to eq([card_1, card_3])
   expect(deck.percentage_high_ranking).to eq(67.0)
 end
@@ -78,22 +66,13 @@ it "can add a card(s) to the deck" do
   cards = [card_1, card_2, card_3]
   deck = Deck.new(cards)
 
-  deck.high_ranking_cards
-  deck.percentage_high_ranking
-
-  expect(deck.cards.count).to eq(3)
   expect(deck.cards).to eq([card_1, card_2, card_3])
-  expect(deck.high_ranking_cards.count).to eq(2)
   expect(deck.high_ranking_cards).to eq([card_1, card_3])
   expect(deck.percentage_high_ranking).to eq(67.0)
 
   deck.add_card(card_4)
-  deck.high_ranking_cards
-  deck.percentage_high_ranking
-
 
   expect(deck.cards).to eq([card_1, card_2, card_3, card_4])
-  expect(deck.high_ranking_cards.count).to eq(2)
   expect(deck.high_ranking_cards).to eq([card_1, card_3])
   expect(deck.percentage_high_ranking).to eq(50.0)
  end
@@ -106,27 +85,17 @@ it "can remove a card(s) to the deck" do
   cards = [card_1, card_2, card_3]
   deck = Deck.new(cards)
 
-  deck.high_ranking_cards
-  deck.percentage_high_ranking
-
-  expect(deck.cards.count).to eq(3)
   expect(deck.cards).to eq([card_1, card_2, card_3])
-  expect(deck.high_ranking_cards.count).to eq(2)
   expect(deck.high_ranking_cards).to eq([card_1, card_3])
   expect(deck.percentage_high_ranking).to eq(67.0)
 
   deck.add_card(card_4)
-  deck.high_ranking_cards
-  deck.percentage_high_ranking
 
   expect(deck.cards).to eq([card_1, card_2, card_3, card_4])
-  expect(deck.high_ranking_cards.count).to eq(2)
   expect(deck.high_ranking_cards).to eq([card_1, card_3])
   expect(deck.percentage_high_ranking).to eq(50.0)
 
   deck.remove_card
-  deck.high_ranking_cards
-  deck.percentage_high_ranking
 
   expect(deck.cards).to eq([card_2, card_3, card_4])
   expect(deck.high_ranking_cards.count).to eq(1)
