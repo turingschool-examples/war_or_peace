@@ -11,4 +11,10 @@ RSpec.describe Player do
     @deck = Deck.new([@card1, @card2, @card3])
 
   end
-  
+
+  describe"player creation" do
+ it "exists" do
+   player = Player.new(Clarissa, deck)
+
+    end
+  end
