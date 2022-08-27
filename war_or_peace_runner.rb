@@ -1,10 +1,8 @@
-require './lib/card.rb'
-require './lib/deck.rb'
-require './lib/player.rb'
-require './lib/turn.rb'
-require './lib/game.rb'
-
-
+require_relative './lib/card.rb'
+require_relative './lib/deck.rb'
+require_relative './lib/player.rb'
+require_relative './lib/turn.rb'
+require_relative './lib/game.rb'
 
 card_1 = Card.new(:spade, "2", 2)
 card_2 = Card.new(:club, "2", 2)
@@ -82,6 +80,7 @@ player_2 = Player.new("Aurora", deck_2)
 game = Game.new(player_1, player_2)
 
 game.start
+
 
 
 
