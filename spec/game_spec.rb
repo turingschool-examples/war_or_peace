@@ -2,7 +2,6 @@ require "rspec"
 require "./lib/game"
 
 RSpec.describe Game do 
-
   describe "#initialize" do 
     it "is a Game" do 
       card1 = Card.new(:heart, "Jack", 11)
