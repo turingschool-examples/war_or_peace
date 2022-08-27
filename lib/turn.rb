@@ -92,3 +92,4 @@ class Turn
     @spoils_of_war_arr = []
   end
 end
+
