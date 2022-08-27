@@ -52,12 +52,16 @@ RSpec.describe Deck do
     turn.pile_cards
 #  require 'pry'; binding.pry 
     expect(turn.spoils_of_war).to eq([card1, card3])
+    # require 'pry'; binding.pry 
+    turn.award_spoils
 
     # expect(turn.player1.deck.cards).to eq([card2, card5, card8])
     # expect(turn.player2.deck.cards).to eq([card4, card6, card7])
 
     expect(turn.player1.deck).to eq(deck1)
     expect(turn.player2.deck).to eq(deck2)
+
+
 
 
   end 

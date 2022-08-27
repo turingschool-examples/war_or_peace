@@ -38,7 +38,17 @@ class Turn
     end 
 
   end 
-  def award_spoils
+  def award_spoils()
+    # require 'pry'; binding.pry 
+    if winner == player1
+      @player1.deck.cards << spoils_of_war
+      @player1.deck 
+    elsif winner == player2
+      @player2.deck.cards << spoils_of_war
+      @player2.deck 
+    end 
+
+    
 
   end 
 
