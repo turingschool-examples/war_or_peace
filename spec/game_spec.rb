@@ -6,7 +6,7 @@ require 'turn.rb'
 require 'game.rb'
 
 RSpec.describe Game do
-  xit "exists" do
+  it "exists" do
     card_1 = Card.new(:diamond, 'Queen', 12)
     card_2 = Card.new(:diamond, '6',6)
     deck_1 = Deck.new(card_1)
@@ -14,7 +14,7 @@ RSpec.describe Game do
     player_1 = Player.new('name_1', deck_1)
     player_2 = Player.new('name_2', deck_2)
     turn = Turn.new(player_1, player_2)
-    game = Game.new(turn)
+    game = Game.new(player_1, player_2)
 
     expect(game).to be_an_instance_of(Game)
   end
@@ -38,18 +38,11 @@ RSpec.describe Game do
     player_1 = Player.new("Megan", deck_1)
     player_2 = Player.new("Aurora", deck_2)
 
-    turn = Turn.new(player_1, player_2)
-    game = Game.new(turn)
+    game = Game.new(player_1, player_2)
 
     game.start
     game.play
 
-
-
-
   end
-
-
-
 
 end
