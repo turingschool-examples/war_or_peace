@@ -68,7 +68,6 @@ it 'adds card to the bottom of the deck' do
   card2 = Card.new(:spade, '3', 3)
   card3 = Card.new(:heart, 'Ace', 14)
   cards = [card1, card2, card3]
-
   deck = Deck.new(cards)
   card4 = Card.new(:club, '5', 5)
   deck.add_card(card4)
@@ -76,6 +75,7 @@ it 'adds card to the bottom of the deck' do
 
   end
  end
+ 
 end
 # pry(main)> deck.remove_card
 # #=> #<Card:0x007fbfd18490e8 @rank=12, @suit=:diamond, @value="Queen">

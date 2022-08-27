@@ -12,12 +12,12 @@ RSpec.describe Player do
     cards = [card1, card2, card3]
     deck = Deck.new([card1, card2, card3])
     player = Player.new("Clarissa", deck)
-    expect(player1).to be_an_instance_of(Player)
+    expect(player).to be_an_instance_of(Player)
     expect(deck.cards).to eq([card1, card2, card3])
     end
-
+  end
 describe"player has lost" do
-  it "expect it to be false by default"do
+  it "expect player to have lost when out of cards"do
   card1 = Card.new(:diamond, 'Queen', 12)
   card2 = Card.new(:spade, '3', 3)
   card3 = Card.new(:heart, 'Ace', 14)
@@ -26,11 +26,14 @@ describe"player has lost" do
   player = Player.new("Clarissa", deck)
   expect(player).to be_an_instance_of(Player)
   expect(deck.cards).to eq([card1, card2, card3])
-  require "pry";binding.pry
-  expect(player.has_lost?).to eq false
-
-end
-end
-
+  expect(player.has_lost?).to eq(false)
+  player.deck.remove_card
+  expect(player.has_lost?).to eq(false)
+  player.deck.remove_card
+  expect(player.has_lost?).to eq(false)
+  player.deck.remove_card
+  expect(player.has_lost?).to eq(true)
+require "pry";binding.pry
+    end
    end
   end

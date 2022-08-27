@@ -1,6 +1,6 @@
 class Player
    #attr_reader allows accees to name and deck
-  attr_reader :name #attr_reader = methods for class
+  attr_reader :name, #attr_reader = methods for class
               :deck
 
     def initialize(name, deck) #parameters
@@ -9,7 +9,11 @@ class Player
     end
 
      def has_lost?
-          false
-  end
+          if @deck.cards.length > 0
+            false
+          else
+            true
 
+      end
+   end
 end
