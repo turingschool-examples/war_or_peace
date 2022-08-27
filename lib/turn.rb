@@ -32,6 +32,25 @@ class Turn
         end
       end
     end
+
+    def pile_cards
+     if type == :basic
+       spoils_of_war << player1.deck.remove_card
+       spoils_of_war << player2.deck.remove_card
+       end
+     end
+
+     def award_spoils(winner)
+       if type == :basic
+       if @winner == player1
+        player1.deck.add_card << spoils_of_war
+      else
+        @winner == player2
+        player2.deck.add_card << spoils_of_war
+       end
+     end
+   end
+
 end
        #  def war
        #    if turn.type == war
