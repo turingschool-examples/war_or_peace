@@ -252,7 +252,7 @@ RSpec.describe Turn do
       expect(turn.spoils_of_war).to eq([card1, card3])
     end 
 
-    xit 'each player sends three cards to spoils pile' do 
+    it 'each player sends three cards to spoils pile' do 
       card1 = Card.new(:heart, 'Jack', 11)
       card2 = Card.new(:heart, '10', 10) 
       card3 = Card.new(:heart, '9', 9) 
