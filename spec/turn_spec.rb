@@ -82,10 +82,10 @@ RSpec.describe Turn do
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
-require "pry";binding.pry
-    expect(turn.winner).to eq("Megan")
 
-
+    expect(turn.winner).to eq(player1)
     end
+
+    
   end
 end
