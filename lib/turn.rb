@@ -47,9 +47,8 @@ class Turn
 
   def pile_cards
     if type == :basic 
-
       @spoils_of_war << @player1.deck.cards.shift
-         require 'pry';binding.pry
+        #  require 'pry';binding.pry
       @spoils_of_war << @player2.deck.cards.shift
     elsif type == :war 
       3.times do 
@@ -64,8 +63,9 @@ class Turn
     end 
   end
 
-  def award_spoils
-    # require 'pry';binding.pry
-    winner.deck.cards.concat(@spoils_of_war)
+  def award_spoils(winner)
+    if winner != "No Winner"
+      winner.deck.cards.concat(@spoils_of_war)
+    end
   end 
 end
