@@ -33,7 +33,7 @@ describe"player has lost" do
   expect(player.has_lost?).to eq(false)
   player.deck.remove_card
   expect(player.has_lost?).to eq(true)
-require "pry";binding.pry
+
     end
    end
   end
