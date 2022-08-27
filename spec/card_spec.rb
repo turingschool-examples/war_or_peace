@@ -1,18 +1,20 @@
 require 'rspec'
+require 'pry'
 require './lib/card'
 
 RSpec.describe Card do
-  it "exists" do
-    card = Card.new(:diamond, 'Queen', 12)
-
-    expect(card).to be_an_instance_of(Card)
+  before do
+    @card = Card.new(:foo, 'Bar', 9001)
   end
 
-  it "has readable attributes" do
-    card = Card.new(:diamond, 'Queen', 12)
-
-    expect(card.suit).to eq(:diamond)
-    expect(card.value).to eq('Queen')
-    expect(card.rank).to eq(12)
+  it 'exists' do
+    expect(@card).to be_an_instance_of(Card)
   end
+
+  it 'has readable attributes' do
+    expect(@card.suit).to eq(:foo)
+    expect(@card.value).to eq('Bar')
+    expect(@card.rank).to eq(9001)
+  end
+
 end
