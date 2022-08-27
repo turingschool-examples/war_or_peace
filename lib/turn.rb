@@ -24,7 +24,6 @@ class Turn
   end
 
   def winner 
-    # require 'pry';binding.pry
     if type == :basic
       if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
         @player1
