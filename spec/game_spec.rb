@@ -68,11 +68,28 @@ RSpec.describe Game do
     expect(game).to be_an Game
   end
   
-  it 'has a @create_full_deck instance variable' do
-    expect(game.create_full_deck).to be_truthy
+  it 'has a @full_deck instance variable' do
+    expect(game.full_deck).to be_truthy
   end
   
-  context '@create_full_deck' do
+  context '#create_full_deck' do
+    it '#exists' do
+      expect(game.create_full_deck).to be_truthy
+    end
+    
+    it 'populates game@full_deck with 52 elements' do
+      values = %w[2 3 4 5 6 7 8 9 10 Jack Queen King Ace]
+      ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+      expected = values.zip(ranks)
+      game.create_full_deck
+      expect(game.full_deck.length).to eq(52)
+    end
+    
+    it 'populates game@full_deck with 52 Cards' do
+      game.create_full_deck
+      expect(game.full_deck[0]).to be_a Card
+      expect(game.full_deck[51]).to be_a Card
+    end
   end
 
   it 'has attributes' do
@@ -177,6 +194,13 @@ RSpec.describe Game do
       expect(one_card_endgame_game.turn.player1.deck.cards.length).to eq(2)
       expect(one_card_endgame_game.turn.player2.deck.cards.length).to eq(3)
       expect(one_card_endgame_game.game_over?).to be false
+    end
+  end
+  
+  context '#start' do
+    it 'populates @full_deck with cards' do
+      game.start(player1, player2)
+      expect(game.full_deck).not_to eq([])
     end
   end
 end

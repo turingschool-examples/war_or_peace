@@ -1,28 +1,13 @@
+# not required
 require './lib/card'
 require './lib/deck'
 require './lib/turn'
 require './lib/player'
-require './lib/game'
 require 'pry'
+# required
+require './lib/game'
 
-def create_full_deck
-  values = %w[2 3 4 5 6 7 8 9 10 Jack Queen King Ace]
-  ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-  values_and_ranks = values.zip(ranks)
-  full_deck = []
-  values_and_ranks.map do |x|
-    full_deck << [x, :diamond].flatten
-    full_deck << [x, :heart].flatten
-    full_deck << [x, :spade].flatten
-    full_deck << [x, :club].flatten
-  end
-
-  full_deck = full_deck.map do |x|
-    Card.new(x[2], x[0], x[1])
-  end
-end
-
-all_cards = create_full_deck
+# all_cards = game.create_full_deck
 all_cards.shuffle!
 
 deck1 = Deck.new(all_cards.slice!(0, 26))

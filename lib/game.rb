@@ -1,24 +1,47 @@
+require './lib/card'
+require './lib/deck'
+require './lib/turn'
+require './lib/player'
+require 'pry'
+
 class Game
-  attr_accessor :turn, :turn_type, :hand_winner, :create_full_deck
+  attr_accessor :turn, :turn_type, :hand_winner, :full_deck
 
   def initialize(turn)
     @turn = turn
     @turn_type = @turn.type
     @hand_winner = @turn.winner
-    @create_full_deck = []
+    @full_deck = []
   end
 
   def start(player1, player2)
-    p ''
-    p 'Welcome to War! (or Peace) This game will be played with 52 cards.'
-    p "The players today are #{player1.name} and #{player2.name}."
-    p "Press 'RETURN' to start the game"
-    p '------------------------------------------------------------------'
+    create_full_deck
+    puts ''
+    puts 'Welcome to War! (or Peace) This game will be played with 52 cards.'
+    puts "The players today are #{player1.name} and #{player2.name}."
+    puts "Press 'RETURN' to start the game"
+    puts '------------------------------------------------------------------'
     gets
-    p ''
-    p 'here we go!'
-    p ''
-    p ''
+    puts ''
+    puts 'here we go!'
+    puts ''
+    puts ''
+  end
+
+  def create_full_deck
+    values = %w[2 3 4 5 6 7 8 9 10 Jack Queen King Ace]
+    ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    values_and_ranks = values.zip(ranks)
+    values_and_ranks.map do |x|
+      full_deck << [x, :diamond].flatten
+      full_deck << [x, :heart].flatten
+      full_deck << [x, :spade].flatten
+      full_deck << [x, :club].flatten
+    end
+
+    @full_deck = full_deck.map do |x|
+      Card.new(x[2], x[0], x[1])
+    end
   end
 
   def game_over?
@@ -48,18 +71,18 @@ class Game
       turn.player1.deck.cards << turn.player2.deck.cards.pop
     end
   end
-  
+
   def two_card_endgame(counter)
     case turn.type
     when :basic
       normal_game_play(counter)
     when :war
       if hand_winner == turn.player1
-      turn.player1.deck.cards.concat(turn.player2.deck.cards.pop(2))
+        turn.player1.deck.cards.concat(turn.player2.deck.cards.pop(2))
       elsif hand_winner == turn.player2
         turn.player2.deck.cards.concat(turn.player1.deck.cards.pop(2))
       end
-      
+
     else
       'not allowed'
     end
