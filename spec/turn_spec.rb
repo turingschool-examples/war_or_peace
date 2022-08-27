@@ -313,7 +313,7 @@ RSpec.describe Turn do
     expect(player_2.deck.cards).to eq([card_4, card_3, card_6, card_7])
 
     expect(turn.type).to eq(:mutually_assured_destruction)
-    expect(turn.winner).to eq("No Winner")
+    expect(turn.winner).to eq(nil)
 
     turn.pile_cards
     expect(turn.spoils_of_war).to be_empty
