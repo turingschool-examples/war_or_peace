@@ -155,8 +155,8 @@ RSpec.describe Turn do
         winner = turn.winner
         turn.pile_cards
         turn.award_spoils_of_war(winner)
-        expect(player1.deck.cards).to eq([card2, card5, card8, card1, card3])
-        expect(player2.deck.cards).to eq([card4, card6, card7])
+        expect((player1.deck.cards - [card2, card5, card8, card1, card3]).empty?).to eq(true)
+        expect((player2.deck.cards - [card4, card6, card7]).empty?).to eq(true)
         expect(turn.spoils_of_war).to eq([])
     end
 
@@ -201,8 +201,8 @@ RSpec.describe Turn do
         winner = turn.winner
         turn.pile_cards
         turn.award_spoils_of_war(winner)
-        expect(player1.deck.cards).to eq([card8])
-        expect(player2.deck.cards).to eq([card7, card1, card4, card2, card3, card5, card6])
+        expect((player1.deck.cards - [card8]).empty?).to eq(true)
+        expect((player2.deck.cards - [card7, card1, card4, card2, card3, card5, card6]).empty?).to eq(true)
         expect(turn.spoils_of_war).to eq([])
     end
 

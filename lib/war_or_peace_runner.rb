@@ -62,8 +62,8 @@ full_deck.shuffle!
 deck1 = Deck.new([])
 deck2 = Deck.new([])
 
-player1 = Player.new("Sage", deck1)
-player2 = Player.new("Bella", deck2)
+player1 = Player.new("Megan", deck1)
+player2 = Player.new("Aurora", deck2)
 
 26.times do
     player1.deck.cards << full_deck.shift
@@ -72,5 +72,31 @@ end
 26.times do
     player2.deck.cards << full_deck.shift
 end
+
+start_game1 = Start.new
+
+start_game1.welcome_message
+
+x = 0
+until x == 10000
+    x += 1
+    turn = Turn.new(player1, player2)
+    winner = turn.winner
+    turn.pile_cards
+    if player1.deck.cards.length == 0 || player2.deck.cards.length == 0
+        p "*~*~*~* #{winner.name} has won the game! *~*~*~*"
+    elsif turn.type == :basic
+        p "Turn #{x.to_s}: #{winner.name} won #{turn.spoils_of_war.length} cards"
+    elsif turn.type == :war
+        p "Turn #{x.to_s}: WAR - #{winner.name} won #{turn.spoils_of_war.length} cards"
+    else
+        p "Turn #{x.to_s}: *mutually assured destruction* 6 cards removed from play"
+    end   
+    turn.award_spoils_of_war(winner)
+    
+end
+
+
+
 
 

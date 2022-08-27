@@ -52,7 +52,7 @@ class Turn
     end
 
     def award_spoils_of_war(winner)
-        (winner.deck.cards << spoils_of_war).flatten!
+        (winner.deck.cards << spoils_of_war.shuffle).flatten!
         @spoils_of_war = []
     end
 
