@@ -11,7 +11,7 @@ RSpec.describe Turn do
     @card3 = Card.new(:heart, '9', 9)
     @card4 = Card.new(:diamond, 'Jack', 11)
     @card5 = Card.new(:heart, '8', 8)
-    @card5 = Card.new(:heart, '8', 8)
+    @card6 = Card.new(:diamond, 'Queen', 12)
     @card7 = Card.new(:heart, '3', 3)
     @card8 = Card.new(:diamond, '2', 2)
     @cards = [@card1, @card2, @card5, @card8, @card3, @card4, @card6, @card7]
@@ -39,11 +39,26 @@ RSpec.describe Turn do
       expect(@turn.winner).to eq(@player1)
       expect(@turn.winner).not_to eq(@player2)
     end
-    # it "returns the winner of a war" do
+    it "returns the winner of a war" do
+      deck1 = Deck.new([@card1, @card2, @card5, @card8])
+      deck2 = Deck.new([@card4, @card3, @card6, @card7])
+      player1 = Player.new("Megan", deck1)
+      player2 = Player.new("Aurora", deck2)
+      turn = Turn.new(player1, player2)
 
-    # end
-    # it "returns the winner of a mad" do
+      expect(turn.type).to eq(:war)
+      expect(turn.winner).not_to eq(player1)
+      expect(turn.winner).to eq(player2)
+      # expect(turn.spoils_of_war).to eq([])
 
+    end
+    # xit "returns the winner of a mad" do
+    #   deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    #   deck2 = Deck.new([@card4, @card3, @card6, @card7])
+    #   player1 = Player.new("Megan", deck1)
+    #   player2 = Player.new("Aurora", deck2)
+    #
+        # expect(turn.type).to eq(:mad)
     # end
   end
 
@@ -54,14 +69,17 @@ RSpec.describe Turn do
     end
 
     it "can return piles of card for war turn" do
+      turn.pile_cards
+      expect(turn.spoils_of_war).to eq([@card1, @card3])
+      end
     end
-
-    it "can return piles of card for mad turn" do
-    end
-
+  #
+  #   it "can return piles of card for mad turn" do
+  #   end
+  #
   end
   describe "#award_spoils" do
-    it "award the spoils to a basic turn" do
+    xit "award the spoils to a basic turn" do
       winner = @turn.winner
       @turn.pile_cards
       @turn.award_spoils(winner)
@@ -69,8 +87,12 @@ RSpec.describe Turn do
       expect(@player2.deck.cards.count).to eq(3)
     end
     it "award the spoils to a war turn" do
+      winner = turn.winner
+      turn.award_spoils(winner)
+      expect(player1.deck.cards.count).to eq(5)
+      expect(player2.deck.cards.count).to eq(3)
     end
-    it "award the spoils to a mad turn" do
-    end
+    # it "award the spoils to a mad turn" do
+    # end
   end
 end
