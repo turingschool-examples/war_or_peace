@@ -1,5 +1,6 @@
 require 'deck.rb'
 require 'card.rb'
+require 'pry'
 
 class Player
   attr_reader :name , :deck
