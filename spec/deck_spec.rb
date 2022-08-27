@@ -32,14 +32,34 @@ RSpec.describe Deck do
       expect(deck.high_cards).to eq([@card1, @card3])
     end
     it '4. Gives percentage of high cards in deck' do
+      cards = [@card1, @card2, @card3]
+      deck = Deck.new(cards)
+      deck.high_ranking_cards
+      
+      expect(deck.percent_high_ranking).to eq(66.67)      
     end
-    # it '4. Returns percentage of high ranking cards' do
+    it '5. Removes top card from deck' do
+      cards = [@card1, @card2, @card3]
+      deck = Deck.new(cards)
+
+      # binding.pry
+
+      deck.remove_card
+      deck.high_ranking_cards
+
+      
+      expect(deck.cards).to eq([@card2, @card3])
+      expect(deck.high_cards).to eq([@card3])
+    end
+    # it '6. Adds a new card to the deck' do
+      
+    #   expect(deck.cards).to eq()
     # end
   end
 
   
 end
 
-# card = Card.new(:diamond, 'Queen', 12)
+# card1 = Card.new(:diamond, 'Queen', 12)
 # card2 = Card.new(:spade, '3', 3) 
 # card3 = Card.new(:heart, 'Ace', 14)
