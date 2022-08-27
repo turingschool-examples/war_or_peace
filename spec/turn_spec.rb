@@ -25,7 +25,7 @@ RSpec.describe Turn do
    player2 = Player.new("Aurora", deck2)
 
    turn = Turn.new(player1, player2)
-
+binding.pry
    expect(turn).to be_an_instance_of(Turn)
 
  end
