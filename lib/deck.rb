@@ -2,10 +2,11 @@ require './lib/card'
 require 'pry'
 
 class Deck
-  attr_reader :cards
+  attr_reader :cards, :high_rank_cards
 
   def initialize(cards)
     @cards = cards
+    @high_rank_cards = []
   end
 
   def rank_of_card_at(index)
@@ -17,16 +18,20 @@ class Deck
 
 
   def high_ranking_cards
-  high_rank_cards = []  
     @cards.each do |card|
       if card.rank > 10
-        then high_rank_cards << card
+        then @high_rank_cards << card
       end
     end
-    high_rank_cards
+    @high_rank_cards
   end
 
-  # def percent_high_ranking
-  #   *100
-  # end
+  def percent_high_ranking
+    @cards.each do |card|
+      if card.rank > 10
+        then @high_rank_cards << card
+      end
+    end
+  (@high_rank_cards.length.to_f / @cards.length.to_f * 100).round(2)
+  end
 end
