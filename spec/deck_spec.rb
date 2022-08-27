@@ -60,7 +60,8 @@ describe 'deck' do
 
           cards = [card1, card2, card3]
           deck = Deck.new(cards)
-          expect(deck.remove_card(card1).length).to eq 2
+          deck.remove_card(card1)
+          expect(cards.length).to eq 2
         end
     end
   end
