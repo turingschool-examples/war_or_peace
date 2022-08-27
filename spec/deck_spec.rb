@@ -75,8 +75,10 @@ it 'adds card to the bottom of the deck' do
 
   end
  end
- 
+
 end
+binding.pry
+
 # pry(main)> deck.remove_card
 # #=> #<Card:0x007fbfd18490e8 @rank=12, @suit=:diamond, @value="Queen">
 #

@@ -32,8 +32,5 @@ class Deck
     def add_card(card)
      @cards << card
     end
-    
+  
 end
-#   end
-#  end
-# end
