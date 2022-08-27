@@ -113,7 +113,7 @@ class Game
                 current_turn = turn.type
                 winner = turn.winner
                     if current_turn == :loss
-                        p "*~*~*~* The #{winner.name} has won the game by default! *~*~*~*"
+                        p "*~*~*~* #{winner.name} has won the game by default! *~*~*~*"
                         exit
                     elsif current_turn == :mutually_assured_destruction
                         turn.pile_cards
