@@ -48,7 +48,7 @@ class Turn
         elsif type == :war
 
             if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
-             @player1
+             @player1.player_name
             else
              @player2
             end
@@ -98,14 +98,15 @@ class Turn
 
     def award_spoils
 
+        i = @spoils_of_war.length
 
-
+        i.times do
+            winner.deck.cards << @spoils_of_war.shift
+        end
 
     end
 
 end
-
-# binding.pry
 
 # type: a turn is :basic, :war, or :mutually_assured_destruction.
 # A :basic turn is one in which the rank_of_card_at(0) from the players’ decks are not the same rank.

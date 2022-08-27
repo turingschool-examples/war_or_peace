@@ -3,6 +3,8 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require 'pry'
+
 
 RSpec.describe Turn do
 
@@ -328,7 +330,7 @@ RSpec.describe Turn do
 
     end
 
-    xit "awards cards in the spoils of war to winner of a turn" do
+    it "awards cards in the spoils of war to winner of a turn" do
 
 
         card1 = Card.new(:heart, 'Jack', 11)
@@ -359,12 +361,15 @@ RSpec.describe Turn do
 
         turn.award_spoils
 
-        expect(turn.player2.deck.card).to include(card1, card3, card4, card6, card7)
+        expect(turn.player2.deck.cards).to include(card1, card3, card4, card6, card7)
+
         expect(turn.spoils_of_war).to eq([])
 
     end
 
 
-
-
 end
+
+
+#binding.pry
+
