@@ -13,7 +13,7 @@ class Game
   end
 
   def run
-    while @turn_count != 1_000 do
+    while @turn_count != 1_000_000 do
       @current_turn.type
       @current_turn.winner
       @current_turn.pile_cards
