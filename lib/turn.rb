@@ -5,7 +5,8 @@ class Turn
               
   attr_accessor :spoils_of_war, 
                 :type, 
-                :pile_cards
+                :pile_cards,
+                :award_spoils
 
   def initialize(player1, player2)
     @player1 = player1
@@ -46,7 +47,9 @@ class Turn
 
   def pile_cards
     if type == :basic 
+
       @spoils_of_war << @player1.deck.cards.shift
+         require 'pry';binding.pry
       @spoils_of_war << @player2.deck.cards.shift
     elsif type == :war 
       3.times do 
@@ -60,4 +63,9 @@ class Turn
       end 
     end 
   end
+
+  def award_spoils
+    # require 'pry';binding.pry
+    winner.deck.cards.concat(@spoils_of_war)
+  end 
 end
