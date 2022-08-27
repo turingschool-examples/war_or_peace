@@ -1,8 +1,3 @@
-require 'card.rb'
-require 'deck.rb'
-require 'player.rb'
-require 'turn.rb'
-require 'game.rb'
 require 'pry'
 
 class Game

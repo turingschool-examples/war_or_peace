@@ -1,5 +1,5 @@
-require 'deck.rb'
-require 'card.rb'
+# require 'deck.rb'
+# require 'card.rb'
 require 'pry'
 
 class Player
