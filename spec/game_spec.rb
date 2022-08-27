@@ -7,13 +7,6 @@ require './lib/game'
 
 RSpec.describe Game do
   describe "initialize game" do
-    # before do
-    #   $stdin = StringIO.new('GO')
-    # end
-    # 
-    # after do
-    #   $stdin = STDIN
-    # end
     
     it "is an instance of its class" do
       card1 = Card.new(:spade, 'Ace', 14)
@@ -42,6 +35,18 @@ RSpec.describe Game do
     
     it "#start" do
       card1 = Card.new(:spade, 'Ace', 14)
+      card4 = Card.new(:club, '10', 10)
+      deck1 = Deck.new(card1)
+      deck2 = Deck.new(card4)
+      player1 = Player.new('John', deck1)
+      player2 = Player.new('Paul', deck2)
+      game = Game.new(player1, player2)  
+      
+      display.stub(:gets).and_return("GO\n")
+    end
+    
+    it "#play" do
+      card1 = Card.new(:spade, 'Ace', 14)
       card2 = Card.new(:heart, '3', 3)
       card3 = Card.new(:diamond, '8', 8)
       card4 = Card.new(:club, '10', 10)
@@ -55,9 +60,8 @@ RSpec.describe Game do
       player2 = Player.new('Paul', deck2)
       game = Game.new(player1, player2)
       
-      game.start
+      game.play
       
-      # allow(Game).to receive(:user_response).and_return('GO')
       expect(player2.has_lost?).to eq(true)
     end
     
@@ -75,7 +79,7 @@ RSpec.describe Game do
       player2 = Player.new('Paul', deck2)
       game = Game.new(player1, player2)
       
-      game.start
+      game.play
       
       expect(player2.has_lost?).to eq(true)
     end
