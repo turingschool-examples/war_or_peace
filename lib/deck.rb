@@ -23,5 +23,4 @@ attr_reader :cards
   def add_card(new_card_to_deck)
     @cards.push(new_card_to_deck)
   end
-
 end
