@@ -41,12 +41,18 @@ RSpec.describe Deck do
     player1 = Player.new('Megan', deck1)
     player2 = Player.new('Aurora', deck2)
     turn = Turn.new(player1, player2) 
-    spoils_of_war = []
-    both_players= [player1, player2]
+    # both_players= [player1, player2]
     # require 'pry'; binding.pry 
     expect(turn.type).to eq(:basic)
   # require 'pry'; binding.pry 
-    # expect(turn.spoils_of_war).to eq([])
+    expect(turn.spoils_of_war).to eq([])
+  
+    # require 'pry'; binding.pry 
+    expect(turn.winner).to eq(player1)
+    turn.pile_cards
+#  require 'pry'; binding.pry 
+    expect(turn.spoils_of_war).to eq([card1, card3])
+
   end 
 
 
