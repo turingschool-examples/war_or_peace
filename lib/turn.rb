@@ -36,4 +36,35 @@ class Turn
       "No Winner"
     end
   end
-end
+
+  def pile_cards
+      if type == :basic
+      #each player will send one card (the top card) to the spoils pile
+      # spoils_of_war = []
+      spoils_of_war << player1.deck.remove_card
+      spoils_of_war << player2.deck.remove_card
+      # spoils_of_war
+      end
+
+      # if type == :war
+      #   spoils_of_war << 3.times do
+      #       player1.deck.remove_card
+      #     end
+      #   spoils_of_war << 3.times do
+      #       player2.deck.remove_card
+      #     end
+      #   end
+
+    # elsif type == :war
+    #   #each player will send 3 cards (the top 3 cards) to the spoils pile
+    #
+    # elsif type == :mutually_assured_destruction
+    #   #each player will remove three cards from play (the top three cards in their deck).
+    #   #These cards are NOT send to the spoils pile, they are simply removed from each players deck
+  end
+
+  def award_spoils
+    @winner.deck.cards.concat(spoils_of_war)
+    #research concat
+    end
+  end
