@@ -1,6 +1,6 @@
-class Game 
+# class Game 
   
-  def initialize
+#   def initialize
     
-  end
-end
+#   end
+# end
