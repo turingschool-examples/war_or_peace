@@ -35,8 +35,8 @@ class Turn
 
   def pile_cards
     if type == :mutually_assured_destruction
-     @player1.deck.cards.shift(3)
-     @player2.deck.cards.shift(3)
+      @player1.deck.cards.shift(3)
+      @player2.deck.cards.shift(3)
     elsif type == :war
       @spoils_of_war << @player1.deck.cards.shift(3)
       @spoils_of_war << @player2.deck.cards.shift(3)
@@ -48,6 +48,9 @@ class Turn
   end
 
   def award_spoils
-
+    a = @spoils_of_war.length
+    a.times do
+      winner.deck.cards << @spoils_of_war.shift
+    end
   end
 end
