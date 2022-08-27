@@ -3,7 +3,8 @@ class Turn
               :player2
               
   attr_accessor :spoils_of_war, 
-                :type
+                :type, 
+                :pile_cards
 
   def initialize(player1, player2)
     @player1 = player1
@@ -38,6 +39,14 @@ class Turn
       end
     elsif type == :mutually_assured_destruction
       "No Winner"
+    end 
+  end
+
+
+  def pile_cards
+    if type == :basic 
+      @spoils_of_war << @player1.deck.cards.shift
+      @spoils_of_war << @player2.deck.cards.shift
     end 
   end
 end
