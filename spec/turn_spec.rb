@@ -110,6 +110,7 @@ RSpec.describe Turn do
         player2 = Player.new("Aurora", deck2)
 
         turn = Turn.new(player1, player2)
+        turn.type           
 
         expect(turn.winner).to be(player1)
     end
@@ -131,6 +132,7 @@ RSpec.describe Turn do
         player2 = Player.new("Aurora", deck2)
 
         turn = Turn.new(player1, player2)
+        turn.type 
         turn.pile_cards
         expect(turn.spoils_of_war).to eq([card1, card3])
     end
@@ -152,6 +154,7 @@ RSpec.describe Turn do
         player2 = Player.new("Aurora", deck2)
 
         turn = Turn.new(player1, player2)
+        turn.type 
         winner = turn.winner
         turn.pile_cards
         turn.award_spoils_of_war(winner)
@@ -198,6 +201,7 @@ RSpec.describe Turn do
         player2 = Player.new("Aurora", deck2)
         
         turn = Turn.new(player1, player2)
+        turn.type
         winner = turn.winner
         turn.pile_cards
         turn.award_spoils_of_war(winner)
@@ -244,6 +248,7 @@ RSpec.describe Turn do
         player2 = Player.new("Aurora", deck2)
 
         turn = Turn.new(player1, player2)
+        turn.type
         winner = turn.winner
         turn.pile_cards
         expect(turn.spoils_of_war).to eq([])

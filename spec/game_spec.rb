@@ -3,12 +3,11 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
-require './lib/start'
+require './lib/game'
 
-RSpec.describe Start do
+RSpec.describe Game do
     it 'it exists' do
-        start = Start.new
-
-        expect(start).to be_an_instance_of(Start)
+        game = Game.new
+        expect(game).to be_an_instance_of(Game)
     end
 end
