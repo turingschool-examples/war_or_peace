@@ -1,10 +1,11 @@
 class Game
-  attr_accessor :turn, :turn_type, :hand_winner
+  attr_accessor :turn, :turn_type, :hand_winner, :create_full_deck
 
   def initialize(turn)
     @turn = turn
     @turn_type = @turn.type
     @hand_winner = @turn.winner
+    @create_full_deck = []
   end
 
   def start(player1, player2)
@@ -24,9 +25,9 @@ class Game
     @turn.player1.has_lost? || @turn.player2.has_lost?
   end
 
-  def endgame?
-    turn.player1.deck.cards.length < 3 || turn.player2.deck.cards.length < 3
-  end
+  # def endgame?
+  #   turn.player1.deck.cards.length < 3 || turn.player2.deck.cards.length < 3
+  # end
 
   # def three_card_endgame?
   #   turn.player1.deck.cards.length == 3 || turn.player2.deck.cards.length == 3

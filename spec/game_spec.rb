@@ -67,6 +67,13 @@ RSpec.describe Game do
   it 'exists' do
     expect(game).to be_an Game
   end
+  
+  it 'has a @create_full_deck instance variable' do
+    expect(game.create_full_deck).to be_truthy
+  end
+  
+  context '@create_full_deck' do
+  end
 
   it 'has attributes' do
     expect(game.turn_type).to eq(:basic)
@@ -74,7 +81,7 @@ RSpec.describe Game do
   end
 
   describe '#endgame?' do
-    it 'determines if a player has less than 3 cards' do
+    xit 'determines if a player has less than 3 cards' do
       expect(game.endgame?).to be false
       turn.player1.deck.cards = [card1]
       expect(game.endgame?).to be true
