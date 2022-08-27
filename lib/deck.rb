@@ -1,3 +1,4 @@
+require 'pry'
 class Deck
 attr_reader :cards, :high_ranking_cards, :rank
 
