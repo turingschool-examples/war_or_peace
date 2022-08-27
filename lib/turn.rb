@@ -1,6 +1,7 @@
 class Turn 
   attr_reader :player1, 
-              :player2
+              :player2, 
+              :winner
               
   attr_accessor :spoils_of_war, 
                 :type, 
@@ -51,6 +52,11 @@ class Turn
       3.times do 
         @spoils_of_war << @player1.deck.cards.shift
         @spoils_of_war << @player2.deck.cards.shift
+      end 
+    elsif type == :mutually_assured_destruction
+      3.times do 
+        @player1.deck.cards.shift
+        @player2.deck.cards.shift
       end 
     end 
   end
