@@ -8,7 +8,11 @@ attr_reader :cards, :high_ranking_cards, :rank
   end
 
   def rank_of_card_at(index)
-    @cards[index].rank
+    if @cards.length > 0
+      @cards[index].rank
+    else
+      nil
+    end
   end
 
   def high_ranking_cards
