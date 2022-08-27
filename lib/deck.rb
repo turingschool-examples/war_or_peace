@@ -2,11 +2,10 @@ require './lib/card'
 require 'pry'
 
 class Deck
-  attr_reader :cards, :high_rank_cards
+  attr_reader :cards
 
   def initialize(cards)
     @cards = cards
-    @high_rank_cards = []
   end
 
   def rank_of_card_at(index)
@@ -16,7 +15,9 @@ class Deck
   # Method high_ranking_cards should read rank of each card in the cards array, if the
   # card rank is greater than 10, the card should go into the high_rank_cards array
 
+
   def high_ranking_cards
+    @high_rank_cards = []
     @cards.each do |card|
       if card.rank > 10
         then @high_rank_cards << card
@@ -33,7 +34,7 @@ class Deck
     @cards.shift
   end
 
-  def add_card(card)
-    @cards.push(card)
+  def add_card(cards)
+    @cards.push(cards)
   end
 end
