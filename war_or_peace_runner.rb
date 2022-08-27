@@ -1,9 +1,9 @@
-require 'card.rb'
-require 'deck.rb'
-require 'player.rb'
-require 'turn.rb'
-require 'game.rb'
-require 'war_or_peace_runner.rb'
+require './lib/card.rb'
+require './lib/deck.rb'
+require './lib/player.rb'
+require './lib/turn.rb'
+require './lib/game.rb'
+
 
 
 card_1 = Card.new(:spade, "2", 2)
@@ -78,6 +78,10 @@ deck_2 = Deck.new(deck.shuffle.slice(26, 51))
 
 player_1 = Player.new("Megan", deck_1)
 player_2 = Player.new("Aurora", deck_2)
+
+game = Game.new(player_1, player_2)
+
+game.start
 
 
 
