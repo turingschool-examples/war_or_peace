@@ -1,5 +1,6 @@
 require 'rspec'
 require './lib/card'
+require 'pry'
 
 RSpec.describe Card do
   it "exists" do
@@ -16,3 +17,5 @@ RSpec.describe Card do
     expect(card.rank).to eq(12)
   end
 end
+
+# binding.pry
