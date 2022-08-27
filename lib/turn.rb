@@ -1,5 +1,5 @@
 class Turn 
-  attr_reader :player1, :player2, :spoils_of_war
+  attr_reader :player1, :player2, :spoils_of_war, :turn_results
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2 
@@ -42,15 +42,27 @@ class Turn
     # require 'pry'; binding.pry 
     if winner == player1
       @player1.deck.cards << spoils_of_war
-      @player1.deck 
+     
+      # @player1.deck 
     elsif winner == player2
       @player2.deck.cards << spoils_of_war
-      @player2.deck 
+      # @player2.deck 
+  
     end 
 
     
 
   end 
+
+  def turn_results()
+    if type == :basic 
+      puts "#{winner.name} won 2 cards"
+    elsif type == :war
+      puts "WAR - #{winner.name} won 6 cards"
+    else #type==:destruction
+      puts "MAD 6 cards removed from play"
+    end
+  end
 
   def winner
     if type == :basic 

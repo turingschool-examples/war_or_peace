@@ -1,7 +1,8 @@
 class Game
-  attr_reader :start
-  def initialize()
+  attr_reader :start, :turn 
+  def initialize(turn)
     # @start = start 
+    @turn = turn 
   end 
 
   def start 
@@ -16,6 +17,8 @@ class Game
       turn.pile_cards
       turn.winner
       turn.award_spoils
+      turn.turn_results
+      
       #turn happens
       # turn_count += 1
     else
