@@ -48,9 +48,6 @@ class Turn
   end
 
   def award_spoils
-    a = @spoils_of_war.length
-    a.times do
-      winner.deck.cards << @spoils_of_war.shift
-    end
+    winner.deck.cards.concat(@spoils_of_war)
   end
 end
