@@ -46,14 +46,14 @@ class Turn
       # spoils_of_war
       end
 
-      # if type == :war
-      #   spoils_of_war << 3.times do
-      #       player1.deck.remove_card
-      #     end
-      #   spoils_of_war << 3.times do
-      #       player2.deck.remove_card
-      #     end
-      #   end
+      if type == :war
+        spoils_of_war << player1.deck.remove_card
+        spoils_of_war << player1.deck.remove_card
+        spoils_of_war << player1.deck.remove_card
+        spoils_of_war << player2.deck.remove_card
+        spoils_of_war << player2.deck.remove_card
+        spoils_of_war << player2.deck.remove_card
+      end
 
     # elsif type == :war
     #   #each player will send 3 cards (the top 3 cards) to the spoils pile
