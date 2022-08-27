@@ -24,6 +24,7 @@ class Deck
 
   def remove_card(card)
     cards.delete(card)
+    cards
   end
 
   def add_card(card)
