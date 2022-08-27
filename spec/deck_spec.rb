@@ -42,19 +42,27 @@ RSpec.describe Deck do
       cards = [@card1, @card2, @card3]
       deck = Deck.new(cards)
 
-      # binding.pry
-
       deck.remove_card
       deck.high_ranking_cards
 
       
       expect(deck.cards).to eq([@card2, @card3])
       expect(deck.high_cards).to eq([@card3])
+      expect(deck.percent_high_ranking).to eq(50.00)
     end
-    # it '6. Adds a new card to the deck' do
-      
-    #   expect(deck.cards).to eq()
-    # end
+    
+    it '6. Adds a new card to the deck' do
+      cards = [@card1, @card2, @card3]
+      deck = Deck.new(cards)
+      deck.remove_card
+      card4 = Card.new(:club, '5', 5)
+      deck.add_card(card4)
+      deck.high_ranking_cards
+            
+      expect(deck.cards).to eq([@card2,@card3, card4])
+      expect(deck.high_cards).to eq([@card3])
+      expect(deck.percent_high_ranking).to eq(33.33)
+    end
   end
 
   
