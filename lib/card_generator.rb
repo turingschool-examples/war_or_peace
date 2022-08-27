@@ -7,6 +7,7 @@ class CardGenerator
     @loaded_deck = nil
   end
 
+  # Generate a deck of 52 cards
   def run
     @card_inputs = []
     suits = [:spade, :heart, :diamond, :club]
@@ -28,12 +29,14 @@ class CardGenerator
     @cards.shuffle!
   end
 
+  # Save deck for troubleshooting.
   def save_deck
     File.open('cards.txt', "w") do |file|
       file.write(@card_inputs.to_json)
     end
   end
 
+  # Load deck (if needed) to attempt to replicate failure
   def load_deck
     @loaded_deck = JSON.parse(File.read('cards.txt'))
     @cards = @loaded_deck.map do |input|
@@ -41,4 +44,3 @@ class CardGenerator
     end
   end
 end
-

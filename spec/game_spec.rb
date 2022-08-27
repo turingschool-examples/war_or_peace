@@ -35,8 +35,6 @@ RSpec.describe Turn do
     expect(game.turn_count).to eq(1)
   end
 
-  # This test will run the below game 3 times validating that game.start will
-  # trigger game.run
   it 'can start a game' do
     card_1 = Card.new(:heart, 'Jack', 11)
     card_2 = Card.new(:heart, 'Ten', 10)
@@ -46,6 +44,7 @@ RSpec.describe Turn do
     player_2 = Player.new('Aurora', deck_2)
     turn = Turn.new(player_1, player_2)
     game = Game.new(turn)
+    
     display.stub(:gets).and_return("go\n")
   end
 

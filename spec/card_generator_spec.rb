@@ -7,11 +7,13 @@ require './lib/card_generator'
 RSpec.describe CardGenerator do
   it 'exists' do
     card_generator = CardGenerator.new
+    
     expect(card_generator).to be_an_instance_of(CardGenerator)
   end
 
   it 'defaults to no cards' do
     card_generator = CardGenerator.new
+
     expect(card_generator.cards).to eq(nil)
   end
 
@@ -34,8 +36,6 @@ RSpec.describe CardGenerator do
     expect(card_generator.cards[-1].rank).to eq(2)
   end
 
-  # Testing two methods in one test. However, to test the write only,
-  # I have to then read the file. Thus the second test became redundent.
   it 'can convert txt file <=> array' do
     card_generator = CardGenerator.new
 

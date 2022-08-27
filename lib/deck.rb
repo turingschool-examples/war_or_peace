@@ -4,12 +4,10 @@ class Deck
     @card_list = card_list
   end
 
-  # Take index_location and return rank of card at location
   def rank_of_card_at(index_location)
     @card_list[index_location].rank
   end
 
-  # Return an array of cards in deck that have rank >= 11
   def high_ranking_cards
     @card_list.select do |card|
       card.rank >= 11
