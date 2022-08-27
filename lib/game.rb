@@ -14,7 +14,7 @@ class Game
   end
 
   # Execute the game. :loss turn_type will cover edge case wherein MAD turn is triggered and one player has insufficient cards to complete it.
-  # Require further testing. Unknown if it is mathmaticaly possible for both players to have insufficient cards to complete a MAD turn.
+  # Require further testing. Unknown if it is mathematically possible for both players to have insufficient cards to complete a MAD turn.
   def run
     while @turn_count != 1_000_000 do
       @current_turn.type

@@ -8,7 +8,8 @@ class Turn
     @turn_winner = nil
   end
 
-  # Determine turn type. :loss turn_type will cover edge case wherein MAD turn is triggered and one player has insufficient cards to complete it.
+  # Determine turn type. :loss turn_type will cover edge case wherein MAD turn is triggered 
+  # and one player has insufficient cards to complete it.
   def type
     if @player_one.deck.rank_of_card_at(0) != @player_two.deck.rank_of_card_at(0)
       @turn_type = :basic
@@ -41,7 +42,6 @@ class Turn
 
   def pile_cards
     if @turn_type == :basic
-      # spoils_of_war << @player_one.deck.remove_card
       spoils_of_war << @player_one.deck.card_list[0]
       @player_one.deck.card_list.delete_at(0)
 
@@ -60,7 +60,7 @@ class Turn
     end
   end
 
-  # The shuffle! on line 66 will change all the award_spoils tests. Changed turn_spec.rb:221 to match
+  # The shuffle! on line 66 will change all the award_spoils tests. Changed turn_spec.rb:125, 126, & 221 to match
   def award_spoils
     if @turn_type == :war || @turn_type == :basic
     @turn_winner.deck.card_list << spoils_of_war.shuffle!

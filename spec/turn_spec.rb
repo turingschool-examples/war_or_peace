@@ -101,11 +101,7 @@ RSpec.describe Turn do
     expect(turn.spoils_of_war).to eq([card_1, card_3])
   end
 
-  # The way this check is written in the Interaction File
-  # is player_1.deck eq deck_1. Which does pass as both are being
-  # changed. However, to ensure the game is following intended logic
-  # I changed it to see if intended cards in intended index location
-  # would return.
+  # Test changed (also test on line 211) to account for .shuffle on turn.rb:68
   it 'can award_spoils in basic turn' do
     card_1 = Card.new(:heart, 'Jack', 11)
     card_2 = Card.new(:heart, 'Ten', 10)
@@ -126,8 +122,8 @@ RSpec.describe Turn do
     turn.pile_cards
     turn.spoils_of_war
     turn.award_spoils
-    expect(turn.player_one.deck.card_list).to eq([card_2, card_5, card_8, card_1, card_3])
-    expect(turn.player_two.deck.card_list).to eq([card_4, card_6, card_7])
+    expect((turn.player_one.deck.card_list & [card_2, card_5, card_8, card_1, card_3]).any?).to be(true)
+    expect((turn.player_two.deck.card_list & [card_4, card_6, card_7]).any?).to be(true)
   end
 
   it 'can have a war turn' do
