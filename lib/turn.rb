@@ -17,11 +17,12 @@ class Turn
   end
 
   def type
-    binding.pry
     player_1_first_card = player_1.deck.rank_of_card_at(0)
     player_2_first_card = player_2.deck.rank_of_card_at(0)
-    player_1_third_card = player_1.deck.rank_of_card_at(2)
-    player_2_third_card = player_2.deck.rank_of_card_at(2)
+    if player_1.deck.cards.length >= 3 && player_2.deck.cards.length >= 3
+      player_1_third_card = player_1.deck.rank_of_card_at(2)
+      player_2_third_card = player_2.deck.rank_of_card_at(2)
+    end
 
     if player_1_first_card != player_2_first_card
       :basic
@@ -33,7 +34,6 @@ class Turn
       :player_1_does_not_have_enough_cards_to_go_to_war
     elsif player_1_first_card == player_2_first_card && player_2.deck.length < 3
       :player_2_does_not_have_enough_cards_to_go_to_war
-
     end
   end
 
@@ -42,17 +42,17 @@ class Turn
     if type == :basic && player_1.deck.rank_of_card_at(0) > player_2.deck.rank_of_card_at(0)
       player_1
     elsif type == :basic && player_2.deck.rank_of_card_at(0) > player_1.deck.rank_of_card_at(0)
-    player_2
+      player_2
     elsif type == :war && player_1.deck.rank_of_card_at(2) > player_2.deck.rank_of_card_at(2)
       player_1
     elsif type == :war && player_2.deck.rank_of_card_at(2) > player_1.deck.rank_of_card_at(2)
       player_2
     elsif type == :player_1_does_not_have_enough_cards_to_go_to_war
-      player_1.has_lost? == true
+      player_2
     elsif type == :player_2_does_not_have_enough_cards_to_go_to_war
-      player_2.has_lost? == true
+      player_1
     else
-      "No Winner"
+      nil
     end
   end
 
