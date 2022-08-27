@@ -5,8 +5,8 @@ require './lib/player'
 require './lib/turn'
 
 RSpec.describe Turn do
-  describe "initialized in before(:each)" do
-    
+  
+  describe "initialize" do
     it "is an instance of its class" do
       card1 = Card.new(:spade, 'Ace', 14)
       card2 = Card.new(:heart, '3', 3)
