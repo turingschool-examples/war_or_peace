@@ -101,7 +101,7 @@ RSpec.describe Turn do
     expect(turn.spoils_of_war).to eq([card_1, card_3])
   end
 
-  # Test changed (also test on line 211) to account for .shuffle on turn.rb:68
+  # Test changed (also test on line 207) to account for .shuffle on turn.rb:68
   it 'can award_spoils in basic turn' do
     card_1 = Card.new(:heart, 'Jack', 11)
     card_2 = Card.new(:heart, 'Ten', 10)

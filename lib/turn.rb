@@ -63,7 +63,7 @@ class Turn
   # The shuffle! on line 66 will change all the award_spoils tests.
   # Added as most games devolved into tit-for-tat as soon as two aces 
   # were passed seporated by one low card.
-  # Changed turn_spec.rb:125, 126, & 221 to match
+  # Changed turn_spec.rb:125, 126, & 207 to match
   def award_spoils
     if @turn_type == :war || @turn_type == :basic
     @turn_winner.deck.card_list << spoils_of_war.shuffle!
