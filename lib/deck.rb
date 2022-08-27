@@ -7,9 +7,15 @@ class Deck
 
 
   def rank_of_card_at(index)
-    # require 'pry'; binding.pry
-    @cards[index].rank
+    # rank_arr[index]
+    cards[index].rank
   end
+
+  # def rank_arr
+  #   cards.map do |card|
+  #     card.rank
+  #   end
+  # end
 
   def high_ranking_cards
     high_card = []

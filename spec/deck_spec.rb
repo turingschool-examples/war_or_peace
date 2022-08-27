@@ -2,6 +2,7 @@ require 'rspec'
 require './lib/deck'
 require './lib/card'
 
+
 RSpec.describe Deck do
   before(:each) do
     @card1 = Card.new(:diamond, 'Queen', 12)
@@ -24,19 +25,17 @@ RSpec.describe Deck do
   end
 
   it "return the rank of that card" do
-
+# require "pry"; binding.pry
     expect(@deck.rank_of_card_at(0)).to eq(12)
     expect(@deck.rank_of_card_at(2)).to eq(14)
   end
 
   it "eleven and above" do
 
-
     expect(@deck.high_ranking_cards).to eq([@card1, @card3])
   end
 
   it "return the percentage of cards that are high ranking" do
-
 
   # what is the percentage of 11 - 14, answer is given
     expect(@deck.percent_high_ranking).to eq(66.67)
