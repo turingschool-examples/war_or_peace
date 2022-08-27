@@ -1,7 +1,7 @@
 class Card
-  # Suit (:spades, :hearts, :diamonds, :clubs)
+  # Suit (:spade, :heart, :diamond, :club)
   # Value ('Ace', 'King', 'Queen', 'Jack', 'Numbered')
-  # Rank (1-13)
+  # Rank (2-14)
   attr_reader :suit, :value, :rank
   def initialize(suit, value, rank)
     @suit = suit
