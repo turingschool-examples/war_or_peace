@@ -48,8 +48,8 @@ RSpec.describe Turn do
 
       expect(turn.type).to eq(:war)
       expect(turn.winner).not_to eq(player1)
+      # require "pry"; binding.pry
       expect(turn.winner).to eq(player2)
-      # expect(turn.spoils_of_war).to eq([])
 
     end
     # xit "returns the winner of a mad" do
@@ -69,9 +69,14 @@ RSpec.describe Turn do
     end
 
     it "can return piles of card for war turn" do
+      deck1 = Deck.new([@card1, @card2, @card5, @card8])
+      deck2 = Deck.new([@card4, @card3, @card6, @card7])
+      player1 = Player.new("Megan", deck1)
+      player2 = Player.new("Aurora", deck2)
+      turn = Turn.new(player1, player2)
+
       turn.pile_cards
-      expect(turn.spoils_of_war).to eq([@card1, @card3])
-      end
+      expect(turn.spoils_of_war).to eq([@card1, @card4, @card5, @card6])
     end
   #
   #   it "can return piles of card for mad turn" do
@@ -86,11 +91,11 @@ RSpec.describe Turn do
       expect(@player1.deck.cards.count).to eq(5)
       expect(@player2.deck.cards.count).to eq(3)
     end
-    it "award the spoils to a war turn" do
-      winner = turn.winner
-      turn.award_spoils(winner)
-      expect(player1.deck.cards.count).to eq(5)
-      expect(player2.deck.cards.count).to eq(3)
+    xit "award the spoils to a war turn" do
+      winner = @turn.winner
+      @turn.award_spoils(winner)
+      expect(player1.deck.cards.count).to eq(2)
+      expect(player2.deck.cards.count).to eq(6)
     end
     # it "award the spoils to a mad turn" do
     # end

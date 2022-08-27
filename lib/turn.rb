@@ -55,15 +55,15 @@ class Turn
       @player1.deck.remove_card
       spoils_of_war << @player2.deck.cards.first
       @player2.deck.remove_card
-    # elsif type == :war
-    #   spoils_of_war << player1.deck.card(2)
-    #   player1.deck.remove_card
-    #   spoils_of_war << player1.deck.card.first
-    #   player1.deck.remove_card
-    #   spoils_of_war << player2.deck.card(2)
-    #   player2.deck.remove_card
-    #   spoils_of_war << player2.deck.card.first
-    #   player2.deck.remove_card
+    elsif type == :war
+      spoils_of_war << player1.deck.cards.first
+      player1.deck.remove_card
+      spoils_of_war << player2.deck.cards.first
+      player2.deck.remove_card
+      spoils_of_war << player1.deck.cards[1]
+      player1.deck.remove_card
+      spoils_of_war << player2.deck.cards[1]
+      player2.deck.remove_card
     end
   end
 
