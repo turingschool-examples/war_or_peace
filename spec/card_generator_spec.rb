@@ -37,12 +37,11 @@ RSpec.describe CardGenerator do
   # Testing two methods in one test. However, to test the write only,
   # I have to then read the file. Thus the second test became redundent.
   it 'can convert txt file <=> array' do
-    card_1 = Card.new(:heart, 'Jack', 11)
-    card_2 = Card.new(:heart, 'Ten', 10)
-    card_generator = CardGenerator.new([card_1, card_2])
+    card_generator = CardGenerator.new
 
-    card_generator.write
-    card_generator.to_array
-    expect(card_generator.cards).to eq([card_1, card_2])
+    card_generator.run
+    card_generator.save_deck
+    card_generator.load_deck
+    expect(card_generator.cards.length).to eq(52)
   end
 end

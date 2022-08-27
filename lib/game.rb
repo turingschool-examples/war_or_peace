@@ -6,14 +6,16 @@ class Game
     @turn_return = nil
   end
 
+  # Player class has lost
+  # or if @current_turn.player_one.deck.card_list.length == 0 || @current_turn.player_two.deck.card_list.length == 0
   def the_end?
-    if @current_turn.player_one.deck.card_list.length == 0 || @current_turn.player_two.deck.card_list.length == 0
+    if @current_turn.player_one.has_lost? || @current_turn.player_two.has_lost?
       true
     end
   end
 
   def run
-    while @turn_count != 1_000_000 do
+    while @turn_count != 1_000 do
       @current_turn.type
       @current_turn.winner
       @current_turn.pile_cards
@@ -34,6 +36,7 @@ class Game
           break
         elsif current_turn.player_one.deck.card_list.length < @current_turn.player_two.deck.card_list.length
           puts "*~*~*~* #{@current_turn.player_two.name} has won the game! *~*~*~*"
+          break
         end
       end
 
