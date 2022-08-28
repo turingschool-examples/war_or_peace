@@ -8,23 +8,22 @@ class Turn
   end
 
   def type
-    # elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
-    #   "No Winner"
-
-    if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
-    :war
+    if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+      :mutually_assured_distruction
+    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) &&  player1.deck.rank_of_card_at(2) != player2.deck.rank_of_card_at(2)
+      :war
     else @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
       :basic
     end
   end
 
   def winner
-    if type == :basic
+  if type == :mutually_assured_distruction
+    "No Winner"
+  elsif type == :war
+    war_winner
+  else type == :basic
       basic_winner
-    elsif type == :war
-      war_winner
-    # else type == :mad
-    #   mad
     end
   end
 
@@ -45,32 +44,37 @@ class Turn
     end
   end
 
-  # def mad_winner
-  # end
+  def mad_winner
+    if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+      "No winner"
+    end
+  end
 
   def pile_cards
-    if type == :basic
-      # require "pry"; binding.pry
+  if type == :mad
+    player1.deck.remove_card
+    player1.deck.remove_card
+    player1.deck.remove_card
+    player1.deck.remove_card
+    player1.deck.remove_card
+    player1.deck.remove_card
+  if type == :war
+    spoils_of_war << player1.deck.remove_card
+    spoils_of_war << player1.deck.remove_card
+    spoils_of_war << player1.deck.remove_card
+    spoils_of_war << player2.deck.remove_card
+    spoils_of_war << player2.deck.remove_card
+    spoils_of_war << player2.deck.remove_card
+  else type == :basic
       spoils_of_war << @player1.deck.cards.first
       @player1.deck.remove_card
       spoils_of_war << @player2.deck.cards.first
       @player2.deck.remove_card
-    elsif type == :war
-      spoils_of_war << player1.deck.cards.first
-      player1.deck.remove_card
-      spoils_of_war << player2.deck.cards.first
-      player2.deck.remove_card
-      spoils_of_war << player1.deck.cards[1]
-      player1.deck.remove_card
-      spoils_of_war << player2.deck.cards[1]
-      player2.deck.remove_card
     end
+
   end
 
   def award_spoils(winner)
     winner.deck.cards.concat(spoils_of_war)
   end
-
-
-
 end
