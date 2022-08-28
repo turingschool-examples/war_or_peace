@@ -34,5 +34,5 @@ game = Game.new(turn)
 
 # Start
 puts 'Welcome to War! (or Peace). This game will be played with 52 cards.'
-puts 'The players today are Megan and Aurora.'
+puts "The players today are #{player_1.name} and #{player_2.name}."
 game.start
