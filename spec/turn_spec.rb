@@ -106,11 +106,11 @@ RSpec.describe Turn do
     puts "spoils of war after piling:"
     basic_turn_award_test.spoils_of_war.print_info
 
-    basic_turn_award_test.award(winner)
+    basic_turn_award_test.award_spoils(winner)
 
     puts "winner's deck:"
     winner.deck.print_info
     expect(winner.deck.cards.length).to eq(2)
   end
-  
+
 end

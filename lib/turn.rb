@@ -1,10 +1,12 @@
 class Turn
-  attr_reader :player1, :player2, :spoils_of_war
+  attr_reader :player1, :player2, :spoils_of_war, :trashcan
 
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
     @spoils_of_war = Deck.new([])
+    @trashcan = Deck.new([]) # cards to be deleted
+    @shadow_realm = Deck.new([])
   end
 
   # # a little cheeky alias perhaps
@@ -61,7 +63,7 @@ class Turn
   end
 
   def pile_cards
-    # THIS IS WHAT I NEED TO WORK ON TOMORROW, PROBABLY CAN BE COMPLETELEY REFACTORED
+    # ALL OF THIS CAN BE DONE BETTER WITH SPLICE METHOD I THINK
     type = self.type
     if type == :basic
       @spoils_of_war.add_card_to_bottom(@player1.deck.remove_card_from_top)
@@ -75,23 +77,21 @@ class Turn
       @spoils_of_war.add_card_to_bottom(@player2.deck.remove_card_from_top) unless @player2.deck.cards.empty?
       @spoils_of_war.add_card_to_bottom(@player2.deck.remove_card_from_top) unless @player2.deck.cards.empty?
     elsif type == :mutually_assured_destruction
-      @player1.deck.remove_card_from_top unless @player1.deck.cards.empty?
-      @player1.deck.remove_card_from_top unless @player1.deck.cards.empty?
-      @player1.deck.remove_card_from_top unless @player1.deck.cards.empty?
+      @trashcan.add_card_to_bottom(@player1.deck.remove_card_from_top) unless @player1.deck.cards.empty?
+      @trashcan.add_card_to_bottom(@player1.deck.remove_card_from_top) unless @player1.deck.cards.empty?
+      @trashcan.add_card_to_bottom(@player1.deck.remove_card_from_top) unless @player1.deck.cards.empty?
 
-      @player2.deck.remove_card_from_top unless @player2.deck.cards.empty?
-      @player2.deck.remove_card_from_top unless @player2.deck.cards.empty?
-      @player2.deck.remove_card_from_top unless @player2.deck.cards.empty?
+      @trashcan.add_card_to_bottom(@player2.deck.remove_card_from_top) unless @player2.deck.cards.empty?
+      @trashcan.add_card_to_bottom(@player2.deck.remove_card_from_top) unless @player2.deck.cards.empty?
+      @trashcan.add_card_to_bottom(@player2.deck.remove_card_from_top) unless @player2.deck.cards.empty?
     else
     end
 
   end
 
-  def award(winner)
-    @spoils_of_war.cards.each do |card|
-      winner.deck.add_card_to_bottom(card)
-    end
-
+  def award_spoils(winner)
+    winner.deck.add_card_to_bottom(@spoils_of_war.remove_card_from_top) until @spoils_of_war.cards.empty?
+    @shadow_realm.add_card_to_bottom(@trashcan.remove_card_from_top) until @trashcan.cards.empty?
   end
 
 end

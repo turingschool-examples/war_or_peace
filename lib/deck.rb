@@ -1,5 +1,6 @@
 class Deck
-  attr_reader :cards
+  # will need this later, could probably find a much better way to do this
+  attr_accessor :cards
 
   def initialize(cards = [])
     @cards = cards
@@ -31,6 +32,11 @@ class Deck
 
   def bottom
     @cards.last
+  end
+
+  def shuffle
+    @cards.shuffle!
+    return self
   end
 
   def print_info
