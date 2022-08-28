@@ -3,10 +3,9 @@ class Player
   def initialize(name, deck)
     @name = name
     @deck = deck
-    @lost = false
   end
 
   def has_lost?
-    @deck.cards.count.zero?
+    @deck.cards.empty?
   end
 end
