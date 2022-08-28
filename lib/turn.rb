@@ -11,14 +11,23 @@ class Turn
   def type 
     if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
     :basic
+  else player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+    :war
     end
   end
   def winner
     if type == :basic
       # will return whichever player has a higher rank_of_card_at(0)
-       player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0) 
+      if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0) 
       @winner = player1
-    else @winner = player2
+      else @winner = player2
+      end
+    elsif type == :war
+      # if the turn has a type of :war the winner will be whichever player has a higher rank_of_card_at(2)
+      if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2) 
+      @winner = player1
+      else @winner = player2
+      end
     end
   end
   def pile_cards
@@ -26,6 +35,10 @@ class Turn
     if type == :basic
       @spoils_of_war << player1.deck.remove_card
       @spoils_of_war << player2.deck.remove_card
+    end
+    if type == :war
+      3.times {@spoils_of_war << player1.deck.remove_card}
+      3.times {@spoils_of_war << player2.deck.remove_card}
     end
   end
   def award_spoils(winner)
@@ -39,16 +52,15 @@ end
 # def award_spoils
 # end
 
-# if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)&&
-#   player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)  
-#   :mutually_assured_destruction
-# 
-# elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
-#   :war
-# 
-# else :basic
+  #TYPE 
+    #   player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)  
+    #   :mutually_assured_destruction
+    # 
+    # elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+    #   :war
+    # 
+    # else :basic
 
-  # @spoils_of_war.each {|spoils| @winner.deck.add_card(spoils)}
 
 # turns
   # A :war turn occurs when both players’ rank_of_card_at(0) are the same.
