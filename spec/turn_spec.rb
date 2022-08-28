@@ -58,4 +58,16 @@ RSpec.describe Turn do
     expect(turn.player2).to eq(player2)
     expect(turn.spoils_of_war).to eq([])
   end
+
+  it 'plays a basic turn' do
+
+  end
+
+  # it 'plays a war turn' do
+  #
+  # end
+  #
+  # it 'plays a mutually assured destruction turn' do
+  #
+  # end
 end
