@@ -126,7 +126,7 @@ RSpec.describe Turn do
         player1 = Player.new('Ryan', deck1)
         player2 = Player.new('Ash', deck2)
         turn = Turn.new(player1, player2)
-        new_deck = turn.player1.deck.shuffle
+        new_deck = turn.player1.deck.cards.shuffle
         require 'pry'; binding.pry
       end
     end

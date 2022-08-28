@@ -75,6 +75,21 @@ end
 
 deck1 = Deck.new(deck_p1)
 deck2 = Deck.new(deck_p2)
+#
+# deck1 = Deck.new([
+#   Card.new(:heart, 'Ace', 14),
+#   Card.new(:heart, 'Ace', 14),
+#   Card.new(:heart, 'Ace', 14),
+#   Card.new(:heart, 'Ace', 14),
+#   Card.new(:heart, 'Ace', 14)
+# ])
+# deck2 = Deck.new([
+#   Card.new(:heart, 'Ace', 14),
+#   Card.new(:heart, 'Ace', 14),
+#   Card.new(:heart, 'Ace', 14),
+#   Card.new(:heart, 'Ace', 14),
+#   Card.new(:heart, 'Ace', 14)
+# ])
 
 player1 = Player.new('Ryan', deck1)
 player2 = Player.new('Ash', deck2)
