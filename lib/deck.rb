@@ -10,20 +10,26 @@ class Deck
   end
 
   def high_ranking_cards
-    @high_rank_cards = []
+    high_rank_cards = []
     @cards.each do |card|
       if card.rank >= 11
-        @high_rank_cards << card
+        high_rank_cards << card
       end
-    # require "pry";binding.pry
+    end
+    high_rank_cards
   end
 
+  def percent_high_ranking
+    percent = ((high_ranking_cards.length.to_f / @cards.length.to_f) * 100).to_i
+    percent
   end
 
+  def remove_card
+    cards.shift
+  end
 
-  #   @rank_of_card_at = rank_of_card_at
-  #   @high_ranking_cards = []
-  #   @percent_high_ranking = percent_high_ranking
-  #   @remove_card = remove_card
-  #   @add_card = add_card
+  def add_card(new_card)
+    @cards << new_card
+  end
+  
 end
