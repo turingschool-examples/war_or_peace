@@ -160,6 +160,7 @@ RSpec.describe Turn do
       player1 = Player.new("Megan", deck1)
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
+      turn.pile_cards
       expect(turn.spoils_of_war).to eq([card1, card3])
     end
 
@@ -177,7 +178,8 @@ RSpec.describe Turn do
       player1 = Player.new("Megan", deck1)
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
-      expect(turn.spoils_of_war).to eq([card1, card2, card5, card3, card4, card6])
+      turn.pile_cards
+      expect(turn.spoils_of_war).to eq([card1, card3, card2, card4, card5, card6])
     end
 
     it 'sends cards from players deck to spoils_of_war' do
@@ -194,6 +196,7 @@ RSpec.describe Turn do
       player1 = Player.new("Megan", deck1)
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
+      turn.pile_cards
       expect(turn.spoils_of_war).to eq([])
       expect(player1.deck.cards).to eq([card8])
       expect(player2.deck.cards).to eq([card7])
