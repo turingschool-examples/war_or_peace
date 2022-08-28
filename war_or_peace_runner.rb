@@ -61,6 +61,10 @@ Type 'GO' to start the game!
           continue_game = false
           p "*~*~*~* #{winner.name} has won the game! *~*~*~*"
         end
+        if turn_count >= 99999
+          continue_game = false
+          p '*~*~*~* Peace was brokered! *~*~*~*'
+        end
       end
     end
   end
