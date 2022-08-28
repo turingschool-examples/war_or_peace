@@ -136,6 +136,24 @@ RSpec.describe Turn do
       expect(turn.type).to eq(:war)
     end
 
+    it 'is war if one player has < 3 cards' do 
+      card1 = Card.new(:heart, 'Jack', 11)
+      card2 = Card.new(:heart, '10', 10) 
+      card3 = Card.new(:heart, '9', 9) 
+      card4 = Card.new(:diamond, 'Jack', 11)  
+      card5 = Card.new(:heart, '8', 8) 
+      card6 = Card.new(:diamond, 'Queen', 12)
+      deck1 = Deck.new([card1, card2, card5, card6])
+      deck2 = Deck.new([card4, card3])
+      player1 = Player.new('Dug', deck1)
+      player2 = Player.new('Fran', deck2)
+      turn = Turn.new(player1, player2)
+
+      expect(turn.player1.deck.rank_of_card_at(0)).to eq(11)
+      expect(turn.player2.deck.rank_of_card_at(0)).to eq(11)
+      expect(turn.type).to eq(:war)
+    end
+
     it 'is mutually assured destruction if rank at 0 index and 2 index are the same' do
       card1 = Card.new(:heart, 'Jack', 11) 
       card2 = Card.new(:heart, '10', 10) 
@@ -181,7 +199,7 @@ RSpec.describe Turn do
       expect(turn.winner).to eq(player1)
     end 
 
-    it 'will return the player the player that wins war' do 
+    it 'will return the player the player that wins a normal war' do 
       card1 = Card.new(:heart, 'Jack', 11)
       card2 = Card.new(:heart, '10', 10) 
       card3 = Card.new(:heart, '9', 9) 
@@ -204,6 +222,25 @@ RSpec.describe Turn do
       expect(turn.winner).to eq(player2)
     end 
 
+    it 'will return the player the player that wins an abnormal war' do 
+      card1 = Card.new(:heart, 'Jack', 11)
+      card2 = Card.new(:heart, '10', 10) 
+      card3 = Card.new(:heart, '9', 9) 
+      card4 = Card.new(:diamond, 'Jack', 11)  
+      card5 = Card.new(:heart, '8', 8) 
+      card6 = Card.new(:diamond, 'Queen', 12)
+      deck1 = Deck.new([card1, card2, card5, card6])
+      deck2 = Deck.new([card4, card3])
+      player1 = Player.new('Dug', deck1)
+      player2 = Player.new('Fran', deck2)
+      turn = Turn.new(player1, player2)
+      
+      expect(turn.player1.deck.rank_of_card_at(0)).to eq(11)
+      expect(turn.player2.deck.rank_of_card_at(0)).to eq(11)
+      expect(turn.type).to eq(:war)
+      expect(turn.winner).to eq(player1)
+    end
+    
     it 'will return no winner when it is mutually assured destruction' do 
       card1 = Card.new(:heart, 'Jack', 11) 
       card2 = Card.new(:heart, '10', 10) 
@@ -322,6 +359,7 @@ RSpec.describe Turn do
       turn.pile_cards
       expect(turn.spoils_of_war).to eq([card1, card3])
       turn.award_spoils(player1)
+      expect(turn.spoils_of_war).to eq([])
       expect(turn.player1.deck.cards).to eq([card2, card5, card8, card1, card3])
     end
 
@@ -348,6 +386,7 @@ RSpec.describe Turn do
       turn.pile_cards
       expect(turn.spoils_of_war).to eq([card1, card4, card2, card3, card5, card6])
       turn.award_spoils(player2)
+      expect(turn.spoils_of_war).to eq([])
       expect(turn.player2.deck.cards).to eq([card7, card1, card4, card2, card3, card5, card6])
     end 
 
