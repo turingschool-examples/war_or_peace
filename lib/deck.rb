@@ -6,9 +6,13 @@ class Deck
     end
 
     def rank_of_card_at(index)
-      @cards[index].rank
+      if cards.length < 3 && index == 2
+        return nil
+      else
+        @cards[index].rank
     end
-
+  end
+  
     def high_ranking_cards
         @cards.select do |card|
         card.rank >= 11
@@ -25,7 +29,5 @@ class Deck
 
      def add_card(card)
         cards.push(card)
-     end
-
-
+     end   
 end

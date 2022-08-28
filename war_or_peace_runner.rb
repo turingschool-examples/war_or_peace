@@ -2,12 +2,8 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require 'pry'
 
-
-p "Welcome to War! (or Peace) This game will be played with 52 cards.
-The players today are Megan and Aurora.
-Type 'GO' to start the game!
-------------------------------------------------------------------"
 
   
 card1 = Card.new(:spades, '1', 1)
@@ -72,8 +68,16 @@ deck1 = Deck.new([card1, card3, card5, card7, card9,
   card35, card37, card39, card41, card43, card45, 
   card47, card49, card51])
 
-  deck2 = Deck.new([card52, card50, card48, card46, 
-    card44, card42, card40, card38, card36, card34, 
-    card32, card30,card28, card26, card24, card22, 
-    card20, card18,card16, card14, card12, card10, 
-    card8, card6,card4, card2])
+deck2 = Deck.new([card52, card50, card48, card46, 
+  card44, card42, card40, card38, card36, card34, 
+  card32, card30, card28, card26, card24, card22, 
+  card20, card18, card16, card14, card12, card10, 
+  card8, card6, card4, card2])
+
+
+player1 = Player.new("Megan", deck1)
+player2 = Player.new("Auora", deck2)
+
+turn = Turn.new(player1, player2)
+
+turn.start
