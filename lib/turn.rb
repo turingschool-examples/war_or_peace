@@ -4,6 +4,7 @@ class Turn
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
+    @winner = winner
   end
 
   def type
@@ -36,7 +37,7 @@ class Turn
       winner = player1
     elsif type == :war && 
       @player1.deck.rank_of_card_at(2) < @player2.deck.rank_of_card_at(2)
-      winner = player1
+      winner = player2
     elsif type == :mutually_assured_destruction 
       "No Winner"
     end
@@ -62,11 +63,7 @@ class Turn
       @player2.deck.remove_card
     end 
   end
-  # def award_spoils(winner)
-  #    if winner == player1 || winner == player2 
-  #       winner.deck.cards << @spoils_of_war
-  #       winner.deck.cards = winner.deck.cards.flatten!
-  #   end
-  # end
-  
+  def award_spoils(winner) 
+    winner.deck.cards.concat(@spoils_of_war)  
+  end  
 end
