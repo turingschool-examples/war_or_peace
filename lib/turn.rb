@@ -24,30 +24,41 @@ class Turn
   end
 
   def winner
-    if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-      then player1
-    else player2
-    :basic
-    end
+    if type == :basic
+      if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+        then player1
+      else player2
+      end
 
-    if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-      then player1
-    else player2
-    :war
-    end
+    elsif type == :war
+      if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+        then player1
+      else player2
+      end
 
-    if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) &&
-      player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
-      then "No Winner"
-      :mutually_assured_destruction
+    else type == :mutually_assured_destruction
+      "No Winner"
     end
   end
 
   def pile_cards
-
+    if type == :basic
+      @spoils_of_war << player1.deck.remove_card
+      @spoils_of_war << player2.deck.remove_card
+    elsif type == :war
+      3.times do
+        @spoils_of_war << player1.deck.remove_card
+        @spoils_of_war << player2.deck.remove_card
+      end
+    else
+      3.times do
+        player1.deck.remove_card
+        player2.deck.remove_card
+      end
+    end
   end
 
-  def awards_spoils(winner)
-
+  def award_spoils(winner)
+    winner.deck.cards.concat(@spoils_of_war)
   end
 end
