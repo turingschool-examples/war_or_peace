@@ -122,8 +122,8 @@ RSpec.describe Turn do
     turn.pile_cards
     turn.spoils_of_war
     turn.award_spoils
-    expect((turn.player_one.deck.card_list & [card_2, card_5, card_8, card_1, card_3]).any?).to be(true)
-    expect((turn.player_two.deck.card_list & [card_4, card_6, card_7]).any?).to be(true)
+    expect([card_2, card_5, card_8, card_1, card_3].find_all { |card| turn.player_one.deck.card_list.include?(card) }).to eq([card_2, card_5, card_8, card_1, card_3])
+    expect([card_4, card_6, card_7].find_all { |card| turn.player_two.deck.card_list.include?(card) }).to eq([card_4, card_6, card_7])
   end
 
   it 'can have a war turn' do
@@ -204,7 +204,7 @@ RSpec.describe Turn do
     turn.spoils_of_war
     turn.award_spoils
     expect(turn.player_one.deck.card_list).to eq([card_8])
-    expect((turn.player_two.deck.card_list & [card_7, card_1, card_2, card_5, card_4, card_3, card_6]).any?).to be(true)
+    expect([card_7, card_1, card_2, card_5, card_4, card_3, card_6].find_all { |card| turn.player_two.deck.card_list.include?(card) }).to eq([card_7, card_1, card_2, card_5, card_4, card_3, card_6])
   end
 
   it 'can have a mutually_assured_destruction (MAD) turn' do
