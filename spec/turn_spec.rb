@@ -46,7 +46,7 @@ RSpec.describe Turn do
   it 'has readable attributes' do
     expect(@basic_turn.player1).to be_an_instance_of(Player)
     expect(@basic_turn.player2).to be_an_instance_of(Player)
-    expect(@basic_turn.spoils_of_war).to be_an_instance_of(Array)
+    expect(@basic_turn.spoils_of_war).to be_an_instance_of(Deck)
   end
 
   it 'determines turn type based on player\'s decks' do
@@ -66,26 +66,51 @@ RSpec.describe Turn do
   it 'sends cards into spoils of war based on turn type' do
     basic_turn_pile_test = @basic_turn
     basic_turn_pile_test.pile_cards
-    expect(basic_turn_pile_test.spoils_of_war.length).to eq(2)
+    expect(basic_turn_pile_test.spoils_of_war.cards.length).to eq(2)
 
     war_turn_pile_test = @war_turn
     # each player sends top 3 cards to spoils
     war_turn_pile_test.pile_cards
-    expect(war_turn_pile_test.spoils_of_war.length).to eq(6)
+    expect(war_turn_pile_test.spoils_of_war.cards.length).to eq(6)
 
 
     mad_turn_pile_test = @mad_turn
     # each player removes top 3 cards from game
     mad_turn_pile_test.pile_cards
-    expect(mad_turn_pile_test.spoils_of_war.length).to eq(0)
+    expect(mad_turn_pile_test.spoils_of_war.cards.length).to eq(0)
 
 
     war_turn_3v1_pile_test = @war_turn_3v1
     # each player removes top 3 cards from play, or all of them if they have < 3
     war_turn_3v1_pile_test.pile_cards
-    expect(war_turn_3v1_pile_test.spoils_of_war.length).to eq(4)
+    expect(war_turn_3v1_pile_test.spoils_of_war.cards.length).to eq(4)
   end
 
   it 'awards spoils of war to the winning player' do
+    basic_turn_award_test = @basic_turn
+
+    puts "before piling:"
+    basic_turn_award_test.player1.print_info
+    basic_turn_award_test.player2.print_info
+
+    puts "spoils of war:"
+    basic_turn_award_test.spoils_of_war.print_info
+
+    winner = basic_turn_award_test.winner
+    basic_turn_award_test.pile_cards
+
+    puts "after piling:"
+    basic_turn_award_test.player1.print_info
+    basic_turn_award_test.player2.print_info
+
+    puts "spoils of war after piling:"
+    basic_turn_award_test.spoils_of_war.print_info
+
+    basic_turn_award_test.award(winner)
+
+    puts "winner's deck:"
+    winner.deck.print_info
+    expect(winner.deck.cards.length).to eq(2)
   end
+  
 end

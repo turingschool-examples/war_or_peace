@@ -1,5 +1,5 @@
 class Turn
-  attr_reader :player1, :player2
+  attr_reader :player1, :player2, :spoils_of_war
 
   def initialize(player1, player2)
     @player1 = player1
@@ -7,23 +7,22 @@ class Turn
     @spoils_of_war = Deck.new([])
   end
 
-  # a little cheeky alias perhaps
-  def spoils_of_war
-    return @spoils_of_war.cards
-  end
+  # # a little cheeky alias perhaps
+  # def spoils_of_war
+  #   return @spoils_of_war.cards
+  # end
 
   def type
-    turn = :basic
+    @type = :basic
     if @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
-      turn = :war
+      @type = :war
       if @player1.deck.cards.length >= 3 && @player2.deck.cards.length >= 3
         if @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
-          turn = :mutually_assured_destruction
+          @type = :mutually_assured_destruction
         end
       end
     end
-    @type_pre_pile = turn
-    return turn
+    return @type
   end
 
   def winner
@@ -63,13 +62,34 @@ class Turn
 
   def pile_cards
     # THIS IS WHAT I NEED TO WORK ON TOMORROW, PROBABLY CAN BE COMPLETELEY REFACTORED
-    if self.type == :basic
-      @spoils_of_war.add_card_to_bottom(player1.deck.remove_card_from_top)
-      @spoils_of_war.add_card_to_bottom(player2.deck.remove_card_from_top)
-    elsif self.type == :war
-      # pile top 3 cards from both decks, if decks have < 3 cards pile all
-    else
+    type = self.type
+    if type == :basic
+      @spoils_of_war.add_card_to_bottom(@player1.deck.remove_card_from_top)
+      @spoils_of_war.add_card_to_bottom(@player2.deck.remove_card_from_top)
+    elsif type == :war
+      @spoils_of_war.add_card_to_bottom(@player1.deck.remove_card_from_top) unless @player1.deck.cards.empty?
+      @spoils_of_war.add_card_to_bottom(@player1.deck.remove_card_from_top) unless @player1.deck.cards.empty?
+      @spoils_of_war.add_card_to_bottom(@player1.deck.remove_card_from_top) unless @player1.deck.cards.empty?
 
+      @spoils_of_war.add_card_to_bottom(@player2.deck.remove_card_from_top) unless @player2.deck.cards.empty?
+      @spoils_of_war.add_card_to_bottom(@player2.deck.remove_card_from_top) unless @player2.deck.cards.empty?
+      @spoils_of_war.add_card_to_bottom(@player2.deck.remove_card_from_top) unless @player2.deck.cards.empty?
+    elsif type == :mutually_assured_destruction
+      @player1.deck.remove_card_from_top unless @player1.deck.cards.empty?
+      @player1.deck.remove_card_from_top unless @player1.deck.cards.empty?
+      @player1.deck.remove_card_from_top unless @player1.deck.cards.empty?
+
+      @player2.deck.remove_card_from_top unless @player2.deck.cards.empty?
+      @player2.deck.remove_card_from_top unless @player2.deck.cards.empty?
+      @player2.deck.remove_card_from_top unless @player2.deck.cards.empty?
+    else
+    end
+
+  end
+
+  def award(winner)
+    @spoils_of_war.cards.each do |card|
+      winner.deck.add_card_to_bottom(card)
     end
 
   end
