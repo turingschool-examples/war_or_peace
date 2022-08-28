@@ -1,6 +1,6 @@
 class Deck 
-  attr_reader :high_cards, :new_card, :index_location, :rank_of_card_at, :high_ranking_cards 
-  attr_accessor :cards, :remove_card
+  attr_reader :high_cards, :new_card, :index_location, :high_ranking_cards 
+  attr_accessor :cards, :remove_card, :rank_of_card_at
   def initialize(cards)
     @cards = cards 
     # @new_card = new_card  

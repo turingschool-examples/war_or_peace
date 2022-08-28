@@ -15,6 +15,7 @@ suits.each do |suit|
     # cards << [suits: suit, values: value, ranks: ranks[values.find_index(value)]]
     card1 = Card.new(suit, value, ranks[values.find_index(value)])
     cards << card1 
+    #maybe use card instead of card1
 
   end
 
