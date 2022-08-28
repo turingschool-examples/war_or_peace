@@ -18,7 +18,6 @@ RSpec.describe Player do
 
   it 'should inform if a player lost' do
     expect(player.has_lost?).to eq false
-    # require 'pry';binding.pry
     player.deck.remove_card
     expect(player.deck.cards.count).to eq 2
     expect(player.has_lost?).to eq false
@@ -28,7 +27,4 @@ RSpec.describe Player do
     expect(player.has_lost?).to eq true
     expect(player.deck).to eq(deck)
   end
-
-
-
 end
