@@ -42,7 +42,7 @@ require "pry";binding.pry
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
     game = Game.new(turn)
-
+ 
     require "pry";binding.pry
 
   end
