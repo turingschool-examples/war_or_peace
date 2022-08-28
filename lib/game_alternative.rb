@@ -2,10 +2,12 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/card_generator'
 
 
 
-class Game
+
+class GameAlternative
 
     attr_reader :player1,
                 :player2,
@@ -14,13 +16,17 @@ class Game
 
     def initialize 
 
-        
+        file_name = "lib/cards.txt"
 
-        create_decks
+       
+        cardgen= CardGenerator.new(file_name)
+
+        deck_1 = cardgen.deck1
+        deck_2 = cardgen.deck2
 
         
-        @player1 = Player.new("Mufasa", @deck1)
-        @player2 = Player.new("Skar", @deck2)
+        @player1 = Player.new("Mufasa", deck_1)
+        @player2 = Player.new("Skar", deck_2)
         
 
     end
@@ -29,69 +35,69 @@ class Game
 
 
 
-    def create_high_value(suits, suit)
+    # def create_high_value(suits, suit)
 
-        suits << Card.new(suit, "Jack", 11)
-        suits << Card.new(suit, "Queen", 12)
-        suits << Card.new(suit, "King", 13)
-        suits << Card.new(suit, "Ace", 14)
+    #     suits << Card.new(suit, "Jack", 11)
+    #     suits << Card.new(suit, "Queen", 12)
+    #     suits << Card.new(suit, "King", 13)
+    #     suits << Card.new(suit, "Ace", 14)
 
-    end
-
-
+    # end
 
 
 
 
-    def create_decks
-
-        rank_values = [2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-        diamonds = []
-        hearts = []
-        spades = []
-        clubs = []
-
-        full_deck_cards = []
 
 
-        rank_values.each do |rank_value|
+    # def create_decks
 
-            diamonds << Card.new(:diamond, "#{rank_value}", rank_value)
+    #     rank_values = [2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-            hearts << Card.new(:heart, "#{rank_value}", rank_value)
+    #     diamonds = []
+    #     hearts = []
+    #     spades = []
+    #     clubs = []
 
-            spades << Card.new(:spade, "#{rank_value}", rank_value)
+    #     full_deck_cards = []
 
-            clubs << Card.new(:club, "#{rank_value}", rank_value)
+
+    #     rank_values.each do |rank_value|
+
+    #         diamonds << Card.new(:diamond, "#{rank_value}", rank_value)
+
+    #         hearts << Card.new(:heart, "#{rank_value}", rank_value)
+
+    #         spades << Card.new(:spade, "#{rank_value}", rank_value)
+
+    #         clubs << Card.new(:club, "#{rank_value}", rank_value)
             
-        end
+    #     end
 
 
-        create_high_value(diamonds, :diamond)
-        create_high_value(hearts, :heart)
-        create_high_value(spades, :spade)
-        create_high_value(clubs, :club)
+    #     create_high_value(diamonds, :diamond)
+    #     create_high_value(hearts, :heart)
+    #     create_high_value(spades, :spade)
+    #     create_high_value(clubs, :club)
 
 
-        full_deck_cards = diamonds + hearts + spades + clubs
-        full_deck_cards = full_deck_cards.shuffle
-        half_deck_1 = []
-        half_deck_2 = []
+    #     full_deck_cards = diamonds + hearts + spades + clubs
+    #     full_deck_cards = full_deck_cards.shuffle
+    #     half_deck_1 = []
+    #     half_deck_2 = []
 
 
-        26.times do
-        half_deck_1 << full_deck_cards.shift
-        end
+    #     26.times do
+    #     half_deck_1 << full_deck_cards.shift
+    #     end
 
-        26.times do
-        half_deck_2 << full_deck_cards.shift
-        end
+    #     26.times do
+    #     half_deck_2 << full_deck_cards.shift
+    #     end
 
-        @deck1 = Deck.new(half_deck_1)
-        @deck2 = Deck.new(half_deck_2)
+    #     @deck1 = Deck.new(half_deck_1)
+    #     @deck2 = Deck.new(half_deck_2)
 
-    end
+    # end
 
 
 
