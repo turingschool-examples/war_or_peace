@@ -1,5 +1,5 @@
 class Card
-  attr_reader :rank, :suit, :value
+  attr_reader :suit, :value, :rank
 
   def initialize(suit, value, rank)
     @suit = suit
@@ -9,6 +9,6 @@ class Card
 
   # if @suit == "hearts" || "spades" || "clubs" || "diamonds"
   # else
-  #  p "This is not a valid suit"
+  # p "This is not a valid suit"
   #end
 end
