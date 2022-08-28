@@ -1,12 +1,11 @@
 class Turn 
-  attr_reader :player1, 
+attr_accessor :spoils_of_war, 
+              :type, 
+              :pile_cards,
+              :award_spoils, 
+              :player1, 
               :player2, 
               :winner
-              
-  attr_accessor :spoils_of_war, 
-                :type, 
-                :pile_cards,
-                :award_spoils
 
   def initialize(player1, player2)
     @player1 = player1
@@ -15,7 +14,6 @@ class Turn
   end
  
   def type 
- 
     if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
       :basic
     elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) &&
@@ -43,7 +41,6 @@ class Turn
       "No Winner"
     end 
   end
-
 
   def pile_cards
     if type == :basic 
