@@ -72,8 +72,12 @@ class Game
 
     5.times do
       @game_deck.shuffle!
-      binding.pry
     end
+  end
+
+  def deal_deck
+    @player1.deck1 << @game_deck[0, 26]
+    @player2.deck2 << @game_deck[26, 26]
   end
 
   def start
