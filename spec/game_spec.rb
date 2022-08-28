@@ -23,24 +23,30 @@ RSpec.describe Game do
     @turn = Turn.new(@player1, @player2)
   end
   
-  it 'is an instance of game' do
-    game = Game.new(@player1, @player2)
+  describe '#initialize' do 
+    it 'is an instance of game' do
+      game = Game.new(@player1, @player2)
 
-    expect(game).to be_instance_of Game
-  end
+      expect(game).to be_instance_of Game
+    end
 
-  it 'has a first player' do 
-    game = Game.new(@player1, @player2)
+    it 'has a first player' do 
+      game = Game.new(@player1, @player2)
 
-    expect(game.player1).to eq(@player1)
+      expect(game.player1).to eq(@player1)
+    end 
+
+    it 'has a second player' do 
+      game = Game.new(@player1, @player2)
+  
+      expect(game.player2).to eq(@player2)
+    end 
   end 
 
-  it 'has a second player' do 
-    game = Game.new(@player1, @player2)
-
-    expect(game.player2).to eq(@player2)
-  end 
-
-
-
+  # describe '#start' do 
+  #   it 'will start the game' do
+  #     game = Game.new(@player1, @player2)
+  #     expect(game.start).to eq("Welcome to War! (or Peace) This game will be played with 52 cards.\n The players today are Dug and Fran.\n Type 'GO' to start the game!\n ------------------------------------------------------------------")
+  #   end 
+  # end 
 end 
