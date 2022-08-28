@@ -1,16 +1,14 @@
 class Start
-    attr_reader :deck1, :deck2, :standard_deck
-    def initialize(standard_deck)
-        @standard_deck = @standard_deck
-        @deck1 = []
-        @deck2 = []
+    attr_reader
+    attr_accessor
+   
+    def start_game
+        puts "Welcome to War! (or Peace) This game will be played with 52 cards."
+        puts "The players today are Megan and Aurora"
+        puts "Type 'GO' to start the game!"
+        puts "------------------------------------------------------------------" 
     end
     
-    def start 
-        standard_deck.shuffle
-        standard_deck.each_slice(2).to_a
-        deck1 << standard_deck[0]
-        deck2 << standard_deck[1]
-    end
+    start_game = gets.chomp
 end
 

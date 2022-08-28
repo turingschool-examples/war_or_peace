@@ -7,7 +7,7 @@ require './lib/turn'
 require './war_or_peace_runner'
 
 RSpec.describe Start do
-    it "#initialize" do
+    it "#start" do
     	@card1 = Card.new(:heart, '2', 2)
     	@card2 = Card.new(:heart, '3', 3)
     	@card3 = Card.new(:heart, '4', 4)
@@ -59,16 +59,10 @@ RSpec.describe Start do
 		@card50 = Card.new(:club, 'Queen', 12)
 		@card51 = Card.new(:club, 'King', 13)
     	@card52 = Card.new(:club, 'Ace', 14)
-		# binding.pry
-        @standard_deck = ([@card1, @card2, @card3, @card4, @card5, @card6, @card7, @card8, @card9, @card10, @card11, @card12, @card13, +
-		@card14, @card15, @card16, @card17, @card18, @card19, @card20, @card21, @card22, @card23, @card24, @card25, @card26, +
-		@card27, @card28, @card29, @card30, @card31, @card32, @card33, @card34, @card35, @card36, @card37, @card38, @card39, +
-		@card40, @card41, @card42, @card43, @card44, @card45, @card46, @card47, @card48, @card49, @card50, @card51, @card52])
-		@deck1 = []
-		@deck2 = []
+		@deck1 = Deck.new([@card45, @card4, @card28, @card43, @card39, @card34, @card25, @card47, @card11, @card32, @card7, @card17, @card44, @card9, @card48, @card52, @card15, @card50, @card42, @card36, @card46, @card3, @card22, @card51, @card20, @card41])
+		@deck2 = Deck.new([@card24, @card5, @card31, @card16, @card35, @card13, @card30, @card21, @card10, @card26, @card6, @card40, @card8, @card12, @card49, @card14, @card19, @card33, @card2, @card18, @card37, @card1, @card23, @card27, @card38, @card29])
 		@player1 = Player.new("Megan", @deck1)
 		@player2 = Player.new("Aurora", @deck2)
 		@turn = Turn.new(@player1, @player2)
 	end
-
 end
