@@ -5,6 +5,7 @@ class Turn
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
+    @spoils_of_war = []
   end
 
   def type
@@ -34,6 +35,15 @@ class Turn
       end
     elsif type == :mutually_assured_destruction
       'No Winner'
+    end
+  end
+
+  def pile_cards
+    if type == :basic
+      @spoils_of_war.push(@player1.deck.cards[0])
+      @spoils_of_war.push(@player2.deck.cards[0])
+      @player1.deck.remove_card(@player1.deck.cards[0])
+      @player2.deck.remove_card(@player2.deck.cards[0])
     end
   end
 end
