@@ -1,7 +1,6 @@
 require 'rspec'
 require './lib/card'
 
-
 describe Card do
   it "exists" do
     card = Card.new(:diamond, 'Queen', 12)

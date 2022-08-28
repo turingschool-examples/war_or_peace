@@ -3,6 +3,7 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 require 'pry'
+
 describe Turn do
     it 'exists' do
 			card1 = Card.new(:heart, 'Jack', 11)
@@ -160,6 +161,7 @@ describe Turn do
 				expect(player1.deck.cards).to eq ([card2, card5, card8, card1, card3])
 				expect(player2.deck.cards).to eq([card4, card6, card7])
 			end
+			
 			it'tests if spoils go to winner war turn' do
 				card1 = Card.new(:heart, 'Jack', 11)
 				card2 = Card.new(:heart, '10', 10)
@@ -185,6 +187,7 @@ describe Turn do
 				expect(player1.deck.cards).to eq([card8])
 				expect(player2.deck.cards).to eq([card7, card1, card2, card5, card4, card3, card6])
 			end
+			
 			it'tests m.a.d. no winner' do
 				card1 = Card.new(:heart, 'Jack', 11)
 				card2 = Card.new(:heart, '10', 10)
@@ -207,7 +210,6 @@ describe Turn do
 				turn.pile_cards
 				turn.spoils_of_war
 				expect(turn.spoils_of_war).to eq([])
-				# turn.award_spoils(winner)
 				expect(player1.deck.cards).to eq([card8])
 				expect(player2.deck.cards).to eq([card7])
 			end
