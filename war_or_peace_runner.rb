@@ -8,13 +8,10 @@ require 'pry'
 require './lib/game'
 
 # all_cards = game.create_full_deck
-all_cards.shuffle!
+# all_cards.shuffle!
 
-deck1 = Deck.new(all_cards.slice!(0, 26))
-deck2 = Deck.new(all_cards)
-
-player1 = Player.new('Megan', deck1)
-player2 = Player.new('Aurora', deck2)
+# player1 = Player.new('Megan', deck1)
+# player2 = Player.new('Aurora', deck2)
 
 turn = Turn.new(player1, player2)
 game = Game.new(turn)
@@ -23,13 +20,12 @@ game.start(player1, player2)
 
 counter = 1
 
-until counter == 10_000
+until counter == 1_000
 
   if game.game_over? # game over
     break
   elsif game.two_card_endgame?
     game.two_card_endgame(counter)
-    break
   elsif game.one_card_endgame?
     game.one_card_endgame
     break
