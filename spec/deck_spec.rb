@@ -14,7 +14,7 @@ describe Deck do
         expect(deck).to be_an_instance_of(Deck)
     end
 
-    describe '#rank_of_card_at' do
+    describe 'rank_of_card_at' do
         it 'takes 1 argument that reps the index 
         position of a card, and returns the rank of 
         that card' do
@@ -28,7 +28,7 @@ describe Deck do
         end
     end    
 
-    describe '#high_ranking_cards' do
+    describe 'high_ranking_cards' do
         it 'returns an array of cards in the deck that 
         have a rank of 11 or above (faces & aces)' do
             card1 = Card.new(:diamond, 'Queen', 12)
@@ -41,7 +41,7 @@ describe Deck do
         end
     end
 
-    describe '#percent_high_ranking' do
+    describe 'percent_high_ranking' do
         it 'returns the percentage of cards that are high ranking' do
             card1 = Card.new(:diamond, 'Queen', 12)
             card2 = Card.new(:spade, '3', 3)
@@ -53,7 +53,7 @@ describe Deck do
         end
     end 
 
-    describe '#remove_card' do 
+    describe 'remove_card' do 
         it 'removes the top card from the deck' do
             card1 = Card.new(:diamond, 'Queen', 12)
             card2 = Card.new(:spade, '3', 3)
@@ -65,7 +65,7 @@ describe Deck do
         end
     end 
     
-    describe '#add_card' do 
+    describe 'add_card' do 
         it 'adds one card to the bottom of deck' do
             card1 = Card.new(:diamond, 'Queen', 12)
             card2 = Card.new(:spade, '3', 3)
