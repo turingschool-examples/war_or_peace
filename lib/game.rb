@@ -14,13 +14,13 @@ class Game
                 :player1,
                 :player2
 
-  def initialize(turn)
-    @turn = turn
-    @turn_type = @turn.type
-    @hand_winner = @turn.winner
+  def initialize
+    @turn = nil
+    # @turn_type = @turn.type
+    # @hand_winner = @turn.winner
     @full_deck = []
-    @deck1 = []
-    @deck2 = []
+    @deck1 = nil
+    @deck2 = nil
     @player1 = nil
     @player2 = nil
   end
@@ -51,10 +51,11 @@ class Game
       full_deck << [x, :spade].flatten
       full_deck << [x, :club].flatten
     end
-
+    
     @full_deck = full_deck.map do |x|
       Card.new(x[2], x[0], x[1])
     end
+    
   end
 
   def shuffle_the_deck
@@ -65,7 +66,7 @@ class Game
     @deck1 = Deck.new(full_deck.slice!(0, 26))
     @deck2 = Deck.new(full_deck)
   end
-  
+
   def create_players
     @player1 = Player.new('Megan', @deck1)
     @player2 = Player.new('Aurora', @deck2)
@@ -134,5 +135,9 @@ class Game
     else
       'uh oh'
     end
+  end
+  
+  def make_turn
+    @turn = Turn.new(@player1, @player2)
   end
 end

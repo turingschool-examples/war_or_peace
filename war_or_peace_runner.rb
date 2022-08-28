@@ -32,8 +32,7 @@ until counter == 1_000
   else
     game.normal_game_play(counter)
   end
-  
-  
+
   turn = Turn.new(game.turn.player1, game.turn.player2)
   game = Game.new(turn)
 
