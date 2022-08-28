@@ -50,7 +50,7 @@ RSpec.describe Turn do
      turn = Turn.new(player1, player2)
 
      expect(turn.type).to eq(:basic)
-     expect(turn.winner).to eq(player1)
+
 
     end
     it 'basic turn sends the top card to the spoils_of_war'do
@@ -70,14 +70,13 @@ RSpec.describe Turn do
     player2 = Player.new("Aurora", deck2)
 
     turn = Turn.new(player1, player2)
-
+    expect(turn.type).to eq(:basic)
     turn.pile_cards
-
     expect(turn.spoils_of_war).to eq([card1, card3])
     expect(player1.deck.cards).to eq([card2, card5, card8])
     expect(player2.deck.cards).to eq([card4, card6, card7])
 
-     end
+    end
 
 
    it 'award_spoils to the winner on basic'do
@@ -98,11 +97,13 @@ RSpec.describe Turn do
      player2 = Player.new("Aurora", deck2)
 
      turn = Turn.new(player1, player2)
+     expect(turn.type).to eq(:basic)
      turn.pile_cards
-     expect(turn.spoils_of_war).to eq([card1, card3])
      turn.award_spoils(player1)
+     expect(turn.spoils_of_war).to eq([card1, card3])
 
-     turn.pile_cards
+
+
      expect(turn.spoils_of_war).to eq([card1, card3])
 
     end
@@ -132,8 +133,8 @@ RSpec.describe Turn do
      expect(turn.spoils_of_war).to eq([card1, card4, card2, card3, card5, card6])
      turn.award_spoils(player2)
      expect(player2.deck.cards).to eq([card7, card1, card4, card2, card3, card5, card6,])
-     binding.pry
-     end
+
+      end
 
      it "has a type mutually_assured_destruction with no winner"do
      card1 = Card.new(:heart, 'Jack', 11)
@@ -155,10 +156,11 @@ RSpec.describe Turn do
      turn = Turn.new(player1, player2)
 
      expect(turn.type).to eq(:mutually_assured_destruction)
+     expect(turn.winner).to eq("No Winner")
      turn.pile_cards
-     expect(turn.spoils_of_war).to eq([card1, card4, card2, card3, card5, card6])
-     turn.award_spoils(player2)
-     expect(player2.deck.cards).to eq([card7, card1, card4, card2, card3, card5, card6,])
+     expect(turn.spoils_of_war).to eq([])
+     # expect(player1.deck.cards).to eq([card8])
+     # expect(player2.deck.cards).to eq([card7])
      end
 
 
