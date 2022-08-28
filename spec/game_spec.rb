@@ -43,10 +43,11 @@ RSpec.describe Game do
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
       expect(turn.type).to eq(:basic)
+      winner = turn.winner
       turn.pile_cards
-      expect(turn.winner).to eq(player1)
+      expect(winner).to eq(player1)
       expect(turn.spoils_of_war).to eq([card1, card3])
-      turn.award_spoils(turn.winner)
+      turn.award_spoils(winner)
       expect(player1.deck.cards.length).to eq(5)
     end
 
@@ -65,10 +66,11 @@ RSpec.describe Game do
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
       expect(turn.type).to eq(:war)
+      winner = turn.winner
       turn.pile_cards
-      expect(turn.winner).to eq(player2)
+      expect(winner).to eq(player2)
       expect(turn.spoils_of_war).to eq([card1, card3, card2, card4, card5, card6])
-      turn.award_spoils(turn.winner)
+      turn.award_spoils(winner)
       expect(player1.deck.cards.length).to eq(1)
       expect(player2.deck.cards.length).to eq(7)
     end
@@ -111,6 +113,23 @@ RSpec.describe Game do
       expect(turn.type).to eq(:player2_lost)
       turn.pile_cards
       expect(player2.deck.cards.length).to eq(0)
+    end
+
+    it 'player loses' do
+      card1 = Card.new(:heart, '8', 8)
+      card3 = Card.new(:heart, '9', 9)
+      card4 = Card.new(:diamond, 'Jack', 11)
+      card6 = Card.new(:diamond, 'Queen', 12)
+      card7 = Card.new(:heart, '3', 3)
+      deck1 = Deck.new([card1])
+      deck2 = Deck.new([card3, card4, card6, card7])
+      player1 = Player.new("Megan", deck1)
+      player2 = Player.new("Aurora", deck2)
+      turn = Turn.new(player1, player2)
+      expect(turn.winner).to eq(player2)
+      winner = turn.winner
+      turn.pile_cards
+      expect(player1.has_lost?).to eq(true)
     end
   end
 

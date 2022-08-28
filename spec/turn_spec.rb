@@ -220,7 +220,6 @@ RSpec.describe Turn do
       turn = Turn.new(player1, player2)
       winner = turn.winner
       turn.pile_cards
-      turn.spoils_of_war
       turn.award_spoils(winner)
       expect(player1.deck.cards.length).to eq(5)
       expect(player2.deck.cards.length).to eq(3)
