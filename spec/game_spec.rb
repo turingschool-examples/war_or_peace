@@ -3,12 +3,9 @@ require 'spec_helper'
 require 'pry'
 
 RSpec.describe Game do
-  # let(:card1) { Card.new(:heart, 'Jack', 11) }
-  # let(:card2) { Card.new(:heart, '10', 10) }
   # let(:card3) { Card.new(:heart, '9', 9) }
   # let(:card4) { Card.new(:diamond, 'Jack', 11) }
   # let(:card5) { Card.new(:heart, '8', 8) }
-  # let(:card6) { Card.new(:diamond, 'Queen', 12) }
   # let(:card7) { Card.new(:heart, '3', 3) }
   # let(:card8) { Card.new(:diamond, '2', 2) }
 
@@ -22,10 +19,6 @@ RSpec.describe Game do
   # # :war endgame
   # let(:war_deck3) { Deck.new([card1, card2]) }
   # let(:war_deck4) { Deck.new([card4, card3, card6, card7]) }
-
-  # # :m_a_d decks
-  # let(:deck5) { Deck.new([card1, card2, card6, card1]) }
-  # let(:deck6) { Deck.new([card1, card2, card6, card1]) }
 
   # let(:player1) { Player.new('Megan', deck1) }
   # let(:player2) { Player.new('Aurora', deck2) }
@@ -91,6 +84,11 @@ RSpec.describe Game do
     it 'has a @turn' do
       expect(game.turn).to be nil
     end
+
+    it 'has a @counter' do
+      expect(game.counter).to be_truthy
+      expect(game.counter).to eq(1)
+    end
   end
 
   context '#create_full_deck' do
@@ -119,7 +117,7 @@ RSpec.describe Game do
       expect(game.deck1).to eq nil
     end
   end
-  
+
   context '#split_deck' do
     it 'splits the @full_deck' do
       game = Game.new
@@ -128,7 +126,8 @@ RSpec.describe Game do
       game.split_deck
       expect(game.deck1.cards.length).to eq(26)
       expect(game.deck2.cards.length).to eq(26)
-      expect(deck1).to_not eq(deck2)
+      expect(game.deck1).to_not eq(game.deck2)
+      expect(game.deck1).to be_a Deck
     end
   end
 
@@ -145,10 +144,11 @@ RSpec.describe Game do
   end
 
   describe '@turn' do
-    xit 'is a Turn object' do
+    it 'is a Turn object' do
       game = Game.new
       game.create_full_deck
       game.shuffle_the_deck
+      game.split_deck
       game.create_players
       game.make_turn
       expect(game.turn).to be_a Turn
@@ -159,31 +159,40 @@ RSpec.describe Game do
   end
 
   describe '#game_over?' do
-    xit 'determines if game over?' do
+    it 'determines if game over?' do
       game = Game.new
       game.create_full_deck
       game.shuffle_the_deck
+      game.split_deck
       game.create_players
       game.make_turn
       expect(game.turn).to be_a Turn
-      expect(@turn.player1.name).to eq('Megan')
+      expect(game.turn.player1.name).to eq('Megan')
       expect(game.game_over?).to be false
       game.turn.player1.deck.cards = []
       expect(game.game_over?).to be true
     end
   end
 
-  describe '#three_card_endgame?' do
-    xit 'determines if either player has exactly 3 cards' do
-      expect(game.three_card_endgame?).to be false
-      game.turn.player1.deck.cards = [card1, card2, card3]
-      expect(game.three_card_endgame?).to be true
-    end
-  end
+  # describe '#three_card_endgame?' do
+  #   it 'determines if either player has exactly 3 cards' do
+  #     expect(game.three_card_endgame?).to be false
+  #     game.turn.player1.deck.cards = [card1, card2, card3]
+  #     expect(game.three_card_endgame?).to be true
+  #   end
+  # end
 
   describe '#two_card_endgame?' do
-    xit 'determines if either player has exactly 2 cards' do
+    it 'determines if either player has exactly 2 cards' do
+      game = Game.new
+      game.create_full_deck
+      game.shuffle_the_deck
+      game.split_deck
+      game.create_players
+      game.make_turn
       expect(game.two_card_endgame?).to be false
+      card1 = Card.new(:heart, 'Jack', 11)
+      card2 = Card.new(:heart, '10', 10)
       game.turn.player1.deck.cards = [card1, card2]
       expect(game.two_card_endgame?).to be true
     end
@@ -195,30 +204,57 @@ RSpec.describe Game do
     #   game.turn.player2.deck = game.turn.player1.deck
     #   expect(game.two_card_endgame).to eq("not allowed")
     # end
-
-    xit 'pushes 2 card to the winner when :war' do
+    it 'pushes 2 card to the winner when :war' do
+      game = Game.new
+      game.create_full_deck
+      game.shuffle_the_deck
+      game.split_deck
+      game.create_players
+      game.make_turn
+      expect(game.turn.player1.deck.cards.length).to eq(26)
+      card1 = Card.new(:heart, 'Jack', 11)
+      card2 = Card.new(:heart, '10', 10)
+      game.turn.player1.deck = Deck.new([card1, card2, card1])
       game.turn.player2.deck = Deck.new([card1, card2])
-      # binding.pry
+      expect(game.turn.type).to eq(:war)
       game.two_card_endgame(1)
-      # binding.pry
-      expect(game.turn.player1.deck.cards.length).to eq(6)
-      # binding.pry
+      expect(game.turn.player1.deck.cards.length).to eq(5)
     end
   end
 
   describe '#one_card_endgame?' do
-    xit 'determines if either player has exactly 1 card' do
+    it 'determines if either player has exactly 1 card' do
+      game = Game.new
+      game.create_full_deck
+      game.shuffle_the_deck
+      game.split_deck
+      game.create_players
+      game.make_turn
       expect(game.one_card_endgame?).to be false
+      card1 = Card.new(:heart, 'Jack', 11)
       game.turn.player1.deck.cards = [card1]
       expect(game.one_card_endgame?).to be true
     end
   end
 
   describe '#normal_game_play' do
-    xit 'removes 3 card from each player when :mutually_assured_destruction' do
-      mad_game.normal_game_play(counter)
-      expect(mad_game.turn.player1.deck.cards.length).to eq(1)
-      expect(mad_game.turn.player2.deck.cards.length).to eq(1)
+    it 'removes 3 card from each player when :mutually_assured_destruction' do
+      game = Game.new
+      game.create_full_deck
+      game.shuffle_the_deck
+      game.split_deck
+      game.create_players
+      game.make_turn
+      card1 = Card.new(:heart, 'Jack', 11)
+      card2 = Card.new(:heart, '10', 10)
+      card6 = Card.new(:diamond, 'Queen', 12)
+      deck1 = Deck.new([card1, card2, card6, card1])
+      game.turn.player1.deck = deck1
+      game.turn.player2.deck = deck1
+      game.normal_game_play(game.counter)
+      expect(game.turn.type).to eq(:mutually_assured_destruction)
+      expect(game.turn.player1.deck.cards.length).to eq(1)
+      expect(game.turn.player2.deck.cards.length).to eq(1)
     end
 
     xit 'awards 6 total cards to the winner of WAR' do
@@ -276,10 +312,8 @@ RSpec.describe Game do
       game.start
       expect(game.player1).to be_a Player
       expect(game.player2).to be_a Player
-    end
+    end 
   end
-
-  
 
   context '#create_players' do
     xit 'makes player1' do

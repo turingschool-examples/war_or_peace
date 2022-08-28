@@ -12,7 +12,8 @@ class Game
                 :deck1,
                 :deck2,
                 :player1,
-                :player2
+                :player2, 
+                :counter
 
   def initialize
     @turn = nil
@@ -23,6 +24,7 @@ class Game
     @deck2 = nil
     @player1 = nil
     @player2 = nil
+    @counter = 1
   end
 
   def start
@@ -51,11 +53,10 @@ class Game
       full_deck << [x, :spade].flatten
       full_deck << [x, :club].flatten
     end
-    
+
     @full_deck = full_deck.map do |x|
       Card.new(x[2], x[0], x[1])
     end
-    
   end
 
   def shuffle_the_deck
@@ -88,6 +89,22 @@ class Game
     turn.player1.deck.cards.length == 2 || turn.player2.deck.cards.length == 2
   end
 
+  def two_card_endgame(counter)
+    case turn.type
+    when :basic
+      normal_game_play(counter)
+    when :war
+      if @player2.deck.cards[2].nil?
+        turn.player1.deck.cards.concat(turn.player2.deck.cards.pop(2))
+      elsif @player1.deck.cards[2].nil?
+        turn.player2.deck.cards.concat(turn.player1.deck.cards.pop(2))
+      end
+
+    else
+      'not allowed'
+    end
+  end
+
   def one_card_endgame?
     turn.player1.deck.cards.length == 1 || turn.player2.deck.cards.length == 1
   end
@@ -100,24 +117,8 @@ class Game
     end
   end
 
-  def two_card_endgame(counter)
-    case turn.type
-    when :basic
-      normal_game_play(counter)
-    when :war
-      if hand_winner == turn.player1
-        turn.player1.deck.cards.concat(turn.player2.deck.cards.pop(2))
-      elsif hand_winner == turn.player2
-        turn.player2.deck.cards.concat(turn.player1.deck.cards.pop(2))
-      end
-
-    else
-      'not allowed'
-    end
-  end
-
   def normal_game_play(counter)
-    case turn_type
+    case turn.type
     when :mutually_assured_destruction
       turn.pile_cards
       p "turn #{counter}: No winner: mutually assured destruction 6 cards removed"
@@ -136,7 +137,7 @@ class Game
       'uh oh'
     end
   end
-  
+
   def make_turn
     @turn = Turn.new(@player1, @player2)
   end

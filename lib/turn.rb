@@ -24,7 +24,7 @@ class Turn
         :war
       end
     elsif @player1.deck.cards.count < 3 || @player2.deck.cards.count < 3
-      if  @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+      if  @player1.deck.cards[0].rank != @player2.deck.cards[0].rank
         :basic
       elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
         :war
