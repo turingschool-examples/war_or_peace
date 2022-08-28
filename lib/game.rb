@@ -5,17 +5,30 @@ require './lib/player'
 require 'pry'
 
 class Game
-  attr_accessor :turn, :turn_type, :hand_winner, :full_deck
+  attr_accessor :turn,
+                :turn_type,
+                :hand_winner,
+                :full_deck,
+                :deck1,
+                :deck2,
+                :player1,
+                :player2
 
   def initialize(turn)
     @turn = turn
     @turn_type = @turn.type
     @hand_winner = @turn.winner
     @full_deck = []
+    @deck1 = []
+    @deck2 = []
+    @player1 = nil
+    @player2 = nil
   end
 
-  def start(player1, player2)
+  def start
     create_full_deck
+    shuffle_the_deck
+    create_players
     puts ''
     puts 'Welcome to War! (or Peace) This game will be played with 52 cards.'
     puts "The players today are #{player1.name} and #{player2.name}."
@@ -42,6 +55,20 @@ class Game
     @full_deck = full_deck.map do |x|
       Card.new(x[2], x[0], x[1])
     end
+  end
+
+  def shuffle_the_deck
+    @full_deck = @full_deck.shuffle
+  end
+
+  def split_deck
+    @deck1 = Deck.new(full_deck.slice!(0, 26))
+    @deck2 = Deck.new(full_deck)
+  end
+  
+  def create_players
+    @player1 = Player.new('Megan', @deck1)
+    @player2 = Player.new('Aurora', @deck2)
   end
 
   def game_over?
