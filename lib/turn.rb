@@ -26,12 +26,12 @@ class Turn
             else
                 @player2    
             end    
-        # else type == :war 
-        #     if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-        #         player1
-        #     else
-        #         player2
-        #     end
+        else type == :war 
+             if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+                 player1
+             else
+                 player2
+             end
         end
     end
 
@@ -39,8 +39,14 @@ class Turn
         if type == :basic 
             spoils_of_war << player1.deck.remove_card
             spoils_of_war << player2.deck.remove_card
-        # elsif type == :war
-        #     spoils_of_war << deck.card.shift(3)
+        elsif type == :war
+            3.times do
+                spoils_of_war << player1.deck.remove_card
+                spoils_of_war << player2.deck.remove_card
+            end
+            #  spoils_of_war << player1.deck.cards.shift(3)
+            #  spoils_of_war << player2.deck.cards.shift(3)
+            #  why does this code equal a nested array of 12 cards
         end
     end
 
