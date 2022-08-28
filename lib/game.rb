@@ -1,19 +1,82 @@
+require './lib/card'
+require './lib/deck'
+require './lib/player'
+require './lib/turn'
+
+
+
 class Game
 
     attr_reader :player_1,
                 :player_2
                 
 
-    def initialize (player_1, player_2)
+    def initialize 
 
-        @player_1 = player_1
-        @player_2 = player_2
+        rank_values = [2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+        diamonds = []
+        hearts = []
+        spades = []
+        clubs = []
+
+        full_deck_cards = []
+
+
+        rank_values.each do |rank_value|
+
+            diamonds << Card.new(:diamond, "#{rank_value}", rank_value)
+
+            hearts << Card.new(:heart, "#{rank_value}", rank_value)
+
+            spades << Card.new(:spade, "#{rank_value}", rank_value)
+
+            clubs << Card.new(:club, "#{rank_value}", rank_value)
+            
+        end
+
+        def create_high_value(suits, suit)
+
+            suits << Card.new(suit, "Jack", 11)
+            suits << Card.new(suit, "Queen", 12)
+            suits << Card.new(suit, "King", 13)
+            suits << Card.new(suit, "Ace", 14)
+
+        end
+
+        create_high_value(diamonds, :diamond)
+        create_high_value(hearts, :heart)
+        create_high_value(spades, :spade)
+        create_high_value(clubs, :club)
+
+
+        full_deck_cards = diamonds + hearts + spades + clubs
+        full_deck_cards = full_deck_cards.shuffle
+        half_deck_1 = []
+        half_deck_2 = []
+
+
+        26.times do
+            half_deck_1 << full_deck_cards.shift
+        end
+
+        26.times do
+            half_deck_2 << full_deck_cards.shift
+        end
+
+        deck_1 = Deck.new(half_deck_1)
+        deck_2 = Deck.new(half_deck_2)
+
+
+
+        @player1 = Player.new("Mufasa", deck_1)
+        @player2 = Player.new("Skar", deck_2)
         
 
     end
 
     def welcome_message
-        print "\nWelcome to War (or Peace)! This game will be played with 52 cards.\nThe players today are #{@player_1.player_name} and #{@player_2.player_name}.\nType 'GO' to start the game!\n ------------------------------------------------------------------\n" 
+        print "\nWelcome to War (or Peace)! This game will be played with 52 cards.\nThe players today are #{@player1.name} and #{@player2.name}.\nType 'GO' to start the game!\n ------------------------------------------------------------------\n" 
     end
 
     def user_input
@@ -43,7 +106,8 @@ class Game
 
     def start
 
-        #welcome_loop
+
+        welcome_loop
 
 
         i = 0
@@ -52,36 +116,37 @@ class Game
 
         loop do
 
-            turns << Turn.new(@player_1, @player_2)
+            turns << Turn.new(@player1, @player2)
 
 
-            if turns[i].winner == @player_1
-                print "\nTurn #{i+1}: #{@player_1.player_name} won. "
-            elsif turns[i].winner == @player_2
-                print "\nTurn #{i+1}: #{@player_2.player_name} won."
+            if turns[i].winner == @player1
+                print "\nTurn #{i+1}: #{@player1.name} won. "
+            elsif turns[i].winner == @player2
+                print "\nTurn #{i+1}: #{@player2.name} won."
             else
                 print "\nTurn #{i+1}: no winner"
             end
 
-            print "\n\n#{turns[i].type}\n\n"
+            #print "\n\n#{turns[i].type}\n\n" ------> For testing purposes
 
 
             turns[i].pile_cards
     
     
-            print "\n#{turns[i].player1.player_name}  #{turns[i].player1.deck.cards} \n"
-            print "\n#{turns[i].player2.player_name}  #{turns[i].player2.deck.cards} \n"
+            # print "\n#{turns[i].player1.name}  #{turns[i].player1.deck.cards} \n"
+            # print "\n#{turns[i].player2.name}  #{turns[i].player2.deck.cards} \n"
+            #this code was for testing and troubleshooting purposes. 
 
 
-            if @player_2.has_lost?
+            if @player2.has_lost?
 
-                print "\n*~*~*~* #{@player_1.player_name} has won the game! *~*~*~*"
+                print "\n*~*~*~* #{@player1.name} has won the game! *~*~*~*"
                 
                 break
 
-            elsif @player_1.has_lost?
+            elsif @player1.has_lost?
 
-                print "\n*~*~*~* #{@player_2.player_name} has won the game! *~*~*~*"
+                print "\n*~*~*~* #{@player2.name} has won the game! *~*~*~*"
                 
                 break
 
@@ -93,7 +158,7 @@ class Game
             end
 
 
-            print "\n\n #{turns[i].spoils_of_war} \n\n"
+            #print "\n\n #{turns[i].spoils_of_war} \n\n" ------> for testing purposes
 
             turns[i].award_spoils
 
