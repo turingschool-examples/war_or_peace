@@ -4,7 +4,6 @@ class Turn
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
-    @turn_type = nil
   end
 
   def type
@@ -17,19 +16,24 @@ class Turn
     end
   end
 
+
   def winner
-    if @turn_type = :basic
-      @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
-      @player1
-    elsif @player1.deck.rank_of_card_at(0) < @player2.deck.rank_of_card_at(0)
-      @player2
-    elsif @turn_type = :war
-      @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
-      @player1
-    elsif @player1.deck.rank_of_card_at(2) < @player2.deck.rank_of_card_at(2)
-      @player2
-    elsif @turn_type = :mutually_assured_destruction
-      "No Winner"
+    if type == :mutually_assured_destruction
+     "No Winner"
+
+    elsif type == :war
+      if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
+        @player1
+      else
+        @player2
+      end
+
+    else
+      if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
+        @player1
+      else
+        @player2
+      end
     end
   end
 
@@ -41,13 +45,13 @@ class Turn
       @spoils_of_war << @player1.deck.cards.shift(3)
       @spoils_of_war << @player2.deck.cards.shift(3)
       @spoils_of_war.flatten!
-    elsif type == :basic
+    else
       @spoils_of_war << @player1.deck.cards.shift()
       @spoils_of_war << @player2.deck.cards.shift()
     end
   end
 
-  def award_spoils
+  def award_spoils(winner)
     winner.deck.cards.concat(@spoils_of_war)
   end
 end
