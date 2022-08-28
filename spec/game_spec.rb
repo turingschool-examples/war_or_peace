@@ -11,49 +11,14 @@ RSpec.describe Game do
 
     it "exists" do
 
-        card1 = Card.new(:heart, 'Jack', 11)
-        card2 = Card.new(:heart, '10', 10)
-        card3 = Card.new(:heart, '9', 9)
-        card4 = Card.new(:diamond, 'Jack', 11)
-        card5 = Card.new(:heart, '8', 8)
-        card6 = Card.new(:diamond, 'Queen', 12)
-        card7 = Card.new(:heart, '3', 3)
-        card8 = Card.new(:diamond, '2', 2)
-
-        
-
-        deck1 = Deck.new([card1, card2, card5, card8])
-        deck2 = Deck.new([card3, card4, card6, card7])
-
-
-        player1 = Player.new("Megan", deck1)
-        player2 = Player.new("Aurora", deck2)
-
         game = Game.new
 
         expect(game).to be_an_instance_of(Game)
 
     end
 
-    it "starts game with a welcome message" do
-
-        card1 = Card.new(:heart, 'Jack', 11)
-        card2 = Card.new(:heart, '10', 10)
-        card3 = Card.new(:heart, '9', 9)
-        card4 = Card.new(:diamond, 'Jack', 11)
-        card5 = Card.new(:heart, '8', 8)
-        card6 = Card.new(:diamond, 'Queen', 12)
-        card7 = Card.new(:heart, '3', 3)
-        card8 = Card.new(:diamond, '2', 2)
-
-        
-
-        deck1 = Deck.new([card1, card2, card5, card8])
-        deck2 = Deck.new([card3, card4, card6, card7])
-
-
-        player1 = Player.new("Megan", deck1)
-        player2 = Player.new("Aurora", deck2)
+    it "has a welcome message" do
+    
 
         game = Game.new
 
@@ -61,59 +26,76 @@ RSpec.describe Game do
 
     end
 
-    xit "starts game with a welcome message" do
-
-        card1 = Card.new(:heart, 'Jack', 11)
-        card2 = Card.new(:heart, '10', 10)
-        card3 = Card.new(:heart, '9', 9)
-        card4 = Card.new(:diamond, 'Jack', 11)
-        card5 = Card.new(:heart, '8', 8)
-        card6 = Card.new(:diamond, 'Queen', 12)
-        card7 = Card.new(:heart, '3', 3)
-        card8 = Card.new(:diamond, '2', 2)
-
-        
-
-        deck1 = Deck.new([card1, card2, card5, card8])
-        deck2 = Deck.new([card3, card4, card6, card7])
-
-
-        player1 = Player.new("Megan", deck1)
-        player2 = Player.new("Aurora", deck2)
-
-        game = Game.new(player1, player2)
-
-        expect(game.welcome_message).to eq(nil)
-
-    end
 
     xit "gets user input" do
 
-        card1 = Card.new(:heart, 'Jack', 11)
-        card2 = Card.new(:heart, '10', 10)
-        card3 = Card.new(:heart, '9', 9)
-        card4 = Card.new(:diamond, 'Jack', 11)
-        card5 = Card.new(:heart, '8', 8)
-        card6 = Card.new(:diamond, 'Queen', 12)
-        card7 = Card.new(:heart, '3', 3)
-        card8 = Card.new(:diamond, '2', 2)
 
+        game = Game.new
+
+
+        #not sure how to test for user_input yet and if this has not been updated to a working state then I couldn't figure it out before submitting.
+
+        #this test would apply to welcome_loop method as well
+
+    end
+
+
+
+
+    it "creates two decks for each player" do
+
+        game = Game.new
+
+        game.create_decks
+
+        expect(game.deck1).to be_an_instance_of(Deck)
+        expect(game.deck2).to be_an_instance_of(Deck)
         
-
-        deck1 = Deck.new([card1, card2, card5, card8])
-        deck2 = Deck.new([card3, card4, card6, card7])
+    end
 
 
-        player1 = Player.new("Megan", deck1)
-        player2 = Player.new("Aurora", deck2)
 
-        game = Game.new(player1, player2)
+    it "has 26 cards in each deck" do
+
+        game = Game.new
+
+        game.create_decks
+
+        expect(game.deck1.cards.count).to eq(26)
+        expect(game.deck2.cards.count).to eq(26)
+
+    end
+
+    it "has creates two players" do
+
+        game = Game.new
+
+        game.create_decks
+
+        expect(game.player1.name).to eq("Mufasa")
+        expect(game.player2.name).to eq("Skar")
 
 
     end
+
+    xit "has the game logic which should end with a print statement" do
+
+        #not sure how to test this part yet because cards get randomized
+
+        game = Game.new
+
+        game.create_decks
+
+        expect(game.start).to eq(nil)
+
+        #need to test user input still, so disabled this test
+
+
+    end
+
+
 
 
 
 end
 
-#binding.pry

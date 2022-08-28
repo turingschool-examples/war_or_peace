@@ -14,7 +14,7 @@ class Game
 
     def initialize 
 
-        create_deck
+        create_decks
 
         
         @player1 = Player.new("Mufasa", @deck1)
@@ -41,7 +41,7 @@ class Game
 
 
 
-    def create_deck
+    def create_decks
 
         rank_values = [2, 3, 4, 5, 6, 7, 8, 9, 10]
 
@@ -184,13 +184,13 @@ class Game
 
             if @player2.has_lost?
 
-                print "\n*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+                print "\n*~*~*~* #{@player1.name} has won the game! *~*~*~*\n"
                 
                 break
 
             elsif @player1.has_lost?
 
-                print "\n*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+                print "\n*~*~*~* #{@player2.name} has won the game! *~*~*~*\n"
                 
                 break
 

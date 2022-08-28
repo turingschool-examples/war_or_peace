@@ -106,7 +106,7 @@ class Turn
 
         if type == :basic
 
-        @spoils_of_war << @player1.deck.remove.card
+        @spoils_of_war << @player1.deck.remove_card
 
         @spoils_of_war << @player2.deck.remove_card
 
@@ -123,11 +123,11 @@ class Turn
         elsif type == :mutually_assured_destruction
 
             3.times do
-                @player1.deck.cards.shift
+                @player1.deck.remove_card
             end
 
             3.times do
-                @player2.deck.cards.shift
+                @player2.deck.remove_card
             end
 
         end
