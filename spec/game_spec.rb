@@ -59,6 +59,10 @@ RSpec.describe Start do
 		@card50 = Card.new(:club, 'Queen', 12)
 		@card51 = Card.new(:club, 'King', 13)
     	@card52 = Card.new(:club, 'Ace', 14)
+		
+	end
+
+	it "#play_game" do
 		@deck1 = Deck.new([@card45, @card4, @card28, @card43, @card39, @card34, @card25, @card47, @card11, @card32, @card7, @card17, @card44, @card9, @card48, @card52, @card15, @card50, @card42, @card36, @card46, @card3, @card22, @card51, @card20, @card41])
 		@deck2 = Deck.new([@card24, @card5, @card31, @card16, @card35, @card13, @card30, @card21, @card10, @card26, @card6, @card40, @card8, @card12, @card49, @card14, @card19, @card33, @card2, @card18, @card37, @card1, @card23, @card27, @card38, @card29])
 		@player1 = Player.new("Megan", @deck1)
