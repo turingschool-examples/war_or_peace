@@ -42,11 +42,4 @@ RSpec.describe Game do
       expect(game.player2).to eq(@player2)
     end 
   end 
-
-  # describe '#start' do 
-  #   it 'will start the game' do
-  #     game = Game.new(@player1, @player2)
-  #     expect(game.start).to eq("Welcome to War! (or Peace) This game will be played with 52 cards.\n The players today are Dug and Fran.\n Type 'GO' to start the game!\n ------------------------------------------------------------------")
-  #   end 
-  # end 
 end 
