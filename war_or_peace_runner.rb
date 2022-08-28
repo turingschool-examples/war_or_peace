@@ -3,4 +3,4 @@ require './lib/game'
 
 
 game = Game.new
-game.start
+@play_start

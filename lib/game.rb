@@ -4,15 +4,17 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
-
+# from here to war_or_peace runner to play gameplay
+#Order matters
+#how does the match start-end
 class Game
    attr_reader :deck,
-              :player1,
-              :player2,
-              :turn,
-              :full_deck,
-              :deck1,
-              :deck2
+               :player1,
+               :player2,
+               :turn,
+               :full_deck,
+               :deck1,
+               :deck2
 
      def initialize
       @full_deck = new_deck
@@ -20,7 +22,8 @@ class Game
       @deck2 = @full_deck[26, 26]
       @player1 = Player.new("Megan", @deck1)
       @player2 = Player.new("Aurora", @deck2)
-      # @turn = turn
+      @turn = turn
+      @turn_start = turn_start
      end
 
     def new_deck
@@ -82,7 +85,6 @@ class Game
       cards.shuffle!
       # deck1 = Deck.new(@full_deck.cards[0, 26])
       # deck2 = Deck.new(@full_deck.cards[26, 26])
-      binding.pry
 
     end
 
@@ -91,14 +93,19 @@ class Game
 The players today are Megan and Aurora.
 Type 'GO' to start the game!
 ------------------------------------------------------------------"
-p welcome
-play_start
+ p welcome
+ @turn_count = 0
+ play_start
   end
+  turn = turn.new(player1, player2)
+  binding.pry
+  @turn_count = 1
 
-  def play_start
+
+  # def play_start
+#unsure of how to corilate user typing go to make this work
 
 
 # deck1 = [card1, card3, card5, card7, card10, card11, card13, card16, card19, card20, card22, card24, card26, card28, card30, card32, card34, card36, card39, card42, card44, card45, card46, card49, card50 card52]
 # deck2 = [card2, card4, card6, card8, card9, card12, card14, card15, card16, card17, card18, card21, card23, card25, card29, card31, card33, card35, card37, card38, card40, card41, card43, card47, card48, card51]
-
 end
