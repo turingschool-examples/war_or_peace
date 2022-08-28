@@ -10,7 +10,7 @@ require './lib/card_generator'
 # Generate and shuffle cards
 card_generator = CardGenerator.new
 card_generator.run
-card_generator.shuffle
+# card_generator.shuffle
 
 # Save deck for troubleshooting a crash
 card_generator.save_deck

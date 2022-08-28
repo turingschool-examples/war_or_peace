@@ -1,7 +1,7 @@
 require 'json'
 
 class CardGenerator
-  attr_reader :cards, :loaded_deck
+  attr_reader :cards, :loaded_deck, :card_inputs
   def initialize(cards = nil)
     @cards = cards
     @loaded_deck = nil
@@ -20,6 +20,7 @@ class CardGenerator
       @card_inputs << [suits[2], card].flatten
       @card_inputs << [suits[3], card].flatten
     end
+    @card_inputs.shuffle!
     @cards = @card_inputs.map do |input|
       Card.new(input[0], input[1], input[2])
     end
