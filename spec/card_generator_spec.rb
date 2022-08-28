@@ -44,12 +44,17 @@ RSpec.describe Card_Generator do
     end
 
     it 'can create instances of card for each array within the array' do
-      file_name = 'test.txt'
+      file_name = 'cards.txt'
       card_generator = Card_Generator.new(file_name)
       card_generator.read_file
       card_generator.split_by_line
+      card_generator.split_line
       card_generator.create_cards
-      expect(card_generator.cards[0].suit).to eq()
+      # require 'pry'; binding.pry
+      expect(card_generator.cards[0]).to be_an_instance_of(Card)
+      expect(card_generator.cards[0].suit).to eq('Heart')
+      expect(card_generator.cards[0].rank).to eq(2)
+      expect(card_generator.cards[0].value).to eq('2')
     end
   end
 end

@@ -1,3 +1,5 @@
+require './lib/card'
+
 class Card_Generator
   attr_reader :file_name,
               :file_data,
@@ -26,5 +28,11 @@ class Card_Generator
       @split_comma_data << line.split(", ")
     end
     @split_comma_data
+  end
+
+  def create_cards
+    @split_comma_data.each do |card_data|
+      @cards << Card.new(card_data[1], card_data[0], card_data[0].to_i)
+    end
   end
 end
