@@ -7,11 +7,41 @@ require './lib/turn'
 
 class Game
 
-    attr_reader :player_1,
-                :player_2
-                
+    attr_reader :player1,
+                :player2,
+                :deck1,
+                :deck2
 
     def initialize 
+
+        create_deck
+
+        
+        @player1 = Player.new("Mufasa", @deck1)
+        @player2 = Player.new("Skar", @deck2)
+        
+
+    end
+
+
+
+
+
+    def create_high_value(suits, suit)
+
+        suits << Card.new(suit, "Jack", 11)
+        suits << Card.new(suit, "Queen", 12)
+        suits << Card.new(suit, "King", 13)
+        suits << Card.new(suit, "Ace", 14)
+
+    end
+
+
+
+
+
+
+    def create_deck
 
         rank_values = [2, 3, 4, 5, 6, 7, 8, 9, 10]
 
@@ -35,14 +65,6 @@ class Game
             
         end
 
-        def create_high_value(suits, suit)
-
-            suits << Card.new(suit, "Jack", 11)
-            suits << Card.new(suit, "Queen", 12)
-            suits << Card.new(suit, "King", 13)
-            suits << Card.new(suit, "Ace", 14)
-
-        end
 
         create_high_value(diamonds, :diamond)
         create_high_value(hearts, :heart)
@@ -57,31 +79,38 @@ class Game
 
 
         26.times do
-            half_deck_1 << full_deck_cards.shift
+        half_deck_1 << full_deck_cards.shift
         end
 
         26.times do
-            half_deck_2 << full_deck_cards.shift
+        half_deck_2 << full_deck_cards.shift
         end
 
-        deck_1 = Deck.new(half_deck_1)
-        deck_2 = Deck.new(half_deck_2)
-
-
-
-        @player1 = Player.new("Mufasa", deck_1)
-        @player2 = Player.new("Skar", deck_2)
-        
+        @deck1 = Deck.new(half_deck_1)
+        @deck2 = Deck.new(half_deck_2)
 
     end
+
+
+
+
 
     def welcome_message
         print "\nWelcome to War (or Peace)! This game will be played with 52 cards.\nThe players today are #{@player1.name} and #{@player2.name}.\nType 'GO' to start the game!\n ------------------------------------------------------------------\n" 
     end
 
+
+
+
+
+
     def user_input
         gets.chomp
     end
+
+
+
+
 
     def welcome_loop
 
@@ -104,6 +133,10 @@ class Game
     end
 
 
+
+
+
+
     def start
 
 
@@ -119,12 +152,23 @@ class Game
             turns << Turn.new(@player1, @player2)
 
 
-            if turns[i].winner == @player1
-                print "\nTurn #{i+1}: #{@player1.name} won. "
-            elsif turns[i].winner == @player2
-                print "\nTurn #{i+1}: #{@player2.name} won."
+            if turns[i].type == :basic
+
+                if turns[i].winner == @player1
+                    print "\nTurn #{i+1}: #{@player1.name} won. #{@player1.name} has won 2 cards"
+                elsif turns[i].winner == @player2
+                    print "\nTurn #{i+1}: #{@player2.name} won. #{@player2.name} has won 2 cards"
+                end
+
+            elsif turns[i].type == :war
+                if turns[i].winner == @player1
+                    print "\nTurn #{i+1}: WAR - #{@player1.name} won 6 cards"
+                elsif turns[i].winner == @player2
+                    print "\nTurn #{i+1}: WAR - #{@player2.name} won 6 cards"
+                end
+
             else
-                print "\nTurn #{i+1}: no winner"
+                print "\nTurn #{i+1}: *mutually assured destruction* 6 cards removed from play."
             end
 
             #print "\n\n#{turns[i].type}\n\n" ------> For testing purposes
