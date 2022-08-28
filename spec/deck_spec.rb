@@ -19,6 +19,7 @@ RSpec.describe Deck do
       card3 = Card.new(:heart, "Ace", 14)
       cards = [card1, card2, card3]
       deck = Deck.new(cards)
+      require "pry";binding.pry
       expect(deck.cards).to eq([card1, card2, card3])
     end
   end
