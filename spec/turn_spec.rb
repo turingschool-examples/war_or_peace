@@ -2,7 +2,7 @@ require 'rspec'
 require './lib/card'
 require './lib/deck'
 require './lib/player'
-require './lib/turn_2'
+require './lib/turn'
 require 'pry'
 
 RSpec.describe Turn do
