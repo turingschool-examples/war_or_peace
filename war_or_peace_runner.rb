@@ -57,6 +57,8 @@ Type 'GO' to start the game!
         elsif type == :mutually_assured_destruction
           p "Turn #{turn_count}: *mutually assured destruction* 6 cards removed from play"
         end
+        p @player1.deck.cards.length
+        p @player2.deck.cards.length
         if @player1.deck.cards.length == 0 || @player2.deck.cards.length == 0
           continue_game = false
           p "*~*~*~* #{winner.name} has won the game! *~*~*~*"
