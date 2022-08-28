@@ -42,8 +42,7 @@ RSpec.describe Deck do
     card3 = Card.new(:diamond, 'Queen', 12)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
-    
-    expect(deck.percent_high_ranking).to eq((2/3.to_f).round(2))
+    expect(deck.percent_high_ranking).to eq(((2/3.to_f)*100).round(2))
   end
   it 'has a method to remove one card from the top of the deck' do
     card1 = Card.new(:spade, 'Ace', 14)

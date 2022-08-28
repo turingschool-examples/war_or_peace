@@ -5,6 +5,8 @@ class Game
     @player2 = player2
   end
   
+  # Output game setup and prompt user to start game by entering 'GO'. 
+  
   def start
     puts "Welcome to War! (or Peace) This game will be played with 52 cards.\n"
     puts "The players today are #{player1.name} and #{player2.name}.\n"
@@ -18,8 +20,11 @@ class Game
     play
   end
   
+  # Set turn count to 0 and play out a game until the earlier of either player losing, or 1,000,000 turns
+  
   def play
     turn_count = 0
+    
     until player1.has_lost? || player2.has_lost? do
       turn_count += 1
       turn = Turn.new(player1, player2)
@@ -42,6 +47,7 @@ class Game
         puts "*~*~*~* #{player1.deck.cards[0].nil? ? player2.name : player1.name} has won the game! *~*~*~*"
         break
       end
+      
       if turn_count == 1000000
         puts "---- DRAW ----"
         break

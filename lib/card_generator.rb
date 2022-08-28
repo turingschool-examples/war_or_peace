@@ -1,5 +1,4 @@
 require './lib/card'
-require './lib/deck'
 
 class CardGenerator
   attr_reader :cards, :filename
@@ -8,6 +7,8 @@ class CardGenerator
     @cards = cards
     @cards = sort_file_into_deck()
   end
+  
+  # Read .txt file provided by user and create an array of cards
   
   def sort_file_into_deck
     cards_import = File.open("lib/#{filename}").read.split("\n")

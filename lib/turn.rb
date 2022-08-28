@@ -8,6 +8,8 @@ class Turn
     @loser = loser
   end
   
+  # Return boolean value if either player has fewer than 3 cards left
+  
   def fewer_than_3_cards?
     if player1.deck.cards.count < 3 || player2.deck.cards.count < 3
       true 
@@ -15,6 +17,9 @@ class Turn
       false
     end
   end
+  
+  # Return turn type based on the paired card rankings.
+  # Added :sudden_death type to account for scenario when a player does not have enough cards for a war.
   
   def type
     if player1.deck.cards[0].rank == player2.deck.cards[0].rank && fewer_than_3_cards?
@@ -27,6 +32,9 @@ class Turn
       return :basic
     end
   end
+  
+  # Return the turn winner based on turn type and card pairings
+  # Sudden death branch includes a loser variable for use in the terminal output in a game.
   
   def winner
     if type == :sudden_death
@@ -54,6 +62,8 @@ class Turn
     end
   end
   
+  # Remove cards from player decks and add to spoils of war.
+  
   def pile_cards
     if type == :sudden_death
       minimum_number_of_cards = [player1.deck.cards.count, player2.deck.cards.count].min
@@ -75,9 +85,11 @@ class Turn
     end
   end
   
+  # Remove cards from spoils of war and add to winning player deck
+  
   def award_spoils(winner)
-    @spoils_of_war.count.times do |element|
-      @turn_winner.deck.cards << @spoils_of_war[element]
+    @spoils_of_war.count.times do |card|
+      @turn_winner.deck.cards << @spoils_of_war[card]
     end
     @spoils_of_war.clear
   end
