@@ -3,7 +3,6 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 require './lib/start'
-require 'pry'
 
 war_deck = [
   card1 = Card.new(:heart, 'Ace', 14),
@@ -61,7 +60,6 @@ war_deck = [
 ]
 
 war_deck.shuffle!
-war_deck.shuffle!
 
 deck1 = Deck.new(war_deck.take(26))
 deck2 = Deck.new(war_deck.last(26))
@@ -72,14 +70,4 @@ turn = Turn.new(player1, player2)
 
 war = Game.new(player1, player2, turn)
 
-p "Welcome to War! (or Peace) This game will be played with 52 cards."
-p "The players today are #{player1.name} and #{player2.name}."
-p "Type 'GO' to start the game!"
-
-start = gets.chomp
-
-if start == 'GO'
-  war.start
-else
-  p 'No GO? Okay, see ya later!'
-end
+war.start
