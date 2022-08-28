@@ -227,7 +227,7 @@ RSpec.describe Turn do
 
         expect(turn.type).to eq(:mutually_assured_destruction)
 
-        expect(turn.winner).to eq("No winner")
+        expect(turn.winner).to eq(nil)
 
     end
 

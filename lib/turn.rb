@@ -23,22 +23,30 @@ class Turn
             :basic
         elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) 
 
-            if @player1.deck.rank_of_card_at(2) != @player2.deck.rank_of_card_at(2)
-            :war
+            if not_enough_cards? == FALSE
+
+                if @player1.deck.rank_of_card_at(2) != @player2.deck.rank_of_card_at(2)
+                :war
+                else
+                :mutually_assured_destruction
+                end
+
             else
-            :mutually_assured_destruction
+
+                :war
+                
             end
+            
 
         end
     end
 
     def winner
 
-        nope = "No winner"
-
 
         if type == :basic
 
+                
             if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
             @player1
             else
@@ -46,20 +54,51 @@ class Turn
             end
 
         elsif type == :war
+            
+            if not_enough_cards? == FALSE
 
-            if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
-             @player1.player_name
+                if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
+                @player1
+                else
+                @player2
+                end
+
             else
-             @player2
+
+            not_enough_cards
+
             end
-
-        else
-
-        nope
 
         end
 
     end
+
+
+    def not_enough_cards?
+
+        if @player1.deck.cards.length < 3 
+            TRUE
+        elsif @player1.deck.cards.length < 3 
+            TRUE
+        elsif @player2.deck.cards.length < 3 
+            TRUE
+        elsif @player2.deck.cards.length < 3 
+            TRUE
+        else
+            FALSE
+        end
+
+    end
+
+    def not_enough_cards
+        if @player1.deck.cards.length < 3
+            @player2
+        elsif @player2.deck.cards.length < 3
+            @player1
+        end
+    end
+
+
 
     def pile_cards
 
@@ -98,15 +137,25 @@ class Turn
 
     def award_spoils
 
-        i = @spoils_of_war.length
+        if type != :mutually_assured_destruction
 
-        i.times do
-            winner.deck.cards << @spoils_of_war.shift
+            
+
+                if winner.deck.cards.empty? == FALSE
+
+                    i = @spoils_of_war.length
+
+                    i.times do
+                    winner.deck.cards << @spoils_of_war.shift
+                    end
+                end
+            
+   
         end
-
     end
-
 end
+
+
 
 # type: a turn is :basic, :war, or :mutually_assured_destruction.
 # A :basic turn is one in which the rank_of_card_at(0) from the players’ decks are not the same rank.

@@ -1,5 +1,7 @@
 include '.pry'
 
+100000000.times do
+
 rank_values = [2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 diamonds = []
@@ -60,3 +62,7 @@ player2 = Player.new("Skar", deck_2)
 game = Game.new(player1, player2)
 
 
+
+game.start
+
+end
