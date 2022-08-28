@@ -6,13 +6,14 @@ require "./lib/turn.rb"
 class Game
     attr_reader :full_deck, :player1, :player2, :cards, :deck1, :deck2
 
-def initialize
-  @full_deck = create_deck
+def initialize(turn)
+  @full_deck = full_deck
   @deck1 = @full_deck[0, 26]
   @deck2 = @full_deck[26, 26]
-  @player1 = Player.new("Tandy", @deck1) #Player.new("Perrin", deck1)
-  @player2 = Player.new("Bill", @deck2) #Player.new("Egwene", deck2)
+  @player1 = Player.new("Perrin", @deck1) #Player.new("Perrin", deck1)
+  @player2 = Player.new("Egwene", @deck2) #Player.new("Egwene", deck2)
   @cards = cards
+  @current_turn = current_turn
 end
 
 def start   #this will be out very last method
@@ -22,7 +23,7 @@ Type 'GO' to start the game!
 -------------------------------------------------------------"
   p greeting
   player_start_input = gets.chomp
-  require "pry";binding.pry
+  # require "pry";binding.pry
 end
 
 
@@ -86,13 +87,22 @@ def create_deck
   cards.shuffle!
 end
 
-def play_new_game
-  deck1 = Deck.new(@full_deck[0, 26])
-  deck2 = Deck.new(@full_deck[26, 26])
-  player1 = Player.new("Perrin", deck1)
-  player2 = Player.new("Egwene", deck2)
+  def start
+    @turn_count = 0
+
+    turn = Turn.new(player1, player2)
+    @turn_count += 1
+
+
+  end
 end
-end
+
+# def play_new_game
+#   deck1 = Deck.new(@full_deck[0, 26])
+#   deck2 = Deck.new(@full_deck[26, 26])
+#   player1 = Player.new("Perrin", deck1)
+#   player2 = Player.new("Egwene", deck2)
+# end
 # require "pry";binding.pry
 #
 #
