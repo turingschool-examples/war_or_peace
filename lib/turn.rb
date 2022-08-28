@@ -58,4 +58,10 @@ class Turn
       end
     end
   end
+
+  def award_spoils(player)
+    @spoils_of_war.each do |card|
+      player.deck.add_card(card)
+    end
+  end
 end
