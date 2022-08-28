@@ -3,6 +3,7 @@ class Deck
 
   def initialize(cards)
     @cards = cards
+    cards = []
   end
 
   def rank_of_card_at(index_position)
@@ -27,16 +28,16 @@ class Deck
           high_rank << card
         end
       end
-    ((high_rank.length * 100.0) / (cards.length * 100.0)) * 100.00
+    ((high_rank.length * 100.0) / (cards.length * 100.0)) * 100.00.round(2)
     # I realized why it wasn't working!! I was doing bigger number divided by the smaller when its the other way around!
     # it was originally (cards.length % high_rank.length) * 100.0 which always produces 1.5
   end
 
   def remove_card
-    cards.pop
+    cards.shift
   end
 
-  def add_card
-    cards.unshift
+  def add_card(card4)
+    @cards << card4
   end
 end
