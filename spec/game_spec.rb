@@ -22,14 +22,16 @@ RSpec.describe Game do
       @game = Game.new
     end
 
+    it "initialize" do
+      @deck1 = Deck.new([@card1, @card2, @card5, @card8])
+      @deck2 = Deck.new([@card3, @card4, @card6, @card7])
+      @player1 = Player.new("Megan", @deck1)
+      @player2 = Player.new("Aurora", @deck2)
+      expect(@game).to be_an_instance_of(Game)
+    end
+
+
     it 'exists' do
           expect(@game).to be_a(Game)
     end
-
-    it '#initialize_deck' do
-          game = Game.new
-          game.initialize_deck
-          expect(game.full_deck.count).to eq(52)
-    end
-  end
 end
