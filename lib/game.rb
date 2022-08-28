@@ -24,28 +24,43 @@ class Game
         # || player1.has_lost? == true || player2.has_lost? == true 
      
         puts "Turn #{@turn_count}:"
-        turn.print_deck
-        # turn.winner_status
-        @turn_count += 1 
-        #turn.type
-        winner = turn.winner
-        turn.turn_results 
-        turn.pile_cards
-        #turn.spoils_of_war
-        #puts turn.spoils_of_war
-        turn.award_spoils(winner)
-        #turn.empty_spoils
-        # turn.turn_results
-        #puts turn.award_spoils(winner)
+        if turn.type == :autowin1
+          puts "player1 wins"
+        elsif turn.type == :autowin2
+          puts "player2 wins"
+        else
         
-        #turn.print_deck
-        #turn.spoils_of_war = []
-        # turn.empty_the_spoils
-        #turn.turn_results
-        # turn.winner_status
+          turn.print_deck
+          # turn.winner_status
+          @turn_count += 1 
+          #turn.type
+          winner = turn.winner
+          turn.turn_results 
+          turn.pile_cards
+          #turn.spoils_of_war
+          #puts turn.spoils_of_war
+          turn.award_spoils(winner)
+          #turn.empty_spoils
+          # turn.turn_results
+          #puts turn.award_spoils(winner)
+          
+          #turn.print_deck
+          #turn.spoils_of_war = []
+          # turn.empty_the_spoils
+          #turn.turn_results
+          # turn.winner_status
     
-        # @turn_count += 1  
+          # @turn_count += 1 
+        end 
       end 
+
+      if @turn_count > 1000000
+        puts "---- DRAW ----"
+      elsif turn.player1.deck.cards.count==0 
+        puts "*~*~* #{turn.player2.name} has won the game! *~*~*"
+      elsif turn.player2.deck.cards.count==0 
+        puts "*~*~* #{turn.player1.name} has won the game! *~*~*"
+      end
       #turn happens
       # turn_count += 1
     else
