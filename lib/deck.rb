@@ -34,7 +34,6 @@ class Deck
   end
 
   def print_info
-    puts "from top to bottom:"
     @cards.each do |card|
       card.print_info
     end
