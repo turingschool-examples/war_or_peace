@@ -32,7 +32,7 @@ class Game
             Type 'GO' to start the game! \n
             ------------------------------------------------------------------"
 
-        until gets.chomp == 'GO' do 
+        until gets.chomp.upcase == 'GO' do 
             puts '*womp, womp* try again'
         end
 
