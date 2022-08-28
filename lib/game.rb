@@ -5,6 +5,5 @@ class Start
         Type 'GO' to start the game!
         ------------------------------------------------------------------"
         gets.chomp
-    
     end
 end
