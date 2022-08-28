@@ -50,8 +50,6 @@ class Turn
   end
 
   def award_spoils(winner)
-    winner.deck.cards << @spoils_of_war
+    winner.deck.cards << @spoils_of_war58
   end
-
-
 end

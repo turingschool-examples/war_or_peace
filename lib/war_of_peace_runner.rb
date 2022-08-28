@@ -1,9 +1,9 @@
-require './card'
-require './deck'
-require './player'
-require './turn'
+require './lib/card'
+require './lib/deck'
+require './lib/player'
+require './lib/turn'
 
-  
+  #Create 52 Cards (A standard deck)
   standard_deck = [
     card1 = Card.new(:heart, '2', 2),
     card2 = Card.new(:heart, '3', 3),
@@ -58,7 +58,8 @@ require './turn'
     card51 = Card.new(:diamond, 'King', 13),
     card52 = Card.new(:diamond, 'Ace', 14),
   ]
-    
+ 
+#Put those card into two Decks (some randomness would be nice here!)
   shuffled_deck = standard_deck.shuffle
 
   deck1 = Deck.new([])
@@ -71,24 +72,39 @@ require './turn'
     shuffled_deck.shift
   end
   
-  require 'pry'; binding.pry
-  # def start
-  #   p "Welcome to War! (or Peace) This game will be played with 52 cards."
-  #   p "The players today are Megan and Aurora."
-  #   p "Type 'GO' to start the game!"
-  #   p "------------------------------------------------------------------"
-    
-  #   if getschomp() == "Go" || "go" || "gO" || "GO"
-  #   end 
-  # end 
-# end
-      
-# Turn 1: Megan won 2 cards
-# Turn 2: WAR - Aurora won 6 cards
-# Turn 3: *mutually assured destruction* 6 cards removed from play
-# ...
-# ...
-# ...
-# Turn 9324: Aurora won 2 cards
-# *~*~*~* Aurora has won the game! *~*~*~*
+#Create two players with the Decks you created  
+  player1 = Player.new("Megan", deck1)
+  player2 = Player.new("Aurora", deck2)
+
+  # require 'pry'; binding.pry
+#Start the game using a new method called start
+p "Welcome to War! (or Peace) This game will be played with 52 cards."
+p "The players today are Megan and Aurora."
+p "Type 'GO' to start the game!"
+p "------------------------------------------------------------------"
+start = gets.chomp
+  if start.upcase == 'GO'
+
+    loop do
+    turn = Turn.new(player1, player2)
+    turn.winner
+    turn.pile_cards
+    turn.award_spoils
+    end
+
+  end
+
+#   # else 
+#   #   return "Goodbye"
 #   end 
+
+
+# BASIC  - "Turn #{1}: #{winner} won 2 cards"
+# WAR - "Turn #{2}: WAR - #{winner} won 6 cards"
+# MUTUALLY - "Turn #{3}: *mutually assured destruction* 6 cards removed from play"
+# ...
+# ...
+# ...
+# Turn 9324: #{Aurora} won #{2} cards"
+# "*~*~*~* #{Aurora} has won the game! *~*~*~*""
+# #   end 

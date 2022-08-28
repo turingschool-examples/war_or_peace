@@ -28,11 +28,11 @@ RSpec.describe do
 
   end 
 
-  it 'can determine spoils of war' do
+  it 'has @spoils of war attribute' do
     expect(@turn.spoils_of_war).to eq([])
   end
 
-  it 'can return the type of turn' do
+  it 'can have type of turn equal to Basic' do
     expect(@turn.type).to eq(:basic)
   end
 
