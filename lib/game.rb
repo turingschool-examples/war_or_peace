@@ -1,5 +1,6 @@
 class Game
-  attr_reader :start, :turn, :turn_count, :status  
+  attr_reader :start, :turn_count, :status  
+  attr_accessor :turn 
   def initialize(turn)
     # @start = start 
     @turn = turn 
@@ -16,20 +17,34 @@ class Game
     input = gets.chomp 
     if input == 'GO'
       
+      turn.print_deck
+      
 
-      until @turn_count == 10 
+      until @turn_count == 1000 
         # || player1.has_lost? == true || player2.has_lost? == true 
      
-        p "Turn #{@turn_count}:"
+        puts "Turn #{@turn_count}:"
+        turn.print_deck
         # turn.winner_status
-        turn.type
+        @turn_count += 1 
+        #turn.type
+        winner = turn.winner
+        turn.turn_results 
         turn.pile_cards
-        turn.winner
-        turn.award_spoils()
-        turn.turn_results
+        #turn.spoils_of_war
+        #puts turn.spoils_of_war
+        turn.award_spoils(winner)
+        #turn.empty_spoils
+        # turn.turn_results
+        #puts turn.award_spoils(winner)
+        
+        #turn.print_deck
+        #turn.spoils_of_war = []
+        # turn.empty_the_spoils
+        #turn.turn_results
         # turn.winner_status
     
-        @turn_count += 1  
+        # @turn_count += 1  
       end 
       #turn happens
       # turn_count += 1

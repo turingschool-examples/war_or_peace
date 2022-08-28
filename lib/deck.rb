@@ -13,12 +13,11 @@ class Deck
     @cards << new_card
   end 
 
-  def index_location
-    @cards.find_index 
-  end 
+  # def index_location
+  #   @cards.find_index 
+  # end 
 
   def rank_of_card_at(index_location)
-    
     @cards[index_location].rank
   end 
 
@@ -46,7 +45,7 @@ class Deck
   end 
    
   def remove_card
-    @cards.shift 
+    @cards.shift(1)
   end 
  
 end 
