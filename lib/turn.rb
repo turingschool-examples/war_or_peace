@@ -19,7 +19,7 @@ attr_accessor :spoils_of_war,
     elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) &&
        @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
       :mutually_assured_destruction
-    elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
+    else
       :war
     end
   end
@@ -63,6 +63,7 @@ attr_accessor :spoils_of_war,
   def award_spoils(winner)
     if winner != "No Winner"
       winner.deck.cards.concat(@spoils_of_war)
+      @spoils_of_war = []
     end
   end 
 end
