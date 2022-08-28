@@ -63,12 +63,16 @@ full_deck = Deck.new(cards)
 cards.shuffle!
 
 deck1 = Deck.new(full_deck.cards[0, 26])
-deck1.cards.length
+#deck1.cards.length
 deck2 = Deck.new(full_deck.cards[26, 52])
-deck2.cards.length
+#deck2.cards.length
+#deck1.cards & deck2.cards = [ ], did not return any duplicates when checked in pry
+
+player1 = Player.new("Perrin", deck1)
+player2 = Player.new("Egwene", deck2)
 
 
-# require "pry";binding.pry
+require "pry";binding.pry
 
 
 
