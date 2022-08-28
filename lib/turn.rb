@@ -44,6 +44,18 @@ class Turn
       @spoils_of_war.push(@player2.deck.cards[0])
       @player1.deck.remove_card(@player1.deck.cards[0])
       @player2.deck.remove_card(@player2.deck.cards[0])
+    elsif type == :war
+      for a in 1..3 do
+        @spoils_of_war.push(@player1.deck.cards[0])
+        @spoils_of_war.push(@player2.deck.cards[0])
+        @player1.deck.remove_card(@player1.deck.cards[0])
+        @player2.deck.remove_card(@player2.deck.cards[0])
+      end
+    elsif type == :mutually_assured_destruction
+      for a in 1..3 do
+        @player1.deck.remove_card(@player1.deck.cards[0])
+        @player2.deck.remove_card(@player2.deck.cards[0])
+      end
     end
   end
 end
