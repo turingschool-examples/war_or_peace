@@ -13,23 +13,18 @@ RSpec.describe Player do
     @deck = Deck.new(@cards)
   end
 
-# binding.pry
   it "exists" do
     player = Player.new("Clarissa", @deck)
-
     expect(player).to be_instance_of(Player)
-      # binding.pry
   end
 
   it "has a name" do
     player = Player.new("Clarissa", @deck)
-
     expect(player.name).to eq("Clarissa")
   end
 
   it "lost game" do
     player = Player.new("Clarissa", @deck)
-
     expect(player.deck.cards).to eq([@card1, @card2, @card3])
     player.deck.remove_card
     expect(player.deck.cards).to eq([@card2, @card3])
@@ -40,6 +35,5 @@ RSpec.describe Player do
     player.deck.remove_card
     ›__expect(player.deck.cards).to eq([])
     expect(player.has_lost?).to eq true
-
   end
 end

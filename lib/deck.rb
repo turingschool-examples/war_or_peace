@@ -7,15 +7,8 @@ class Deck
 
 
   def rank_of_card_at(index)
-    # rank_arr[index]
     cards[index].rank
   end
-
-  # def rank_arr
-  #   cards.map do |card|
-  #     card.rank
-  #   end
-  # end
 
   def high_ranking_cards
     high_card = []
@@ -28,7 +21,6 @@ class Deck
   end
 
   def percent_high_ranking
-
     return (high_ranking_cards.length.to_f / @cards.length * 100).round(2)
     high_ranking_cards
   end
@@ -38,7 +30,6 @@ class Deck
   end
 
   def add_card(card)
-    # require 'pry'; binding.pry
     @cards << card
   end
 

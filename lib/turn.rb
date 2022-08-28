@@ -36,7 +36,6 @@ class Turn
   end
 
   def war_winner
-
     if player1.deck.rank_of_card_at(2) <= player2.deck.rank_of_card_at(2)
       player2
     else

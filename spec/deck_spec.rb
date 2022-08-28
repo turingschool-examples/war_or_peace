@@ -14,37 +14,27 @@ RSpec.describe Deck do
   end
 
   it "exists" do
-
     expect(@deck).to be_an_instance_of(Deck)
   end
 
   it "returns the deck of cards" do
-
-
     expect(@deck.cards).to eq(@cards)
   end
 
   it "return the rank of that card" do
-# require "pry"; binding.pry
     expect(@deck.rank_of_card_at(0)).to eq(12)
     expect(@deck.rank_of_card_at(2)).to eq(14)
   end
 
   it "eleven and above" do
-
     expect(@deck.high_ranking_cards).to eq([@card1, @card3])
   end
 
   it "return the percentage of cards that are high ranking" do
-
-  # what is the percentage of 11 - 14, answer is given
     expect(@deck.percent_high_ranking).to eq(66.67)
   end
 
   it "remove the top card from the deck" do
-
-
-  #remove top card, top cards is "Queen"
     expect(@deck.remove_card).to eq(@card1)
     expect(@deck.cards).to eq([@card2, @card3])
     expect(@deck.high_ranking_cards).to eq([@card3])
@@ -52,8 +42,6 @@ RSpec.describe Deck do
   end
 
   it "add one card to the bottom" do
-
-    # add a card to the deck
     @deck.remove_card
     @deck.add_card(@card4)
     expect(@deck.cards).to eq([@card2, @card3, @card4])
