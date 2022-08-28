@@ -7,7 +7,7 @@ require './lib/player'
 require './lib/turn'
 require './lib/game'
 
-RSpec.describe Turn do
+RSpec.describe Game do
   it 'exists' do
     card_1 = Card.new(:heart, 'Jack', 11)
     card_2 = Card.new(:heart, 'Ten', 10)
@@ -44,7 +44,8 @@ RSpec.describe Turn do
     player_2 = Player.new('Aurora', deck_2)
     turn = Turn.new(player_1, player_2)
     game = Game.new(turn)
-    
+    game.run
+
     display.stub(:gets).and_return("go\n")
   end
 
