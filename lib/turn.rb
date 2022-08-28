@@ -51,13 +51,14 @@ class Turn
   end
 
   def pile_cards
-  if type == :mad
+  if type == :mutually_assured_distruction
     player1.deck.remove_card
     player1.deck.remove_card
     player1.deck.remove_card
     player1.deck.remove_card
     player1.deck.remove_card
     player1.deck.remove_card
+  end
   if type == :war
     spoils_of_war << player1.deck.remove_card
     spoils_of_war << player1.deck.remove_card

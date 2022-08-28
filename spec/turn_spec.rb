@@ -82,14 +82,25 @@ RSpec.describe Turn do
       player1 = Player.new("Megan", deck1)
       player2 = Player.new("Aurora", deck2)
       turn = Turn.new(player1, player2)
-
       turn.pile_cards
       expect(turn.spoils_of_war).to eq([@card1, @card2, @card5, @card4, @card3, @card6])
     end
-  #
-  #   it "can return piles of card for mad turn" do
-  #   end
-  #
+
+    it "can return piles of card for mad turn" do
+      @card7 = Card.new(:heart, '3', 3)
+      @card8 = Card.new(:diamond, '2', 2)
+      deck1 = Deck.new([@card1, @card2, @card5, @card8])
+      deck2 = Deck.new([@card4, @card3, @card6, @card7])
+      player1 = Player.new("Megan", deck1)
+      player2 = Player.new("Aurora", deck2)
+      turn = Turn.new(player1, player2)
+      turn.winner
+      turn.pile_cards
+      expect(player1.deck.cards).to eq([@card8])
+      expect(player2.deck.cards).to eq([@card7])
+
+    end
+
   end
   describe "#award_spoils" do
     it "award the spoils to a basic turn" do
@@ -112,7 +123,25 @@ RSpec.describe Turn do
       expect(player1.deck.cards.count).to eq(1)
       expect(player2.deck.cards.count).to eq(7)
     end
-    # it "award the spoils to a mad turn" do
-    # end
+    it "award the spoils to a mad turn" do
+      @card7 = Card.new(:heart, '3', 3)
+      @card8 = Card.new(:diamond, '2', 2)
+      deck1 = Deck.new([@card1, @card2, @card5, @card8])
+      deck2 = Deck.new([@card4, @card3, @card6, @card7])
+      player1 = Player.new("Megan", deck1)
+      player2 = Player.new("Aurora", deck2)
+      turn = Turn.new(player1, player2)
+
+      # deck1 = Deck.new([@card, @card, @card, @card8])
+      # deck2 = Deck.new([@card, @card, @card, @card7])
+      # player1 = Player.new("Megan", deck1)
+      # player2 = Player.new("Aurora", deck2)
+      # turn = Turn.new(player1, player2)
+
+
+      turn.pile_cards
+      expect(player1.deck.cards.count).to eq(1)
+      expect(player2.deck.cards.count).to eq(1)
+    end
   end
 end
