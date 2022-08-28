@@ -179,7 +179,6 @@ describe Turn do
 				expect(turn.type).to eq(:war)
 				winner = turn.winner
 				turn.pile_cards
-				# binding.pry
 				turn.spoils_of_war
 				expect(turn.spoils_of_war).to eq([card1, card2, card5, card4, card3, card6])
 				turn.award_spoils(winner)
@@ -202,14 +201,13 @@ describe Turn do
 				players = [player1, player2]
 				turn = Turn.new(player1, player2)
 				turn.type
-				binding.pry
 				expect(turn.type).to eq(:mutually_assured_destruction)
 				winner = turn.winner
 				expect(turn.winner).to eq("No Winner")
 				turn.pile_cards
 				turn.spoils_of_war
 				expect(turn.spoils_of_war).to eq([])
-				turn.award_spoils(winner)
+				# turn.award_spoils(winner)
 				expect(player1.deck.cards).to eq([card8])
 				expect(player2.deck.cards).to eq([card7])
 			end
@@ -222,7 +220,7 @@ describe Turn do
 			
 			
 	
-	# binding.pry
+
 	
 			
 		

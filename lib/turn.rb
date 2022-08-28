@@ -39,7 +39,7 @@ class Turn
       @player1.deck.rank_of_card_at(2) < @player2.deck.rank_of_card_at(2)
       winner = player2
     elsif type == :mutually_assured_destruction 
-      "No Winner"
+       "No Winner"
     end
   end 
 
