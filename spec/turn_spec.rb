@@ -3,6 +3,7 @@ require './lib/deck'
 require './lib/card'
 require './lib/player'
 require './lib/turn'
+require 'pry'
 
 RSpec.describe Player do
     it "exists" do
@@ -68,3 +69,4 @@ RSpec.describe Player do
 
 
 end
+# binding.pry

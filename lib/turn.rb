@@ -16,7 +16,19 @@ class Turn
     end
     
     def type
-        if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+        
+        if @player1.deck.cards.length < 3 || @player2.deck.cards.length < 3
+            p @player1.deck.cards.length
+            p @player2.deck.cards.length
+            if @player1.deck.cards.length > @player2.deck.cards.length
+                P "#{@player1.name} is the winner!"
+                @player2.has_lost? == true
+
+            elsif @player2.deck.cards.length > @player1.deck.cards.length
+                P "#{@player2.name} is the winner!"
+                @player1.has_lost == true
+            end
+        elsif @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
             return :basic
         
         elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
@@ -40,11 +52,13 @@ class Turn
                 @player2
             end
         elsif type == :mutually_assured_destruction
-            "No Winner"
+            p "No Winner"
         end 
-    end       
+    end
 
     def pile_cards
+        @spoils_of_war = []
+        
         if type == :basic
             @spoils_of_war << @player1.deck.cards.shift
             @spoils_of_war << @player2.deck.cards.shift
