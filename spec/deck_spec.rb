@@ -62,6 +62,7 @@ end
      expect(deck.remove_card).to eq(card1)
    end
  end
+ 
 describe 'add_card' do
 it 'adds card to the bottom of the deck' do
   card1 = Card.new(:diamond, 'Queen', 12)

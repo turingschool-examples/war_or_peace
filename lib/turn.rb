@@ -37,21 +37,24 @@ class Turn
      if type == :basic
        spoils_of_war << player1.deck.remove_card
        spoils_of_war << player2.deck.remove_card
-       end
-     end
+        end
+      end
+
+
 
      def award_spoils(winner)
-       if type == :basic
-       if @winner == player1
-        player1.deck.add_card << spoils_of_war
+
+       if winner == player1
+       player1.deck.cards << spoils_of_war
+       player1.deck.cards.flatten!
       else
-        @winner == player2
-        player2.deck.add_card << spoils_of_war
-       end
+       winner == player2
+       player2.deck.cards << spoils_of_war
+       player2.deck.cards.flatten!
      end
    end
+ end
 
-end
        #  def war
        #    if turn.type == war
        #    if @player1.deck.rank_of_cards_at(0) == @player2.deck.rank_of_cards_at(0)
