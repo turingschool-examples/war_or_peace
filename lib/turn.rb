@@ -36,6 +36,8 @@ class Turn
         else
           player2
         end
+        type == :mutually_assured_destruction
+        "No Winner"
       end
     end
 
@@ -48,8 +50,9 @@ class Turn
          spoils_of_war << player1.deck.remove_card
          spoils_of_war << player2.deck.remove_card
        end
+       spoils_of_war.length(0)
       end
-    end
+     end
 
 
 
