@@ -8,17 +8,28 @@ class Turn
   end
 
   def type
-    if (player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)) && (player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2))
+    if player1.deck.cards.length < 3 && (player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0))
+      :player1_lost
+    elsif player2.deck.cards.length < 3 && (player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0))
+      :player2_lost
+    elsif player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
+      :basic
+    elsif (player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)) &&
+      (player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2))
       :mutually_assured_destruction
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
       :war
-    else
-      :basic
     end
   end
 
   def pile_cards
-    if type == :mutually_assured_destruction
+    if type == :player1_lost
+      spoils_of_war.concat(player1.deck.cards)
+      player1.deck.cards.clear
+    elsif type == :player2_lost
+      spoils_of_war.concat(player2.deck.cards)
+      player2.deck.cards.clear
+    elsif type == :mutually_assured_destruction
       3.times do
         player1.deck.cards.shift
         player2.deck.cards.shift
@@ -34,28 +45,22 @@ class Turn
     end
   end
 
-  def rank_in_spoils(index)
-    spoils_of_war[index].rank
-  end
-
   def winner
-    if spoils_of_war.length == 2 && rank_in_spoils(0) > rank_in_spoils(1)
-      player1
-    elsif spoils_of_war.length == 2 && rank_in_spoils(0) < rank_in_spoils(1)
-      player2
-    elsif spoils_of_war.length == 6 && rank_in_spoils(4) > rank_in_spoils(5)
-      player1
-    elsif spoils_of_war.length == 6 && rank_in_spoils(4) < rank_in_spoils(5)
-      player2
-    elsif spoils_of_war.length == 0
+    if type == :mutually_assured_destruction
       'No Winner'
+    elsif type == :war && player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+      player1
+    elsif type == :war && player1.deck.rank_of_card_at(2) < player2.deck.rank_of_card_at(2)
+      player2
+    elsif type == :basic && player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+      player1
+    elsif type == :basic && player1.deck.rank_of_card_at(0) < player2.deck.rank_of_card_at(0)
+      player2
     end
   end
 
   def award_spoils(winner)
-    spoils_of_war.each do |card|
-      winner.deck.cards << card
-    end
+    winner.deck.cards.concat(spoils_of_war.shuffle!)
     spoils_of_war.clear
   end
 end
