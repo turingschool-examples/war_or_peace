@@ -24,9 +24,3 @@ class Deck
     @cards << card
   end
 end
-  
-
-
-
-# remove_card: this method will remove the top card from the deck
-# add_card: this method will add one card to the bottom (end) of the deck
