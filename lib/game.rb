@@ -20,7 +20,7 @@ class Game
       turn.print_deck
       
 
-      until @turn_count == 1000 
+      until @turn_count > 1000000 || turn.player1.deck.cards.count==0 || turn.player2.deck.cards.count==0
         # || player1.has_lost? == true || player2.has_lost? == true 
      
         puts "Turn #{@turn_count}:"
