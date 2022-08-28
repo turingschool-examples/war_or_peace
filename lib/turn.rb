@@ -29,6 +29,12 @@ class Turn
         else
           #@player1.deck.rank_of_cards_at(0) < @player2.deck.rank_of_cards_at(0)
           @player2
+           end
+          if type == :war
+          player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+          player1
+        else
+          player2
         end
       end
     end
@@ -37,8 +43,13 @@ class Turn
      if type == :basic
        spoils_of_war << player1.deck.remove_card
        spoils_of_war << player2.deck.remove_card
-        end
+     elsif type == :war
+       3.times do
+         spoils_of_war << player1.deck.remove_card
+         spoils_of_war << player2.deck.remove_card
+       end
       end
+    end
 
 
 
