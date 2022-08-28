@@ -1,13 +1,16 @@
 class Deck
-  attr_reader :cards
+  attr_reader :cards, :high_rank
 
   def initialize(cards)
     @cards = cards
   end
+
   def rank_of_card_at(index_position)
     cards[index_position].rank
   end
+
   def high_ranking_cards
+    @high_rank = high_rank
     high_rank = []
       cards.each do |card|
         if card.rank >= 11
@@ -18,11 +21,22 @@ class Deck
   end
 
   def percent_high_ranking
-    require 'pry'; binding.pry
+    high_rank = []
+      cards.each do |card|
+        if card.rank >= 11
+          high_rank << card
+        end
+      end
+    ((high_rank.length * 100.0) / (cards.length * 100.0)) * 100.00
+    # I realized why it wasn't working!! I was doing bigger number divided by the smaller when its the other way around!
+    # it was originally (cards.length % high_rank.length) * 100.0 which always produces 1.5
   end
-  def remove_card
 
+  def remove_card
+    cards.pop
   end
+
   def add_card
+    cards.unshift
   end
 end
