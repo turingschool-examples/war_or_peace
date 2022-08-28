@@ -31,7 +31,7 @@ RSpec.describe Player do
   it 'has not lost by default' do
     deck = Deck.new(@cards)
     player = Player.new('Clarisa', deck)
-    # require "pry"; binding.pry
+    
     expect(player.has_lost?).to be(false)
     player.deck.remove_card
 
