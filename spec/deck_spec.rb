@@ -15,29 +15,24 @@ RSpec.describe Deck do
     expect(deck).to be_an_instance_of(Deck)
   end
 
-describe "#rank_of_card_at" do
-  it "return rank of card" do
+  it 'has readable attributs' do
+    deck = Deck.new(@cards)
+    expect(deck.cards[0].suit).to eq(:diamond)
+  end
+
+  it "has ranking" do
     deck = Deck.new(@cards)
     expect(deck.rank_of_card_at(0)).to eq(12)
     expect(deck.rank_of_card_at(2)).to eq(14)
+    expect(deck.cards).to eq(@cards)
   end
-end
 
-describe "#high_ranking_cards" do
-  it "return an array of face cards and aces" do
+  it "has high ranking" do
     deck = Deck.new(@cards)
     expect(deck.high_ranking_cards).to match([@card1, @card3])
-  end
-end
-
-describe "#percent_high_ranking" do
-  it "return the percentage of face cards and aces" do
-    deck = Deck.new(@cards)
     expect(deck.percent_high_ranking).to be(66.67)
   end
-end
 
-describe "#remove_card" do
   it "remove the top card from the deck" do
     deck = Deck.new(@cards)
     expect(deck.remove_card).to be(@card1)
@@ -45,10 +40,8 @@ describe "#remove_card" do
     expect(deck.high_ranking_cards).to match([@card3])
     expect(deck.percent_high_ranking).to be(50.0)
   end
-end
 
-describe "#add_card" do
-  it "add one card to the bottom (end) of the deck" do
+  it "add cards" do
     deck = Deck.new(@cards)
     deck.remove_card
     deck.add_card(@card4)
@@ -57,6 +50,4 @@ describe "#add_card" do
     expect(deck.high_ranking_cards).to match([@card3])
     expect(deck.percent_high_ranking).to be(33.33)
   end
-end
-
 end
