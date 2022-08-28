@@ -88,11 +88,10 @@ def create_deck
 end
 
   def start
+    self.run
     @turn_count = 0
-
     turn = Turn.new(player1, player2)
     @turn_count += 1
-
 
   end
 end
