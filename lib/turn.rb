@@ -55,6 +55,14 @@ class Turn
         spoils_of_war << player2.deck.remove_card
       end
 
+      if type == :mutually_assured_destruction
+        player1.deck.remove_card
+        player1.deck.remove_card
+        player1.deck.remove_card
+        player2.deck.remove_card
+        player2.deck.remove_card
+        player2.deck.remove_card
+      end
     # elsif type == :war
     #   #each player will send 3 cards (the top 3 cards) to the spoils pile
     #
