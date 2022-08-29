@@ -22,7 +22,7 @@ RSpec.describe Player do
     deck = Deck.new([card_1, card_2, card_3])
     player = Player.new('Clarisa', deck)
 
-    expect(player.name).to eq('Clarisa') 
+    expect(player.name).to eq('Clarisa')
   end
 
   it 'has a deck' do

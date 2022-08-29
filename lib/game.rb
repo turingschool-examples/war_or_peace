@@ -21,7 +21,7 @@ class Game
       @current_turn.winner
       @current_turn.pile_cards
       @current_turn.spoils_of_war
-      
+
       if @current_turn.turn_type == :basic
         puts "Turn #{@turn_count}: Basic - #{@current_turn.turn_winner.name} wins #{@current_turn.spoils_of_war.length} cards."
         @turn_return = "Turn #{@turn_count}: Basic - #{@current_turn.turn_winner.name} wins #{@current_turn.spoils_of_war.length} cards."
@@ -57,7 +57,7 @@ class Game
   # Loop to ensure correct user input
   def start
     puts 'Type "GO" to start the game!'
-    loop do 
+    loop do
       puts '-------------------------------------------------------------------'
       user_input = gets.chomp.downcase
       if user_input == 'go'

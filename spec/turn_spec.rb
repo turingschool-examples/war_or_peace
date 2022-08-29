@@ -95,7 +95,7 @@ RSpec.describe Turn do
     player_1 = Player.new('Megan', deck_1)
     player_2 = Player.new('Aurora', deck_2)
     turn = Turn.new(player_1, player_2)
-    
+
     turn.type
     turn.pile_cards
     expect(turn.spoils_of_war).to eq([card_1, card_3])
@@ -116,7 +116,7 @@ RSpec.describe Turn do
     player_1 = Player.new('Megan', deck_1)
     player_2 = Player.new('Aurora', deck_2)
     turn = Turn.new(player_1, player_2)
-    
+
     turn.type
     turn.winner
     turn.pile_cards
@@ -158,7 +158,7 @@ RSpec.describe Turn do
     player_1 = Player.new('Megan', deck_1)
     player_2 = Player.new('Aurora', deck_2)
     turn = Turn.new(player_1, player_2)
-    
+
     turn.type
     expect(turn.winner).to eq(player_2)
   end
@@ -197,7 +197,7 @@ RSpec.describe Turn do
     player_1 = Player.new('Megan', deck_1)
     player_2 = Player.new('Aurora', deck_2)
     turn = Turn.new(player_1, player_2)
-    
+
     turn.type
     turn.winner
     turn.pile_cards
@@ -224,7 +224,7 @@ RSpec.describe Turn do
 
     expect(turn.type).to eq(:mutually_assured_destruction)
   end
-  
+
   it 'no winner in MAD turn' do
     card_1 = Card.new(:heart, 'Jack', 11)
     card_2 = Card.new(:heart, 'Ten', 10)

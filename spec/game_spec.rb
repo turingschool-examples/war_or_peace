@@ -44,8 +44,8 @@ RSpec.describe Game do
     player_2 = Player.new('Aurora', deck_2)
     turn = Turn.new(player_1, player_2)
     game = Game.new(turn)
-    game.run
 
+    game.run
     display.stub(:gets).and_return("go\n")
   end
 
@@ -58,7 +58,7 @@ RSpec.describe Game do
     player_2 = Player.new('Aurora', deck_2)
     turn = Turn.new(player_1, player_2)
     game = Game.new(turn)
- 
+
     game.run
     expect(turn.turn_type).to eq(:basic)
     expect(turn.turn_winner).to eq(player_1)
