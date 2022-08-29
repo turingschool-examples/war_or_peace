@@ -11,6 +11,7 @@ class Game
     @turn_count = 0
     self.get_names
     self.get_cards
+    self.create_players
   end
 
   def get_names
@@ -29,10 +30,16 @@ class Game
     self.display_start_message
     user_input = gets.chomp
     if user_input.downcase == "go"
-      self.create_players
-      self.new_turn
+      self.run_game
     else
       self.abort("Exiting program...")
+    end
+  end
+
+  def run_game
+    1_000_000.times do
+      self.new_turn
+      self.check_for_winner
     end
   end
 
@@ -70,16 +77,15 @@ class Game
     turn.pile_cards
     self.display_turn_message(turn, winner)
     turn.award_spoils(winner)
-    # #testing only
-    # @player1.deck.cards.each do |card|
-    #   print card.rank, ' ', card.suit
-    #   puts ''
-    # end
-    # @player2.deck.cards.each do |card|
-    #   print 'P2: ', card.rank, ' ', card.suit
-    #   puts ''
-    # end
-    self.check_for_winner
+  end
+
+  def check_for_winner
+    if @turn_count >= 1_000_000
+      self.abort("---- DRAW ----")
+    elsif @player1.has_lost? || @player2.has_lost?
+      self.declare_winner
+      exit
+    end
   end
 
   def display_turn_message(turn, winner)
@@ -89,16 +95,6 @@ class Game
       puts "Turn #{@turn_count}: WAR - #{winner.name} won #{turn.spoils_of_war.count} cards"
     else
       puts "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
-    end
-  end
-
-  def check_for_winner
-    if @turn_count >= 5000
-      self.abort("---- DRAW ----")
-    elsif @player1.has_lost? || @player2.has_lost?
-      self.declare_winner
-    else
-      self.new_turn
     end
   end
 
