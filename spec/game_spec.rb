@@ -238,101 +238,167 @@ RSpec.describe Game do
   end
 
   describe '#normal_game_play' do
+    game = Game.new
+    game.create_full_deck
+    game.shuffle_the_deck
+    game.split_deck
+    game.create_players
+    game.make_turn
+
     it 'removes 3 card from each player when :mutually_assured_destruction' do
-      game = Game.new
-      game.create_full_deck
-      game.shuffle_the_deck
-      game.split_deck
-      game.create_players
-      game.make_turn
       card1 = Card.new(:heart, 'Jack', 11)
       card2 = Card.new(:heart, '10', 10)
       card6 = Card.new(:diamond, 'Queen', 12)
       deck1 = Deck.new([card1, card2, card6, card1])
+      deck2 = Deck.new([card1, card2, card6, card1])
       game.turn.player1.deck = deck1
-      game.turn.player2.deck = deck1
-      game.normal_game_play(game.counter)
+      game.turn.player2.deck = deck2
+      expect(game.turn.player1.deck.cards.length).to eq(4)
       expect(game.turn.type).to eq(:mutually_assured_destruction)
+      game.normal_game_play(game.counter)
+      # binding.pry
       expect(game.turn.player1.deck.cards.length).to eq(1)
       expect(game.turn.player2.deck.cards.length).to eq(1)
     end
 
-    xit 'awards 6 total cards to the winner of WAR' do
-      war_game.normal_game_play(counter)
+    it 'awards 6 total cards to the winner of WAR' do
+      card1 = Card.new(:heart, 'Jack', 11)
+      card2 = Card.new(:heart, '10', 10)
+      card6 = Card.new(:diamond, 'Queen', 12)
+      deck1 = Deck.new([card1, card2, card6, card1])
+      deck2 = Deck.new([card1, card2, card2, card1])
+      game.turn.player1.deck = deck1
+      game.turn.player2.deck = deck2
+      expect(game.turn.type).to eq(:war)
       # binding.pry
-      expect(war_game.turn.player1.deck.cards.length).to eq(1)
-      expect(war_game.turn.player2.deck.cards.length).to eq(7)
+      expect(game.player1.deck.cards.length).to eq(4)
+      game.normal_game_play(game.counter)
+      expect(game.turn.winner.name).to eq('Megan')
+      expect(game.turn.player1.deck.cards.length).to eq(7)
+      expect(game.turn.player2.deck.cards.length).to eq(1)
     end
 
-    xit 'awards 2 total cards to the winner of :basic' do
-      game.normal_game_play(counter)
-      # binding.pry
+    it 'awards 2 total cards to the winner of :basic' do
+      card1 = Card.new(:heart, 'Jack', 11)
+      card2 = Card.new(:heart, '10', 10)
+      card6 = Card.new(:diamond, 'Queen', 12)
+      deck1 = Deck.new([card1, card2, card6, card1])
+      deck2 = Deck.new([card2, card2, card2, card1])
+      game.turn.player1.deck = deck1
+      game.turn.player2.deck = deck2
+      expect(game.turn.type).to eq(:basic)
+      expect(game.turn.player1.deck.cards.length).to eq(4)
+      expect(game.turn.winner.name).to eq('Megan')
+      game.normal_game_play(game.counter)
       expect(game.turn.player1.deck.cards.length).to eq(5)
       expect(game.turn.player2.deck.cards.length).to eq(3)
     end
   end
 
   describe '#one_card_endgame' do
-    xit 'moves last card to winner of turn' do
-      one_card_endgame_game.one_card_endgame
-      expect(one_card_endgame_game.turn.player2.deck.cards.length).to eq(5)
+    game = Game.new
+    game.create_full_deck
+    game.shuffle_the_deck
+    game.split_deck
+    game.create_players
+    game.make_turn
+    
+    it 'moves last card to winner of turn' do
+      card1 = Card.new(:heart, 'Jack', 11)
+      card2 = Card.new(:heart, '10', 10)
+      card6 = Card.new(:diamond, 'Queen', 12)
+      deck1 = Deck.new([card2])
+      deck2 = Deck.new([card1, card2, card2, card1])
+      game.turn.player1.deck = deck1
+      game.turn.player2.deck = deck2
+      expect(game.player1.deck.cards.length).to eq(1)
+      game.one_card_endgame
+      expect(game.player1.deck.cards.length).to eq(0)
+      expect(game.turn.player2.deck.cards.length).to eq(5)
     end
 
-    xit 'results in game_over' do
-      one_card_endgame_game.one_card_endgame
-      expect(one_card_endgame_game.turn.player2.deck.cards.length).to eq(5)
-      expect(one_card_endgame_game.game_over?).to be true
+    it 'results in game_over' do
+      expect(game.game_over?).to be true
     end
 
-    xit 'does not end in game_over? if game not over' do
-      one_card_endgame_game.turn.player1.deck.cards[0] = card6
-      one_card_endgame_game.one_card_endgame
-      expect(one_card_endgame_game.turn.player1.deck.cards.length).to eq(2)
-      expect(one_card_endgame_game.turn.player2.deck.cards.length).to eq(3)
-      expect(one_card_endgame_game.game_over?).to be false
+    it 'does not end in game_over? if game not over' do
+      game.player1.has_lost = false
+      game.player2.has_lost = false
+      card1 = Card.new(:heart, 'Jack', 11)
+      card2 = Card.new(:heart, '10', 10)
+      deck1 = Deck.new([card1])
+      deck2 = Deck.new([card2, card2, card2, card1])
+      game.turn.player1.deck = deck1
+      game.turn.player2.deck = deck2
+      expect(game.game_over?).to be false
+      game.one_card_endgame
+      expect(game.turn.player1.deck.cards.length).to eq(2)
+      expect(game.turn.player2.deck.cards.length).to eq(3)
+      expect(game.game_over?).to be false
     end
   end
 
   context '#start' do
-    xit 'populates @full_deck with cards' do
-      game.start
+    game = Game.new
+    game.start
+    
+    it 'populates @full_deck with cards' do
       expect(game.full_deck).not_to eq([])
       expect(game.full_deck[0]).to be_a Card
     end
 
-    xit 'will #shuffle_the_deck' do
-      game.start
+    it 'will #shuffle_the_deck' do
       before = game.full_deck
       expect(before).to eq(game.full_deck)
       after = game.shuffle_the_deck
       expect(before).not_to eq(after)
     end
 
-    xit 'creates two Players' do
-      game.start
+    it 'creates two Players' do
       expect(game.player1).to be_a Player
       expect(game.player2).to be_a Player
-    end 
+    end
+    
+    it 'splits the shuffled deck into two' do
+      expect(game.deck1.cards.length).to eq(26)
+    end
+    
+    it 'creates a Turn object for @turn' do
+      expect(game.turn).to be_a Turn
+    end
   end
 
   context '#create_players' do
-    xit 'makes player1' do
-      game.create_players
+    game = Game.new
+    game.create_players
+    
+    it 'makes player1' do
       expect(game.player1).to be_a Player
     end
 
-    xit 'makes player2' do
-      game.create_players
+    it 'makes player2' do
       expect(game.player2).to be_a Player
     end
   end
 
   context '#game_over' do
-    xit 'exists' do
-      expect(game.game_over).to be_truthy
+    
+    it 'puts messages to STDOUT if player1 loses' do
+      game = Game.new
+      game.start
+      game.player1.deck.cards = []
+      expect(game.player1.deck.cards.length).to eq(0)
+      expect { game.game_over }.to output.to_stdout
     end
-
-    xit 'puts messages to STDOUT' do
+    
+    it 'puts messages to STDOUT if player2 loses' do
+      game = Game.new
+      game.start
+      expect(game.deck1).to be_a Deck
+      expect(game.player1.deck.cards).to be_an Array
+      expect(game.player1.deck.cards.length).to eq(26)
+      game.player2.deck.cards = []
+      expect(game.player2.deck.cards.length).to eq(0)
       expect { game.game_over }.to output.to_stdout
     end
   end

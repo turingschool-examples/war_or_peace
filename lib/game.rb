@@ -12,13 +12,11 @@ class Game
                 :deck1,
                 :deck2,
                 :player1,
-                :player2, 
+                :player2,
                 :counter
 
   def initialize
     @turn = nil
-    # @turn_type = @turn.type
-    # @hand_winner = @turn.winner
     @full_deck = []
     @deck1 = nil
     @deck2 = nil
@@ -30,10 +28,12 @@ class Game
   def start
     create_full_deck
     shuffle_the_deck
+    split_deck
     create_players
+    make_turn
     puts ''
     puts 'Welcome to War! (or Peace) This game will be played with 52 cards.'
-    puts "The players today are #{player1.name} and #{player2.name}."
+    puts "The players today are #{@player1.name} and #{@player2.name}."
     puts "Press 'RETURN' to start the game"
     puts '------------------------------------------------------------------'
     gets
@@ -110,7 +110,7 @@ class Game
   end
 
   def one_card_endgame
-    if turn.player1.deck.cards[0].rank < turn.player2.deck.cards[0].rank
+    if @turn.player1.deck.cards[0].rank < @turn.player2.deck.cards[0].rank
       turn.player2.deck.cards << turn.player1.deck.cards.pop
     else
       turn.player1.deck.cards << turn.player2.deck.cards.pop
@@ -118,20 +118,21 @@ class Game
   end
 
   def normal_game_play(counter)
-    case turn.type
+    winner = turn.winner
+    case @turn.type
     when :mutually_assured_destruction
       turn.pile_cards
       p "turn #{counter}: No winner: mutually assured destruction 6 cards removed"
       p "Megan: #{turn.player1.deck.cards.count}| Aurora: #{turn.player2.deck.cards.count}"
     when :war
       turn.pile_cards
-      p "turn #{counter}: WAR -  #{hand_winner.name} won #{turn.spoils_of_war.count} cards"
-      turn.award_spoils(hand_winner)
+      p "turn #{counter}: WAR -  #{winner.name} won #{turn.spoils_of_war.count} cards"
+      turn.award_spoils(winner)
       p "Megan: #{turn.player1.deck.cards.count}| Aurora: #{turn.player2.deck.cards.count}"
     when :basic
       turn.pile_cards
-      p "turn #{counter}: #{hand_winner.name} won #{turn.spoils_of_war.count} cards"
-      turn.award_spoils(hand_winner)
+      p "turn #{counter}: #{winner.name} won #{turn.spoils_of_war.count} cards"
+      turn.award_spoils(winner)
       p "Megan: #{turn.player1.deck.cards.count}| Aurora: #{turn.player2.deck.cards.count}"
     else
       'uh oh'
@@ -140,5 +141,13 @@ class Game
 
   def make_turn
     @turn = Turn.new(@player1, @player2)
+  end
+
+  def game_over
+    if @player1.has_lost?
+      puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
+    elsif @player2.has_lost?
+      puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
+    end
   end
 end
