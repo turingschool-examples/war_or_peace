@@ -7,18 +7,8 @@ require 'pry'
 # required
 require './lib/game'
 
-# all_cards = game.create_full_deck
-# all_cards.shuffle!
 
-# player1 = Player.new('Megan', deck1)
-# player2 = Player.new('Aurora', deck2)
-
-turn = Turn.new(player1, player2)
-game = Game.new(turn)
-
-game.start(player1, player2)
-
-counter = 1
+game.start
 
 until counter == 1_000
 
@@ -41,9 +31,9 @@ until counter == 1_000
 end
 
 if player1.has_lost?
-  puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
+  # puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
 elsif player2.has_lost?
-  puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
+  # puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
 elsif counter >= 10_000
   puts "Turn #{counter}: #{game.hand_winner.name} won 2 cards"
   puts '---- DRAW ----'
