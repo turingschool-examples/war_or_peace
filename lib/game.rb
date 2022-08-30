@@ -41,6 +41,7 @@ class Game
     puts 'here we go!'
     puts ''
     puts ''
+    game_loop
   end
 
   def create_full_deck
@@ -148,6 +149,31 @@ class Game
       puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
     elsif @player2.has_lost?
       puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
+    elsif @counter >= 10_000
+      puts "Turn #{counter}: #{turn.winner.name} won 2 cards"
+      puts '---- DRAW ----'
+    end
+  end
+
+  def game_loop
+    until counter == 1_000
+
+      if game_over? # game over
+        game_over
+        break
+      elsif two_card_endgame?
+        two_card_endgame(@counter)
+      elsif one_card_endgame?
+        one_card_endgame
+      else
+        normal_game_play(@counter)
+      end
+
+      @turn = Turn.new(@turn.player1, @turn.player2)
+      # game = Game.new
+
+      @counter += 1
+
     end
   end
 end

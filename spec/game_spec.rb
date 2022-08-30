@@ -3,59 +3,7 @@ require 'spec_helper'
 require 'pry'
 
 RSpec.describe Game do
-  # let(:card3) { Card.new(:heart, '9', 9) }
-  # let(:card4) { Card.new(:diamond, 'Jack', 11) }
-  # let(:card5) { Card.new(:heart, '8', 8) }
-  # let(:card7) { Card.new(:heart, '3', 3) }
-  # let(:card8) { Card.new(:diamond, '2', 2) }
-
-  # # :basic decks
-  # let(:deck1) { Deck.new([card1, card2, card5, card8]) }
-  # let(:deck2) { Deck.new([card3, card4, card6, card7]) }
-  # # :war decks
-  # let(:war_deck1) { Deck.new([card1, card2, card5, card8]) }
-  # let(:war_deck2) { Deck.new([card4, card3, card6, card7]) }
-
-  # # :war endgame
-  # let(:war_deck3) { Deck.new([card1, card2]) }
-  # let(:war_deck4) { Deck.new([card4, card3, card6, card7]) }
-
-  # let(:player1) { Player.new('Megan', deck1) }
-  # let(:player2) { Player.new('Aurora', deck2) }
-  # let(:player3) { Player.new('April', deck3) }
-
-  # # :war players
-  # let(:war_player1) { Player.new('Megan', war_deck1) }
-  # let(:war_player2) { Player.new('Aurora', war_deck2) }
-
-  # # :m_a_d players
-  # let(:player4) { Player.new('Maddie', deck5) }
-  # let(:player5) { Player.new('Aurora', deck6) }
-
-  # # let(:turn) { Turn.new(player1, player2) }
-  # # let(:game) { Game.new(turn) }
-
-  # let(:war_turn) { Turn.new(war_player1, war_player2) }
-  # let(:war_game) { Game.new(war_turn) }
-
-  # # :m_a_d turn and game
-  # let(:mad_turn) { Turn.new(player4, player5) }
-  # let(:mad_game) { Game.new(mad_turn) }
-
-  # # one_card_endgame deck
-  # let(:one_card_endgame_deck1) { Deck.new([card2]) }
-  # let(:one_card_endgame_deck2) { Deck.new([card1, card3, card4, card5]) }
-
-  # # one_card_endgame players
-  # let(:one_card_endgame_player4) { Player.new('Maddie', one_card_endgame_deck1) }
-  # let(:one_card_endgame_player5) { Player.new('Aurora', one_card_endgame_deck2) }
-
-  # # one_card_endgame turn and game
-  # let(:one_card_endgame_turn) { Turn.new(one_card_endgame_player4, one_card_endgame_player5) }
-  # let(:one_card_endgame_game) { Game.new(one_card_endgame_turn) }
-
-  # let(:counter) { 1 }
-
+  
   describe '#init' do
     game = Game.new
     it 'exists' do
@@ -302,7 +250,7 @@ RSpec.describe Game do
     game.split_deck
     game.create_players
     game.make_turn
-    
+
     it 'moves last card to winner of turn' do
       card1 = Card.new(:heart, 'Jack', 11)
       card2 = Card.new(:heart, '10', 10)
@@ -341,7 +289,7 @@ RSpec.describe Game do
   context '#start' do
     game = Game.new
     game.start
-    
+
     it 'populates @full_deck with cards' do
       expect(game.full_deck).not_to eq([])
       expect(game.full_deck[0]).to be_a Card
@@ -358,11 +306,11 @@ RSpec.describe Game do
       expect(game.player1).to be_a Player
       expect(game.player2).to be_a Player
     end
-    
+
     it 'splits the shuffled deck into two' do
       expect(game.deck1.cards.length).to eq(26)
     end
-    
+
     it 'creates a Turn object for @turn' do
       expect(game.turn).to be_a Turn
     end
@@ -371,7 +319,7 @@ RSpec.describe Game do
   context '#create_players' do
     game = Game.new
     game.create_players
-    
+
     it 'makes player1' do
       expect(game.player1).to be_a Player
     end
@@ -382,7 +330,6 @@ RSpec.describe Game do
   end
 
   context '#game_over' do
-    
     it 'puts messages to STDOUT if player1 loses' do
       game = Game.new
       game.start
@@ -390,7 +337,7 @@ RSpec.describe Game do
       expect(game.player1.deck.cards.length).to eq(0)
       expect { game.game_over }.to output.to_stdout
     end
-    
+
     it 'puts messages to STDOUT if player2 loses' do
       game = Game.new
       game.start
@@ -400,6 +347,23 @@ RSpec.describe Game do
       game.player2.deck.cards = []
       expect(game.player2.deck.cards.length).to eq(0)
       expect { game.game_over }.to output.to_stdout
+    end
+    
+    it 'puts messages to STDOUT if no winner' do
+      game = Game.new
+      game.start
+      game.counter = 10_000
+      expect { game.game_over }.to output {puts "Turn #{counter}: #{turn.winner.name} won 2 cards"
+      puts '---- DRAW ----'}.to_stdout
+    end
+    
+  end
+  
+  context '#game_loop' do
+    game = Game.new
+    game.start
+    it 'is true' do
+      expect(game.game_loop).to be_truthy
     end
   end
 end
