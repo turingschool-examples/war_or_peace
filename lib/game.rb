@@ -31,16 +31,11 @@ class Game
     split_deck
     create_players
     make_turn
-    puts ''
     puts 'Welcome to War! (or Peace) This game will be played with 52 cards.'
     puts "The players today are #{@player1.name} and #{@player2.name}."
     puts "Press 'RETURN' to start the game"
     puts '------------------------------------------------------------------'
     gets
-    puts ''
-    puts 'here we go!'
-    puts ''
-    puts ''
     game_loop
   end
 
