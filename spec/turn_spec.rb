@@ -12,6 +12,36 @@ RSpec.describe 'iteration 2' do
   let(:card7) { Card.new(:heart, '3', 3) }
   let(:card8) { Card.new(:diamond, '2', 2) }
 
+  describe '#card_count_over_three?' do
+    it 'can determine if either player has less than 3 cards' do
+      deck1 = Deck.new([card1, card2, card3, card4])
+      deck2 = Deck.new([card1, card2, card3, card4])
+      player1 = Player.new('Megan', deck1)
+      player2 = Player.new('Aurora', deck2)
+      turn = Turn.new(player1, player2)
+      expect(turn.card_count_over_three?).to be true
+      player1.deck.cards = []
+      expect(turn.card_count_over_three?).to be false
+    end
+  end
+
+  describe '#m_a_d?' do
+    it 'determines if 1st and 3rd cards match in rank' do
+      deck1 = Deck.new([card1, card2, card3, card4])
+      deck2 = Deck.new([card1, card2, card3, card4])
+      player1 = Player.new('Megan', deck1)
+      player2 = Player.new('Aurora', deck2)
+      turn = Turn.new(player1, player2)
+      expect(turn.m_a_d?).to be true
+      deck1 = Deck.new([card1, card2, card2, card4])
+      deck2 = Deck.new([card1, card2, card3, card4])
+      player1 = Player.new('Megan', deck1)
+      player2 = Player.new('Aurora', deck2)
+      turn = Turn.new(player1, player2)
+      expect(turn.m_a_d?).to be false
+    end
+  end
+
   context 'Turn :basic' do
     let(:deck1) { Deck.new([card1, card2, card5, card8]) }
     let(:deck2) { Deck.new([card3, card4, card6, card7]) }
@@ -171,7 +201,7 @@ RSpec.describe 'iteration 2' do
     let(:player1) { Player.new('Megan', deck1) }
     let(:player2) { Player.new('Aurora', deck2) }
     let(:turn) { Turn.new(player1, player2) }
-    
+
     describe '#init' do
       it 'can start with a player with no cards' do
         expect(turn.player1.deck.cards.length).to eq(0)

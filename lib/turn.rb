@@ -8,15 +8,14 @@ class Turn
     @spoils_of_war = []
   end
 
-  
   def type
-    if @player1.deck.cards.count >= 3 && @player2.deck.cards.count >= 3
+    if card_count_over_three?
       player1_first_card = @player1.deck.cards[0].rank
       player2_first_card = @player2.deck.cards[0].rank
       player1_third_card = @player1.deck.cards[2].rank
       player2_third_card = @player2.deck.cards[2].rank
 
-      if (player1_first_card == player2_first_card) && (player1_third_card == player2_third_card)
+      if m_a_d?
         :mutually_assured_destruction
       elsif player1_first_card != player2_first_card
         :basic
@@ -87,5 +86,18 @@ class Turn
   def award_spoils(hand_winner)
     hand_winner.deck.cards.concat(@spoils_of_war)
     @spoils_of_war.clear
+  end
+
+  def card_count_over_three?
+    @player1.deck.cards.length >= 3 && @player2.deck.cards.length >= 3
+  end
+
+  def m_a_d?
+    player1_first_card = @player1.deck.cards[0].rank
+    player2_first_card = @player2.deck.cards[0].rank
+    player1_third_card = @player1.deck.cards[2].rank
+    player2_third_card = @player2.deck.cards[2].rank
+    
+    (player1_first_card == player2_first_card) && (player1_third_card == player2_third_card)
   end
 end
