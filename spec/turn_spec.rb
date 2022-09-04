@@ -26,24 +26,22 @@ RSpec.describe 'iteration 2' do
     let(:deck2) { Deck.new([card3, card4, card6, card7]) }
     let(:player1) { Player.new('Megan', deck1) }
     let(:player2) { Player.new('Aurora', deck2) }
+    let(:turn) {  Turn.new(player1, player2) }
 
     describe '#type' do
       it 'is :basic when card at 0 is not the same' do
-        turn = Turn.new(player1, player2)
         expect(turn.type).to eq(:basic)
       end
     end
 
     describe '#basic_turn?' do
       it 'can determine if both players 1st card matches rank' do
-        turn = Turn.new(player1, player2)
         expect(turn.basic_turn?).to be true
       end
     end
 
     describe '#winner' do
       it 'determines the winner' do
-        turn = Turn.new(player1, player2)
         expect(turn.type).to eq(:basic)
         expect(turn.winner.name).to eq('Megan')
         turn.pile_cards
@@ -51,9 +49,14 @@ RSpec.describe 'iteration 2' do
       end
     end
 
+    describe '#basic_turn_winner' do
+      it 'returns player1 if player1 wins' do
+        expect(turn.basic_turn_winner).to eq(player1)
+      end
+    end
+
     describe '#pile_cards' do
       it 'returns the winner of the hand' do
-        turn = Turn.new(player1, player2)
         hand_winner = turn.winner
         expect(turn.type).to eq(:basic)
         expect(turn.winner).to eq(player1)
@@ -62,9 +65,7 @@ RSpec.describe 'iteration 2' do
 
     describe '#award_spoils' do
       it 'awards contents of @spoils_of_war to winner' do
-        turn = Turn.new(player1, player2)
         expect(turn.winner).to eq(player1)
-
         turn.pile_cards
         expect(turn.spoils_of_war.length).to eq(2)
         turn.award_spoils(player1)
@@ -74,7 +75,6 @@ RSpec.describe 'iteration 2' do
 
     describe '#send_two_to_spoils' do
       it 'sends two cards to spoils of war' do
-        turn = Turn.new(player1, player2)
         turn.send_two_to_spoils
         expect(turn.spoils_of_war.length).to eq(2)
         expect(turn.player1.deck.cards.length).to eq(3)
@@ -108,6 +108,18 @@ RSpec.describe 'iteration 2' do
         turn = Turn.new(player3, player4)
         expect(turn.type).to eq(:war)
         expect(turn.winner).to eq(player4)
+      end
+    end
+
+    describe '#war_turn_winner' do
+      it 'returns player1 when player1 wins' do
+        expect(turn.war_turn_winner).to eq(player4)
+      end
+    end
+
+    describe '#greater_card_at_two' do
+      it 'identifies the player with higher rank card at index 2' do
+        expect(turn.greater_card_at_two).to eq(player4)
       end
     end
 

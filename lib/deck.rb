@@ -1,4 +1,4 @@
-class Deck
+  class Deck
   attr_accessor :cards
 
   def initialize(cards)

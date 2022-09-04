@@ -15,6 +15,7 @@ class Game
                 :player2,
                 :counter
 
+
   def initialize
     @turn = nil
     @full_deck = []
@@ -31,10 +32,7 @@ class Game
     split_deck
     create_players
     make_turn
-    puts 'Welcome to War! (or Peace) This game will be played with 52 cards.'
-    puts "The players today are #{@player1.name} and #{@player2.name}."
-    puts "Press 'RETURN' to start the game"
-    puts '------------------------------------------------------------------'
+    puts "Welcome to War! (or Peace) This game will be played with 52 cards.\nThe players today are #{@player1.name} and #{@player2.name}.\nPress 'RETURN' to start the game\n------------------------------------------------------------------"
     gets
     game_loop
   end
@@ -56,7 +54,7 @@ class Game
   end
 
   def shuffle_the_deck
-    @full_deck = @full_deck.shuffle
+    @full_deck = @full_deck.shuffle!
   end
 
   def split_deck
@@ -72,14 +70,6 @@ class Game
   def game_over?
     @turn.player1.has_lost? || @turn.player2.has_lost?
   end
-
-  # def endgame?
-  #   turn.player1.deck.cards.length < 3 || turn.player2.deck.cards.length < 3
-  # end
-
-  # def three_card_endgame?
-  #   turn.player1.deck.cards.length == 3 || turn.player2.deck.cards.length == 3
-  # end
 
   def two_card_endgame?
     turn.player1.deck.cards.length == 2 || turn.player2.deck.cards.length == 2
@@ -106,10 +96,10 @@ class Game
   end
 
   def one_card_endgame
-    if @turn.player1.deck.cards[0].rank < @turn.player2.deck.cards[0].rank
-      turn.player2.deck.cards << turn.player1.deck.cards.pop
+    if player2_wins_basic?
+      send_card_to_player2
     else
-      turn.player1.deck.cards << turn.player2.deck.cards.pop
+      send_card_to_player1
     end
   end
 
@@ -118,18 +108,18 @@ class Game
     case @turn.type
     when :mutually_assured_destruction
       turn.pile_cards
-      p "turn #{counter}: No winner: mutually assured destruction 6 cards removed"
-      p "Megan: #{turn.player1.deck.cards.count}| Aurora: #{turn.player2.deck.cards.count}"
+      puts "turn #{counter}: No winner: mutually assured destruction 6 cards removed"
+      puts "Megan: #{turn.player1.deck.cards.count}| Aurora: #{turn.player2.deck.cards.count}"
     when :war
       turn.pile_cards
-      p "turn #{counter}: WAR -  #{winner.name} won #{turn.spoils_of_war.count} cards"
+      puts "turn #{counter}: WAR -  #{winner.name} won #{turn.spoils_of_war.count} cards"
       turn.award_spoils(winner)
-      p "Megan: #{turn.player1.deck.cards.count}| Aurora: #{turn.player2.deck.cards.count}"
+      puts "Megan: #{turn.player1.deck.cards.count}| Aurora: #{turn.player2.deck.cards.count}"
     when :basic
       turn.pile_cards
-      p "turn #{counter}: #{winner.name} won #{turn.spoils_of_war.count} cards"
+      puts "turn #{counter}: #{winner.name} won #{turn.spoils_of_war.count} cards"
       turn.award_spoils(winner)
-      p "Megan: #{turn.player1.deck.cards.count}| Aurora: #{turn.player2.deck.cards.count}"
+      puts "Megan: #{turn.player1.deck.cards.count}| Aurora: #{turn.player2.deck.cards.count}"
     else
       'uh oh'
     end
@@ -144,7 +134,7 @@ class Game
       puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
     elsif @player2.has_lost?
       puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
-    elsif @counter >= 10_000
+    else
       puts "Turn #{counter}: #{turn.winner.name} won 2 cards"
       puts '---- DRAW ----'
     end
@@ -152,9 +142,8 @@ class Game
 
   def game_loop
     until counter == 1_000
-
+      binding.pry
       if game_over? # game over
-        game_over
         break
       elsif two_card_endgame?
         two_card_endgame(@counter)
@@ -165,10 +154,21 @@ class Game
       end
 
       @turn = Turn.new(@turn.player1, @turn.player2)
-      # game = Game.new
 
       @counter += 1
-
     end
+    game_over
+  end
+
+  def player2_wins_basic?
+    @turn.player1.deck.cards[0].rank < @turn.player2.deck.cards[0].rank
+  end
+
+  def send_card_to_player2
+    turn.player2.deck.cards << turn.player1.deck.cards.pop
+  end
+
+  def send_card_to_player1
+    turn.player1.deck.cards << turn.player2.deck.cards.pop
   end
 end

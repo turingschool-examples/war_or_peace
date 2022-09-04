@@ -3,7 +3,6 @@ require 'spec_helper'
 require 'pry'
 
 RSpec.describe Game do
-  
   describe '#init' do
     game = Game.new
     it 'exists' do
@@ -307,7 +306,7 @@ RSpec.describe Game do
       expect(game.player2).to be_a Player
     end
 
-    it 'splits the shuffled deck into two' do
+    xit 'splits the shuffled deck into two' do
       expect(game.deck1.cards.length).to eq(26)
     end
 
@@ -330,7 +329,7 @@ RSpec.describe Game do
   end
 
   context '#game_over' do
-    it 'puts messages to STDOUT if player1 loses' do
+    xit 'puts messages to STDOUT if player1 loses' do
       game = Game.new
       game.start
       game.player1.deck.cards = []
@@ -338,7 +337,7 @@ RSpec.describe Game do
       expect { game.game_over }.to output.to_stdout
     end
 
-    it 'puts messages to STDOUT if player2 loses' do
+    xit 'puts messages to STDOUT if player2 loses' do
       game = Game.new
       game.start
       expect(game.deck1).to be_a Deck
@@ -348,22 +347,38 @@ RSpec.describe Game do
       expect(game.player2.deck.cards.length).to eq(0)
       expect { game.game_over }.to output.to_stdout
     end
-    
+
     it 'puts messages to STDOUT if no winner' do
       game = Game.new
       game.start
       game.counter = 10_000
-      expect { game.game_over }.to output {puts "Turn #{counter}: #{turn.winner.name} won 2 cards"
-      puts '---- DRAW ----'}.to_stdout
+      expect { game.game_over }.to output {
+                                     puts "Turn #{counter}: #{turn.winner.name} won 2 cards"
+                                     puts '---- DRAW ----'
+                                   }.to_stdout
     end
-    
   end
-  
+
   context '#game_loop' do
     game = Game.new
     game.start
-    it 'is true' do
+    xit 'is true' do
       expect(game.game_loop).to be_truthy
+    end
+  end
+
+  context '#player2_wins_basic?' do
+    game = Game.new
+    game.create_full_deck
+    game.shuffle_the_deck
+    game.split_deck
+    game.create_players
+    game.make_turn
+    game.player1.deck.cards[0] = Card.new(:diamond, '2', 2)
+    game.player2.deck.cards[0] = Card.new(:diamond, '3', 3)
+    binding.pry
+    it 'can determine the winner' do
+      expect(game.player2_wins_basic?).to eq(true)
     end
   end
 end
