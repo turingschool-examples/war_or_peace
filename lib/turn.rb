@@ -16,24 +16,22 @@ class Turn
     @player1.deck.cards[0].rank == @player2.deck.cards[0].rank
   end
 
-  def m_a_d?
-    player1_first_card = @player1.deck.cards[0].rank
-    player2_first_card = @player2.deck.cards[0].rank
-    player1_third_card = @player1.deck.cards[2].rank
-    player2_third_card = @player2.deck.cards[2].rank
+  def m_a_d_turn?
+    player1_first_card = @player1.deck.rank_of_card_at(0)
+    player2_first_card = @player2.deck.rank_of_card_at(0)
+    player1_third_card = @player1.deck.rank_of_card_at(2)
+    player2_third_card = @player2.deck.rank_of_card_at(2)
 
     (player1_first_card == player2_first_card) && (player1_third_card == player2_third_card)
   end
 
   def type
-    if card_count_over_three? && m_a_d?
+    if card_count_over_three? && m_a_d_turn?
       :mutually_assured_destruction
     elsif (card_count_over_three? && basic_turn?) || (card_count_under_three? && basic_turn?)
       :basic
     elsif (card_count_over_three? && war_turn?) || (card_count_under_three? && war_turn?)
       :war
-    else
-      'check the Turn#type'
     end
   end
 
@@ -60,7 +58,11 @@ class Turn
   end
 
   def award_spoils(hand_winner)
-    hand_winner.deck.cards.concat(@spoils_of_war)
+
+    @spoils_of_war.each do |x|
+      hand_winner.deck.add_card(x)
+    end
+
     @spoils_of_war.clear
   end
 
@@ -93,8 +95,6 @@ class Turn
       @player1
     elsif p2_card > p1_card
       @player2
-    else
-      'no one wins'
     end
   end
 

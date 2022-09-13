@@ -28,6 +28,7 @@ RSpec.describe 'iteration 1' do
     end
 
     context '#high_ranking_cards' do
+
       it 'retrieves cards valued 11 or higher' do
         expected = []
 
@@ -36,6 +37,7 @@ RSpec.describe 'iteration 1' do
         end
         expect(@deck.high_ranking_cards).to eq(expected)
       end
+
     end
 
     context '#percent_high_ranking' do
@@ -48,6 +50,7 @@ RSpec.describe 'iteration 1' do
     context '#remove_card' do
       it 'returns the card removed' do
         expect(@deck.remove_card).to eq(@card1)
+        expect(@deck.cards).to eq([@card2, @card3])
       end
       it 'updates the cards in the deck' do
         expect(@deck.cards).to eq([@card2, @card3])

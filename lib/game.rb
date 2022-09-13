@@ -54,7 +54,7 @@ class Game
   end
 
   def shuffle_the_deck
-    @full_deck = @full_deck.shuffle!
+    @full_deck.shuffle!
   end
 
   def split_deck
@@ -68,11 +68,11 @@ class Game
   end
 
   def game_over?
-    @turn.player1.has_lost? || @turn.player2.has_lost?
+    @player1.has_lost? || @player2.has_lost?
   end
 
   def two_card_endgame?
-    turn.player1.deck.cards.length == 2 || turn.player2.deck.cards.length == 2
+    @player1.deck.cards.length == 2 || @player2.deck.cards.length == 2
   end
 
   def two_card_endgame(counter)
@@ -81,9 +81,9 @@ class Game
       normal_game_play(counter)
     when :war
       if @player2.deck.cards[2].nil?
-        turn.player1.deck.cards.concat(turn.player2.deck.cards.pop(2))
+        @player1.deck.cards.concat(@player2.deck.cards.pop(2))
       elsif @player1.deck.cards[2].nil?
-        turn.player2.deck.cards.concat(turn.player1.deck.cards.pop(2))
+        @player2.deck.cards.concat(@player1.deck.cards.pop(2))
       end
 
     else
@@ -92,7 +92,7 @@ class Game
   end
 
   def one_card_endgame?
-    turn.player1.deck.cards.length == 1 || turn.player2.deck.cards.length == 1
+    @player1.deck.cards.length == 1 || @player2.deck.cards.length == 1
   end
 
   def one_card_endgame
@@ -109,17 +109,17 @@ class Game
     when :mutually_assured_destruction
       turn.pile_cards
       puts "turn #{counter}: No winner: mutually assured destruction 6 cards removed"
-      puts "Megan: #{turn.player1.deck.cards.count}| Aurora: #{turn.player2.deck.cards.count}"
+      puts "Megan: #{@player1.deck.cards.count}| Aurora: #{@player2.deck.cards.count}"
     when :war
       turn.pile_cards
       puts "turn #{counter}: WAR -  #{winner.name} won #{turn.spoils_of_war.count} cards"
       turn.award_spoils(winner)
-      puts "Megan: #{turn.player1.deck.cards.count}| Aurora: #{turn.player2.deck.cards.count}"
+      puts "Megan: #{@player1.deck.cards.count}| Aurora: #{@player2.deck.cards.count}"
     when :basic
       turn.pile_cards
       puts "turn #{counter}: #{winner.name} won #{turn.spoils_of_war.count} cards"
       turn.award_spoils(winner)
-      puts "Megan: #{turn.player1.deck.cards.count}| Aurora: #{turn.player2.deck.cards.count}"
+      puts "Megan: #{@player1.deck.cards.count}| Aurora: #{@player2.deck.cards.count}"
     else
       'uh oh'
     end
@@ -142,7 +142,6 @@ class Game
 
   def game_loop
     until counter == 1_000
-      binding.pry
       if game_over? # game over
         break
       elsif two_card_endgame?
@@ -153,7 +152,7 @@ class Game
         normal_game_play(@counter)
       end
 
-      @turn = Turn.new(@turn.player1, @turn.player2)
+      @turn = Turn.new(@player1, @player2)
 
       @counter += 1
     end
@@ -161,14 +160,14 @@ class Game
   end
 
   def player2_wins_basic?
-    @turn.player1.deck.cards[0].rank < @turn.player2.deck.cards[0].rank
+    @player1.deck.cards[0].rank < @player2.deck.cards[0].rank
   end
 
   def send_card_to_player2
-    turn.player2.deck.cards << turn.player1.deck.cards.pop
+    @player2.deck.cards << @player1.deck.cards.pop
   end
 
   def send_card_to_player1
-    turn.player1.deck.cards << turn.player2.deck.cards.pop
+    @player1.deck.cards << @player2.deck.cards.pop
   end
 end

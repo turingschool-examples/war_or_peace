@@ -19,6 +19,13 @@ RSpec.describe 'iteration 2' do
       turn = Turn.new(player1, player2)
       expect(turn).to be_a(Turn)
     end
+
+    it 'has @player1, @player2 and @spoils_of_war' do
+      player1 = Player.new('Megan', Deck.new([card1, card2, card3, card4]))
+      player2 = Player.new('Aurora', Deck.new([card1, card2, card3, card4]))
+      turn = Turn.new(player1, player2)
+      expect(turn).to have_attributes({ player1: player1, player2: player2, spoils_of_war: [] })
+    end
   end
 
   context 'Turn :basic' do
@@ -29,7 +36,7 @@ RSpec.describe 'iteration 2' do
     let(:turn) {  Turn.new(player1, player2) }
 
     describe '#type' do
-      it 'is :basic when card at 0 is not the same' do
+      it 'is :basic when card in first position has different ranks' do
         expect(turn.type).to eq(:basic)
       end
     end
@@ -44,8 +51,6 @@ RSpec.describe 'iteration 2' do
       it 'determines the winner' do
         expect(turn.type).to eq(:basic)
         expect(turn.winner.name).to eq('Megan')
-        turn.pile_cards
-        # require 'pry'; binding.pry
       end
     end
 
@@ -53,13 +58,24 @@ RSpec.describe 'iteration 2' do
       it 'returns player1 if player1 wins' do
         expect(turn.basic_turn_winner).to eq(player1)
       end
+      it 'does not return player2 if player2 does not wins' do
+        expect(turn.basic_turn_winner).not_to eq(player2)
+      end
+
+      it 'returns player1 if player1 wins' do
+        player1 = Player.new('Megan', deck2)
+        player2 = Player.new('Aurora', deck1)
+        turn = Turn.new(player1, player2)
+        expect(turn.basic_turn_winner).to eq(player2)
+      end
     end
 
     describe '#pile_cards' do
-      it 'returns the winner of the hand' do
-        hand_winner = turn.winner
+      it 'pushes 2 cards to @spoils_of_war' do
         expect(turn.type).to eq(:basic)
         expect(turn.winner).to eq(player1)
+        turn.pile_cards
+        expect(turn.spoils_of_war.length).to eq(2)
       end
     end
 
@@ -112,15 +128,51 @@ RSpec.describe 'iteration 2' do
     end
 
     describe '#war_turn_winner' do
+      context "both players have at least 3 cards in deck" do
+        it 'can identify the winner by observing cards at index[2]' do
+          expect(player3.deck.cards.length).to be >= 3
+          expect(player4.deck.cards.length).to be >= 3
+          expect(turn.type).to eq(:war)
+          expect(turn.winner).to eq(player4)
+        end
+      end
+
+      context "player1 has < 3 cards in deck" do
+        it 'returns player2 as the war_turn_winner' do
+          player3.deck.cards.pop(3)
+          expect(turn.war_turn_winner).to eq(player4)
+        end
+      end
+
+      context "player2 has < 3 cards in deck" do
+        it 'returns player1 as the war_turn_winner' do
+          player4.deck.cards.pop(3)
+          expect(turn.war_turn_winner).to eq(player3)
+        end
+      end
+
       it 'returns player1 when player1 wins' do
         expect(turn.war_turn_winner).to eq(player4)
       end
     end
 
     describe '#greater_card_at_two' do
-      it 'identifies the player with higher rank card at index 2' do
-        expect(turn.greater_card_at_two).to eq(player4)
+      context "player2 has a higher card in index[2]" do
+        it 'returns player2' do
+          expect(turn.greater_card_at_two).to eq(player4)
+        end
       end
+
+      context "player1 has a higher card in index[2]" do
+        it 'returns player1' do
+          player3 = Player.new('April', deck4)
+          player4 = Player.new('Maddie', deck3)
+          turn = Turn.new(player3, player4)
+          expect(turn.greater_card_at_two).to eq(player3)
+        end
+
+      end
+
     end
 
     describe '#pile_cards' do
@@ -210,13 +262,13 @@ RSpec.describe 'iteration 2' do
         player1 = Player.new('Megan', deck1)
         player2 = Player.new('Aurora', deck2)
         turn = Turn.new(player1, player2)
-        expect(turn.m_a_d?).to be true
+        expect(turn.m_a_d_turn?).to be true
         deck1 = Deck.new([card1, card2, card2, card4])
         deck2 = Deck.new([card1, card2, card3, card4])
         player1 = Player.new('Megan', deck1)
         player2 = Player.new('Aurora', deck2)
         turn = Turn.new(player1, player2)
-        expect(turn.m_a_d?).to be false
+        expect(turn.m_a_d_turn?).to be false
       end
     end
 
