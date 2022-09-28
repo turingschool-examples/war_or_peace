@@ -21,7 +21,7 @@ RSpec.describe Game do
     expect(game).to be_an_instance_of(Game)
   end
 
-  it 'hashas readable attributes' do
+  it 'has readable attributes' do
     card_1 = Card.new(:heart, 'Jack', 11)
     card_2 = Card.new(:heart, 'Ten', 10)
     deck_1 = Deck.new([card_1])
