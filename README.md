@@ -23,19 +23,21 @@
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
+[![Product Name Screen Shot][product-screenshot]](https://example.com)
 -->
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/josephhilby/war_or_peace">
-    <img src="images/Wojna_gra_karciana.jpeg" alt="Logo" width="80" height="80">
+    <img src="images/Wojna_gra_karciana.jpeg" alt="Logo" width="180" height="80">
   </a>
 
 <h3 align="center">War-or-Peace</h3>
 </div>
 
 <!-- TABLE OF CONTENTS -->
+<!--
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -53,21 +55,15 @@
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
-
+-->
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
 This was the initial project given to me while at Turing School of Software Design. The initial project goal was to enable a game of War [https://en.wikipedia.org/wiki/War_(card_game)] (https://en.wikipedia.org/wiki/War_(card_game)) to be played between two computer opponents in the Terminal. I have kept this project as a measuring stick for my journey in learning Ruby / Software Engineering.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
 
 * Ruby
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -77,10 +73,8 @@ Clone this repo. Navigate to the root directory, then run ```ruby war_and_peace_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Run War in the Terminal
+- [x] Run War in the Terminal
 - [ ] Develop simple frontend interface
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTACT -->
 ## Contact
@@ -89,20 +83,15 @@ Joseph Hilby - Joseph.Hilby@gmail.com
 
 Project Link: [https://github.com/josephhilby/war_or_peace](https://github.com/josephhilby/war_or_peace)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []() Turing School of Software Design [https://turing.edu/] (https://turing.edu/)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+* Turing School of Software Design: [https://turing.edu/](https://turing.edu/)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
+[contributors-url]: https://github.com/josephhilby/battleship/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
 [forks-url]: https://github.com/github_username/repo_name/network/members
 [stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
