@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'pry'
 
 RSpec.describe 'iteration 2' do
   # cards
@@ -156,10 +155,10 @@ RSpec.describe 'iteration 2' do
       end
     end
 
-    describe '#greater_card_at_two' do
+    describe '#compare_card_at_second_position' do
       context "player2 has a higher card in index[2]" do
         it 'returns player2' do
-          expect(turn.greater_card_at_two).to eq(player4)
+          expect(turn.compare_card_at_second_position).to eq(player4)
         end
       end
 
@@ -168,7 +167,7 @@ RSpec.describe 'iteration 2' do
           player3 = Player.new('April', deck4)
           player4 = Player.new('Maddie', deck3)
           turn = Turn.new(player3, player4)
-          expect(turn.greater_card_at_two).to eq(player3)
+          expect(turn.compare_card_at_second_position).to eq(player3)
         end
 
       end

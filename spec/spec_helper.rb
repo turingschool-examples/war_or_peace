@@ -22,7 +22,7 @@ require './lib/game'
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
-  config.before { allow($stdout).to receive(:puts) }
+  config.before { allow($stdout).to receive(:write) }
   config.filter_run_excluding skip: true
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

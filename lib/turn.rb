@@ -28,9 +28,9 @@ class Turn
   def type
     if card_count_over_three? && m_a_d_turn?
       :mutually_assured_destruction
-    elsif (card_count_over_three? && basic_turn?) || (card_count_under_three? && basic_turn?)
+    elsif basic_turn?
       :basic
-    elsif (card_count_over_three? && war_turn?) || (card_count_under_three? && war_turn?)
+    elsif war_turn?
       :war
     end
   end
@@ -58,11 +58,7 @@ class Turn
   end
 
   def award_spoils(hand_winner)
-
-    @spoils_of_war.each do |x|
-      hand_winner.deck.add_card(x)
-    end
-
+    hand_winner.deck.cards.concat(@spoils_of_war)
     @spoils_of_war.clear
   end
 
@@ -75,8 +71,10 @@ class Turn
   end
 
   def remove_six_cards
-    @player1.deck.cards.slice!(0, 3)
-    @player2.deck.cards.slice!(0, 3)
+    3.times do
+      @player1.deck.remove_card
+      @player2.deck.remove_card
+    end
   end
 
   def send_six_to_spoils
@@ -84,23 +82,28 @@ class Turn
   end
 
   def send_two_to_spoils
-    @spoils_of_war.push(@player1.deck.cards.shift, @player2.deck.cards.shift)
+    @spoils_of_war.push(@player1.deck.remove_card, @player2.deck.remove_card)
   end
 
   def basic_turn_winner
-    p1_card = @player1.deck.rank_of_card_at(0)
-    p2_card = @player2.deck.rank_of_card_at(0)
-
-    if p2_card < p1_card
+    if player_1_card_greater?
       @player1
-    elsif p2_card > p1_card
+    elsif player_2_card_greater?
       @player2
     end
   end
 
+  def player_1_card_greater?
+    @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
+  end
+
+  def player_2_card_greater?
+    @player1.deck.rank_of_card_at(0) < @player2.deck.rank_of_card_at(0)
+  end
+
   def war_turn_winner
     if card_count_over_three?
-      greater_card_at_two
+      compare_card_at_second_position
     elsif player1.deck.cards.count < 3
       @player2
     else
@@ -108,7 +111,7 @@ class Turn
     end
   end
 
-  def greater_card_at_two
+  def compare_card_at_second_position
     p1_card = @player1.deck.rank_of_card_at(2)
     p2_card = @player2.deck.rank_of_card_at(2)
 

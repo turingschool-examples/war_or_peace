@@ -9,13 +9,11 @@ class Deck
     @cards[index].rank
   end
 
-  # :nocov:
   def high_ranking_cards
     @cards.select do |card|
       card.rank >= 11
     end
   end
-# :nocov:
 
   def percent_high_ranking
     (high_ranking_cards.count / cards.count.to_f * 100).round(2)

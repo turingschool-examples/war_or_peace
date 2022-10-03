@@ -22,18 +22,22 @@ RSpec.describe 'iteration 2' do
       it 'gives the player a deck of cards' do
         expect(@player.deck).to be_a(Deck)
       end
+
+      it 'is initialized with @has_lost equal to false' do
+        expect(@player.has_lost).to eq(false)
+      end
     end
 
     context '#has_lost?' do
       it 'evaluates if the player has lost' do
         expect(@player.has_lost?).to be false
       end
-      
+
       it 'is true if a player has no more cards' do
         @player.deck.remove_card
         @player.deck.remove_card
         @player.deck.remove_card
-        
+
         expect(@player.has_lost?).to be true
       end
     end

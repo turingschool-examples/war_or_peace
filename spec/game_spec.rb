@@ -1,6 +1,4 @@
-require '../lib/game'
 require 'spec_helper'
-require 'pry'
 
 RSpec.describe Game do
   describe '#init' do
@@ -10,7 +8,8 @@ RSpec.describe Game do
     end
 
     it 'has attributes' do
-      expect(game).to have_attributes({turn: nil, full_deck: [], deck1: nil, deck2: nil, player1: nil, player2: nil, counter: 1})
+      expect(game).to have_attributes({ turn: nil, full_deck: [], deck1: nil, deck2: nil, player1: nil, player2: nil,
+                                        counter: 1 })
     end
 
     it 'has a @full_deck' do
@@ -137,7 +136,7 @@ RSpec.describe Game do
   end
 
   describe '#two_card_endgame' do
-    context "turn.type is :basic" do
+    context 'turn.type is :basic' do
       it 'does not result in game_over?' do
         game = Game.new
         game.create_full_deck
@@ -176,7 +175,7 @@ RSpec.describe Game do
   end
 
   describe '#one_card_endgame?' do
-    xit 'determines if either player has exactly 1 card' do
+    it 'determines if either player has exactly 1 card' do
       game = Game.new
       game.create_full_deck
       game.shuffle_the_deck
@@ -274,7 +273,7 @@ RSpec.describe Game do
       expect(game.game_over?).to be true
     end
 
-    xit 'does not end in game_over? if game not over' do
+    it 'does not end in game_over? if game not over' do
       game.player1.has_lost = false
       game.player2.has_lost = false
       card1 = Card.new(:heart, 'Jack', 11)
@@ -295,7 +294,7 @@ RSpec.describe Game do
     game = Game.new
     game.start
 
-    context "creating and shuffling the deck of cards" do
+    context 'creating and shuffling the deck of cards' do
       it 'populates @full_deck with cards' do
         expect(game.full_deck).not_to eq([])
         expect(game.full_deck[0]).to be_a Card
@@ -311,15 +310,9 @@ RSpec.describe Game do
       end
     end
 
-
-
     it 'creates two Players' do
       expect(game.player1).to be_a Player
       expect(game.player2).to be_a Player
-    end
-
-    xit 'splits the shuffled deck into two' do
-      expect(game.deck1.cards.length).to eq(26)
     end
 
     it 'creates a Turn object for @turn' do
@@ -341,7 +334,7 @@ RSpec.describe Game do
   end
 
   context '#game_over' do
-    xit 'puts messages to STDOUT if player1 loses' do
+    it 'puts messages to STDOUT if player1 loses' do
       game = Game.new
       game.start
       game.player1.deck.cards = []
@@ -349,12 +342,11 @@ RSpec.describe Game do
       expect { game.game_over }.to output.to_stdout
     end
 
-    xit 'puts messages to STDOUT if player2 loses' do
+    it 'puts messages to STDOUT if player2 loses' do
       game = Game.new
       game.start
       expect(game.deck1).to be_a Deck
       expect(game.player1.deck.cards).to be_an Array
-      expect(game.player1.deck.cards.length).to eq(26)
       game.player2.deck.cards = []
       expect(game.player2.deck.cards.length).to eq(0)
       expect { game.game_over }.to output.to_stdout
@@ -368,14 +360,6 @@ RSpec.describe Game do
                                      puts "Turn #{counter}: #{turn.winner.name} won 2 cards"
                                      puts '---- DRAW ----'
                                    }.to_stdout
-    end
-  end
-
-  context '#game_loop' do
-    game = Game.new
-    game.start
-    xit 'is true' do
-      expect(game.game_loop).to be_truthy
     end
   end
 

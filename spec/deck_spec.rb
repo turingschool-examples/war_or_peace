@@ -16,7 +16,7 @@ RSpec.describe 'iteration 1' do
       end
 
       it 'has cards' do
-        expect(@deck.cards).to be_truthy
+        expect(@deck.cards).to eq([@card1, @card2, @card3])
       end
     end
 

@@ -15,7 +15,6 @@ class Game
                 :player2,
                 :counter
 
-
   def initialize
     @turn = nil
     @full_deck = []
@@ -33,7 +32,7 @@ class Game
     create_players
     make_turn
     puts "Welcome to War! (or Peace) This game will be played with 52 cards.\nThe players today are #{@player1.name} and #{@player2.name}.\nPress 'RETURN' to start the game\n------------------------------------------------------------------"
-    gets
+    # gets
     game_loop
   end
 
@@ -85,7 +84,6 @@ class Game
       elsif @player1.deck.cards[2].nil?
         @player2.deck.cards.concat(@player1.deck.cards.pop(2))
       end
-
     else
       'not allowed'
     end
