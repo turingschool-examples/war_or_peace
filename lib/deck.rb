@@ -10,7 +10,7 @@ class Deck
   end
 
   def high_ranking_cards
-    @cards.select do |card|
+    @cards.filter do |card|
       card.rank >= 11
     end
   end
