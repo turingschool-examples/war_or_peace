@@ -10,8 +10,14 @@ class Deck
      card.rank
   end 
 
+  def remove_card
+    @cards.shift
+  end 
+
   def high_ranking_cards
     high_ranking_cards = @cards.find_all{|card| card.rank >= 11}
   end 
+
+
 
 end 
