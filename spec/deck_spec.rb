@@ -14,7 +14,7 @@ RSpec.describe do Deck
     expect(deck.cards).to eq(cards)
   end
 
-  describe '#rank_of_cards_at' do 
+  describe '#rank_of_card_at' do 
     it 'will take an argument for index and return that cards rank' do 
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)
