@@ -14,15 +14,15 @@ class Deck
     @high_rank_cards = @cards.find_all{|card| card.rank >= 11}
   end 
 
-  def remove_card
-    @cards.shift
-  end 
-
   def percent_high_ranking
-    
     decimal_percent = @high_rank_cards.count.to_f / @cards.count.to_f
     percent = decimal_percent * 100
     percent.round(2)
   end 
+
+  def remove_card
+    @cards.shift
+  end 
+
 
 end 
