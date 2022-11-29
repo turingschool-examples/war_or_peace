@@ -83,6 +83,16 @@ RSpec.describe do Deck
 
       expect(deck.cards).to eq([card1, card2, card3, card4])
 
+      deck.remove_card 
+
+      expect(deck.cards).to eq([card2, card3, card4])
+
+      card5 = Card.new(:spade, '4', 4)
+      card6 = Card.new(:diamond, 'Jack', 11)
+      deck.add_card(card5)
+      deck.add_card(card6)
+
+      expect(deck.cards).to eq([card2, card3, card4, card5, card6])
     end
   end
 end
