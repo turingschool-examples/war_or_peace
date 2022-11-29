@@ -63,6 +63,8 @@ RSpec.describe do Deck
       deck.remove_card 
 
       expect(deck.cards).to eq([card2, card3])
+      expect(deck.high_ranking_cards).to eq([card3])
+      expect(deck.percent_high_ranking).to eq(50.0)
     end
   end
 end
