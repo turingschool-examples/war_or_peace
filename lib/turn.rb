@@ -8,7 +8,6 @@ class Turn
   end
 
   def type 
-    #require 'pry'; binding.pry
     if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
       :basic
     end
@@ -31,9 +30,9 @@ class Turn
     end
   end
 
-  def award_spoils(winner)
+  def award_spoils(round_winner)
     spoils_of_war.map do |card| 
-      winner.deck.add_card(card)
+      round_winner.deck.add_card(card)
     end
   end
 end
