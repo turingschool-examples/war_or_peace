@@ -9,12 +9,13 @@ class Turn
     end
 
     def type
-        :basic if player1.deck.cards[0] != player2.cards[0]
+        :basic if player1.deck.cards[0] != player2.deck.cards[0]
     end
 
     def winner
-        if player1.deck.cards[0].rank > player2.cards[0].rank then player1
-        elsif player2.deck.cards[0].rank > player2.cards[0].rank then player2
+        if player1.deck.cards[0].rank > player2.deck.cards[0].rank then player1
+        # elsif player2.deck.cards[0].rank > player1.deck.cards[0].rank then player2
+        else player2
         end 
     end
 
