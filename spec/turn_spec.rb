@@ -17,8 +17,10 @@ describe Turn do
         deck2 = Deck.new([card3, card4, card6, card7])
         player1 = Player.new("Megan", deck1)
         player2 = Player.new("Aurora", deck2)
+
     describe '#initialize' do
-        it 'requires cards, decks, and players'do
+        it 'requires cards, decks, and players' do
+
         expect(card1).to be_a(Card)
         expect(card2).to be_a(Card)
         expect(card3).to be_a(Card)
@@ -32,6 +34,14 @@ describe Turn do
         expect(player1).to be_a(Player)
         expect(player2).to be_a(Player)
         end 
+
+        it 'exists and has attributes' do
+            turn = Turn.new(player1, player2)
+
+            expect(turn).to be_a(Turn)
+            expect(turn.player1).to eq(player1)
+            expect(turn.player2).to eq(player2)
+        end
     end
-end 
+    end 
 end 
