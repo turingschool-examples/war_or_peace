@@ -75,6 +75,8 @@ describe Player do
 
             player.has_lost?
             expect(player.has_lost?).to be true
+
+            expect(player.deck).to eq(deck)
         end
     end 
 end
