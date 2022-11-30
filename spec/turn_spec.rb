@@ -56,6 +56,13 @@ describe Turn do
 
             expect(turn.type).to eq(:basic)
         end
+
+        it 'determines the winner' do
+            turn = Turn.new(player1, player2)
+            winner = turn.winner
+
+            expect(winner).to eq(player1)
+        end
     end 
     end 
 end 

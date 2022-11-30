@@ -11,4 +11,10 @@ class Turn
     def type
         :basic if player1.cards[0] != player2.cards[0]
     end
+
+    def winner
+        if player1.cards[0] > player2.cards[0] then player1
+        elsif player2.cards[0] > player2.cards[0] then player2
+        end 
+    end
 end
