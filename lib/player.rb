@@ -6,4 +6,6 @@ def initialize(name, deck)
   @deck = deck
 end
 
+
+
 end
