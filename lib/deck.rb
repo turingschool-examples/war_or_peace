@@ -17,6 +17,8 @@ class Deck
     ((high_ranking_cards.length) / (@cards.length.to_f) * 100).round(2)
   end
 
-  
+  def remove_card
+    @cards.shift
+  end
 
 end
