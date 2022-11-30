@@ -21,7 +21,6 @@ RSpec.describe Turn do
     player1 = Player.new("Megan", deck1) 
     player2 = Player.new("Aurora", deck2)    
 
-
     turn = Turn.new(player1, player2) 
 
     expect(turn).to be_a(Turn)
@@ -118,7 +117,6 @@ RSpec.describe Turn do
       player1 = Player.new("Megan", deck1) 
       player2 = Player.new("Aurora", deck2)    
 
-
       turn = Turn.new(player1, player2) 
 
       expect(turn.type).to eq(:basic)
@@ -187,7 +185,6 @@ RSpec.describe Turn do
 
       player1 = Player.new("Megan", deck1) 
       player2 = Player.new("Aurora", deck2)    
-
 
       turn = Turn.new(player1, player2) 
 
