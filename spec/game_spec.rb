@@ -21,15 +21,15 @@ RSpec.describe Game do
 
   describe '#create_cards' do 
     it 'creates card objects' do 
+
+      # temporary test for the create crds method
       game = Game.new 
 
       expect(game.deck_of_cards).to eq([])
 
-      card1 = Card.new(:diamond, 'Queen', 12)
-      card2 = Card.new(:spade, '3', 3)  
-      card3 = Card.new(:heart, 'Ace', 14) 
-
-      expect(game.deck_of_cards).to eq([card1, card2, card3])
+      game.create_cards
+        #  require 'pry'; binding.pry
+      expect(game.deck_of_cards.length).to eq(16)
     end
   end
 
