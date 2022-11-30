@@ -35,7 +35,7 @@ describe Turn do
         expect(player2).to be_a(Player)
         end 
 
-        it 'exists and has attributes' do
+        it 'exists and has 2 players' do
             turn = Turn.new(player1, player2)
 
             expect(turn).to be_a(Turn)
@@ -43,11 +43,19 @@ describe Turn do
             expect(turn.player2).to eq(player2)
         end
         
-        it 'has spoils of war' do
+        it 'starts with no spoils of war' do
             turn = Turn.new(player1, player2)
 
             expect(turn.spoils_of_war).to eq([])
         end
     end
+
+    describe 'type' do
+        it 'has the type :basic' do
+            turn = Turn.new(player1, player2)
+
+            expect(turn.type).to eq(:basic)
+        end
+    end 
     end 
 end 
