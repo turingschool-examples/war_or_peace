@@ -46,9 +46,10 @@ class Turn
         elsif type == :war
             3.times {@spoils_of_war << @player1.deck.cards.shift}
             3.times {@spoils_of_war << @player2.deck.cards.shift}
-        elsif type == :war
-            @player.deck.cards = @player.deck.cards.drop(3)
-            @player.deck.cards = @player.deck.cards.drop(3)
+        elsif type == :mutually_assured_destruction
+            # require 'pry'; binding.pry
+            (@player1.deck.cards).replace(@player1.deck.cards.drop(3))
+            (@player2.deck.cards).replace(@player2.deck.cards.drop(3))
         end
     end
 

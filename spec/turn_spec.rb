@@ -120,6 +120,19 @@ describe Turn do
         it 'turn type is :mutually_assured_destruction' do
             expect(@turn.type).to eq(:mutually_assured_destruction)
         end
-        
+
+        it 'has no winner' do
+            winner = @turn.winner
+            expect(winner).to eq('No Winner')
+        end
+
+        it 'has no cards sent to spoils_of_war and player lose 3 cards' do
+            @turn.pile_cards
+
+            expect(@turn.spoils_of_war).to eq([])
+            expect(@player1.deck.cards.count).to eq(1)
+            expect(@player2.deck.cards.count).to eq(1)
+
+        end
     end
 end
