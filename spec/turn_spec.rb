@@ -56,7 +56,9 @@ describe Turn do
 
             expect(turn.type).to eq(:basic)
         end
-
+    end
+    
+    describe 'winner' do
         it 'determines the winner' do
             turn = Turn.new(player1, player2)
             winner = turn.winner
@@ -64,5 +66,13 @@ describe Turn do
             expect(winner).to eq(player1)
         end
     end 
-    end 
+
+    describe 'pile_cards' do
+        it 'places the cards in the spoils of war pile' do
+            turn = Turn.new(player1, player2)
+            turn.pile_cards
+
+            expect(turn.spoils_of_war).to eq([card1, card3])
+        end
+    end
 end 
