@@ -39,7 +39,7 @@ RSpec.describe Deck do
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
-    expect(deck.percent_high_ranking).to eql(66.37)
+    expect(deck.percent_high_ranking).to eql(66.67)
   end
 
 end
