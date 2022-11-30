@@ -48,6 +48,8 @@ RSpec.describe Deck do
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
-    expect(deck.remove_card).to eql(card1)
+    deck.remove_card
+    expect(deck.cards).to eql([card2, card3])
+  
   end
 end
