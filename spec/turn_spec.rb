@@ -35,5 +35,11 @@ describe Turn do
         it 'returns #winner of turn' do
             expect(@turn.winner).to eq(@player1)
         end
+        it 'use #pile_cards to send cards to @spoils_of_war' do
+            winner = @turn.winner
+            @turn.pile_cards
+
+            expect(@turn.spoils_of_war.count).to eq(2)
+        end
     end
 end
