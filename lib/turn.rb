@@ -9,6 +9,6 @@ class Turn
     end
 
     def type
-        :basic
+        :basic if player1.cards[0] != player2.cards[0]
     end
 end
