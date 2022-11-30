@@ -5,7 +5,7 @@ require './lib/turn'
 require 'rspec'
 
 describe Turn do
-    describe initialize do
+    describe 'initialize' do
         before(:each) do
             @card1 = Card.new(:heart, 'Jack', 11)
             @card2 = Card.new(:heart, '10', 10)
