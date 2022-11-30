@@ -83,5 +83,11 @@ describe Turn do
             
             expect(winner).to be(@player2)
         end
+
+        it 'adds 6 cards to spoils_of_war' do
+            @turn.pile_cards
+            
+            expect(@turn.spoils_of_war.count).to eq(6)
+        end
     end
 end
