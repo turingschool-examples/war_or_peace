@@ -20,10 +20,16 @@ RSpec.describe Game do
   end
 
   describe '#create_cards' do 
-    xit 'creates card objects' do 
+    it 'creates card objects' do 
       game = Game.new 
 
+      expect(game.deck_of_cards).to eq([])
 
+      card1 = Card.new(:diamond, 'Queen', 12)
+      card2 = Card.new(:spade, '3', 3)  
+      card3 = Card.new(:heart, 'Ace', 14) 
+
+      expect(game.deck_of_cards).to eq([card1, card2, card3])
     end
   end
 
