@@ -1,6 +1,7 @@
 require 'rspec'
 require './lib/card'
 
+
 RSpec.describe Card do
   it "exists" do
     card = Card.new(:diamond, 'Queen', 12)
@@ -17,11 +18,11 @@ RSpec.describe Card do
   end
 
   it 'can be a different card' do
-    card = Card.new(:heart, 'Ace', 13)
+    card = Card.new(:heart, 'Jack', 11)
 
     expect(card.suit).to eq(:heart)
-    expect(card.value).to eq('Ace')
-    expect(card.rank).to eq(13)
+    expect(card.value).to eq('Jack')
+    expect(card.rank).to eq(11)
   end
 
 end
