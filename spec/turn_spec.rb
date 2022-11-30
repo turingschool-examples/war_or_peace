@@ -77,5 +77,11 @@ describe Turn do
         it 'is turn type :war' do
             expect(@turn.type).to eq(:war)
         end
+
+        it 'it shows us player2 won results of :war' do
+            winner = @turn.winner
+            
+            expect(winner).to be(@player2)
+        end
     end
 end
