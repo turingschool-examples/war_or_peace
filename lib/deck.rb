@@ -13,9 +13,9 @@ class Deck
     end
 
     def high_ranking_cards
-        high_rank_cards = [11, 'Jack', 'Queen', 'Ace', 'King']
+        high_rank_cards = [11, 12, 13, 14]
         high_cards = @cards.select do |card|
-            high_rank_cards.include?(card.value)
+            high_rank_cards.include?(card.rank)
         end
         return high_cards
     end

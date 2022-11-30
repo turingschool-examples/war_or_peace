@@ -32,5 +32,8 @@ describe Turn do
         it 'current #type of turn' do
             expect(@turn.type).to eq(:basic)
         end
+        it 'returns #winner of turn' do
+            expect(@turn.winner).to eq(@player1)
+        end
     end
 end
