@@ -9,5 +9,10 @@ class Card
         @value = value
         @rank = rank
     end
+
+    def card
+        card = card.new(:diamond, 'Queen', 12)
+end
+    
 end
 
