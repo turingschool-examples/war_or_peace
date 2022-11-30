@@ -89,5 +89,14 @@ describe Turn do
             
             expect(@turn.spoils_of_war.count).to eq(6)
         end
+
+        it '#awards_spoils to winners deck' do
+            winner = @turn.winner
+            @turn.pile_cards
+            @turn.award_spoils(winner)
+
+            expect(@player1.deck.cards.count).to eq(1)
+            expect(@player2.deck.cards.count).to eq(7)
+        end
     end
 end
