@@ -1,5 +1,7 @@
 class Deck
-
-    def initialize(cards)
+    attr_reader :cards
+    
+    def initialize(cards = [])
+        @cards = cards
     end
 end
