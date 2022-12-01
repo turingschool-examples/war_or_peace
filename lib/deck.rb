@@ -5,6 +5,7 @@ class Deck
     def initialize(cards_arr)
         @cards_arr = cards_arr
         @high_ranking_cards = []
+        @high_ranking_percentage = 0.0
     end
 # 'Test Set 2'
     def rank_of_card_at(index)
@@ -29,6 +30,23 @@ class Deck
     end
 
     def percent_high_ranking
-        require 'pry'; binding.pry
+        rank = []
+        highs = 0
+        lows = 0
+        @cards_arr.each do |card|
+            rank << card.rank
+        end
+
+        rank.each do |i|
+            if i >= 11
+                highs += 1
+            else
+                lows += 1
+            end
+        end
+        
+        divisor = @cards_arr.count
+        percent_high_ranking = (highs.to_f / divisor.to_f) * 100
+        percent_high_ranking.round(2)
     end
 end
