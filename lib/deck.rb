@@ -4,7 +4,6 @@ class Deck
     def initialize(cards)
         # cards = [card1, card2, card3]
         @cards = cards
-
     end
     
     def rank_of_card_at(index)
@@ -21,6 +20,10 @@ class Deck
         end
        
         high_ranking_pile
+    end
+
+    def percent_high_ranking
+        ((high_ranking_cards.count.to_f / cards.count) * 100).round(2)
     end
 
 
