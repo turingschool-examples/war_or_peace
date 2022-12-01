@@ -7,37 +7,32 @@ class Deck
             @face_cards = []
        end
 
-   def rank_of_card_at(index)
-     cards[index].rank
-   end
-
-   def high_ranking_cards
-          cards.each do |card|
-               if card.rank >= 11 
-               face_cards << card
-              end
+          def rank_of_card_at(index)
+               cards[index].rank
           end
-          face_cards
+
+          def high_ranking_cards
+               cards.each do |card|
+                    if card.rank >= 11 
+                    face_cards << card
+                    end
+                end
+               face_cards
      
-   end
+          end
    
-     def percent_high_ranking
-          decimal = (high_ranking_cards.count.to_f / cards.count) * 100
-          decimal.round(2)
-     end
+          def percent_high_ranking
+               decimal = (high_ranking_cards.count.to_f / cards.count) * 100
+               decimal.round(2)
+          end
 
-    def add_card(suit, value, rank)
-        @cards << card
-      
-     end
+          def remove_card
+               cards.shift
+          end
 
-   def remove_card
-     cards.shift
-   end
-
-   def add_card(card)
-     cards.push(card)
-   end
+          def add_card(card)
+               cards.push(card)
+           end
    
 end
 
