@@ -9,10 +9,12 @@ RSpec.describe Card do
     expect(card).to be_an_instance_of(Card)
   end
 
-  it 'has a suit' do
-    card = Card.new(:diamond, 'Queen', 12)
-    expect(card.suit).to eq(:diamond)
-  end
+  # Now I see this was an ind test; the test below tests for all attributes
+  # Therefore this does the same thing as below and is not needed.
+  # it 'has a suit' do
+  #   card = Card.new(:diamond, 'Queen', 12)
+  #   expect(card.suit).to eq(:diamond)
+  # end
 
   it "has readable attributes" do
     card = Card.new(:diamond, 'Queen', 12)

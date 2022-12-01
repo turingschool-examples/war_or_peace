@@ -1,11 +1,13 @@
 require 'rspec'
-require './lib/deck'
 require './lib/card'
+require './lib/deck'
 
 RSpec.describe Deck do
     it "exsists" do
         deck = Deck.new("cards")
+
         expect(deck).to be_a(Deck)
+        expect(deck.card).to be_a([])
     end
 
     # it "holds an array" do
