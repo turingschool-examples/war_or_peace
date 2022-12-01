@@ -19,4 +19,7 @@ describe Player do
         expect(@player).to be_a(Player)
     end
 
+    it 'has readible attributes' do
+        expect(@player.name).to eq("Clarisa")
+    end
 end
