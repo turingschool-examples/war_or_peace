@@ -53,5 +53,13 @@ RSpec.describe Game do
     end
   end
 
+  describe '#display_welcome_message' do 
+    it ' displays the message before starting the game' do 
+      game = Game.new
+      
+      expect(game.display_welcome_message).to be_a(String)
+    end
+  end
+
 
 end
