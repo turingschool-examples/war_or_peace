@@ -17,10 +17,15 @@ class Turn
     end
 
     def winner
-        if player1.deck.cards[0].rank > player2.deck.cards[0].rank then player1
-        # elsif player2.deck.cards[0].rank > player1.deck.cards[0].rank then player2
+        if type == :basic then 
+            if player1.deck.cards[0].rank > player2.deck.cards[0].rank then player1
         else player2
         end 
+    elsif type == :war then
+        if player1.deck.cards[2].rank > player2.deck.cards[2].rank then player1
+        else player2
+        end 
+    end 
     end
 
     def pile_cards

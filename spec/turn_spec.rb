@@ -69,8 +69,8 @@ describe Turn do
         end
     end
     
-    describe 'winner' do
-        it 'determines the winner' do
+    describe 'winner of :basic turn' do
+        it 'determines the winner of :basic turn' do
             deck1 = Deck.new([@card1, @card2, @card5, @card8]) 
             deck2 = Deck.new([@card3, @card4, @card6, @card7])
             player1 = Player.new("Megan", deck1)
@@ -81,7 +81,7 @@ describe Turn do
         end
     end 
 
-    describe 'pile_cards' do
+    describe 'pile_cards for :basic turn' do
         it 'places the cards in the spoils of war pile' do
             deck1 = Deck.new([@card1, @card2, @card5, @card8]) 
             deck2 = Deck.new([@card3, @card4, @card6, @card7])
@@ -93,7 +93,7 @@ describe Turn do
         end
     end
 
-    describe 'award_spoils' do
+    describe 'award_spoils for :basic turn' do
         it 'gives spoils to winner' do
             deck1 = Deck.new([@card1, @card2, @card5, @card8]) 
             deck2 = Deck.new([@card3, @card4, @card6, @card7])
@@ -119,4 +119,17 @@ describe Turn do
             expect(turn.type).to eq(:war)  
         end
     end 
+
+    describe 'winner of :war turn' do
+        it 'determines the winner of :war turn' do
+            deck1 = Deck.new([@card1, @card2, @card5, @card8])
+            deck2 = Deck.new([@card4, @card3, @card6, @card7])
+            player1 = Player.new("Megan", deck1)
+            player2 = Player.new("Aurora", deck2) 
+            turn = Turn.new(player1, player2)
+            winner = turn.winner
+            
+            expect(winner).to eq(player2)
+        end
+    end
 end 
