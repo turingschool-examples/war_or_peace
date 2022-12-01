@@ -2,6 +2,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/game'
 
 card1 = Card.new(:diamond, 'Ace', 14)
 card2 = Card.new(:diamond, 'King', 13)
@@ -22,7 +23,10 @@ deck1 = Deck.new([card11, card5, card14, card7, card6, card1, card10])
 
 deck2 = Deck.new([card12, card3, card4, card8, card9, card2, card13])
 
-player1 = Player.new('Stephanie', deck1)
-player2 = Player.new('Sunita', deck2)
+player1 = Player.new('Megan', deck1)
+player2 = Player.new('Aurora', deck2)
 
-game1 = Game.new(player1, player2)
+game1 = Game.new
+game1.start
+
+
