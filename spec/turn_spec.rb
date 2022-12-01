@@ -61,6 +61,16 @@ RSpec.describe Player do
      expect(turn.spoils_of_war).to eq([])
     end
 
+    it "can tell the turn type" do
+        expect(turn.type).to eq(:basic)
+    end
+
+    it "can tell who won" do
+        expect(turn.winner).to eq(player1)
+        expect(turn.winner.name).to eq("Megan")
+    end
+
+
 #    it "can tell if you have lost or not" do
 #      expect(player.has_lost?).to eq(false)
 
