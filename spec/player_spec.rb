@@ -39,4 +39,18 @@ RSpec.describe Player do
 
     end
 
+    it "what's up with that deck?" do
+        card1 = Card.new(:diamond, 'Queen', 12)
+        card2 = Card.new(:spade, '3', 3)
+        card3 = Card.new(:heart, 'Ace', 14)
+        cards = [card1, card2, card3]
+
+        deck = Deck.new(cards)
+        player = Player.new('Clarisa', deck)
+
+        require "pry"; binding.pry
+
+        expect(player.has_lost?).to eq(false)
+    end
+
 end

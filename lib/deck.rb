@@ -20,6 +20,7 @@ class Deck
     end
 
     def percent_high_ranking
+        high_ranking_cards
         x = (face_cards.length.to_f / cards.length.to_f)*100
         x.round(2)
     end
