@@ -1,25 +1,25 @@
-###################
-# Card Interaction Pattern
-###################
+# ###################
+# # Card Interaction Pattern
+# ###################
 
-# require './lib/card'
+# # require './lib/card'
 
-# p card = Card.new(:heart, 'Jack', 11)
-# puts
+# # p card = Card.new(:heart, 'Jack', 11)
+# # puts
 
-# p card.suit
-# puts
+# # p card.suit
+# # puts
 
-# p card.value
-# puts
+# # p card.value
+# # puts
 
-# p card.rank
-# puts
+# # p card.rank
+# # puts
 
 
-###################
-# Deck Interaction Pattern
-###################
+# ###################
+# # Deck Interaction Pattern
+# ###################
 
 
 # require './lib/card'
