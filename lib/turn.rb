@@ -15,9 +15,10 @@ class Turn
     def type 
         if @player1.deck.cards.first.rank != @player2.deck.cards.first.rank
             @type = :basic
-        elsif @player1.deck.cards.first.rank == @player2.deck.cards.first.rank
+        elsif @player1.deck.cards.first.rank == @player2.deck.cards.first.rank  && @player1.deck.cards[2].rank != @player2.deck.cards[2].rank#have only played 1 card each
             @type = :war
-
+        elsif @player1.deck.cards.first.rank == @player2.deck.cards.first.rank && @player1.deck.cards[2].rank == @player2.deck.cards[2].rank
+            @type = :mutually_assured_destruction
         end
     end
 
