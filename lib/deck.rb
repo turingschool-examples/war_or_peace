@@ -24,5 +24,7 @@ class Deck
         cards[0]
     end
 
-    
+    def add_card(add_card)
+        cards << add_card
+    end
 end
