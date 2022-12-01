@@ -20,7 +20,7 @@ RSpec.describe Deck do
        expect(@deck.cards).to eq([@card1, @card2, @card3])
    end
  
-   xit "accesses card rank" do
+   it "accesses card rank" do
        expect(@deck.rank_of_cards_at(0)).to eq(12)
        expect(@deck.rank_of_cards_at(1)).to eq(3)
        expect(@deck.rank_of_cards_at(2)).to eq(14)
