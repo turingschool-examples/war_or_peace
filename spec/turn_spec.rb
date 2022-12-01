@@ -32,4 +32,8 @@ describe Turn do
         expect(@turn.player2).to eq(@player2)
         expect(@turn.spoils_of_war).to eq([])
     end
+
+    it 'can get basic turn type' do
+        expect(@turn.type).to eq(:basic)
+    end
 end
