@@ -26,7 +26,7 @@ RSpec.describe Deck do
         expect(deck.cards).to eq(cards)
     end
 
-    xit "can access rank_of_card_at" do
+    it "can access rank_of_card_at" do
         card1 = Card.new(:diamond, 'Queen', 12)
         card2 = Card.new(:spade, '3', 3)
         card3 = Card.new(:heart, 'Ace', 14)
@@ -35,7 +35,7 @@ RSpec.describe Deck do
         deck = Deck.new(cards)
 
         expect(deck.rank_of_card_at(0)).to eq(12)
-        expect(deck.rank_of_card_at()).to eq(14)
+        expect(deck.rank_of_card_at(2)).to eq(14)
     end
 
 
