@@ -26,4 +26,14 @@ class Deck
 
         ((high_cards.to_f/total_cards.to_f) * 100).round(2)
     end
+
+    def remove_card
+        cards.shift
+    end
+
+    #def add_card
+
+    #end
+
+
 end
