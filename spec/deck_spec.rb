@@ -60,7 +60,7 @@ RSpec.describe Deck do
             card3 = Card.new(:clubs, 'Five', 5)
             card4 = Card.new(:hearts, 'Queen', 12)
             
-            cards_arr = [card1, card2, card3]
+            cards_arr = [card1, card2, card3, card4]
             deck = Deck.new(cards_arr)
 
             expect(deck.high_ranking_cards).to eq([card1, card4])
