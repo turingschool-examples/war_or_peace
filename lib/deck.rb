@@ -14,10 +14,12 @@ class Deck
       card.rank > 10
     end
   end
+
+  def percent_high_ranking
+    (high_ranking_cards.count.fdiv(@cards.count) * 100).round(2)
+  end
 end
 
 
-
-# percent_high_ranking: this method will return the percentage of cards that are high ranking
 # remove_card: this method will remove the top card from the deck
 # add_card: this method will add one card to the bottom (end) of the deck
