@@ -12,8 +12,7 @@ class Turn
     def type
         if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
             p :war
-        elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) 
-                && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+        elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
             p :mutually_assured_destruction
         else
             p :basic
@@ -21,18 +20,18 @@ class Turn
     end
 
     def winner
-        if :war
+        if type == :war
             if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-                player1.winner == true
+                @player1
             else
-                player2.winner == true
+                @player2
             end
         
-        elsif :basic
+        elsif type == :basic
             if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-                player1.winner == true
+                @player1
             else
-                player2.winner == true
+                @player2
             end
 
         else
@@ -42,7 +41,7 @@ class Turn
     end
 
     def pile_cards
-        if :war
+        if type == :war
             3.times do
                 spoils_of_war << player1.deck.remove_card
             end
@@ -50,7 +49,7 @@ class Turn
                 spoils_of_war << player2.deck.remove_card
             end
         
-        elsif :basic
+        elsif type == :basic
             spoils_of_war << player1.deck.remove_card 
             spoils_of_war << player2.deck.remove_card
 
@@ -67,6 +66,7 @@ class Turn
 
     def award_spoils(winner)
         winner.deck.cards << spoils_of_war
-        spoils_of_war.clear!
+        spoils_of_war.clear
     end
 end
+

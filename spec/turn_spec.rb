@@ -4,8 +4,8 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 
-Rspec.describe Turn do
-    it "exists" do
+RSpec.describe Turn do
+    it "exists, :basic" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
         card3 = Card.new(:heart, '9', 9)
@@ -20,14 +20,14 @@ Rspec.describe Turn do
         player2 = Player.new("Aurora", deck2) 
         turn = Turn.new(player1, player2) 
 
-        turn.player1
-        expect(turn.player1).to be_an_instance_of(Turn)
+        # turn.player1
+        expect(turn).to be_an_instance_of(Turn)
         
-        turn.player2
-        expect(turn.player1).to be_an_instance_of(Turn)
+        # turn.player2
+        # expect(turn.player1).to be_an_instance_of(Turn)
     end
 
-    it "can show the spoils of war" do
+    it "can show the spoils of war, :basic" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
         card3 = Card.new(:heart, '9', 9)
@@ -48,7 +48,7 @@ Rspec.describe Turn do
         expect(turn.spoils_of_war).to eq([])
     end
 
-    it "can tell the type of turn" do
+    it "can tell the type of turn, :basic" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
         card3 = Card.new(:heart, '9', 9)
@@ -70,7 +70,7 @@ Rspec.describe Turn do
         expect(turn.type).to eq(:basic)
     end
 
-    it "can determine the winner" do
+    it "can determine the winner, :basic" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
         card3 = Card.new(:heart, '9', 9)
@@ -92,7 +92,7 @@ Rspec.describe Turn do
         expect(winner = turn.winner).to eq(player1)
     end
     
-    it "can add cards to the spoils of war" do
+    it "can add cards to the spoils of war, :basic" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
         card3 = Card.new(:heart, '9', 9)
@@ -110,10 +110,10 @@ Rspec.describe Turn do
         turn.pile_cards
         turn.spoils_of_war
 
-        expect(turn.spoils_of_war).to eq(card1, card3)
+        expect(turn.spoils_of_war).to eq([card1, card3])
     end
     
-    it "can give the spoils of war to the winner" do
+    it "can give the spoils of war to the winner, :basic" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
         card3 = Card.new(:heart, '9', 9)
@@ -130,12 +130,13 @@ Rspec.describe Turn do
         
         turn.player1
         turn.player2
+        winner = turn.winner
         turn.pile_cards
         turn.spoils_of_war
         turn.award_spoils(winner)
 
-        expect(player1.deck).to eq(card1, card2, card3, card4, card5)
-        expect(player2.deck).to eq(card6, card7, card8)
+        expect(player1.deck).to eq(deck1)
+        expect(player2.deck).to eq(deck2)
     end
     
 end
