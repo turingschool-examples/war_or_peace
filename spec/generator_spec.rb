@@ -1,4 +1,5 @@
 require './lib/card_generator.rb'
+require 'pry'
 
 
 
@@ -9,11 +10,10 @@ describe 'card_generator' do
     expect(new).to be_a(CardGenerator)
   end
 
-  xit 'can accept a text file' do
+  it 'can accept a text file' do
     filename = 'cards.txt'
     cards = CardGenerator.new(filename).cards
-
-    expect(filename).to be_a(Deck)
+    
     expect(cards).to be_an(Array)
     expect(cards[0]).to be_a(Card)
   end
