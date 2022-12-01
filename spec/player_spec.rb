@@ -21,6 +21,7 @@ RSpec.describe Player do
     end
 
     it "has not lost by default" do 
+
         expect(@player.has_lost?).to be(false)
     end
 
