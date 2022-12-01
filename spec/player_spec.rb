@@ -10,9 +10,9 @@ describe Player do
 
         cards = [card1, card2, card3]
 
-        deck = Deck.new(cards)
+        @deck = Deck.new(cards)
 
-        @player = Player.new("Clarisa", deck)
+        @player = Player.new("Clarisa", @deck)
     end
 
     it 'exists' do
@@ -21,6 +21,6 @@ describe Player do
 
     it 'has readible attributes' do
         expect(@player.name).to eq("Clarisa")
-        expect(@player.deck).to eq(deck)
+        expect(@player.deck).to eq(@deck)
     end
 end
