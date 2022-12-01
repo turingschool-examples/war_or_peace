@@ -66,5 +66,17 @@ RSpec.describe Game do
     end
   end
 
+  describe '#initiate_war' do 
+    it 'runs the game of war with a turn object' do 
+      game = Game.new 
+      player_1 = game.player_1
+      player_2 = game.player_2
+      turn = Turn.new(player_1, player_2)
+
+      expect(turn).to be_a(Turn)
+      expect(turn.player1).to eq(player_1)
+      expect(turn.player1.name).to eq("Megan")
+    end
+  end
 
 end
