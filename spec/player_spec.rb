@@ -26,9 +26,9 @@ RSpec.describe Player do
     expect(player).to be_an_instance_of(Player)
   end
 
-#   it "contains all the correct cards" do
-#     expect(deck.cards).to eq(cards)
-#   end
+   it "contains can call name" do
+     expect(player.name).to eq('Clarisa')
+   end
 
 #   it "draws the correct rank from the deck" do
 #     expect(deck.rank_of_card_at(0)).to eq(12)
