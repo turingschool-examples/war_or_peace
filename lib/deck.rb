@@ -21,4 +21,8 @@ class Deck
         ((high_ranking_cards.size) * 100 / cards.size.to_f).round(2)
     end
 
+    def remove_card
+        cards.shift
+    end
+
 end
