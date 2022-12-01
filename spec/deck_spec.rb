@@ -26,7 +26,7 @@ describe Deck do
   end
 
   it 'can get high ranking cards' do
-    expect(@deck.high_ranking_cards).to eq(["Queen","Ace"])
+    expect(@deck.high_ranking_cards).to eq([@card1, @card3])
   end
 
   it 'can get percent high ranking cards' do
