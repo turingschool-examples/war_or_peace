@@ -6,6 +6,8 @@ def initialize(name, deck)
   @deck = deck
 end
 
-
+def has_lost?
+  @deck.cards == [] ? true : false
+end
 
 end
