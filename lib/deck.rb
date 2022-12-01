@@ -48,6 +48,4 @@ class Deck
         percent_high_ranking = (highs.to_f / divisor.to_f) * 100
         percent_high_ranking.round(2)
     end
-
-    require 'pry'; binding.pry
 end
