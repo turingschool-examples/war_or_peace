@@ -32,6 +32,8 @@ class Turn
             winner = @player1
         elsif @type == :war && @player2.deck.cards[2].rank > @player1.deck.cards[2].rank
             winner = @player2
+        elsif @type == :mutually_assured_destruction
+            winner = "No Winner"
         end
 
     end
