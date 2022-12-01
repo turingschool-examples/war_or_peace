@@ -20,7 +20,7 @@ class Deck
     end
 
     def percent_high_ranking
-
+        face_cards.count / cards.count
     end
 
     def remove_card
