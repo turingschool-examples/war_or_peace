@@ -26,7 +26,7 @@ RSpec.describe Deck do
        expect(@deck.rank_of_cards_at(2)).to eq(14)
    end
  
-   xit "has high ranking cards" do
+   it "has high ranking cards" do
        expect(@deck.high_ranking_cards).to eq([@card1, @card3])
    end
  
