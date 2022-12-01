@@ -50,9 +50,9 @@ RSpec.describe Player do
      expect(player.has_lost?).to eq(true)
    end
 
-#   it "draws the correct rank from the deck2" do
-#     expect(deck.rank_of_card_at(2)).to eq(14)
-#   end
+   it "returns an amptry array for cards in deck" do
+     expect(player.deck.cards).to eq([])
+   end
 
 #   it "finds the high ranking cards" do
 #     expect(deck.high_ranking_cards).to include(card1, card3)
