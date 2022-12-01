@@ -35,10 +35,15 @@ class Turn
         elsif type == :war then
             spoils_of_war.concat(player1.deck.cards.shift(3))
             spoils_of_war.concat(player2.deck.cards.shift(3))
+        elsif type == :mutually_assured_destruction then
+            player1.deck.cards.shift(3)
+            player2.deck.cards.shift(3)
         end
     end
 
     def award_spoils(winner)
+        if type == :basic || type == :war
             winner.deck.cards.concat(spoils_of_war)
+        end
     end 
 end
