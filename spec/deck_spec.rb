@@ -24,4 +24,8 @@ describe Deck do
   it 'can get rank of card at index' do
     expect(@deck.rank_of_card_at(0)).to eq(12)
   end
+
+  it 'can get high ranking cards' do
+    expect(@deck.high_ranking_cards).to eq(["Queen","Ace"])
+  end
 end
