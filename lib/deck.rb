@@ -9,5 +9,8 @@ class Deck
     def rank_of_card_at(index)
         @cards_arr[index].rank
     end
-
+# 'Test Set 3'
+    def remove_card
+        @cards_arr.shift
+    end
 end
