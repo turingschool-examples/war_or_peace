@@ -2,7 +2,7 @@ require 'rspec'
 require './lib/card'
 require './lib/deck'
 
-Rspec.describe Deck do
+RSpec.describe Deck do
     it "exists" do
         card1 = Card.new(:diamond, 'Queen', 12)
         card2 = Card.new(:spade, '3', 3)
@@ -42,7 +42,8 @@ Rspec.describe Deck do
         cards = [card1, card2, card3]
         deck = Deck.new(cards)
 
-        expect(deck.remove_card).to eq card1
+        deck.remove_card
+        
         expect(deck.cards).to eq [card2, card3]
         expect(deck.high_ranking_cards).to eq [card3]
         expect(deck.percent_high_ranking). to eq 50.0
@@ -56,6 +57,7 @@ Rspec.describe Deck do
         deck = Deck.new(cards)
 
         deck.add_card(card4)
+        
         expect(deck.cards).to eq [card2, card3, card4]
         expect(deck.high_ranking_cards).to eq [card3]
         expect(deck.percent_high_ranking). to eq 33.33
