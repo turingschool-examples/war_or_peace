@@ -3,7 +3,7 @@ require './lib/card'
 
 RSpec.describe Deck do
     describe 'Iteration 1' do
-        it 'exists' do
+        it 'exists and has attributes' do
             card1 = Card.new(:diamond, 'Queen', 12)
             card2 = Card.new(:spade, '3', 3)
             card3 = Card.new(:heart, 'Ace', 14)
@@ -25,7 +25,7 @@ RSpec.describe Deck do
             expect(deck.cards).to eq([card1, card2, card3])
         end
 
-        it '#rank of cards' do
+        it 'has a rank of cards' do
             card1 = Card.new(:diamond, 'Queen', 12)
             card2 = Card.new(:spade, '3', 3)
             card3 = Card.new(:heart, 'Ace', 14)
@@ -37,7 +37,7 @@ RSpec.describe Deck do
             expect(deck.rank_of_card_at(2)).to eq(14)
         end
 
-        it '#high ranking cards' do
+        it 'has high ranking cards' do
             card1 = Card.new(:diamond, 'Queen', 12)
             card2 = Card.new(:spade, '3', 3)
             card3 = Card.new(:heart, 'Ace', 14)
@@ -48,7 +48,7 @@ RSpec.describe Deck do
             expect(deck.high_ranking_cards).to eq([card1, card3])
         end
 
-        it '#percentage high ranking' do
+        it 'has % of high ranking cards' do
             card1 = Card.new(:diamond, 'Queen', 12)
             card2 = Card.new(:spade, '3', 3)
             card3 = Card.new(:heart, 'Ace', 14)
@@ -58,7 +58,8 @@ RSpec.describe Deck do
 
             expect(deck.percent_high_ranking).to eq(66.67)
         end
-        it 'remove top card' do
+
+        it 'can remove top card' do
             card1 = Card.new(:diamond, 'Queen', 12)
             card2 = Card.new(:spade, '3', 3)
             card3 = Card.new(:heart, 'Ace', 14)
@@ -72,7 +73,7 @@ RSpec.describe Deck do
             expect(deck.percent_high_ranking).to eq(50.0)
         end
 
-        it 'add card to bottom' do
+        it 'can add card to bottom' do
             card1 = Card.new(:diamond, 'Queen', 12)
             card2 = Card.new(:spade, '3', 3)
             card3 = Card.new(:heart, 'Ace', 14)
