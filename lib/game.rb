@@ -32,11 +32,10 @@ class Game
     card_16 = Card.new(:club, 'Queen', 12)
     
 
-    @deck_of_cards = [card_1, card_2, card_3, card_4, card_5, card_6,
-                      card_7, card_8, card_9, card_10, card_11, card_12, 
-                      card_13, card_14, card_15, card_16]
-    @deck_of_cards.shuffle! 
-                      
+    cards = [card_1, card_2, card_3, card_4, card_5, card_6,
+             card_7, card_8, card_9, card_10, card_11, card_12, 
+             card_13, card_14, card_15, card_16]
+    cards.shuffle!                  
   end 
 
   # def set_up 
@@ -70,6 +69,37 @@ class Game
     "
   end 
 
-  
-  
+  def initiate_war 
+    
+    turn = Turn.new(@player_1, @player_2)
+    turn_type = turn.type 
+
+    while (player_1.has_lost? == false) || (player_2.has_lost? == false) || (@turn_count < 1_000_000)
+      if turn.type == :basic || turn.type == :war
+        @turn_count += 1
+        winner = turn.winner 
+        turn.pile_cards 
+        num_cards_won = turn.spoils_of_war.count
+        turn.award_spoils(winner) 
+        turn.spoils_of_war.clear
+        
+        if turn_type == :basic
+          puts "Turn #{@turn_count}: #{turn.winner.name} won #{num_cards_won} cards" 
+        elsif turn_type == :war
+          puts "Turn #{@turn_count}: WAR #{turn.winner.name} won #{num_cards_won} cards" 
+        end
+
+      elsif turn.type == :mutually_assured_destruction 
+        @turn_count += 1 
+        turn.pile_cards 
+
+        puts "Turn #{@turn_count}: *Mutually Assured Destruction* 6 cards removed from play"
+
+      elsif @turn_count == 1_000_000 
+        puts "=== DRAW ==="
+      end 
+    end
+
+
+  end
 end
