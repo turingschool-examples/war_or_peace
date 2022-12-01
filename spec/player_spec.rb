@@ -23,4 +23,8 @@ describe Player do
         expect(@player.name).to eq("Clarisa")
         expect(@player.deck).to eq(@deck)
     end
+
+    it 'can check if player lost' do
+        expect(@player.has_lost?).to eq(false)
+    end
 end
