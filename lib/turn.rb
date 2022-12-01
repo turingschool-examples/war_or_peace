@@ -17,6 +17,16 @@ class Turn
         end
     end
 
+    def winner 
+    
+        if @type == :basic && @player1.deck.cards.first.rank >  @player2.deck.cards.first.rank
+            winner = @player1
+        elsif @type == :basic && @player2.deck.cards.first.rank >  @player1.deck.cards.first.rank
+            winner = @player2
+        end
+
+    end
+
 
 
 end
