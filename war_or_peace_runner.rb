@@ -59,7 +59,10 @@ bicycle_deck = [
     card52 = Card.new(:spade, "Ace", 14)
 ]
 
-# first_deck = bicycle_deck.sample(26)
-# second_deck = bicycle_deck.
+first_deck = bicycle_deck.sample(26)
+second_deck = bicycle_deck - first_deck
+# require "pry"; binding.pry
+p first_deck
+p second_deck
 
     
