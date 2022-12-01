@@ -35,4 +35,10 @@ describe Deck do
   it 'can remove card' do
     expect(@deck.remove_card).to eq(@card1)
   end
+
+  it 'can add card' do
+    card4 = Card.new(:club, '5', 5)
+
+    expect(@deck.add_card(card4)).to eq(@deck.cards << card4)
+  end
 end
