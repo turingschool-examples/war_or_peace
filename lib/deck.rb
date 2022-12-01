@@ -2,10 +2,9 @@ require './lib/card'
 
 class Deck
     attr_reader :name, :cards, :high_ranking_cards
-    def initialize(name)
-        @name = name
+    def initialize
         @cards = []
-        @high_ranking_cards = []
+
     end
 
     def add_card(card)
@@ -17,15 +16,16 @@ class Deck
     end
 
     def high_ranking_cards
-        # @cards.each do |card|
-        #     if card.rank >= 11
-        #     @high_ranking_cards << card
-        #     end
-        # end
+        @cards.each do |card|
+            if card.rank >= 11
+                card
+            end
+        end
     end
 
     def percent_high_ranking
-        
+        # deck.high_ranking_cards.count / cards.count
+
     end
 
     def remove_card
