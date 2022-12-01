@@ -40,4 +40,10 @@ describe Turn do
     it 'can get winner' do
         expect(@turn.winner).to eq(@player1)
     end
+
+    it 'can pile basic cards' do
+        expected_pile =  [@player1.deck.cards[0],@player2.deck.cards[0]]
+        
+        expect(@turn.pile_cards).to eq(expected_pile)
+    end
 end
