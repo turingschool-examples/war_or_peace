@@ -53,46 +53,4 @@ RSpec.describe Player do
    it "returns an amptry array for cards in deck" do
      expect(player.deck.cards).to eq([])
    end
-
-#   it "finds the high ranking cards" do
-#     expect(deck.high_ranking_cards).to include(card1, card3)
-#   end
-
-#   it "finds the high ranking card percentage" do
-#     expect(deck.percent_high_ranking).to eq(66.67)
-#   end
-
-#   it "removes the correct card" do
-#     expect(deck.remove_card).to eq(card1)
-#   end
-
-#   it "contains all the correct cards" do
-#     expect(deck.cards).to eq([card2, card3])
-#   end
-
-#   it "finds the high ranking cards" do
-#     expect(deck.high_ranking_cards).to include(card3)
-#   end
-
-#   it "finds the high ranking card percentage" do
-#     expect(deck.percent_high_ranking).to eq(50.0)
-#   end
-
-#   it "adds the correct card" do
-#     deck.add_card(card4)
-#     expect(deck.cards).to include(card4)
-#   end
-
-#   it "contains all the correct cards" do
-#     expect(deck.cards).to eq([card2, card3, card4])
-#   end
-
-#   it "finds the high ranking cards" do
-#     expect(deck.high_ranking_cards).to include(card3)
-#   end
-
-#   it "finds the high ranking card percentage" do
-#     expect(deck.percent_high_ranking).to eq(33.33)
-#   end
-
- end
+end
