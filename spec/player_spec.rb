@@ -29,17 +29,27 @@ RSpec.describe Player do
         expect(player.has_lost?).to eq(false)  
     end
     
-#     xit "can tell rank of cards" do
-#         card1 = Card.new(:diamond, 'Queen', 12)
-#         card2 = Card.new(:spade, '3', 3)
-#         card3 = Card.new(:heart, 'Ace', 14)
-
-#         cards = [card1, card2, card3]
-#         deck = Deck.new(cards)
-
-#         expect(deck.rank_of_card_at(0)).to eq(12)
-#         expect(deck.rank_of_card_at(2)).to eq(14)
-#     end
+    it "can lose" do
+        card1 = Card.new(:diamond, 'Queen', 12)
+        card2 = Card.new(:spade, '3', 3)
+        card3 = Card.new(:heart, 'Ace', 14)
+        cards = [card1, card2, card3]
+        
+        deck = Deck.new(cards)
+        player = Player.new('Caleb', deck)
+        
+        
+        expect(player.deck.remove_card).to eq(card1)
+        expect(player.has_lost?).to eq(false)
+        require 'pry'; binding.pry
+        expect(player.deck.remove_card).to eq(card2)
+        expect(player.has_lost?).to eq(false)
+        expect(player.deck.remove_card).to eq(card3)
+        expect(player.has_lost?).to eq(true)
+        expect(player.deck).to eq(cards = [])
+        
+        
+    end
 
 #     xit "can determine high cards" do
 #         card1 = Card.new(:diamond, 'Queen', 12)
