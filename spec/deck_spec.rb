@@ -50,7 +50,8 @@ RSpec.describe Deck do
         deck1.add_card(card1)
         deck1.add_card(card2)
         deck1.add_card(card3)
-        expect(deck1.high_ranking_cards).to eq(card1, card3)
+        expect(deck1.high_ranking_cards).to include(card1, card3)
+        binding.pry
     end
 
     xit 'can tell what percent of deck is high ranking' do
@@ -72,7 +73,7 @@ RSpec.describe Deck do
         deck1.add_card(card1)
         deck1.add_card(card2)
         deck1.add_card(card3)
-        expect(deck1.remove_card).to eq(card1)         # is this correct test??
+        expect(deck1.remove_card).to eq(card1)
         expect(deck1.high_ranking_cards).to include(card3)
         expect(deck1.percent_high_ranking).to eq(50)
         card4 = Card.new(:club, '5', 5)
