@@ -1,13 +1,14 @@
 class Game
-    attr_reader :turn, :deck_of_cards, :shuffled_cards
+    attr_reader :turn, :cards, :shuffled_cards, :individual_deck
 
-    def initialize (turn)
+    def initialize ()
         @turn = turn
-        @deck_of_cards = []
+        @cards = []
         @shuffled_deck = []
+        @individual_deck = []
     end
 
-    def create_deck
+    def create_cards
         heart_cards = []
         diamond_cards = []
         spade_cards = []
@@ -29,18 +30,23 @@ class Game
             club_cards << Card.new(:club, (i+1).to_s, i+1)
         end
 
-        @deck_of_cards = [heart_cards, spade_cards, club_cards, diamond_cards].flatten
+        @cards = [heart_cards, spade_cards, club_cards, diamond_cards].flatten
     end
 
     def shuffle_cards
-        @shuffled_deck = @deck_of_cards.shuffle
+        @shuffled_deck = @cards.shuffle
     end
 
     def split_deck
-    # def start
-    #     ans = gets.chomp('')
-    #     if ans = 'GO'
-    # end
+        @individual_deck = @cards.each_slice(26).to_a
+    end
+
+    def start
+        ans = gets.chomp('')
+        if ans = 'GO'
+            true
+        end
+    end
 
     # def next_turn
 

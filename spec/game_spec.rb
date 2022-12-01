@@ -21,33 +21,49 @@ describe Game do
             @player1 = Player.new("Megan", @deck1)
             @player2 = Player.new("Aurora", @deck2)
             @turn = Turn.new(@player1, @player2)
-            @game = Game.new(@turn)
+            @game = Game.new()
         end
 
         it 'is an instance of the Game class' do
             expect(@game).to be_a Game
         end
 
-        it 'contains a turn' do
-            expect(@game.turn).to eq(@turn)
-        end
-
-        it 'creates a deck of 52 cards' do
-            @game.create_deck
-            expect(@game.deck_of_cards.count).to eq(52)
+        it 'creates 52 cards' do
+            @game.create_cards
+            expect(@game.cards.count).to eq(52)
         end
 
         it 'shuffles deck' do
+            @game.create_cards
             @game.shuffle_cards
-            expect(@game.shuffled_cards).not_to eq(@game.deck_of_cards)
+            expect(@game.shuffled_cards).not_to eq(@game.cards)
             
         end
-
-        it 'splits the shuffled deck to two players' do
+    end
+    describe 'Running first parts of game' do
+        before do
+            @game = Game.new
+        end
+        it 'splits the shuffled cards to two players' do
+            @game.create_cards
             @game.shuffle_cards
             @game.split_deck
-            expect(@player1.deck.count).to eq(26)
-            expect(@player2.deck.count).to eq(26)
+            player1_deck = @game.individual_deck[0]
+            player2_deck = @game.individual_deck[1]
+            
+            expect(player1_deck.count).to eq(26)
+            expect(player2_deck.count).to eq(26)
+
+            deck1 = Deck.new(player1_deck)
+            deck2 = Deck.new(player2_deck)
+            player1 = Player.new('Megan', deck1)
+            player2 = Player.new('Aurora', deck1)
+            expect(player1.deck.cards.count).to eq(26)
+            expect(player2.deck.cards.count).to eq(26)
+        end
+
+        it 'starts game' do
+            expect(@game.start).to be true
         end
     end
 end
