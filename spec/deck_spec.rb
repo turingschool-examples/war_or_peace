@@ -28,4 +28,8 @@ describe Deck do
   it 'can get high ranking cards' do
     expect(@deck.high_ranking_cards).to eq(["Queen","Ace"])
   end
+
+  it 'can get percent high ranking cards' do
+    expect(@deck.percent_high_ranking).to eq(50.0)
+  end
 end
