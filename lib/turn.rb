@@ -9,7 +9,11 @@ class Turn
     end
 
     def type
-        :basic if player1.deck.cards[0] != player2.deck.cards[0]
+        if player1.deck.cards[0].rank != player2.deck.cards[0].rank 
+            then :basic
+        elsif player1.deck.cards[0].rank == player2.deck.cards[0].rank 
+            then :war
+        end
     end
 
     def winner
