@@ -25,4 +25,6 @@ RSpec.describe Deck do
         expect(deck.rank_of_card_at(2)).to eq(14)
     end
 
+    
+
 end
