@@ -2,7 +2,8 @@ class Turn
 
     attr_reader :player1,
     :player2,
-    :spoils_of_war
+    :spoils_of_war,
+    :type
 
     def initialize(player1, player2)
         @player1 = player1
@@ -28,10 +29,14 @@ class Turn
     end
 
     def pile_cards
-        @spoils_of_war << @player1.deck.cards.first
-        @spoils_of_war <<  @player2.deck.cards.first
+        if @type == :basic
+            @spoils_of_war << @player1.deck.remove_card
+            @spoils_of_war << @player2.deck.remove_card
+        end
+       
     end
 
-
-
+    def award_spoils(winner)
+        winner.deck.cards.concat(@spoils_of_war)
+    end
 end
