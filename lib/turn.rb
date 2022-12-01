@@ -42,13 +42,16 @@ class Turn
         player1.deck.cards.shift(3)
         player2.deck.cards.shift(3)
      end   
-
-
-     
-
     end
 
 
+    def award_spoils(winner)
+      @spoils_of_war.each do |card|
+        winner.deck.cards.unshift(card)
+      end
+      @spoils_of_war = []
+    end
+      
 
 
 

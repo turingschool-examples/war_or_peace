@@ -121,8 +121,9 @@ RSpec.describe Turn do
     player1 = Player.new("Megan", deck1)    
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2) 
+    winner = turn.winner
     turn.pile_cards
-    turn.award_spoils
+    turn.award_spoils(winner)
     expect(turn.spoils_of_war.size). to eq(0)
   end 
 
