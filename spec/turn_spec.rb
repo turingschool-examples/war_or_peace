@@ -128,8 +128,22 @@ describe Turn do
             player2 = Player.new("Aurora", deck2) 
             turn = Turn.new(player1, player2)
             winner = turn.winner
-            
+
             expect(winner).to eq(player2)
+        end
+    end
+
+    describe 'pile_cards for :war turn'do
+        it 'places the cards in the spoils of war pile' do
+            deck1 = Deck.new([@card1, @card2, @card5, @card8])
+            deck2 = Deck.new([@card4, @card3, @card6, @card7])
+            player1 = Player.new("Megan", deck1)
+            player2 = Player.new("Aurora", deck2) 
+            turn = Turn.new(player1, player2)
+            winner = turn.winner
+            turn.pile_cards
+            
+            expect(turn.spoils_of_war).to match_array([@card1, @card2, @card5, @card4, @card3, @card6])
         end
     end
 end 

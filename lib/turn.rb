@@ -29,8 +29,13 @@ class Turn
     end
 
     def pile_cards
-        spoils_of_war << player1.deck.cards.shift
-        spoils_of_war << player2.deck.cards.shift
+        if type == :basic then
+            spoils_of_war << player1.deck.cards.shift
+            spoils_of_war << player2.deck.cards.shift
+        elsif type == :war then
+            spoils_of_war.concat(player1.deck.cards[0..2])
+            spoils_of_war.concat(player2.deck.cards[0..2])
+        end
     end
 
     def award_spoils(winner)
