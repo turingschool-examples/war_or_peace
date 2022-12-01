@@ -21,5 +21,6 @@ describe Player do
 
     it 'has readible attributes' do
         expect(@player.name).to eq("Clarisa")
+        expect(@player.deck).to eq(deck)
     end
 end
