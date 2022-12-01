@@ -23,8 +23,10 @@ class Deck
     @cards.shift
   end
 
+  def add_card(new_card)
+    @cards.append(new_card) 
+  end
 end
 
 
-# remove_card: this method will remove the top card from the deck
-# add_card: this method will add one card to the bottom (end) of the deck
+
