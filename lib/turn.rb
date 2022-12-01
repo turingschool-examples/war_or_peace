@@ -11,16 +11,16 @@ class Turn
     @turn = 0
   end
 
-  def GO 
+  def go 
 
     loop do
     @turn += 1
     if player1.deck.last.rank > player2.deck.last.rank
-      puts "#{player1.name} won 2 cards"
+      puts "TURN #{@turn}: #{player1.name} won 2 cards"
       player1.deck.unshift(player1.deck.pop)
       player1.deck.unshift(player2.deck.pop)
     elsif player2.deck.last > player1.deck.last
-      puts "#{player2.name} won 2 cards"
+      puts "TURN #{@turn}: #{player2.name} won 2 cards"
       player2.deck.unshift(player2.deck.pop)
       player2.deck.unshift(player1.deck.pop)
     else
@@ -31,21 +31,22 @@ class Turn
         p2_war << [player2.deck.pop]
       end
       if p1_war.last.rank > p2_war.last.rank
-        puts "WAR - #{player1.name} won 6 cards"
+        puts "TURN #{@turn}: WAR - #{player1.name} won 6 cards"
         player1.deck << p1_war
         player1.deck << p2_war
       elsif p1_war.last < p2_war.last 
         player2.deck << p1_war
         player2.deck << p2_war
-        puts "WAR - #{player2.name} won 6 cards"
+        puts "TURN #{@turn}: WAR - #{player2.name} won 6 cards"
       else 
-        puts "*mutually assured destruction* 6 cards removed from play"
+        puts "TURN #{@turn}: *mutually assured destruction* 6 cards removed from play"
         p1_war = []
         p2_war = []
       end
     end
 
     if (@turns == 1_000_000)
+      puts "---- DRAW ----"
         break
     end
 
