@@ -1,9 +1,8 @@
 class Deck
-    attr_reader :cards, :face_cards
+    attr_reader :cards
 
     def initialize(cards = [])
         @cards = cards
-        @face_cards = []
     end
 
     def rank_of_card_at(index)
@@ -11,6 +10,7 @@ class Deck
     end
 
     def high_ranking_cards
+        face_cards = []
         cards.each do |card|
             if card.rank > 10
                 face_cards << card
@@ -20,8 +20,7 @@ class Deck
     end
 
     def percent_high_ranking
-        high_ranking_cards
-        x = (face_cards.length.to_f / cards.length.to_f)*100
+        x = (high_ranking_cards.length.to_f / cards.length.to_f)*100
         x.round(2)
     end
 

@@ -4,7 +4,10 @@ class Turn
     def initialize(player1, player2)
         @player1 = player1
         @player2 = player2
+        @spoils_of_war = []
     end
+
+    def turn
 
     def basic_turn
         #turn is one in which the rank_of_card_at(0)
