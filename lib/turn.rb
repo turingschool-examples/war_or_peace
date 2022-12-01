@@ -7,13 +7,24 @@ class Turn
     @spoils_of_war = []
   end
 
+  # def type 
+  #   if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
+  #     :basic
+  #   elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) != player2.deck.rank_of_card_at(2)
+  #      :war
+  #   else 
+  #     :mutually_assured_destruction
+  #   end
+  # end 
+
   def type 
-    if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
-      :basic
-    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) != player2.deck.rank_of_card_at(2)
-       :war
-    else 
-      :mutually_assured_destruction
+    if (player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)) && (player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2))
+      :mutually_assured_destruction 
+    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) 
+      :war 
+    #elsif player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0) 
+    else
+      :basic 
     end
   end
 
@@ -30,7 +41,8 @@ class Turn
       else 
         player2
       end
-    elsif type == :mutually_assured_destruction 
+    else
+    #elsif type == :mutually_assured_destruction 
       "No Winner"
     end
   end
