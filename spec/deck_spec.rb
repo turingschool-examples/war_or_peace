@@ -3,7 +3,7 @@ require './lib/deck'
 
 RSpec.describe Deck do
 
-    it "exists" do
+    it "exsists" do
         deck = Deck.new(cards)
         expect(deck).to be_a(Deck)
     end
