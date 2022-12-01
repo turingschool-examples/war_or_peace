@@ -45,6 +45,17 @@ RSpec.describe Deck do
         expect(deck.percent_high_ranking).to eq(50.0)
     end
 
+    it "gives a correct decimal percentage" do
+        card1 = Card.new(:diamond, 'Queen', 12)
+        card2 = Card.new(:spade, '3', 3)
+        card3 = Card.new(:heart, 'Ace', 14)
+        cards = [card1, card2, card3]
+
+        deck = Deck.new(cards)
+        deck.high_ranking_cards
+        expect(deck.percent_high_ranking).to eq(66.67)
+    end
+
     #for the % of face cards,
     # % of high ranking must be run to create array
 
