@@ -19,13 +19,14 @@ RSpec.describe Player do
         card3 = Card.new(:heart, 'Ace', 14) 
         deck = Deck.new([card1, card2, card3])
         player = Player.new('Clarisa', deck)
-        require "pry"; binding.pry
-        player.deck.remove_card
-        expect(has_lost?).to eq(false)
-        player.deck.remove_card
-        expect(has_lost?).to eq(false)
-        player.deck.remove_card
-        expect(has_lost?).to eq(true)
+        # 3.times do player.has_lost?
+        # expect(player.has_lost?).to eq(false)
         
+        player.deck.remove_card
+        expect(player.has_lost?).to eq(false)
+        player.deck.remove_card
+        expect(player.has_lost?).to eq(false)
+        player.deck.remove_card
+        expect(player.has_lost?).to eq(true)
     end
 end
