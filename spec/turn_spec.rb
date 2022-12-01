@@ -36,4 +36,8 @@ describe Turn do
     it 'can get basic turn type' do
         expect(@turn.type).to eq(:basic)
     end
+
+    it 'can get winner' do
+        expect(@turn.winner).to eq(@player1)
+    end
 end
