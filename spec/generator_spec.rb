@@ -17,4 +17,5 @@ describe 'card_generator' do
     expect(cards).to be_an(Array)
     expect(cards[0]).to be_a(Card)
   end
+  
 end
