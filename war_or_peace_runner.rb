@@ -94,5 +94,5 @@ megan = Player.new("Megan", player1_deck)
 aurora = Player.new("Aurora", player2_deck)
 
 turn = Turn.new(megan, aurora)
-turn.go
+# turn.go
 
