@@ -34,5 +34,16 @@ class Game
                       card_7, card_8, card_9, card_10, card_11, card_12, 
                       card_13, card_14, card_15, card_16]
                       
+  end 
+
+  def set_up 
+    @deck_of_cards.shuffle! 
+    deck_1 = Deck.new(@deck_of_cards[0..7])
+    deck_2 = Deck.new(@deck_of_cards[7..15]) 
+    
+
+    player_1 = Player.new("Megan", deck_1)
+    player_2 = Player.new("Aurora", deck_2)
+    
   end
 end
