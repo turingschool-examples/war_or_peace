@@ -142,8 +142,25 @@ describe Turn do
             turn = Turn.new(player1, player2)
             winner = turn.winner
             turn.pile_cards
-            
+
             expect(turn.spoils_of_war).to match_array([@card1, @card2, @card5, @card4, @card3, @card6])
         end
     end
+
+    describe 'award_spoils for :war turn' do
+        it 'gives spoils to winner of :war turn' do
+            deck1 = Deck.new([@card1, @card2, @card5, @card8])
+            deck2 = Deck.new([@card4, @card3, @card6, @card7])
+            player1 = Player.new("Megan", deck1)
+            player2 = Player.new("Aurora", deck2) 
+            turn = Turn.new(player1, player2)
+            winner = turn.winner
+            turn.pile_cards
+            turn.award_spoils(winner)
+
+            expect(player1.deck.cards).to match_array([@card8])
+            expect(player2.deck.cards).to match_array([@card7, @card4, @card3, @card6, @card1, @card2, @card5])
+        end
+    end
+
 end 
