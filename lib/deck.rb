@@ -7,9 +7,9 @@ def initialize(arrayofcards)
     
 end 
 
-# def cards
-#     @cards 
-# end 
+def cards
+    @cards 
+end 
 
 def rank_of_card_at(index) 
    @cards[index].rank
@@ -28,7 +28,6 @@ def high_ranking_cards
 end 
 
 def percent_high_ranking
-
     rawnumber = (@high_rankers.count).to_f / (@cards.count).to_f
     percent = (rawnumber*100).round(2)
     return percent
@@ -37,9 +36,7 @@ end
 def remove_card
     deleted_card = @cards.first 
     @cards.delete(deleted_card) 
-    # require 'pry'; binding.pry
     @cards 
-    
 end 
 
 def add_card(card) 
