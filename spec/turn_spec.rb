@@ -26,4 +26,9 @@ describe Turn do
     it 'exists' do
         expect(@turn).to be_a(Turn)
     end
+
+    it 'has readable attributes' do
+        expect(@turn.player1).to eq(@player1)
+        expect(@turn.player2).to eq(@player2)
+    end
 end
