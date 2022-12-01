@@ -1,10 +1,10 @@
 require 'rspec'
 require './lib/deck'
+require './lib/card'
 
 RSpec.describe Deck do
-
     it "exsists" do
-        deck = Deck.new(cards)
+        deck = Deck.new("cards")
         expect(deck).to be_a(Deck)
     end
 
