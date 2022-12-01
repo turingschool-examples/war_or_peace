@@ -27,6 +27,11 @@ class Turn
 
     end
 
+    def pile_cards
+        @spoils_of_war << @player1.deck.cards.first
+        @spoils_of_war <<  @player2.deck.cards.first
+    end
+
 
 
 end
