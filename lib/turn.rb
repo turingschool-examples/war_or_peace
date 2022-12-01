@@ -24,4 +24,8 @@ class Turn
             spoils_of_war << @player2.deck.cards.shift
         end
     end
+
+    def award_spoils(winner)
+            winner.deck.cards << pile_cards
+    end
 end
