@@ -44,11 +44,12 @@ RSpec.describe Deck do
             card1 = Card.new(:spades, 'Ace', 14)
             card2 = Card.new(:diamonds, 'Eight', 8)
             card3 = Card.new(:clubs, 'Five', 5)
-
+            card4 = Card.new(:hearts, 'Queen', 12)
+            
             cards_arr = [card1, card2, card3]
             deck = Deck.new(cards_arr)
 
-            
+            expect(deck.add_card(card4)).to eq([card1, card2, card3, card4])
         end
     end
 end 
