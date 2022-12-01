@@ -74,4 +74,5 @@ deck2 = Deck.new(cards_deck_2)
 player1 = Player.new('Megan', deck1)
 player2 = Player.new('Aurora', deck2)
 
-
+game.start
+begin_game = gets.strip
