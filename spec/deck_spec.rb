@@ -10,5 +10,7 @@ describe Deck do
     cards = [card1, card2, card3]
 
     deck = Deck.new(cards)
+
+    expect(deck).to be_a(Deck)
   end
 end
