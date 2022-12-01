@@ -1,9 +1,12 @@
 class Deck 
-attr_reader :cards, 
-            :high_rankers
+attr_accessor :cards, 
+            :high_rankers, 
+            :rank, 
+            :deleted_card
 
 def initialize(cards)
     @cards = cards
+    @rank = rank 
     
 end 
 
@@ -13,7 +16,7 @@ end
 
 def rank_of_card_at(index) 
    @cards[index].rank
-
+   
 end 
 
 def high_ranking_cards
@@ -34,9 +37,7 @@ def percent_high_ranking
 end 
 
 def remove_card
-    deleted_card = @cards.first 
-    @cards.delete(deleted_card) 
-    @cards 
+        @cards.shift
 end 
 
 def add_card(card) 

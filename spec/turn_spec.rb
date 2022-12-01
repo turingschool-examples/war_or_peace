@@ -1,0 +1,101 @@
+require './lib/card'
+require './lib/deck'
+require './lib/player'
+require './lib/turn'
+require 'rspec'
+
+describe Turn do 
+    describe 'happy paths' do 
+        it 'there are no spoils of war yet' do 
+            card1 = Card.new(:heart, 'Jack', 11)
+            card2 = Card.new(:heart, '10', 10)
+            card3 = Card.new(:heart, '9', 9)
+            card4 = Card.new(:diamond, 'Jack', 11)
+            card5 = Card.new(:heart, '8', 8)
+            card6 = Card.new(:diamond, 'Queen', 12)
+            card7 = Card.new(:heart, '3', 3)
+            card8 = Card.new(:diamond, '2', 2)
+            deck1 = Deck.new([card1, card2, card5, card8])
+            deck2 = Deck.new([card3, card4, card6, card7])
+            player1 = Player.new("Megan", deck1)
+            player2 = Player.new("Aurora", deck2)
+            turn = Turn.new(player1, player2)
+            turn.player1
+            turn.player2
+            
+            
+        expect(turn.spoils_of_war).to be_empty
+        end 
+
+        it 'the first turn is basic' do 
+            card1 = Card.new(:heart, 'Jack', 11)
+            card2 = Card.new(:heart, '10', 10)
+            card3 = Card.new(:heart, '9', 9)
+            card4 = Card.new(:diamond, 'Jack', 11)
+            card5 = Card.new(:heart, '8', 8)
+            card6 = Card.new(:diamond, 'Queen', 12)
+            card7 = Card.new(:heart, '3', 3)
+            card8 = Card.new(:diamond, '2', 2)
+            deck1 = Deck.new([card1, card2, card5, card8])
+            deck2 = Deck.new([card3, card4, card6, card7])
+            player1 = Player.new("Megan", deck1)
+            player2 = Player.new("Aurora", deck2)
+            turn = Turn.new(player1, player2)
+            turn.player1
+            turn.player2
+            
+
+            expect(turn.type).to eq(:basic)
+        end 
+
+        it 'Megan wins the first turn with her 11 over Auroras 9' do 
+            card1 = Card.new(:heart, 'Jack', 11)
+            card2 = Card.new(:heart, '10', 10)
+            card3 = Card.new(:heart, '9', 9)
+            card4 = Card.new(:diamond, 'Jack', 11)
+            card5 = Card.new(:heart, '8', 8)
+            card6 = Card.new(:diamond, 'Queen', 12)
+            card7 = Card.new(:heart, '3', 3)
+            card8 = Card.new(:diamond, '2', 2)
+            deck1 = Deck.new([card1, card2, card5, card8])
+            deck2 = Deck.new([card3, card4, card6, card7])
+            player1 = Player.new("Megan", deck1)
+            player2 = Player.new("Aurora", deck2)
+            turn = Turn.new(player1, player2)
+            turn.player1
+            turn.player2
+            winner = turn.winner
+           
+
+            expect(turn.winner).to eq("Megan")
+        end 
+
+        it 'Megan wins the first turn with her 11 over Auroras 9' do 
+            card1 = Card.new(:heart, 'Jack', 11)
+            card2 = Card.new(:heart, '10', 10)
+            card3 = Card.new(:heart, '9', 9)
+            card4 = Card.new(:diamond, 'Jack', 11)
+            card5 = Card.new(:heart, '8', 8)
+            card6 = Card.new(:diamond, 'Queen', 12)
+            card7 = Card.new(:heart, '3', 3)
+            card8 = Card.new(:diamond, '2', 2)
+            deck1 = Deck.new([card1, card2, card5, card8])
+            deck2 = Deck.new([card3, card4, card6, card7])
+            player1 = Player.new("Megan", deck1)
+            player2 = Player.new("Aurora", deck2)
+            turn = Turn.new(player1, player2)
+            turn.player1
+            turn.player2
+            winner = turn.winner
+            turn.pile_cards
+            turn.spoils_of_war
+           
+
+            expect(turn.spoils_of_war).to eq("Megan")
+        end 
+
+    end 
+end 
+
+
+
