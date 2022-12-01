@@ -5,7 +5,7 @@ require './lib/player'
 require './lib/turn'
 
 RSpec.describe Turn do
-    it "exists, :basic" do
+    it "exists" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
         card3 = Card.new(:heart, '9', 9)
@@ -20,14 +20,11 @@ RSpec.describe Turn do
         player2 = Player.new("Aurora", deck2) 
         turn = Turn.new(player1, player2) 
 
-        # turn.player1
-        expect(turn).to be_an_instance_of(Turn)
         
-        # turn.player2
-        # expect(turn.player1).to be_an_instance_of(Turn)
+        expect(turn).to be_an_instance_of(Turn)
     end
 
-    it "can show the spoils of war, :basic" do
+    it "can show the spoils of war" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
         card3 = Card.new(:heart, '9', 9)
@@ -45,6 +42,7 @@ RSpec.describe Turn do
         turn.player1
         turn.player2
         turn.spoils_of_war
+        
         expect(turn.spoils_of_war).to eq([])
     end
 
