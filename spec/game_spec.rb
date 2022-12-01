@@ -34,7 +34,7 @@ RSpec.describe Game do
   end 
 
   describe '#set_up' do 
-    it 'creates 2 players and gives them each a deck' do 
+    xit 'creates 2 players and gives them each a deck' do 
       game = Game.new 
 
       game.create_cards
@@ -50,6 +50,30 @@ RSpec.describe Game do
       player2 = Player.new("Aurora", deck2) 
 
       expect(player1.deck.length).to eq(8)
+    end
+  end
+
+  describe '#create_player_one' do 
+    it 'creates player 1 with a deck' do 
+      game = Game.new  
+      game.create_cards 
+      game.create_player_one
+      deck1 = game.deck_of_cards[0..7]
+      player_1 = Player.new("Megan", deck1)
+
+      expect(game.player_1.name).to eq("Megan")
+    end
+  end 
+
+  describe '#create_player_one' do 
+    it 'creates player 1 with a deck' do 
+      game = Game.new  
+      game.create_cards 
+      game.create_player_one
+      deck1 = game.deck_of_cards[8..15]
+      player_2 = Player.new("Aurora", deck1)
+
+      expect(game.player_2.name).to eq("Aurora")
     end
   end
 
