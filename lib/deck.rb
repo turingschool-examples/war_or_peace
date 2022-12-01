@@ -12,6 +12,6 @@ class Deck
     end
 
     def rank_of_card_at(card_position)
-        
+        @cards[card_position].rank
     end
 end 

@@ -38,7 +38,6 @@ RSpec.describe Deck do
         deck1.add_card(card1)
         deck1.add_card(card2)
         deck1.add_card(card3)
-        binding.pry
         expect(deck1.rank_of_card_at(0)).to eq(12)
         expect(deck1.rank_of_card_at(2)).to eq(14)
     end
