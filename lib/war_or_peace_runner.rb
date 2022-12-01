@@ -20,13 +20,16 @@ card13 = Card.new(:diamond, '2', 2)
 card14 = Card.new(:diamond, '1', 1)
 
 deck1 = Deck.new([card11, card5, card14, card7, card6, card1, card10])
-
 deck2 = Deck.new([card12, card3, card4, card8, card9, card2, card13])
 
 player1 = Player.new('Megan', deck1)
 player2 = Player.new('Aurora', deck2)
 
-game1 = Game.new
+turn1 = Turn.new(player1, player2)
+
+game1 = Game.new(turn1)
+
 game1.start
 
-
+require 'pry'; binding.pry
+var = 0
