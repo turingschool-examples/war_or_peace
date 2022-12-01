@@ -8,4 +8,12 @@ class Deck
     def rank_of_card_at(index)
         @cards[index].rank
     end
+
+    def high_ranking_cards
+        high_cards = []
+        
+        @cards.each { |card| high_cards << card.value if card.rank >= 11}
+
+        return high_cards
+    end
 end
