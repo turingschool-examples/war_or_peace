@@ -66,6 +66,4 @@ RSpec.describe Deck do
             expect(deck.high_ranking_cards).to eq([card1, card4])
         end
     end
-
 end 
-  
