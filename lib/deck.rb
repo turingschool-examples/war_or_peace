@@ -1,9 +1,9 @@
 class Deck 
-attr_reader :cards 
+attr_reader :cards, 
             :high_rankers
 
-def initialize(arrayofcards)
-    @cards = arrayofcards
+def initialize(cards)
+    @cards = cards
     
 end 
 
