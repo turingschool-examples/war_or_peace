@@ -3,6 +3,7 @@ class Deck
 
     def initialize(cards)
         @cards = cards
+        @high_ranking_cards = []
     end
 
     def rank_of_card_at(index)
@@ -23,6 +24,10 @@ class Deck
 
     def remove_card
         cards.shift
+    end
+
+    def add_card(new_card)
+        cards.push(new_card)
     end
 
 end
