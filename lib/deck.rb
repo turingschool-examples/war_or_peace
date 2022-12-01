@@ -1,4 +1,4 @@
-require '/Users/weston/Desktop/Turing/1mod/projects/war_or_peace/lib/card.rb'
+require './lib/card.rb'
 class Deck
   attr_reader :cards, :high_ranking
 
