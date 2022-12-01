@@ -27,4 +27,10 @@ describe Player do
     it 'can check if player lost' do
         expect(@player.has_lost?).to eq(false)
     end
+
+    it 'can remove card' do
+        expected_card = @player.deck.cards[0]
+
+        expect(@player.deck.remove_card).to eq(expected_card)
+    end
 end
