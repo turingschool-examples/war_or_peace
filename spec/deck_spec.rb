@@ -54,7 +54,8 @@ RSpec.describe Deck do
         cards = [card1, card2]
 
         deck = Deck.new(cards)
-        expect(deck.remove_card).to eq([card2])
+        deck.remove_card
+        expect(deck.cards).to eq([card2])
     end
 
     it "will add a card to the bottom of the deck" do
@@ -64,7 +65,8 @@ RSpec.describe Deck do
 
         deck = Deck.new(cards)
         card3 = Card.new(:heart, 'Ace', 14)
+        deck.add_card(card3)
 
-        expect(deck.add_card(card3)).to eq([card1, card2, card3])
+        expect(deck.cards).to eq([card1, card2, card3])
     end
 end

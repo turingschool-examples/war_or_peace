@@ -25,11 +25,9 @@ class Deck
 
     def remove_card
         cards.shift
-        cards
     end
 
     def add_card(card)
         cards.insert(-1,card)
-        cards
     end
 end
