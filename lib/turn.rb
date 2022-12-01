@@ -22,43 +22,48 @@ class Turn
 
     def winner
         if :basic 
+          winner = nil 
                if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
-                    @player1.name
+                    winner = @player1.name
                else @player2.deck.rank_of_card_at(0) > @player1.deck.rank_of_card_at(0)
-                    @player2.name
-                    
+                    winner = @player2.name
                end
         elsif :war     
                if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
-                    @player1.name
+                    winner = @player1.name
                else @player2.deck.rank_of_card_at(2) > @player1.deck.rank_of_card_at(2)
-                    @player2.name
+                    winner = @player2.name
                end
         else :mutually_assured_destruction
           "No Winner"
+          nil 
         end
+        return winner 
      end 
 
     def pile_cards
           if :basic
-               @player1.deck.remove_card
-               spoils_of_war << @player1.deck.deleted_card
-               @player2.deck.remove_card
-               spoils_of_war << @player2.deck.deleted_card
-               require 'pry'; binding.pry
-          elsif :war 
-               @player1.deck.remove_card
-               spoils_of_war << @player1.deck.deleted_card
-               @player2.deck.remove_card
-               spoils_of_war << @player2.deck.deleted_card
-               require 'pry'; binding.pry
 
-          else :mutually_assured_destruction
+               @spoils_of_war << @player1.deck.remove_card 
+               
+               @spoils_of_war << @player2.deck.remove_card 
 
-          end
+          
+          # elsif :war 
+
+
+          # else :mutually_assured_destruction
+
+          # end
     end
+    @spoils_of_war
+end 
 
-    def award_spoils
-
+    def award_spoils(winner)
+     if winner == @player1.name 
+          @player1.deck.cards << @spoils_of_war 
+     elsif winner == @player2.name 
+          @player2.deck.cards << @spoils_of_war 
+     end
     end
 end
