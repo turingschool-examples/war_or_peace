@@ -17,4 +17,6 @@ class Deck
     def add_card(card)
         @cards_arr << card
     end
+# 'Test Set 4'
+    
 end
