@@ -70,6 +70,11 @@ RSpec.describe Player do
         expect(turn.winner.name).to eq("Megan")
     end
 
+    it "can put cards into spoils pile" do
+        expect(turn.pile_cards).to eq(turn.spoils_of_war)
+        expect(turn.pile_cards[0].rank).to eq(11)
+        expect(turn.pile_cards[1].rank).to eq(9)
+    end
 
 #    it "can tell if you have lost or not" do
 #      expect(player.has_lost?).to eq(false)
