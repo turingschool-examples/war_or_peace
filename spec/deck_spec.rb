@@ -30,6 +30,6 @@ describe Deck do
   end
 
   it 'can get percent high ranking cards' do
-    expect(@deck.percent_high_ranking).to eq(50.0)
+    expect(@deck.percent_high_ranking).to eq(66.67)
   end
 end
