@@ -11,6 +11,7 @@ describe Player do
         deck = Deck.new([card1, card2, card3])
         player = Player.new('Clarisa', deck)
 
+        expect(player).to be_an_instance_of(Player)
         expect(player.name).to eq("Clarisa")
         expect(player.deck).to eq(deck)
     end
@@ -22,13 +23,13 @@ describe Player do
         deck = Deck.new([card1, card2, card3])
         player = Player.new('Clarisa', deck)
 
-        expect(player.deck.has_lost?).to eq(false)
+        expect(player.has_lost?).to eq(false)
         expect(player.deck.remove_card).to eq(card1)
-        expect(player.deck.has_lost?).to eq(false)
+        expect(player.has_lost?).to eq(false)
         expect(player.deck.remove_card).to eq(card2)
-        expect(player.deck.has_lost?).to eq(false)
+        expect(player.has_lost?).to eq(false)
         expect(player.deck.remove_card).to eq(card3)
-        expect(player.deck.has_lost?).to eq(true)
+        expect(player.has_lost?).to eq(true)
         expect(player.deck.cards).to eq([])
 
     end
