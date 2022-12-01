@@ -56,7 +56,8 @@
 # puts
 
 # ###################
-# # Turn Interaction Pattern
+# # Turn Type Basic
+# # Interaction Pattern
 # ###################
 
 # require './lib/card'
