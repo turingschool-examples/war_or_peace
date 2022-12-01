@@ -1,9 +1,10 @@
 require './lib/card.rb'
 require './lib/deck.rb'
 require './lib/player.rb'
+require 'pry'
 
 class Turn
-  attr_reader :turn
+  attr_accessor :turn
 
   def initialize(player1, player2)
     @player1 = player1
@@ -61,7 +62,7 @@ class Turn
       break
     end
 
-    if (@turns == 1_000_000)
+    if (@turn == 1_000_000)
       puts "---- DRAW ----"
         break
     end
