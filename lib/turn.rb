@@ -18,14 +18,15 @@ class Turn
     def winner
         if type == :basic then 
             if player1.deck.cards[0].rank > player2.deck.cards[0].rank then player1
-        else player2
-        end 
-    elsif type == :war then
-        if player1.deck.cards[2].rank > player2.deck.cards[2].rank then player1
-        else player2
+            else player2
+            end 
+        elsif type == :war then
+            if player1.deck.cards[2].rank > player2.deck.cards[2].rank then player1
+            else player2
+            end
+        elsif type == :mutually_assured_destruction then "No Winner"
         end 
     end 
-    end
 
     def pile_cards
         if type == :basic then
