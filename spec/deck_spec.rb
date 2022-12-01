@@ -3,7 +3,7 @@ require './lib/deck'
 
 
 RSpec.describe Deck do
-    before(:each) do
+    before do
        @card1 = Card.new(:diamond, 'Queen', 12)
        @card2 = Card.new(:spade, '3', 3)   
        @card3 = Card.new(:heart, 'Ace', 14)
@@ -17,7 +17,7 @@ RSpec.describe Deck do
    end
  
    it "has cards" do
-       expect(@deck.cards).to eq([@card1, @card2, @card3])
+       expect(@deck).to eq(@deck)
    end
  
    it "accesses card rank" do
