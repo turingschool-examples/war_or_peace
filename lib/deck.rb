@@ -12,7 +12,7 @@ class Deck
     def high_ranking_cards
         high_cards = []
         
-        @cards.each { |card| high_cards << card.value if card.rank >= 11}
+        @cards.each { |card| high_cards << card if card.rank >= 11}
 
         return high_cards
     end
