@@ -1,10 +1,12 @@
 class Game 
 
-  attr_reader :turn_count, :deck_of_cards
+  attr_reader :turn_count, :deck_of_cards, :player_1, :player_2
 
   def initialize 
     @turn_count = 0
     @deck_of_cards = []
+    @player_1 = create_player_one
+    @player_2 = create_player_two
   end
 
   def create_cards 
@@ -33,17 +35,36 @@ class Game
     @deck_of_cards = [card_1, card_2, card_3, card_4, card_5, card_6,
                       card_7, card_8, card_9, card_10, card_11, card_12, 
                       card_13, card_14, card_15, card_16]
+     @deck_of_cards.shuffle! 
                       
   end 
 
-  def set_up 
-    @deck_of_cards.shuffle! 
-    deck_1 = Deck.new(@deck_of_cards[0..7])
-    deck_2 = Deck.new(@deck_of_cards[7..15]) 
+  # def set_up 
+  #   # @deck_of_cards.shuffle! 
+  #   # deck_1 = Deck.new(@deck_of_cards[0..7])
+  #   deck_2 = Deck.new(@deck_of_cards[7..15]) 
     
 
-    player_1 = Player.new("Megan", deck_1)
-    player_2 = Player.new("Aurora", deck_2)
+  #   # player_1 = Player.new("Megan", deck_1)
+  #   player_2 = Player.new("Aurora", deck_2)
     
+  # end 
+
+  def create_player_one 
+    deck_1 = Deck.new(@deck_of_cards[0..7])
+    player_1 = Player.new("Megan", deck_1)
+  end 
+
+  def create_player_two
+     deck_2 = Deck.new(@deck_of_cards[7..15]) 
+     player_2 = Player.new("Aurora", deck_2)
   end
+
+  def display_welcome_message 
+    "Welcome to War! (or Peace) This game will be played with #{@deck_of_cards.count} cards.\n"
+    "The players today are #{@player_1.name} and #{@player_2.name}.\n"
+    "Type 'GO' to start the game!\n"
+    "--------------------------------------------------------------------"
+  end
+  
 end
