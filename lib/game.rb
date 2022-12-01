@@ -61,12 +61,15 @@ class Game
   end 
 
   def display_welcome_message 
-    "Welcome to War! (or Peace) This game will be played with #{@deck_of_cards.count} cards.\n"
-    "The players today are #{@player_1.name} and #{@player_2.name}.\n"
-    "Type 'GO' to start the game!\n"
-    "--------------------------------------------------------------------"
+    "
+    --------------------------------------------------------------------\n
+    Welcome to War! (or Peace) This game will be played with #{@deck_of_cards.count} cards.
+    The players today are #{@player_1.name} and #{@player_2.name}.
+    Type 'GO' to start the game!\n
+    --------------------------------------------------------------------
+    "
   end 
 
-
+  
   
 end
