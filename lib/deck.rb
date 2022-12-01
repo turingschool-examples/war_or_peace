@@ -1,7 +1,7 @@
 class Deck
     attr_reader :cards, :high_ranking
     
-    def initialize(cards = [])
+    def initialize(cards)
         @cards = cards
         @high_ranking = []
     end
