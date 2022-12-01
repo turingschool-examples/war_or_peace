@@ -28,7 +28,8 @@ class Deck
         cards
     end
 
-    def add_card
-
+    def add_card(card)
+        cards.insert(-1,card)
+        cards
     end
 end
