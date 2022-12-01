@@ -343,6 +343,8 @@ describe Turn do
         turn.pile_cards
 
         expect(turn.spoils_of_war).to eq([])
+        expect(player1.deck.cards).to eq([card1, card2, card5, card8])
+        expect(player2.deck.cards).to eq([card4, card3, card6, card7])
         end
     end
 end 
