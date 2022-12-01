@@ -12,7 +12,7 @@ RSpec.describe Deck do
 
     deck = Deck.new(cards)
 
-  it "is an instance of Deck" do
+  it "is an instance of deck" do
     expect(deck).to be_an_instance_of(Deck)
   end
 
