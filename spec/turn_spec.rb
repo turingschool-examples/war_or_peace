@@ -47,9 +47,16 @@ RSpec.describe Player do
     expect(turn).to be_an_instance_of(Turn)
    end
 
-#    it "can call name" do
-#      expect(player.name).to eq('Clarisa')
-#    end
+    it "can call player 1" do
+      expect(turn.player1).to eq(player1)
+      expect(turn.player1.name).to eq("Megan")
+    end
+
+    it "can call player 2" do
+        expect(turn.player2).to eq(player2)
+        expect(turn.player2.name).to eq("Aurora")
+      end
+  
 
 #    it "can call deck" do
 #     expect(player.deck).to eq(deck)
