@@ -13,10 +13,11 @@ RSpec.describe Game do
     expect(game.turn_count).to eq(0)
   end 
 
-  it 'has an empty deck to store cards later' do 
+  it 'creates a deck of cards' do 
     game = Game.new 
 
-    expect(game.deck_of_cards).to eq([])
+    # expect(game.deck_of_cards).to eq([]) 
+    expect(game.deck_of_cards.length).to eq(16)
   end
 
   describe '#create_cards' do 
@@ -25,33 +26,13 @@ RSpec.describe Game do
       # temporary test for the create cards method
       game = Game.new 
 
-      expect(game.deck_of_cards).to eq([])
+      # expect(game.deck_of_cards).to eq([])
 
       game.create_cards
     
       expect(game.deck_of_cards.length).to eq(16)
     end
   end 
-
-  describe '#set_up' do 
-    xit 'creates 2 players and gives them each a deck' do 
-      game = Game.new 
-
-      game.create_cards
-
-      deck = Deck.new(@deck_of_cards) 
-      #require 'pry'; binding.pry
-      deck1 = game.deck_of_cards[0..7]
-      deck2 = game.deck_of_cards[7..15] 
-
-      game.set_up
-
-      player1 = Player.new("Megan", deck1) 
-      player2 = Player.new("Aurora", deck2) 
-
-      expect(player1.deck.length).to eq(8)
-    end
-  end
 
   describe '#create_player_one' do 
     it 'creates player 1 with a deck' do 
