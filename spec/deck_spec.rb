@@ -34,11 +34,13 @@ RSpec.describe Deck do
        expect(@deck.percent_high_ranking).to eq(66.67)
    end
 
-   xit "can remove a card" do 
+   it "can remove a card" do 
+
         expect(@deck.remove_card).to eq(@card1)
-        expect(@deck.high_ranking_cards).to eq(@card3)
+    
+        expect(@deck.high_ranking_cards).to eq([@card3])
         expect(@deck.cards).to eq([@card2, @card3])
-        expect(deck.percent_high_ranking).to eq(50.0)
+        expect(@deck.percent_high_ranking).to eq(50.0)
    end
 
    xit "can add a card" do 

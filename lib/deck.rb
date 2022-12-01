@@ -24,4 +24,8 @@ class Deck
       percent.round(2)
    end
 
+   def remove_card
+    @cards.shift
+   end
+
 end
