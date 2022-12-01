@@ -18,13 +18,13 @@ RSpec.describe Player do
     expect(card3).to be_an_instance_of(Card)
   end
 
-  it "has an instance of Deck" do
+   it "has an instance of Deck" do
     expect(deck).to be_an_instance_of(Deck)
-  end
+   end
 
-  it "is an instance of Player" do
+   it "is an instance of Player" do
     expect(player).to be_an_instance_of(Player)
-  end
+   end
 
    it "can call name" do
      expect(player.name).to eq('Clarisa')
@@ -32,11 +32,23 @@ RSpec.describe Player do
 
    it "can call deck" do
     expect(player.deck).to eq(deck)
-  end
+   end
 
-#   it "draws the correct rank from the deck" do
-#     expect(deck.rank_of_card_at(0)).to eq(12)
-#   end
+   it "can tell if you have lost or not" do
+     expect(player.has_lost?).to eq(false)
+
+     player.deck.remove_card
+
+     expect(player.has_lost?).to eq(false)
+
+     player.deck.remove_card
+
+     expect(player.has_lost?).to eq(false)
+
+     player.deck.remove_card
+
+     expect(player.has_lost?).to eq(true)
+   end
 
 #   it "draws the correct rank from the deck2" do
 #     expect(deck.rank_of_card_at(2)).to eq(14)

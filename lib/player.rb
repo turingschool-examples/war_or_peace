@@ -9,9 +9,13 @@ class Player
         @deck = deck
     end
 
-#     def rank_of_card_at(loc)
-#         return cards[loc].rank
-#     end
+     def has_lost?
+         if deck.cards.length == 0
+            return true
+         else
+            return false
+        end
+     end
 
 #     def high_ranking_cards
 #         high_ranking_array = []
