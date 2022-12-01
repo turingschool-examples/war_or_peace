@@ -8,7 +8,7 @@ RSpec.describe Deck do
         card3 = Card.new(:heart, 'Ace', 14)
         cards =[card1, card2, card3] 
         deck = Deck.new(cards) 
-        expect(card).to be_an_instance_of(Card)
+        expect(deck).to be_an_instance_of(Deck)
         
     end
 
