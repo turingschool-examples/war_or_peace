@@ -48,5 +48,12 @@ RSpec.describe Deck do
     #for the % of face cards,
     # % of high ranking must be run to create array
 
-    
+    it "will remove the top card" do
+        card1 = Card.new(:diamond, 'Queen', 12)
+        card2 = Card.new(:spade, '3', 3)
+        cards = [card1, card2]
+
+        deck = Deck.new(cards)
+        expect(deck.remove_card).to eq([card2])
+    end
 end
