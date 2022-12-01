@@ -2,7 +2,6 @@ require './lib/card'
 require './lib/deck'
 
 describe Deck do
-
   before(:each) do
     @card1 = Card.new(:diamond, 'Queen', 12)
     @card2 = Card.new(:spade, '3', 3)
@@ -31,5 +30,9 @@ describe Deck do
 
   it 'can get percent high ranking cards' do
     expect(@deck.percent_high_ranking).to eq(66.67)
+  end
+
+  it 'can remove card' do
+    expect(@deck.remove_card).to eq(@card1)
   end
 end
