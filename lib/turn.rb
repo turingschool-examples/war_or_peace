@@ -27,24 +27,27 @@ class Turn
     end
 
     def winner
-        if @turn == :basic && @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
+        if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
             player1
-            require 'pry';binding.pry
-
-        elsif @turn == :basic && @player1.deck.rank_of_card_at(0) < @player2.deck.rank_of_card_at(0)
+        elsif@player1.deck.rank_of_card_at(0) < @player2.deck.rank_of_card_at(0)
             player2
         elsif
-            @turn == :war &&
             @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
             player1
         elsif
-            @turn == :war &&
             @player1.deck.rank_of_card_at(2) < @player2.deck.rank_of_card_at(2)
             player2
         else
-            @turn == :mutually_assured_destruction
+            @type == :mutually_assured_destruction
             "No winner"
         end
     end
 
+    def pile_cards
+
+    end
+
+    def award_spoils
+        
+    end
 end

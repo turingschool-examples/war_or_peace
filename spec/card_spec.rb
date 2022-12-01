@@ -14,6 +14,5 @@ RSpec.describe Card do
     expect(card.suit).to eq(:diamond)
     expect(card.value).to eq('Queen')
     expect(card.rank).to eq(12)
-    require "pry"; binding.pry
   end
 end
