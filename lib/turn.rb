@@ -49,6 +49,13 @@ class Turn
             @spoils_of_war << @player2.deck.remove_card
             @spoils_of_war << @player2.deck.remove_card
             @spoils_of_war << @player2.deck.remove_card
+        elsif @type == :mutually_assured_destruction
+            @player1.deck.remove_card
+            @player1.deck.remove_card
+            @player1.deck.remove_card
+            @player2.deck.remove_card
+            @player2.deck.remove_card
+            @player2.deck.remove_card
 
         end
        
