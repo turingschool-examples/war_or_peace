@@ -8,13 +8,25 @@ class Turn
     @player2 = player2
     @spoils_of_war = []
   end
+
+  def type
+    # a turn is :basic, :war, or :mutually_assured_destruction.
+    if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
+      :basic
+    # A :basic turn is one in which the rank_of_card_at(0) from the players’ decks are not the same rank.
+    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+      :was
+    # A :war turn occurs when both players’ rank_of_card_at(0) are the same.
+    else player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+      :mutually_assured_destruction
+    # :mutually_assured_destruction occurs when both players’ rank_of_card_at(0) AND rank_of_card_at(2) are the same.
+    end
+  end
 end
 
-# type: a turn is :basic, :war, or :mutually_assured_destruction.
-  # A :basic turn is one in which the rank_of_card_at(0) from the players’ decks are not the same rank.
-  # A :war turn occurs when both players’ rank_of_card_at(0) are the same.
 
-# :mutually_assured_destruction occurs when both players’ rank_of_card_at(0) AND rank_of_card_at(2) are the same.
+
+
 
 # winner: this method will determine the winner of the turn.
   # if the turn has a type of :basic, it will return whichever player has a higher rank_of_card_at(0)
