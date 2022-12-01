@@ -1,9 +1,10 @@
 class Game
-    attr_reader :turn, :deck_of_cards
+    attr_reader :turn, :deck_of_cards, :shuffled_cards
 
     def initialize (turn)
         @turn = turn
         @deck_of_cards = []
+        @shuffled_deck = []
     end
 
     def create_deck
@@ -30,6 +31,12 @@ class Game
 
         @deck_of_cards = [heart_cards, spade_cards, club_cards, diamond_cards].flatten
     end
+
+    def shuffle_cards
+        @shuffled_deck = @deck_of_cards.shuffle
+    end
+
+    def split_deck
     # def start
     #     ans = gets.chomp('')
     #     if ans = 'GO'

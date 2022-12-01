@@ -7,7 +7,7 @@ require 'rspec'
 
 describe Game do
     describe 'initialize' do
-        before(:each) do
+        before do
             @card1 = Card.new(:heart, 'Jack', 11)
             @card2 = Card.new(:heart, '10', 10)
             @card3 = Card.new(:heart, '9', 9)
@@ -35,6 +35,19 @@ describe Game do
         it 'creates a deck of 52 cards' do
             @game.create_deck
             expect(@game.deck_of_cards.count).to eq(52)
+        end
+
+        it 'shuffles deck' do
+            @game.shuffle_cards
+            expect(@game.shuffled_cards).not_to eq(@game.deck_of_cards)
+            
+        end
+
+        it 'splits the shuffled deck to two players' do
+            @game.shuffle_cards
+            @game.split_deck
+            expect(@player1.deck.count).to eq(26)
+            expect(@player2.deck.count).to eq(26)
         end
     end
 end
