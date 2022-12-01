@@ -83,7 +83,7 @@ describe Deck do
         
         deck = Deck.new(cards)
         deck.add_card(card4)
-        
+
         expect(deck.cards).to eq([card2, card3, card4])
         expect(deck.high_ranking_cards).to eq([card3])
         expect(deck.percent_high_ranking).to eq(33.33)
