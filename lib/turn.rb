@@ -23,4 +23,8 @@ class Turn
         spoils_of_war << player1.deck.cards.shift
         spoils_of_war << player2.deck.cards.shift
     end
+
+    def award_spoils(winner)
+        winner.deck.cards.concat(spoils_of_war)
+    end 
 end

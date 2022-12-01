@@ -53,7 +53,6 @@ describe Turn do
     describe 'type' do
         it 'has the type :basic' do
             turn = Turn.new(@player1, @player2)
-# require 'pry'; binding.pry
             expect(turn.type).to eq(:basic)
         end
     end
@@ -62,7 +61,6 @@ describe Turn do
         it 'determines the winner' do
             turn = Turn.new(@player1, @player2)
             winner = turn.winner
-
             expect(winner).to eq(@player1)
         end
     end 
@@ -71,7 +69,6 @@ describe Turn do
         it 'places the cards in the spoils of war pile' do
             turn = Turn.new(@player1, @player2)
             turn.pile_cards
-
             expect(turn.spoils_of_war).to eq([@card1, @card3])
         end
     end
@@ -80,9 +77,10 @@ describe Turn do
         it 'gives spoils to winner' do
             turn = Turn.new(@player1, @player2)
             winner = turn.winner
+            turn.pile_cards
             turn.award_spoils(winner)
-
-            expect(@player1.deck).to include([@card1, @card2, @card3, @card5, @card8])
+            expect(@player1.deck.cards).to match_array([@card2, @card3, @card5, @card1, @card8])
+            expect(@player2.deck.cards).to match_array([@card4, @card6, @card7])
         end 
     end
 end 
