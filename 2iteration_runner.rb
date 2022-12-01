@@ -1,6 +1,6 @@
-# ###################
-# # Player Interaction Pattern
-# ###################
+###################
+# Player Interaction Pattern
+###################
 
 # require './lib/card'
 # require './lib/deck'
@@ -60,50 +60,50 @@
 # # Interaction Pattern
 # ###################
 
-# require './lib/card'
-# require './lib/deck'
-# require './lib/player'
-# require './lib/turn'
+require './lib/card'
+require './lib/deck'
+require './lib/player'
+require './lib/turn'
 
-# card1 = Card.new(:heart, 'Jack', 11)
-# p card1
-# puts
+card1 = Card.new(:heart, 'Jack', 11)
+p card1
+puts
 
-# card2 = Card.new(:heart, '10', 10)  
-# p card2
-# puts
+card2 = Card.new(:heart, '10', 10)  
+p card2
+puts
 
-# card3 = Card.new(:heart, '9', 9) 
-# p card3
-# puts
+card3 = Card.new(:heart, '9', 9) 
+p card3
+puts
 
-# card4 = Card.new(:diamond, 'Jack', 11) 
-# p card4
-# puts
+card4 = Card.new(:diamond, 'Jack', 11) 
+p card4
+puts
 
-# card5 = Card.new(:heart, '8', 8)
-# p card5
-# puts
+card5 = Card.new(:heart, '8', 8)
+p card5
+puts
 
-# card6 = Card.new(:diamond, 'Queen', 12) 
-# p card6
-# puts
+card6 = Card.new(:diamond, 'Queen', 12) 
+p card6
+puts
 
-# card7 = Card.new(:heart, '3', 3)  
-# p card7
-# puts
+card7 = Card.new(:heart, '3', 3)  
+p card7
+puts
 
-# card8 = Card.new(:diamond, '2', 2)
-# p card8
-# puts
+card8 = Card.new(:diamond, '2', 2)
+p card8
+puts
 
-# deck1 = Deck.new([card1, card2, card5, card8]) 
-# p deck1
-# puts
+deck1 = Deck.new([card1, card2, card5, card8]) 
+p deck1
+puts
 
-# deck2 = Deck.new([card3, card4, card6, card7])  
-# p deck2
-# puts
+deck2 = Deck.new([card3, card4, card6, card7])  
+p deck2
+puts
 
 # player1 = Player.new("Megan", deck1)
 # p player1
