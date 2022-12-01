@@ -1,4 +1,6 @@
 require './lib/card'
+require './lib/deck'
+require './lib/player'
 
 class Turn
     attr_reader :player1,
@@ -57,5 +59,10 @@ class Turn
             end
         end
     end
-
+    
+    def award_spoils(winning_player)
+        @spoils_of_war.each do |card| card 
+            winning_player.deck.add_card(card)
+        end
+    end
 end

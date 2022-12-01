@@ -72,27 +72,17 @@ RSpec.describe Player do
 
     it "can put cards into spoils pile" do
         expect(turn.pile_cards).to eq(turn.spoils_of_war)
-        expect(turn.pile_cards[0].rank).to eq(11)
-        expect(turn.pile_cards[1].rank).to eq(9)
+        expect(turn.spoils_of_war[0].rank).to eq(11)
+        expect(turn.spoils_of_war[1].rank).to eq(9)
     end
 
-#    it "can tell if you have lost or not" do
-#      expect(player.has_lost?).to eq(false)
+    it "can add the spoils pile to the winning player's deck" do
+        turn.award_spoils(player1)
 
-#      player.deck.remove_card
+        expect(turn.player1.deck.cards.length).to eq(5)
+        expect(turn.player2.deck.cards.length).to eq(3)
 
-#      expect(player.has_lost?).to eq(false)
-
-#      player.deck.remove_card
-
-#      expect(player.has_lost?).to eq(false)
-
-#      player.deck.remove_card
-
-#      expect(player.has_lost?).to eq(true)
-#    end
-
-#    it "returns an amptry array for cards in deck" do
-#      expect(player.deck.cards).to eq([])
-#    end
+        expect(turn.player1.deck.rank_of_card_at(3)).to eq(11)
+        expect(turn.player1.deck.rank_of_card_at(4)).to eq(9)
+    end
 end

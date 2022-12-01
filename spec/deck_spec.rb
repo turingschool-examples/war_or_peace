@@ -55,6 +55,7 @@ RSpec.describe Deck do
   it "adds the correct card" do
     deck.add_card(card4)
     expect(deck.cards).to include(card4)
+    expect(deck.cards.length).to eq(3)
   end
 
   it "contains all the correct cards" do
