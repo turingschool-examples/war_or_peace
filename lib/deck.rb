@@ -1,5 +1,5 @@
 class Deck 
-    attr_reader :cards
+    attr_reader :cards, :deck
     def initialize(cards)
         @cards = cards
     end
@@ -21,8 +21,14 @@ class Deck
 
     def percent_high_ranking
         ((high_ranking_cards.size * 100) / cards.size.to_f).round(2) 
+    end
+
+    def remove_card
+        @cards.shift
 
     end
+
+
 
 
 end
