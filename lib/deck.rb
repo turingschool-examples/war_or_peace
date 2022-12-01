@@ -25,5 +25,15 @@ class Deck
         (decimal * 100).round(2)
     end
 
-    
+    def remove_card
+        @cards.shift
+    end
 end
+
+
+
+# @high_cards.each do |high_card|
+    #     if high_card = @cards[1]
+        
+    #     end
+    # end
