@@ -22,45 +22,44 @@ RSpec.describe Player do
 
     turn = Turn.new(player1, player2)
 
-  it "has instances of Card" do
-    expect(card1).to be_an_instance_of(Card)
-    expect(card2).to be_an_instance_of(Card)
-    expect(card3).to be_an_instance_of(Card)
-    expect(card4).to be_an_instance_of(Card)
-    expect(card5).to be_an_instance_of(Card)
-    expect(card6).to be_an_instance_of(Card)
-    expect(card7).to be_an_instance_of(Card)
-    expect(card8).to be_an_instance_of(Card)
-  end
+    it "has instances of Card" do
+        expect(card1).to be_an_instance_of(Card)
+        expect(card2).to be_an_instance_of(Card)
+        expect(card3).to be_an_instance_of(Card)
+        expect(card4).to be_an_instance_of(Card)
+        expect(card5).to be_an_instance_of(Card)
+        expect(card6).to be_an_instance_of(Card)
+        expect(card7).to be_an_instance_of(Card)
+        expect(card8).to be_an_instance_of(Card)
+    end
 
-  it "has instances of Deck" do
-    expect(deck1).to be_an_instance_of(Deck)
-    expect(deck2).to be_an_instance_of(Deck)
-   end
+    it "has instances of Deck" do
+        expect(deck1).to be_an_instance_of(Deck)
+        expect(deck2).to be_an_instance_of(Deck)
+    end
 
-   it "has instances of Player" do
-    expect(player1).to be_an_instance_of(Player)
-    expect(player2).to be_an_instance_of(Player)
-   end
+    it "has instances of Player" do
+        expect(player1).to be_an_instance_of(Player)
+        expect(player2).to be_an_instance_of(Player)
+    end
 
-   it "is an instance of Turn" do
-    expect(turn).to be_an_instance_of(Turn)
-   end
+    it "is an instance of Turn" do
+        expect(turn).to be_an_instance_of(Turn)
+    end
 
     it "can call player 1" do
-      expect(turn.player1).to eq(player1)
-      expect(turn.player1.name).to eq("Megan")
+        expect(turn.player1).to eq(player1)
+        expect(turn.player1.name).to eq("Megan")
     end
 
     it "can call player 2" do
         expect(turn.player2).to eq(player2)
         expect(turn.player2.name).to eq("Aurora")
-      end
+    end
   
-
-#    it "can call deck" do
-#     expect(player.deck).to eq(deck)
-#    end
+    it "can read spoils of war as an empty array" do
+     expect(turn.spoils_of_war).to eq([])
+    end
 
 #    it "can tell if you have lost or not" do
 #      expect(player.has_lost?).to eq(false)
