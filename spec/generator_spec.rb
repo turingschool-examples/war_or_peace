@@ -1,10 +1,11 @@
 require './lib/card_generator.rb'
 
 
+
 describe 'card_generator' do
   
   it 'is an instance of CardGenerator' do
-    new = CardGenerator.new("filename")
+    new = CardGenerator.new("cards.txt")
     expect(new).to be_a(CardGenerator)
   end
 
@@ -12,7 +13,8 @@ describe 'card_generator' do
     filename = 'cards.txt'
     cards = CardGenerator.new(filename).cards
 
-    expect(cards).to be_a(Array)
+    expect(filename).to be_a(Deck)
+    expect(cards).to be_an(Array)
     expect(cards[0]).to be_a(Card)
   end
 end
