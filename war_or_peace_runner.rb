@@ -7,4 +7,4 @@ require './lib/game'
 game = Game.new 
 
 puts game.display_welcome_message 
-game.initiate_war
+game.start
