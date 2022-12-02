@@ -79,5 +79,12 @@ describe Turn do
         it 'can get war turn type' do
             expect(@turn.type).to eq(:war)
         end
+
+        it 'can pile war cards' do
+            expected_pile =  []
+            expected_pile << @player1.deck.cards[0..2] << @player2.deck.cards[0..2]
+
+            expect(@turn.pile_cards).to eq(expected_pile.flatten)
+        end
     end
 end
