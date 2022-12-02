@@ -71,6 +71,36 @@ class Game
 
         deck1 = shuffled_deck.first(26)
         deck2 = shuffled_deck.last(26)
-    
+
+        player1 = Player.new("Megan", Deck.new(deck1))
+        player2 = Player.new("Aurora", Deck.new(deck2))
+
+        turn = Turn.new(player1, player2)
+        turn_counter = 0
+
+    until player1.has_lost? || player2.has_lost? || turn_counter == 1_000_000
+        
+        turn.pile_cards
+        turn_counter += 1
+        
+        if turn.type == :war
+            p "War!"
+            p "#{turn.winner.name} wins the war!"
+            elsif turn.type == :mutually_assured_destruction
+            p "Mutually Assured Destruction!"
+            p "Both players lose!"
+            elsif turn.type == :basic
+            p "#{turn_counter}"
+            p "#{turn.winner.name} gains 2 cards!"
+        end
+
+        if player1.has_lost?
+            p "#{player2.name} is victorious! Nice try #{player1.name}"
+            elsif player2.has_lost? 
+            p "#{player1.name} is victorious! Nice try #{player2.name}"
+            elsif turn_counter == 1_000_000
+            p "~~~DRAW~~~"
+        end
     end
+end
 end
