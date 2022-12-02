@@ -7,6 +7,7 @@ class Game
     @deck_of_cards = create_cards
     @player_1 = create_player_one
     @player_2 = create_player_two
+    @turn = Turn.new(@player_1, @player_2)
   end
 
   def create_cards 
@@ -38,17 +39,8 @@ class Game
     cards.shuffle!                  
   end 
 
-  # def set_up 
-  #   # @deck_of_cards.shuffle! 
-  #   # deck_1 = Deck.new(@deck_of_cards[0..7])
-  #   deck_2 = Deck.new(@deck_of_cards[7..15]) 
-    
 
-  #   # player_1 = Player.new("Megan", deck_1)
-  #   player_2 = Player.new("Aurora", deck_2)
-    
-  # end 
-
+  
   def create_player_one 
     deck_1 = Deck.new(@deck_of_cards[0..7])
     player_1 = Player.new("Megan", deck_1)
@@ -70,45 +62,64 @@ class Game
   end 
 
   def initiate_war 
-    
-    turn = Turn.new(@player_1, @player_2)
-    turn_type = turn.type 
+    turn_type = @turn.type 
 
     while (player_1.has_lost? == false) && (player_2.has_lost? == false) && (@turn_count <= 1_000_000)
-      if turn.type == :basic 
-        puts "Turn #{@turn_count}: #{turn.winner.name} won 2 cards"
-        winner = turn.winner 
-        turn.pile_cards 
-        turn.award_spoils(winner) 
-        turn.spoils_of_war.clear
+      if @turn.type == :basic 
+        basic_turn_sequence
         
       elsif turn_type == :war 
-        puts "Turn #{@turn_count}: WAR #{turn.winner.name} won 6 cards"
-        winner = turn.winner 
-        turn.pile_cards 
-        turn.award_spoils(winner) 
-        turn.spoils_of_war.clear
-        
+        war_turn_sequence
 
-      elsif turn.type == :mutually_assured_destruction 
-        puts "Turn #{@turn_count}: *Mutually Assured Destruction* 6 cards removed from play" 
-        turn.pile_cards 
-        turn.spoils_of_war.clear
+      elsif @turn.type == :mutually_assured_destruction 
+        mutually_assured_destruction_turn_sequence
       end
 
       @turn_count += 1 
     end
 
-    if turn.player1.has_lost?
-      puts "#{turn.player2.name} has won the game!"
-    elsif turn.player2.has_lost?
-       puts "#{turn.player1.name} has won the game!"
+    puts game_result_display
+  end
+
+  def start 
+    user_input = gets.chomp.upcase
+
+    if user_input == "GO"
+      initiate_war
     else 
-      puts "=== DRAW ==="
-    
-    # elsif @turn_count == 1_000_000 
-    #     puts "=== DRAW ==="
-       #break
+      puts "\nHahaha. I said type GO, not #{user_input}. Try again next time!!"
     end
   end
-end
+
+  def basic_turn_sequence 
+    puts "Turn #{@turn_count}: #{@turn.winner.name} won 2 cards"
+    winner = @turn.winner 
+    @turn.pile_cards 
+    @turn.award_spoils(winner) 
+    @turn.spoils_of_war.clear
+  end
+
+  def war_turn_sequence 
+    puts "Turn #{@turn_count}: WAR #{@turn.winner.name} won 6 cards"
+    winner = @turn.winner 
+    @turn.pile_cards 
+    @turn.award_spoils(winner) 
+    @turn.spoils_of_war.clear
+  end
+
+  def mutually_assured_destruction_turn_sequence
+    puts "Turn #{@turn_count}: *Mutually Assured Destruction* 6 cards removed from play" 
+    @turn.pile_cards 
+    @turn.spoils_of_war.clear
+  end 
+
+  def game_result_display 
+     if @turn.player1.has_lost?
+       "\n*~*~*~* #{@turn.player2.name} has won the game! *~*~*~*"
+    elsif @turn.player2.has_lost?
+        "\n*~*~*~* #{@turn.player1.name} has won the game! *~*~*~*"
+    else 
+       "\n========== DRAW =========="
+    end
+  end
+end 
