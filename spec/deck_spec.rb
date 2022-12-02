@@ -27,7 +27,7 @@ RSpec.describe Deck do
         expect(deck.cards).to eq(cards)
     end
 
-    it "can access rank_of_card_at" do
+    it "can access the rank_of_card_at index number" do
         card1 = Card.new(:diamond, 'Queen', 12)
         card2 = Card.new(:spade, '3', 3)
         card3 = Card.new(:heart, 'Ace', 14)
@@ -125,9 +125,22 @@ RSpec.describe Deck do
         expect(deck.remove_card).to eq(card1)
         expect(deck.cards).to eq([card2, card3])
         expect(deck.add_card(card4)).to eq(cards)
-        # expect(deck.cards.add_card(card4)).to eq([card2, card3, card4])
-
     end
 
+    it "show add_card is in deck" do
+        card1 = Card.new(:diamond, 'Queen', 12)
+        card2 = Card.new(:spade, '3', 3)
+        card3 = Card.new(:heart, 'Ace', 14)
+        cards = [card1, card2, card3]    
+
+        deck = Deck.new(cards)
+
+        card4 = Card.new(:club, '5', 5)
+
+        expect(deck.remove_card).to eq(card1)
+        expect(deck.cards).to eq([card2, card3])
+        expect(deck.add_card(card4)).to eq(cards)
+        expect(deck.cards).to eq(cards)
+    end
 
 end
