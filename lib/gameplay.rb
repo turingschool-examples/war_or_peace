@@ -1,4 +1,5 @@
 class GamePlay
+    attr_reader :player1, :player2, :turns
     
     def initialize(player1, player2)
         @player1 = player1
