@@ -116,5 +116,18 @@ RSpec.describe Turn do
         expect(deck2.cards).to eq([@card7])
     end
 
+    it "awards spoils to the winner after basic turn" do
+        winner = @turn.winner
+        @turn.pile_cards
+        expect(@turn.spoils_of_war).to eq([@card1, @card3])
+        expect(@deck1.cards).to eq([@card2, @card5, @card8])
+        expect(@deck2.cards).to eq([@card4, @card6, @card7])
+
+        @turn.award_spoils(winner)
+        expect(@player1.deck.cards).to eq([@card2, @card5, @card8, @card1, @card3])
+        expect(@player2.deck.cards).to eq([@card4, @card6, @card7])
+    end
+    
+    
 
 end
