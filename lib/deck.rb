@@ -3,7 +3,6 @@ class Deck
 
   def initialize(cards)
     @cards = cards
-    @high_ranking_cards = []
   end
 
   def rank_of_card_at(index)
