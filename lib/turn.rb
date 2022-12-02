@@ -27,22 +27,22 @@ class Turn
     end
   end
 
-    def pile_cards
-      if type == :basic
-        lost_cards = player1.deck.cards.shift
-        @spoils_of_war.unshift(lost_cards)
-        lost_cards = player2.deck.cards.shift
-        @spoils_of_war.unshift(lost_cards)
-      elsif type == :war
-        lost_cards = player1.deck.cards.shift(3)
-        @spoils_of_war.unshift(lost_cards)
-        lost_cards = player2.deck.cards.shift(3)
-        @spoils_of_war.unshift(lost_cards)
-      else
-        player1.deck.cards.shift(3)
-        player2.deck.cards.shift(3)
-     end   
-    end
+  def pile_cards
+    if type == :basic
+      lost_cards = player1.deck.cards.shift
+      @spoils_of_war.unshift(lost_cards)
+      lost_cards = player2.deck.cards.shift
+      @spoils_of_war.unshift(lost_cards)
+    elsif type == :war
+      lost_cards = player1.deck.cards.shift(3)
+      @spoils_of_war.unshift(lost_cards)
+      lost_cards = player2.deck.cards.shift(3)
+      @spoils_of_war.unshift(lost_cards)
+    else
+      player1.deck.cards.shift(3)
+      player2.deck.cards.shift(3)
+    end   
+  end
 
 
     def award_spoils(winner)
