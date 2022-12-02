@@ -1,12 +1,14 @@
 class Turn 
   attr_reader :player1, 
               :player2,
-              :spoils_of_war
+              :spoils_of_war,
+              :winner
 
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
+    @winner = winner
   end
 
   def type
@@ -55,6 +57,11 @@ class Turn
       3.times { player2.deck.remove_card } 
     end
   end
+
+  def award_spoils(winner)
+    @spoils_of_war.each do |spoils|
+      @winner.deck.add_card(spoils)
+    end
+  end
 end
 
-# award_spoils: this method will add each of the cards in the @spoils_of_war array to the winner of the turn.
