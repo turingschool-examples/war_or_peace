@@ -21,6 +21,11 @@ class Turn
         end
     end
 
+    def pile_cards
+        spoils_of_war << player1.deck.cards[0]
+        spoils_of_war << player2.deck.cards[0]
+    end
+
 
     def basic_turn
         #turn is one in which the rank_of_card_at(0)
