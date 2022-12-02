@@ -95,8 +95,14 @@ describe Turn do
         it 'can pile war cards' do
             expected_pile =  []
             expected_pile << @player1.deck.cards[0..2] << @player2.deck.cards[0..2]
+
+            expected_p1_deck = [@player1.deck.cards[3]]
+            expected_p2_deck = [@player2.deck.cards[3]]
+            
             
             expect(@turn.pile_cards).to eq(expected_pile.flatten)
+            expect(@player1.deck.cards).to eq(expected_p1_deck)
+            expect(@player2.deck.cards).to eq(expected_p2_deck)
         end
         
         it 'can award war spoils' do
