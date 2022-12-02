@@ -42,20 +42,22 @@ class Turn
 
     def pile_cards
         if type == :basic
-            # require 'pry';binding.pry
            @spoils_of_war << @player1.deck.remove_card
            @spoils_of_war << @player2.deck.remove_card
         elsif type == :war
-            @spoils_of_war << @player1.deck(0) 
-            @player1.deck(2)
-            @player2.deck(0)
-            @player2.deck(2)
+            @spoils_of_war << @player1.deck.remove_card
+            @spoils_of_war << @player2.deck.remove_card
+            @spoils_of_war << @player1.deck.cards[1]
+            @spoils_of_war << @player2.deck.cards[1]
         else
-            @spoils_of_war << @player1.deck(0) && @player1.deck(2) && @player2.deck(0) && @player2.deck(2)
+            @spoils_of_war << @player1.deck.remove_card
+            @spoils_of_war << @player2.deck.remove_card
+            @spoils_of_war << @player1.deck.cards[1] 
+            @spoils_of_war << @player2.deck.cards[1]
         end
     end
 
-    def award_spoils
+    def award_spoils(winner)
         
     end
 end
