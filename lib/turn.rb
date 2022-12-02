@@ -26,7 +26,12 @@ class Turn
         if type == :basic
             spoils_of_war << @player1.deck.cards.shift
             spoils_of_war << @player2.deck.cards.shift
+        elsif type == :war
+                spoils_of_war << @player1.deck.cards.shift(3)
+                spoils_of_war << @player2.deck.cards.shift(3)
         end
+
+        spoils_of_war.flatten
     end
 
     def award_spoils(winner)
