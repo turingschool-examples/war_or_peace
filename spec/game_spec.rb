@@ -10,7 +10,7 @@ RSpec.describe Game do
     game = Game.new
 
     expect(game).to be_a(Game)
-    expect(game.turn_count).to eq(0)
+    expect(game.turn_count).to eq(1)
   end 
 
   it 'creates a deck of cards' do 

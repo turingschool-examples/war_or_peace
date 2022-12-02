@@ -30,7 +30,9 @@ class Turn
       else 
         @player2
       end
-    elsif type == :mutually_assured_destruction 
+    else
+    #elsif type == :mutually_assured_destruction 
+      #require 'pry'; binding.pry
       "No Winner"
     end
   end

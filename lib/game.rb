@@ -3,7 +3,7 @@ class Game
   attr_reader :turn_count, :deck_of_cards, :player_1, :player_2
 
   def initialize 
-    @turn_count = 0
+    @turn_count = 1
     @deck_of_cards = create_cards
     @player_1 = create_player_one
     @player_2 = create_player_two
@@ -97,16 +97,18 @@ class Game
       end
 
       @turn_count += 1 
+    end
 
-      if turn.player1.has_lost?
-        puts "#{turn.player2.name} has won the game!"
-      elsif turn.player2.has_lost?
-        puts "#{turn.player1.name} has won the game!"
+    if turn.player1.has_lost?
+      puts "#{turn.player2.name} has won the game!"
+    elsif turn.player2.has_lost?
+       puts "#{turn.player1.name} has won the game!"
+    else 
+      puts "=== DRAW ==="
     
-      elsif @turn_count == 1_000_000 
-         puts "=== DRAW ==="
-         #break
-      end 
+    # elsif @turn_count == 1_000_000 
+    #     puts "=== DRAW ==="
+       #break
     end
   end
 end
