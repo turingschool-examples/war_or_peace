@@ -27,6 +27,7 @@ class Turn
             return @player1 if @player1.deck.cards[2].rank > @player2.deck.cards[2].rank
             return @player2
         end
+        return "No Winner"
     end
 
     def pile_cards
