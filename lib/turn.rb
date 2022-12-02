@@ -62,6 +62,21 @@ class Turn
     end
 
     def award_spoils(winner)
-        winner.deck.cards.concat(@spoils_of_war)
+        if winner == @player1 || winner == @player2
+            winner.deck.cards.concat(@spoils_of_war)
+        end
     end
+
+    # def start
+    #     while @player1.deck.size > 0 || @player2.deck.size > 0
+    #         new_turn = Turn.new(player1, player2)
+    #         new_turn.type
+    #         winner = new_turn.winner
+    #         new_turn.pile_cards
+    #         require 'pry'; binding.pry
+    #         p "#{winner.name}"
+    #     end
+       
+    # end
+
 end
