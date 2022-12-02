@@ -30,10 +30,19 @@ describe Turn do
 
   describe '#winner:' do
     it 'determines the winner of the turn for war' do
-      @winner = @turn.winner
-      # @turn.pile_cards
       expect(@turn.winner.name).to eq('Aurora')
       expect(@turn.type).to eq(:war)
     end
   end
+
+  describe '#pile_cards:' do
+    it 'send 3 cards from the players decks into @spoils_of_war' do
+      @winner = @turn.winner
+      @turn.pile_cards
+      expect(@turn.spoils_of_war).to eq([@card1, @card4, @card2, @card3, @card5, @card6])
+      expect(@turn.player1.deck.cards).to eq([@card8])
+      expect(@turn.player2.deck.cards).to eq([@card7])
+    end
+  end
+
 end
