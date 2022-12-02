@@ -9,5 +9,10 @@ class Player
 
     def has_lost?
         @has_lost
+        if @deck.cards.count == 0
+            true
+        elsif @deck.cards.count > 0
+            false
+        end
     end
 end
