@@ -42,41 +42,36 @@ describe Game do
     end
     describe 'Running first parts of game' do
         before do
-            @game = Game.new
+            @deck1 = Deck.new([])
+            @deck2 = Deck.new([])
+            @player1 = Player.new("Megan", @deck1)
+            @player2 = Player.new("Aurora", @deck2)
+            @turn = Turn.new(@player1, @player2)
+            @game = Game.new(@turn)
         end
         it 'splits the shuffled cards to two players' do
             @game.create_cards
             @game.shuffle_cards
             @game.split_deck
-            player1_deck = @game.individual_deck[0]
-            player2_deck = @game.individual_deck[1]
-            
-            expect(player1_deck.count).to eq(26)
-            expect(player2_deck.count).to eq(26)
 
-            deck1 = Deck.new(player1_deck)
-            deck2 = Deck.new(player2_deck)
-            player1 = Player.new('Megan', deck1)
-            player2 = Player.new('Aurora', deck1)
-            expect(player1.deck.cards.count).to eq(26)
-            expect(player2.deck.cards.count).to eq(26)
+            expect(@turn.player1.deck.cards.count).to eq(26)
+            expect(@turn.player2.deck.cards.count).to eq(26)
+
         end
 
-        it 'creates, ' do
-            @game.start
-
-            player1_deck = @game.individual_deck[0]
-            player2_deck = @game.individual_deck[1]
+        it '#handles_cards and assigns to players ' do
+            @game.deal_cards
             
-            expect(player1_deck.count).to eq(26)
-            expect(player2_deck.count).to eq(26)
+            expect(@turn.player1.deck.cards.count).to eq(26)
+            expect(@turn.player2.deck.cards.count).to eq(26)
 
-            deck1 = Deck.new(player1_deck)
-            deck2 = Deck.new(player2_deck)
-            player1 = Player.new('Megan', deck1)
-            player2 = Player.new('Aurora', deck1)
-            expect(player1.deck.cards.count).to eq(26)
-            expect(player2.deck.cards.count).to eq(26)
+            expect(@turn.player1.deck.cards).not_to eq(@turn.player2.deck.cards)
+            # deck1 = Deck.new(player1_deck)
+            # deck2 = Deck.new(player2_deck)
+            # player1 = Player.new('Megan', deck1)
+            # player2 = Player.new('Aurora', deck1)
+            # expect(player1.deck.cards.count).to eq(26)
+            # expect(player2.deck.cards.count).to eq(26)
         end
     end
 end
