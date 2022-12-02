@@ -1,7 +1,7 @@
 require './lib/card'
 require './lib/deck'
 require './lib/player'
-require './lib/turn'
+require './lib/turn2'
 require './lib/card_generator'
 require 'pry'
 
@@ -91,13 +91,37 @@ puts "The players today are Megan and Aurora."
 puts "Type 'GO' to start the game!"
 puts "------------------------------------------------------------------"
 
-megan = Player.new("Megan", player1_deck)
-aurora = Player.new("Aurora", player2_deck)
+player1 = Player.new("Megan", player1_deck)
+player2 = Player.new("Aurora", player2_deck)
 
+counter = 0
 turn = Turn.new(megan, aurora)
 start = gets
 
 if start == "GO\n"
-turn.go
+  loop do
+    counter += 1
+    if turn.type == :basic
+      puts "TURN #{counter}: #{turn.winner.name} won 2 cards"
+    elsif turn.type == :war
+      puts "TURN #{counter}: WAR - #{turn.winner.name} won 6 cards"
+    else 
+      puts "TURN #{counter}: *mutually assured destruction* 6 cards removed from play"
+    end
+   
+    if player1.has_lost?
+      puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
+      break
+    end
+
+    if player2.has_lost?
+      puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
+      break
+    end
+
+    if (counter == 1_000_000)
+      puts "---- DRAW ----"
+        break
+    end
 end
 
