@@ -3,13 +3,15 @@ class Turn
     attr_reader :player1,
     :player2,
     :spoils_of_war,
-    :type
+    :type,
+    :winner
 
     def initialize(player1, player2)
         @player1 = player1
         @player2 = player2
         @spoils_of_war = []
         @type = :basic
+        @winner = winner
     end
 
     def type 
@@ -31,15 +33,15 @@ class Turn
         if @player1.deck.cards.size > 0 && @player2.deck.cards.size > 0
 
             if @type == :basic && @player1.deck.cards.first.rank >  @player2.deck.cards.first.rank
-                winner = @player1
+                @winner = @player1
             elsif @type == :basic && @player2.deck.cards.first.rank >  @player1.deck.cards.first.rank
-                winner = @player2
+                @winner = @player2
             elsif @type == :war && @player1.deck.cards[2].rank > @player2.deck.cards[2].rank
-                winner = @player1
+                @winner = @player1
             elsif @type == :war && @player2.deck.cards[2].rank > @player1.deck.cards[2].rank
-                winner = @player2
+                @winner = @player2
             elsif @type == :mutually_assured_destruction
-                winner = "No Winner"
+                @winner = "No Winner"
             end
         end
 
@@ -71,6 +73,8 @@ class Turn
     def award_spoils(winner)
         if winner == @player1 || winner == @player2
             winner.deck.cards.concat(@spoils_of_war)
+        else
+            @spoils_of_war = []
         end
     end
 
