@@ -130,5 +130,9 @@ describe Turn do
         it 'can get war turn type' do
             expect(@turn.type).to eq(:mutually_assured_destruction)
         end
+
+        it 'can get mutually assured destruction winner' do
+            expect(@turn.winner).to eq("No Winner")
+        end
     end
 end
