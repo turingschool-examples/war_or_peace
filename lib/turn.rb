@@ -7,7 +7,6 @@ class Turn
         @player1 = player1
         @player2 = player2 
         @spoils_of_war = []
-        @discard_pile = []
     end
     
     def type
@@ -46,29 +45,21 @@ class Turn
            @spoils_of_war << @player1.deck.remove_card
            @spoils_of_war << @player2.deck.remove_card
         elsif type == :war
-            @spoils_of_war << @player1.deck.remove_card
-            @spoils_of_war << @player2.deck.remove_card
-            @spoils_of_war << @player1.deck.cards[1]
-            @spoils_of_war << @player2.deck.cards[1]
-            @spoils_of_war << @player1.deck.cards[0]
-            @spoils_of_war << @player2.deck.cards[0]
+            3.times do
+                @spoils_of_war << @player1.deck.remove_card
+                @spoils_of_war << @player2.deck.remove_card
+            end
         else
-            @spoils_of_war << @player1.deck.remove_card
-            @spoils_of_war << @player2.deck.remove_card
-            @spoils_of_war << @player1.deck.cards[1] 
-            @spoils_of_war << @player2.deck.cards[1]
-            @spoils_of_war << @player1.deck.cards[0]
-            @spoils_of_war << @player2.deck.cards[0]
+            3.times do
+                @player1.deck.remove_card
+                @player2.deck.remove_card
+            end
         end
     end
 
+
     def award_spoils(winner)
-       if @player1 == winner
-            @player1.deck.cards << spoils_of_war
-       elsif @player2 == winner
-            @player2.deck.cards  << spoils_of_war
-       else winner == "No winner"
-            @discard_pile << spoils_of_war        
-        end
-    end    
+        winner.deck.cards.concat(@spoils_of_war)
+     end    
 end
+

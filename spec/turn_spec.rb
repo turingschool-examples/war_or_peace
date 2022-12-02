@@ -174,7 +174,7 @@ RSpec.describe Player do
     it 'piles cards for :war' do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
-        card3 = Card.new(:heart, 'Jack', 11)
+        card3 = Card.new(:spade, 'Jack', 11)
         card4 = Card.new(:diamond, 'Jack', 11)
         card5 = Card.new(:heart, '8', 8)  
         card6 = Card.new(:diamond, 'Queen', 12) 
@@ -191,7 +191,7 @@ RSpec.describe Player do
 
         expect(turn.type).to eq(:war)
         turn.pile_cards
-        expect(turn.spoils_of_war).to eq([card1, card3, card5, card6, card2, card4])
+        expect(turn.spoils_of_war).to eq([card1, card3, card2, card4, card5, card6])
     end
 
     it 'piles cards for :mul.' do
@@ -214,7 +214,7 @@ RSpec.describe Player do
         expect(turn.type).to eq(:mutually_assured_destruction)
 
         turn.pile_cards
-        expect(turn.spoils_of_war).to eq([card1, card3, card5, card6, card2, card4])
+        expect(turn.spoils_of_war).to eq([])
     end
 
     it 'awards spoils for :basic' do
@@ -234,21 +234,23 @@ RSpec.describe Player do
         player2 = Player.new("Aurora", deck2)  
 
         turn = Turn.new(player1, player2) 
+        winner = turn.winner
 
         expect(turn.type).to eq(:basic)
         turn.pile_cards
         expect(turn.spoils_of_war).to eq([card1, card3])
         turn.winner
-        turn.award_spoils(player1)
+
+        turn.award_spoils(winner)
         
-        expect(player1.deck).to eq(deck1)
-        expect(player2.deck).to eq(deck2)
+        expect(player1.deck.cards).to eq([card2, card5, card8, card1, card3])
+        expect(player2.deck.cards).to eq([card4, card6, card7])
     end
 
     it 'awards spoils for :war' do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
-        card3 = Card.new(:heart, 'Jack', 11)
+        card3 = Card.new(:spade, 'Jack', 11)
         card4 = Card.new(:diamond, 'Jack', 11)
         card5 = Card.new(:heart, '8', 8)  
         card6 = Card.new(:diamond, 'Queen', 12) 
@@ -263,14 +265,41 @@ RSpec.describe Player do
 
         turn = Turn.new(player1, player2) 
 
-        expect(turn.type).to eq(:war)
-        turn.pile_cards
-        expect(turn.spoils_of_war).to eq([card1, card3, card5, card6, card2, card4])
-        turn.winner
-        turn.award_spoils(player1)
-        # require 'pry'; binding.pry
+        winner = turn.winner
 
-        expect(player1.deck).to eq(deck1)
-        expect(player2.deck).to eq(deck2)
+        expect(turn.type).to eq(:war)
+
+        turn.pile_cards
+        expect(turn.spoils_of_war).to eq([card1, card3, card2, card4, card5, card6])
+        # require 'pry';binding.pry
+        turn.award_spoils(winner)
+        expect(player1.deck.cards).to eq([card8])
+        expect(player2.deck.cards).to eq([card7, card1, card3, card2, card4, card5, card6])
+
+    end
+
+    it 'awards spoils for :mul. assured destrustion' do
+        card1 = Card.new(:heart, 'Jack', 11)
+        card2 = Card.new(:heart, '10', 10)
+        card3 = Card.new(:diamond, 'Jack', 11)
+        card4 = Card.new(:diamond, 'Jack', 11)
+        card5 = Card.new(:heart, '8', 8)  
+        card6 = Card.new(:diamond, '8', 8) 
+        card7 = Card.new(:heart, '3', 3) 
+        card8 = Card.new(:diamond, '3', 3) 
+
+        deck1 = Deck.new([card1, card2, card5, card8])
+        deck2 = Deck.new([card3, card4, card6, card7])
+
+        player1 = Player.new("Megan", deck1) 
+        player2 = Player.new("Aurora", deck2)  
+
+        turn = Turn.new(player1, player2) 
+        winner = turn.winner
+
+        expect(turn.type).to eq(:mutually_assured_destruction)
+        turn.pile_cards
+
+        expect(turn.spoils_of_war).to eq([])
     end
 end    
