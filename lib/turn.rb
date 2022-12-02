@@ -2,11 +2,13 @@ class Turn
     attr_reader :player1,
                 :player2,
                 :spoils_of_war
+                :winner 
 
     def initialize(player1, player2)
          @player1 = player1 
          @player2 = player2
          @spoils_of_war = []
+         @winner = winner
 
     end
 
@@ -35,10 +37,10 @@ class Turn
                     winner = @player2
                end
           elsif type == :mutually_assured_destruction
-               # require 'pry'; binding.pry
                winner = "No Winner"
-        end
-     #    return winner 
+               nil 
+        end 
+        return winner
      end 
 
     def pile_cards
@@ -67,5 +69,9 @@ class Turn
      elsif winner == @player2
           @player2.deck.cards << @spoils_of_war 
      end
+    end
+
+    def start 
+
     end
 end

@@ -20,11 +20,8 @@ describe Turn do
             player1 = Player.new("Megan", deck1)
             player2 = Player.new("Aurora", deck2)
             turn = Turn.new(player1, player2)
-            # require 'pry'; binding.pry
             turn.player1
-            # require 'pry'; binding.pry
             turn.player2
-            # require 'pry'; binding.pry
             
         expect(turn.player1).to eq(player1)
         expect(turn.player2).to eq(player2)    

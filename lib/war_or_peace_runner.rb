@@ -2,7 +2,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
-require 'rspec'
+require './lib/start'
 
 card1 = Card.new(:diamond, '2', 2)
 card2 = Card.new(:spade, '2', 2)
@@ -80,21 +80,27 @@ set_of_cards_deck_2 = []
     all_cards.delete(deleted_card)
 end
 
+# Did the random here again to shuffle them 
 26.times do 
     remaining_cards = all_cards.sample
     set_of_cards_deck_2 << remaining_cards
     all_cards.delete(remaining_cards)
 end
 
+deck1 = Deck.new(set_of_cards_deck_1)
+deck2 = Deck.new(set_of_cards_deck_2)
 
+player1 = Player.new("Hady", deck1)
+player2 = Player.new("Maria Magdalena", deck2)
+turn = Turn.new(player1, player2)
+start= Start.new(player1, player2, turn) 
 
+puts "Welcome to War! (or Peace) This game will be played with 52 cards. The players today are #{player1.name} and #{player2.name}."
+puts "Type GO to start the game!"
+puts "-----------------------------------------------------------"
 
+saygo = gets.chomp 
 
-
-
-
-
-
-deck1 = Deck.new([set_of_cards_deck_1])
-deck2 = Deck.new([set_of_cards_deck_2])
-
+if saygo == "GO"
+    start.start
+end 

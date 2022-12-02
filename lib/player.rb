@@ -9,7 +9,6 @@ class Player
         @deck = deck
         @has_lost = false
         @cards = cards
-
     end
 
     def has_lost?
