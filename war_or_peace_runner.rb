@@ -82,3 +82,14 @@ random_half_2 = cards
 # Create two players with the Decks you created
 player1 = Player.new('Jimbo', random_half_1)
 player2 = Player.new('Pam', random_half_2)
+
+#start the game using a new method called start
+class GamePlay
+    
+    def start
+        GO 
+     p game has started
+    end
+
+
+# end
