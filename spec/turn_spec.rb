@@ -4,7 +4,7 @@ require './lib/player'
 require './lib/turn'
 
 RSpec.describe Turn do
-    it 'exists' do
+    it 'exists and has attributes' do
         card1 = Card.new(:heart, 'Jack', 11) 
         card2 = Card.new(:heart, '10', 10)
         card3 = Card.new(:heart, '9', 9)
@@ -19,9 +19,15 @@ RSpec.describe Turn do
         player2 = Player.new("Aurora", deck2)
         turn = Turn.new(player1, player2)
         expect(turn).to be_an_instance_of(Turn)
+        expect(turn.player1).to eq(player1)
+        expect(turn.player2).to eq(player2)
+        
+        expect(turn.spoils_of_war).to eq([])
+
+
     end
 
-    it '' do
+    it 'takes a turn' do
         card1 = Card.new(:heart, 'Jack', 11) 
         card2 = Card.new(:heart, '10', 10)
         card3 = Card.new(:heart, '9', 9)
@@ -35,6 +41,19 @@ RSpec.describe Turn do
         player1 = Player.new("Megan", deck1)
         player2 = Player.new("Aurora", deck2)
         turn = Turn.new(player1, player2)
-        expect(turn).to be_an_instance_of(Turn)
+        
+        # expect(turn.type).to eq(:basic)
+        # require "pry"; binding.pry
+        expect(turn.winner).to eq(player1)
+        turn.pile_cards
+        expect(turn.spoils_of_war).to eq([card1, card3])
+        # require "pry"; binding.pry
+        turn.award_spoils(turn.winner)
+        expect(player1.deck.cards).to eq([card2, card5, card8, card1, card3])
+        # expect(player1.deck.cards).to eq([card4, card6, card7])
+        expect(turn.type).to eq(:basic)
+        
     end
+
+
 end
