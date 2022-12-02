@@ -8,8 +8,10 @@ class Player
     end
 
     def has_lost?
+        if @deck.cards_arr.count == 0
+            @has_lost = true
+        end
+        
         @has_lost
     end
 end
-
-# require 'pry'; binding.pry
