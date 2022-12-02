@@ -13,29 +13,36 @@ class Turn
     end
 
     def type 
-        if @player1.deck.cards.first.rank != @player2.deck.cards.first.rank
-            @type = :basic
-        elsif @player1.deck.cards.first.rank == @player2.deck.cards.first.rank  && @player1.deck.cards[2].rank != @player2.deck.cards[2].rank#have only played 1 card each
-            @type = :war
-        elsif @player1.deck.cards.first.rank == @player2.deck.cards.first.rank && @player1.deck.cards[2].rank == @player2.deck.cards[2].rank
-            @type = :mutually_assured_destruction
+        if @player1.deck.cards.size > 0 && @player2.deck.cards.size > 0
+
+            if @player1.deck.cards.first.rank != @player2.deck.cards.first.rank
+                @type = :basic
+            elsif @player1.deck.cards.first.rank == @player2.deck.cards.first.rank  && @player1.deck.cards[2].rank != @player2.deck.cards[2].rank#have only played 1 card each
+                @type = :war
+            elsif @player1.deck.cards.first.rank == @player2.deck.cards.first.rank && @player1.deck.cards[2].rank == @player2.deck.cards[2].rank
+                @type = :mutually_assured_destruction
+            end
+    
         end
     end
 
     def winner 
     
-        if @type == :basic && @player1.deck.cards.first.rank >  @player2.deck.cards.first.rank
-            winner = @player1
-        elsif @type == :basic && @player2.deck.cards.first.rank >  @player1.deck.cards.first.rank
-            winner = @player2
-        elsif @type == :war && @player1.deck.cards[2].rank > @player2.deck.cards[2].rank
-            winner = @player1
-        elsif @type == :war && @player2.deck.cards[2].rank > @player1.deck.cards[2].rank
-            winner = @player2
-        elsif @type == :mutually_assured_destruction
-            winner = "No Winner"
-        end
+        if @player1.deck.cards.size > 0 && @player2.deck.cards.size > 0
 
+            if @type == :basic && @player1.deck.cards.first.rank >  @player2.deck.cards.first.rank
+                winner = @player1
+            elsif @type == :basic && @player2.deck.cards.first.rank >  @player1.deck.cards.first.rank
+                winner = @player2
+            elsif @type == :war && @player1.deck.cards[2].rank > @player2.deck.cards[2].rank
+                winner = @player1
+            elsif @type == :war && @player2.deck.cards[2].rank > @player1.deck.cards[2].rank
+                winner = @player2
+            elsif @type == :mutually_assured_destruction
+                winner = "No Winner"
+            end
+        end
+        
     end
 
     def pile_cards
