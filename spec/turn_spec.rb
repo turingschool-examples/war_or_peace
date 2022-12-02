@@ -49,10 +49,14 @@ describe Turn do
         end
 
         it 'can award basic spoils' do
-            expected_deck = @turn.winner.deck.cards
+            expected_deck = @turn.winner.deck.cards[1..3]
             expected_deck << @player1.deck.cards[0] << @player2.deck.cards[0]
 
-            expect(@turn.award_spoils(@turn.winner)).to eq(expected_deck)
+            winner = @turn.winner
+            @turn.pile_cards
+            @turn.award_spoils(winner)
+
+            expect(winner.deck.cards).to eq(expected_deck)
         end
     end
 
@@ -92,10 +96,14 @@ describe Turn do
         end
         
         it 'can award war spoils' do
-            expected_deck = @turn.winner.deck.cards
-            expected_deck << @player1.deck.cards[0..2] << @player2.deck.cards[0.2]
-            #require "pry"; binding.pry
-            expect(@turn.award_spoils(@turn.winner)).to eq(expected_deck.flatten)
+            expected_deck = [@turn.winner.deck.cards[3]]
+            expected_deck << @player1.deck.cards[0..2] << @player2.deck.cards[0..2]
+           
+            winner = @turn.winner
+            @turn.pile_cards
+            @turn.award_spoils(winner)
+
+            expect(winner.deck.cards).to eq(expected_deck.flatten)
         end
     end
 end
