@@ -17,15 +17,25 @@ class Turn
         end
     end
         
-
     
     def winner
-        if @player1.deck.rank_of_cards_at(0) > @player2.deck.rank_of_cards_at(0)
+        if @player1.deck.rank_of_cards_at(0) == @player2.deck.rank_of_cards_at(0) && @player1.deck.rank_of_cards_at(2) == @player2.deck.rank_of_cards_at(2)
+            "No Winner"
+        elsif @player1.deck.rank_of_cards_at(0) == @player2.deck.rank_of_cards_at(0) && @player1.deck.rank_of_cards_at(2) > @player2.deck.rank_of_cards_at(0)
+            player1
+        else @player1.deck.rank_of_cards_at(0) > @player2.deck.rank_of_cards_at(0)
             player1
         end
-
     end
 
+    def pile_cards
+        
+    end
+
+    
+
+        
+    
     
 
 
