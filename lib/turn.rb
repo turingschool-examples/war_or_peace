@@ -12,6 +12,8 @@ class Turn
       return :mutually_assured_destruction
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
       return :war
+    # # if player1 rank at 1 or 2 is nil run new winner method. in new winner method,
+    # determine circumstances of winning the game for each new situation.
     else 
       return :basic
     end
@@ -26,6 +28,12 @@ class Turn
       "No Winner"
     end
   end
+
+  # def winner_low_deck
+  #   if one card is bigger turn type should be basic, execute game and pile cards, continue game
+  #   if there arent enough cards left and cards are the same (war condition), the player with not enough cards loses. 
+
+  # end
 
   def pile_cards
     if type == :basic
