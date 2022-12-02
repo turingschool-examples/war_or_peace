@@ -95,7 +95,7 @@ player1 = Player.new("Megan", player1_deck)
 player2 = Player.new("Aurora", player2_deck)
 
 counter = 0
-turn = Turn.new(megan, aurora)
+turn = Turn.new(player1, player2)
 start = gets
 
 if start == "GO\n"
@@ -108,7 +108,8 @@ if start == "GO\n"
     else 
       puts "TURN #{counter}: *mutually assured destruction* 6 cards removed from play"
     end
-   
+    turn.pile_cards
+    turn.award_spoils
     if player1.has_lost?
       puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
       break
@@ -123,5 +124,10 @@ if start == "GO\n"
       puts "---- DRAW ----"
         break
     end
+    
+    
+
+    # binding.pry
+  end
 end
 
