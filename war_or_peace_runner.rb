@@ -92,4 +92,14 @@ class GamePlay
     end
 
 
-# end
+end
+
+#Welcome Message
+
+p "Welcome to War! (or Peace) This game will be played with 52 cards."
+
+p "The players today are Jimbo and Pam (Michael, please leave them alone!)."
+
+p "Type 'GO' to start the game!"
+
+p -------------------------------------------------------------------------------
