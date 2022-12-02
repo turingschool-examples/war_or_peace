@@ -1,10 +1,10 @@
 class Deck
 
-    attr_reader :cards_arr, :high_cards
+    attr_reader :cards
 
-    def initialize (cards_arr)
-        @cards = cards_arr
-        @high_cards = []
+    def initialize(cards)
+        @cards = cards
+        # @high_cards = []
         # require 'pry'; binding.pry
     end
 
@@ -14,13 +14,22 @@ class Deck
     end
 
     def high_ranking_cards
-        # require 'pry'; binding.pry
-        @cards.each do |card_arr|
-            if card_arr.rank >= 11 
-                @high_cards << card_arr
+        high_cards = []
+        cards.each do |card|
+            if card.rank >= 11 
+                high_cards << card
+                # require 'pry'; binding.pry
             end
         end
-        @high_cards
+        high_cards
+    end
+
+    def percent_high_ranking
+        # require 'pry'; binding.pry
+        high_cards
+        cards.length
+        (2.to_f)/(3.to_f)
+
     end
 end
 
