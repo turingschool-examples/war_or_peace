@@ -137,7 +137,7 @@ RSpec.describe Turn do
       turn = Turn.new(player1, player2)
       winner = turn.winner
 
-      expect(winner).to eq("No winner")
+      expect(winner).to eq("No Winner")
     end 
   end 
 end 
