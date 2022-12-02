@@ -12,4 +12,12 @@ RSpec.describe CardGenerator do
 
     expect(card_generator).to be_a(CardGenerator)
   end
+
+  describe '#cards' do 
+    it 'reads the file and creates card objects from the file' do 
+      card_generator = CardGenerator.new('cards.txt')
+
+      expect(card_generator.cards.length).to eq(52)
+    end
+  end
 end
