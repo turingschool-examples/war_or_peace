@@ -75,5 +75,9 @@ describe Turn do
             
             @turn = Turn.new(@player1, @player2)
         end
+
+        it 'can get war turn type' do
+            expect(@turn.type).to eq(:war)
+        end
     end
 end
