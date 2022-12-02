@@ -39,9 +39,9 @@ class Turn
         @spoils_of_war = @spoils_of_war.flatten
     end
 
-    def award_spoils(winner)
-        #require "pry"; binding.pry
-        winner.deck.cards << pile_cards
-        #require "pry"; binding.pry
+    def award_spoils(winning_player)
+        spoils_of_war.each do |card| 
+            winning_player.deck.cards << card
+        end
     end
 end
