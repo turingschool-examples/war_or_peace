@@ -6,10 +6,6 @@ class Game
     end
 
     def start
-        p intro_message
-    end
-
-    def intro_message
         p "Welcome to War! (or Peace) This game will be played with 52 cards."
         p "The players today are Bob and Joe."
         p "Type 'GO' to start the game!"
@@ -18,7 +14,7 @@ class Game
     end
 
     def input
-        if input == 'GO'
+        if input.upcase == 'GO'
             run_game
         else
             p "Would you like to play a game?"
@@ -26,6 +22,9 @@ class Game
     end
 
     def run_game
+        turn = Turn.new(player1, player2) 
+
+
 
     end
 end
