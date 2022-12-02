@@ -29,15 +29,19 @@ class Turn
 
   def pile_cards
     if type == :basic
-      lost_cards = player1.deck.cards.shift
+      lost_cards = player1.deck.cards[0]
       @spoils_of_war.unshift(lost_cards)
-      lost_cards = player2.deck.cards.shift
+      # @spoils_of_war.unshift(lost_cards)
+      lost_cards = player2.deck.cards[0]
       @spoils_of_war.unshift(lost_cards)
+      # @spoils_of_war.unshift(lost_cards).flatten
     elsif type == :war
       lost_cards = player1.deck.cards.shift(3)
-      @spoils_of_war.unshift(lost_cards)
+      lost_cards.each {|card| @spoils_of_war.unshift(card)}
+      # @spoils_of_war.unshift(lost_cards)
       lost_cards = player2.deck.cards.shift(3)
-      @spoils_of_war.unshift(lost_cards)
+      lost_cards.each {|card| @spoils_of_war.unshift(card)}
+      # @spoils_of_war.unshift(lost_cards).flatten
     else
       player1.deck.cards.shift(3)
       player2.deck.cards.shift(3)

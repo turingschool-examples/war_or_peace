@@ -58,15 +58,15 @@ class Game
       
 
       
-      if turn.player1.deck.cards == []
-        game_winner = turn.player2.name
-        p '*~*~*~* #{game_winner} has won the game! *~*~*~*'
-        break
-      elsif turn.player2.deck.cards == []
-        game_winner= turn.player1.name
-        p '*~*~*~* #{game_winner} has won the game! *~*~*~*'
-        break
-      end
+      # if turn.player1.deck.cards == []
+      #   game_winner = turn.player2.name
+      #   p '*~*~*~* #{game_winner} has won the game! *~*~*~*'
+      #   break
+      # elsif turn.player2.deck.cards == []
+      #   game_winner= turn.player1.name
+      #   p '*~*~*~* #{game_winner} has won the game! *~*~*~*'
+      #   break
+      # end
     end
 
     puts "*~*~*~* Aren't you bored of playing war? No one won the game! *~*~*~*"
