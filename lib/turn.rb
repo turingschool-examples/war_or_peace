@@ -29,10 +29,10 @@ class Turn
 
   def pile_cards
     if type == :basic
-      lost_cards = player1.deck.cards[0]
+      lost_cards = player1.deck.cards.shift
       @spoils_of_war.unshift(lost_cards)
       # @spoils_of_war.unshift(lost_cards)
-      lost_cards = player2.deck.cards[0]
+      lost_cards = player2.deck.cards.shift
       @spoils_of_war.unshift(lost_cards)
       # @spoils_of_war.unshift(lost_cards).flatten
     elsif type == :war
@@ -51,7 +51,7 @@ class Turn
 
     def award_spoils(winner)
       @spoils_of_war.each do |card|
-        winner.deck.cards.unshift(card)
+        winner.deck.cards.push(card)
       end
       @spoils_of_war = []
     end
