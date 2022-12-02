@@ -7,7 +7,6 @@ class Player
     end
 
     def has_lost?
-        #reassigns
         @has_lost = true if deck.cards.empty? 
         @has_lost
     end
