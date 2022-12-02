@@ -9,4 +9,9 @@ class Player
   def has_lost?
     @deck.cards == []
   end
+
+  def rank_of_card_at(number)
+    @deck.cards[number].rank
+  end
+
 end

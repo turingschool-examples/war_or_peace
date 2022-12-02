@@ -16,26 +16,21 @@ attr_reader :player1, :player2, :spoils_of_war
     if @player1.rank_of_card_at(0) != @player2.rank_of_card_at(0)
       return :basic
     else 
-      p1_war = []
-      p2_war = []
-      3.times do
-        p1_war << @player1.deck.cards.shift
-        p2_war << @player2.deck.cards.shift
-        if p1_war.last.rank > p2_war.last.rank
+        if @player1.rank_of_card_at(2)!= @player2.rank_of_card_at(2)
           return :war
         else
           return :mutually_assured_destruction
         end
-      end
     end
   end
+    
+  
 
 
-  def rank_of_card_at(number)
-    deck.cards[number].rank
-  end
+  
 
   def winner
+    # binding.pry
     if @player1.rank_of_card_at(0) > @player2.rank_of_card_at(0)
       return @player1
     elsif @player2.rank_of_card_at(0) > @player1.rank_of_card_at(0)
@@ -46,7 +41,7 @@ attr_reader :player1, :player2, :spoils_of_war
       elsif @player2.rank_of_card_at(2) > @player1.rank_of_card_at(2)
         return @player2
       else
-       return "No winner"
+       return "No Winner"
       end
     end
   end
@@ -69,7 +64,7 @@ attr_reader :player1, :player2, :spoils_of_war
     end
   end
 
-  def award_spoils
+  def award_spoils(winner = @winner)
     if winner == player1
       @player1.deck.cards << @spoils_of_war
     elsif winner == player2  
