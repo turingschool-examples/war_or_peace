@@ -4,7 +4,14 @@ require './lib/player'
 require './lib/turn'
 
 class Game 
-    def start_game
+    def welcome_to_war
+        p "Welcome to War! (or Peace) This game will be played with 52 cards."
+        p "The players today are Megan and Aurora."
+        p "Type 'GO' to start the game!"
+        "------------------------------------------------------------------"
+    end
+    
+    def start_game(input)
         starting_deck = [
         card1 = Card.new(:diamond, "2", 2),
         card2 = Card.new(:diamond, "3", 3),
@@ -60,9 +67,10 @@ class Game
         card52 = Card.new(:spade, "Ace", 14)
         ]
 
-        shuffeld_deck = starting_deck.shuffle!
+        shuffled_deck = starting_deck.shuffle!
 
-        deck1 = shuffeld_deck.first(26)
-        deck2 = shuffeld_deck.last(26)
+        deck1 = shuffled_deck.first(26)
+        deck2 = shuffled_deck.last(26)
     
     end
+end
