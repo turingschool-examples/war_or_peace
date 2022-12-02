@@ -8,8 +8,19 @@ class Turn
     end
 
     def type
-        # if player1.deck.cards[0].rank
+        if player1.deck.cards[0].rank != player2.deck.cards[0].rank
+            :basic
+        end
     end
+
+    def winner
+        if player1.deck.cards[0].rank > player2.deck.cards[0].rank
+            player1
+        else
+            player2
+        end
+    end
+
 
     def basic_turn
         #turn is one in which the rank_of_card_at(0)
