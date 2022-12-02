@@ -58,6 +58,12 @@ class Turn
     end
 
     def award_spoils(winner)
-        
-    end
+       if @player1 == winner
+            @player1.deck.cards << spoils_of_war
+       elsif @player2 == winner
+            @player2.deck.cards  << spoils_of_war
+       else winner == "No winner"
+            6.times. do @spoils_of_war.remove_card        
+        end
+    end    
 end
