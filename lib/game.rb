@@ -1,23 +1,11 @@
+require './lib/card'
+require './lib/deck'
+require './lib/player'
+require './lib/turn'
+
 class Game 
-    attr_reader :player1, :player2, :turn_count
-    
-    def initialize
-        @player1 = player1
-        @player2 = player2
-        @turn_count = 0
-
-    end
-
-    def start
-        p "Welcome to War! (or Peace) This game will be played with 52 cards."
-        p "The players today are Bob and Joe."
-        p "Type 'GO' to start the game!"
-        p "------------------------------------------------------------------"
-        # input = gets.chomp
-    end
-    
-    def play_game(input)
-        bicycle_deck = [
+    def start_game
+        starting_deck = [
         card1 = Card.new(:diamond, "2", 2),
         card2 = Card.new(:diamond, "3", 3),
         card3 = Card.new(:diamond, "4", 4),
@@ -71,41 +59,10 @@ class Game
         card51 = Card.new(:spade, "King", 13),
         card52 = Card.new(:spade, "Ace", 14)
         ]
-        3.times do 
-            bicycle_deck.shuffle!
-        end
-        first_deck = bicycle_deck.sample(26)
-        second_deck = bicycle_deck - first_deck
+
+        shuffeld_deck = starting_deck.shuffle!
+
+        deck1 = shuffeld_deck.first(26)
+        deck2 = shuffeld_deck.last(26)
     
-        player1 = Player.new("Megan", first_deck)
-        player2 = Player.new("Aurora", second_deck)
-        turn = Turn.new(player1, player2)
-        turn_count += 1
-
-        until player1.has_lost? || player2.has_lost? || turn_count == 1_000_000
-            if turn.type == :basic
-                p "---Basic!---"
-            elsif turn.type == :war
-                p "---War!---"
-            elsif turn.type == :mutually_assured_destruction
-                p "---Mutually Assured Destruction!"
-            end
-
-        end
-
-        if player1.has_lost?
-            p "---#{player2.name} has defeated #{player1.name} in War!---"
-        elsif player2.has_lost?
-            p "---#{player1.name} has defeated #{player2.name} in War!---"
-        elsif turn_count == 1_000_000
-            p "---Draw---"
-        end
     end
-
-
-
-
-        
-    
-
-end

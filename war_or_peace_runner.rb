@@ -7,5 +7,5 @@ require './lib/game'
 
 
 game = Game.new
-puts game.start
-game.play_game(gets.chomp)
+puts game.welcome_to_war
+game.start_game(gets.chomp)
