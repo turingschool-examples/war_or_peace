@@ -10,7 +10,6 @@ class Game
     p "The players today are #{turn.player1.name} and #{turn.player2.name}"
     p "Type 'GO' to start the game!"
     p "------------------------------------------------------------------"
-
     choice = gets.chomp.to_s
     choice.downcase == 'go' ? output_game : start
   end
@@ -36,13 +35,11 @@ class Game
     p "#{turn.player1.name} has #{turn.player1.deck.cards.length} cards remaining, the last three cards, top first are #{turn.player1.deck.cards[0].value}"
     p "#{turn.player2.name} has #{turn.player2.deck.cards.length} cards remaining, the last three cards, top first are #{turn.player1.deck.cards[0].value}"
 
-    if turn.player1.deck.cards == []
-      game_winner = turn.player2.name
-      p '*~*~*~* #{game_winner} has won the game! *~*~*~*'
+    if turn.player1.has_lost?
+      p '*~*~*~* #{turn.player2.name} has won the game! *~*~*~*'
       break
-    elsif turn.player2.deck.cards == []
-      game_winner= turn.player1.name
-      p '*~*~*~* #{game_winner} has won the game! *~*~*~*'
+    elsif turn.player1.has_lost? 
+      p '*~*~*~* #{turn.player2.name} has won the game! *~*~*~*'
       break
     end
   end
