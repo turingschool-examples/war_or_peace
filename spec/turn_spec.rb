@@ -134,5 +134,9 @@ describe Turn do
         it 'can get mutually assured destruction winner' do
             expect(@turn.winner).to eq("No Winner")
         end
+
+        it 'can pile cards for mutually assured destruction' do
+            expect(@turn.pile_cards).to eq([])
+        end
     end
 end
