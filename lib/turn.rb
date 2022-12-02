@@ -7,6 +7,7 @@ class Turn
         @player1 = player1
         @player2 = player2 
         @spoils_of_war = []
+        @discard_pile = []
     end
     
     def type
@@ -49,11 +50,15 @@ class Turn
             @spoils_of_war << @player2.deck.remove_card
             @spoils_of_war << @player1.deck.cards[1]
             @spoils_of_war << @player2.deck.cards[1]
+            @spoils_of_war << @player1.deck.cards[0]
+            @spoils_of_war << @player2.deck.cards[0]
         else
             @spoils_of_war << @player1.deck.remove_card
             @spoils_of_war << @player2.deck.remove_card
             @spoils_of_war << @player1.deck.cards[1] 
             @spoils_of_war << @player2.deck.cards[1]
+            @spoils_of_war << @player1.deck.cards[0]
+            @spoils_of_war << @player2.deck.cards[0]
         end
     end
 
@@ -63,7 +68,7 @@ class Turn
        elsif @player2 == winner
             @player2.deck.cards  << spoils_of_war
        else winner == "No winner"
-            6.times. do @spoils_of_war.remove_card        
+            @discard_pile << spoils_of_war        
         end
     end    
 end
