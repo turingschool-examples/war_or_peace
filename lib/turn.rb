@@ -13,7 +13,7 @@ class Turn
     end
 
     def type 
-        if @player1.deck.cards.size > 0 && @player2.deck.cards.size > 0
+        if @player1.deck.cards.size != 0 && @player2.deck.cards.size != 0
 
             if @player1.deck.cards.first.rank != @player2.deck.cards.first.rank
                 @type = :basic
@@ -42,7 +42,7 @@ class Turn
                 winner = "No Winner"
             end
         end
-        
+
     end
 
     def pile_cards
