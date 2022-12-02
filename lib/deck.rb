@@ -4,8 +4,7 @@ class Deck
 
     def initialize(cards)
         @cards = cards
-        # @high_cards = []
-        # require 'pry'; binding.pry
+    
     end
 
     def rank_of_card_at(index)
@@ -26,8 +25,14 @@ class Deck
 
     def percent_high_ranking
         dec_percent = high_ranking_cards.length.to_f/cards.length.to_f
-        dec_percent.round(4) *100   
+        dec_percent.round(4) * 100   
     end
+
+    def remove_card
+    percent_high_ranking
+    @cards.shift
+ end
+ 
 end
 
 
