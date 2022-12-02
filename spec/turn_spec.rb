@@ -76,6 +76,10 @@ describe Turn do
             @turn = Turn.new(@player1, @player2)
         end
 
+        it 'can get war winner' do
+            expect(@turn.winner).to eq(@player2)
+        end
+
         it 'can get war turn type' do
             expect(@turn.type).to eq(:war)
         end
@@ -83,8 +87,15 @@ describe Turn do
         it 'can pile war cards' do
             expected_pile =  []
             expected_pile << @player1.deck.cards[0..2] << @player2.deck.cards[0..2]
-
+            
             expect(@turn.pile_cards).to eq(expected_pile.flatten)
+        end
+        
+        it 'can award war spoils' do
+            expected_deck = @turn.winner.deck.cards
+            expected_deck << @player1.deck.cards[0..2] << @player2.deck.cards[0.2]
+            #require "pry"; binding.pry
+            expect(@turn.award_spoils(@turn.winner)).to eq(expected_deck.flatten)
         end
     end
 end
