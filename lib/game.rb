@@ -33,8 +33,8 @@ class Game
       turn.pile_cards
      end
    
-    p turn.player1.deck.cards.length 
-    p turn.player2.deck.cards.length
+    p "#{turn.player1.name} has #{turn.player1.deck.cards.length} cards remaining, the last three cards, top first are #{turn.player1.deck.cards[0].value}"
+    p "#{turn.player2.name} has #{turn.player2.deck.cards.length} cards remaining, the last three cards, top first are #{turn.player1.deck.cards[0].value}"
 
     if turn.player1.deck.cards == []
       game_winner = turn.player2.name
