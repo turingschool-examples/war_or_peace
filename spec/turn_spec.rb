@@ -59,4 +59,14 @@ describe Turn do
       expect(@turn.player2.deck.cards).to eq([@card4, @card6, @card7])
     end
   end
+
+  describe '#award_spoils:' do
+    it 'adds each of the cards in @spoils_of_war to winner of the turn' do
+      @winner = @turn.winner
+      @turn.pile_cards
+      @turn.award_spoils(@winner)
+      expect(@player1.deck.cards).to eq([@card2, @card5, @card8, @card1, @card3])
+      expect(@player2.deck.cards).to eq([@card4, @card6, @card7])
+    end
+  end
 end
