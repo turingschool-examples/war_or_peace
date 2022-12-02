@@ -42,13 +42,19 @@ class Turn
       @spoils_of_war << player1.deck.remove_card
       @spoils_of_war << player2.deck.remove_card
 
+    elsif type == :war 
+      3.times do
+        @spoils_of_war << player1.deck.remove_card
+        @spoils_of_war << player2.deck.remove_card
+      end
+      
     end
    # @spoils_of_war = @spoils_of_war.flatten
   end
 
   def award_spoils(winner)
-    winner.deck.cards << @spoils_of_war
-    winner.deck.cards.flatten!
+    winner.deck.cards.concat(@spoils_of_war)
+    #winner.deck.cards.flatten!
   end
 
 end
