@@ -3,6 +3,6 @@ class Deck
 
     def initialize(cards)
         # require "pry"; binding.pry
-        @cards = []
+        @cards = cards
     end
 end    
