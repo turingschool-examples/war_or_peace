@@ -40,8 +40,6 @@ class Turn
     end
 
     def award_spoils(winning_player)
-        spoils_of_war.each do |card| 
-            winning_player.deck.cards << card
-        end
+        winning_player.deck.cards.concat(spoils_of_war)
     end
 end
