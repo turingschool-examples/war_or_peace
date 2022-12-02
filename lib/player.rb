@@ -8,11 +8,7 @@ class Player
     end
 
     def has_lost?
-        if @deck == []
-            true
-        else
-            false
-        end
+        @deck.cards == []
     end
 
 end
