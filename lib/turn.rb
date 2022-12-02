@@ -43,9 +43,12 @@ class Turn
       @spoils_of_war << player2.deck.remove_card
 
     end
-    #@spoils_of_war = @spoils_of_war.flatten
+   # @spoils_of_war = @spoils_of_war.flatten
   end
 
-
+  def award_spoils(winner)
+    winner.deck.cards << @spoils_of_war
+    winner.deck.cards.flatten!
+  end
 
 end
