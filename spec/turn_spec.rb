@@ -44,8 +44,12 @@ describe Turn do
 
         it 'can pile basic cards' do
             expected_pile =  [@player1.deck.cards[0], @player2.deck.cards[0]]
+            expected_p1_deck = @player1.deck.cards[1..3]
+            expected_p2_deck = @player2.deck.cards[1..3]
 
             expect(@turn.pile_cards).to eq(expected_pile)
+            expect(@player1.deck.cards).to eq(expected_p1_deck)
+            expect(@player2.deck.cards).to eq(expected_p2_deck)
         end
 
         it 'can award basic spoils' do
