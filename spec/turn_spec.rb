@@ -36,11 +36,64 @@ RSpec.describe Turn do
         expect(@turn.spoils_of_war).to eq([])
     end
 
-    it "has a basic turn type" do 
+    it "determines a basic turn type" do 
 
         expect(@turn.type).to eq(:basic)
+    end
+    
+    
+    it "dertermines a war turn type" do 
+        deck1 = Deck.new([@card1, @card2, @card5, @card8])
+        deck2 = Deck.new([@card1, @card4, @card6, @card7]) 
+        player1 = Player.new("Megan", deck1)
+        player2 = Player.new("Aurora", deck2)
+        
+        turn = Turn.new(player1, player2)
+        
+        expect(turn.type).to eq(:war)
+    end
+
+    it "determines a mututally assured destruction turn type" do
+        deck1 = Deck.new([@card1, @card2, @card5, @card8])
+        deck2 = Deck.new([@card1, @card4, @card5, @card7]) 
+        player1 = Player.new("Megan", deck1)
+        player2 = Player.new("Aurora", deck2)
+        
+        turn = Turn.new(player1, player2)
+
+        expect(turn.type).to eq(:mututally_assured_destruction)
+    end
+    
+    it "determines the winner of a basic turn" do
+        
         expect(@turn.winner).to eq(@player1)
     end
+
+    it "determines the winner of a war turn" do 
+        deck1 = Deck.new([@card1, @card2, @card5, @card8])
+        deck2 = Deck.new([@card1, @card4, @card6, @card7]) 
+        player1 = Player.new("Megan", deck1)
+        player2 = Player.new("Aurora", deck2)
+
+        turn = Turn.new(player1, player2)
+
+        expect(turn.winner).to eq(player2)
+    end
+
+    it "determines mutually assured destruction" do 
+        deck1 = Deck.new([@card1, @card2, @card5, @card8])
+        deck2 = Deck.new([@card1, @card4, @card5, @card7]) 
+        player1 = Player.new("Megan", deck1)
+        player2 = Player.new("Aurora", deck2)
+
+        turn = Turn.new(player1, player2)
+
+        expect(turn.winner).to eq("No Winner")
+
+    end
+
+    
+
 
     xit "can pile cards" do 
 

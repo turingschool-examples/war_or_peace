@@ -11,13 +11,12 @@ class Turn
         @spoils_of_war = []
         
         def type
-           if   @player1.deck.rank_of_cards_at(0) != @player2.deck.rank_of_cards_at(0)
-                :basic
+           if  @player1.deck.rank_of_cards_at(0) == @player2.deck.rank_of_cards_at(0) && @player1.deck.rank_of_cards_at(2) == @player2.deck.rank_of_cards_at(2)
+                :mututally_assured_destruction 
            elsif @player1.deck.rank_of_cards_at(0) == @player2.deck.rank_of_cards_at(0)
                 :war
            else
-                @player1.deck.rank_of_cards_at(0) == @player2.deck.rank_of_cards_at(0) && @player1.deck.rank_of_cards_at(2) == @player2.deck.rank_of_cards_at(2)
-                :mututally_assured_destruction
+                :basic
            end
         end
 
@@ -27,13 +26,20 @@ class Turn
                     @player1
                 else
                     @player2
-
-
                 end
-
+            elsif type == :war
+               if   @player1.deck.rank_of_cards_at(2) > @player2.deck.rank_of_cards_at(2)
+                    @player1
+               else
+                    @player2
+               end
+            else
+                "No Winner"
             end
 
         end
+
+        
 
 
 
