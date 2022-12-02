@@ -182,5 +182,4 @@ RSpec.describe Game do
       expect(game.game_result_display).to be_a(String)
     end
   end
-
 end
