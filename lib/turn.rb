@@ -62,26 +62,23 @@ class Turn
     end
 
     def award_spoils(winner)
-        if type == :basic
-            if winner = player1
-                2.times do
+        if type == :basic && winner == player1
+            2.times do
                 @player1.deck.cards << spoils_of_war.shift
-                end
-            else 
-                2.times do
-                    @player2.deck.cards << spoils_of_war.shift
-                end
             end
-        else 
-            if winner = player1
-                6.times do
+        elsif type == :basic && winner != player1
+            2.times do
+                   @player2.deck.cards << spoils_of_war.shift
+            end
+        elsif type == :war && winner == player1
+            6.times do
                 @player1.deck.cards << spoils_of_war.shift
-                end
-            else 
-                6.times do
-                    @player2.deck.cards << spoils_of_war.shift
-                end
             end
+        elsif type == :war && winner != player1
+            6.times do
+                @player2.deck.cards << spoils_of_war.shift
+            end
+        
         end
     end
 end
