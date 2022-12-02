@@ -59,22 +59,16 @@ class Turn
                 @spoils_of_war << player1.deck.remove_card
                 @spoils_of_war << player2.deck.remove_card
             end
-                spoils_of_war.clear        
+                @spoils_of_war.clear        
         end
 
             
     end
 
-    def award_spoilers(winner)
-        if winner == player1
-            player1.deck << @spoils_of_war
+    def award_spoils(winner)
         
-        elsif winner == player2
-            player2.deck << @spoils_of_war
+        winner.deck.cards.concat(@spoils_of_war)
 
-        else
-            spoils_of_war.clear
-        end
     end
 
 
