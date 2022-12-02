@@ -65,5 +65,6 @@ second_deck = bicycle_deck - first_deck
 
 player1 = Player.new("Megan", first_deck)
 player2 = Player.new("Aurora", second_deck)
-
-Game.start
+# require "pry"; binding.pry  
+game = Game.new(game)
+game.start
