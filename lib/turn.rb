@@ -40,8 +40,8 @@ class Turn
     end
 
     def award_spoils(winner)
-        require "pry"; binding.pry
-            winner_pile = winner.deck.cards
-            winner.deck.cards = winner_pile.flatten
+        #require "pry"; binding.pry
+        winner.deck.cards << pile_cards
+        #require "pry"; binding.pry
     end
 end
