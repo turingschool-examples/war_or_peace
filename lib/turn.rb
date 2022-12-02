@@ -32,7 +32,6 @@ class Turn
       end
     else
     #elsif type == :mutually_assured_destruction 
-      #require 'pry'; binding.pry
       "No Winner"
     end
   end

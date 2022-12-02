@@ -1,6 +1,6 @@
 class Game 
 
-  attr_reader :turn_count, :deck_of_cards, :player_1, :player_2
+  attr_reader :turn_count, :deck_of_cards, :player_1, :player_2, :turn
 
   def initialize 
     @turn_count = 1
@@ -40,7 +40,7 @@ class Game
   end 
 
 
-  
+
   def create_player_one 
     deck_1 = Deck.new(@deck_of_cards[0..7])
     player_1 = Player.new("Megan", deck_1)
@@ -119,7 +119,9 @@ class Game
     elsif @turn.player2.has_lost?
         "\n*~*~*~* #{@turn.player1.name} has won the game! *~*~*~*"
     else 
-       "\n========== DRAW =========="
+       
+       "\nTurn: #{@turn_count - 1}
+       \n========== DRAW =========="  
     end
   end
 end 

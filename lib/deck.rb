@@ -10,9 +10,9 @@ class Deck
     #If there aren't enough cards to draw for a war
     #type of turn, ruby can't call the index at 2
     #since there are only cards at @cards[0] and @cards[1]
-    temp = @cards[given_index]
-    puts "Card count is #{@cards.count} and given index is #{given_index}. Not enough cards in the deck to play" if temp.nil?
-    temp.rank
+    check_rank = @cards[given_index]
+    puts "Card count is #{@cards.count} and given index is #{given_index}. Not enough cards in the deck to play" if check_rank.nil?
+    check_rank.rank
   end
 
   def high_ranking_cards 
