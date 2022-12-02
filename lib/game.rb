@@ -1,7 +1,7 @@
 class Game
     attr_reader :turn, :cards, :shuffled_cards, :individual_deck
 
-    def initialize ()
+    def initialize (turn)
         @turn = turn
         @cards = []
         @shuffled_deck = []
@@ -38,21 +38,13 @@ class Game
     end
 
     def split_deck
-        @individual_deck = @cards.each_slice(26).to_a
+        @individual_deck = @shuffled_deck.each_slice(26).to_a
     end
 
     def start
-        ans = gets.chomp('')
-        if ans = 'GO'
-            true
-        end
+        self.create_cards
+        self.shuffle_cards
+        self.split_deck
     end
 
-    # def next_turn
-
-    # end
-
-    # def shuffle_cards
-
-    # end
 end

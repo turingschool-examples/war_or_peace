@@ -9,32 +9,31 @@ class Turn
     end
 
     def type
-        if (player1.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2)) == (player2.deck.rank_of_card_at(0) && player2.deck.rank_of_card_at(2))
+        if  (@player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)) && (@player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2))
             return :mutually_assured_destruction
-        elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+        elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
             return :war
         else
-            :basic
+            return :basic
         end
     end
 
     def winner
         if type == :basic
-            if @player1.deck.cards[0].rank > player2.deck.cards[0].rank
+            if @player1.deck.cards[0].rank > @player2.deck.cards[0].rank
                 return @player1
             else
                 return @player2
 
             end
         elsif type == :war
-            if player1.deck.cards[2].rank > player2.deck.cards[2].rank
-                # @winner = player1
+
+            if @player1.deck.cards[2].rank > @player2.deck.cards[2].rank
                 return @player1
             else
-                # @winner = player2
                 return @player2
             end
-        else
+        elsif type == :mutually_assured_destruction
             return 'No Winner'
         end
     end
@@ -62,6 +61,8 @@ class Turn
             (@player2.deck.cards).concat(@spoils_of_war)
             @spoils_of_war.clear
             return @player2.deck.cards
+        else
+
         end
     end
 end

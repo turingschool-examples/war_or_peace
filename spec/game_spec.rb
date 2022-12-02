@@ -21,7 +21,7 @@ describe Game do
             @player1 = Player.new("Megan", @deck1)
             @player2 = Player.new("Aurora", @deck2)
             @turn = Turn.new(@player1, @player2)
-            @game = Game.new()
+            @game = Game.new(@turn)
         end
 
         it 'is an instance of the Game class' do
@@ -62,8 +62,21 @@ describe Game do
             expect(player2.deck.cards.count).to eq(26)
         end
 
-        it 'starts game' do
-            expect(@game.start).to be true
+        it 'creates, ' do
+            @game.start
+
+            player1_deck = @game.individual_deck[0]
+            player2_deck = @game.individual_deck[1]
+            
+            expect(player1_deck.count).to eq(26)
+            expect(player2_deck.count).to eq(26)
+
+            deck1 = Deck.new(player1_deck)
+            deck2 = Deck.new(player2_deck)
+            player1 = Player.new('Megan', deck1)
+            player2 = Player.new('Aurora', deck1)
+            expect(player1.deck.cards.count).to eq(26)
+            expect(player2.deck.cards.count).to eq(26)
         end
     end
 end
