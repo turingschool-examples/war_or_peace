@@ -74,30 +74,40 @@ class Game
     turn = Turn.new(@player_1, @player_2)
     turn_type = turn.type 
 
-    while (player_1.has_lost? == false) || (player_2.has_lost? == false) || (@turn_count < 1_000_000)
-      if turn.type == :basic || turn.type == :war
-        @turn_count += 1
+    while (player_1.has_lost? == false) && (player_2.has_lost? == false) && (@turn_count <= 1_000_000)
+      if turn.type == :basic 
+      
+        puts "Turn #{@turn_count}: #{turn.winner.name} won 2 cards"
         winner = turn.winner 
         turn.pile_cards 
-        num_cards_won = turn.spoils_of_war.count
         turn.award_spoils(winner) 
         turn.spoils_of_war.clear
         
-        if turn_type == :basic
-          puts "Turn #{@turn_count}: #{turn.winner.name} won #{num_cards_won} cards" 
-        elsif turn_type == :war
-          puts "Turn #{@turn_count}: WAR #{turn.winner.name} won #{num_cards_won} cards" 
-        end
+        
+      elsif turn_type == :war 
+
+        turn.type == :basic #|| turn.type == :war
+        #@turn_count += 1
+        puts "Turn #{@turn_count}: WAR #{turn.winner.name} won 6 cards"
+        winner = turn.winner 
+        turn.pile_cards 
+        turn.award_spoils(winner) 
+        turn.spoils_of_war.clear
+        
 
       elsif turn.type == :mutually_assured_destruction 
-        @turn_count += 1 
+        #@turn_count += 1 
+        puts "Turn #{@turn_count}: *Mutually Assured Destruction* 6 cards removed from play" 
         turn.pile_cards 
+        turn.spoils_of_war.clear
+      end
 
-        puts "Turn #{@turn_count}: *Mutually Assured Destruction* 6 cards removed from play"
-
-      elsif @turn_count == 1_000_000 
-        puts "=== DRAW ==="
-      end 
+        @turn_count += 1
+    
+      if @turn_count == 1_000_000 
+         puts "=== DRAW ==="
+         break
+       end 
     end
 
 
