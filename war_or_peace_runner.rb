@@ -3,6 +3,7 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
+require './lib/game'
 
 bicycle_deck = [
     card1 = Card.new(:diamond, "2", 2),
@@ -61,8 +62,8 @@ bicycle_deck = [
 
 first_deck = bicycle_deck.sample(26)
 second_deck = bicycle_deck - first_deck
-# require "pry"; binding.pry
-p first_deck
-p second_deck
 
-    
+player1 = Player.new("Megan", first_deck)
+player2 = Player.new("Aurora", second_deck)
+
+Game.start
