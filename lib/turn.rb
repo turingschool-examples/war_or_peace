@@ -7,7 +7,9 @@ class Turn
         @spoils_of_war = []
     end
 
-    def turn
+    def type
+        # if player1.deck.cards[0].rank
+    end
 
     def basic_turn
         #turn is one in which the rank_of_card_at(0)
