@@ -9,10 +9,10 @@ it 'exists' do
     card2 = Card.new(:spade, '3', 3) 
     card3 = Card.new(:heart, 'Ace', 14)
 # require 'pry'; binding.pry
-    cards_arr = [card1, card2, card3]
+    cards = [card1, card2, card3]
 
-    deck = Deck.new(cards_arr)
-    expect(cards_arr).to eq([card1, card2, card3])
+    deck = Deck.new(cards)
+    expect(cards).to eq([card1, card2, card3])
   end
 end
 
@@ -49,7 +49,7 @@ it 'will return high ranking cards' do
 end
 
 RSpec.describe Deck do
-  xit 'will return percentage high ranking cards' do
+  it 'will return percentage high ranking cards' do
 
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3) 
