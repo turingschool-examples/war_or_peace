@@ -136,7 +136,12 @@ describe Turn do
         end
 
         it 'can pile cards for mutually assured destruction' do
+            expected_p1_deck = [@player1.deck.cards[3]]
+            expected_p2_deck = [@player2.deck.cards[3]]
+
             expect(@turn.pile_cards).to eq([])
+            expect(@player1.deck.cards).to eq(expected_p1_deck)
+            expect(@player2.deck.cards).to eq(expected_p2_deck)
         end
     end
 end
