@@ -79,4 +79,6 @@ random_half_1 = cards.sample(26)
 
 random_half_2 = cards
 
-
+# Create two players with the Decks you created
+player1 = Player.new('Jimbo', random_half_1)
+player2 = Player.new('Pam', random_half_2)
