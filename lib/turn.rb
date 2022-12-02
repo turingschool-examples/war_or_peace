@@ -47,7 +47,13 @@ class Turn
         @spoils_of_war << player1.deck.remove_card
         @spoils_of_war << player2.deck.remove_card
       end
-      
+
+    else type == :mutually_assured_destruction
+      3.times do
+        @spoils_of_war << player1.deck.remove_card
+        @spoils_of_war << player2.deck.remove_card
+      end
+        @spoils_of_war.clear
     end
    # @spoils_of_war = @spoils_of_war.flatten
   end
