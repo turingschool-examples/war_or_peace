@@ -74,4 +74,9 @@ cards << Card.new(:spade, 'Jack', 11)
 cards << Card.new(:spade, 'Queen', 12)
 cards << Card.new(:spade, 'King', 13)
 
+#create two decks w/ random assignment of 26 cards
+random_half_1 = cards.sample(26)
+
+random_half_2 = cards
+
 
