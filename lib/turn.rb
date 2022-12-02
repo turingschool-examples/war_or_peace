@@ -39,7 +39,8 @@ class Turn
             else 
                 player2
             end
-        else
+        else 
+            "No Winner"
         end
 
     end
