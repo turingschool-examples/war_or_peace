@@ -32,15 +32,8 @@ describe Turn do
   end
 
   describe '#type' do
-    it 'has a :basic turn types' do
+    it 'has a :basic turn type' do
       expect(@turn.type).to eq(:basic)
-
-      # create test for :winner and :spoils_of_war
-      # it 'has a :winner turn types' do
-      # expect(turn.type).to eq(:war)
-      # it 'has a :mutually_assured_destruction turn types' do
-      # expect(turn.type).to eq(:mutually_assured_destruction)
-      # expect(turn.).to eq()
     end
   end
 
