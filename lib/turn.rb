@@ -40,13 +40,19 @@ class Turn
             end
         else 
             3.times do
-                @spoils_of_war << player1.deck.remove_card
-                @spoils_of_war << player2.deck.remove_card
+                player1.deck.remove_card
+                player2.deck.remove_card
             end
         end
     end
 
+    def award_spoils(winner)
+
+    end
     
+
+
+
 
     
 
