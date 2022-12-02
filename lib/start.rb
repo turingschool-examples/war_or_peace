@@ -9,27 +9,29 @@ def initialize(player1, player2, turn)
 end 
 def start 
     number = 0
-    until @player1.deck.cards.count == 0 || @player2.deck.cards.count==0 
+    while (@player1.has_lost? == false && @player2.has_lost? == false)
     @turn.type
     @turn.winner
     @turn.pile_cards
     @turn.award_spoils(@turn.winner)
     number += 1
-    if turn.type == :basic
-        p "Turn #{number}: #{@turn.winner.name} won 2 cards."
-    elsif turn.type == :war 
-        p "Turn #{number}:WAR - #{@turn.winner.name} won 6 cards."
-    elsif turn.type == :mutually_assured_destruction
-        p "Turn #{number}: *mutually assured destruction* 6 cards removed from play"
+    puts "Turn number #{number}
+     player 1 cards: #{@player1.deck.cards.count}
+     player 2 cards: #{@player2.deck.cards.count}"
+    if @player1.has_lost? == true
+        puts "#{player1.name} loses"
+        puts "#{number}"
+        puts "#{player1.name} : #{@player1.deck.cards.count}. 
+        #{player2.name} : #{@player2.deck.cards.count}"
+    elsif @player2.has_lost? == true
+        puts "#{player2.name} loses"
+        puts "#{number}"
+        puts "#{player1.name} : #{@player1.deck.cards.count}. 
+        #{player2.name} : #{@player2.deck.cards.count}"
     end 
-    require 'pry'; binding.pry
+    end
 end 
-require 'pry'; binding.pry
 
-    puts "TEST"
-    
-    
-end
 
 end 
 
