@@ -6,8 +6,10 @@ class Player
     end
     
     def has_lost?
-        if deck.cards.count > 0 then false
-        elsif deck.cards.count == 0 then true
+        if deck.cards.count > 0 
+            false
+        elsif deck.cards.count == 0 
+            true
         end 
     end
 end
