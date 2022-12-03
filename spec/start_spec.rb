@@ -23,4 +23,8 @@ describe Start do
         
         @turn = Turn.new(@player1, @player2)
     end
+
+    it 'exists' do
+        expect(Start.new(@turn)).to be_a(Start)
+    end
 end
