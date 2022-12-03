@@ -152,5 +152,4 @@ RSpec.describe Turn do
 
         expect(winner).to eq("No Winner")
     end
-
 end
