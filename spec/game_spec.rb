@@ -4,7 +4,6 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 require './lib/game'
-require './lib/war_or_peace_runner'
 
 RSpec.describe Game do
     it "exists" do
@@ -23,7 +22,8 @@ RSpec.describe Game do
         player1 = Player.new("Megan", deck1)
         player2 = Player.new("Aurora", deck2)
 
-        turn = Turn.new(player1, player2)
+        game = Game.new(player1, player2)
 
-        expect(turn).to be_an_instance_of(Turn)
+        expect(game).to be_an_instance_of(Game)
     end
+end
