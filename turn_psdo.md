@@ -7,5 +7,3 @@
       
 ## Approach:
     - When first learing about hashes, I only remember seeing the :symbol and local variables being used for key => value pair keys, and then a various data type used for the vaules. If any of the data within the hash solution is to be dynamic, I may need to use @instance_variables for either key or value elements of the hash.
-
-    - 
