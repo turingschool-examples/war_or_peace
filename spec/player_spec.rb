@@ -40,6 +40,6 @@ RSpec.describe Player do
             player = Player.new('Clarisa', deck)
           
             expect(player.has_lost?).to eq(true)
-          end
+        end
     end
 end
