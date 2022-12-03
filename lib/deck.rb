@@ -18,7 +18,7 @@ class Deck
             high_rankers << card
           end
         end
-        
+
        high_rankers
     end
 
@@ -32,6 +32,7 @@ class Deck
 
     def add_card(new_card)
         @cards << new_card
+        # @cards.push(card) 
     end
 
 

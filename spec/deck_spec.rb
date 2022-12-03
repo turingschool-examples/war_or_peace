@@ -180,6 +180,9 @@ RSpec.describe Deck do
         deck.remove_card
         deck.add_card(card4)
 
+        # I'm leaving this old work to remember I what I originally had to make the test pass.
+        # Then I learned that we can call methods inside the test once they're created!
+
         # expect(deck.remove_card).to eq(card1)
         # expect(deck.cards).to eq([card2, card3])
         # expect(deck.add_card(card4)).to eq(cards)
