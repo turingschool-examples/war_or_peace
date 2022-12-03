@@ -18,7 +18,8 @@ class Deck
             high_rankers << card
           end
         end
-       
+        
+       high_rankers
     end
 
     def percent_high_ranking
