@@ -88,6 +88,12 @@ describe Turn do
             expect(@turn.winner).to eq(@player2)
         end
 
+        it 'can get game over winner' do
+            @player2.deck.cards.pop(2)
+
+            expect(@turn.winner).to eq(@player1)
+        end
+
         it 'can get war turn type' do
             expect(@turn.type).to eq(:war)
         end
