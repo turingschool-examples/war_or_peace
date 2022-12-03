@@ -44,4 +44,3 @@ describe Turn do
     end
   end
 end
-end
