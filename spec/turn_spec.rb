@@ -138,7 +138,7 @@ describe Turn do
             winner = turn.winner
 
 
-            expect(turn.type).to eq(:war)
+            expect(turn.type).to eq(:normal_war)
             expect(winner).to eq(player2)
  
         end 
@@ -273,9 +273,10 @@ describe Turn do
             turn = Turn.new(player1, player2)
             turn.type
             winner = turn.winner
+            # require 'pry'; binding.pry
             turn.pile_cards
             turn.spoils_of_war
-            expect(turn.spoils_of_war).to be_empty
+            expect(turn.spoils_of_war).to eq([])
             expect(player1.deck).to eq(deck1)
             expect(player2.deck).to eq(deck2)
 

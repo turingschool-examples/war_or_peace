@@ -31,3 +31,8 @@
         #     p "#{player1.name} : #{@player1.deck.cards.count}. #{player2.name} : #{@player2.deck.cards.count}"
     #     end
     # # end 
+
+
+
+            # elsif (@player2.deck.cards.count < 3 && @player1.deck.cards.count < 3) && (@player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)) && (@player2.deck.rank_of_card_at(-1) != @player1.deck.rank_of_card_at(-1))
+          #                :bothplowcardwar

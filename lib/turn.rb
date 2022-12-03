@@ -3,7 +3,6 @@ class Turn
                 :player2,
                 :spoils_of_war
                 :winner 
-               #  :no_winner
 
     def initialize(player1, player2)
          @player1 = player1 
@@ -12,55 +11,40 @@ class Turn
          @winner = winner
     end
 
-    def type 
-          if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
-                         :basic
-          elsif (@player1.deck.cards.count >= 3 && @player2.deck.cards.count >= 3) && (@player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)) && (@player1.deck.rank_of_card_at(2) != @player2.deck.rank_of_card_at(2))
-                         :normal_war 
-          elsif (@player1.deck.cards.count < 3 && @player2.deck.cards.count >= 3) && (@player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)) && (@player1.deck.rank_of_card_at(-1) != @player2.deck.rank_of_card_at(2))
-                         :p1lowcardswar
-          elsif (@player2.deck.cards.count < 3 && @player1.deck.cards.count >= 3) && (@player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)) && (@player2.deck.rank_of_card_at(-1) != @player1.deck.rank_of_card_at(2))
-                         :p2lowcardswar
-          elsif (@player2.deck.cards.count < 3 && @player1.deck.cards.count < 3) && (@player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)) && (@player2.deck.rank_of_card_at(-1) != @player1.deck.rank_of_card_at(-1))
-                         :bothplowcardwar
-          elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
-                         :mutually_assured_destruction
+    def type
+          if @player1.deck.cards.count < 3 || @player2.deck.cards.count < 3
+               return :basic
+
+          elsif (@player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)) && (@player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2))
+               return :mutually_assured_destruction
+
+          elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
+               return :war 
+
+          else
+          # if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+               return :basic
+
           end
     end
 
     def winner
         if type == :basic 
                if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
-                    winner = @player1
-               elsif @player2.deck.rank_of_card_at(0) > @player1.deck.rank_of_card_at(0)
-                    winner = @player2
+                    return @player1
+               else
+                    return @player2
                end
-          elsif type == :normal_war  
+               
+          elsif type == :war  
                if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
-                    winner = @player1
-               elsif @player2.deck.rank_of_card_at(2) > @player1.deck.rank_of_card_at(2)
-                    winner = @player2
+                    return @player1
+               else
+                    return @player2
                end
-          elsif type == :p1lowcardswar
-               if @player1.deck.rank_of_card_at(-1) > @player2.deck.rank_of_card_at(2)
-                    winner = @player1
-               elsif @player2.deck.rank_of_card_at(2) > @player1.deck.rank_of_card_at(-1)
-                    winner = @player2                         
-               end
-          elsif type == :p2lowcardswar
-               if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(-1)
-                    winner = @player1
-               elsif @player2.deck.rank_of_card_at(-1) > @player1.deck.rank_of_card_at(2)
-                    winner = @player2
-               end 
-          elsif type == :bothplowcardwar
-               if @player1.deck.rank_of_card_at(-1) > @player2.deck.rank_of_card_at(-1)
-                    winner = @player1
-               elsif @player2.deck.rank_of_card_at(-1) > @player1.deck.rank_of_card_at(-1)
-                    winner = @player2
-               end 
+
           elsif type == :mutually_assured_destruction
-               winner = nil
+               winner = "No Winner"
         end 
      end 
 
@@ -68,43 +52,28 @@ class Turn
           if type == :basic
                @spoils_of_war << @player1.deck.remove_card 
                @spoils_of_war << @player2.deck.remove_card 
+              
 
           elsif type == :mutually_assured_destruction 
-               3.times do 
-               @spoils_of_war << @player1.deck.remove_card 
-               @spoils_of_war << @player2.deck.remove_card 
-               require 'pry'; binding.pry
-               end 
+               (@player1.deck.cards).replace(@player1.deck.cards.drop(3))
+               (@player2.deck.cards).replace(@player2.deck.cards.drop(3))
 
-          elsif type == :normal_war 
+          elsif type == :war 
                3.times do 
                @spoils_of_war << @player1.deck.remove_card 
                @spoils_of_war << @player2.deck.remove_card 
-               # require 'pry'; binding.pry
+               
                end 
                
           end 
      end
 
     def award_spoils(winner)
-     
-     if (type == :basic || :normal_war) && winner == @player1 
-          @spoils_of_war.each do |spoil|
-          @player1.deck.cards << spoil 
-          end 
-          
-     elsif (type == :basic || :normal_war) && winner == @player2
-          @spoils_of_war.each do |spoil|
-          @player2.deck.cards << spoil 
-
-          end  
-
-     elsif type == :mutually_assured_destruction    
-require 'pry'; binding.pry
+     if type == :mutually_assured_destruction
+               "do nothing"
+     elsif type == :basic || :war 
+          (winner.deck.cards).concat(@spoils_of_war)
           @spoils_of_war.clear
-          
      end
-     @spoils_of_war.clear 
-    end
-
+     end 
 end
