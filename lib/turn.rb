@@ -18,12 +18,13 @@ class Turn
     end
     
     def winner
-        if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)    
-            player1 
+        if turn = :basic
+            # player1 
         else     
-        # else player1.deck.rank_of_card_at(0) < player2.deck.rank_of_card_at(0)   
-            player2 
+            # player2 
         end
     end
+
+
 
 end

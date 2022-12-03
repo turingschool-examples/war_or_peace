@@ -19,7 +19,6 @@ class Deck
           end
         end
        
-        high_rankers
     end
 
     def percent_high_ranking
