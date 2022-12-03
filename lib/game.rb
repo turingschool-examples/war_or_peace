@@ -22,8 +22,8 @@ class Game
        p "Type 'GO' to start the game!"
        p "------------------------------------------------------------------"
 
-       message = gets.chomp
-         if message == "GO" || "go" || "gO" "Go"
+       message = gets.chomp.upcase
+         if message == "GO"
            begin_game
          else
             start
@@ -33,7 +33,7 @@ class Game
     def begin_game
         turn_num = 0
 
-        until turn_num == 1_000_000
+        until turn_num == 1_000_000 || (@player1.has_lost? == true || @player2.has_lost? == true)
             winner = @turn.winner
             @turn.pile_cards
             turn_num +=1
@@ -45,16 +45,21 @@ class Game
                 @turn.award_spoils(winner)
                 p "Turn #{turn_num}: WAR - #{winner.name} has won 6 cards"
             else 
-                P "Turn #{turn_num}: *mutually assured destruction* 6 cards removed from play"
+                p "Turn #{turn_num}: *mutually assured destruction* 6 cards removed from play"
             end
             
-            check_winner 
+            check_winner(turn_num)
         end
     end
 
-    def check_winner
-        
-
+    def check_winner(turn_num)
+        if @player1.has_lost? == true
+            p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+        elsif @player2.has_lost? == true
+            p "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+        elsif turn_num == 1_000_000 
+            p "---- DRAW ----"
+        end
     end
 
 end
