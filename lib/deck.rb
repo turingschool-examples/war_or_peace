@@ -4,7 +4,7 @@ class Deck
 
     def initialize(cards)
         @cards = cards
-        @high_cards = []
+        # @high_cards = []
     end
 
     def rank_of_card_at(index) 
@@ -13,6 +13,7 @@ class Deck
 
 
     def high_ranking_cards
+        @high_cards = []
         
         cards.each do |card|
             if card.rank >= 11
