@@ -90,7 +90,7 @@ RSpec.describe Turn do
         expect(turn.type).to eq(:basic)
     end
 
-    xit "determines turn winner" do
+    it "determines turn winner" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)    
         card3 = Card.new(:heart, '9', 9) 
@@ -107,7 +107,7 @@ RSpec.describe Turn do
         player2 = Player.new("Aurora", deck2)  
         
         turn = Turn.new(player1, player2)
-
+        
         expect(turn.winner).to eq(player1)
     end
 
@@ -128,6 +128,7 @@ RSpec.describe Turn do
         player2 = Player.new("Aurora", deck2)  
         
         turn = Turn.new(player1, player2)
+        winner = turn.winner
 
         # expect(turn.pile_cards).to eq()
     end
