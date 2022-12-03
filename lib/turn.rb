@@ -11,17 +11,14 @@ class Turn
     end
 
     def type
-        if 
-            player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
+        if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+            :war
+        else player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
             :basic
         end
     end
 
     def winner
-        # if type =
-
-        # elsif
-
         if type == :basic
             if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
             player1
@@ -38,7 +35,6 @@ class Turn
         @spoils_of_war << player2.deck.cards.shift
     end
 
-    # Not working
     def award_spoils(winner)
         winner.deck.cards << spoils_of_war.shift until spoils_of_war.empty?
 
