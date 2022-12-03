@@ -15,9 +15,11 @@ class Turn
     end
 
     def type 
-        if @player1.deck.cards.size > 0 && @player2.deck.cards.size > 0
+        if @player1.has_lost? == false && @player2.has_lost? == false
 
-            if @player1.deck.cards.first.rank != @player2.deck.cards.first.rank
+            if @player1.deck.cards.size < 3 || @player2.deck.cards.size <3
+                @type = :basic
+            elsif @player1.deck.cards.first.rank != @player2.deck.cards.first.rank 
                 @type = :basic
             elsif @player1.deck.cards.first.rank == @player2.deck.cards.first.rank  && @player1.deck.cards[2].rank != @player2.deck.cards[2].rank#have only played 1 card each
                 @type = :war
@@ -79,6 +81,8 @@ class Turn
             @player2.deck.remove_card
 
         end
+
+        @spoils_of_war = @spoils_of_war.shuffle
        
     end
 
