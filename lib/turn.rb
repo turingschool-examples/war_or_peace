@@ -28,6 +28,9 @@ class Turn
         elsif type == :war
             return @player1 if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
             return @player2
+        elsif type == :game_over
+            return @player1 if @player2.deck.cards[2] == nil
+            return @player2
         end
         return "No Winner"
     end
