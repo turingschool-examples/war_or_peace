@@ -116,6 +116,15 @@ describe Turn do
             expect(@player1.deck.cards).to eq(expected_p1_deck)
             expect(@player2.deck.cards).to eq(expected_p2_deck)
         end
+
+        it 'can shuffle spoils' do
+            @turn.pile_cards
+            unshuffled_spoils = @turn.spoils_of_war
+            @turn.shuffle_spoils
+
+            expect(@turn.spoils_of_war.length).to eq(6)
+            expect(@turn.spoils_of_war).not_to eq(unshuffled_spoils)
+        end
         
         it 'can award war spoils' do
             expected_deck = [@turn.winner.deck.cards[3]]
