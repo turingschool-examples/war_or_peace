@@ -111,7 +111,7 @@ RSpec.describe Turn do
         expect(turn.winner).to eq(player1)
     end
 
-    xit "makes a pile_cards" do
+    it "makes a pile_cards" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)    
         card3 = Card.new(:heart, '9', 9) 
@@ -128,9 +128,10 @@ RSpec.describe Turn do
         player2 = Player.new("Aurora", deck2)  
         
         turn = Turn.new(player1, player2)
-        winner = turn.winner
+        # winner = turn.winner
+        turn.pile_cards
 
-        # expect(turn.pile_cards).to eq()
+        expect(turn.spoils_of_war).to eq([card1, card3])
     end
 
 
