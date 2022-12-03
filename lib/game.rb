@@ -10,11 +10,15 @@ class Game
     p "The players today are #{turn.player1.name} and #{turn.player2.name}"
     p "Type 'GO' to start the game!"
     p "------------------------------------------------------------------"
-    choice = gets.chomp.to_s
-    choice.downcase == 'go' ? output_game : start
+    choice
   end
 
-  def output_game
+  def choice
+    user_input = gets.chomp.to_s.downcase
+    user_input == 'go' ? play_game : start
+  end
+
+  def play_game
     i = 0
     100_000_000.times do
     i += 1
@@ -23,11 +27,11 @@ class Game
       else
         p "Turn #{i}: *mutually assured desctruction* #{turn.pile_cards.length} removed from play."
       end 
-    break if game_over == true
+    break if game_over? == true
     end
   end  
 
-  def game_over  
+  def game_over?  
     if turn.player1.has_lost?
       p "*~*~*~* #{turn.player2.name} has won the game! *~*~*~*"
       true
@@ -36,7 +40,7 @@ class Game
       true
     end
   end
-  
+
 end     
 
 
