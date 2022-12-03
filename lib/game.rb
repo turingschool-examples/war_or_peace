@@ -1,4 +1,4 @@
-class Start 
+class Game 
     attr_reader :player1,
                 :player2 
 
