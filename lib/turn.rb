@@ -48,6 +48,7 @@ class Turn
             end
             # spoils_of_war << (player1.deck.remove_card).3.times
             # spoils_of_war << (player2.deck.remove_card).3.times
+            
         # else type == :mutually_assured_destruction
         #     spoils_of_war << player1.deck.remove_card
         #     spoils_of_war << player2.deck.remove_card
