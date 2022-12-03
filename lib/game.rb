@@ -15,9 +15,8 @@ class Game
     
     
     def start_game(input)
-        input = gets.chomp.upcase
-        if input == "GO"
-            starting_deck = [
+        if input.upcase == "GO"
+          starting_deck = [
             card1 = Card.new(:diamond, "2", 2),
             card2 = Card.new(:diamond, "3", 3),
             card3 = Card.new(:diamond, "4", 4),
@@ -88,12 +87,19 @@ class Game
             turn_counter += 1
             
                 if turn.type == :war
-                p "War! #{turn.winner.name} wins the war!"
+                    winner = turn.winner
+                    turn.award_spoils(winner)
+                    p "~~~Turn #{turn_counter}~~~"
+                    p "War! #{turn.winner.name} wins the war!"
                 elsif turn.type == :mutually_assured_destruction
-                p "Mutually Assured Destruction! Both players lose!"
+                    p "~~~Turn #{turn_counter}~~~"
+                    p "Mutually Assured Destruction! Both players lose!"
                 elsif turn.type == :basic
-                p "~~~Turn #{turn_counter}~~~"
-                p "#{turn.winner.name} gains 2 cards!"
+                    winner = turn.winner
+                    turn.award_spoils(winner)
+                    p "~~~Turn #{turn_counter}~~~"
+                    p "#{turn.winner.name} gains 2 cards!"
+                    turn.award_spoils(winner)
                 end
 
                 if player1.has_lost? 

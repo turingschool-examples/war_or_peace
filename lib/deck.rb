@@ -1,5 +1,8 @@
+
+
 class Deck 
     attr_reader :cards
+                
     
     def initialize(cards = [])
         @cards = cards
@@ -9,6 +12,7 @@ class Deck
         if @cards[index].nil?
             0
         else
+            # require "pry"; binding.pry
             @cards[index].rank
         end
     end

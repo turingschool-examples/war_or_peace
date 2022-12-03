@@ -68,8 +68,9 @@ class Turn
     end
 
     def award_spoils(winner)
-        winner.deck.cards << spoils_of_war
+        winner.deck.cards.push(*spoils_of_war)
         spoils_of_war.clear
     end
 end
+
 
