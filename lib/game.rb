@@ -38,7 +38,7 @@ class Game
       elsif turn.type == :special
         round_winner = turn.winner
         turn.pile_cards
-        p "Turn: #{i}: WAR - #{round_winner.name} won #{turn.spoils_of_war.length} cards"
+        p "Turn: #{i}: SPECIAL(low cards rules) - #{round_winner.name} won #{turn.spoils_of_war.length} cards"
         turn.award_spoils(round_winner)
         game_over?
       else
