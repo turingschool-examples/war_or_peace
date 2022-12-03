@@ -22,10 +22,12 @@ attr_reader :player1, :player2, :spoils_of_war
         elsif @player1.rank_of_card_at(2) == @player2.rank_of_card_at(2)
           return :mutually_assured_destruction
         end
-      else return :tiebreaker
+      else #this describes the scenario where the first cards tie, but there are not enough
+           #cards for a :war or :mutually_assured_destruction
+        return :tiebreaker
+      end 
     end
   end
-end
   
 
 
