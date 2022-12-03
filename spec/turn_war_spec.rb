@@ -52,6 +52,7 @@ describe Turn do
       @turn.award_spoils(@winner)
       expect(@player1.deck.cards).to eq([@card8])
       expect(@player2.deck.cards).to eq([@card7, @card1, @card4, @card2, @card3, @card5, @card6])
+      expect(@turn.spoils_of_war).to eq([])
     end
   end
 end
