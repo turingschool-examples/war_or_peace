@@ -21,11 +21,15 @@ describe Start do
         player1 = Player.new("Megan", deck1)
         player2 = Player.new("Aurora", deck2)     
         
-        turn = Turn.new(player1, player2)
-        @start = Start.new(turn)
+        @turn = Turn.new(player1, player2)
+        @start = Start.new(@turn)
     end
 
     it 'exists' do
         expect(@start).to be_a(Start)
+    end
+
+    it 'has readable attribute' do
+        expect(@start.turn).to eq(@turn)
     end
 end
