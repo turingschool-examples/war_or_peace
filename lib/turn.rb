@@ -63,8 +63,6 @@ class Turn
 
     def award_spoils(winner)
         #winner.deck.cards << spoils_of_war.shift until spoils_of_war.empty?
-        # shuffle_spoil = spoils_of_war.shuffle
-        # winner.deck.cards << shuffle_spoil.shift until shuffle_spoil.empty?
         winner.deck.add_card(@spoils_of_war.shuffle!.shift) until @spoils_of_war.empty?
     end
 
