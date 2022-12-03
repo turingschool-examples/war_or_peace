@@ -28,32 +28,21 @@ class Game
         turn.pile_cards
         p "Turn #{i}: #{round_winner.name} won #{turn.spoils_of_war.length} cards"
         turn.award_spoils(round_winner)
-        # p "last turn was basic"
-        # p "#{turn.player1.name} has #{turn.player1.deck.cards} left"
-        # p "#{turn.player2.name} has #{turn.player2.deck.cards} left"
         game_over?
       elsif turn.type == :war
         round_winner = turn.winner
         turn.pile_cards
         p "Turn: #{i}: WAR - #{round_winner.name} won #{turn.spoils_of_war.length} cards"
         turn.award_spoils(round_winner)
-        # p "last turn was war"
-        # p "#{turn.player1.name} has #{turn.player1.deck.cards} left"
-        # p "#{turn.player2.name} has #{turn.player2.deck.cards} left"
         game_over?
-      #maybe
       elsif turn.type == :special
         round_winner = turn.winner
         turn.pile_cards
         p "Turn: #{i}: WAR - #{round_winner.name} won #{turn.spoils_of_war.length} cards"
         turn.award_spoils(round_winner)
-        # p "last turn was special"
         game_over?
       else
         turn.pile_cards
-        # p "Turn #{i}: *mutually assured destruction* 6 cards removed from play." 
-        # p "#{turn.player1.name} has #{turn.player1.deck.cards} left"
-        # p "#{turn.player2.name} has #{turn.player2.deck.cards} left"
         game_over?
       end 
     end
