@@ -73,7 +73,7 @@ class Game
     def start
         # require 'pry'; binding.pry
         deal_cards
-        until @turn.player1.has_lost? || @turn.player2.has_lost? || @turns == 10000
+        until @turn.player1.has_lost? || @turn.player2.has_lost? || @turns == 1_000_000
             turn = Turn.new(@player1, @player2)
             display_turn_winner
             display_winner
@@ -108,9 +108,9 @@ class Game
             @turns += 1
             puts "Turn #{@turns}: #{winner.name} has won 2 cards Report: #{winner.deck.cards.count} "
         end
-        if @turns == 100
-            require 'pry'; binding.pry
-            puts 'TEST'
+        if @turns == 1_000_000
+            # require 'pry'; binding.pry
+            puts '---- DRAW ----'
         end
     end
 
