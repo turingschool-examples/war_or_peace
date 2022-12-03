@@ -32,7 +32,7 @@ counter = 0
 turn = Turn.new(player1, player2)
 start = gets
 
-if start == "GO\n" || "go\n"
+if start.upcase == "GO\n"
   loop do
     counter += 1
     if turn.type == :basic
@@ -41,7 +41,7 @@ if start == "GO\n" || "go\n"
       puts "TURN #{counter}: WAR - #{turn.winner.name} won 6 cards"
     elsif turn.type == :mutually_assured_destruction
       puts "TURN #{counter}: *mutually assured destruction* 6 cards removed from play"
-    else 
+    else #tiebreaker phase
       if player1.deck.cards.length > player2.deck.cards.length
         puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
         break
