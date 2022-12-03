@@ -17,9 +17,6 @@ RSpec.describe Deck do
     deck = Deck.new(cards)
     
     expect(deck.cards).to eq (cards)
-    # expect(card.suit).to eq(:diamond)
-    # expect(card.value).to eq('Queen')
-    # expect(card.rank).to eq(12)
   end
 
   it "should return rank of a specific card in the deck" do

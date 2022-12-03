@@ -41,6 +41,7 @@ describe Turn do
         end
 
         it 'use #pile_cards to send cards to @spoils_of_war' do
+            require 'pry'; binding.pry
             winner = @turn.winner
             @turn.pile_cards
 

@@ -5,6 +5,5 @@ require './lib/turn'
 require './lib/game'
 require './lib/card_generator'
 
-game = Game.new
+game = Game.new.start
 
-game.ask_for_input

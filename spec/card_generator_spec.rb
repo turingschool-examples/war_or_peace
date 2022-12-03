@@ -15,7 +15,6 @@ describe CardGenerator do
         it 'can read the file' do
             filename = File.open('cards.txt')
             cards = CardGenerator.new(filename)
-            # file_data.split("\n")
             expect(cards.read_file).to include("2, Heart, 2", "3, Heart, 3","4, Heart, 4", "5, Heart, 5", "6, Heart, 6", "7, Heart, 7","8, Heart, 8", "6, Club, 6", "7, Club, 7", "8, Club, 8", "9, Club, 9", "10, Club, 10", "Jack, Club, 11", "Queen, Club, 12", "King, Club, 13", "Ace, Club, 14")
         end
 

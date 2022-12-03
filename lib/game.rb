@@ -1,5 +1,5 @@
 class Game
-    attr_reader :turn, :cards, :shuffled_cards, :individual_deck
+    attr_reader :turn, :cards, :shuffled_cards, :individual_deck, :deck1, :deck2, :player1, :player2, :display_turn_winner
 
     def initialize ()
         @filename = "cards.txt"
@@ -7,7 +7,6 @@ class Game
         @shuffled_deck = []
         @individual_deck = []
         @turns = 0
-        # @card_gen = CardGenerator.new(@filename)
         @deck1 = Deck.new([])
         @deck2 = Deck.new([])
         @player1 = Player.new('Megan', @deck1)
@@ -15,61 +14,29 @@ class Game
         @turn = Turn.new(@player1, @player2)
     end
 
-    # def create_cards
-    #     heart_cards = []
-    #     diamond_cards = []
-    #     spade_cards = []
-    #     club_cards = []
-
-    #     13.times do |i|
-    #         heart_cards << Card.new(:heart, (i+1).to_s, i+1)
-    #     end
-
-    #     13.times do |i|
-    #         diamond_cards << Card.new(:diamond, (i+1).to_s, i+1)
-    #     end
-
-    #     13.times do |i|
-    #         spade_cards << Card.new(:spade, (i+1).to_s, i+1)
-    #     end
-
-    #     13.times do |i|
-    #         club_cards << Card.new(:club, (i+1).to_s, i+1)
-    #     end
-
-    #     @cards = [heart_cards, spade_cards, club_cards, diamond_cards].flatten
-    # end
-
-    # def create_cards
-    #     require 'pry'; binding.pry
-    #     @cards = @cards_gen.cards
-    # end
-
     def shuffle_cards
         @shuffled_deck = @cards.shuffle
     end
 
     def split_deck
         @individual_deck = @shuffled_deck.each_slice(26).to_a
-        # require 'pry'; binding.pry
-        @turn.player1.deck.cards.concat(@individual_deck[0])
-        @turn.player2.deck.cards.concat(@individual_deck[1])
+        @deck1.cards.concat(@individual_deck[0])
+        @deck2.cards.concat(@individual_deck[1])
     end
 
     def deal_cards
-        # self.create_cards
-        self.shuffle_cards
-        self.split_deck
+        shuffle_cards
+        split_deck
     end
 
-    def ask_for_input
+    def start
         puts 'Welcome to War! (or Peace) This game will be played with 52 cards.'
         puts "Type 'GO' to start the game!"
         puts "The players today are Megan and Aurora."
         puts '------------------------------------------------------------------'
         answer = gets.chomp
         if answer.upcase == 'GO'
-            start
+            turn_loop
         else
             puts "Goodbye!"
             sleep(3)
@@ -77,46 +44,33 @@ class Game
         end
     end
 
-    def start
-        # require 'pry'; binding.pry
+    def turn_loop
         deal_cards
         until @turn.player1.has_lost? || @turn.player2.has_lost? || @turns == 1_000_000
-            turn = Turn.new(@player1, @player2)
             display_turn_winner
             display_winner
         end
-        
-
     end
 
     def display_turn_winner
         if @turn.type == :mutually_assured_destruction
-            # require 'pry'; binding.pry
-            # require 'pry'; binding.pry
             @turn.pile_cards
-            # require 'pry'; binding.pry
             @turns += 1
             puts "*mutually assured destruction* 6 cards removed from play"
         elsif @turn.type == :war
-            # require 'pry'; binding.pry
             winner = @turn.winner
             @turn.pile_cards
-            # require 'pry'; binding.pry
             @turn.award_spoils(winner)
-            # require 'pry'; binding.pry
             @turns += 1
             puts "Turn #{@turns}: WAR - #{winner.name} won 6 cards Report: #{winner.deck.cards.count}"
         elsif @turn.type == :basic
-            # require 'pry'; binding.pry
             winner = @turn.winner
             @turn.pile_cards
             @turn.award_spoils(winner)
-            # require 'pry'; binding.pry
             @turns += 1
             puts "Turn #{@turns}: #{winner.name} has won 2 cards Report: #{winner.deck.cards.count} "
         end
         if @turns == 1_000_000
-            # require 'pry'; binding.pry
             puts '---- DRAW ----'
         end
     end
