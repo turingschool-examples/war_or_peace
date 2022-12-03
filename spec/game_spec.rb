@@ -4,6 +4,7 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 require './lib/game'
+require './lib/card_generator'
 
 RSpec.describe Game do 
   it 'exists and has a turn count' do 
@@ -13,24 +14,19 @@ RSpec.describe Game do
     expect(game.turn_count).to eq(1)
   end 
 
-  it 'creates a deck of cards' do 
+  it 'has a deck of cards' do 
     game = Game.new 
 
-    # expect(game.deck_of_cards).to eq([]) 
-    expect(game.deck_of_cards.length).to eq(16)
+    expect(game.deck_of_cards.length).to eq(52)
   end
 
   describe '#create_cards' do 
     it 'creates card objects' do 
-
-      # temporary test for the create cards method
       game = Game.new 
 
-      # expect(game.deck_of_cards).to eq([])
-
       game.create_cards
-    
-      expect(game.deck_of_cards.length).to eq(16)
+  
+      expect(game.deck_of_cards.length).to eq(52)
     end
   end 
 
@@ -39,19 +35,19 @@ RSpec.describe Game do
       game = Game.new  
       game.create_cards 
       game.create_player_one
-      deck1 = game.deck_of_cards[0..7]
+      deck1 = game.deck_of_cards[0..25]
       player_1 = Player.new("Megan", deck1)
 
       expect(game.player_1.name).to eq("Megan")
     end
   end 
 
-  describe '#create_player_one' do 
-    it 'creates player 1 with a deck' do 
+  describe '#create_player_two' do 
+    it 'creates player 2 with a deck' do 
       game = Game.new  
       game.create_cards 
-      game.create_player_one
-      deck1 = game.deck_of_cards[8..15]
+      game.create_player_two
+      deck1 = game.deck_of_cards[26..51]
       player_2 = Player.new("Aurora", deck1)
 
       expect(game.player_2.name).to eq("Aurora")
