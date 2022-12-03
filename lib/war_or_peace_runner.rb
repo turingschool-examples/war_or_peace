@@ -63,9 +63,9 @@ card52 = Card.new(:spade, '2', 2)
 
 
 
-deck1 = Deck.new([card31, card4, card18, card11, card37, card13, card14, card15, card21, card23, card25, card20, card29, card30, card26, card32, card36, card12, card38, card39, card42, card1, card45, card46, card10, card2])
+deck1 = Deck.new([card31, card4, card18, card11, card37, card13, card14, card15, card21, card23, card25, card20, card29, card30, card26, card32, card36, card12, card3, card39, card42, card1, card45, card46, card10, card2])
 
-deck2 = Deck.new([card27, card51, card5, card40, card8, card9, card34, card16, card17, card6, card19, card3, card22, card24, card7, card43, card33, card44, card35, card47, card41, card28, card48, card49, card50, card52])
+deck2 = Deck.new([card27, card51, card5, card40, card8, card9, card34, card16, card17, card6, card19, card38, card22, card24, card7, card43, card33, card44, card35, card47, card41, card28, card48, card49, card50, card52])
 
 player1 = Player.new('Megan', deck1)
 player2 = Player.new('Aurora', deck2)
