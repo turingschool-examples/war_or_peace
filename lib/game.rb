@@ -32,18 +32,18 @@ class Game
         counter = 0
 
         until counter == 1_000_000 || @player1.has_lost? || @player2.has_lost?
+            type = @turn.type
             winner = @turn.winner
             @turn.pile_cards
             counter += 1
-            type = @turn.type
             if type == :basic
                 @turn.award_spoils(winner)
-                p "Turn #{counter}: #{winner.name} won 2 cards"
+                puts "Turn #{counter}: #{winner.name} won 2 cards"
             elsif type == :war
                 @turn.award_spoils(winner)
-                p "Turn #{counter}: #{winner.name} won 6 cards"
-            else 
-                p "Turn #{counter}: *mutually assured destruction* 6 cards removed from play"
+                puts "Turn #{counter}: #{winner.name} won 6 cards"
+            elsif type == :mutually_assured_destruction
+                puts "Turn #{counter}: *mutually assured destruction* 6 cards removed from play"
             end
 
             check_winner(counter)
@@ -53,11 +53,11 @@ class Game
 
     def check_winner(counter)
         if @player1.has_lost? == true
-            p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+            puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
         elsif @player2.has_lost? == true
-            p "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+            puts "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
         elsif counter == 1_000_000
-            p "---- DRAW ----"
+            puts "---- DRAW ----"
         end
     end
 end

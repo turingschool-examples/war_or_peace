@@ -249,8 +249,8 @@ describe Turn do
         turn.pile_cards
         expect(turn.spoils_of_war).to eq([card1, card4, card2, card3, card8, card6])
         turn.award_spoils(winner)
-        expect(turn.player1.deck.cards).to eq([card5]) 
-        expect(turn.player2.deck.cards).to eq([card7, card1, card4, card2,card3, card8, card6])   
+        expect(turn.player1.deck.cards.size).to eq(1) 
+        expect(turn.player2.deck.cards.size).to eq(7)   
     end
 
     it "mutual_destruction" do 

@@ -25,7 +25,7 @@ class Turn
         
         return winner_war if type == :war
         
-        "No Winner"
+        return "No Winner" if type == :mutually_assured_destruction
     end
 
     def winner_basic
