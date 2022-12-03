@@ -8,8 +8,15 @@ class Game
     end
 
     def game_ended?(player)
-        #require "pry"; binding.pry
         return true if player.deck.cards.length == 0
         return false
+    end
+
+    def play_turn
+        turn = Turn.new(@player1, @player2)
+        winner = turn.winner
+
+        turn.pile_cards
+        turn.award_spoils(winner)
     end
 end
