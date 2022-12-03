@@ -11,13 +11,6 @@ describe Player do
         @player = Player.new('Clarisa', @deck) 
     end   
     describe '#initialize' do
-        it 'requires cards and decks' do
-            expect(@card1).to be_a(Card)
-            expect(@card2).to be_a(Card)
-            expect(@card3).to be_a(Card)
-            expect(@deck).to be_a(Deck) 
-        end
-
         it 'is an instance of the Player class' do
             expect(@player).to be_a(Player)
         end
@@ -43,7 +36,7 @@ describe Player do
             expect(@player.has_lost?).to be false
             expect(@player.deck.remove_card).to eq(@card3)
             expect(@player.has_lost?).to be true
-            expect(@player.deck).to eq(@deck)
+            expect(@player.deck.cards).to eq([])
         end
     end  
 end
