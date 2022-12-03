@@ -11,11 +11,6 @@ describe Deck do
         @deck = Deck.new(@cards)
     end 
     describe '#initialize' do
-        it 'references the Card class' do
-            expect(@card1).to be_a(Card)
-            expect(@card2).to be_a(Card)
-            expect(@card3).to be_a(Card)
-        end 
         it 'is an instance of Deck' do
             expect(@deck).to be_a(Deck)
         end 
