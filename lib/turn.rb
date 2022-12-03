@@ -32,7 +32,7 @@ class Turn
         return player2
       end
       
-    elsif type == :mutually_assured_destruction
+    else type == :mutually_assured_destruction
       return 'No Winner'
     end
   end
@@ -55,12 +55,9 @@ class Turn
       end
         @spoils_of_war.clear
     end
-   # @spoils_of_war = @spoils_of_war.flatten
   end
 
   def award_spoils(winner)
     winner.deck.cards.concat(@spoils_of_war)
-    #winner.deck.cards.flatten!
   end
-
 end
