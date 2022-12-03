@@ -1,7 +1,6 @@
 require 'rspec'
 require './lib/card'
 require './lib/deck'
-require 'pry'
 
 describe Deck do
   it "exists" do

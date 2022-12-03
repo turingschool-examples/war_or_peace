@@ -1,9 +1,8 @@
 require './lib/card'
 require './lib/deck'
 require './lib/player'
-require 'pry'
 
-RSpec.describe Player do
+describe Player do
   it "exists" do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
@@ -19,7 +18,7 @@ RSpec.describe Player do
     card3 = Card.new(:heart, 'Ace', 14)
     deck = Deck.new([card1, card2, card3])
     player = Player.new('Clarisa', deck)
-    expect(player.name).to eq('Clarisa')
+    expect(player.name).to eql('Clarisa')
   end
 
   it "has a deck" do
@@ -31,17 +30,16 @@ RSpec.describe Player do
     expect(player.deck).to be_an_instance_of(Deck)
   end
 
-
-  it "will not lose the game by default" do
+  it "will not lose the game if there are cards in it's deck" do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
     deck = Deck.new([card1, card2, card3])
     player = Player.new('Clarisa', deck)
-    expect(player.has_lost?). to eq(false)
+    expect(player.has_lost?). to eql(false)
   end
 
-  it "will lose the game when the deck is empty " do 
+  it "will lose the game when it's deck is empty " do 
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
     card3 = Card.new(:heart, 'Ace', 14)
