@@ -2,9 +2,9 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/turn'
-require './lib/start'
+require './lib/game'
 
-describe Start do
+describe Game do
     before(:each) do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)  
@@ -21,15 +21,15 @@ describe Start do
         @player1 = Player.new("Megan", deck1)
         @player2 = Player.new("Aurora", deck2)     
 
-        @start = Start.new(@player1, @player2)
+        @game = Game.new(@player1, @player2)
     end
 
     it 'exists' do
-        expect(@start).to be_a(Start)
+        expect(@game).to be_a(Game)
     end
 
     it 'has readable attribute' do
-        expect(@start.player1).to eq(@player1)
-        expect(@start.player2).to eq(@player2)
+        expect(@game.player1).to eq(@player1)
+        expect(@game.player2).to eq(@player2)
     end
 end
