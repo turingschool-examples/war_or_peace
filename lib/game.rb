@@ -23,31 +23,34 @@ class Game
     1_000_000.times do
 
     i += 1
-    game_over?
       if turn.type == :basic 
         round_winner = turn.winner
         turn.pile_cards
         p "Turn #{i}: #{round_winner.name} won #{turn.spoils_of_war.length} cards"
         turn.award_spoils(round_winner)
+        game_over?
       elsif turn.type == :war
         round_winner = turn.winner
         turn.pile_cards
         p "Turn: #{i}: WAR - #{round_winner.name} won #{turn.spoils_of_war.length} cards"
         turn.award_spoils(round_winner)
+        game_over?
       else
-        p "Turn #{i}: *mutually assured destruction* 6 cards removed from play."
+        turn.pile_cards
+        p "Turn #{i}: *mutually assured destruction* 6 cards removed from play." 
+        game_over?
       end 
-    break if game_over? == true
     end
   end  
 
   def game_over?  
     if turn.player1.has_lost?
       p "*~*~*~* #{turn.player2.name} has won the game! *~*~*~*"
-      true
+      exit
+    
     elsif turn.player1.has_lost? 
       p "*~*~*~* #{turn.player2.name} has won the game! *~*~*~*"
-      true
+      exit
     end
   end
 
