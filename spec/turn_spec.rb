@@ -197,7 +197,7 @@ RSpec.describe Turn do
       turn = Turn.new(player1, player2)
       turn.pile_cards
       
-      expect(turn.spoils_of_war).to eq[[]]
+      expect(turn.spoils_of_war).to eq([])
     end 
   end 
       
