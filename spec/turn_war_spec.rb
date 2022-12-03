@@ -54,5 +54,4 @@ describe Turn do
       expect(@player2.deck.cards).to eq([@card7, @card1, @card4, @card2, @card3, @card5, @card6])
     end
   end
-
 end
