@@ -29,7 +29,9 @@ describe Turn do
   turn = Turn.new(player1, player2) 
   expect(turn.player1).to be_a(Player)
   expect(turn.player2).to be_a(Player)
+  turn.pile_cards
   expect(turn.spoils_of_war).to be_an(Array)
+  expect(turn.spoils_of_war.size).to eq(2)
   expect(turn.type).to eq(:basic)
     end
 
@@ -49,12 +51,17 @@ it 'has a winner and awards cards' do
   turn = Turn.new(player1, player2) 
 
   expect(turn.winner).to eq(player1)
+  winner = turn.winner
   turn.pile_cards
   expect(turn.spoils_of_war).to be_an(Array)
-  winner = turn.winner
+  expect(turn.spoils_of_war.size).to eq(2)
+  
   turn.award_spoils(winner)
   expect(player1.deck).to be_a(Deck)
+  expect(player1.deck.cards.size).to eq(5)
   expect(player2.deck).to be_a(Deck)
+  expect(player2.deck.cards.size).to eq(3)
+
   end
 end
   
@@ -97,11 +104,15 @@ describe "turn type :war" do
     expect(winner).to eq(player2)
     turn.pile_cards
     expect(turn.spoils_of_war).to be_an(Array)
+    expect(turn.spoils_of_war.size).to eq(6)
     
     turn.award_spoils(winner)
+
     expect(player1.deck).to be_a(Deck)
     expect(player2.deck).to be_a(Deck)
-    expect(player2.deck.cards.length > player1.deck.cards.length)
+    expect(player1.deck.cards.size).to eq(1)
+    expect(player2.deck.cards.size).to eq(7)
+
   end
 
   describe 'mutually_assured_destruction' do
@@ -126,7 +137,8 @@ describe "turn type :war" do
     expect(winner).to eq("No Winner")
     turn.pile_cards
     expect(turn.spoils_of_war).to eq([])
-    expect(expect(player2.deck.cards.length == player1.deck.cards.length))
+    expect(player1.deck.cards.size).to eq(1)
+    expect(player2.deck.cards.size).to eq(1)
     end
   end
 end

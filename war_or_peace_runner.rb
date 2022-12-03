@@ -105,11 +105,22 @@ if start == "GO\n"
       puts "TURN #{counter}: #{turn.winner.name} won 2 cards"
     elsif turn.type == :war
       puts "TURN #{counter}: WAR - #{turn.winner.name} won 6 cards"
-    else 
+    elsif turn.type == :mutually_assured_destruction
       puts "TURN #{counter}: *mutually assured destruction* 6 cards removed from play"
+    else 
+      if player1.deck.cards.length > player2.deck.cards.length
+        puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
+        break
+      else
+        puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
+      break
+      end
+
     end
+    winner = turn.winner 
     turn.pile_cards
-    turn.award_spoils
+    turn.award_spoils(winner)
+
     if player1.has_lost?
       puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
       break
@@ -125,9 +136,6 @@ if start == "GO\n"
         break
     end
     
-    
-
-    # binding.pry
   end
 end
 

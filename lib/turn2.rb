@@ -16,14 +16,16 @@ attr_reader :player1, :player2, :spoils_of_war
     if @player1.rank_of_card_at(0) != @player2.rank_of_card_at(0)
       return :basic
     else 
+      if @player1.deck.cards.length >=3 && @player2.deck.cards.length >=3
         if @player1.rank_of_card_at(2)!= @player2.rank_of_card_at(2)
           return :war
-        else
+        elsif @player1.rank_of_card_at(2) == @player2.rank_of_card_at(2)
           return :mutually_assured_destruction
         end
+      else return :tiebreaker
     end
   end
-    
+end
   
 
 
@@ -47,6 +49,8 @@ attr_reader :player1, :player2, :spoils_of_war
   end
   
   def pile_cards
+    @spoils_of_war = []
+    # binding.pry
     if type == :basic
       @spoils_of_war << @player1.deck.cards.shift
       @spoils_of_war << @player2.deck.cards.shift
@@ -55,7 +59,7 @@ attr_reader :player1, :player2, :spoils_of_war
       @spoils_of_war << @player1.deck.cards.shift
       @spoils_of_war << @player2.deck.cards.shift
       end
-    else
+    elsif type == :mutually_assured_destruction
       3.times do
         da_trash = []
         da_trash << @player1.deck.cards.shift
@@ -64,13 +68,18 @@ attr_reader :player1, :player2, :spoils_of_war
     end
   end
 
-  def award_spoils(winner = @winner)
+  def award_spoils(winner)
+    player1.deck.cards = player1.deck.cards.shuffle
+    player2.deck.cards = player2.deck.cards.shuffle
     if winner == player1
-      @player1.deck.cards << @spoils_of_war
+      # binding.pry
+      @spoils_of_war.each do |card|
+      @player1.deck.cards << card
+      end
     elsif winner == player2  
-      @player2.deck.cards << @spoils_of_war
-    else
-      nil    
+      @spoils_of_war.each do |card|
+        @player2.deck.cards << card
+        end
     end
   end
 
