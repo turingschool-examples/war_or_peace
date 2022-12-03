@@ -32,4 +32,12 @@ describe Game do
         expect(@game.player1).to eq(@player1)
         expect(@game.player2).to eq(@player2)
     end
+
+    it 'can check if game ended' do
+        losing_deck = Deck.new([])
+        @player1 = Player.new("Megan", losing_deck)
+
+        expect(@game.game_ended?(@player1)).to eq(true)
+        expect(@game.game_ended?(@player2)).to eq(false)
+    end
 end
