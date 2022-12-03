@@ -12,16 +12,20 @@ class Turn
     def type
         if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)    
             :basic
-        else 
+        elsif  player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
             :war
+        else player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+            :mutually_assured_destruction
         end
     end
     
     def winner
         if turn = :basic
-            # player1 
-        else     
-            # player2 
+            # player with highest rank (at index 0) wins
+        elsif turn = :war     
+            # player with highest rank (at index 2)wins
+        else 
+            # "No Winner" is returned
         end
     end
 
