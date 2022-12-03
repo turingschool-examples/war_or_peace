@@ -174,5 +174,9 @@ describe Turn do
             expect(@player1.deck.cards).to eq(expected_p1_deck)
             expect(@player2.deck.cards).to eq(expected_p2_deck)
         end
+
+        it 'can award mutually assured destruction spoils' do
+            expect(@turn.award_spoils(@turn.winner)).to eq(nil)
+        end
     end
 end
