@@ -50,6 +50,10 @@ class Turn
         @spoils_of_war
     end
 
+    def shuffle_spoils
+        @spoils_of_war = @spoils_of_war.shuffle
+    end
+
     def award_spoils(winning_player)
         winning_player.deck.cards.concat(spoils_of_war)
     end
