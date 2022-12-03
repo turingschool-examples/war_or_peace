@@ -284,7 +284,7 @@ RSpec.describe Turn do
 
     end
 
-    it 'has a winner for mutually assured destruction turn' do
+    it 'has no winner for mutually assured destruction turn' do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
         card3 = Card.new(:heart, '9', 9)
@@ -306,7 +306,7 @@ RSpec.describe Turn do
         expect(turn.winner).to eq('No Winner')
     end
 
-    it 'can clear pile for mutually assured destruction turn' do
+    it 'can pile and clear cards for mutually assured destruction turn' do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
         card3 = Card.new(:heart, '9', 9)
@@ -328,7 +328,8 @@ RSpec.describe Turn do
         turn.pile_cards
         turn.spoils_of_war
         expect(turn.spoils_of_war).to eq([])
-
+        expect(player1.deck.cards).to eq([card8])
+        expect(player2.deck.cards).to eq([card7])
     end
 
 end
