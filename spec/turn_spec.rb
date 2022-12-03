@@ -111,7 +111,7 @@ describe Turn do
             expect(@player2.deck.cards).to eq(expected_p2_deck)
         end
         
-        xit 'can award war spoils' do
+        it 'can award war spoils' do
             expected_deck = [@turn.winner.deck.cards[3]]
             expected_deck << @player1.deck.cards[0..2] << @player2.deck.cards[0..2]
            
