@@ -58,15 +58,10 @@ card51 = Card.new(:heart,'King', 13)
 card52 = Card.new(:heart,'Ace', 14)
 
 deck_of_cards = [card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20, card21, card22, card23, card24, card25, card26, card27, card28, card29, card30, card31, card32, card33, card34, card35, card36, card37, card38, card39, card40, card41, card42, card43, card44, card45, card46, card47, card48, card49, card50, card51, card52]
-random_deck_of_cards = []
+shuffled_deck_of_cards = deck_of_cards.shuffle
 
-
-52.times do 
-    random_deck_of_cards << deck_of_cards.sample
-end
-
-cards_deck_1 = random_deck_of_cards[0..25]
-cards_deck_2 = random_deck_of_cards[26..52]
+cards_deck_1 = shuffled_deck_of_cards[0..25]
+cards_deck_2 = shuffled_deck_of_cards[26..51]
 
 deck1 = Deck.new(cards_deck_1)
 deck2 = Deck.new(cards_deck_2)
@@ -74,5 +69,49 @@ deck2 = Deck.new(cards_deck_2)
 player1 = Player.new('Megan', deck1)
 player2 = Player.new('Aurora', deck2)
 
+game = Game.new
 game.start
 begin_game = gets.strip
+
+if begin_game.upcase == "GO"
+    turn = Turn.new(player1, player2)
+else
+    exit 
+end 
+        
+turn_number = 0
+until player1.has_lost? || player2.has_lost?
+    turn_type = turn.type
+    winner = turn.winner
+    turn.pile_cards
+    spoils_of_war_count = turn.spoils_of_war.count
+    turn.spoils_of_war.shuffle!
+
+    if turn_type == :basic
+        turn.award_spoils(winner)
+        p "Turn #{turn_number += 1}: #{winner.name} won #{spoils_of_war_count} cards"
+    elsif turn_type == :war
+        turn.award_spoils(winner)
+        p "Turn #{turn_number += 1}: WAR - #{winner.name} won #{spoils_of_war_count} cards"
+    elsif turn_type == :mutually_assured_destruction
+        p "Turn #{turn_number += 1}: *mutually assured destruction* 6 cards removed from play"
+    end 
+
+    if player1.deck.cards.count < 3
+        player1.deck.cards.clear
+    elsif player2.deck.cards.count < 3
+        player2.deck.cards.clear
+    end 
+
+    if turn_number == 1_000_000
+        break
+    end
+end 
+
+    if turn_number == 1_000_000
+         p '---- DRAW ----'
+    elsif player1.has_lost? == true
+        p '*~*~*~* Aurora has won the game! *~*~*~*'
+    elsif player2.has_lost? == true
+        p '*~*~*~* Megan has won the game! *~*~*~*'
+    end
