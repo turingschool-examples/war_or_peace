@@ -20,12 +20,22 @@ class Game
 
   def play_game
     i = 0
-    100_000_000.times do
+    1_000_000.times do
+
     i += 1
-      if turn.type == :basic || turn.type == :war
-        p "Turn #{i}: #{turn.winner.name} won #{turn.pile_cards.length} cards"
+    game_over?
+      if turn.type == :basic 
+        round_winner = turn.winner
+        turn.pile_cards
+        p "Turn #{i}: #{round_winner.name} won #{turn.spoils_of_war.length} cards"
+        turn.award_spoils(round_winner)
+      elsif turn.type == :war
+        round_winner = turn.winner
+        turn.pile_cards
+        p "Turn: #{i}: WAR - #{round_winner.name} won #{turn.spoils_of_war.length} cards"
+        turn.award_spoils(round_winner)
       else
-        p "Turn #{i}: *mutually assured desctruction* #{turn.pile_cards.length} removed from play."
+        p "Turn #{i}: *mutually assured destruction* 6 cards removed from play."
       end 
     break if game_over? == true
     end

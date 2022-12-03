@@ -47,7 +47,7 @@ class Turn
   end
 
   def award_spoils(winner)
-    @spoils_of_war.each do |card|
+    @spoils_of_war.shuffle!.each do |card|
       winner.deck.cards.push(card)
       end
     @spoils_of_war = []
