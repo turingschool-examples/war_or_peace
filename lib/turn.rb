@@ -10,32 +10,30 @@ class Turn
     end
     
     def type
-        if 
-            @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
-            :basic
-        elsif
-            @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
+        return :basic if @player1.deck.cards.size <= 2 || @player2.deck.cards.size <= 2
+        if @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
             :mutually_assured_destruction 
-        else 
-            @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
+        elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
             :war
+        else 
+            :basic
         end
     end
 
     def winner
-        if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
-            player1
-        elsif 
-            @player1.deck.rank_of_card_at(0) < @player2.deck.rank_of_card_at(0)
-            player2
-        elsif
-            @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
-            player1
-        elsif
-            @player1.deck.rank_of_card_at(2) < @player2.deck.rank_of_card_at(2)
-            player2
-        else
-            @type == :mutually_assured_destruction
+        if type == :basic 
+            if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
+                player1
+            else 
+                player2
+            end
+        elsif type == :war
+            if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
+                player1
+            else 
+                player2
+            end
+        else 
             "No winner"
         end
     end
@@ -59,7 +57,7 @@ class Turn
 
 
     def award_spoils(winner)
-        winner.deck.cards.concat(@spoils_of_war)
-     end    
+        winner.deck.add_card(@spoils_of_war.shuffle!.shift) until @spoils_of_war.empty?    
+    end    
 end
 
