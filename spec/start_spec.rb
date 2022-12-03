@@ -18,11 +18,10 @@ describe Start do
         deck1 = Deck.new([card1, card2, card5, card8]) 
         deck2 = Deck.new([card3, card4, card6, card7])  
         
-        player1 = Player.new("Megan", deck1)
-        player2 = Player.new("Aurora", deck2)     
-        
-        @turn = Turn.new(player1, player2)
-        @start = Start.new(@turn)
+        @player1 = Player.new("Megan", deck1)
+        @player2 = Player.new("Aurora", deck2)     
+
+        @start = Start.new(@player1, @player2)
     end
 
     it 'exists' do
@@ -30,6 +29,7 @@ describe Start do
     end
 
     it 'has readable attribute' do
-        expect(@start.turn).to eq(@turn)
+        expect(@start.player1).to eq(@player1)
+        expect(@start.player2).to eq(@player2)
     end
 end
