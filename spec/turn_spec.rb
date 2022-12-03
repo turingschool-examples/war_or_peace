@@ -27,5 +27,50 @@ RSpec.describe Player do
             expect(turn).to be_an_instance_of(Turn)
         end
 
+        it 'has players taking a turn' do
+            card1 = Card.new(:hearts, 'Jack', 11)
+            card2 = Card.new(:hearts, 'Ten', 10) 
+            card3 = Card.new(:hearts, 'Nine', 9)
+            card4 = Card.new(:diamonds, 'Jack', 11) 
+            card5 = Card.new(:hearts, 'Eight', 8)
+            card6 = Card.new(:diamonds, 'Queen', 12)
+            card7 = Card.new(:hearts, 'Three', 3)
+            card8 = Card.new(:diamonds, 'Two', 2)
+
+            deck1 = Deck.new([card1, card2, card5, card8])
+            deck2 = Deck.new([card3, card4, card6, card7])
+
+            player1 = Player.new("Megan", deck1)
+            player2 = Player.new("Aurora", deck2) 
+
+            turn = Turn.new(player1, player2)
+
+            expect(turn.player1).to eq(player1)
+            expect(turn.player2).to eq(player2)
+            expect(turn.spoils_of_war).to eq([])
+        end
+    end
+
+    context 'Test Set 2' do
+        it 'has a basic turn' do
+            card1 = Card.new(:hearts, 'Jack', 11)
+            card2 = Card.new(:hearts, 'Ten', 10) 
+            card3 = Card.new(:hearts, 'Nine', 9)
+            card4 = Card.new(:diamonds, 'Jack', 11) 
+            card5 = Card.new(:hearts, 'Eight', 8)
+            card6 = Card.new(:diamonds, 'Queen', 12)
+            card7 = Card.new(:hearts, 'Three', 3)
+            card8 = Card.new(:diamonds, 'Two', 2)
+
+            deck1 = Deck.new([card1, card2, card5, card8])
+            deck2 = Deck.new([card3, card4, card6, card7])
+
+            player1 = Player.new("Megan", deck1)
+            player2 = Player.new("Aurora", deck2) 
+
+            turn = Turn.new(player1, player2)
+
+            expect(turn.turn_type).to eq(:basic)
+        end
     end
 end
