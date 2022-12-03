@@ -42,7 +42,7 @@ class Turn
             3.times { @player2.deck.remove_card}
         end
 
-        @spoils_of_war = @spoils_of_war.flatten
+        @spoils_of_war
     end
 
     def award_spoils(winning_player)
