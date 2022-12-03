@@ -3,14 +3,18 @@ class Turn
                 :player2,
                 :spoils_of_war
 
-    def initialize(player_1, player_2)
-        @player1 = player_1
-        @player2 = player_2
+    def initialize(player1, player2)
+        @player1 = player1
+        @player2 = player2
         @spoils_of_war = []
     end
 
-    # def @spoils_of_war = []
-    # end
-
+    def type
+        if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
+            :basic
+        else 
+            :war
+        end
+    end
     
 end

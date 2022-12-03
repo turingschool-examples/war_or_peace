@@ -68,7 +68,7 @@ RSpec.describe Turn do
         expect(turn.spoils_of_war).to eq([])
     end
 
-    xit "shows turn type" do
+    it "shows type of turn (basic, war, or MAD)" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)    
         card3 = Card.new(:heart, '9', 9) 
