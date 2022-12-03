@@ -8,17 +8,32 @@ class Turn
     end
 
     def type
-        if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
+        if 
+            player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
             :basic
         end
     end
 
     def winner
-        if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+        # if type =
+
+        # elsif
+
+        if type == :basic
+            if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
             player1
-        else player2.deck.rank_of_card_at(0) > player1.deck.rank_of_card_at(0)
+            else player2.deck.rank_of_card_at(0) > player1.deck.rank_of_card_at(0)
             player2
+            end
+
         end
+
     end
+
+    def pile_cards
+        @spoils_of_war << player1.deck.cards.shift
+        @spoils_of_war << player2.deck.cards.shift
+    end
+
 
 end
