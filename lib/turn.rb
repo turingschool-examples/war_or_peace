@@ -13,6 +13,8 @@ class Turn
 
         if p1_index_0 != p2_index_0
             turn_type = :basic
+        elsif p1_index_0 == p2_index_0  
+            turn_type = :war
         end
 
         turn_type
