@@ -170,8 +170,8 @@ describe Turn do
             winner = turn.winner
             turn.pile_cards
             turn.award_spoils(winner)
-            expect(player1.deck.cards).to match_array([card2, card3, card5, card1, card8])
-            expect(player2.deck.cards).to match_array([card4, card6, card7])
+            expect(player1.deck.cards).to eq([card2, card5, card8, card1, card3])
+            expect(player2.deck.cards).to eq([card4, card6, card7])
         end 
     end
 
@@ -243,7 +243,7 @@ describe Turn do
             winner = turn.winner
             turn.pile_cards
 
-            expect(turn.spoils_of_war).to match_array([card1, card2, card5, card4, card3, card6])
+            expect(turn.spoils_of_war).to eq([card1, card2, card5, card4, card3, card6])
         end
     end
 
@@ -269,8 +269,8 @@ describe Turn do
             turn.pile_cards
             turn.award_spoils(winner)
 
-            expect(player1.deck.cards).to match_array([card8])
-            expect(player2.deck.cards).to match_array([card7, card4, card3, card6, card1, card2, card5])
+            expect(player1.deck.cards).to eq([card8])
+            expect(player2.deck.cards).to eq([card7, card1, card2, card5, card4, card3, card6])
         end
     end
     
