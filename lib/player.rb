@@ -6,11 +6,7 @@ class Player
     end
 
     def has_lost?
-        # if @deck.cards.count >= 1 
-        #     false
-        # else 
-        #     true
-        # end
+       
         @deck.cards.empty?
     
     end

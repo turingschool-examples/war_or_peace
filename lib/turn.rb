@@ -19,16 +19,11 @@ class Turn
         
     
     def winner
+        return winner_basic if type == :basic
         
-        if type == :basic
-            winner_basic
-    
-        elsif type == :war
-           winner_war
-        else
-            "No Winner"
-        end
-    
+        return winner_war if type == :war
+        
+        "No Winner"
     end
 
     def winner_basic
