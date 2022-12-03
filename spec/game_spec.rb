@@ -34,11 +34,12 @@ describe Game do
     end
 
     it 'can check if game ended' do
-        losing_deck = Deck.new([])
-        @player1 = Player.new("Megan", losing_deck)
+        expect(@game.game_ended?).to eq(false)
 
-        expect(@game.game_ended?(@player1)).to eq(true)
-        expect(@game.game_ended?(@player2)).to eq(false)
+        @player1 = Player.new("Megan", Deck.new([]))
+        @game = Game.new(@player1, @player2)
+
+        expect(@game.game_ended?).to eq(true)
     end
 
     it 'can play turn' do
@@ -46,7 +47,7 @@ describe Game do
         winning_deck << @player1.deck.cards[0] << @player2.deck.cards[0]
 
         losing_deck = @player2.deck.cards[1..3]
-        
+
         @game.play_turn
 
         expect(@player1.deck.cards).to eq(winning_deck)

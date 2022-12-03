@@ -9,8 +9,8 @@ class Game
         @turn_count = 1
     end
 
-    def game_ended?(player)
-        return true if player.deck.cards.length == 0
+    def game_ended?
+        return true if @player1.deck.cards.length == 0 || @player2.deck.cards.length == 0
         return false
     end
 
@@ -25,5 +25,14 @@ class Game
         puts "Turn #{turn_count}: #{winner.name} won #{num_spoils} cards"
     end
 
+    def start
+        play_turn
+
+        until game_ended? == true || @turn_count == 1_000_000
+            play_turn
+        end
+
+        
+    end
 
 end
