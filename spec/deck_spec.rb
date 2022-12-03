@@ -15,7 +15,7 @@ RSpec.describe Deck do
         expect(deck).to be_an_instance_of(Deck)
     end
 
-    it "has cards" do
+    it "deck.cards should show cards" do
         card1 = Card.new(:diamond, 'Queen', 12)
         card2 = Card.new(:spade, '3', 3)
         card3 = Card.new(:heart, 'Ace', 14)
@@ -27,7 +27,7 @@ RSpec.describe Deck do
         expect(deck.cards).to eq(cards)
     end
 
-    it "can access the rank_of_card_at index number" do
+    it "deck.rank_of_card_at(#) can access the rank_of_card_at a certain index number" do
         card1 = Card.new(:diamond, 'Queen', 12)
         card2 = Card.new(:spade, '3', 3)
         card3 = Card.new(:heart, 'Ace', 14)
@@ -39,7 +39,7 @@ RSpec.describe Deck do
         expect(deck.rank_of_card_at(2)).to eq(14)
     end
 
-    it "shows the high_ranking_cards" do
+    it "deck.high_ranking_cards should show the 2 high_ranking_cards in deck" do
         card1 = Card.new(:diamond, 'Queen', 12)
         card2 = Card.new(:spade, '3', 3)
         card3 = Card.new(:heart, 'Ace', 14)
@@ -50,7 +50,7 @@ RSpec.describe Deck do
         expect(deck.high_ranking_cards).to eq([card1, card3])
     end
 
-    it "shows the percent_high_ranking" do
+    it "deck.percent_high_ranking should show the percentage of high ranking cards in the deck" do
         card1 = Card.new(:diamond, 'Queen', 12)
         card2 = Card.new(:spade, '3', 3)
         card3 = Card.new(:heart, 'Ace', 14)
@@ -61,7 +61,7 @@ RSpec.describe Deck do
         expect(deck.percent_high_ranking).to eq(66.67)
     end
 
-    it "can remove_card" do
+    it "deck.remove_card should remove the card from top of deck (index position 0)" do
         card1 = Card.new(:diamond, 'Queen', 12)
         card2 = Card.new(:spade, '3', 3)
         card3 = Card.new(:heart, 'Ace', 14)
@@ -72,7 +72,7 @@ RSpec.describe Deck do
         expect(deck.remove_card).to eq(card1)
     end
 
- it "show cards left in deck" do
+ it "deck.cards should show cards left in deck" do
         card1 = Card.new(:diamond, 'Queen', 12)
         card2 = Card.new(:spade, '3', 3)
         card3 = Card.new(:heart, 'Ace', 14)
@@ -81,12 +81,11 @@ RSpec.describe Deck do
         deck = Deck.new(cards)
         deck.remove_card
 
-        # expect(deck.remove_card).to eq(card1)
         expect(deck.cards).to eq([card2, card3])
     end
 
 
-    it "show remaining high_raking_cards" do
+    it "deck.high_ranking_cards should show remaining high_raking_cards" do
         card1 = Card.new(:diamond, 'Queen', 12)
         card2 = Card.new(:spade, '3', 3)
         card3 = Card.new(:heart, 'Ace', 14)
@@ -95,12 +94,10 @@ RSpec.describe Deck do
         deck = Deck.new(cards)
         deck.remove_card
 
-        # expect(deck.remove_card).to eq(card1)
-        # expect(deck.cards).to eq([card2, card3])
         expect(deck.high_ranking_cards).to eq([card3])
     end
 
-    it "show percent_high_raking cards left" do
+    it "deck.percent_high_ranking should show percent_high_raking cards left in deck" do
         card1 = Card.new(:diamond, 'Queen', 12)
         card2 = Card.new(:spade, '3', 3)
         card3 = Card.new(:heart, 'Ace', 14)
@@ -109,13 +106,23 @@ RSpec.describe Deck do
         deck = Deck.new(cards)
         deck.remove_card
 
-        # expect(deck.remove_card).to eq(card1)
-        # expect(deck.cards).to eq([card2, card3])
-        # expect(deck.high_ranking_cards).to eq([card3])
         expect(deck.percent_high_ranking).to eq(50.0)
     end
 
-    it "can add_card to deck" do
+    it "card4 exsists" do
+        card1 = Card.new(:diamond, 'Queen', 12)
+        card2 = Card.new(:spade, '3', 3)
+        card3 = Card.new(:heart, 'Ace', 14)
+        cards = [card1, card2, card3]    
+
+        deck = Deck.new(cards)
+
+        card4 = Card.new(:club, '5', 5)
+
+        expect(card4).to be_an_instance_of(Card)
+    end
+
+    it "deck.add_card(card4) should add that card to the deck" do
         card1 = Card.new(:diamond, 'Queen', 12)
         card2 = Card.new(:spade, '3', 3)
         card3 = Card.new(:heart, 'Ace', 14)
@@ -126,12 +133,10 @@ RSpec.describe Deck do
         card4 = Card.new(:club, '5', 5)
         deck.remove_card
 
-        # expect(deck.remove_card).to eq(card1)
-        # expect(deck.cards).to eq([card2, card3])
         expect(deck.add_card(card4)).to eq(cards)
     end
 
-    it "show add_card & high ranking cards" do
+    it "deck.cards should show the new card was added to the deck" do
         card1 = Card.new(:diamond, 'Queen', 12)
         card2 = Card.new(:spade, '3', 3)
         card3 = Card.new(:heart, 'Ace', 14)
@@ -142,16 +147,27 @@ RSpec.describe Deck do
         card4 = Card.new(:club, '5', 5)
         deck.remove_card
         deck.add_card(card4)
-        
-        # expect(deck.remove_card).to eq(card1)
-        # expect(deck.cards).to eq([card2, card3])
-        # expect(deck.add_card(card4)).to eq(cards)
-        # expect(deck.cards).to eq(cards)
-        
+
+        #expect(deck.cards).to eq([card2, card3, card4])
+        expect(deck.cards).to eq(cards)
+    end
+
+    it "deck.high_ranking_cards should show the high ranking cards left in deck (card3)" do
+        card1 = Card.new(:diamond, 'Queen', 12)
+        card2 = Card.new(:spade, '3', 3)
+        card3 = Card.new(:heart, 'Ace', 14)
+        cards = [card1, card2, card3]    
+
+        deck = Deck.new(cards)
+
+        card4 = Card.new(:club, '5', 5)
+        deck.remove_card
+        deck.add_card(card4)
+
         expect(deck.high_ranking_cards).to eq([card3])
     end
 
-    it "show add_card, high ranking & percent high ranking" do
+    it "deck.percent_high_ranking should show percentage of high ranking cards left in deck" do
         card1 = Card.new(:diamond, 'Queen', 12)
         card2 = Card.new(:spade, '3', 3)
         card3 = Card.new(:heart, 'Ace', 14)
