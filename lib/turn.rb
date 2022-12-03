@@ -4,8 +4,6 @@ class Turn
         @player1 = player1
         @player2 = player2
         @spoils_of_war = []
-        @player1_spoils_pile = []
-        @player2_spoils_pile = []
 
 
     end
@@ -37,8 +35,15 @@ class Turn
     end
 
     def pile_cards
-        @spoils_of_war << player1.deck.cards.shift
-        @spoils_of_war << player2.deck.cards.shift
+        if type == :war
+            @spoils_of_war << player1.deck.cards.shift(3)
+            @spoils_of_war << player2.deck.cards.shift(3)
+            @spoils_of_war.flatten!
+
+        else type == :basic
+            @spoils_of_war << player1.deck.cards.shift
+            @spoils_of_war << player2.deck.cards.shift
+        end
     end
 
     def award_spoils(winner)
