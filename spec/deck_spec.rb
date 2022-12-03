@@ -51,7 +51,6 @@ RSpec.describe Deck do
 
   end
 
-
   it "percent high ranking" do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
