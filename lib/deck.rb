@@ -33,7 +33,7 @@ class Deck
 
 
     def remove_card
-        @cards.shift
+       @cards.shift
     end 
 
     
