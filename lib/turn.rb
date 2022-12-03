@@ -20,7 +20,6 @@
         end
 
         def winner
-            # require 'pry'; binding.pry
             if type == :basic
                 if @player1.deck.rank_of_cards_at(0) > @player2.deck.rank_of_cards_at(0)
                     @player1
@@ -50,11 +49,8 @@
         end
 
         def award_spoils(winner)
-            # require 'pry'; binding.pry
             winner.deck.cards << @spoils_of_war
             @spoils_of_war = []
             winner.deck.cards.flatten!
-
         end
-    
     end
