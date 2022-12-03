@@ -2,10 +2,12 @@ class Game
     attr_reader :turn, :cards, :shuffled_cards, :individual_deck
 
     def initialize ()
-        @cards = []
+        @filename = "cards.txt"
+        @cards = CardGenerator.new(@filename).cards
         @shuffled_deck = []
         @individual_deck = []
         @turns = 0
+        # @card_gen = CardGenerator.new(@filename)
         @deck1 = Deck.new([])
         @deck2 = Deck.new([])
         @player1 = Player.new('Megan', @deck1)
@@ -13,30 +15,35 @@ class Game
         @turn = Turn.new(@player1, @player2)
     end
 
-    def create_cards
-        heart_cards = []
-        diamond_cards = []
-        spade_cards = []
-        club_cards = []
+    # def create_cards
+    #     heart_cards = []
+    #     diamond_cards = []
+    #     spade_cards = []
+    #     club_cards = []
 
-        13.times do |i|
-            heart_cards << Card.new(:heart, (i+1).to_s, i+1)
-        end
+    #     13.times do |i|
+    #         heart_cards << Card.new(:heart, (i+1).to_s, i+1)
+    #     end
 
-        13.times do |i|
-            diamond_cards << Card.new(:diamond, (i+1).to_s, i+1)
-        end
+    #     13.times do |i|
+    #         diamond_cards << Card.new(:diamond, (i+1).to_s, i+1)
+    #     end
 
-        13.times do |i|
-            spade_cards << Card.new(:spade, (i+1).to_s, i+1)
-        end
+    #     13.times do |i|
+    #         spade_cards << Card.new(:spade, (i+1).to_s, i+1)
+    #     end
 
-        13.times do |i|
-            club_cards << Card.new(:club, (i+1).to_s, i+1)
-        end
+    #     13.times do |i|
+    #         club_cards << Card.new(:club, (i+1).to_s, i+1)
+    #     end
 
-        @cards = [heart_cards, spade_cards, club_cards, diamond_cards].flatten
-    end
+    #     @cards = [heart_cards, spade_cards, club_cards, diamond_cards].flatten
+    # end
+
+    # def create_cards
+    #     require 'pry'; binding.pry
+    #     @cards = @cards_gen.cards
+    # end
 
     def shuffle_cards
         @shuffled_deck = @cards.shuffle
@@ -50,7 +57,7 @@ class Game
     end
 
     def deal_cards
-        self.create_cards
+        # self.create_cards
         self.shuffle_cards
         self.split_deck
     end
