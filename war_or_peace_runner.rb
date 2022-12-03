@@ -19,3 +19,7 @@ suits = [:club, :diamond, :heart, :spade]
 end
 
 deck.shuffle!
+
+# Create two players
+player1 = Player.new("Megan", deck.shift(26))
+player2 = Player.new("Aurora", deck)
