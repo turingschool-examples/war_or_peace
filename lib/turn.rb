@@ -1,39 +1,43 @@
 class Turn
     attr_reader :player1,
-                :player2,
-                :spoils_of_war
-                :winner 
+                :player2, 
+                :cardtype
+                
 
     def initialize(player1, player2)
          @player1 = player1 
          @player2 = player2
          @spoils_of_war = []
-         @winner = winner
+         @cardtype = nil 
     end
 
+#     def cardtype
+#      @cardtype
+#     end
+
     def type
+     cardtype = nil 
           if @player1.deck.cards.count < 3 || @player2.deck.cards.count < 3
-               return :basic
+               cardtype = :basic
                # require 'pry'; binding.pry
 
           elsif (@player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)) && (@player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2))
                # require 'pry'; binding.pry
-               return :mutually_assured_destruction
+               cardtype = :mutually_assured_destruction
 
           elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
-               # require 'pry'; binding.pry
-               return :war 
+               require 'pry'; binding.pry
+               cardtype = :war 
 
           else 
                require 'pry'; binding.pry
-               return :basic
-               
-
+               cardtype = :basic
           end
+          @cardtype = cardtype 
     end
 
     def winner
-        if type == :basic 
+        if @cardtype == :basic 
           require 'pry'; binding.pry
                if @player1.deck.cards[0].rank > @player2.deck.cards[0].rank
                     return @player1
@@ -41,7 +45,7 @@ class Turn
                     return @player2
                end
                
-          elsif type == :war  
+          elsif @cardtype == :war  
                # require 'pry'; binding.pry
                if @player1.deck.cards[2].rank > @player2.deck.cards[2].rank
                     return @player1
@@ -49,27 +53,28 @@ class Turn
                     return @player2
                end
 
-          elsif type == :mutually_assured_destruction
+          elsif @cardtype == :mutually_assured_destruction
                # require 'pry'; binding.pry
                winner = "No Winner"
         end 
+        
      end 
 
     def pile_cards
-     # require 'pry'; binding.pry
-          if type == :basic
-               require 'pry'; binding.pry
+     require 'pry'; binding.pry
+          if @cardtype == :basic
+               # require 'pry'; binding.pry
                @spoils_of_war << @player1.deck.remove_card 
                @spoils_of_war << @player2.deck.remove_card 
           end 
 
-          if  type == :mutually_assured_destruction 
+          if  @cardtype == :mutually_assured_destruction 
                (@player1.deck.cards).replace(@player1.deck.cards.drop(3))
                (@player2.deck.cards).replace(@player2.deck.cards.drop(3))
                # require 'pry'; binding.pry
           end 
 
-          if  type == :war 
+          if  @cardtype == :war 
                3.times do 
                @spoils_of_war << @player1.deck.remove_card 
                @spoils_of_war << @player2.deck.remove_card 
@@ -80,22 +85,21 @@ class Turn
      
 
     def award_spoils(winner)
- 
-         if type == :mutually_assured_destruction
+ require 'pry'; binding.pry
+         if @cardtype == :mutually_assured_destruction
                # "do nothing"
                require 'pry'; binding.pry
-
-     end 
-     if type == :basic 
-          require 'pry'; binding.pry
-          (winner.deck.cards).concat(@spoils_of_war)
-          @spoils_of_war.clear
-     end 
-     if type == :war 
-          (winner.deck.cards).concat(@spoils_of_war)
-          # require 'pry'; binding.pry
-          @spoils_of_war.clear
-          
-     end
+         end 
+           
+          if @cardtype == :basic 
+               require 'pry'; binding.pry
+               (winner.deck.cards).concat(@spoils_of_war)
+               @spoils_of_war.clear
+          end 
+          if @cardtype == :war 
+               (winner.deck.cards).concat(@spoils_of_war)
+               # require 'pry'; binding.pry
+               @spoils_of_war.clear 
+          end
      end 
 end

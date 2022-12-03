@@ -1,27 +1,30 @@
 class Start 
     attr_reader :player1,
-                :player2,
-                :turn
+                :player2
+
 def initialize(player1, player2)
     @player1 = player1 
     @player2 = player2
-    @turn = Turn.new(@player1, @player2) 
+    @turn = Turn.new(@player1, player2) 
+    # require 'pry'; binding.pry
 end 
 
 def start 
     number = 0
     1000.times do
 
-        winner = turn.winner
-        turn.pile_cards
-        turn.award_spoils(winner)
+        @turn.type 
+        # require 'pry'; binding.pry
+        winnerofturn = @turn.winner 
+        @turn.pile_cards
+        @turn.award_spoils(winnerofturn)
         number += 1
 
-            if turn.type == :basic
+            if @turn.cardtype == :basic
                 puts "BASIC"
-            elsif turn.type == :war
+            elsif @turn.cardtype == :war
                 puts "War"
-            elsif turn.type == :mutually_assured_destruction
+            elsif @turn.cardtype == :mutually_assured_destruction
                 puts "MAD"
             end 
 
