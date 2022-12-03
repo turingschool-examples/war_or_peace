@@ -29,7 +29,7 @@ RSpec.describe Player do
       player.deck.remove_card
 
       expect(player.has_lost?).to eq(false)
-      #expect(player.deck).to eq([card2, card3])
+      
       player.deck.remove_card 
 
       expect(player.has_lost?).to eq(false)

@@ -30,7 +30,8 @@ class Turn
       else 
         @player2
       end
-    elsif type == :mutually_assured_destruction 
+    else
+    #elsif type == :mutually_assured_destruction 
       "No Winner"
     end
   end
