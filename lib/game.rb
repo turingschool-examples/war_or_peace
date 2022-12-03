@@ -81,24 +81,21 @@ class Game
         deck2 = Deck.new([])
         
         shuffled_deck = @unshuffled_deck.shuffle!
-        shuffled_deck.each_with_index do |value, index|
-
-        if index.even?
-            deck1.cards << value
-        else
-            deck2.cards << value
         
+        shuffled_deck.each_with_index do |value, index|
+            
+            if index.even?
+                deck1.cards << value
+            else
+                deck2.cards << value
+            end
         end
-        require 'pry'; binding.pry
-    end
-    end
-    
-    
 
-    
-
-    
-    
+        deck1
+        deck2
+        
+    end
+       
     def start
         p "Welcome to War! (or Peace) This game will be played with 52 cards."
         p "The players today are Megan and Aurora."
@@ -107,12 +104,9 @@ class Game
         "GO" == gets.chomp
       
         Turn.new(player1, player2)
+        p turn.winner
         
         
-     
-        
-
-       
 
     end
 end
