@@ -53,4 +53,21 @@ describe Game do
         expect(@player1.deck.cards).to eq(winning_deck)
         expect(@player2.deck.cards).to eq(losing_deck)
     end
+    
+    it 'can start game' do
+        expect(@game.start).to eq("---- DRAW ----")
+
+        card1 = Card.new(:spade, "2", 2)
+        card2 = Card.new(:spade, "3", 3)
+        card3 = Card.new(:spade, "4", 4)
+        card4 = Card.new(:spade, "5", 5)
+        card5 = Card.new(:spade, "6", 6)
+        
+        @player1 = Player.new("Megan", Deck.new([card5, card4, card3]))
+        @player2 = Player.new("Aurora", Deck.new([card2, card1]))
+        @game = Game.new(@player1, @player2)
+
+        expect(@game.start).to eq("*~*~*~* Megan has won the game! *~*~*~*")
+        
+    end
 end
