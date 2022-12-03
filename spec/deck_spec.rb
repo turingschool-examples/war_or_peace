@@ -79,15 +79,17 @@ RSpec.describe Deck do
             card3 = Card.new(:heart, 'Ace', 14) 
             cards = [card1, card2, card3]
             deck = Deck.new(cards)
+            deck.remove_card
             expect(deck.cards).to eq([card2, card3]) 
         end
 
-        xit 'Deck of high ranking cards should have one card in the cards array' do
+        it 'Deck of high ranking cards should have one card in the cards array' do
             card1 = Card.new(:diamond, 'Queen', 12)
             card2 = Card.new(:spade, '3', 3)
             card3 = Card.new(:heart, 'Ace', 14) 
             cards = [card1, card2, card3]
-            deck = Deck.new(cards) 
+            deck = Deck.new(cards)
+            deck.remove_card 
             expect(deck.high_ranking_cards).to eq([card3])
         end
 
@@ -120,7 +122,7 @@ RSpec.describe Deck do
             card3 = Card.new(:heart, 'Ace', 14) 
             cards = [card1, card2, card3]
             deck = Deck.new(cards) 
-            expect(deck.cards).to eq[cards array]
+            expect(deck.cards).to eq[card1,card2, card3, card4]
         end
             
         xit 'Percent of high_ranking_cards in the deck should equal 66.67%' do

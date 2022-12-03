@@ -48,11 +48,11 @@ class Deck
     #and modified deck array
     def remove_card
         @cards.shift
-        
     end
+
 
     #Adds a card to the bottom of the deck
     def add_card(card)
-        @cards<<card
+        @cards<<cards
     end  
 end
