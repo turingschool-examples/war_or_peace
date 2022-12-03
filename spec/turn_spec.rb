@@ -200,7 +200,7 @@ RSpec.describe Turn do
         turn = Turn.new(player1, player2) 
 
         turn.type
-# require "pry"; binding.pry
+
         expect(turn.type).to eq(:mutually_assured_destruction)
     end
     
