@@ -6,25 +6,23 @@ class GamePlay
     def initialize(player1, player2)
         @player1 = player1
         @player2 = player2
-        @turns = []
+        @turns = 0
         @current_turn_type = :basic
         @current_turn_winner = ''
     end
 
     def start
-        
-        if @player1.deck.cards.size != 0 && @player2.deck.cards.size != 0 && self.turns.length < 1000000
+        while player1.has_lost? == false && player2.has_lost? == false && self.turns < 1000000
             self.new_turn
             self.turn_result
-        else self.winner
         end
-       
+        self.game_winner
     end
 
     #this method will run a turn in entirety
     def new_turn
         new_turn = Turn.new(@player1, @player2)
-        @turns << new_turn
+        @turns += 1
         @current_turn_type = new_turn.type
         @current_turn_winner = new_turn.winner
         new_turn.pile_cards
@@ -44,15 +42,27 @@ class GamePlay
     end
 
     #this method will determine a game winner
-    def winner
-        if @player1.deck.cards.size == 52
-            p "*~*~*~* #{@player1.name} has conquered all! *~*~*~*" 
-        elsif @player2.deck.cards.size == 52
-            p "*~*~*~* #{@player2.name} has conquered all! *~*~*~*"
+   
+    def game_winner
+        if @player1.deck.cards.size == 0
+            p "*~*~*~* #{@player2.name} has conquered all! *~*~*~*" 
+        elsif @player2.deck.cards.size == 0
+            p "*~*~*~* #{@player1.name} has conquered all! *~*~*~*"
         else
             p "---- DRAW; PEACE IS AMONG US ----"
         end
     end
+    
+    
+    # def game_winner
+    #     if @player1.has_lost? == true
+    #         p "*~*~*~* #{@player2.name} has conquered all! *~*~*~*" 
+    #     elsif @player2.has_lost? == true
+    #         p "*~*~*~* #{@player1.name} has conquered all! *~*~*~*"
+    #     else
+    #         p "---- DRAW; PEACE IS AMONG US ----"
+    #     end
+    # end
 
 
 
