@@ -1,14 +1,14 @@
 class Player 
     attr_accessor :name,
                 :deck, 
-                :has_lost, 
-                :cards 
+                :has_lost 
+                # :cards 
 
     def initialize(name, deck)
         @name = name
         @deck = deck
         @has_lost = false
-        @cards = cards
+        # @cards = cards
     end
 
     def has_lost?
