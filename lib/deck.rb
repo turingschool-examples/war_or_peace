@@ -45,9 +45,10 @@ class Deck
     end  
 
     #Removes and returns top card of the deck 
-    #and stores modified deck array
+    #and modified deck array
     def remove_card
-        @cards.delete_at(0)
+        @cards.shift
+        
     end
 
     #Adds a card to the bottom of the deck
