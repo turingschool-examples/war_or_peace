@@ -45,9 +45,12 @@ if start == "GO\n"
       if player1.deck.cards.length > player2.deck.cards.length
         puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
         break
-      else
-        puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
+      elsif player2.deck.cards.length > player1.deck.cards.length
+        puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
       break
+      else
+        puts "---- DRAW ----"
+        break
       end
 
     end

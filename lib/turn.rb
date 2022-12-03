@@ -34,7 +34,6 @@ attr_reader :player1, :player2, :spoils_of_war
   
 
   def winner
-    # binding.pry
     if @player1.rank_of_card_at(0) > @player2.rank_of_card_at(0)
       return @player1
     elsif @player2.rank_of_card_at(0) > @player1.rank_of_card_at(0)
@@ -52,7 +51,6 @@ attr_reader :player1, :player2, :spoils_of_war
   
   def pile_cards
     @spoils_of_war = []
-    # binding.pry
     if type == :basic
       @spoils_of_war << @player1.deck.cards.shift
       @spoils_of_war << @player2.deck.cards.shift
@@ -74,14 +72,13 @@ attr_reader :player1, :player2, :spoils_of_war
     player1.deck.cards = player1.deck.cards.shuffle
     player2.deck.cards = player2.deck.cards.shuffle
     if winner == player1
-      # binding.pry
       @spoils_of_war.each do |card|
       @player1.deck.cards << card
       end
     elsif winner == player2  
       @spoils_of_war.each do |card|
         @player2.deck.cards << card
-        end
+      end
     end
   end
 
