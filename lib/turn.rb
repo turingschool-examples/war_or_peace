@@ -46,6 +46,6 @@ class Turn
     end
 
     def award_spoils(winning_player)
-        winning_player.deck.cards.concat(spoils_of_war)
+        winning_player.deck.cards.concat(spoils_of_war.shuffle)
     end
 end
