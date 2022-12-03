@@ -32,7 +32,7 @@ counter = 0
 turn = Turn.new(player1, player2)
 start = gets
 
-if start == "GO\n"
+if start == "GO\n" || "go\n"
   loop do
     counter += 1
     if turn.type == :basic
