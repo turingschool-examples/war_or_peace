@@ -44,19 +44,16 @@ class Turn
 
     def winner 
     
-        if @player1.deck.cards.size > 0 && @player2.deck.cards.size > 0
-
-            if @type == :basic && @player1.deck.cards.first.rank >  @player2.deck.cards.first.rank
-                @winner = @player1
-            elsif @type == :basic && @player2.deck.cards.first.rank >  @player1.deck.cards.first.rank
-                @winner = @player2
-            elsif @type == :war && @player1.deck.cards[2].rank > @player2.deck.cards[2].rank
-                @winner = @player1
-            elsif @type == :war && @player2.deck.cards[2].rank > @player1.deck.cards[2].rank
-                @winner = @player2
-            elsif @type == :mutually_assured_destruction
-                @winner = "No Winner"
-            end
+        if @type == :basic && @player1.deck.cards.first.rank >  @player2.deck.cards.first.rank
+            @winner = @player1
+        elsif @type == :basic && @player2.deck.cards.first.rank >  @player1.deck.cards.first.rank
+            @winner = @player2
+        elsif @type == :war && @player1.deck.cards[2].rank > @player2.deck.cards[2].rank
+            @winner = @player1
+        elsif @type == :war && @player2.deck.cards[2].rank > @player1.deck.cards[2].rank
+            @winner = @player2
+        elsif @type == :mutually_assured_destruction
+            @winner = "No Winner"
         end
 
     end
