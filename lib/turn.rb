@@ -4,72 +4,83 @@ require './lib/player.rb'
 require 'pry'
 
 class Turn
-  attr_accessor :turn
-
+attr_reader :player1, :player2, :spoils_of_war
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
-    @turn = 0
+    @spoils_of_war = []
   end
 
-  def go 
 
-    loop do
-    @turn += 1
-    if @player1.deck.cards.last.rank > @player2.deck.cards.last.rank
-      puts "TURN #{@turn}: #{@player1.name} won 2 cards"
-      @player1.deck.cards.unshift(@player1.deck.cards.pop)
-      @player1.deck.cards.unshift(@player2.deck.cards.pop)
-    elsif @player2.deck.cards.last.rank > @player1.deck.cards.last.rank
-      puts "TURN #{@turn}: #{@player2.name} won 2 cards"
-      @player2.deck.cards.unshift(@player2.deck.cards.pop)
-      @player2.deck.cards.unshift(@player1.deck.cards.pop)
+  def type
+    if @player1.rank_of_card_at(0) != @player2.rank_of_card_at(0)
+      return :basic
+    else 
+      if @player1.deck.cards.length >=3 && @player2.deck.cards.length >=3
+        if @player1.rank_of_card_at(2)!= @player2.rank_of_card_at(2)
+          return :war
+        elsif @player1.rank_of_card_at(2) == @player2.rank_of_card_at(2)
+          return :mutually_assured_destruction
+        end
+      else return :tiebreaker
+    end
+  end
+end
+  
+
+
+  
+
+  def winner
+    # binding.pry
+    if @player1.rank_of_card_at(0) > @player2.rank_of_card_at(0)
+      return @player1
+    elsif @player2.rank_of_card_at(0) > @player1.rank_of_card_at(0)
+      return @player2
     else
-      p1_war = []
-      p2_war = []
+      if @player1.rank_of_card_at(2) > @player2.rank_of_card_at(2)
+        return @player1
+      elsif @player2.rank_of_card_at(2) > @player1.rank_of_card_at(2)
+        return @player2
+      else
+       return "No Winner"
+      end
+    end
+  end
+  
+  def pile_cards
+    @spoils_of_war = []
+    # binding.pry
+    if type == :basic
+      @spoils_of_war << @player1.deck.cards.shift
+      @spoils_of_war << @player2.deck.cards.shift
+    elsif type == :war
       3.times do
-        p1_war << @player1.deck.cards.pop
-        p2_war << @player2.deck.cards.pop
+      @spoils_of_war << @player1.deck.cards.shift
+      @spoils_of_war << @player2.deck.cards.shift
       end
-      if p1_war.last.rank > p2_war.last.rank
-        puts "TURN #{@turn}: WAR - #{@player1.name} won 6 cards"
-        p1_war.each {|card| @player1.deck.cards << card}
-        p2_war.each {|card| @player1.deck.cards << card}
-
-        # @player1.deck.cards << p1_war
-        # @player1.deck.cards << p2_war
-
-      elsif p1_war.last.rank < p2_war.last.rank
-        p1_war.each {|card| @player2.deck.cards << card}
-        p2_war.each {|card| @player2.deck.cards << card}
-        # @player2.deck.cards << p1_war
-        # @player2.deck.cards << p2_war
-        puts "TURN #{@turn}: WAR - #{@player2.name} won 6 cards"
-      else 
-        puts "TURN #{@turn}: *mutually assured destruction* 6 cards removed from play"
-        p1_war = []
-        p2_war = []
+    elsif type == :mutually_assured_destruction
+      3.times do
+        da_trash = []
+        da_trash << @player1.deck.cards.shift
+        da_trash << @player2.deck.cards.shift
       end
     end
-
-    if @player1.has_lost?
-      puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
-      break
-    end
-
-    if @player2.has_lost?
-      puts "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
-      break
-    end
-
-    if (@turn == 1_000_000)
-      puts "---- DRAW ----"
-        break
-    end
-
   end
 
+  def award_spoils(winner)
+    player1.deck.cards = player1.deck.cards.shuffle
+    player2.deck.cards = player2.deck.cards.shuffle
+    if winner == player1
+      # binding.pry
+      @spoils_of_war.each do |card|
+      @player1.deck.cards << card
+      end
+    elsif winner == player2  
+      @spoils_of_war.each do |card|
+        @player2.deck.cards << card
+        end
+    end
   end
-
 
 end

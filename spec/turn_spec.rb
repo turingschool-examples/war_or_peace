@@ -2,6 +2,8 @@ require './lib/turn'
 require './lib/card'
 require './lib/player'
 require './lib/deck'
+require 'pry'
+
 
 describe Turn do
   
@@ -10,147 +12,134 @@ describe Turn do
     expect(turn).to be_a(Turn)
   end
 
-  it 'can track the current turn' do
-    card1 = Card.new(:diamond, 'Two', 1)
-    card2 = Card.new(:diamond, 'Three', 2)
-    card3 = Card.new(:diamond, 'Four', 3)
-    card4 = Card.new(:diamond, 'Five', 4)
-    card5 = Card.new(:diamond, 'Six', 5)
-    card6 = Card.new(:diamond, 'Seven', 6)
-    card7 = Card.new(:diamond, 'Eight', 7)
-    card8 = Card.new(:diamond, 'Nine', 8)
-    card9 = Card.new(:diamond, 'Ten', 9)
-    card10 = Card.new(:diamond, 'Jack', 10)
-    card11 = Card.new(:diamond, 'Queen', 11)
-    card12 = Card.new(:diamond, 'King', 12)
-    card13 = Card.new(:diamond, 'Ace', 13)
-    player1_deck = Deck.new([card1, card2, card3, card4, card5, card6])
-    player2_deck = Deck.new([card8, card9, card10, card11, card12, card13])
-    player1 = Player.new("Player 1", player1_deck)
-    player2 = Player.new("Player 2", player2_deck)
+  describe " turn type :basic" do
+    it 'is a basic turn' do
+  card1 = Card.new(:heart, 'Jack', 11)
+  card2 = Card.new(:heart, '10', 10) 
+  card3 = Card.new(:heart, '9', 9)  
+  card4 = Card.new(:diamond, 'Jack', 11) 
+  card5 = Card.new(:heart, '8', 8)    
+  card6 = Card.new(:diamond, 'Queen', 12)    
+  card7 = Card.new(:heart, '3', 3)
+  card8 = Card.new(:diamond, '2', 2)
+  deck1 = Deck.new([card1, card2, card5, card8])   
+  deck2 = Deck.new([card3, card4, card6, card7])  
+  player1 = Player.new("Megan", deck1)
+  player2 = Player.new("Aurora", deck2)    
+  turn = Turn.new(player1, player2) 
+  expect(turn.player1).to be_a(Player)
+  expect(turn.player2).to be_a(Player)
+  turn.pile_cards
+  expect(turn.spoils_of_war).to be_an(Array)
+  expect(turn.spoils_of_war.size).to eq(2)
+  expect(turn.type).to eq(:basic)
+    end
 
+it 'has a winner and awards cards' do
+  card1 = Card.new(:heart, 'Jack', 11)
+  card2 = Card.new(:heart, '10', 10) 
+  card3 = Card.new(:heart, '9', 9)  
+  card4 = Card.new(:diamond, 'Jack', 11) 
+  card5 = Card.new(:heart, '8', 8)    
+  card6 = Card.new(:diamond, 'Queen', 12)    
+  card7 = Card.new(:heart, '3', 3)
+  card8 = Card.new(:diamond, '2', 2)
+  deck1 = Deck.new([card1, card2, card5, card8])   
+  deck2 = Deck.new([card3, card4, card6, card7])  
+  player1 = Player.new("Megan", deck1)
+  player2 = Player.new("Aurora", deck2)    
+  turn = Turn.new(player1, player2) 
 
-    turn = Turn.new(player1, player2)
-    turn.go
-
-    expect(turn.turn).to eq(6)
-
-  end
-
-  it 'Can have a player win a game' do
-    card1 = Card.new(:diamond, 'Two', 1)
-    card2 = Card.new(:diamond, 'Three', 2)
-    card3 = Card.new(:diamond, 'Four', 3)
-    card4 = Card.new(:diamond, 'Five', 4)
-    card5 = Card.new(:diamond, 'Six', 5)
-    card6 = Card.new(:diamond, 'Seven', 6)
-    card7 = Card.new(:diamond, 'Eight', 7)
-    card8 = Card.new(:diamond, 'Nine', 8)
-    card9 = Card.new(:diamond, 'Ten', 9)
-    card10 = Card.new(:diamond, 'Jack', 10)
-    card11 = Card.new(:diamond, 'Queen', 11)
-    card12 = Card.new(:diamond, 'King', 12)
-    card13 = Card.new(:diamond, 'Ace', 13)
-    player1_deck = Deck.new([card1, card2, card3, card4, card5, card6])
-    player2_deck = Deck.new([card8, card9, card10, card11, card12, card13])
-    player1 = Player.new("Player 1", player1_deck)
-    player2 = Player.new("Player 2", player2_deck)
-
-
-    turn = Turn.new(player1, player2)
-    turn.go
-
-    expect(player1.has_lost?).to be(true)
-    expect(player2.deck.cards.size).to eq(12)
+  expect(turn.winner).to eq(player1)
+  winner = turn.winner
+  turn.pile_cards
+  expect(turn.spoils_of_war).to be_an(Array)
+  expect(turn.spoils_of_war.size).to eq(2)
+  
+  turn.award_spoils(winner)
+  expect(player1.deck).to be_a(Deck)
+  expect(player1.deck.cards.size).to eq(5)
+  expect(player2.deck).to be_a(Deck)
+  expect(player2.deck.cards.size).to eq(3)
 
   end
-
-  it 'can handle a tie with war' do
-    card1 = Card.new(:diamond, 'Two', 1)
-    card2 = Card.new(:diamond, 'Three', 2)
-    card3 = Card.new(:diamond, 'Four', 3)
-    card4 = Card.new(:diamond, 'Five', 4)
-    card5 = Card.new(:diamond, 'Six', 5)
-    card6 = Card.new(:diamond, 'Seven', 6)
-    card7 = Card.new(:diamond, 'Eight', 7)
-    card8 = Card.new(:diamond, 'Nine', 8)
-    card9 = Card.new(:diamond, 'Ten', 9)
-    card10 = Card.new(:diamond, 'Jack', 10)
-    card11 = Card.new(:diamond, 'Queen', 11)
-    card12 = Card.new(:diamond, 'King', 12)
-    card13 = Card.new(:diamond, 'Ace', 13)
-    player1_deck = Deck.new([card1, card2, card3, card4, card5, card6])
-    player2_deck = Deck.new([card8, card9, card10, card11, card12, card6])
-    player1 = Player.new("Player 1", player1_deck)
-    player2 = Player.new("Player 2", player2_deck)
-
-    turn = Turn.new(player1, player2)
-    turn.go
-
-    expect(player1.has_lost?).to be(true)
-    expect(player2.deck.cards.size).to eq(12)
-
-  end
-
-  it 'can handle M.A.D.' do
-    card1 = Card.new(:diamond, 'Two', 1)
-    card2 = Card.new(:diamond, 'Three', 2)
-    card3 = Card.new(:diamond, 'Four', 3)
-    card4 = Card.new(:diamond, 'Five', 4)
-    card5 = Card.new(:diamond, 'Six', 5)
-    card6 = Card.new(:diamond, 'Seven', 6)
-    card7 = Card.new(:diamond, 'Eight', 7)
-    card8 = Card.new(:diamond, 'Nine', 8)
-    card9 = Card.new(:diamond, 'Ten', 9)
-    card10 = Card.new(:diamond, 'Jack', 10)
-    card11 = Card.new(:diamond, 'Queen', 11)
-    card12 = Card.new(:diamond, 'King', 12)
-    card13 = Card.new(:diamond, 'Ace', 13)
-    player1_deck = Deck.new([card1, card2, card3, card4, card5, card6])
-    player2_deck = Deck.new([card8, card9, card8, card4, card12, card6])
-
-    # player1_deck = Deck.new([card1, card2, card4, card4, card5, card6])
-    # player2_deck = Deck.new([card8, card9, card4, card9, card12, card6])
-
-    player1 = Player.new("Player 1", player1_deck)
-    player2 = Player.new("Player 2", player2_deck)
-
-    turn = Turn.new(player1, player2)
-    turn.go
-
-    expect(player1.has_lost?).to be(true)
-    expect(player2.deck.cards.size).to eq(6)
-
-  end
-
-  it 'can end in a tie after 1_000_000 turns' do
-    card1 = Card.new(:diamond, 'Two', 1)
-    card2 = Card.new(:diamond, 'Three', 2)
-    card3 = Card.new(:diamond, 'Four', 3)
-    card4 = Card.new(:diamond, 'Five', 4)
-    card5 = Card.new(:diamond, 'Six', 5)
-    card6 = Card.new(:diamond, 'Seven', 6)
-    card7 = Card.new(:diamond, 'Eight', 7)
-    card8 = Card.new(:diamond, 'Nine', 8)
-    card9 = Card.new(:diamond, 'Ten', 9)
-    card10 = Card.new(:diamond, 'Jack', 10)
-    card11 = Card.new(:diamond, 'Queen', 11)
-    card12 = Card.new(:diamond, 'King', 12)
-    card13 = Card.new(:diamond, 'Ace', 13)
-    player1_deck = Deck.new([card1, card2, card3, card4, card5, card6])
-    player2_deck = Deck.new([card8, card9, card10, card11, card12, card13])
-    player1 = Player.new("Player 1", player1_deck)
-    player2 = Player.new("Player 2", player2_deck)
-
-
-    turn = Turn.new(player1, player2)
-    turn.turn=(999_998)
-    binding.pry
-    turn.go
-
-    expect(player1.has_lost?).to be(false)
-    expect(player2.has_lost?).to be(false)
-  end
-
 end
+  
+describe "turn type :war" do
 
+  it 'has a war type turn' do
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10) 
+    card3 = Card.new(:heart, '9', 9)  
+    card4 = Card.new(:diamond, 'Jack', 11) 
+    card5 = Card.new(:heart, '8', 8)    
+    card6 = Card.new(:diamond, 'Queen', 12)    
+    card7 = Card.new(:heart, '3', 3)
+    card8 = Card.new(:diamond, '2', 2)
+    deck1 = Deck.new([card1, card2, card5, card8])   
+    deck2 = Deck.new([card4, card3, card6, card7])  
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)   
+    turn = Turn.new(player1, player2)
+
+    expect(turn.type).to eq(:war)
+  end
+
+  it 'has a winner and can award cards' do
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10) 
+    card3 = Card.new(:heart, '9', 9)  
+    card4 = Card.new(:diamond, 'Jack', 11) 
+    card5 = Card.new(:heart, '8', 8)    
+    card6 = Card.new(:diamond, 'Queen', 12)    
+    card7 = Card.new(:heart, '3', 3)
+    card8 = Card.new(:diamond, '2', 2)
+    deck1 = Deck.new([card1, card2, card5, card8])   
+    deck2 = Deck.new([card4, card3, card6, card7])  
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)   
+    turn = Turn.new(player1, player2)
+    winner = turn.winner
+
+    expect(winner).to eq(player2)
+    turn.pile_cards
+    expect(turn.spoils_of_war).to be_an(Array)
+    expect(turn.spoils_of_war.size).to eq(6)
+    
+    turn.award_spoils(winner)
+
+    expect(player1.deck).to be_a(Deck)
+    expect(player2.deck).to be_a(Deck)
+    expect(player1.deck.cards.size).to eq(1)
+    expect(player2.deck.cards.size).to eq(7)
+
+  end
+
+  describe 'mutually_assured_destruction' do
+    it 'works and produces "No winner"' do
+    card1 = Card.new(:heart, 'Jack', 11)
+    card2 = Card.new(:heart, '10', 10) 
+    card3 = Card.new(:heart, '9', 9)  
+    card4 = Card.new(:diamond, 'Jack', 11) 
+    card5 = Card.new(:heart, '8', 8)    
+    card6 = Card.new(:diamond, '8', 8)  
+    card7 = Card.new(:heart, '3', 3)
+    card8 = Card.new(:diamond, '2', 2)
+
+    deck1 = Deck.new([card1, card2, card5, card8])
+    deck2 = Deck.new([card4, card3, card6, card7])
+    player1 = Player.new("Megan", deck1) 
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)  
+    expect(turn.type).to eq(:mutually_assured_destruction)
+    winner = turn.winner
+    # binding.pry
+    expect(winner).to eq("No Winner")
+    turn.pile_cards
+    expect(turn.spoils_of_war).to eq([])
+    expect(player1.deck.cards.size).to eq(1)
+    expect(player2.deck.cards.size).to eq(1)
+    end
+  end
+end
+end
