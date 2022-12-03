@@ -4,6 +4,9 @@ class Turn
         @player1 = player1
         @player2 = player2
         @spoils_of_war = []
+        @player1_spoils_pile = []
+        @player2_spoils_pile = []
+
 
     end
 
@@ -33,6 +36,12 @@ class Turn
     def pile_cards
         @spoils_of_war << player1.deck.cards.shift
         @spoils_of_war << player2.deck.cards.shift
+    end
+
+    # Not working
+    def award_spoils(winner)
+        winner.deck.cards << spoils_of_war.shift until spoils_of_war.empty?
+
     end
 
 
