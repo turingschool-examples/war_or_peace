@@ -220,8 +220,8 @@ RSpec.describe Turn do
       turn.pile_cards
       turn.award_spoils(winner)
 
-      expect(player1.deck).to eq([card1, card2, card5, card8, card3])
-      expect(player2.deck).to eq([card4, card6, card7])
+      expect(player1.deck.cards).to include(card2, card5, card8, card3, card1)
+      expect(player2.deck.cards).to include(card4, card6, card7)
     end 
 
     it 'will award the spoils to winner for turn war' do 
@@ -229,12 +229,12 @@ RSpec.describe Turn do
       card2 = Card.new(:heart, '10', 10)  
       card3 = Card.new(:heart, '9', 9)    
       card4 = Card.new(:diamond, 'Jack', 11) 
-      card5 = Card.new(:heart, '8', 8)  
+      card5 = Card.new(:diamond, 'Jack', 11)  
       card6 = Card.new(:diamond, 'Queen', 12)   
       card7 = Card.new(:heart, '3', 3)    
       card8 = Card.new(:diamond, '2', 2)  
-      deck1 = Deck.new([card1, card2, card5, card8])    
-      deck2 = Deck.new([card3, card4, card6, card7]) 
+      deck1 = Deck.new([card1, card2, card3, card4])    
+      deck2 = Deck.new([card5, card6, card7, card8]) 
       player1 = Player.new("Megan", deck1)   
       player2 = Player.new("Aurora", deck2)  
       turn = Turn.new(player1, player2)
@@ -242,8 +242,8 @@ RSpec.describe Turn do
       turn.pile_cards
       turn.award_spoils(winner) 
 
-      expect(playe1.deck).to eq([card1, card2, card5, card8, card3, card4, card6])
-      expect(player2.deck).to eq([card7])
+      expect(player1.deck.cards).to include(card1, card2, card3, card4, card5, card6, card7)
+      expect(player2.deck.cards).to include(card8)
     end 
 
     it 'will remove cards from spoils of war for mutually assured destruction' do 
