@@ -21,7 +21,22 @@ class Deck
         pile
     end
 
+    def percent_high_ranking 
+        high_rank_card_counter = 0
+            @cards.each do |card|
+                if card.rank >= 11
+                    high_rank_card_counter += 1     
+                end
+            end 
+        float = (high_rank_card_counter/3.to_f * 100).round(2)    
+    end
 
+
+    def remove_card
+        @cards.shift
+    end 
+
+    
 
 end    
 

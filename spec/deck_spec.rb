@@ -47,9 +47,43 @@ RSpec.describe Deck do
         deck = Deck.new(cards)
         expect(deck.high_ranking_cards).to eq([card1, card3])
 
-    
     end 
 
+    it "gives percent_high_ranking" do
+        card1 = Card.new(:diamond, 'Queen', 12)
+        card2 = Card.new(:spade, '3', 3)
+        card3 = Card.new(:heart, 'Ace', 14)
+        cards = [card1, card2, card3]
+#  require "pry"; binding.pry
+        deck = Deck.new(cards)
+        # require "pry"; binding.pry
+    
+        expect(deck.percent_high_ranking).to eq(66.67)
+        #   require "pry"; binding.pry
+    end 
+
+    it "will remove_card" do
+        card1 = Card.new(:diamond, 'Queen', 12)
+        card2 = Card.new(:spade, '3', 3)
+        card3 = Card.new(:heart, 'Ace', 14)
+        cards = [card1, card2, card3]
+
+        deck = Deck.new(cards)
+#  require "pry"; binding.pry
+        expect(deck.remove_card).to eq(card1)
+
+    end 
+
+    it "deck has two cards" do 
+        card1 = Card.new(:diamond, 'Queen', 12)
+        card2 = Card.new(:spade, '3', 3)
+        card3 = Card.new(:heart, 'Ace', 14)
+        cards = [card1, card2, card3]
+
+        deck = Deck.new(cards)
+#  require "pry"; binding.pry
+        expect(deck.cards)
+    end 
 
 
 
