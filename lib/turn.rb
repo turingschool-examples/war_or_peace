@@ -41,7 +41,10 @@ class Turn
     end
 
     def pile_cards
-        if type == :war
+        if type == :mutually_assured_destruction
+            @spoils_of_war.clear
+
+        elsif type == :war
             @spoils_of_war << player1.deck.cards.shift(3)
             @spoils_of_war << player2.deck.cards.shift(3)
             @spoils_of_war.flatten!
