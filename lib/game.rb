@@ -18,28 +18,26 @@ class Game
     i = 0
     100_000_000.times do
     i += 1
+      if turn.type == :basic || turn.type == :war
+        p "Turn #{i}: #{turn.winner.name} won #{turn.pile_cards.length} cards"
+      else
+        p "Turn #{i}: *mutually assured desctruction* #{turn.pile_cards.length} removed from play."
+      end 
+    break if game_over == true
+    end
+  end  
 
-    if turn.type == :basic || turn.type == :war
-      p "Turn #{i}: #{turn.winner.name} won #{turn.pile_cards.length} cards"
-    else
-      p "Turn #{i}: *mutually assured desctruction* #{turn.pile_cards.length} removed from play."
-    end 
-    
-    # Displaying info each turn
-    # p "#{turn.player1.name} has #{turn.player1.deck.cards.length} cards remaining, the last three cards, top first are #{turn.player1.deck.cards[0].value}"
-    # p "#{turn.player2.name} has #{turn.player2.deck.cards.length} cards remaining, the last three cards, top first are #{turn.player2.deck.cards[0].value}"
-
+  def game_over  
     if turn.player1.has_lost?
       p "*~*~*~* #{turn.player2.name} has won the game! *~*~*~*"
-      break
+      true
     elsif turn.player1.has_lost? 
       p "*~*~*~* #{turn.player2.name} has won the game! *~*~*~*"
-      break
+      true
     end
   end
-     
-  end
-end
+  
+end     
 
 
 
