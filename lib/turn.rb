@@ -39,11 +39,12 @@
 
         def pile_cards
             if type == :basic
-                @spoils_of_war << @player1.deck.cards.shift
-                @spoils_of_war << @player2.deck.cards.shift
+                @spoils_of_war << [@player1.deck.cards.shift, @player2.deck.cards.shift]
             elsif type == :war
-                @spoils_of_war << @player1.deck.cards.slice!(0..2)
-                @spoils_of_war << @player2.deck.cards.slice!(0..2)
+                @spoils_of_war << [@player1.deck.cards.slice!(0..2), @player2.deck.cards.slice!(0..2)]
+            else
+                @player1.deck.cards.slice!(0..2) 
+                @player2.deck.cards.slice!(0..2)
             end
             @spoils_of_war = @spoils_of_war.flatten
         end
