@@ -1,13 +1,10 @@
-#Gives access to Card and Rspec
-#Rspec is a unit test framework for Ruby
 require './lib/card'
 require './lib/deck'
 require 'rspec'
 
-#Defines a collection of Deck tests
 RSpec.describe Deck do 
     describe 'initialize' do 
-        it 'var deck should exist as a deck object with arg cards' do
+        it 'var deck should be a deck object with attribute/argument cards' do
             #Makes the var deck a Deck object with arg cards
             card1 = Card.new(:diamond, 'Queen', 12)
             card2 = Card.new(:spade, '3', 3)
@@ -18,19 +15,16 @@ RSpec.describe Deck do
             expect(deck).to be_a(Deck)
         end
 
-        it 'deck.cards should eq cards array' do
-            #Needs access to deck var because of block scope
+        it 'deck of cards should equal array of card1,card2,card3' do
             card1 = Card.new(:diamond, 'Queen', 12)
             card2 = Card.new(:spade, '3', 3)
             card3 = Card.new(:heart, 'Ace', 14) 
             cards = [card1, card2, card3]
             deck = Deck.new(cards)
-            #assertion
             expect(deck.cards).to eq([card1,card2,card3])
         end
 
-        it 'rank of card on top of the deck should equal 12' do
-            #scope  
+        it 'rank of card on top of the deck should equal 12' do  
             card1 = Card.new(:diamond, 'Queen', 12)
             card2 = Card.new(:spade, '3', 3)
             card3 = Card.new(:heart, 'Ace', 14) 
@@ -38,11 +32,10 @@ RSpec.describe Deck do
             deck = Deck.new(cards)
             # call a method rank_of_card_at 
             # to return the rank of the top card
-            expect(deck.rank_of_card_at(0)).to eq 12
+            expect(deck.rank_of_card_at(0)).to eq(12)
         end
 
-        it 'rank of card on the bottom of the deck should equal 14' do
-            #scope  
+        it 'Rank of card on the bottom of the deck should equal 14' do  
             card1 = Card.new(:diamond, 'Queen', 12)
             card2 = Card.new(:spade, '3', 3)
             card3 = Card.new(:heart, 'Ace', 14) 
@@ -50,57 +43,102 @@ RSpec.describe Deck do
             deck = Deck.new(cards)
             # call a method rank_of_card_at 
             # to return the rank of the bottom card
-            expect(deck.rank_of_card_at(2)).to eq 14
+            expect(deck.rank_of_card_at(2)).to eq(14)
         end
           
-        it 'High_ranking_cards should equal array of cards of rank>=11 ' do
-            #Because of block scope  
+        it 'High_ranking_cards should equal an array of card1 and card3' do 
             card1 = Card.new(:diamond, 'Queen', 12)
             card2 = Card.new(:spade, '3', 3)
             card3 = Card.new(:heart, 'Ace', 14) 
             cards = [card1, card2, card3]
             deck = Deck.new(cards)
-            #Call a method called high_ranking_cards that puts cards of 
-            #rank >= 11 into an array called high_ranking_cards. 
-            #The method is called in the assertion below
-            expect(deck.high_ranking_cards).to eq([high_ranking_cards])
+            expect(deck.high_ranking_cards).to eq([card1, card3])
         end
 
-        xit 'percent of high_ranking_cards in the deck should equal 66.67%' do
-            #Because of block scope  
+        it 'Percent of high_ranking cards in the deck should equal 66.67%' do 
             card1 = Card.new(:diamond, 'Queen', 12)
             card2 = Card.new(:spade, '3', 3)
             card3 = Card.new(:heart, 'Ace', 14) 
             cards = [card1, card2, card3]
             deck = Deck.new(cards)
-            #Calls a method called percent_high_ranking that determines the
-            #percentage of high_ranking_cards in the deck
-            #The method is called in the assertion below
-            expect(deck.percent_high_ranking).to eq (66.67)
+            expect(deck.percent_high_ranking).to eq(66.67)
         end       
+        
+        it 'Deck.remove_card should remove and return top card' do
+            card1 = Card.new(:diamond, 'Queen', 12)
+            card2 = Card.new(:spade, '3', 3)
+            card3 = Card.new(:heart, 'Ace', 14) 
+            cards = [card1, card2, card3]
+            deck = Deck.new(cards) 
+            expect(deck.remove_card).to eq(card1)
+        end
 
-        # xit 'is an instance of card' do
-        #     #to initialize a new card object
-        #     deck = Deck.new(cards)    
-        #     expect(card4) = Card.new(:club, '5', 5)
-        # end   
-            
-        # xit 'to determine deck has cards' do
-        #     #to shuffle? deck with cards?
+        it 'Deck of cards should have 2 cards in the array' do 
+            card1 = Card.new(:diamond, 'Queen', 12)
+            card2 = Card.new(:spade, '3', 3)
+            card3 = Card.new(:heart, 'Ace', 14) 
+            cards = [card1, card2, card3]
+            deck = Deck.new(cards)
+            expect(deck.cards).to eq([card2, card3]) 
+        end
+
+        # xit 'Deck of high ranking cards should have one card in the cards array' do
+        #     card1 = Card.new(:diamond, 'Queen', 12)
+        #     card2 = Card.new(:spade, '3', 3)
+        #     card3 = Card.new(:heart, 'Ace', 14) 
+        #     cards = [card1, card2, card3]
+        #     deck = Deck.new(cards) 
+        #     expect(deck.high_ranking_cards).to eq([#<Card:0x007fbfd18555a0...>])
+        # end
+
+        
+        # xit 'Percent of high_ranking_cards in the deck should equal 50.0%' do  
+        #     card1 = Card.new(:diamond, 'Queen', 12)
+        #     card2 = Card.new(:spade, '3', 3)
+        #     card3 = Card.new(:heart, 'Ace', 14) 
+        #     cards = [card1, card2, card3]
         #     deck = Deck.new(cards)
-        #     expect(deck.cards).to eq[cards]
+        #     expect(deck.percent_high_ranking).to eq(50.0)
+        # end
+
+        # xit 'var card4 should be a new Card object with attributes' do
+        #     card1 = Card.new(:diamond, 'Queen', 12)
+        #     card2 = Card.new(:spade, '3', 3)
+        #     card3 = Card.new(:heart, 'Ace', 14) 
+        #     cards = [card1, card2, card3, card4]
+        #     deck = Deck.new(cards)
+        #     card4 = Card.new(:club, '5', 5)
+        #     expect(card4).to eq(Card.new(:club, '5', 5))
+        # end   
+
+        # #Call add_card method to add card4 to the bottom of the deck
+        # #deck.add_card(card4)
+            
+        # xit 'Percent of high_ranking_cards in the deck should equal 66.67%' do
+        #     card1 = Card.new(:diamond, 'Queen', 12)
+        #     card2 = Card.new(:spade, '3', 3)
+        #     card3 = Card.new(:heart, 'Ace', 14) 
+        #     cards = [card1, card2, card3]
+        #     deck = Deck.new(cards) 
+        #     expect(deck.cards).to eq[cards array]
         # end
             
-        # xit 'to determine high ranking cards' do
-        #     #to determine high ranking cards
-        #     deck = Deck.new(cards)
-        #     expect(deck.high_ranking_cards).to eq[high ranking cards]
+        # xit 'Percent of high_ranking_cards in the deck should equal 66.67%' do
+        #     card1 = Card.new(:diamond, 'Queen', 12)
+        #     card2 = Card.new(:spade, '3', 3)
+        #     card3 = Card.new(:heart, 'Ace', 14) 
+        #     cards = [card1, card2, card3]
+        #     deck = Deck.new(cards) 
+        #     expect(deck.high_ranking_cards).to eq([high ranking cards array])
         # end
     
-        # xit 'to determine percent high ranking cards' do
-        #     #to determine high ranking cards
-        #     deck = Deck.new(cards)
-        #     deck.percent_high_ranking 
+        # xit 'Percent of high_ranking_cards in the deck should equal 33.33%' do  
+        #     card1 = Card.new(:diamond, 'Queen', 12)
+        #     card2 = Card.new(:spade, '3', 3)
+        #     card3 = Card.new(:heart, 'Ace', 14) 
+        #     cards = [card1, card2, card3]
+        #     deck = Deck.new(cards) 
+        #     expect(deck.percent_high_ranking).to eq(33.33) 
         # end       
     end
 end        

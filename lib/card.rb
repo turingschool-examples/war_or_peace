@@ -1,6 +1,7 @@
 class Card
     
     #allows us to read these attributes outside of the class
+    #They are methods that can be called
     attr_reader :suit, 
                 :value, 
                 :rank
@@ -12,5 +13,4 @@ class Card
         @rank = rank
     end
 
-   
 end

@@ -2,33 +2,21 @@ class Deck
     
     #Allows us to read these attributes outside of the class.
     #These are also methods which allows them to be called on objects.
-    attr:cards,
-        :rank,
-        :position
-        :high_ranking_cards
-        :percent = percent
+    attr_reader :cards,
+                :rank,
+                :position
+                :high_ranking_cards
 
     #Initialize variables      
     def initialize(cards)
         @cards = cards
-        @rank = rank
-        @position = position 
-    end
-
-    def initialize
         @high_ranking_cards = []
-        @percent = percent
     end
 
     #Define methods
 
-    #Places cards into cards array
-    def add_cards(cards)
-        @cards<<cards
-    end
-
     #Returns the rank of the card at the 
-    #deck position passed in
+    #deck position passed in the argument
     def rank_of_card_at(position)
         @cards[position].rank
     end   
@@ -36,33 +24,34 @@ class Deck
     #Places high ranking cards from the cards array into an 
     #array called high_ranking_cards
     def high_ranking_cards
-        @cards.each do |card| 
-            if @card.rank >= 11 
-            @high_ranking_cards << card
+        @cards.each do |card|          
+            if card.rank >= 11  
+            @high_ranking_cards << card  
             end
         end
+        return @high_ranking_cards
     end  
 
-    #Determines the percent of high ranking cards
-    #in the deck of cards
+    #Determines percent of high ranking cards in the deck
     def percent_high_ranking
-        @cards.each do |card| 
-            high_rank_count = 0
-            if @card.rank >= 11
-            high_rank_count += 1
-            end
-        end    
-        percentage = count/3.0
+        high_rank_card_counter = 0
+            @cards.each do |card| 
+                if card.rank >= 11
+                    high_rank_card_counter += 1
+                end
+            end 
+        float = high_rank_card_counter*100.00/3.00 
+        return float.round(2)  
     end  
 
-    def remove_card()
-        # cards.pop?
+    #Removes and returns top card of the deck 
+    #and stores modified deck array
+    def remove_card
+        @cards.delete_at(0)
     end
 
-    def add_card(cards)
-        @cards<<cards
-    end
-
-
-    
+    #Adds a card to the bottom of the deck
+    def add_card(card)
+        @cards<<card
+    end  
 end
