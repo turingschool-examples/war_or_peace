@@ -103,6 +103,7 @@ RSpec.describe Turn do
     end
 
     it "can pile cards for war turn type" do 
+
         deck1 = Deck.new([@card1, @card2, @card5, @card8])
         deck2 = Deck.new([@card9, @card4, @card6, @card7]) 
         player1 = Player.new("Megan", deck1)
@@ -127,7 +128,34 @@ RSpec.describe Turn do
         expect(@player1.deck.cards).to eq([@card2, @card5, @card8, @card1, @card3])
         expect(@player2.deck.cards).to eq([@card4, @card6, @card7])
     end
+
+    it "awards spoils to the winner after a war turn" do 
+        deck1 = Deck.new([@card1, @card2, @card5, @card8])
+        deck2 = Deck.new([@card9, @card4, @card6, @card7]) 
+        player1 = Player.new("Megan", deck1)
+        player2 = Player.new("Aurora", deck2)
+       
+        turn = Turn.new(player1, player2)
+        winner = turn.winner
+        turn.pile_cards
+        turn.award_spoils(winner)
+
+        # require 'pry'; binding.pry
+        expect(player1.deck.cards).to eq([@card8])
+        expect(player2.deck.cards).to eq([@card7, @card1, @card2, @card5, @card9, @card4, @card6])
+    end
     
-    
+    it "has no winner" do 
+        deck1 = Deck.new([@card1, @card2, @card5, @card8])
+        deck2 = Deck.new([@card9, @card4, @card10, @card7]) 
+        player1 = Player.new("Megan", deck1)
+        player2 = Player.new("Aurora", deck2)
+        
+        turn = Turn.new(player1, player2)
+
+        winner = turn.winner
+
+        expect(winner).to eq("No Winner")
+    end
 
 end
