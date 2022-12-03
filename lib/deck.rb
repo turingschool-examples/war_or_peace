@@ -1,7 +1,7 @@
 require './lib/card'
 
 class Deck
-    attr_reader :name, :cards, :high_ranking_cards
+    attr_reader :name, :cards, :high_ranking_cards, :high_ranking_cards
     def initialize(cards = [])
         @cards = cards
     end
