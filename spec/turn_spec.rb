@@ -28,19 +28,16 @@ RSpec.describe Turn do
     end
 
     it "exists" do 
-
         expect(@turn).to be_an_instance_of(Turn)
         expect(@turn.player1.name).to eq("Megan")
         expect(@turn.player2.name).to eq("Aurora")
     end
 
     it "spoils of war" do
-
         expect(@turn.spoils_of_war).to eq([])
     end
 
     it "determines a basic turn type" do 
-
         expect(@turn.type).to eq(:basic)
     end
     
@@ -68,7 +65,6 @@ RSpec.describe Turn do
     end
     
     it "determines the winner of a basic turn" do
-        
         expect(@turn.winner).to eq(@player1)
     end
 
@@ -140,7 +136,6 @@ RSpec.describe Turn do
         turn.pile_cards
         turn.award_spoils(winner)
 
-        # require 'pry'; binding.pry
         expect(player1.deck.cards).to eq([@card8])
         expect(player2.deck.cards).to eq([@card7, @card1, @card2, @card5, @card9, @card4, @card6])
     end
