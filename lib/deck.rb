@@ -29,10 +29,12 @@ class Deck
     end
 
     def remove_card
-    percent_high_ranking
     @cards.shift
  end
- 
+
+    def add_card(card4)
+        cards << card4
+    end
 end
 
 
