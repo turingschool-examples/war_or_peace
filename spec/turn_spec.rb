@@ -118,7 +118,7 @@ RSpec.describe Player do
     end
 
     context 'Test Set 3' do
-        xit 'declares a winner for a basic outcome' do
+        it 'declares a winner for a basic outcome' do
             card1 = Card.new(:clubs, 'Jack', 11)
             card2 = Card.new(:spades, 'Ten', 10) 
             card3 = Card.new(:hearts, 'Nine', 9)
@@ -134,8 +134,8 @@ RSpec.describe Player do
 
             turn = Turn.new(player1, player2)
             
-            expect(turn.turn_type).to eq(:basic)
-            expect(turn.winner).to eq(@player1)
+            expect(turn.type).to eq(:basic)
+            expect(turn.winner).to eq(player1)
         end
 
         xit 'declares a winner for a war outcome' do
