@@ -467,5 +467,4 @@ RSpec.describe Turn do
         expect(player2.deck.cards).to eq([card7])
     end
 
-    # require "pry"; binding.pry
 end
