@@ -47,6 +47,7 @@ describe Turn do
         turn = Turn.new(player1, player2) 
 
         expect(turn.spoils_of_war).to eq([])
+        
     end
 
     it "type_basic" do
@@ -282,3 +283,4 @@ describe Turn do
 
 
 end
+

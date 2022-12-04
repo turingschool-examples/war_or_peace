@@ -19,23 +19,14 @@ class Turn
         end
     end
         
-    
-    def winner
-        return winner_basic if type == :basic
-        
-        return winner_war if type == :war
-        
-        return "No Winner" if type == :mutually_assured_destruction
-    end
-
     def winner_basic
         if player1.deck.rank_of_cards_at(0) > player2.deck.rank_of_cards_at(0)
             player1
-       else
+        else
             player2
-       end
+        end
     end
-
+    
     def winner_war
         if player1.deck.rank_of_cards_at(2) > player2.deck.rank_of_cards_at(2) 
             player1
@@ -44,6 +35,14 @@ class Turn
         end
     end
 
+    def winner
+        return winner_basic if type == :basic
+        
+        return winner_war if type == :war
+        
+        return "No Winner" if type == :mutually_assured_destruction
+    end
+    
     def pile_cards
         if type == :basic
             spoils_of_war << player1.deck.remove_card
