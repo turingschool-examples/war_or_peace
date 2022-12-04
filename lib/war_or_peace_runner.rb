@@ -55,4 +55,4 @@ cards = [card1 = Card.new(:heart, '2', 2),
         card52 = Card.new(:spade, 'Ace', 14)]
 
 game = Game.new(cards)
-
+game.start
