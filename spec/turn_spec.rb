@@ -41,11 +41,10 @@ describe Turn do
         end
 
         it 'use #pile_cards to send cards to @spoils_of_war' do
-            require 'pry'; binding.pry
             winner = @turn.winner
             @turn.pile_cards
 
-            expect(@turn.spoils_of_war.count).to eq(2)
+            expect(@turn.spoils_of_war).to eq([@card1, @card3])
         end
 
         it "@award_spoils to the winner's deck" do

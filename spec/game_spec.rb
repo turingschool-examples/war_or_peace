@@ -49,11 +49,5 @@ describe Game do
             expect(@game.deck2.cards.count).to eq(26)
             expect(@game.player1.deck.cards).not_to eq(@game.player2.deck.cards.count)
         end
-
-        it 'displays the winner of the turn' do
-            @game.display_turn_winner
-            
-            expect(@game.respond_to?(:display_turn_winner)).to be true
-        end
     end
 end
