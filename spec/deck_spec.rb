@@ -10,7 +10,7 @@ RSpec.describe Deck do
         cards = [card1, card2, card3]
  
         deck = Deck.new(cards)
-
+# require "pry"; binding.pry
         expect(deck).to be_an_instance_of(Deck)
       
     end
