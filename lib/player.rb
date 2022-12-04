@@ -6,8 +6,10 @@ class Player
     end
 # require 'pry'; binding.pry
     def has_lost? 
-        has_cards = false
-
+        deck.cards.empty?
+        #require 'pry'; binding.pry
     end
+    
+    
 
 end
