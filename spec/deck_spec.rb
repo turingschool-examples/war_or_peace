@@ -48,7 +48,7 @@ RSpec.describe Deck do
     card3 = Card.new(:heart, 'Ace', 14)
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
-    expect(deck.percent_high_ranking).to eq('66.67%')
+    expect(deck.percent_high_ranking).to eq(66.67)
   end
 
   it 'can update the #percent_high_ranking when adding and removing cards' do
@@ -58,17 +58,17 @@ RSpec.describe Deck do
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
 
-    expect(deck.percent_high_ranking).to eq('66.67%')
+    expect(deck.percent_high_ranking).to eq(66.67)
 
     deck.remove_card
     expect(deck.cards.count).to eq(2)
     expect(deck.high_ranking_cards.count).to eq(1)
-    expect(deck.percent_high_ranking).to eq('50.0%')
+    expect(deck.percent_high_ranking).to eq(50.0)
 
     card4 = Card.new(:club, '5', 5)
     deck.add_card(card4)
     expect(deck.cards.count).to eq(3)
     expect(deck.high_ranking_cards.count).to eq(1)
-    expect(deck.percent_high_ranking).to eq('33.33%')
+    expect(deck.percent_high_ranking).to eq(33.33)
   end
 end

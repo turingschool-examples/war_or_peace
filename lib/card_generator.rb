@@ -20,7 +20,7 @@ class CardGenerator
             card_array << i.split(", ")
         end
         card_array.each do |s, v, r|
-            card_inst << Card.new(s.to_sym, v.to_s, r)
+            card_inst << Card.new(s.to_sym, v.to_s, r.to_i)
         end
         return card_inst
     end
