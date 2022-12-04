@@ -133,7 +133,8 @@ RSpec.describe Turn do
         expect(turn.type).to eq(:basic)
     end
 
-    it "turn.winner should show winner (player1)" do
+    # Interaction Pattern shows winner = turn.winner how do I sent for this?
+    it "winner should show player1" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)    
         card3 = Card.new(:heart, '9', 9) 
@@ -150,13 +151,14 @@ RSpec.describe Turn do
         player2 = Player.new("Aurora", deck2)  
         
         turn = Turn.new(player1, player2)
-        
-        expect(turn.winner).to eq(player1)
+        winner = turn.winner
+
+        expect(winner).to eq(player1)
     end
 
-    ## turn.pile cards needs a test? 
+    # turn.pile cards needs a test? (no grey return information in iteraction pattern)
 
-    it "turn.spoils_of_war should hold two cards" do
+    it "turn.spoils_of_war should hold two cards(card1, card3)" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)    
         card3 = Card.new(:heart, '9', 9) 
@@ -179,8 +181,8 @@ RSpec.describe Turn do
         expect(turn.spoils_of_war).to eq([card1, card3])
     end
 
-    # turn.award_spoils(winner) need a test? 
-    
+    # turn.award_spoils(winner) need a test? (no grey return information in iteraction pattern)
+
     it "player1.deck.cards should show cards in deck1" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)    
@@ -252,7 +254,7 @@ RSpec.describe Turn do
         expect(turn.type).to eq(:war)
     end 
 
-    it "turn.winner should show the winner (player2)" do
+    it "winner should show player2" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)    
         card3 = Card.new(:heart, '9', 9) 
@@ -269,9 +271,12 @@ RSpec.describe Turn do
         player2 = Player.new("Aurora", deck2)  
 
         turn = Turn.new(player1, player2)
+        winner = turn.winner
 
-        expect(turn.winner).to eq(player2)
+        expect(winner).to eq(player2)
     end 
+
+    # turn.pile cards needs a test? (no grey return information in iteraction pattern)
 
     it "turn.spoils_of_war should show cards were added to winner deck" do
         card1 = Card.new(:heart, 'Jack', 11)
@@ -295,8 +300,10 @@ RSpec.describe Turn do
 
         expect(turn.spoils_of_war).to eq([card1, card4, card2, card3, card5, card6])
     end 
+    
+    # turn.award_spoils(winner) need a test? (no grey return information in iteraction pattern)
 
-    it "player1.deck.cards should show cards left in deck1" do
+    it "player1.deck.cards should show 1 card left in deck1" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)    
         card3 = Card.new(:heart, '9', 9) 
@@ -320,7 +327,7 @@ RSpec.describe Turn do
         expect(player1.deck.cards).to eq([card8])
     end 
 
-    it "player2.deck.cards should show cards were added to deck2" do
+    it "player2.deck.cards should show 7 cards in deck2" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)    
         card3 = Card.new(:heart, '9', 9) 
@@ -367,7 +374,7 @@ RSpec.describe Turn do
         expect(turn.type).to eq(:mutually_assured_destruction)
     end
 
-    it "turn.winner should return 'No Winner'" do
+    it "winner should return 'No Winner'" do
         card1 = Card.new(:heart, 'Jack', 11)    
         card2 = Card.new(:heart, '10', 10)  
         card3 = Card.new(:heart, '9', 9)  
@@ -384,11 +391,14 @@ RSpec.describe Turn do
         player2 = Player.new("Aurora", deck2)   
 
         turn = Turn.new(player1, player2) 
+        winner = turn.winner
 
-        expect(turn.winner).to eq("No Winner")
+        expect(winner).to eq("No Winner")
     end
 
-    it "turn.spoils_of_war should return an empty array" do        
+    # turn.pile cards needs a test? (no grey return information in iteraction pattern)
+
+    it "turn.spoils_of_war should show empty deck(empty array)" do        
         card1 = Card.new(:heart, 'Jack', 11)    
         card2 = Card.new(:heart, '10', 10)  
         card3 = Card.new(:heart, '9', 9)  
@@ -411,7 +421,7 @@ RSpec.describe Turn do
         expect(turn.spoils_of_war).to eq([])
     end
 
-    it "player1.deck.cards should show cards left in deck1" do        
+    it "player1.deck.cards should show 1 card left in deck1" do        
         card1 = Card.new(:heart, 'Jack', 11)    
         card2 = Card.new(:heart, '10', 10)  
         card3 = Card.new(:heart, '9', 9)  
@@ -434,7 +444,7 @@ RSpec.describe Turn do
         expect(player1.deck.cards).to eq([card8])
     end
 
-    it "player2.deck.cards should show cards left in deck2" do        
+    it "player2.deck.cards should show 1 cards left in deck2" do        
         card1 = Card.new(:heart, 'Jack', 11)    
         card2 = Card.new(:heart, '10', 10)  
         card3 = Card.new(:heart, '9', 9)  
