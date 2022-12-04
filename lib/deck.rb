@@ -6,9 +6,6 @@ class Deck
 
     def rank_of_card_at(index)
         cards[index].rank
-            # .length >=  
-            # raiseArgumentError
-            #if/end
     end
 
     def high_ranking_cards
