@@ -5,8 +5,8 @@ require './turn'
 class Game
     def initialize(cards)
         @cards = cards.shuffle
-        @deck1 = Deck.new(@cards[0..26])
-        @deck2 = Deck.new(@cards[26..52])
+        @deck1 = Deck.new(@cards[0..25])
+        @deck2 = Deck.new(@cards[26..51])
         @player1 = Player.new("Megan", @deck1)
         @player2 = Player.new("Aurora", @deck2)
         @turn = Turn.new(@player1, @player2)
@@ -20,7 +20,7 @@ class Game
         p "Type 'GO' to start the game!"
         p "------------------------------------------------------------------"
     
-        user_input = gets.chomp
+        user_input = gets.chomp.upcase
         if user_input != "GO"
             start
         end
@@ -35,12 +35,13 @@ class Game
             @turn_count += 1
             
             if type == :basic
+                # require 'pry'; binding.pry
                 @turn.award_spoils(winner)
-                puts "Turn #{@turn_count}: #{winner.name} won 2 cards"
+                puts "Turn #{@turn_count}: #{winner.name} won 2 cards report: #{winner.deck.cards.count}"
                 
             elsif type == :war
                 @turn.award_spoils(winner)
-                puts "Turn #{@turn_count}: WAR - #{winner.name} won 6 cards"
+                puts "Turn #{@turn_count}: WAR - #{winner.name} won 6 cards report: #{winner.deck.cards.count}"
 
             elsif type == :mutually_assured_destruction
                 puts "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
@@ -52,8 +53,10 @@ class Game
     def finish
         if @turn_count == 1_000_000 
             puts "---- DRAW ----"
-        else
-            puts "*~*~*~* #{@turn.winner} has won the game! *~*~*~*"
+        elsif @player2.has_lost? 
+            puts "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+        else @player1.has_lost?
+            puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
         end
     end
 end
