@@ -20,11 +20,9 @@ class Turn
 
           elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
                cardtype = :war 
-
           else 
                cardtype = :basic
           end
-
           @cardtype = cardtype 
     end
 
@@ -46,6 +44,7 @@ class Turn
           elsif @cardtype == :mutually_assured_destruction
                     winner = "No Winner"
         end 
+        
      end 
 
     def pile_cards
