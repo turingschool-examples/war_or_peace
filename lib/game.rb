@@ -11,7 +11,6 @@ class Game
         @player2 = Player.new("Aurora", @deck2)
         @turn = Turn.new(@player1, @player2)
         @turn_count = 0
-        # require 'pry'; binding.pry
     end
 
 
@@ -29,29 +28,32 @@ class Game
     end
 
     def play_game
-        until (@player1.has_lost? == true || @player2.has_lost? == true) || @turn_count == 1_000_000
+        until @player1.has_lost? == true || @player2.has_lost? == true || @turn_count == 1_000_000
             type = @turn.type
             winner = @turn.winner
             @turn.pile_cards
             @turn_count += 1
             
-            if type == :mutually_assured_destruction
-                p "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
+            if type == :basic
+                @turn.award_spoils(winner)
+                puts "Turn #{@turn_count}: #{winner.name} won 2 cards"
                 
             elsif type == :war
                 @turn.award_spoils(winner)
-                p "Turn #{@turn_count}: WAR - #{winner.name} won 6 cards"
+                puts "Turn #{@turn_count}: WAR - #{winner.name} won 6 cards"
 
-            else type == :basic
-                @turn.award_spoils(winner)
-                p "Turn #{@turn_count}: #{winner.name} won 2 cards"
+            elsif type == :mutually_assured_destruction
+                puts "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
             end
         end
         finish
     end
 
     def finish
-        p " Turn  #{@turn_count}: A#{@turn.winner} won 2 cards
-        *~*~*~* #{@turn.winner} has won the game! *~*~*~*"
+        if @turn_count == 1_000_000 
+            puts "---- DRAW ----"
+        else
+            puts "*~*~*~* #{@turn.winner} has won the game! *~*~*~*"
+        end
     end
 end
