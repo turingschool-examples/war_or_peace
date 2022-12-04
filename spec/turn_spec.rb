@@ -94,6 +94,16 @@ describe Turn do
             expect(@turn.winner).to eq(@player1)
         end
 
+        it 'can get draw game over winner' do
+            card1 = Card.new(:diamond, "2", 2)
+            card2 = Card.new(:heart, "2", 2)
+            @player1 = Player.new("Megan", Deck.new([card1]))
+            @player2 = Player.new("Aurora", Deck.new([card2]))
+            @turn = Turn.new(@player1, @player2)
+
+            expect(@turn.winner).to eq("Draw")
+        end
+
         it 'can get war turn type' do
             expect(@turn.type).to eq(:war)
         end
