@@ -87,7 +87,7 @@ describe Turn do
         it 'adds 6 cards to spoils_of_war' do
             @turn.pile_cards
             
-            expect(@turn.spoils_of_war.count).to eq(6)
+            expect(@turn.spoils_of_war).to eq([@card1, @card2, @card5, @card4, @card3, @card6])
         end
 
         it '#awards_spoils to winners deck' do
@@ -130,8 +130,8 @@ describe Turn do
             @turn.pile_cards
 
             expect(@turn.spoils_of_war).to eq([])
-            expect(@player1.deck.cards.count).to eq(1)
-            expect(@player2.deck.cards.count).to eq(1)
+            expect(@player1.deck.cards).to eq([@card8])
+            expect(@player2.deck.cards).to eq([@card7])
 
         end
     end
