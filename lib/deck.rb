@@ -43,4 +43,8 @@ class Deck
     def add_card(card)
         cards << card
     end
+
+    def shuffle
+        cards.replace(cards.sample(cards.size))
+    end
 end

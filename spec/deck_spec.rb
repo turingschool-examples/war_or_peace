@@ -70,4 +70,12 @@ RSpec.describe Deck do
     expect(deck.percent_high_ranking).to eq(33.33)
   end
 
+  it "can shuffle" do
+    puts deck.cards
+    puts ""
+    puts deck.shuffle
+    puts ""
+    puts deck.cards
+  end
+
 end
