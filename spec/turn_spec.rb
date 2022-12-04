@@ -18,7 +18,11 @@ RSpec.describe Turn do
         deck2 = Deck.new([card3, card4, card6, card7])    
         player1 = Player.new("Megan", deck1)    
         player2 = Player.new("Aurora", deck2)    
-        turn = Turn.new(player1, player2)    
+        turn = Turn.new(player1, player2)
+
+        expect(turn).to be_an_instance_of(Turn)
+        expect(turn.player1.name).to eq("Megan")
+        expect(turn.player2.name).to eq("Aurora")
     end
 
 end

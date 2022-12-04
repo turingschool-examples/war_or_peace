@@ -8,6 +8,8 @@ class Turn
         @spoils_of_war = []
     end
 
-    def
+    # def basic if
+    #     player1.deck.cards.size <=2 || @player2.deck.size <=2
+    # end
 
 end
