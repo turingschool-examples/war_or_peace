@@ -6,7 +6,7 @@ class Turn
 attr_reader :player1, 
             :player2, 
             :spoils_of_war
-            
+
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
@@ -70,8 +70,7 @@ attr_reader :player1,
   end
 
   def award_spoils(winner)
-    player1.deck.cards = player1.deck.cards.shuffle
-    player2.deck.cards = player2.deck.cards.shuffle
+    @spoils_of_war = @spoils_of_war.shuffle
     if winner == player1
       @spoils_of_war.each {|card| @player1.deck.cards << card}
     elsif winner == player2  
