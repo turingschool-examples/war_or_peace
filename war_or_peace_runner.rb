@@ -57,29 +57,5 @@ Card.new(:ace, 'Queen', 12),
 Card.new(:ace, 'King', 13),
 Card.new(:ace, 'Ace', 14)]
 
-
-# cards.shuffle
-
-# half_1 = []
-# half_2 = []
-
-# 26.times do
-#     pulled_cards = cards.sample
-#     half_1 << pulled_cards
-#     cards.delete(pulled_cards)
-# end
-
-# 26.times do
-#     leftover = cards.sample
-#     half_2 << leftover
-#     cards.delete(leftover)
-# end
-
-# deck1 = Deck.new(half_1)
-# deck2 = Deck.new(half_2)
-# player1 = Player.new("Megan", deck1)
-# player2 = Player.new("Aurora", deck2)
-# turn = Turn.new(player1, player2)
-
 game = Game.new(cards)
 game.start
