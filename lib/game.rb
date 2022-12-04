@@ -12,7 +12,7 @@ class Game
     end
 
     def game_ended?
-        return true if @player1.deck.cards.empty? || @player2.deck.cards.empty?
+        return true if @player1.has_lost? || @player2.has_lost?
         return false
     end
 
