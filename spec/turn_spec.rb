@@ -1,8 +1,7 @@
-
- require './lib/card'
- require './lib/deck'
- require './lib/player'
- require './lib/turn'
+require './lib/deck'
+require './lib/card'
+require './lib/player'
+require './lib/turn'
 
 RSpec.describe Turn do 
     before do 
@@ -53,7 +52,7 @@ RSpec.describe Turn do
         expect(turn.type).to eq(:war)
     end
 
-    it "determines a mututally assured destruction turn type" do
+    it "determines a mutually assured destruction turn type" do
         deck1 = Deck.new([@card1, @card2, @card5, @card8])
         deck2 = Deck.new([@card9, @card4, @card10, @card7]) 
         player1 = Player.new("Megan", deck1)
@@ -61,7 +60,7 @@ RSpec.describe Turn do
         
         turn = Turn.new(player1, player2)
 
-        expect(turn.type).to eq(:mututally_assured_destruction)
+        expect(turn.type).to eq(:mutually_assured_destruction)
     end
     
     it "determines the winner of a basic turn" do
@@ -89,7 +88,7 @@ RSpec.describe Turn do
 
         winner = turn.winner
         turn.pile_cards
-    
+        
         expect(turn.spoils_of_war).to eq([])
         expect(player1.deck.cards).to eq([@card8])
         expect(player2.deck.cards).to eq([@card7])

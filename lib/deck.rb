@@ -5,31 +5,34 @@ class Deck
        @cards = cards
    end
 
-   def rank_of_cards_at(int)
-       cards[int].rank
+   def rank_of_cards_at(index)
+        if @cards[index].nil?
+            0
+        else
+            @cards[index].rank
+        end
    end
 
     def high_ranking_cards
-       high_cards = []
-       cards.each do |card|
-           if card.rank >= 11
-               high_cards << card
+        high_cards = []
+        cards.each do |card|
+            if card.rank >= 11
+                high_cards << card
            end
        end
        high_cards
-   end
+    end
 
    def percent_high_ranking
-      percent = (high_ranking_cards.count.to_f / cards.count.to_f) * 100
-      percent.round(2)
+        percent = (high_ranking_cards.count.to_f / cards.count.to_f) * 100
+        percent.round(2)
    end
 
-   def remove_card
-    @cards.shift
-   end
+    def remove_card
+        @cards.shift
+    end
 
-   def add_card(card)
-    @cards << card
-   end
-
+    def add_card(card)
+        @cards << card
+    end
 end

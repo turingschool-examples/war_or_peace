@@ -65,7 +65,7 @@ class Game
                 p "Turn #{turn_count}: #{winner.name} won 2 cards"
             elsif turn.type == :war
                 p "Turn #{turn_count}: WAR - #{winner.name} won 6 cards"
-            elsif turn.type == :mututally_assured_destruction
+            elsif turn.type == :mutually_assured_destruction
                 p "Turn #{turn_count}: *mutually assured destruction* 6 cards removed from play"
             end
 
@@ -75,12 +75,12 @@ class Game
             end
         end
 
-        if turn_count == 1000000 || (@player1.has_lost? || @player2.has_lost?)
+        if turn_count == 1000000 || (@player1.has_lost? && @player2.has_lost?)
             p "---- DRAW ----"
         elsif @player1.has_lost?
-            p "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+            p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
         elsif @player2.has_lost?
-            p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"    
+            p "*~*~*~* #{@player1.name} has won the game! *~*~*~*"    
         end
 
     end

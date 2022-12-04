@@ -11,7 +11,6 @@ RSpec.describe Player do
        @cards = [@card1, @card2, @card3]    
  
        @deck = Deck.new(@cards)
-    #    require 'pry'; binding.pry
        @player = Player.new('Clarisa', @deck)
     end
 
