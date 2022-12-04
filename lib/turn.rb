@@ -17,7 +17,10 @@ class Turn
     def type 
         if @player1.has_lost? == false && @player2.has_lost? == false
 
-            if @player1.deck.cards.size < 3 || @player2.deck.cards.size <3
+            if (@player1.deck.cards.size < 3 || @player2.deck.cards.size < 3) && @player1.deck.cards.first.rank == @player2.deck.cards.first.rank
+                @type == :mutually_assured_destruction_2
+                #THIS IS NEW TAKE OUT IF BREAKS
+            elsif @player1.deck.cards.size < 3 || @player2.deck.cards.size <3
                 @type = :basic
             elsif @player1.deck.cards.first.rank != @player2.deck.cards.first.rank 
                 @type = :basic
@@ -41,7 +44,7 @@ class Turn
             @winner = @player1
         elsif @type == :war && @player2.deck.cards[2].rank > @player1.deck.cards[2].rank
             @winner = @player2
-        elsif @type == :mutually_assured_destruction
+        elsif @type == :mutually_assured_destruction || @type == :mutually_assured_destruction_2 #second half is new remove if broken
             @winner = "No Winner"
         end
 
@@ -65,7 +68,9 @@ class Turn
             @player2.deck.remove_card
             @player2.deck.remove_card
             @player2.deck.remove_card
-
+        elsif @type == :mutually_assured_destruction_2 #IF BREAKS CODE REMOVE
+            @player1.deck.remove_card
+            @player2.deck.remove_card
         end
 
         @spoils_of_war = @spoils_of_war.shuffle
