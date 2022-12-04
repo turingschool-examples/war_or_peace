@@ -3,6 +3,7 @@ class Game
 
     def initialize ()
         @filename = "cards.txt"
+        # @cards = []
         @cards = CardGenerator.new(@filename).cards
         @shuffled_deck = []
         @individual_deck = []
@@ -13,6 +14,34 @@ class Game
         @player2 = Player.new('Aurora', @deck2)
         @turn = Turn.new(@player1, @player2)
     end
+
+    # def create_deck
+    #     rank_and_value = []
+    #     suits = %i[heart diamond spade club]
+    #     deck_hash = {
+    #         2 => '2',
+    #         3 => '3',
+    #         4 => '4',
+    #         5 => '5',
+    #         6 => '6',
+    #         7 => '7',
+    #         8 => '8',
+    #         9 => '9',
+    #         10 => '10',
+    #         11 => 'Jack',
+    #         12 => 'Queen',
+    #         13 => 'King',
+    #         14 => 'Ace',
+    #     }
+    #     deck_hash.each do |rank, value|
+    #         rank_and_value << [rank, value]
+    #     end
+    #     suits.each do |suit|
+    #         rank_and_value.each do |card|
+    #             @cards << Card.new(suit, card[1], card[0])
+    #         end
+    #     end
+    # end
 
     def shuffle_cards
         @shuffled_deck = @cards.shuffle
