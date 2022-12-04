@@ -4,21 +4,25 @@ require './lib/player'
 require './lib/turn'
 
 class Game
-    attr_reader #something I guess
+    attr_reader :cards,
+        :deck1,
+        :deck2,
+        :player1,
+        :player2,
+        :turn,
+        :round_winner
 
-    def initialize(player1, player2)
-        @cards = cards
-        @deck1 = deck1
-        @deck2 = deck2
-        @player1 = player1
-        @player2 = player2
-        @turn = Turn.new(player1, player2)
+    def initialize
+        @deck1 = Deck.new([])
+        @deck2 = Deck.new([])
+        @player1 = Player.new("Megan", @deck1)
+        @player2 = Player.new("Aurora", @deck2)
+        @turn = Turn.new(@player1, @player2)
+        @round_winner = ""
     end
 
     def deal
         fresh_pack = []
-        deck1 = Deck.new
-        deck2 = Deck.new
 
         fresh_pack << card1 = Card.new(:diamond, '2', 2)
         fresh_pack << card15 = Card.new(:heart, '2', 2)
@@ -74,27 +78,37 @@ class Game
         fresh_pack << card52 = Card.new(:club, 'Ace', 14)
 
         26.times do
-            deck1 << fresh_pack.sample
-            deck2 << fresh_pack.sample
+            @player1.deck.cards << fresh_pack.sample
+            @player2.deck.cards << fresh_pack.sample
         end
     end
 
     def start
-        print "Welcome to War! (or Peace) This game will be played with 52 cards.\nThe players today are Megan and Aurora.\nType 'GO' to start the game!\n------------------------------------------------------------------"
-        gets.chomp == "GO" ? game_time : "Maybe next time then :)"
+        p "Welcome to War! (or Peace) This game will be played with 52 cards."
+        p "The players today are Megan and Aurora."
+        p "Type 'GO' to start the game!"
+        p "------------------------------------------------------------------"
+       
+        "GO" == gets.chomp
+
+        1000000.times do
+            if @player1.has_lost? || @player2.has_lost? == true
+                "--------This game is a draw...--------"
+                break
+           else
+                
+            
+           end
+                
+
     end
 
-    
+
 
 # user types go, and game starts
 
     
         # define play as a method to do multiple iterations?
     
-    
-
-player1 = Player.new("Megan", deck1)
-player2 = Player.new("Aurora", deck2)
-
 
 end

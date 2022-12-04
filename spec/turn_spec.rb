@@ -181,7 +181,7 @@ RSpec.describe Player do
         expect(player2.deck.cards).to include(card3, card4, card6, card7, card1, card2, card5)
     end
 
-    it "will properly run war" do
+    it "will properly run mutual distruction" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
         card3 = Card.new(:club, 'Jack', 11)
@@ -207,4 +207,6 @@ RSpec.describe Player do
        
         expect(player2.deck.cards).to include(card7)
     end
+
+    
 end
