@@ -48,14 +48,14 @@ class Turn
 
         if type == :mutually_assured_destruction
             3.times do
-                garbage << (player1.deck.remove_card)
-                garbage << (player2.deck.remove_card)
+                garbage << player1.deck.remove_card
+                garbage << player2.deck.remove_card
             end
 
         elsif type == :war  
             3.times do
-                spoils_of_war << (player1.deck.remove_card)
-                spoils_of_war << (player2.deck.remove_card)
+                spoils_of_war << player1.deck.remove_card
+                spoils_of_war << player2.deck.remove_card
             end
 
         else type == :basic

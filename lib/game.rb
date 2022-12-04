@@ -32,20 +32,20 @@ class Game
     def start
     # Need to show welcome screen and instructions/ability for user to start game
     puts
-    puts "Welcome to War! (or Peace) This game will be played with 52 cards.
-The players today are Megan and Aurora.
-Type 'GO' to start the game!
-------------------------------------------------------------------"
+    puts "Welcome to War! (or Peace) This game will be played with 52 cards."
+    puts "The players today are Megan and Aurora."
+    puts "Type 'GO' to start the game!" 
+    puts "------------------------------------------------------------------"
     puts
 
     # Need to accept user input
-        pl_answer = gets.chomp
+        user_response = gets.chomp.upcase
     
     # Need to add conditionals if user types "GO" or something else
     # and tell code what to do. 
-        if pl_answer == "GO" || pl_answer == "go" || pl_answer == "Go" || pl_answer == "gO"
-            # commence
-            puts "test worked"
+        if user_response == "GO" 
+            commence
+            # puts "test worked"
         else
             puts 
             puts "Didn't catch that, please try again:"
@@ -54,27 +54,63 @@ Type 'GO' to start the game!
         end
     end
 
-    # 2def "commence game"
-    #telling code how to operate the game
-    # loop -> make 1,000,000 turns || turn until (( has_lost? = true )) aka empty array
-    # you'll need ruby user input
-    # if there is still no winner after 1,000,000 turns
-        #puts "no winner" and as if want to play again(code should be in next method)
-    # end
+    def commence
+    # Need to tell code how to operate the turns of the game over and over until there's a loser        
+        counter = 0
 
-    #3def Who's the winner? of the entire game...
-    # #option to play again?
-    # print question play again? 
-    # user input (get) if yes 
-    #                     start
-    #                 else terminate game
-    #                         put "bye"
-    #                 end 
+        until player1.has_lost? || player2.has_lost? || counter == 1_000_000
+            counter += 1
+
+            if turn == :mutually_assured_destruction
+                        puts "Turn #{counter}: *mutually assured destruction* 6 cards removed from play"
+            elsif turn == :war
+                        puts "Turn #{counter}: WAR - #{winner.name} has won 6 cards"
+            else turn == :basic
+                        puts "Turn #{counter}: #{winner.name} has won 2 cards"
+            end
+
+        end 
+    end
+
+    # Need to show who won the entire game
+    def champion
+    
+        if player1.has_lost?
+            puts
+            puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
+            
+        elsif player2.has_lost?
+            puts
+            puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
+
+        else counter == 1_000_000
+            puts
+            puts "---- DRAW ----\n"
+        # Need an option to play again or terminate game
+            puts "Type 'GO' to start another game."
+            puts "------------------------------------------------------------------\n"
+            user_response = gets.chomp.upcase
+              if user_response == "GO" 
+                  commence
+              else
+                  puts "See ya next time!"
+              end
+        end
+        
+        start
+
+    end
+
 end
+    
+# OLD CODE:
+    
+    # This worked but the .upcase method is cleaner:
+    # <if user_response == "GO" || user_response == "go" || user_response == "Go" || user_response == "gO">
 
-    # OLD CODE FOR: Need to distribute 26 cards to each deck 
-    # This old code nested too many arrays inside of arrays but led to what is currently written. 
-        # p1_cards = []
+    # This worked but nested too many arrays inside of arrays but led to what is currently written. 
+        #< 
+        #p1_cards = []
         # p1_cards << @full_deck.take(26)
         # 26.times do
         #   full_deck.shift
@@ -84,3 +120,4 @@ end
         # 26.times do
         #   full_deck.shift
         # end
+        #>
