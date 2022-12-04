@@ -187,6 +187,7 @@ describe Turn do
             player1 = Player.new("Megan", deck1)
             player2 = Player.new("Aurora", deck2)
             turn = Turn.new(player1, player2)
+            binding.pry
             expect(turn.winner).to eq("No Winner")
         end
 
