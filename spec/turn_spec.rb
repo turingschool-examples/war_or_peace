@@ -95,7 +95,7 @@ RSpec.describe Player do
             expect(turn.type).to eq(:war)
         end
 
-        xit 'has a mutually assured destruction turn type' do
+        it 'has a mutually assured destruction turn type' do
             card1 = Card.new(:hearts, 'Jack', 11)
             card2 = Card.new(:hearts, 'Ten', 10) 
             card3 = Card.new(:spades, 'Jack', 11)
@@ -113,7 +113,7 @@ RSpec.describe Player do
 
             turn = Turn.new(player1, player2)
 
-            expect(turn.turn_type).to eq(:mutually_assured_destruction)
+            expect(turn.type).to eq(:mutually_assured_destruction)
         end
     end
 
