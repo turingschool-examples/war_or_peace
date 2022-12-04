@@ -1,7 +1,7 @@
 require 'rspec'
-require './lib/deck.rb'
-require './lib/card.rb'
-require './lib/player.rb'
+require './lib/deck'
+require './lib/card'
+require './lib/player'
 
 RSpec.describe Player do
 
