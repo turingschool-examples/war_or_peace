@@ -158,7 +158,7 @@ RSpec.describe Player do
             expect(turn.winner).to eq(player2)
         end
 
-        xit "declares 'No Winner' for a mutually assured destruction outcome" do
+        it "declares 'No Winner' for a mutually assured destruction outcome" do
             card1 = Card.new(:clubs, 'Jack', 11)
             card2 = Card.new(:spades, 'Jack', 11) 
             card3 = Card.new(:hearts, 'Nine', 9)
@@ -174,7 +174,7 @@ RSpec.describe Player do
 
             turn = Turn.new(player1, player2)
         
-            expect(turn.turn_type).to eq(:mutually_assured_destruction)
+            expect(turn.type).to eq(:mutually_assured_destruction)
             expect(turn.winner).to eq('No Winner')
         end
     end

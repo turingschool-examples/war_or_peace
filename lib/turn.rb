@@ -33,6 +33,10 @@ class Turn
                 winner = player2
             end
         end
+
+        if type == :mutually_assured_destruction
+            winner = 'No Winner'
+        end
         
         winner
     end
