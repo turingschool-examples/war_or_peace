@@ -13,7 +13,7 @@ class Game
 
     def start
         p "Welcome to War! (or Peace) This game will be played with 52 cards." 
-        p "The players today are Caleb and Joslyn. Type 'GO' to start the game!"
+        p "The players today are #{@player1.name} and #{@player2.name}. Type 'GO' to start the game!"
         p "------------------------------------------------------------------"
 
         if gets.chomp.upcase == "GO"
