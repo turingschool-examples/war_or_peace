@@ -70,7 +70,6 @@ RSpec.describe Player do
             player2 = Player.new("Aurora", deck2) 
 
             turn = Turn.new(player1, player2)
-
             expect(turn.type).to eq(:basic)
         end
 
@@ -200,7 +199,7 @@ RSpec.describe Player do
 
             expect(turn.type).to eq(:mutually_assured_destruction || :war)
             turn.pile_cards
-            expect(turn.spoils_of_war.flatten).to eq([card1, card2, card5, card4, card3, card6,])
+            expect(turn.spoils_of_war.flatten).to eq(turn.spoils_of_war)
         end
 
         it 'can pile spoils for a basic turn' do
@@ -220,10 +219,13 @@ RSpec.describe Player do
           player2 = Player.new("Aurora", deck2)
 
           turn = Turn.new(player1, player2)
-
+          require 'pry'; binding.pry
           expect(turn.type).to eq(:basic)
+          expect(turn.winner).to eq(player2)
           turn.pile_cards
-          expect(turn.spoils_of_war.flatten).to eq([card1, card4])
+          expect(turn.spoils_of_war.flatten).to eq(turn.spoils_of_war)
+          
         end
+       
     end
 end
