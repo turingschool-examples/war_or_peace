@@ -29,36 +29,30 @@ class Game
        
     end
 
-    # def shuffle??
-    #     *randomize full deck array
-    # end
+    def start
+    # Need to show welcome screen and instructions/ability for user to start game
+    puts
+    puts "Welcome to War! (or Peace) This game will be played with 52 cards.
+The players today are Megan and Aurora.
+Type 'GO' to start the game!
+------------------------------------------------------------------"
+    puts
 
-    #1def start
-
-        # puts 
-        # Welcome to War! (or Peace) This game will be played with 52 cards.
-        # The players today are Megan and Aurora.
-        # Type 'GO' to start the game!
-        # ------------------------------------------------------------------
-        
-        # if press "GO" game run
-    # if "go"
-    #     commence
-    #     # look into method called get (accept user input)
-
-    # else
-    #     #invalid input
-    #     #puts "cant understand. try again."
-    #     #return main screen with "GO" instructions
-        
-    #     # puts 
-    #     # Welcome to War! (or Peace) This game will be played with 52 cards.
-    #     # The players today are Megan and Aurora.
-    #     # Type 'GO' to start the game!
-    #     # ------------------------------------------------------------------
-
-    # end
-    #end
+    # Need to accept user input
+        pl_answer = gets.chomp
+    
+    # Need to add conditionals if user types "GO" or something else
+    # and tell code what to do. 
+        if pl_answer == "GO" || pl_answer == "go" || pl_answer == "Go" || pl_answer == "gO"
+            # commence
+            puts "test worked"
+        else
+            puts 
+            puts "Didn't catch that, please try again:"
+            puts
+            start
+        end
+    end
 
     # 2def "commence game"
     #telling code how to operate the game
