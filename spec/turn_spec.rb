@@ -138,7 +138,7 @@ RSpec.describe Player do
             expect(turn.winner).to eq(player1)
         end
 
-        xit 'declares a winner for a war outcome' do
+        it 'declares a winner for a war outcome' do
             card1 = Card.new(:clubs, 'Jack', 11)
             card2 = Card.new(:spades, 'Jack', 11) 
             card3 = Card.new(:hearts, 'Nine', 9)
@@ -154,8 +154,8 @@ RSpec.describe Player do
 
             turn = Turn.new(player1, player2)
 
-            expect(turn.turn_type).to eq(:war)
-            expect(turn.winner).to eq(@player2)
+            expect(turn.type).to eq(:war)
+            expect(turn.winner).to eq(player2)
         end
 
         xit "declares 'No Winner' for a mutually assured destruction outcome" do

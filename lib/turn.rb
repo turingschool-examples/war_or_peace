@@ -25,5 +25,15 @@ class Turn
                 winner = player2
             end
         end
+        
+        if type == :war
+            if player1.deck.cards_arr[2].rank > player2.deck.cards_arr[2].rank
+                winner = player1
+            elsif player1.deck.cards_arr[2].rank < player2.deck.cards_arr[2].rank
+                winner = player2
+            end
+        end
+        
+        winner
     end
 end
