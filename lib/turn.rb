@@ -38,14 +38,18 @@ class Turn
         end
     end
 
-    # def winner
-    #     comparison = @p1_ranks_arr[0] <=> @p2_ranks_arr[0]
-    #     if comparison == -1
-    #         @player1.has_lost? = true
-    #     elsif comparison == 1
-    #         @player2.has_lost? = true
-    #     end
-    # end
+    def winner
+        if turn_type == :basic
+            comparison = @p1_ranks_arr[0] <=> @p2_ranks_arr[0]
+            if comparison == -1
+                @player2
+            elsif comparison == 1
+                @player1
+            elsif comparison == 0
+                :war
+            end 
+        end
+    end
 end
 
 # turn_type = @player1 <=> @player2 #need to write methods to call in instance variables

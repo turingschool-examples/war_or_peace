@@ -143,8 +143,10 @@ RSpec.describe Player do
 
             expect(turn.turn_type).to eq(:mutually_assured_destruction)
         end
+    end
 
-        it 'can declare a winner' do
+    context 'Test Set 3' do
+        it 'can declare a winner for a basic turn' do
             card1 = Card.new(:clubs, 'Jack', 11)
             card2 = Card.new(:spades, 'Ten', 10) 
             card3 = Card.new(:hearts, 'Nine', 9)
@@ -159,9 +161,8 @@ RSpec.describe Player do
             player2 = Player.new("Aurora", deck2)
 
             turn = Turn.new(player1, player2)
-            require 'pry'; binding.pry
 
-        
+            expect(turn.turn_type).to eq(:basic)
         end
     end
 end
