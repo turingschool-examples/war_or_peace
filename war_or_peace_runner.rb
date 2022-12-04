@@ -4,6 +4,7 @@ require './lib/player'
 require './lib/turn'
 require './lib/game'
 
+# cards
     card1 = Card.new(:heart, '2', 2)
     card2 = Card.new(:heart, '3', 3)
     card3 = Card.new(:heart, '4', 4)

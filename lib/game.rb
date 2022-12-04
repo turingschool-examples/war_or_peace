@@ -19,8 +19,8 @@ class Game
         @deck2 = Deck.new(@full_deck[26..51])
         # @deck1 = Deck.new(@full_deck[0..1])
         # @deck2 = Deck.new(@full_deck[2..6])
-        @player1 = Player.new('Sun Tzu', @deck2)
-        @player2 = Player.new('Alexander, the Great', @deck1)
+        @player2 = Player.new('Sun Tzu', @deck2)
+        @player1 = Player.new('Alexander, the Great', @deck1)
         @turn = Turn.new(@player1, @player2)
     end
 
@@ -62,11 +62,11 @@ class Game
 
     def run_game
         turn_count = 0
-        @player1.deck.cards.shuffle
-        @player2.deck.cards.shuffle
 
         until turn_count == 1_000_000 || @player1.has_lost? == true || @player2.has_lost? ==true
             turn_count += 1
+            @player1.deck.cards.shuffle!
+            @player2.deck.cards.shuffle!
             type = @turn.type
             winner = @turn.winner
 
