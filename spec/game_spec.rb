@@ -60,7 +60,8 @@ describe Game do
 
         expect(@game.start).to eq("*~*~*~* Megan has won the game! *~*~*~*")
 
-        #Return winner on war/MAD turn (Refactor)
+        # Return winner on war/MAD turn (Refactor)
+        # Commented out due to 1,000,000 loop count
         # card1 = Card.new(:diamond, "2", 2)
         # card2 = Card.new(:heart, "2", 2)
         # card3 = Card.new(:spade, "2", 2)
@@ -72,17 +73,17 @@ describe Game do
         
         # expect(@game.start).to eq("*~*~*~* Megan has won the game! *~*~*~*")
 
-        ## Return Draw (Refactor)
-        ## Commented out due to 1,000,000 loop count
-        # card1 = Card.new(:diamond, "2", 2)
-        # card2 = Card.new(:heart, "2", 2)
-        # card3 = Card.new(:spade, "2", 2)
-        # card4 = Card.new(:club, "2", 2)
-        # @player1 = Player.new("Megan", Deck.new([card1, card2]))
-        # @player2 = Player.new("Aurora", Deck.new([card3, card4]))
-        # @game = Game.new(@player1, @player2)
+        # Return draw on gameover/draw turn
+        # Commented out due to 1,000,000 loop count
+        card1 = Card.new(:diamond, "2", 2)
+        card2 = Card.new(:heart, "2", 2)
+        card3 = Card.new(:spade, "2", 2)
+        card4 = Card.new(:club, "2", 2)
+        @player1 = Player.new("Megan", Deck.new([card1, card2]))
+        @player2 = Player.new("Aurora", Deck.new([card3, card4]))
+        @game = Game.new(@player1, @player2)
 
-        # expect(@game.start).to eq("---- DRAW ----")
+        expect(@game.start).to eq("---- DRAW ----")
     end
 
     it 'can announce basic winner' do 
