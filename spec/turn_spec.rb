@@ -100,6 +100,7 @@ describe Turn do
 
         it 'can get game over turn type' do
             @player1.deck.cards.pop(2)
+            turn = Turn.new(@player1, @player2)
 
             expect(@turn.type).to eq(:game_over)
         end
@@ -116,6 +117,16 @@ describe Turn do
             expect(@player1.deck.cards).to eq(expected_p1_deck)
             expect(@player2.deck.cards).to eq(expected_p2_deck)
         end
+
+        it 'can pile game over cards' do
+            expected_spoils = @player1.deck.cards[0..1].concat(@player2.deck.cards)
+            @player1.deck.cards.pop(2)
+
+            @turn = Turn.new(@player1, @player2)
+
+            expect(@turn.pile_cards).to eq(expected_spoils)
+        end
+
 
         it 'can shuffle spoils' do
             @turn.pile_cards
