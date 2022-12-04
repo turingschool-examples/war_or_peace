@@ -1,0 +1,4 @@
+Queen, Diamond, 12
+8, Club, 8
+10, Heart, 10
+Ace, Spade, 14
