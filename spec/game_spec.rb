@@ -42,16 +42,8 @@ describe Game do
         expect(@game.game_ended?).to eq(true)
     end
 
-    xit 'can play turn' do
-        winning_deck = @player1.deck.cards[1..3]
-        winning_deck << @player1.deck.cards[0] << @player2.deck.cards[0]
-
-        losing_deck = @player2.deck.cards[1..3]
-
-        @game.play_turn
-
-        expect(@player1.deck.cards).to eq(winning_deck)
-        expect(@player2.deck.cards).to eq(losing_deck)
+    it 'can play turn' do
+        expect(@game.play_turn).to eq(@player1)
     end
     
     it 'can start game' do
