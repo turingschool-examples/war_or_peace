@@ -95,7 +95,7 @@ describe Turn do
         turn.winner
         turn.pile_cards
 
-        expect(turn.spoils_of_war).to eq([card1, card3])
+        expect(turn.spoils_of_war).to match_array([card1, card3])
     end
 
     it 'can collect cards after a turn' do
@@ -124,8 +124,8 @@ describe Turn do
     # require 'pry'; binding.pry
 
 
-        expect(player1.deck.cards).to eq([card2, card5, card8, card1, card3])
-        expect(player2.deck.cards).to eq([card4, card6, card7])
+        expect(player1.deck.cards).to match_array([card2, card5, card8, card1, card3])
+        expect(player2.deck.cards).to match_array([card4, card6, card7])
     end
         
     ####################:WAR TURN TYPE TESTS##################
@@ -196,7 +196,7 @@ describe Turn do
         winner = turn.winner
         turn.pile_cards
 
-        expect(turn.spoils_of_war).to eq([card1, card2, card5, card4, card3, card6])
+        expect(turn.spoils_of_war).to match_array([card1, card2, card5, card4, card3, card6])
     end
 
     it 'can still operate award_spoils method' do
@@ -221,8 +221,8 @@ describe Turn do
         turn.pile_cards
         turn.award_spoils(winner)
 
-        expect(player1.deck.cards).to eq([card8])
-        expect(player2.deck.cards).to eq([card7, card1, card2, card5, card4, card3, card6])
+        expect(player1.deck.cards).to match_array([card8])
+        expect(player2.deck.cards).to match_array([card7, card1, card2, card5, card4, card3, card6])
     end
 
     ####:mutually_assured_destruction TURN TYPE TESTS####
@@ -294,8 +294,8 @@ describe Turn do
         turn.pile_cards
 
         expect(turn.spoils_of_war).to eq([])
-        expect(player1.deck.cards).to eq([card8]) 
-        expect(player2.deck.cards).to eq([card7]) 
+        expect(player1.deck.cards).to match_array([card8]) 
+        expect(player2.deck.cards).to match_array([card7]) 
     
     end
 
