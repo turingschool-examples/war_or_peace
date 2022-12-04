@@ -5,21 +5,7 @@ require './lib/turn'
 
 class Game 
     MAX_TURNS = 1_000_000
-    # CARD_MAP = {
-    #         2 => "2",
-    #         3 => "3",
-    #         4 => "4",
-    #         5 => "5",
-    #         6 => "6",
-    #         7 => "7",
-    #         8 => "8",
-    #         9 => "9",
-    #         10 => "10",
-    #         11 => "Jack",
-    #         12 => "Queen",
-    #         13 => "King",
-    #         14 => "Ace"
-    #     }
+
     def initialize(player1, player2)
         @player1 = player1
         @player2 = player2
@@ -35,27 +21,12 @@ class Game
     def start_game(input)
         if input.upcase == "GO"
          
-        # starting_deck = [:diamond, :heart, :spade, :club].flat_map do |suit|
-        #     (2..14).to_a.map do |rank|
-        #         value = CARD_MAP[rank]
-        #         card = Card.new(suit, value, rank)
-        #     end
-        # end
-
-        # shuffled_deck = starting_deck.shuffle!
-
-        #     deck1 = shuffled_deck.first(26)
-        #     deck2 = shuffled_deck.last(26)
-
-        #     player1 = Player.new("Megan", Deck.new(deck1))
-        #     player2 = Player.new("Aurora", Deck.new(deck2))
-
             turn = Turn.new(@player1, @player2)
             turn_counter = 0
 
             until @player1.has_lost? || @player2.has_lost? || turn_counter == MAX_TURNS
-            turn.pile_cards
-            turn_counter += 1
+                turn.pile_cards
+                turn_counter += 1
 
                 case turn.type 
                 when :mutually_assured_destruction
