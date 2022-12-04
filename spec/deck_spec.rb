@@ -3,7 +3,7 @@ require './lib/deck'
 require 'rspec'
 
 RSpec.describe Deck do 
-    describe 'initialize' do 
+    describe 'deck should exist as a Deck object' do 
         it 'The var deck should be an instance of Deck' do
             #The var deck should be a Deck object
             card1 = Card.new(:diamond, 'Queen', 12)

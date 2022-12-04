@@ -4,7 +4,7 @@ require './lib/player'
 require 'rspec'
 
 RSpec.describe Player do
-    describe 'initialize' do
+    describe 'player should exist as a Player' do
         it 'The var player should be an instance of Player with args name and deck' do
             card1 = Card.new(:diamond, 'Queen', 12)
             card2 = Card.new(:spade, '3', 3)
@@ -50,7 +50,6 @@ RSpec.describe Player do
             expect(player.deck.remove_card).to eq(card3)
             expect(player.has_lost?).to eq(true)
             expect(player.deck.cards).to eq([])
-            
         end
     end
 end
