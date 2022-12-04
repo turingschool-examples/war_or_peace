@@ -40,7 +40,7 @@ class Deck
                     high_rank_card_counter += 1
                 end
             end 
-        float = high_rank_card_counter*100.00/3.00 
+        float = high_rank_card_counter*100.00/cards.length 
         return float.round(2)  
     end  
 
@@ -53,6 +53,6 @@ class Deck
 
     #Adds a card to the bottom of the deck
     def add_card(card)
-        @cards<<cards
+        @cards<<card
     end  
 end
