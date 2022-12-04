@@ -45,6 +45,8 @@ class Game
         game_over?
       end 
     end
+  p "---- DRAW ----"  
+
   end  
 
   def game_over?  
