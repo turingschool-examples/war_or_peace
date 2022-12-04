@@ -71,20 +71,23 @@ class Game
             winner = @turn.winner
 
             if type == :basic
+                puts "Turn #{turn_count}: BASIC - #{winner.name} won 2 cards (#{@player1.deck.cards[0].value} vs #{@player2.deck.cards[0].value})"
                 @turn.pile_cards
                 @turn.award_spoils(winner)
-                puts "Turn #{turn_count}: BASIC - #{winner.name} won 2 cards"
             elsif type == :war
+
+                puts "Turn #{turn_count}: WAR - #{winner.name} won 6 cards #{@player1.deck.cards[2].value} vs #{@player2.deck.cards[2].value}"
                 @turn.pile_cards
-                @turn.award_spoils(winner)
-                puts "Turn #{turn_count}: WAR - #{winner.name} won 6 cards"
+                @turn.award_spoils(winner)                
             elsif type == :short_war
+                
+                puts "Turn #{turn_count}: WAR - #{winner.name} won 4 cards"
                 @turn.pile_cards
                 @turn.award_spoils(winner)
-                puts "Turn #{turn_count}: WAR - #{winner.name} won 4 cards"
             elsif type == :mutual_destruction
-                @turn.pile_cards
+                
                 puts "*mutually assured destruction* 6 cards removed from play"
+                @turn.pile_cards
             elsif type == :two_card_stalemate
                 @turn.pile_cards
                 puts "Turn #{turn_count}: Stalemate - both players discard"
