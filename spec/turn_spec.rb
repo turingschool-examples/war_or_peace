@@ -100,9 +100,19 @@ describe Turn do
 
         it 'can get game over turn type' do
             @player1.deck.cards.pop(2)
-            turn = Turn.new(@player1, @player2)
+            @turn = Turn.new(@player1, @player2)
 
             expect(@turn.type).to eq(:game_over)
+        end
+
+        it 'can get draw game over turn type' do
+            card1 = Card.new(:diamond, "2", 2)
+            card2 = Card.new(:heart, "2", 2)
+            @player1 = Player.new("Megan", Deck.new([card1]))
+            @player2 = Player.new("Aurora", Deck.new([card2]))
+            @turn = Turn.new(@player1, @player2)
+
+            expect(@turn.type).to eq(:draw)
         end
 
         it 'can pile war cards' do
