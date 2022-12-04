@@ -59,7 +59,7 @@ RSpec.describe Turn do
         winner = turn.winner
         expect(turn.pile_cards).to eq([card1, card3])
         expect(turn.spoils_of_war).to eq([card1, card3])
-
+        #require 'pry'; binding.pry
         turn.award_spoils(winner)
 
         expect(player1.deck.cards).to eq([card2, card5, card8, card1, card3])
@@ -100,8 +100,8 @@ RSpec.describe Turn do
 
         turn.award_spoils(winner)
         #require 'pry'; binding.pry
-        expect(player1.deck.cards).to eq([card8])
-        expect(player2.deck.cards).to eq([card7, card1, card4, card2, card3, card5, card6])    
+        expect(player1.deck.cards.size).to eq(1)
+        expect(player2.deck.cards.size).to eq(7)    
 
      end
 
