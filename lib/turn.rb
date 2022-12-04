@@ -33,6 +33,7 @@ class Turn
             return @player1 if @player2.deck.cards[2] == nil
             return @player2
         elsif type == :draw
+            return "Draw"
         end
         return "No Winner"
     end
