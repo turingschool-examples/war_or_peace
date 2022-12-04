@@ -12,7 +12,7 @@ class Game
     end
 
     def game_ended?
-        return true if @player1.has_lost? || @player2.has_lost?
+        return true if (@player1.has_lost? || @player2.has_lost?) || @turn_type == :draw
         return false
     end
 
@@ -35,7 +35,7 @@ class Game
             winner = play_turn 
         end
 
-        if @turn_count == 1_000_000
+        if @turn_count == 1_000_000 || @turn_type == :draw
             return "---- DRAW ----"
         elsif winner == "No Winner"
             if @player1.deck.cards.count > @player1.deck.cards.count
