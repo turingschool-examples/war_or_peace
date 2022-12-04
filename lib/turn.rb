@@ -61,4 +61,9 @@ class Turn
         @spoils_of_war << player2.deck.remove_card
     end
   end # => #Arr of @spoils_of_war based on conditions met
+
+  def award_spoils(winner)
+    require 'pry'; binding.pry
+    winner.deck << @spoils_of_war
+  end
 end
