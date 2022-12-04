@@ -9,6 +9,8 @@ class Game
     def initialize(turn)
         @turn = turn
         @go = ""
+        turn.player1.deck.shuffle
+        turn.player2.deck.shuffle
     end
 
     def start
@@ -18,7 +20,7 @@ class Game
         puts "Type 'GO' to start the game!"
         puts "------------------------------------------------------------------"
         puts ""
-        input = gets.chomp
+        input = gets.chomp.upcase
 
         if input == 'GO'
             puts ""
