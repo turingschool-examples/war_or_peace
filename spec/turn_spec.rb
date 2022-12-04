@@ -223,7 +223,7 @@ RSpec.describe Player do
 
           expect(turn.type).to eq(:basic)
           turn.pile_cards
-          expect(turn.spoils_of_war.flatten).to eq([card1, card2, card5, card4, card3, card6,])
+          expect(turn.spoils_of_war.flatten).to eq([card1, card4])
         end
     end
 end
