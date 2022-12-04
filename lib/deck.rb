@@ -22,19 +22,17 @@ class Deck
     end
 
     def percent_high_ranking 
-        high_rank_card_counter = 0
-            @cards.each do |card|
-                if card.rank >= 11
-                    high_rank_card_counter += 1     
-                end
-            end 
-        float = (high_rank_card_counter/3.to_f * 100).round(2)    
+        ((high_ranking_cards.size * 100) / cards.size.to_f).round(2)   
     end
 
 
     def remove_card
        @cards.shift
     end 
+
+    def add_card(new_card)
+        cards.push (new_card)
+    end
 
     
 
