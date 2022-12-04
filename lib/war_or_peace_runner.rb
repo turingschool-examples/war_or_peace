@@ -62,3 +62,4 @@ Card.new(:club, 'Ace', 14)
 #require 'pry'; binding.pry
 game = Game.new(cards_arr)
 game.start
+#require 'pry'; binding.pry
