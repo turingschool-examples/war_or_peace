@@ -18,7 +18,7 @@ class Game
         @deck1 = Deck.new([])
         @deck2 = Deck.new([])
         @player1 = Player.new("Megan", deck1)
-        @player2 = Player.new("Amy", deck2)
+        @player2 = Player.new("Aurora", deck2)
         @turn = Turn.new(player1, player2)
         @current_winner = ''
                
@@ -77,7 +77,6 @@ class Game
         Card.new(:heart, 'Ace', 14)]
     end
 
-
     def deal
         shuffled_deck = @cards.shuffle!
         
@@ -88,13 +87,9 @@ class Game
             else
                 @player2.deck.cards << value
             end
-        
-            
         end
         deck1
-        deck2
-       
-        
+        deck2    
     end
        
     def start
@@ -105,16 +100,18 @@ class Game
         "GO" == gets.chomp
         
         turns = 1
-        while turns <1000001
+        while turns < 1000001 && (!player1.has_lost? || !player2.has_lost?) 
             if @player1.has_lost?
-                puts "#{player2.name} Won"
+                puts "#{player2.name} has Won!"
+                return
             elsif @player2.has_lost?
-                puts "#{player1.name} Won"
+                puts "#{player1.name} has Won!"
+                return
             else # play game
                 
                 type = @turn.type
-                @turn.pile_cards
                 @current_winner = @turn.winner
+                @turn.pile_cards
               
                 if type == :basic
                     turn.award_spoils(@current_winner)   
@@ -123,6 +120,7 @@ class Game
                     turn.award_spoils(@current_winner)   
                     puts "Turn#{turns}: #{@current_winner.name} won 6 cards" 
                 else type == :mutually_assured_destruction
+                    
                     puts "Turn#{turns}: *mutually assured destruction* 6 cards removed from play"
                 end    
              
@@ -130,6 +128,10 @@ class Game
             end   
         end
 
+        if turns == 1000001
+            puts "-----DRAW-----"
+        
+        end
     end
 end
     
