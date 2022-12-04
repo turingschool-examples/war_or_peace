@@ -8,22 +8,24 @@ class Turn
   end
 
   def type
+
+    return :basic if player1.deck.cards.count <= 2 || player2.deck.cards.count <= 2
+
     if (player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)) && (player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2))
       return :mutually_assured_destruction
+
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
       return :war
-    else
+
+    else player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
       return :basic
+
     end
   end
 
   def winner
-    if type == :basic
-      if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-        return player1
-      else
-        return player2
-      end
+    if type == :mutually_assured_destruction
+      return 'No Winner'
 
     elsif type == :war
       if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
@@ -32,8 +34,13 @@ class Turn
         return player2
       end
       
-    else type == :mutually_assured_destruction
-      return 'No Winner'
+    else type == :basic
+      if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+        return player1
+      else
+        return player2
+      end
+
     end
   end
 
@@ -50,14 +57,14 @@ class Turn
 
     else type == :mutually_assured_destruction
       3.times do
-        @spoils_of_war << player1.deck.remove_card
-        @spoils_of_war << player2.deck.remove_card
+         player1.deck.remove_card
+         player2.deck.remove_card
       end
-        @spoils_of_war.clear
     end
   end
 
   def award_spoils(winner)
-    winner.deck.cards.concat(@spoils_of_war)
+    winner.deck.add_card(@spoils_of_war.shuffle!.shift) until @spoils_of_war.empty?
+    #didn't work - winner.deck.cards.concat(@spoils_of_war)
   end
 end
