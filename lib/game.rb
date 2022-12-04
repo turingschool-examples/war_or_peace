@@ -12,38 +12,52 @@ class Game
     end
 
     def start
-        p "Welcome to War! (or Peace) This game will be played with 52 cards. The players today are Caleb and Joslyn. Type 'GO' to start the game!"
+        p "Welcome to War! (or Peace) This game will be played with 52 cards." 
+        p "The players today are Caleb and Joslyn. Type 'GO' to start the game!"
+        p "------------------------------------------------------------------"
 
         if gets.chomp.upcase == "GO"
-            
-            #main loop
+            run_game
+        else
+            start
         end
     end
     
-    def main_loop
-       #use display_turn
-    end
 
-    def display_turn
-        winner = @turn.winner
+    def run_game
         count = 0 
-        count += 1
-        if type == :basic
+        
+        until count == 1_000_000 || @player1.has_lost? || @player2.has_lost?
+            type = @turn.type
+            winner = @turn.winner
             @turn.pile_cards
-            @turn.award_spoils(winner)
-            puts "Turn #{count}: #{winner.name} won 2 cards."
+            count += 1
+            if type == :basic
+                @turn.award_spoils(winner)
+                puts "Turn #{count}: BASIC - #{winner.name} won 2 cards."
+            elsif type == :war
+                @turn.award_spoils(winner)
+                puts "Turn #{count}: WAR - #{winner.name} won 6 cards."
+            elsif type == :mutually_assured_destruction
+                puts "Turn #{count}: *mutually assured destruction* 6 cards removed from play"
+            end
 
-           elsif type == :war
-               @turn.pile_cards
-               @turn.award_spoils(winner)
-               puts "Turn #{count}: #{winner.name} won #{award_spoils.count} cards"
-           else 
-               @turn.pile_cards
-               puts "Turn #{count}: *mutually assured destruction* #{turn.pile_cards} removed from play"
-               end
-        puts winner
-        "#{winner} has won "
+            check_winner(count)
+        end
     end
+
+    def check_winner(count)
+        if @player1.has_lost? == true 
+           puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+        elsif @player2.has_lost? == true
+           puts "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+        elsif count == 1_000_000
+            require 'pry'; binding.pry   
+           puts "---- DRAW ----"
+                
+        end
+    end
+    
 
 
 end
