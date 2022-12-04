@@ -57,18 +57,30 @@ class Game
             @turn.pile_cards
             @turns += 1
             puts "*mutually assured destruction* 6 cards removed from play"
+            puts "-----"
         elsif @turn.type == :war
             winner = @turn.winner
             @turn.pile_cards
             @turn.award_spoils(winner)
             @turns += 1
             puts "Turn #{@turns}: WAR - #{winner.name} won 6 cards Report: #{winner.deck.cards.count}"
+            puts "#{@player1.name} has #{@player1.deck.percent_high_ranking} high ranking cards in their deck."
+            puts "#{@player2.name} has #{@player2.deck.percent_high_ranking} high ranking cards in their deck."
+            puts "-----"
+            require 'pry'; binding.pry
         elsif @turn.type == :basic
             winner = @turn.winner
             @turn.pile_cards
             @turn.award_spoils(winner)
             @turns += 1
-            puts "Turn #{@turns}: #{winner.name} has won 2 cards Report: #{winner.deck.cards.count} "
+            puts "Turn #{@turns}: #{winner.name} has won 2 cards Report: #{winner.deck.cards.count}"
+            puts "#{@player1.name} has #{@player1.deck.percent_high_ranking} high ranking cards in their deck."
+            puts "#{@player2.name} has #{@player2.deck.percent_high_ranking} high ranking cards in their deck."
+            puts "-----"
+        end
+        if @turns % 100 == 0
+            puts 'Guess the winner before the game continues!'
+            sleep(5)
         end
         if @turns == 1_000_000
             puts '---- DRAW ----'

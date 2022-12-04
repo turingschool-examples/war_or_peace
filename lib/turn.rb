@@ -51,10 +51,8 @@ class Turn
     end
 
     def award_spoils(winner)
-            (winner.deck.cards).concat(@spoils_of_war)
-            @spoils_of_war.clear
+            winner.deck.add_card(@spoils_of_war.shift(6)).flatten!
             @player1.deck.cards.shuffle!
             @player2.deck.cards.shuffle!
-            return winner.deck.cards
     end
 end
