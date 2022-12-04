@@ -1,5 +1,8 @@
 class GamePlay
-    attr_reader :player1, :player2, :turns
+    attr_reader :player1,
+     :player2,
+     :turns,
+     :winner_of_game
 
     attr_accessor :current_turn_type, :current_turn_winner
 
@@ -9,6 +12,7 @@ class GamePlay
         @turns = 0
         @current_turn_type = :basic
         @current_turn_winner = ''
+        @winner_of_game = ''
     end
 
     def start
@@ -50,11 +54,14 @@ class GamePlay
     #this method will determine a game winner
    
     def game_winner
-        if @player1.deck.cards.size == 0
+        if @player1.has_lost? == true
+            @winner_of_game = @player2
             p "*~*~*~* #{@player2.name} has conquered the Office! *~*~*~*" 
-        elsif @player2.deck.cards.size == 0
+        elsif @player2.has_lost? == true
+            @winner_of_game = @Player1
             p "*~*~*~* #{@player1.name} has conquered the Office! *~*~*~*"
         else
+            @winner_of_game = "DRAW"
             p "---- DRAW; PEACE IS AMONG US <3 (Dwight! No weapons!) ----"
         end
     end
