@@ -2,13 +2,11 @@ class Turn
 
     attr_reader :player1, 
                 :player2, 
-                :spoils_of_war,
-                :removed_from_game
+                :spoils_of_war
     def initialize (player1, player2)
         @player1 = player1
         @player2 = player2
         @spoils_of_war = []
-        @removed_from_game =[]
     end
 
     def type
@@ -47,7 +45,15 @@ class Turn
 
     def pile_cards 
         if type == :mutually_assured_destruction
-            # require 'pry'; binding.pry
+            player1.deck.cards_arr.shift(3)
+            player2.deck.cards_arr.shift(3)
+        elsif type == :war
+            player1.deck.cards_arr.slice[2]
+
+            # 3.times do
+            #     player1.deck.remove_card
+            #     player2.deck.remove_card
+            # end
         end
     end
 end

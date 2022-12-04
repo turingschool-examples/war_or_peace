@@ -201,11 +201,17 @@ RSpec.describe Player do
             
             winner = turn.winner
             expect(turn.winner).to eq('No Winner')
-
-            expect(turn.pile_cards).to eq(pile_cards)
+            
+            expect(player1.deck.cards_arr).to eq([card1, card2, card5, card8])
+            expect(player2.deck.cards_arr).to eq([card4, card3, card6, card7])
+            
+           turn.pile_cards
+            
+            expect(player1.deck.cards_arr).to eq([card8])
+            expect(player2.deck.cards_arr).to eq([card7])
             expect(turn.spoils_of_war).to eq([])
 
-            require 'pry'; binding.pry
+            
         end
     end
 end

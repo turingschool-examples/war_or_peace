@@ -1,7 +1,7 @@
 # 'Test Set 1'
 class Deck
 
-    attr_reader :cards_arr
+    attr_accessor :cards_arr
     def initialize(cards_arr)
         @cards_arr = cards_arr
         @high_ranking_cards = []
