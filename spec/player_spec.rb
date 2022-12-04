@@ -25,6 +25,14 @@ RSpec.describe Player do
         expect(@player.has_lost?).to be(false)
     end
 
+    it "has lost if it has no cards" do 
+        cards = []
+        deck = Deck.new(cards)
+        player = Player.new('Clarisa', deck)
+
+        expect(player.has_lost?).to eq(true)
+    end
+
     it "can remove a card" do 
         expect(@player.deck.remove_card).to eq(@card1)
         expect(@player.deck.cards).to eq([@card2, @card3])
