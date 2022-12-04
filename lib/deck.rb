@@ -36,5 +36,4 @@ class Deck
       @cards.push(card)
 
     end
-    # require 'pry';binding.pry
 end

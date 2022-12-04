@@ -9,18 +9,19 @@ class Turn
        @spoils_of_war = []
     end
 
-  def type
-        if mutually_assured_destruction
+    def type
+        if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
             :mutually_assured_destruction
-        elsif war
+        elsif player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
             :war
-        else basic
+        else player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
             :basic
         end
     end
 
     def basic
         player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
+        # require 'pry'; binding.pry
     end
 
     def war
@@ -31,29 +32,48 @@ class Turn
         player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
     end
 
+    
 
     def winner
-        if turn.type :basic
-            player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-            return player1
-        else
-            return player2
-
-        if turn.type :war
-            player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-            return player1
-        else
-            return player2
-
-        if turn.type :mutually_assured_destruction
-            return "No Winner"
+        if type == :basic
+            if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+                player1
+            else
+                player2
+            end
+        elsif type == :war
+            if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+                player1
+            else
+                player2
+            end
+        else type == :mutually_assured_destruction
+           "No Winner"
         end
     end
 
     def pile_cards
-        if turn.type :basic
-            
+        if type == basic
+           @spoils_of_war << player1.deck.remove_card
+           @spoils_of_war << player2.deck.remove_card 
         end
+
+        if type == war
+            3.times do
+            @spoils_of_war << player1.deck.remove_card
+            @spoils_of_war << player2.deck.remove_card 
+            end
+        end
+
+        if type == mutually_assured_destruction
+            3.times do
+                player1.deck.remove_card
+                player2.deck.remove_card
+            end
+        end
+
+    def award_spoils(winner)
+        player.deck << spoils_of_war
     end
-    
+end
 end
