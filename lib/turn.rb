@@ -39,17 +39,38 @@ class Turn
     end
 
     def winner
+        
+
         if turn_type == :basic
-            comparison = @p1_ranks_arr[0] <=> @p2_ranks_arr[0]
-            if comparison == -1
-                @player2
-            elsif comparison == 1
+            if @p1_ranks_arr[0] > @p2_ranks_arr[0]
                 @player1
-            elsif comparison == 0
-                :war
-            end 
+            elsif @p1_ranks_arr[0] < @p2_ranks_arr[0]
+                @player2
+            end
         end
+
+        
+        
+
+        # comparison1 = @p1_ranks_arr[0] <=> @p2_ranks_arr[0]
+        # comparison2 = @p1_ranks_arr[2] <=> @p2_ranks_arr[2]
+
+        # if turn_type == :basic
+        #     if comparison1 == -1
+        #         @player2
+        #     elsif comparison1 == 1
+        #         @player1
+        #     end    
+        # end
+
+        # if turn_type == :war
+        #     if comparison2 == -1
+        #         @player2
+        #     elsif comparison2 == 1
+        #         @player1
+        #     end    
+        # end
     end
+    
 end
 
-# turn_type = @player1 <=> @player2 #need to write methods to call in instance variables

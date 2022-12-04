@@ -9,11 +9,7 @@ class Player
     end
 
     def has_lost?
-        if @deck.cards_arr.count == 0
-            @has_lost = true
-        end
-
-        @has_lost
+        @deck.cards_arr.empty?
     end
 end
 

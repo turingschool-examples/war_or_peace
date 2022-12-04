@@ -6,7 +6,7 @@ require './lib/turn'
 
 RSpec.describe Player do
     context 'Test Set 1' do
-        it 'facilitates a turn' do
+        xit 'facilitates a turn' do
             card1 = Card.new(:hearts, 'Jack', 11)
             card2 = Card.new(:hearts, 'Ten', 10) 
             card3 = Card.new(:hearts, 'Nine', 9)
@@ -81,7 +81,7 @@ RSpec.describe Player do
     end
 
     context 'Test Set 2' do
-        it 'has a basic turn type' do
+        xit 'has a basic turn type' do
             card1 = Card.new(:hearts, 'Jack', 11)
             card2 = Card.new(:hearts, 'Ten', 10) 
             card3 = Card.new(:hearts, 'Nine', 9)
@@ -102,7 +102,7 @@ RSpec.describe Player do
             expect(turn.turn_type).to eq(:basic)
         end
 
-        it 'has a war turn type' do
+        xit 'has a war turn type' do
             card1 = Card.new(:hearts, 'Jack', 11)
             card2 = Card.new(:hearts, 'Ten', 10) 
             card3 = Card.new(:spades, 'Jack', 11)
@@ -123,7 +123,7 @@ RSpec.describe Player do
             expect(turn.turn_type).to eq(:war)
         end
 
-        it 'has a mutually assured destruction turn type' do
+        xit 'has a mutually assured destruction turn type' do
             card1 = Card.new(:hearts, 'Jack', 11)
             card2 = Card.new(:hearts, 'Ten', 10) 
             card3 = Card.new(:spades, 'Jack', 11)
@@ -146,7 +146,7 @@ RSpec.describe Player do
     end
 
     context 'Test Set 3' do
-        it 'can declare a winner for a basic turn' do
+        it 'declares a winner for a basic outcome' do
             card1 = Card.new(:clubs, 'Jack', 11)
             card2 = Card.new(:spades, 'Ten', 10) 
             card3 = Card.new(:hearts, 'Nine', 9)
@@ -161,8 +161,49 @@ RSpec.describe Player do
             player2 = Player.new("Aurora", deck2)
 
             turn = Turn.new(player1, player2)
-
+            require 'pry'; binding.pry
             expect(turn.turn_type).to eq(:basic)
+            expect(turn.winner).to eq(@player1)
+        end
+
+        xit 'declares a winner for a war outcome' do
+            card1 = Card.new(:clubs, 'Jack', 11)
+            card2 = Card.new(:spades, 'Jack', 11) 
+            card3 = Card.new(:hearts, 'Nine', 9)
+            card4 = Card.new(:diamonds, 'Jack', 11) 
+            card5 = Card.new(:hearts, 'Eight', 8)
+            card6 = Card.new(:diamonds, 'Queen', 12)
+
+            deck1 = Deck.new([card1, card3, card5])
+            deck2 = Deck.new([card2, card4, card6])
+
+            player1 = Player.new("Megan", deck1)
+            player2 = Player.new("Aurora", deck2)
+
+            turn = Turn.new(player1, player2)
+
+            expect(turn.turn_type).to eq(:war)
+            expect(turn.winner).to eq(@player2)
+        end
+
+        it "declares 'No Winner' for a mutually assured destruction outcome" do
+            card1 = Card.new(:clubs, 'Jack', 11)
+            card2 = Card.new(:spades, 'Jack', 11) 
+            card3 = Card.new(:hearts, 'Nine', 9)
+            card4 = Card.new(:diamonds, 'Jack', 11) 
+            card5 = Card.new(:hearts, 'Queen', 12)
+            card6 = Card.new(:diamonds, 'Queen', 12)
+
+            deck1 = Deck.new([card1, card3, card5])
+            deck2 = Deck.new([card2, card4, card6])
+
+            player1 = Player.new("Megan", deck1)
+            player2 = Player.new("Aurora", deck2)
+
+            turn = Turn.new(player1, player2)
+
+            expect(turn.turn_type).to eq(:mutually_assured_destruction)
+            expect(turn.winner).to eq('No Winner')
         end
     end
 end
