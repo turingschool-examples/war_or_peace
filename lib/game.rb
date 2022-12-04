@@ -30,8 +30,9 @@ class Game
     end
 
     def start
+        puts '------------------------------------------------------------------'
         puts 'Welcome to War! (or Peace) This game will be played with 52 cards.'
-        puts "Type 'GO' to start the game!"
+        puts "Type 'GO' to start the game! Type any other key to exit."
         puts "The players today are Megan and Aurora."
         puts '------------------------------------------------------------------'
         answer = gets.chomp
@@ -58,7 +59,7 @@ class Game
             @turns += 1
             puts "*mutually assured destruction* 6 cards removed from play"
             display_percent
-            puts "----------------------------------------"
+            puts "-----------------------------------------------"
         elsif @turn.type == :war
             winner = @turn.winner
             @turn.pile_cards
@@ -66,7 +67,7 @@ class Game
             @turns += 1
             puts "Turn #{@turns}: WAR - #{winner.name} won 6 cards Report: #{winner.deck.cards.count}"
             display_percent
-            puts "----------------------------------------"
+            puts "-----------------------------------------------"
         elsif @turn.type == :basic
             winner = @turn.winner
             @turn.pile_cards
@@ -74,7 +75,7 @@ class Game
             @turns += 1
             puts "Turn #{@turns}: #{winner.name} has won 2 cards Report: #{winner.deck.cards.count}"
             display_percent
-            puts "----------------------------------------"
+            puts "-----------------------------------------------"
         elsif @turns == 1_000_000
             puts '---- DRAW ----'
         end
