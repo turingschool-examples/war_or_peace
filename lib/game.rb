@@ -41,7 +41,7 @@ class Game
                     winner = turn.winner
                     turn.award_spoils(winner)
                     p "~~~Turn #{turn_counter}~~~"
-                    p "#{turn.winner.name} gains 2 cards!"
+                    p "Basic turn, #{turn.winner.name} gains 2 cards!"
                     turn.award_spoils(winner)
                 end
 
