@@ -7,7 +7,7 @@ require './lib/turn'
 RSpec.describe Turn do
 
     # Learned about this technique but couldn't get it to work quite yet.
-    # before do
+    # before :each do
         # @card1 = Card.new(:heart, 'Jack', 11)
         # @card2 = Card.new(:heart, '10', 10)    
         # @card3 = Card.new(:heart, '9', 9) 
@@ -155,8 +155,8 @@ RSpec.describe Turn do
         end
 
         # turn.pile cards needs a test? (no grey return information in iteraction pattern)
-
-        it "turn.spoils_of_war should hold two cards(card1, card3)" do
+        it "turn.pile_cards should remove card(index 0) from each deck and put into spoils_of_war array which should show the 2 cards" do
+        # it "turn.spoils_of_war should hold two cards(card1, card3)" do
             card1 = Card.new(:heart, 'Jack', 11)
             card2 = Card.new(:heart, '10', 10)    
             card3 = Card.new(:heart, '9', 9) 

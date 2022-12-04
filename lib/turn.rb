@@ -42,6 +42,9 @@ class Turn
 
     def pile_cards
         garbage = []
+        # probably going to need to reshuffle these cards
+        # then evenly distribute them to bottom of each players deck 
+        # if the game is going to continue running.
 
         if type == :mutually_assured_destruction
             3.times do

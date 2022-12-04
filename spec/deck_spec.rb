@@ -146,7 +146,7 @@ RSpec.describe Deck do
     #     card4 = Card.new(:club, '5', 5)
     #     deck.remove_card
 
-    #     expect(deck.add_card(card4)).to eq(cards)
+        # expect(deck.add_card(card4)).to eq(cards)
     #     require "pry"; binding.pry
     # end
 

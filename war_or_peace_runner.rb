@@ -58,5 +58,5 @@ card51 = Card.new(:heart, 'King', 13),
 card52 = Card.new(:heart, 'Ace', 14)]
 
 game = Game.new(full_deck)
-# game.start
+game.start
 
