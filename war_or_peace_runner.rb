@@ -30,19 +30,19 @@ game = Game.new(player1, player2)
 
 # Print welcome message and prompt user to start game
 puts
-puts "Welcome to War! (or Peace) This game will be played with 52 cards."
+puts "Welcome to War! (or Peace) This game will be played with  cards."
 puts "The players today are #{player1.name} and #{player2.name}"
-puts "Type 'GO' to start the game!"
+puts "Type 'GO' to start the game or 'EXIT' to quit!"
 puts "------------------------------------------------------------------"
 input = gets.chomp!
 
 # If user input is 'GO' start game, otherwise prompt for valid input
-until input == "GO"
-    puts "Please enter 'GO' to start!"
+until input == "GO" || input == "EXIT"
+    puts "Please enter 'GO' to start or 'EXIT' to quit"
     input = gets.chomp!
 end
 
 # Start game and print results
-p game.start
+p game.start if input == "GO"
 
     
