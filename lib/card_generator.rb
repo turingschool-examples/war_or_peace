@@ -4,7 +4,8 @@ require './lib/deck.rb'
 
 
 class CardGenerator
-  attr_reader :filename, :deck
+  attr_reader :filename, 
+              :deck
 
   def initialize(filename)
     @filename = filename 
