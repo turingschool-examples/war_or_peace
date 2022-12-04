@@ -58,6 +58,6 @@ class Turn
     end
 
     def award_spoils(winning_player)
-        winning_player.deck.cards.concat(spoils_of_war) if winning_player != "No Winner"
+        @spoils_of_war.each { |card| winning_player.deck.add_card(card)} if winning_player != "No Winner"
     end
 end
