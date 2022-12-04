@@ -37,33 +37,42 @@ class Game
         i = 0
         puts""
         until turn.player1.has_lost? || turn.player2.has_lost? || i >= 1000000
-            i += 1
             if turn.type == :basic
-                if turn.winner == turn.player1
-                    puts "Turn #{i}: #{turn.player1.name} won 2 cards"
-                    turn.pile_cards
-                    turn.award_spoils(turn.player1)
-                else
-                    puts "Turn #{i}: #{turn.player2.name} won 2 cards"
-                    turn.pile_cards
-                    turn.award_spoils(turn.player2)
-                end
-            elsif turn.type == :war
-                if turn.winner == turn.player1
-                    puts "Turn #{i}: WAR - #{turn.player1.name} won 6 cards"
-                    turn.pile_cards
-                    turn.award_spoils(turn.player1)
-                else
-                    puts "Turn #{i}: WAR - #{turn.player2.name} won 6 cards"
-                    turn.pile_cards
-                    turn.award_spoils(turn.player2)
-                end
-            elsif turn.type == :mutually_assured_destruction
-                puts "Turn #{i}: *mutually assured destruction* 6 cards removed from play"
+                winner = turn.winner
                 turn.pile_cards
-                turn.award_spoils(turn.player1)
+                i += 1
+                turn.award_spoils(winner)
+                puts "Turn #{i}: #{winner.name} won 2 cards"
+                turn.player1.deck.shuffle
+                turn.player2.deck.shuffle
+            elsif turn.type == :war
+                winner = turn.winner
+                turn.pile_cards
+                i += 1
+                turn.award_spoils(winner)
+                puts "Turn #{i}: #{winner.name} won 2 cards"
+                turn.player1.deck.shuffle
+                turn.player2.deck.shuffle
+            elsif turn.type == :mutually_assured_destruction
+                i += 1
+                puts "Turn #{i}: *mutually assured destruction* 6 cards removed from play"
+                turn.player1.deck.shuffle
+                turn.player2.deck.shuffle
+            elsif turn.type == :game_over_draw
+                turn.pile_cards
+                i += 1
+                puts "Turn #{i}: *Neither player has a third card*"
+            elsif turn.type == :game_over_player1_wins
+                turn.pile_cards
+                i += 1
+                puts "Turn #{i}: *#{turn.player2.name} does not have a third card."
+            elsif turn.type == :game_over_player2_wins
+                turn.pile_cards
+                i += 1
+                puts "Turn #{i}: *#{turn.player1.name} does not have a third card."
             else
                 puts "ERROR: What did you do?"
+                break
             end
         end
         if turn.player1.has_lost?
