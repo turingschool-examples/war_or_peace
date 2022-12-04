@@ -14,6 +14,11 @@ RSpec.describe Deck do
     expect(deck).to be_an_instance_of(Deck)
   end
 
+  it "can be created empty" do
+    deck = Deck.new
+    expect(deck.cards).to eq([])
+  end
+
   it "has cards" do
     card1 = Card.new(:diamond, 'Queen', 12)
     card2 = Card.new(:spade, '3', 3)
