@@ -17,10 +17,8 @@ class Game
         @full_deck = full_deck.shuffle!
         @deck1 = Deck.new(@full_deck[0..25])
         @deck2 = Deck.new(@full_deck[26..51])
-        # @deck1 = Deck.new(@full_deck[0..1])
-        # @deck2 = Deck.new(@full_deck[2..6])
-        @player2 = Player.new('Sun Tzu', @deck2)
-        @player1 = Player.new('Alexander, the Great', @deck1)
+        @player1 = Player.new('Sun Tzu', @deck1)
+        @player2 = Player.new('Alexander, the Great', @deck2)
         @turn = Turn.new(@player1, @player2)
     end
 
@@ -45,16 +43,6 @@ class Game
             puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
         elsif @player2.has_lost? == true
             puts "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
-        # elsif @type == :one_card_stalemate
-        #     if @player1.deck.rank_of_card_at(1) > @player2.deck.rank_of_card_at(1)
-        #         player1
-        #     else
-        #         player2
-        #     end
-        #     puts "*~*~*~* #{@winner.name} has won the game! *~*~*~*"
-        # elsif @type == :two_card_stalemate
-        #     @winner = turn.winner
-        #     puts "*~*~*~* #{@winner.name} has won the game! *~*~*~*"
         elsif turn_count == 1_000_000
             puts "----- DRAW -----"
         end
@@ -75,7 +63,6 @@ class Game
                 @turn.pile_cards
                 @turn.award_spoils(winner)
             elsif type == :war
-
                 puts "Turn #{turn_count}: WAR - #{winner.name} won 6 cards #{@player1.deck.cards[2].value} vs #{@player2.deck.cards[2].value}"
                 @turn.pile_cards
                 @turn.award_spoils(winner)                

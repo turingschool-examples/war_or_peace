@@ -22,8 +22,8 @@ require './lib/game'
     card15 = Card.new(:diamond, '3', 3)
     card16 = Card.new(:diamond, '4', 4)
     card17 = Card.new(:diamond, '5', 5)
-    card18 = Card.new(:diamond, '6', 7)
-    card19 = Card.new(:diamond, '8', 8)
+    card18 = Card.new(:diamond, '6', 6)
+    card19 = Card.new(:diamond, '7', 7)
     card20 = Card.new(:diamond, '8', 8)
     card21 = Card.new(:diamond, '9', 9)
     card22 = Card.new(:diamond, '10', 10)
@@ -48,8 +48,8 @@ require './lib/game'
     card41 = Card.new(:spade, '3', 3)
     card42 = Card.new(:spade, '4', 4)
     card43 = Card.new(:spade, '5', 5)
-    card44 = Card.new(:spade, '6', 7)
-    card45 = Card.new(:spade, '8', 8)
+    card44 = Card.new(:spade, '6', 6)
+    card45 = Card.new(:spade, '7', 7)
     card46 = Card.new(:spade, '8', 8)
     card47 = Card.new(:spade, '9', 9)
     card48 = Card.new(:spade, '10', 10)
@@ -60,5 +60,4 @@ require './lib/game'
 
 cards = [card18, card19, card20, card21, card22, card23, card24, card25, card26, card27, card28, card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card29, card30, card31, card32, card33, card34, card35, card36, card37, card38, card39, card40, card41, card42, card43, card44, card45, card46, card47, card48, card49, card50, card51, card52]
 game = Game.new(cards)
-binding.pry
 game.run_game
