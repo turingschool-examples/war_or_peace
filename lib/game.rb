@@ -8,20 +8,21 @@ class Game
     attr_reader :deck1, 
                 :deck2,
                 :cards,
-                 :turn,
-                 :player1,
-                 :player2
+                :turn,
+                :player1,
+                :player2
+
+    attr_accessor :current_winner
 
     def initialize
         @deck1 = Deck.new([])
         @deck2 = Deck.new([])
-        @cards = cards
         @player1 = Player.new("Megan", deck1)
         @player2 = Player.new("Amy", deck2)
         @turn = Turn.new(player1, player2)
-        
-        
-        @unshuffled_deck = [
+        @current_winner = ''
+               
+        @cards = [
         Card.new(:diamond, '2', 2),
         Card.new(:diamond, '3', 3),
         Card.new(:diamond, '4', 4),
@@ -78,22 +79,21 @@ class Game
 
 
     def deal
-        deck1 = Deck.new([])
-        deck2 = Deck.new([])
-        
-        shuffled_deck = @unshuffled_deck.shuffle!
+        shuffled_deck = @cards.shuffle!
         
         shuffled_deck.each_with_index do |value, index|
             
             if index.even?
-                deck1.cards << value
+                @player1.deck.cards << value
             else
-                deck2.cards << value
+                @player2.deck.cards << value
             end
+        
+            
         end
-
         deck1
         deck2
+       
         
     end
        
@@ -106,30 +106,27 @@ class Game
         
         turns = 1
         while turns <1000001
-            if player1.deck.cards.length == 52
-                puts "#{player1.name} Won"
-            elsif player2.deck.cards.length == 52
+            if @player1.has_lost?
                 puts "#{player2.name} Won"
+            elsif @player2.has_lost?
+                puts "#{player1.name} Won"
             else # play game
                 
-                turn = Turn.new(player1, player2)
-                type = turn.type
-                require 'pry'; binding.pry
-                turn.pile_of_cards
-                winner = turn.winner
-                turn.pile_of_cards
-                turn.award_spoils(winner)
-                
-            # if type == :basic
-            #     puts "Turn#{turns}: #{winner.name} won 2 cards"
-            # elsif type == :mutually_assured_destruction
-            #     puts "Turn#{turns}: *mutually assured destruction* 6 cards removed from play"
-            #   else
-            
-            #     puts "Turn#{turns}: #{winner.name} won 6 cards"
-            #   end
-            
-            #   turns += 1    
+                type = @turn.type
+                @turn.pile_cards
+                @current_winner = @turn.winner
+              
+                if type == :basic
+                    turn.award_spoils(@current_winner)   
+                    puts "Turn#{turns}: #{@current_winner.name} won 2 cards"
+                elsif type == :war
+                    turn.award_spoils(@current_winner)   
+                    puts "Turn#{turns}: #{@current_winner.name} won 6 cards" 
+                else type == :mutually_assured_destruction
+                    puts "Turn#{turns}: *mutually assured destruction* 6 cards removed from play"
+                end    
+             
+            turns += 1    
             end   
         end
 
