@@ -50,13 +50,10 @@ class Turn
             return "No Winner"
         elsif @type == :game_over_draw
             return "No Winner"
-            require "pry"; binding.pry
         elsif @type == :game_over_player1_wins
             return player1
-            require "pry"; binding.pry
         elsif @type == :game_over_player2_wins
             return player2
-            require "pry"; binding.pry
         end
     end
 

@@ -1,3 +1,5 @@
+require '.cards.txt'
+require './lib/card_generator'
 require './lib/game'
 require './lib/turn'
 require './lib/player'

@@ -18,7 +18,7 @@ class Game
         puts "Type 'GO' to start the game!"
         puts "------------------------------------------------------------------"
         puts ""
-        input = gets.chomp.upcase
+        input = gets.chomp
 
         if input == 'GO'
             puts ""
