@@ -282,8 +282,8 @@ RSpec.describe Player do
 
         turn.award_spoils(winner)
         
-        expect(player1.deck.cards).to eq([card2, card5, card8, card1, card3])
-        expect(player2.deck.cards).to eq([card4, card6, card7])
+        expect(player1.deck.cards.size).to eq(5)
+        expect(player2.deck.cards.size).to eq(3)
     end
 
     it 'awards spoils for :war' do
@@ -312,8 +312,8 @@ RSpec.describe Player do
         expect(turn.spoils_of_war).to eq([card1, card3, card2, card4, card5, card6])
         # require 'pry';binding.pry
         turn.award_spoils(winner)
-        expect(player1.deck.cards).to eq([card8])
-        expect(player2.deck.cards).to eq([card7, card1, card3, card2, card4, card5, card6])
+        expect(player1.deck.cards.size).to eq(1)
+        expect(player2.deck.cards.size).to eq(7)
 
     end
 
