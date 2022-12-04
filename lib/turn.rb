@@ -38,7 +38,7 @@ class Turn
 
     def winner
         if type == :mutually_assured_destruction
-            "No winner"
+             pp "No winner"
     
         elsif type == :basic
             if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
