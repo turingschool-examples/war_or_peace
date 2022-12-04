@@ -1,10 +1,14 @@
 class Turn 
 
-    attr_reader :player1, :player2, :spoils_of_war
+    attr_reader :player1, 
+                :player2, 
+                :spoils_of_war,
+                :removed_from_game
     def initialize (player1, player2)
         @player1 = player1
         @player2 = player2
         @spoils_of_war = []
+        @removed_from_game =[]
     end
 
     def type
@@ -37,7 +41,13 @@ class Turn
         if type == :mutually_assured_destruction
             winner = 'No Winner'
         end
-        
+
         winner
+    end
+
+    def pile_cards 
+        if type == :mutually_assured_destruction
+            # require 'pry'; binding.pry
+        end
     end
 end
