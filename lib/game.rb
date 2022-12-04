@@ -7,30 +7,30 @@ class Game
     end
   
     def play
-        play_count = 0
+        turn_count = 0
         move = Turn.new(player1, player2)
         until player1.has_lost? || player2.has_lost?
           if move.type == :basic
             winner = move.winner
             move.pile_cards
             move.award_spoils(winner)
-            play_count += 1
-            p "Turn #{play_count}: #{winner.name} won 2 cards"
+            turn_count += 1
+            p "Turn #{turn_count}: #{winner.name} won 2 cards"
     
           elsif move.type == :war
             winner = move.winner
             move.pile_cards
             move.award_spoils(winner)
-            play_count += 1
-            p "Turn #{play_count}: War! - #{winner.name} won 6 cards"
+            turn_count += 1
+            p "Turn #{turn_count}: War! - #{winner.name} won 6 cards"
     
           elsif move.type == :mutually_assured_destruction
             move.pile_cards
-            play_count += 1
-            p "Turn #{play_count}: *mutually assured destruction* 6 cards removed from play"
+            turn_count += 1
+            p "Turn #{turn_count}: *mutually assured destruction* 6 cards removed from play"
           end
     
-          break if play_count == 10_000
+          break if turn_count == 1_000_000
         end
     
         if player1.has_lost? == true
@@ -42,7 +42,21 @@ class Game
         end
     end
 
-       
+    def start
+        p "Welcome to War! (or Peace) This game will be played with 52 cards."
+        p "The players today are #{player1.name} and #{player2.name}."
+        p "Type 'GO' to start the game!"
+        p "----------------------------"
+        user = gets.chomp
+    
+        if user == 'GO'
+          play
+        else
+          puts "Please restart and type GO."
+        end
+
+    end
+    
 end
 
 
