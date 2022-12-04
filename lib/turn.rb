@@ -8,13 +8,12 @@ class Turn
     end
 
     def type
-        
-        if player1.deck.cards_arr[0] == player2.deck.cards_arr[0] && player1.deck.cards_arr[2] == player2.deck.cards_arr[0]
+        if player1.deck.cards_arr[0].rank == player2.deck.cards_arr[0].rank && player1.deck.cards_arr[2].rank == player2.deck.cards_arr[2].rank
             :mutually_assured_destruction
-        elsif player1.deck.cards_arr[0] == player2.deck.cards_arr[0]
-            :war
-        elsif player1.deck.cards_arr[0] != player2.deck.cards_arr[0]
+        elsif player1.deck.cards_arr[0].rank != player2.deck.cards_arr[0].rank
             :basic
+        elsif player1.deck.cards_arr[0].rank == player2.deck.cards_arr[0].rank
+            :war
         end
     end
 end
