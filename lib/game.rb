@@ -1,7 +1,7 @@
-require './lib/card'
-require './lib/deck'
-require './lib/player'
 require './lib/turn'
+require './lib/player'
+require './lib/deck'
+require './lib/card'
 
 class Game
     attr_reader :cards,
@@ -9,8 +9,8 @@ class Game
         :deck2,
         :player1,
         :player2,
-        :turn,
-        :round_winner
+        :turn
+
 
     def initialize
         @deck1 = Deck.new([])
@@ -18,68 +18,65 @@ class Game
         @player1 = Player.new("Megan", @deck1)
         @player2 = Player.new("Aurora", @deck2)
         @turn = Turn.new(@player1, @player2)
-        @round_winner = ""
-    end
+        @round_winner = ''
 
-    def deal
-        fresh_pack = []
-
-        fresh_pack << card1 = Card.new(:diamond, '2', 2)
-        fresh_pack << card15 = Card.new(:heart, '2', 2)
-        fresh_pack << card27 = Card.new(:spade, '2', 2)
-        fresh_pack << card40 = Card.new(:club, '2', 2)
-        fresh_pack << card2 = Card.new(:diamond, '3', 3)
-        fresh_pack << card16 = Card.new(:heart, '3', 3)
-        fresh_pack << card28 = Card.new(:spade, '3', 3)
-        fresh_pack << card41 = Card.new(:club, '3', 3)
-        fresh_pack << card3 = Card.new(:diamond, '4', 4)
-        fresh_pack << card17 = Card.new(:heart, '4', 4)
-        fresh_pack << card29 = Card.new(:spade, '4', 4)
-        fresh_pack << card42 = Card.new(:club, '4', 4)
-        fresh_pack << card4 = Card.new(:diamond, '5', 5)
-        fresh_pack << card18 = Card.new(:heart, '5', 5)
-        fresh_pack << card30 = Card.new(:spade, '5', 5)
-        fresh_pack << card43 = Card.new(:club, '5', 5)
-        fresh_pack << card5 = Card.new(:diamond, '6', 6)
-        fresh_pack << card19 = Card.new(:heart, '6', 6)
-        fresh_pack << card31 = Card.new(:spade, '6', 6)
-        fresh_pack << card44 = Card.new(:club, '6', 6)
-        fresh_pack << card6 = Card.new(:diamond, '7', 7)
-        fresh_pack << card20 = Card.new(:heart, '7', 7)
-        fresh_pack << card32 = Card.new(:spade, '7', 7)
-        fresh_pack << card45 = Card.new(:club, '7', 7)
-        fresh_pack << card7 = Card.new(:diamond, '8', 8)
-        fresh_pack << card21 = Card.new(:heart, '8', 8)
-        fresh_pack << card33 = Card.new(:spade, '8', 8)
-        fresh_pack << card46 = Card.new(:club, '8', 8)
-        fresh_pack << card8 = Card.new(:diamond, '9', 9)
-        fresh_pack << card22 = Card.new(:heart, '9', 9)
-        fresh_pack << card34 = Card.new(:spade, '9', 9)
-        fresh_pack << card47 = Card.new(:club, '9', 9)
-        fresh_pack << card9 = Card.new(:diamond, '10', 10)
-        fresh_pack << card23 = Card.new(:heart, '10', 10)
-        fresh_pack << card35 = Card.new(:spade, '10', 10)
-        fresh_pack << card48 = Card.new(:club, '10', 10)
-        fresh_pack << card10 = Card.new(:diamond, 'Jack', 11)
-        fresh_pack << card24 = Card.new(:heart, 'Jack', 11)
-        fresh_pack << card36 = Card.new(:spade, 'Jack', 11)
-        fresh_pack << card49 = Card.new(:club, 'Jack', 11)
-        fresh_pack << card11 = Card.new(:diamond, 'Queen', 12)
-        fresh_pack << card25 = Card.new(:heart, 'Queen', 12)
-        fresh_pack << card37 = Card.new(:spade, 'Queen', 12)
-        fresh_pack << card50 = Card.new(:club, 'Queen', 12)
-        fresh_pack << card12 = Card.new(:diamond, 'King', 13)
-        fresh_pack << card26 = Card.new(:heart, 'King', 13)
-        fresh_pack << card38 = Card.new(:spade, 'King', 13)
-        fresh_pack << card51 = Card.new(:club, 'King', 13)
-        fresh_pack << card13 = Card.new(:diamond, 'Ace', 14)
-        fresh_pack << card27 = Card.new(:heart, 'Ace', 14)
-        fresh_pack << card39 = Card.new(:spade, 'Ace', 14)
-        fresh_pack << card52 = Card.new(:club, 'Ace', 14)
+        @fresh_pack = [
+        card1 = Card.new(:diamond, '2', 2),
+        card15 = Card.new(:heart, '2', 2),
+        card27 = Card.new(:spade, '2', 2),
+        card40 = Card.new(:club, '2', 2),
+        card2 = Card.new(:diamond, '3', 3),
+        card16 = Card.new(:heart, '3', 3),
+        card28 = Card.new(:spade, '3', 3),
+        card41 = Card.new(:club, '3', 3),
+        card3 = Card.new(:diamond, '4', 4),
+        card17 = Card.new(:heart, '4', 4),
+        card29 = Card.new(:spade, '4', 4),
+        card42 = Card.new(:club, '4', 4),
+        card4 = Card.new(:diamond, '5', 5),
+        card18 = Card.new(:heart, '5', 5),
+        card30 = Card.new(:spade, '5', 5),
+        card43 = Card.new(:club, '5', 5),
+        card5 = Card.new(:diamond, '6', 6),
+        card19 = Card.new(:heart, '6', 6),
+        card31 = Card.new(:spade, '6', 6),
+        card44 = Card.new(:club, '6', 6),
+        card6 = Card.new(:diamond, '7', 7),
+        card20 = Card.new(:heart, '7', 7),
+        card32 = Card.new(:spade, '7', 7),
+        card45 = Card.new(:club, '7', 7),
+        card7 = Card.new(:diamond, '8', 8),
+        card21 = Card.new(:heart, '8', 8),
+        card33 = Card.new(:spade, '8', 8),
+        card46 = Card.new(:club, '8', 8),
+        card8 = Card.new(:diamond, '9', 9),
+        card22 = Card.new(:heart, '9', 9),
+        card34 = Card.new(:spade, '9', 9),
+        card47 = Card.new(:club, '9', 9),
+        card9 = Card.new(:diamond, '10', 10),
+        card23 = Card.new(:heart, '10', 10),
+        card35 = Card.new(:spade, '10', 10),
+        card48 = Card.new(:club, '10', 10),
+        card10 = Card.new(:diamond, 'Jack', 11),
+        card24 = Card.new(:heart, 'Jack', 11),
+        card36 = Card.new(:spade, 'Jack', 11),
+        card49 = Card.new(:club, 'Jack', 11),
+        card11 = Card.new(:diamond, 'Queen', 12),
+        card25 = Card.new(:heart, 'Queen', 12),
+        card37 = Card.new(:spade, 'Queen', 12),
+        card50 = Card.new(:club, 'Queen', 12),
+        card12 = Card.new(:diamond, 'King', 13),
+        card26 = Card.new(:heart, 'King', 13),
+        card38 = Card.new(:spade, 'King', 13),
+        card51 = Card.new(:club, 'King', 13),
+        card13 = Card.new(:diamond, 'Ace', 14),
+        card27 = Card.new(:heart, 'Ace', 14),
+        card39 = Card.new(:spade, 'Ace', 14),
+        card52 = Card.new(:club, 'Ace', 14)]
 
         26.times do
-            @player1.deck.cards << fresh_pack.sample
-            @player2.deck.cards << fresh_pack.sample
+            @deck1.cards << @fresh_pack.sample
+            @deck2.cards << @fresh_pack.sample
         end
     end
 
@@ -89,26 +86,37 @@ class Game
         p "Type 'GO' to start the game!"
         p "------------------------------------------------------------------"
        
-        "GO" == gets.chomp
+        if gets.chomp.upcase == "GO"
+            phases = 1
 
-        1000000.times do
-            if @player1.has_lost? || @player2.has_lost? == true
-                "--------This game is a draw...--------"
-                break
-           else
-                
-            
-           end
-                
+            until phases == 1000000
+                if @player1.has_lost?
+                    puts "#{player2.name} has WON!"
+                    return
+                elsif @player2.has_lost?
+                    puts "#{player1.name} has WON!"
+                    return
+                else
+                    type = @turn.type
+                    @round_winner = @turn.winner
+                    @turn.pile_cards
 
+                    
+                    if type == :mutually_assured_destruction
+                        p "Turn #{phases}: *mutually assured destruction* 6 cards removed from play"
+                    elsif type == :basic
+                        turn.award_spoils(@round_winner)
+                        puts "Turn #{phases}: #{turn.winner} won 2 cards"
+                    else
+                        turn.award_spoils(@round_winner)
+                        p "Turn #{phases}: WAR - #{turn.winner} won 6 cards"
+                    end
+                    phases += 1
+                end
+            end
+            puts "--------This game is a draw...--------"
+        else
+            start
+        end
     end
-
-
-
-# user types go, and game starts
-
-    
-        # define play as a method to do multiple iterations?
-    
-
 end
