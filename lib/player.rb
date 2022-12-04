@@ -1,3 +1,7 @@
+require './lib/card.rb'
+require './lib/deck.rb'
+
+
 class Player
     attr_reader :name,
                 :deck

@@ -1,6 +1,9 @@
+require './lib/card.rb'
+
 class Deck
     attr_reader :cards,
                 :high_rank
+                :deck
 
     def initialize(cards)
         @cards = cards

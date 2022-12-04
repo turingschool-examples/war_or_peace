@@ -1,3 +1,4 @@
+require 'rspec'
 require './lib/card'
 require './lib/deck'
 require './lib/player'
@@ -106,6 +107,5 @@ RSpec.describe Turn do
             turn.award_spoils(winner)
             expect(player1.deck.cards.count).to eq(5)
         end
-
     end
 end

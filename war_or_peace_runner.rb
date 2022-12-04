@@ -1,3 +1,4 @@
+require 'rspec'
 require './lib/card'
 require './lib/deck'
 require './lib/player'
@@ -8,8 +9,8 @@ p " The players today are Megan and Aurora. "
 p " Type 'GO' to start the game! "
 p " --------------------------------------------------------------------- "
 
-input = gets.chomp
-if input == 'GO'
+user_input = gets.chomp
+if user_input == 'GO'
     puts "Let's start!"
 end
 
@@ -74,6 +75,7 @@ card40, card41, card42, card43, card44, card45, card46, card47, card48, card49, 
 half_cards = []
 
 cards.shuffle!
+
 26.times do
     half_cards << cards.pop
 end
