@@ -3,14 +3,14 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 
-p "Welcome to War! (or Peace) This game will be played with 52 cards.
-The players today are Megan and Aurora. 
-Type 'GO' to start the game!
----------------------------------------------------------------------"
+p " Welcome to War! (or Peace) This game will be played with 52 cards. "
+p " The players today are Megan and Aurora. "
+p " Type 'GO' to start the game! "
+p " --------------------------------------------------------------------- "
 
 input = gets.chomp
 if input == 'GO'
-    puts "Let's start"
+    puts "Let's start!"
 end
 
 card1 = Card.new(:heart, '2', 2)
@@ -73,4 +73,13 @@ card40, card41, card42, card43, card44, card45, card46, card47, card48, card49, 
 
 half_cards = []
 
+cards.shuffle!
+26.times do
+    half_cards << cards.pop
+end
 
+deck1 = Deck.new(cards)
+deck2 = Deck.new(half_cards)
+
+player1 = Player.new("Megan", deck1)
+player2 = Player.new("Aurora", deck2)

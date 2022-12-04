@@ -37,6 +37,7 @@ class Turn
             end
 
         else type == :mutually_assured_destruction
+        
         end
     end
 
