@@ -100,4 +100,21 @@ describe Game do
         expect(@game.announce_winner(@game.play_turn)).to eq("Turn 1: WAR - Aurora won 6 cards")
     end
 
+    it 'can announce mutually assured destruction' do
+        card1 = Card.new(:spade, "2", 2)
+        card2 = Card.new(:spade, "3", 3)
+        card3 = Card.new(:spade, "4", 4)
+        card4 = Card.new(:heart, "2", 2)
+        card5 = Card.new(:heart, "3", 3)
+        card6 = Card.new(:heart, "4", 4)
+        card7 = Card.new(:spade, "6", 6)
+        card8 = Card.new(:heart, "7", 7)
+
+        @player1 = Player.new("Megan", Deck.new([card1, card2, card3, card7]))
+        @player2 = Player.new("Aurora", Deck.new([card4, card5, card6, card8]))
+        @game = Game.new(@player1, @player2)
+
+        expect(@game.announce_winner(@game.play_turn)).to eq("Turn 1: *mutually assured destruction* 6 cards removed from play")
+    end
+
 end
