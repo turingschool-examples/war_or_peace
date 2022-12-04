@@ -36,11 +36,16 @@ class Game
         end
 
         if @turn_count == 1_000_000
-            return "---- DRAW ----" 
+            return "---- DRAW ----"
+        elsif winner == "No Winner"
+            if @player1.deck.cards.count > @player1.deck.cards.count
+                return "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+            else
+                return "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+            end  
         else 
             return "*~*~*~* #{winner.name} has won the game! *~*~*~*"
         end
-        
     end
 
     def announce_winner(winner)
