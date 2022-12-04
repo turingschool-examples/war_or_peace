@@ -74,8 +74,12 @@ describe GamePlay do
 
         game = GamePlay.new(player1, player2)
 
+        require 'pry'; binding.pry
+        game.start
         
-    require 'pry'; binding.pry
+    # require 'pry'; binding.pry
+
+        expect(game.turn_result).to eq("Megan won 2 cards. Player1:5 cards Player2:3 cards")
        
     end
 

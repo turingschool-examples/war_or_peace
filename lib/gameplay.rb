@@ -41,6 +41,8 @@ class GamePlay
             p "x!x WAR x!x - #{current_turn_winner.name} won 6 cards. Player1:#{self.player1.deck.cards.size} cards Player2:#{self.player2.deck.cards.size} cards"
         elsif @current_turn_type == :mutually_assured_destruction
             p "**mUtuAlLy asSUreD dEsTrUctIOn** 6 cards REMOVED from game.  Player1:#{self.player1.deck.cards.size} cards Player2:#{self.player2.deck.cards.size} cards"
+        elsif @current_turn_type == :mutually_assured_destruction_2
+            p "**mUtuAlLy asSUreD dEsTrUctIOn** 2 cards REMOVED from game.  Player1:#{self.player1.deck.cards.size} cards Player2:#{self.player2.deck.cards.size} cards"
         end
         
     end

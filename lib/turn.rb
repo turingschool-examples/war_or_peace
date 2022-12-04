@@ -44,7 +44,9 @@ class Turn
             @winner = @player1
         elsif @type == :war && @player2.deck.cards[2].rank > @player1.deck.cards[2].rank
             @winner = @player2
-        elsif @type == :mutually_assured_destruction || @type == :mutually_assured_destruction_2 #second half is new remove if broken
+        elsif @type == :mutually_assured_destruction
+            @winner = "No Winner"
+        elsif @type == :mutually_assured_destruction_2
             @winner = "No Winner"
         end
 
