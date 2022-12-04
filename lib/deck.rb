@@ -17,7 +17,9 @@ class Deck
                 @high_cards << card 
             end
         end
+
         @high_cards
+        
     end
 
     def percent_high_ranking

@@ -28,17 +28,6 @@ class Turn
             end
     
         end
-
-     
-
-        # if @player1.deck.cards.size > 0 && @player2.deck.cards.size > 0 && @player1.deck.cards.first.rank != @player2.deck.cards.first.rank
-        #     @type = :basic
-        # elsif @player1.deck.cards.size > 2 && @player2.deck.cards.size > 2 && @player1.deck.cards.first.rank == @player2.deck.cards.first.rank  && @player1.deck.cards[2].rank != @player2.deck.cards[2].rank#have only played 1 card each
-        #     @type = :war
-        # elsif @player1.deck.cards.size > 2 && @player2.deck.cards.size > 2 && @player1.deck.cards.first.rank == @player2.deck.cards.first.rank && @player1.deck.cards[2].rank == @player2.deck.cards[2].rank
-        #     @type = :mutually_assured_destruction
-        # end
-    
     
     end
 
@@ -90,17 +79,5 @@ class Turn
             @spoils_of_war = []
         end
     end
-
-    # def start
-    #     while @player1.deck.size > 0 || @player2.deck.size > 0
-    #         new_turn = Turn.new(player1, player2)
-    #         new_turn.type
-    #         winner = new_turn.winner
-    #         new_turn.pile_cards
-    #         require 'pry'; binding.pry
-    #         p "#{winner.name}"
-    #     end
-       
-    # end
 
 end
