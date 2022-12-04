@@ -14,6 +14,8 @@ RSpec.describe Player do
         player = Player.new('Caleb', deck)
         #require 'pry'; binding.pry
         expect(player).to be_an_instance_of(Player)
+        expect(player.name).to eq('Caleb')
+        expect(player.deck).to eq(deck)
     end
 
     
