@@ -29,10 +29,6 @@ attr_reader :player1,
       end 
     end
   end
-  
-
-
-  
 
   def winner
     if @player1.rank_of_card_at(0) > @player2.rank_of_card_at(0)
