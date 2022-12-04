@@ -10,8 +10,6 @@ class Deck
     @high_ranking = []
   end
 
-
-
   def rank_of_card_at(num)
     @cards[num].rank
   end
