@@ -2,8 +2,6 @@ require './lib/turn'
 require './lib/card'
 require './lib/player'
 require './lib/deck'
-require 'pry'
-
 
 describe Turn do
   

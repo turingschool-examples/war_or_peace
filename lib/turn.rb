@@ -1,30 +1,31 @@
 require './lib/card.rb'
 require './lib/deck.rb'
 require './lib/player.rb'
-require 'pry'
 
 class Turn
-attr_reader :player1, :player2, :spoils_of_war
+attr_reader :player1, 
+            :player2, 
+            :spoils_of_war
+            
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
   end
 
-
   def type
     if @player1.rank_of_card_at(0) != @player2.rank_of_card_at(0)
-      return :basic
+      :basic
     else 
       if @player1.deck.cards.length >=3 && @player2.deck.cards.length >=3
         if @player1.rank_of_card_at(2)!= @player2.rank_of_card_at(2)
-          return :war
+          :war
         elsif @player1.rank_of_card_at(2) == @player2.rank_of_card_at(2)
-          return :mutually_assured_destruction
+          :mutually_assured_destruction
         end
       else #this describes the scenario where the first cards tie, but there are not enough
            #cards for a :war or :mutually_assured_destruction
-        return :tiebreaker
+        :tiebreaker
       end 
     end
   end
@@ -35,16 +36,16 @@ attr_reader :player1, :player2, :spoils_of_war
 
   def winner
     if @player1.rank_of_card_at(0) > @player2.rank_of_card_at(0)
-      return @player1
+      @player1
     elsif @player2.rank_of_card_at(0) > @player1.rank_of_card_at(0)
-      return @player2
+      @player2
     else
       if @player1.rank_of_card_at(2) > @player2.rank_of_card_at(2)
-        return @player1
+        @player1
       elsif @player2.rank_of_card_at(2) > @player1.rank_of_card_at(2)
-        return @player2
+        @player2
       else
-       return "No Winner"
+       "No Winner"
       end
     end
   end
@@ -72,13 +73,9 @@ attr_reader :player1, :player2, :spoils_of_war
     player1.deck.cards = player1.deck.cards.shuffle
     player2.deck.cards = player2.deck.cards.shuffle
     if winner == player1
-      @spoils_of_war.each do |card|
-      @player1.deck.cards << card
-      end
+      @spoils_of_war.each {|card| @player1.deck.cards << card}
     elsif winner == player2  
-      @spoils_of_war.each do |card|
-        @player2.deck.cards << card
-      end
+      @spoils_of_war.each {|card| @player2.deck.cards << card}
     end
   end
 
