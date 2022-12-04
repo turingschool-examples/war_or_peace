@@ -12,7 +12,7 @@ RSpec.describe Deck do
             cards_arr = [card1, card2, card3]
             deck = Deck.new(cards_arr)
 
-            expect(deck).to be_an_instance_of(Deck)
+            expect(deck).to be_a(Deck)
         end
     end
 

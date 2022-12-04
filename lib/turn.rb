@@ -1,8 +1,8 @@
 class Turn 
 
     attr_reader :player1, 
-                :player2, 
-                :spoils_of_war
+                :player2 
+    attr_accessor :spoils_of_war
     def initialize (player1, player2)
         @player1 = player1
         @player2 = player2
@@ -44,16 +44,13 @@ class Turn
     end
 
     def pile_cards 
-        if type == :mutually_assured_destruction
-            player1.deck.cards_arr.shift(3)
-            player2.deck.cards_arr.shift(3)
-        elsif type == :war
-            player1.deck.cards_arr.slice[2]
-
-            # 3.times do
-            #     player1.deck.remove_card
-            #     player2.deck.remove_card
-            # end
+        if type == :mutually_assured_destruction || :war
+            @spoils_of_war << player1.deck.cards_arr.shift(3)
+            @spoils_of_war << player2.deck.cards_arr.shift(3)
+        else
+            @spoils_of_war << player1.deck.cards_arr.shift(1)
+            @spoils_of_war << player2.deck.cards_arr.shift(1)
         end
+        @spoils_of_war
     end
 end

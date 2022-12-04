@@ -180,7 +180,7 @@ RSpec.describe Player do
     end
 
     context 'Test Set 4' do
-        it 'determines spoils for mutually assured destruction turns' do
+        it 'can pile spoils for war or mutually assured destruction' do
             card1 = Card.new(:hearts, 'Jack', 11)
             card2 = Card.new(:hearts, 'Ten', 10)
             card3 = Card.new(:hearts, 'Nine', 9) 
@@ -197,21 +197,33 @@ RSpec.describe Player do
             player2 = Player.new("Aurora", deck2)
 
             turn = Turn.new(player1, player2)
-            expect(turn.type).to be(:mutually_assured_destruction)
-            
-            winner = turn.winner
-            expect(turn.winner).to eq('No Winner')
-            
-            expect(player1.deck.cards_arr).to eq([card1, card2, card5, card8])
-            expect(player2.deck.cards_arr).to eq([card4, card3, card6, card7])
-            
-           turn.pile_cards
-            
-            expect(player1.deck.cards_arr).to eq([card8])
-            expect(player2.deck.cards_arr).to eq([card7])
-            expect(turn.spoils_of_war).to eq([])
 
-            
+            expect(turn.type).to eq(:mutually_assured_destruction || :war)
+            turn.pile_cards
+            expect(turn.spoils_of_war.flatten).to eq([card1, card2, card5, card4, card3, card6,])
+        end
+
+        it 'can pile spoils for a basic turn' do
+          card1 = Card.new(:hearts, 'Jack', 11)
+          card2 = Card.new(:hearts, 'Ten', 10)
+          card3 = Card.new(:hearts, 'Nine', 9) 
+          card4 = Card.new(:diamonds, 'King', 13) 
+          card5 = Card.new(:hearts, 'Eight', 8)
+          card6 = Card.new(:diamonds, 'Eight', 8)
+          card7 = Card.new(:hearts, 'Three', 3)
+          card8 = Card.new(:diamonds, 'Two', 2)
+
+          deck1 = Deck.new([card1, card2, card5, card8])
+          deck2 = Deck.new([card4, card3, card6, card7])
+
+          player1 = Player.new("Megan", deck1)
+          player2 = Player.new("Aurora", deck2)
+
+          turn = Turn.new(player1, player2)
+
+          expect(turn.type).to eq(:basic)
+          turn.pile_cards
+          expect(turn.spoils_of_war.flatten).to eq([card1, card2, card5, card4, card3, card6,])
         end
     end
 end
