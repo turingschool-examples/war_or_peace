@@ -30,7 +30,7 @@ game = Game.new(player1, player2)
 
 # Print welcome message and prompt user to start game
 puts
-puts "Welcome to War! (or Peace) This game will be played with  cards."
+puts "Welcome to War! (or Peace) This game will be played with #{player1.deck.cards.length + player2.deck.cards.length} cards."
 puts "The players today are #{player1.name} and #{player2.name}"
 puts "Type 'GO' to start the game or 'EXIT' to quit!"
 puts "------------------------------------------------------------------"
