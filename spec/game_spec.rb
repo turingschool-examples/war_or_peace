@@ -46,8 +46,7 @@ describe Game do
         expect(@game.play_turn).to eq(@player1)
     end
     
-    it 'can start game' do
-        #Return winner on basic turn
+    it 'can start game ending with basic turn' do
         card1 = Card.new(:spade, "2", 2)
         card2 = Card.new(:spade, "3", 3)
         card3 = Card.new(:spade, "4", 4)
@@ -59,22 +58,22 @@ describe Game do
         @game = Game.new(@player1, @player2)
 
         expect(@game.start).to eq("*~*~*~* Megan has won the game! *~*~*~*")
+    end
 
-        # Return winner on war/MAD turn (Refactor)
-        # Commented out due to 1,000,000 loop count
-        # card1 = Card.new(:diamond, "2", 2)
-        # card2 = Card.new(:heart, "2", 2)
-        # card3 = Card.new(:spade, "2", 2)
-        # card4 = Card.new(:club, "2", 2)
-        # card5 = Card.new(:spade, "Ace", 14)
-        # @player1 = Player.new("Megan", Deck.new([card1, card2, card5]))
-        # @player2 = Player.new("Aurora", Deck.new([card3, card4]))
-        # @game = Game.new(@player1, @player2)
+    xit 'can start game ending with war/mad turn' do
+        card1 = Card.new(:diamond, "2", 2)
+        card2 = Card.new(:heart, "2", 2)
+        card3 = Card.new(:spade, "2", 2)
+        card4 = Card.new(:club, "2", 2)
+        card5 = Card.new(:spade, "Ace", 14)
+        @player1 = Player.new("Megan", Deck.new([card1, card2, card5]))
+        @player2 = Player.new("Aurora", Deck.new([card3, card4]))
+        @game = Game.new(@player1, @player2)
         
-        # expect(@game.start).to eq("*~*~*~* Megan has won the game! *~*~*~*")
+        expect(@game.start).to eq("*~*~*~* Megan has won the game! *~*~*~*")
+    end
 
-        # Return draw on gameover/draw turn
-        # Commented out due to 1,000,000 loop count
+    it 'can start game ending with draw before max turn count' do
         card1 = Card.new(:diamond, "2", 2)
         card2 = Card.new(:heart, "2", 2)
         card3 = Card.new(:spade, "2", 2)
