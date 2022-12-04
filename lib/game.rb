@@ -21,8 +21,7 @@ class Game
   def play_game
     i = 0
     1_000_000.times do
-
-    i += 1
+      i += 1
       if turn.type == :basic 
         round_winner = turn.winner
         turn.pile_cards
@@ -57,7 +56,6 @@ class Game
       exit
     end
   end
-
 end     
 
 
