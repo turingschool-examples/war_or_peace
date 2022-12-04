@@ -5,7 +5,7 @@ require './lib/player'
 require './lib/turn'
 
 RSpec.describe Turn do
-    it "can have a basic turn" do
+    it "can have a basic turn and return spoils" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
         card3 = Card.new(:heart, '9', 9)
@@ -67,7 +67,7 @@ RSpec.describe Turn do
 
     end
     
-     it "can have war" do
+     it "can have war and return spoils" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
         card3 = Card.new(:heart, '9', 9)
@@ -105,7 +105,7 @@ RSpec.describe Turn do
 
      end
 
-     it "can have mutual destruction" do
+     it "can have mutual destruction and no spoils" do
         card1 = Card.new(:heart, 'Jack', 11)
         card2 = Card.new(:heart, '10', 10)
         card3 = Card.new(:heart, '9', 9)
