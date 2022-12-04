@@ -8,7 +8,6 @@ class Deck
     end
 
     def rank_of_card_at(index)
-        # require 'pry'; binding.pry
         @cards[index].rank
     end
 
@@ -17,7 +16,6 @@ class Deck
         cards.each do |card|
             if card.rank >= 11 
                 high_cards << card
-                # require 'pry'; binding.pry
             end
         end
         high_cards

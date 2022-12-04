@@ -54,5 +54,10 @@ class Turn
             end
         end
     end
+
+    def award_spoils
+        winner.deck << spoils_of_war.empty?
+    end
 end
+
 
