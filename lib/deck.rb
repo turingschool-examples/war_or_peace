@@ -2,12 +2,15 @@ class Deck
     attr_reader :cards
 
     def initialize(cards)
-        #LITTLE RUBY MAN# cards = [card1, card2, card3]
+        # remember Abdul's Little-Ruby-Man: 
+        # <cards = [card1, card2, card3]>
         @cards = cards
     end
     
     def rank_of_card_at(index)
+         # remember: cards = [index(0), index(1), index(2)]
         @cards[index].rank
+        # didn't work: <@cards.index.rank>
     end
 
     def high_ranking_cards
@@ -32,7 +35,7 @@ class Deck
 
     def add_card(new_card)
         @cards << new_card
-        # @cards.push(card) 
+        # didn't work <@cards.push(card)>
     end
 
 

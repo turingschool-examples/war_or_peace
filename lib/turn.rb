@@ -77,7 +77,8 @@ class Turn
                 spoils_of_war.shift
             end
         end
-
+        # until <has_lost? = []>
+        # need to add .shuffle!
     end
 
 end
