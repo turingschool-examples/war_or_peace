@@ -6,7 +6,7 @@ require './lib/turn'
 
 RSpec.describe Player do
     context 'Test Set 1' do
-        xit 'facilitates a turn' do
+        it 'facilitates a turn' do
             card1 = Card.new(:hearts, 'Jack', 11)
             card2 = Card.new(:hearts, 'Ten', 10) 
             card3 = Card.new(:hearts, 'Nine', 9)
@@ -27,7 +27,7 @@ RSpec.describe Player do
             expect(turn).to be_an_instance_of(Turn)
         end
 
-        xit 'has players taking a turn' do
+        it 'has players taking a turn' do
             card1 = Card.new(:hearts, 'Jack', 11)
             card2 = Card.new(:hearts, 'Ten', 10) 
             card3 = Card.new(:hearts, 'Nine', 9)
@@ -72,10 +72,6 @@ RSpec.describe Player do
             expect(player2.deck.rank_of_card_at(1)).to eq(11)
             expect(player1.deck.rank_of_card_at(2)).to eq(8)
             expect(player2.deck.rank_of_card_at(2)).to eq(12)
-
-        end
-
-        xit 'can create an array of the instanced ranks' do
 
         end
     end
@@ -146,7 +142,7 @@ RSpec.describe Player do
     end
 
     context 'Test Set 3' do
-        it 'declares a winner for a basic outcome' do
+        xit 'declares a winner for a basic outcome' do
             card1 = Card.new(:clubs, 'Jack', 11)
             card2 = Card.new(:spades, 'Ten', 10) 
             card3 = Card.new(:hearts, 'Nine', 9)
@@ -161,7 +157,7 @@ RSpec.describe Player do
             player2 = Player.new("Aurora", deck2)
 
             turn = Turn.new(player1, player2)
-            require 'pry'; binding.pry
+            
             expect(turn.turn_type).to eq(:basic)
             expect(turn.winner).to eq(@player1)
         end
@@ -186,7 +182,7 @@ RSpec.describe Player do
             expect(turn.winner).to eq(@player2)
         end
 
-        it "declares 'No Winner' for a mutually assured destruction outcome" do
+        xit "declares 'No Winner' for a mutually assured destruction outcome" do
             card1 = Card.new(:clubs, 'Jack', 11)
             card2 = Card.new(:spades, 'Jack', 11) 
             card3 = Card.new(:hearts, 'Nine', 9)
@@ -201,7 +197,7 @@ RSpec.describe Player do
             player2 = Player.new("Aurora", deck2)
 
             turn = Turn.new(player1, player2)
-
+        
             expect(turn.turn_type).to eq(:mutually_assured_destruction)
             expect(turn.winner).to eq('No Winner')
         end
