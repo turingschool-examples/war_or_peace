@@ -170,7 +170,7 @@ end
 
 RSpec.describe Turn do
     describe 'exists' do
-        xit 'turn.type should equal basic' do
+        it 'turn.type should equal basic' do
             card1 = Card.new(:heart, 'Jack', 11)
             card2 = Card.new(:heart, '10', 10)
             card3 = Card.new(:heart, '9', 9)
@@ -191,7 +191,7 @@ RSpec.describe Turn do
             expect(turn.type).to eq(:war)
         end
 
-        xit 'winner should equal turn.winner' do
+        it 'winner should equal turn.winner' do
             card1 = Card.new(:heart, 'Jack', 11)
             card2 = Card.new(:heart, '10', 10)
             card3 = Card.new(:heart, '9', 9)
