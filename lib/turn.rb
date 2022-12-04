@@ -13,7 +13,7 @@ class Turn
             :mutually_assured_destruction
         elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
             :war
-        elsif player1.deck.rank_of_card_at(0)  != player2.deck.rank_of_card_at(0)
+        elsif player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
             :basic
         end
     end
