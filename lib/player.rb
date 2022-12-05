@@ -3,7 +3,6 @@ class Player
                 :deck, 
                 :has_lost 
 
-
     def initialize(name, deck)
         @name = name
         @deck = deck

@@ -22,6 +22,7 @@ describe Deck do
         cards = [card1, card2, card3]
         deck = Deck.new(cards)
         deck.cards
+        require 'pry'; binding.pry
     
     expect(deck.rank_of_card_at(2)).to eq(14)
     end 

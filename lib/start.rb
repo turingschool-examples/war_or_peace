@@ -1,14 +1,33 @@
 class Start 
     attr_reader :player1,
-                :player2
-  
+                :player2,
+                :turn
 
-def initialize(player1, player2)
-    @player1 = player1 
+def initialize
+    cards = CardGenerator.new(File.read('./lib/cards.txt')).create_cards
+    # cards variable becomes the result of the CardGenerator calculations
+    p1deck = Deck.new(cards[0..25])
+    p2deck = Deck.new(cards[26..52])
+    player1 = Player.new("Hady", p1deck)
+    player2 = Player.new("Maria Magdalena", p2deck)
+    @player1 = player1
     @player2 = player2
-    @turn = Turn.new(@player1, player2) 
-  
+    @turn = Turn.new(player1, player2) 
 end 
+
+def say_go
+    puts "Welcome to War! (or Peace) This game will be played with 52 cards. The players today are #{@player1.name} and #{@player2.name}."
+    puts "Type GO to start the game!"
+    puts "-----------------------------------------------------------"
+    
+    saygo = gets.chomp 
+    
+    if saygo == "GO"      
+        self.start
+    end 
+end 
+
+
 
 def start 
     @number = 0
@@ -30,11 +49,13 @@ def start
         puts ""
         puts ""
         puts ""
-        
-        puts "Turn number #{@number}
-        player 1 cards: #{@player1.deck.cards.count}
-        player 2 cards: #{@player2.deck.cards.count}"
-        end 
+#  I put the rank notes because I was running into issues of loops and I wanted to make sure that the same cards were not being cycles continuously.
+                puts "Turn number #{@number}
+                player 1 cards: #{@player1.deck.cards.count}  
+                player 2 cards: #{@player2.deck.cards.count}" 
+    end 
+
+
 
         if @player1.has_lost?
             p "Sorry #{@player1.name} you have lost this game. Aun su amor para ti nunca mas sea para infinito, #{@player2.name} todavia te ama demasciadio."
