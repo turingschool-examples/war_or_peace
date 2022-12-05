@@ -237,7 +237,7 @@ RSpec.describe Turn do
             expect(turn.spoils_of_war).to eq([card1, card4, card2, card3, card5, card6])
         end
     
-        xit 'player2.deck.cards should have cards 1-7 and player1.deck.cards should have card8' do
+        it 'player2.deck.cards should have cards 1-7 and player1.deck.cards should have card8' do
             card1 = Card.new(:heart, 'Jack', 11)
             card2 = Card.new(:heart, '10', 10)
             card3 = Card.new(:heart, '9', 9)
@@ -248,7 +248,7 @@ RSpec.describe Turn do
             card8 = Card.new(:diamond, '2', 2)    
             
             deck1 = Deck.new([card1, card2, card5, card8])
-            deck2 = Deck.new([card3, card4, card6, card7])
+            deck2 = Deck.new([card4, card3, card6, card7])
             
             player1 = Player.new("Megan", deck1)
             player2 = Player.new("Aurora", deck2)
@@ -260,7 +260,7 @@ RSpec.describe Turn do
             turn.award_spoils(winner)
 
             expect(player1.deck.cards).to eq([card8])
-            expect(player2.deck.cards).to eq([card1, card2, card3, card4, card5, card6, card7])
+            expect(player2.deck.cards).to match_array([card1, card2, card3, card4, card5, card6, card7])
         end
     end 
 end    
