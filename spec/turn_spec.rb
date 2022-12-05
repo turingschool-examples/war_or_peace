@@ -148,11 +148,8 @@ describe Turn do
             @player1 = Player.new("Megan", Deck.new([card1, card2, card5]))
             @player2 = Player.new("Aurora", Deck.new([card3, card4]))
             @turn = Turn.new(@player1, @player2)
-            expected_cards = @player1.deck.cards
-            expected_cards.concat(@player2.deck.cards)
-            @turn.pile_cards
-            require "pry"; binding.pry
-            expect(@turn.spoils_of_war).to eq(expected_cards)
+
+            expect(@turn.pile_cards).to eq([card1, card2, card5, card3, card4])
         end
 
 
