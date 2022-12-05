@@ -1,3 +1,4 @@
+require 'pry'; binding.pry
 require 'rspec'
 require './lib/card'
 
