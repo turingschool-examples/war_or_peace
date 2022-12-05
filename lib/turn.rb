@@ -49,8 +49,8 @@ class Turn
             3.times { @player1.deck.remove_card}
             3.times { @player2.deck.remove_card}
         elsif type == :game_over
-            @spoils_of_war = @player1.deck.cards
-            @spoils_of_war.concat(@player2.deck.cards)
+            3.times { @spoils_of_war << @player1.deck.remove_card}
+            3.times { @spoils_of_war << @player2.deck.remove_card}
         end
 
         @spoils_of_war
