@@ -270,7 +270,7 @@ end
 
 RSpec.describe Turn do
     describe 'exists' do
-        xit 'turn should be m_a_d' do
+        it 'turn should be m_a_d' do
             card1 = Card.new(:heart, 'Jack', 11)
             card2 = Card.new(:heart, '10', 10)
             card3 = Card.new(:heart, '9', 9)
@@ -290,7 +290,8 @@ RSpec.describe Turn do
             
             expect(turn.type).to eq(:mutually_assured_destruction)
         end
-        xit 'winner should equal "No winner"' do    
+
+        it 'winner should equal "No winner"' do    
             card1 = Card.new(:heart, 'Jack', 11)
             card2 = Card.new(:heart, '10', 10)
             card3 = Card.new(:heart, '9', 9)
@@ -313,7 +314,7 @@ RSpec.describe Turn do
             expect(winner).to eq("No winner")
         end
 
-        xit 'turn.spoils_of_war should be empty' do
+        it 'turn.spoils_of_war should be empty' do
             card1 = Card.new(:heart, 'Jack', 11)
             card2 = Card.new(:heart, '10', 10)
             card3 = Card.new(:heart, '9', 9)
