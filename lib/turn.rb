@@ -51,6 +51,7 @@ class Turn
         elsif type == :game_over
             3.times { @spoils_of_war << @player1.deck.remove_card}
             3.times { @spoils_of_war << @player2.deck.remove_card}
+            @spoils_of_war.compact!
         end
 
         @spoils_of_war
