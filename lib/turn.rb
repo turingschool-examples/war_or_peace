@@ -63,7 +63,17 @@ class Turn
   end # => #Arr of @spoils_of_war based on conditions met
 
   def award_spoils(winner)
+    loop do
+    winner.deck.cards_arr << @spoils_of_war.pop 
+      if (@spoils_of_war.count == 0)
+        break
+      end
+    end
     require 'pry'; binding.pry
-    winner.deck << @spoils_of_war
   end
+    # require 'pry'; binding.pry
+    # until @spoils_of_war.count == 0
+    # winner.deck.cards_arr << @spoils_of_war
+    # end
+    # require 'pry'; binding.pry
 end
