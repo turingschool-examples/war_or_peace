@@ -100,7 +100,7 @@ class Game
         "GO" == gets.chomp
         
         turns = 1
-        while turns < 1000001 && (!player1.has_lost? || !player2.has_lost?) 
+        while turns < 10000001 && (!player1.has_lost? || !player2.has_lost?) 
             if @player1.has_lost?
                 puts "#{player2.name} has Won!"
                 return
