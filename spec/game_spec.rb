@@ -123,4 +123,16 @@ describe Game do
         expect(@game.announce_winner(@game.play_turn)).to eq("Turn 1: *mutually assured destruction* 6 cards removed from play")
     end
 
+    it 'can announce game over winner' do
+        card1 = Card.new(:diamond, "2", 2)
+        card2 = Card.new(:heart, "2", 2)
+        card3 = Card.new(:spade, "2", 2)
+        card4 = Card.new(:club, "2", 2)
+        card5 = Card.new(:spade, "Ace", 14)
+        @player1 = Player.new("Megan", Deck.new([card1, card2, card5]))
+        @player2 = Player.new("Aurora", Deck.new([card3, card4]))
+        @game = Game.new(@player1, @player2)
+    
+        expect(@game.announce_winner(@game.play_turn)).to eq("Turn 1: Megan won the remaining cards")
+    end
 end
