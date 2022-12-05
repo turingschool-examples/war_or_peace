@@ -106,10 +106,10 @@ class Game
                         p "Turn #{phases}: *mutually assured destruction* 6 cards removed from play"
                     elsif type == :basic
                         turn.award_spoils(@round_winner)
-                        puts "Turn #{phases}: #{turn.winner} won 2 cards"
+                        puts "Turn #{phases}: #{@round_winner.name} won 2 cards"
                     else
                         turn.award_spoils(@round_winner)
-                        p "Turn #{phases}: WAR - #{turn.winner} won 6 cards"
+                        p "Turn #{phases}: WAR - #{@round_winner.name} won 6 cards"
                     end
                     phases += 1
                 end

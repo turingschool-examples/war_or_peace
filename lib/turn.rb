@@ -46,10 +46,12 @@ class Turn
         elsif type == :basic
             @spoils_of_war << player1.deck.remove_card
             @spoils_of_war << player2.deck.remove_card
+            @spoils_of_war.shuffle
         else # war
             3.times do 
                 @spoils_of_war << player1.deck.remove_card
                 @spoils_of_war << player2.deck.remove_card
+                @spoils_of_war.shuffle
             end
         end
     end
