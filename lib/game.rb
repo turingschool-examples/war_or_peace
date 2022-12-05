@@ -55,6 +55,8 @@ class Game
             "Turn #{@turn_count}: WAR - #{winner.name} won 6 cards"
         elsif @turn_type == :mutually_assured_destruction
             "Turn #{@turn_count}: *mutually assured destruction* 6 cards removed from play"
+        elsif @turn_type == :game_over
+            "Turn #{@turn_count}: #{winner.name} won the remaining cards"
         end
     end
 end
