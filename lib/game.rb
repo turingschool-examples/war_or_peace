@@ -128,7 +128,7 @@ class Game
             end   
         end
 
-        if turns == 1000001
+        if turns == 10000001
             puts "-----DRAW-----"
         
         end
