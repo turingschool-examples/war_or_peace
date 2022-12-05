@@ -67,19 +67,19 @@ class Game
     def commence
         # Need to tell code how to operate the turns of the game over and over until there's a loser        
         counter = 0
+        someone_lost = player1.has_lost? || player2.has_lost?
 
-        until player1.has_lost? || player2.has_lost? || counter == 10
+        until someone_lost || counter == 1_000_000
             counter += 1
             winner = @turn.winner
             @turn.pile_cards
-            require 'pry'; binding.pry
-            
-            if @turn == :mutually_assured_destruction
+
+            if @turn.type == :mutually_assured_destruction
                         p "Turn #{counter}: *mutually assured destruction* 6 cards removed from play"
-            elsif @turn == :war
+            elsif @turn.type == :war
                         @turn.award_spoils(winner)
                         p "Turn #{counter}: WAR - #{winner.name} has won 6 cards"
-            else @turn == :basic
+            else @turn.type == :basic
                         @turn.award_spoils(winner)
                         p "Turn #{counter}: #{winner.name} has won 2 cards"
             end
@@ -97,7 +97,7 @@ class Game
         elsif player2.has_lost?
             puts
             p "*~*~*~* #{player1.name} has won the game! *~*~*~*\n"
-        else counter == 100
+        else counter == 1_000_000
             puts
             p "---- DRAW ----\n"
         # Need an option to play again or terminate game
