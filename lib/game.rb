@@ -77,6 +77,9 @@ class Game
         26.times do
             @deck1.cards << @fresh_pack.sample
             @deck2.cards << @fresh_pack.sample
+            #I found a bug that I don't have time to resolve before the deadline
+            #For some reason the players decks contains THOUSANDS of cards
+            #See the prints statements below.
         end
     end
 
@@ -89,7 +92,7 @@ class Game
         if gets.chomp.upcase == "GO"
             phases = 1
 
-            until phases == 1000000
+            until phases == 100
                 if @player1.has_lost?
                     puts "#{player2.name} has WON!"
                     return
@@ -113,6 +116,8 @@ class Game
                     end
                     phases += 1
                 end
+                puts "player1.deck.count#{player1.deck.cards.count}"
+                puts "deck1.count#{deck1.cards.count}"
             end
             puts "--------This game is a draw...--------"
         else
