@@ -60,7 +60,7 @@ describe Game do
         expect(@game.start).to eq("*~*~*~* Megan has won the game! *~*~*~*")
     end
 
-    xit 'can start game ending with war/mad turn' do
+    it 'can start game ending with war/mad turn' do
         card1 = Card.new(:diamond, "2", 2)
         card2 = Card.new(:heart, "2", 2)
         card3 = Card.new(:spade, "2", 2)
