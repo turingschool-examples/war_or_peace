@@ -154,9 +154,7 @@ RSpec.describe Turn do
             expect(winner).to eq(player1)
         end
 
-        # turn.pile cards needs a test? (no grey return information in iteraction pattern)
         it "turn.pile_cards should remove card(index 0) from each deck and put into spoils_of_war array which should show the 2 cards" do
-        # it "turn.spoils_of_war should hold two cards(card1, card3)" do
             card1 = Card.new(:heart, 'Jack', 11)
             card2 = Card.new(:heart, '10', 10)    
             card3 = Card.new(:heart, '9', 9) 
@@ -274,8 +272,6 @@ RSpec.describe Turn do
             expect(winner).to eq(player2)
         end 
 
-        # turn.pile cards needs a test? (no grey return information in iteraction pattern)
-
         it "turn.spoils_of_war should show cards were added to winner deck" do
             card1 = Card.new(:heart, 'Jack', 11)
             card2 = Card.new(:heart, '10', 10)    
@@ -299,8 +295,6 @@ RSpec.describe Turn do
             expect(turn.spoils_of_war).to eq([card1, card4, card2, card3, card5, card6])
         end 
         
-        # turn.award_spoils(winner) need a test? (no grey return information in iteraction pattern)
-
         it "player1.deck.cards should show 1 card left in deck1" do
             card1 = Card.new(:heart, 'Jack', 11)
             card2 = Card.new(:heart, '10', 10)    
@@ -393,8 +387,6 @@ RSpec.describe Turn do
 
             expect(winner).to eq("No Winner")
         end
-
-        # turn.pile cards needs a test? (no grey return information in iteraction pattern)
 
         it "turn.spoils_of_war should show empty deck(empty array)" do        
             card1 = Card.new(:heart, 'Jack', 11)    

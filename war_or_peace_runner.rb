@@ -60,5 +60,3 @@ card52 = Card.new(:heart, 'Ace', 14)]
 game = Game.new(full_deck)
 game.start
 
-
-# require 'pry'; binding.pry

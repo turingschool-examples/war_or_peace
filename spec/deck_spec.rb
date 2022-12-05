@@ -134,22 +134,6 @@ RSpec.describe Deck do
         expect(card4).to be_an_instance_of(Card)
     end
 
-    #Does this test make sense? No. (no grey return information in iteraction pattern)
-    # it "deck.add_card(card4) should add that card to the deck" do
-    #     card1 = Card.new(:diamond, 'Queen', 12)
-    #     card2 = Card.new(:spade, '3', 3)
-    #     card3 = Card.new(:heart, 'Ace', 14)
-    #     cards = [card1, card2, card3]    
-
-    #     deck = Deck.new(cards)
-
-    #     card4 = Card.new(:club, '5', 5)
-    #     deck.remove_card
-
-        # expect(deck.add_card(card4)).to eq(cards)
-    #     require "pry"; binding.pry
-    # end
-
     it "deck.cards should show 3 cards in deck(card2, card3, card4)" do
         card1 = Card.new(:diamond, 'Queen', 12)
         card2 = Card.new(:spade, '3', 3)
