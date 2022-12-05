@@ -126,25 +126,33 @@ describe Turn do
         end
 
         it 'can pile war cards' do
-            expected_pile =  []
-            expected_pile << @player1.deck.cards[0..2] << @player2.deck.cards[0..2]
+            expected_pile =  @player1.deck.cards[0..2]
+            expected_pile.concat(@player2.deck.cards[0..2])
+  
 
             expected_p1_deck = [@player1.deck.cards[3]]
             expected_p2_deck = [@player2.deck.cards[3]]
+            @turn.pile_cards
             
-            
-            expect(@turn.pile_cards).to eq(expected_pile.flatten)
+            expect(@turn.spoils_of_war).to eq(expected_pile)
             expect(@player1.deck.cards).to eq(expected_p1_deck)
             expect(@player2.deck.cards).to eq(expected_p2_deck)
         end
 
         it 'can pile game over cards' do
-            expected_spoils = @player1.deck.cards[0..1].concat(@player2.deck.cards)
-            @player1.deck.cards.pop(2)
-
+            card1 = Card.new(:diamond, "2", 2)
+            card2 = Card.new(:heart, "2", 2)
+            card3 = Card.new(:spade, "2", 2)
+            card4 = Card.new(:club, "2", 2)
+            card5 = Card.new(:spade, "Ace", 14)
+            @player1 = Player.new("Megan", Deck.new([card1, card2, card5]))
+            @player2 = Player.new("Aurora", Deck.new([card3, card4]))
             @turn = Turn.new(@player1, @player2)
-
-            expect(@turn.pile_cards).to eq(expected_spoils)
+            expected_cards = @player1.deck.cards
+            expected_cards.concat(@player2.deck.cards)
+            @turn.pile_cards
+            require "pry"; binding.pry
+            expect(@turn.spoils_of_war).to eq(expected_cards)
         end
 
 
