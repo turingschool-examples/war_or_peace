@@ -92,7 +92,7 @@ class Game
         if gets.chomp.upcase == "GO"
             phases = 1
 
-            until phases == 1000000
+            until phases == 100000
                 if @player1.has_lost?
                     puts "#{player2.name} has WON!"
                     return
