@@ -77,13 +77,15 @@ class Game
         card52 = Card.new(:club, 'Ace', 14)]
 
         26.times do
-            @deck1.cards << @fresh_pack.sample
-            @deck2.cards << @fresh_pack.sample
+            @deck1.cards << @fresh_pack.delete(@fresh_pack.sample)
+            @deck2.cards << @fresh_pack.delete(@fresh_pack.sample)
         end
     end
 
     def game_over
         @player1.has_lost? || @player2.has_lost? || @phases == 1000
+        require "pry"; binding.pry
+
         if @player1.has_lost?
             puts "#{player2.name} has WON!"
         elsif @player2.has_lost?
