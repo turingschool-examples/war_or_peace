@@ -55,7 +55,6 @@ RSpec.describe Game do
         
         game = Game.new
         
-
-        expect(@deck1).to be_an_instance_of(Deck)
+        expect(game.deck1).to be_an_instance_of(Deck)
     end        
 end
