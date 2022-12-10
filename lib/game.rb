@@ -9,7 +9,8 @@ class Game
         :deck2,
         :player1,
         :player2,
-        :turn
+        :turn,
+        :phases
 
 
     def initialize
@@ -19,6 +20,7 @@ class Game
         @player2 = Player.new("Aurora", @deck2)
         @turn = Turn.new(@player1, @player2)
         @round_winner = ''
+        @phases = 1
 
         @fresh_pack = [
         card1 = Card.new(:diamond, '2', 2),
@@ -80,6 +82,17 @@ class Game
         end
     end
 
+    def game_over
+        @player1.has_lost? || @player2.has_lost? || @phases == 1000
+        if @player1.has_lost?
+            puts "#{player2.name} has WON!"
+        elsif @player2.has_lost?
+            puts "#{player1.name} has WON!"
+        elsif @phases == 10000
+            puts "--------This game is a draw...--------"
+        end
+    end
+
     def start
         p "Welcome to War! (or Peace) This game will be played with 52 cards."
         p "The players today are Megan and Aurora."
@@ -87,34 +100,22 @@ class Game
         p "------------------------------------------------------------------"
        
         if gets.chomp.upcase == "GO"
-            phases = 1
+            until game_over
+                type = @turn.type
+                @round_winner = @turn.winner
+                @turn.pile_cards
 
-            until phases == 1000
-                if @player1.has_lost?
-                    puts "#{player2.name} has WON!"
-                    return
-                elsif @player2.has_lost?
-                    puts "#{player1.name} has WON!"
-                    return
+                if type == :mutually_assured_destruction
+                    puts "Turn #{@phases}: *mutually assured destruction* 6 cards removed from play"
+                elsif type == :basic
+                    turn.award_spoils(@round_winner)
+                    puts "Turn #{@phases}: #{@round_winner.name} won 2 cards"
                 else
-                    type = @turn.type
-                    @round_winner = @turn.winner
-                    @turn.pile_cards
-
-                    
-                    if type == :mutually_assured_destruction
-                        p "Turn #{phases}: *mutually assured destruction* 6 cards removed from play"
-                    elsif type == :basic
-                        turn.award_spoils(@round_winner)
-                        puts "Turn #{phases}: #{@round_winner.name} won 2 cards"
-                    else
-                        turn.award_spoils(@round_winner)
-                        p "Turn #{phases}: WAR - #{@round_winner.name} won 6 cards"
-                    end
-                    phases += 1
+                    turn.award_spoils(@round_winner)
+                    puts "Turn #{@phases}: WAR - #{@round_winner.name} won 6 cards"
                 end
+                @phases += 1
             end
-            puts "--------This game is a draw...--------"
         else
             start
         end
