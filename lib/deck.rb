@@ -6,9 +6,6 @@ class Deck
 
   def initialize(cards)
     @cards = cards
-    @high_rank
-    @percent_high_rank
-    @removed
   end
 
   def rank_of_card_at(num)
