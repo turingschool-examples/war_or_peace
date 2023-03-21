@@ -1,9 +1,5 @@
 class Deck
-  attr_accessor :cards,
-                :high_rank,
-                :percent_high_rank,
-                :removed,
-                :rank_of_card_at
+  attr_accessor :cards, :high_rank, :percent_high_rank, :removed, :rank_of_card_at
 
   def initialize(cards)
     @cards = cards
