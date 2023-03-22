@@ -9,12 +9,14 @@ class Game
     puts "Welcome to War! (or Peace) This Game will be played with 52 cards."
     puts "The players today are #{player1.name} and #{player2.name}."
     puts "Type 'GO' to start the game!"
+    puts "------------------------------------------------------------------"
+
     command = nil
     while command != "GO"
       command = gets.chomp
       "Type 'GO' to start the game!"
     end
-
+    
     while player1.has_lost? == false || player2.has_lost? == false
       turn = Turn.new(player1, player2)
       type = turn.type
