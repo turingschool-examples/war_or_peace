@@ -53,5 +53,6 @@ class Turn
 
   def award_spoils(winner)
     spoils_of_war.each {|card| winner.deck.cards.push(card)}
+    spoils_of_war = []
   end
 end
