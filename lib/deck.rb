@@ -6,11 +6,8 @@ class Deck
   end
 
   def rank_of_card_at(num)
-    if cards[num] == nil
-      return 0
-    else
-      cards[num].rank
-    end
+    return 0 if cards[num] == nil
+    cards[num].rank
   end
 
   def high_ranking_cards
