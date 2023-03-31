@@ -7,9 +7,3 @@ require './lib/game'
 game = Game.new
 game.deal
 game.start
-
-
-    
-
-
-   

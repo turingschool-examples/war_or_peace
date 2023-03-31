@@ -11,7 +11,7 @@ class Card
     end
 
     def card
-        card = card.new(:diamond, 'Queen', 12)
+        card = Card.new(:diamond, 'Queen', 12)
 end
     
 end
