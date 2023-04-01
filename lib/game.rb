@@ -57,8 +57,8 @@ class Game
   end
 
   def split_deck
-    @deck1 = Deck.new(full_deck.slice!(0, 26))
-    @deck2 = Deck.new(full_deck)
+    @deck1 = Deck.new(@full_deck.slice!(0, 26))
+    @deck2 = Deck.new(@full_deck)
   end
 
   def create_players
@@ -111,11 +111,13 @@ class Game
     when :war
       turn.pile_cards
       puts "turn #{counter}: WAR -  #{winner.name} won #{turn.spoils_of_war.count} cards"
+      winner.deck.cards.shuffle!
       turn.award_spoils(winner)
       puts "Megan: #{@player1.deck.cards.count}| Aurora: #{@player2.deck.cards.count}"
     when :basic
       turn.pile_cards
       puts "turn #{counter}: #{winner.name} won #{turn.spoils_of_war.count} cards"
+      winner.deck.cards.shuffle!
       turn.award_spoils(winner)
       puts "Megan: #{@player1.deck.cards.count}| Aurora: #{@player2.deck.cards.count}"
     else
@@ -139,7 +141,7 @@ class Game
   end
 
   def game_loop
-    until counter == 1_000
+    until counter == 1000000
       if game_over? # game over
         break
       elsif two_card_endgame?
