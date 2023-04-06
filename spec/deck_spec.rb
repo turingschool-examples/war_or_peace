@@ -6,8 +6,8 @@ RSpec.describe Deck do
     @card2 = Card.new(:spade, '3', 3)
     @card3 = Card.new(:heart, 'Ace', 14)
     @card4 = Card.new(:club, '2', 2)
-    @cards = [@card1, @card2, @card3]
-    @deck = Deck.new(@cards)
+    @array_of_cards = [@card1, @card2, @card3]
+    @deck = Deck.new(@array_of_cards)
   end
 
   describe '#initialize' do
@@ -64,7 +64,7 @@ RSpec.describe Deck do
       @deck.cards.each do |card|
         expect(card).to be_a Card
       end
-      expect(@deck.add_card(@card4)).to eq(@cards)
+      expect(@deck.add_card(@card4)).to eq(@array_of_cards)
       @deck.cards.each do |card|
         expect(card).to be_a Card
       end
