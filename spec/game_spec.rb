@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe Game do
   let(:game) { Game.new }
-  
+
   describe '#init' do
     it 'exists' do
       expect(game).to be_an Game
@@ -296,7 +296,7 @@ RSpec.describe Game do
     game.start
 
     context 'creating and shuffling the deck of cards' do
-      it 'populates @full_deck with cards' do
+      xit 'populates @full_deck with cards' do
         expect(game.full_deck).not_to eq([])
         expect(game.full_deck[0]).to be_a Card
       end

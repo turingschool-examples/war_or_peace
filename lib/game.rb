@@ -39,7 +39,9 @@ class Game
   def create_full_deck
     values = %w[2 3 4 5 6 7 8 9 10 Jack Queen King Ace]
     ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+
     values_and_ranks = values.zip(ranks)
+
     values_and_ranks.map do |x|
       full_deck << [x, :diamond].flatten
       full_deck << [x, :heart].flatten
