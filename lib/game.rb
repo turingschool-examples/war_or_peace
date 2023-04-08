@@ -7,22 +7,19 @@ class Game
   attr_accessor :turn,
                 :turn_type,
                 :hand_winner,
-                :full_deck,
                 :deck1,
                 :deck2,
                 :player1,
                 :player2,
-                :counter,
-                :g_deck
+                :counter
 
   def initialize(deck_of_cards:)
     @turn = nil
     @deck1 = Deck.new(deck_of_cards.slice!(0, 26))
     @deck2 = Deck.new(deck_of_cards.slice!(0, 26))
-    @player1 = Player.new('Aurora3', @deck1)
-    @player2 = Player.new('Meghan4', @deck2)
+    @player1 = Player.new('Megan', @deck1)
+    @player2 = Player.new('Aurora', @deck2)
     @counter = 1
-    @g_deck = DeckGenerator.new.generate_deck.cards.shuffle!
   end
 
   def start
