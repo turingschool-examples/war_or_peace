@@ -1,5 +1,3 @@
-require './lib/card'
-require './lib/deck'
 require './lib/deck_generator'
 require './lib/turn'
 require './lib/player'
@@ -19,60 +17,18 @@ class Game
 
   def initialize(deck_of_cards:)
     @turn = nil
-    @full_deck = []
-    @deck1 = nil
-    @deck2 = nil
-    @deck3 = deck_of_cards.slice!(0, 26)
-    @deck4 = deck_of_cards.slice!(0, 26)
-    @player1 = nil
-    @player2 = nil
-    @player3 = Player.new('Aurora3', @deck3)
-    @player4 = Player.new('Meghan4', @deck4)
+    @deck1 = Deck.new(deck_of_cards.slice!(0, 26))
+    @deck2 = Deck.new(deck_of_cards.slice!(0, 26))
+    @player1 = Player.new('Aurora3', @deck1)
+    @player2 = Player.new('Meghan4', @deck2)
     @counter = 1
     @g_deck = DeckGenerator.new.generate_deck.cards.shuffle!
   end
 
   def start
-    create_full_deck
-    shuffle_the_deck
-    split_deck
-    create_players
     make_turn
     puts "Welcome to War! (or Peace) This game will be played with 52 cards.\nThe players today are #{@player1.name} and #{@player2.name}.\nPress 'RETURN' to start the game\n------------------------------------------------------------------"
-    # gets
     game_loop
-  end
-
-  def create_full_deck
-    values = %w[2 3 4 5 6 7 8 9 10 Jack Queen King Ace]
-    ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-
-    values_and_ranks = values.zip(ranks)
-
-    values_and_ranks.map do |x|
-      full_deck << [x, :diamond].flatten
-      full_deck << [x, :heart].flatten
-      full_deck << [x, :spade].flatten
-      full_deck << [x, :club].flatten
-    end
-
-    @full_deck = full_deck.map do |x|
-      Card.new(x[2], x[0], x[1])
-    end
-  end
-
-  def shuffle_the_deck
-    @full_deck.shuffle!
-  end
-
-  def split_deck
-    @deck1 = Deck.new(@full_deck.slice!(0, 26))
-    @deck2 = Deck.new(@full_deck)
-  end
-
-  def create_players
-    @player1 = Player.new('Megan', @deck1)
-    @player2 = Player.new('Aurora', @deck2)
   end
 
   def game_over?
