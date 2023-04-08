@@ -1,5 +1,6 @@
 require './lib/card'
 require './lib/deck'
+require './lib/deck_generator'
 require './lib/turn'
 require './lib/player'
 require 'pry'
@@ -13,16 +14,22 @@ class Game
                 :deck2,
                 :player1,
                 :player2,
-                :counter
+                :counter,
+                :g_deck
 
-  def initialize
+  def initialize(deck_of_cards:)
     @turn = nil
     @full_deck = []
     @deck1 = nil
     @deck2 = nil
+    @deck3 = deck_of_cards.slice!(0, 26)
+    @deck4 = deck_of_cards.slice!(0, 26)
     @player1 = nil
     @player2 = nil
+    @player3 = Player.new('Aurora3', @deck3)
+    @player4 = Player.new('Meghan4', @deck4)
     @counter = 1
+    @g_deck = DeckGenerator.new.generate_deck.cards.shuffle!
   end
 
   def start
@@ -109,19 +116,19 @@ class Game
     when :mutually_assured_destruction
       turn.pile_cards
       puts "turn #{counter}: No winner: mutually assured destruction 6 cards removed"
-      puts "Megan: #{@player1.deck.cards.count}| Aurora: #{@player2.deck.cards.count}"
+      puts "#{@player1.name}: #{@player1.deck.cards.count}| #{@player2.name}: #{@player2.deck.cards.count}"
     when :war
       turn.pile_cards
       puts "turn #{counter}: WAR -  #{winner.name} won #{turn.spoils_of_war.count} cards"
       winner.deck.cards.shuffle!
       turn.award_spoils(winner)
-      puts "Megan: #{@player1.deck.cards.count}| Aurora: #{@player2.deck.cards.count}"
+      puts "#{@player1.name}: #{@player1.deck.cards.count}| #{@player2.name}: #{@player2.deck.cards.count}"
     when :basic
       turn.pile_cards
       puts "turn #{counter}: #{winner.name} won #{turn.spoils_of_war.count} cards"
       winner.deck.cards.shuffle!
       turn.award_spoils(winner)
-      puts "Megan: #{@player1.deck.cards.count}| Aurora: #{@player2.deck.cards.count}"
+      puts "#{@player1.name}: #{@player1.deck.cards.count}| #{@player2.name}: #{@player2.deck.cards.count}"
     else
       'uh oh'
     end

@@ -5,6 +5,5 @@ class Card
     @suit = suit
     @value = value
     @rank = rank
-    # require 'pry'; binding.pry
   end
 end

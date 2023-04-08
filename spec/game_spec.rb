@@ -3,6 +3,16 @@ require 'spec_helper'
 RSpec.describe Game do
   let(:game) { Game.new }
 
+  context "using a DeckGenerator" do
+    describe 'Game' do
+      describe '#init' do
+        it 'uses a deck denerator' do
+          expect(game.g_deck).to be_a Deck
+        end
+      end
+    end
+  end
+
   describe '#init' do
     it 'exists' do
       expect(game).to be_an Game
@@ -145,7 +155,6 @@ RSpec.describe Game do
         game.split_deck
         game.create_players
         game.make_turn
-        # require 'pry'; binding.pry
         allow(game.turn).to receive(:type) { :basic }
         expect(game.turn.type).to eq(:basic)
         game.two_card_endgame(1)
