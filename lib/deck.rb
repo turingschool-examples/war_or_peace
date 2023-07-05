@@ -15,18 +15,20 @@ class Deck
 
     def high_ranking_cards
         cards.find_all do |card|
-            card.rank > 10
+            card.rank >= 11
+        end
     end
 
-    def percent_high_ranking
+    def percent_high_ranking(high_ranking_cards, cards)
+        percent_high_ranking = (high_ranking_cards.count.to_f / cards.count) * 100
     end
 
     def remove_card
-        # -1 method?
+        # -1 method? .delete? 
     end
 
     def add_card
-        # +1 card to bottom? some type of rotate?
+        # +1 card to bottom? some type of rotate? # @cards << card?
     end 
 
 end
