@@ -15,6 +15,5 @@ class Player
     else 
       @no_cards
     end
-    # require 'pry'; binding.pry
   end
 end
