@@ -4,4 +4,31 @@ class Deck
     def initialize(cards)
         @cards = cards
     end
+
+    def rank_of_card_at(index)
+        if @cards[index].nil? # denotes absence of value
+            0
+        else 
+            @cards[index].rank 
+        end
+    end
+
+    def high_ranking_cards
+        cards.find_all do |card|
+            card.rank > 10
+    end
+
+    def percent_high_ranking
+    end
+
+    def remove_card
+        # -1 method?
+    end
+
+    def add_card
+        # +1 card to bottom? some type of rotate?
+    end 
+
 end
+
+
