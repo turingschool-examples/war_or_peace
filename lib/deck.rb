@@ -19,12 +19,12 @@ class Deck
         end
     end
 
-    def percent_high_ranking(high_ranking_cards, cards)
-        percent_high_ranking = (high_ranking_cards.count.to_f / cards.count) * 100
+    def percent_high_ranking
+        (high_ranking_cards.count.to_f / cards.count) * 100
     end
 
     def remove_card
-        # -1 method? .delete? 
+       cards.delete_at(0)
     end
 
     def add_card
