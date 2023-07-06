@@ -1,3 +1,5 @@
+
+
 class Card 
     attr_reader :suit,
                 :value,
@@ -9,7 +11,7 @@ class Card
         @rank = rank
     end
 
-    # card = Card.new()
+    card = Card.new(:heart, "Jack", 11)
 end
 
 
