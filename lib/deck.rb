@@ -27,8 +27,8 @@ class Deck
        cards.delete_at(0)
     end
 
-    def add_card
-        # +1 card to bottom? some type of rotate? # @cards << card?
+    def add_card(card)
+        @cards << card
     end 
 
 end
