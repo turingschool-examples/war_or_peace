@@ -29,25 +29,54 @@ let!(:turn) { Turn.new(player1, player2) }
     expect(turn.spoils_of_war).to eq([])
   end
 
-  it "#type" do
-    expect(turn.type).to eq(:basic)
+  context "basic turn" do
+    it "#type" do
+      expect(turn.type).to eq(:basic)
+    end
+
+    it "#winner" do
+      expect(turn.winner).to eq(player1)
+      expect(turn.winner).to_not eq(player2)
+    end
+
+    it "#pile_cards" do
+      turn.pile_cards
+      expect(turn.spoils_of_war).to eq([card1, card3])
+    end
+
+    it "#award_spoils(winner)" do
+      winner = turn.winner
+      turn.pile_cards
+      turn.award_spoils(winner)
+      expect(player1.deck.cards).to eq([card2, card5, card8, card1, card3])
+      expect(player2.deck.cards).to eq([card4, card6, card7])
+    end
   end
 
-  it "#winner" do
-    expect(turn.winner).to eq(player1)
-    expect(turn.winner).to_not eq(player2)
-  end
+  context "war turn" do
+  let!(:deck2) { Deck.new([card4, card3, card6, card7]) }
 
-  it "#pile_cards" do
-    turn.pile_cards
-    expect(turn.spoils_of_war).to eq([card1, card3])
-  end
+    it "#type" do
+      expect(turn.type).to eq(:war)
+    end
 
-  it "#award_spoils(winner)" do
-    winner = turn.winner
-    turn.pile_cards
-    turn.award_spoils(winner)
-    expect(player1.deck.cards).to eq([card2, card5, card8, card1, card3])
-    expect(player2.deck.cards).to eq([card4, card6, card7])
+    it "#winner" do
+      expect(turn.winner).to eq(player2)
+      expect(turn.winner).to_not eq(player1)
+    end
+
+    it "#pile_cards" do
+      turn.pile_cards
+      expect(turn.spoils_of_war).to eq([card1, card2, card5, card4, card3, card6])
+    end
+
+    it "#award_spoils(winner)" do
+      winner = turn.winner
+      turn.pile_cards
+      turn.award_spoils(winner)
+      expect(player1.deck.cards).to eq([card8])
+      expect(player2.deck.cards).to eq([card7, card1, card2, card5, card4, card3, card6])
+    end
   end
 end
+
