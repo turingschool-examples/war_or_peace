@@ -10,12 +10,12 @@ class Turn
   end
 
   def type
-    if player1.deck.cards[0].rank != player2.deck.cards[0].rank
-      :basic
+    if player1.deck.cards[0].rank == player2.deck.cards[0].rank && player1.deck.cards[2].rank == player2.deck.cards[2].rank
+      :mutually_assured_destruction
     elsif player1.deck.cards[0].rank == player2.deck.cards[0].rank
       :war
     else
-      :mutually_assured_destruction
+      :basic
     end
   end
 
@@ -24,8 +24,8 @@ class Turn
       basic_play
     elsif type == :war
       war_play
-    # else
-    #   mutually_assured_destruction_play
+    else
+      "No Winner"
     end
   end
 
@@ -34,10 +34,13 @@ class Turn
       basic_pile
     elsif type == :war
       war_pile
+    else
+      mutually_assured_destruction_play
     end
   end
 
   def award_spoils(winner)
+    return "No Winner, No Spoils" if winner == "No Winner"
     winner.deck.cards << spoils_of_war
     winner.deck.cards.flatten!
   end
@@ -50,6 +53,11 @@ class Turn
   def war_play
     return player1 if player1.deck.cards[2].rank > player2.deck.cards[2].rank
     player2
+  end
+
+  def mutually_assured_destruction_play
+    player1.deck.cards.slice!(0..2)
+    player2.deck.cards.slice!(0..2)
   end
 
   def basic_pile

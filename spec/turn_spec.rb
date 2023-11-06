@@ -78,5 +78,31 @@ let!(:turn) { Turn.new(player1, player2) }
       expect(player2.deck.cards).to eq([card7, card1, card2, card5, card4, card3, card6])
     end
   end
+
+  context "mutally assured destruction" do
+  let!(:card6) { Card.new(:diamond, '8', 8) }
+  let!(:deck2) { Deck.new([card4, card3, card6, card7]) }
+
+    it "#type" do
+      expect(turn.type).to eq(:mutually_assured_destruction)
+    end
+
+    it "#winner" do
+      expect(turn.winner).to eq("No Winner")
+    end
+
+    it "#pile_cards" do
+      turn.pile_cards
+      expect(turn.spoils_of_war).to eq([])
+      expect(player1.deck.cards).to eq([card8])
+      expect(player2.deck.cards).to eq([card7])
+    end
+
+    it "#award_spoils(winner)" do
+      winner = turn.winner
+      turn.pile_cards
+      expect(turn.award_spoils(winner)).to eq("No Winner, No Spoils")
+    end
+  end
 end
 
