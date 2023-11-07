@@ -61,8 +61,6 @@ RSpec.describe Deck do
       cards = [card1, card2, card3]
       deck = Deck.new(cards)
 
-      deck.remove_card
-
       expect(deck.remove_card).to eq([card2, card3])
     end
   end
