@@ -54,25 +54,16 @@ RSpec.describe Deck do
   end
 
   describe 'can add or remove cards from deck' do 
-    it 'can #remove_card from top of the deck' do
+    it 'can #remove_card from the top and #add_card to bottom of the deck' do
       card1 = Card.new(:diamond, 'Queen', 12)
       card2 = Card.new(:spade, '3', 3)   
-      card3 = Card.new(:heart, 'Ace', 14)    
+      card3 = Card.new(:heart, 'Ace', 14)
+      card4 = Card.new(:club, '5', 5)
       cards = [card1, card2, card3]
       deck = Deck.new(cards)
 
       expect(deck.remove_card).to eq([card2, card3])
-    end
-
-    it 'can #add_card to the end of the deck' do
-    card1 = Card.new(:diamond, 'Queen', 12)
-    card2 = Card.new(:spade, '3', 3)   
-    card3 = Card.new(:heart, 'Ace', 14)  
-    card4 = Card.new(:club, '5', 5)
-    cards = [card1, card2, card3, card4]
-    deck = Deck.new(cards)
-
-    expect(deck.add_card(card4)).to eq(cards)
+      expect(deck.add_card(card4)).to eq(cards)
     end
   end
 end
