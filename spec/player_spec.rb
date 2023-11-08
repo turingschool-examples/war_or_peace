@@ -10,14 +10,12 @@ RSpec.describe Player do
       card3 = Card.new(:heart, 'Ace', 14)    
       deck = Deck.new([card1, card2, card3])
       player = Player.new('Clarisa', deck)
-
   
       expect(player).to be_an_instance_of(Player)
       expect(player.name).to eq("Clarisa")
       expect(player.deck).to eq(deck)
     end
   end
-
   
   describe 'can tell if player has lost' do
     it '#has_lost?' do
@@ -26,10 +24,8 @@ RSpec.describe Player do
     card3 = Card.new(:heart, 'Ace', 14)    
     deck = Deck.new([card1, card2, card3])
     player = Player.new('Clarisa', deck)
-
+    
     expect(player.has_lost?).to eq(false)
     end
   end
-
-
 end
