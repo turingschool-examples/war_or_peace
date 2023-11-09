@@ -29,7 +29,7 @@ RSpec.describe Deck do
     cards = [card1, card2, card3]
     deck = (cards) 
 
-    expect(deck.rank_of_card_at(0)).to eq 0
+    expect(deck.rank_of_card_at(0)).to eq 12
     expect(deck.rank_of_card_at(2)).to eq 14
     end
 
