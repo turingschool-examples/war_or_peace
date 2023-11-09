@@ -9,6 +9,7 @@ class Player
 
   def has_lost?
     deck == []
+    # or deck.empty?
   end
 end
 
