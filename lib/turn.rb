@@ -10,14 +10,23 @@ class Turn
   end
 
   def type
-    require 'pry' ; binding.pry
-    if player1.deck.rank_of_card_at(0) != player2.rank_of_card_at(0)
-      puts :basic
-    elsif player1.deck.rank_of_card_at(0) == player2.rank_of_card_at(0)
-      puts :war 
-    else
+    if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
+      :basic
+    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+      :war 
+    else #don't NEED an else statement.  But it seems like I do need the conditional here. 
+
     # else player1.rank_of_card_at(0) == player2.rank_of_card_at(0) && player1.rank_of_card_at(0) == player2.rank_of_card_at(2)
-      puts :mutually_assured_destruction
+      :mutually_assured_destruction
     end
   end
+
+  def winner
+    if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0) == true
+      player1
+    else
+      player2
+    end
+  end
+
 end

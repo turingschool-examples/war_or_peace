@@ -1,4 +1,7 @@
 ## War or Peace
+
+https://backend.turing.edu/module1/projects/war_or_peace/
+
 ### Mentors
 This project is given with intent to work through with mentors at least twice through its duration.  The following are interactions I had with both Heidi and Jonathan:
 
@@ -8,7 +11,8 @@ This project is given with intent to work through with mentors at least twice th
 - We started working on the rank_of_card_at method.  I couldn't figure out how to start this and with some loose guiding we got there.  I'm still struggling to create a method without help starting it.  I don't know why this concept is so difficult for me to get on my own.  
 
 - I find myself not thinking very clearly when I work through things with a mentor after classes.  My brain and logic muscles are tired! We are working on scheduling some things earlier in the mornings and this week we will plan on meeting again on Friday when we both have time off and flexibility to meet in the middle of the day. 
-- 
+
+- It's been helpful to shoot quick messages to Heidi.  Most times I just need a little help, not a 30-60 minute session.  It's the quick things that can hold me up for so long.   
 
 ### Project reflections
 What worked well for me in this project?
