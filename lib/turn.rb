@@ -41,11 +41,19 @@ class Turn
   end
 
   def award_spoils(winner)
-    winner.deck << @spoils_of_war[0] 
-    winner.deck << @spoils_of_war[1]
+    # @spoils_of_war.each do |card|
+      winner.deck.cards.concat(@spoils_of_war)
+      @spoils_of_war = []
+      # winner.deck.cards.unshift(card)
+    # end
     #add cards in @spoils_of_war array to the deck of winner of the turn
 
-    #attr_accessor?  But why didn't I need it in #pile_cards
+    # winner.deck.cards << @spoils_of_war[0] 
+    # winner.deck.cards << @spoils_of_war[1]
+    #can I use this ^ since there will only be two cards in #s_o_w at any time?  Or should I iterate with ennumerable out of good practice?
+
+    # tried this in ine 45: `winner.deck.cards.unshift(card)``
+    #attr_accessor in Deck class?  But why didn't I need it in #pile_cards
     #.append?
   end
 end
