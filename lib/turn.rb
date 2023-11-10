@@ -26,7 +26,7 @@ class Turn
     end
 
     def mad_turn
-        @player1.deck.cards.rank[0] == @player2.deck.cards.rank[0] && @player1.deck.cards.rank[2] == @player2.deck.cards.rank[2]
+        @player1.deck.cards[0].rank == @player2.deck.cards[0].rank && @player1.deck.cards[2].rank == @player2.deck.cards[2].rank
     end
 
     def winner
@@ -48,7 +48,7 @@ class Turn
     end
 
     def war_turn_winner
-        if @player1.deck.cards.second.rank > @player2.deck.cards.second.rank
+        if @player1.deck.cards.third.rank > @player2.deck.cards.third.rank
             @player1
         else
             @player2
