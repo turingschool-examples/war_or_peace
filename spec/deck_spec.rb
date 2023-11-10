@@ -35,5 +35,49 @@ RSpec.describe Deck do
     expect(deck.rank_of_card_at(2)).to eq(14)
   end
 
-end
+  it "#high_ranking_cards" do
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3) 
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
 
+    expect(deck.high_ranking_cards).to eq([card1, card3])
+  end
+
+  #   it "#percent_high_ranking" do
+  #   card1 = Card.new(:diamond, 'Queen', 12)
+  #   card2 = Card.new(:spade, '3', 3) 
+  #   card3 = Card.new(:heart, 'Ace', 14)
+  #   cards = [card1, card2, card3]
+  #   deck = Deck.new(cards)
+
+  #   expect(deck.percent_high_ranking).to eq(66.67)
+  # end
+
+  it "#remove_card" do
+    card1 = Card.new(:diamond, 'Queen', 12)
+    card2 = Card.new(:spade, '3', 3) 
+    card3 = Card.new(:heart, 'Ace', 14)
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+
+    expect(deck.remove_card).to eq(card1)
+  end
+
+    # it "#add_card" do
+    #   card1 = Card.new(:diamond, 'Queen', 12)
+    #   card2 = Card.new(:spade, '3', 3) 
+    #   card3 = Card.new(:heart, 'Ace', 14)
+    #   card4 = Card.new(:club, '5', 5)
+    #   cards = [card1, card2, card3]
+    #   deck = Deck.new(cards)
+    #   deck.remove_card
+    #   deck.add_card(card4)
+
+    #   expect(deck).to eq([card2, card3, card4])
+      
+
+
+
+end
