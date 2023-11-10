@@ -41,9 +41,11 @@ class Turn
   end
 
   def award_spoils(winner)
-    winner.deck << @spoils_of_war[0]
-    #add cards in @spoils_of_war array to the winner of the turn
+    winner.deck << @spoils_of_war[0] 
+    winner.deck << @spoils_of_war[1]
+    #add cards in @spoils_of_war array to the deck of winner of the turn
 
+    #attr_accessor?  But why didn't I need it in #pile_cards
     #.append?
   end
 end
