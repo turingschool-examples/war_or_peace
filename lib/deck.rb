@@ -19,15 +19,16 @@ class Deck
         @high_ranking_cards
     end
 
-    # def percent_high_ranking
-    #     (@high_ranking_cards.count.to_i / @cards.count.to_i) * 100
-    # end
+    def percent_high_ranking
+        (@high_ranking_cards.count.to_i / @cards.count.to_i) * 100
+    end
 
     def remove_card
         @cards.shift
     end
 
-    # def add_card
-    # end
+    def add_card(new_card)
+        @cards << new_card
+    end
 end
 
