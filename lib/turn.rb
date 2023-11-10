@@ -14,17 +14,22 @@ class Turn
       :basic
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
       :war 
-    else #don't NEED an else statement.  But it seems like I do need the conditional here: 
+     #don't NEED an else statement.  But it seems like I do need the conditional here: 
 
-    # else player1.rank_of_card_at(0) == player2.rank_of_card_at(0) && player1.rank_of_card_at(0) == player2.rank_of_card_at(2)
+    elsif player1.rank_of_card_at(0) == player2.rank_of_card_at(0) && player1.rank_of_card_at(0) == player2.rank_of_card_at(2)
       :mutually_assured_destruction
     end
   end
 
+  #can I fit all types in this winner method or do I need to do a #basic_winner #war_winner as helper methods?
   def winner
+    #basic
     if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0) == true
+      player1 
+
+    #war
+    elsif (player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)) == true && (player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2))
       player1
-      # later:     if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0) || if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) == true
     else
       player2
     end
@@ -34,9 +39,9 @@ class Turn
     if self.type == :basic
       @spoils_of_war << player1.deck.cards[0]
       @spoils_of_war << player2.deck.cards[0]
-
-      #remove_card from player1 and player2
-      #that card will go into the @spoils_of_war array
+    elsif self.type == :war
+      @spoils_of_war.concat(player1.deck.cards[0..2].flatten)
+      @spoils_of_war.concat(player2.deck.cards[0..2].flatten)
     end
   end
 
