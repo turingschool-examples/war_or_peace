@@ -12,11 +12,13 @@ class Turn
   def type
     if player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
       :basic
-    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
+    elsif 
+      player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) != player2.deck.rank_of_card_at(2)
       :war 
-     #don't NEED an else statement.  But it seems like I do need the conditional here: 
+     # per Heidi don't NEED an else statement.  But it seems like I do need the conditional here: 
 
-    elsif player1.rank_of_card_at(0) == player2.rank_of_card_at(0) && player1.rank_of_card_at(0) == player2.rank_of_card_at(2)
+    elsif 
+       player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
       :mutually_assured_destruction
     end
   end
