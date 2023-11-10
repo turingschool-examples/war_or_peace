@@ -40,4 +40,10 @@ class Turn
     end
   end
 
+  def award_spoils(winner)
+    winner.deck << @spoils_of_war[0]
+    #add cards in @spoils_of_war array to the winner of the turn
+
+    #.append?
+  end
 end
