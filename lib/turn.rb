@@ -12,18 +12,21 @@ class Turn
             :basic
         elsif war_turn
             :war
-        else
+        else mad_turn
             :mutually_assured_destruction
         end
     end
 
     def basic_turn
         @player1.deck.cards.first.rank != @player2.deck.cards.first.rank
-
     end
 
     def war_turn
         @player1.deck.cards.first.rank == @player2.deck.cards.first.rank
+    end
+
+    def mad_turn
+        @player1.deck.cards.rank[0] == @player2.deck.cards.rank[0] && @player1.deck.cards.rank[2] == @player2.deck.cards.rank[2]
     end
 
     def winner
@@ -86,5 +89,12 @@ class Turn
         end
     end
 
-    
+    def award_spoils(winner)
+        if winner == @player1
+            @player1.deck.cards.unshift(@spoils_of_war)
+        else winner == @player2
+            @player2.deck.cards.unshift(@spoils_of_war)
+        end
+        @spoils_of_war = []
+    end
 end
