@@ -52,6 +52,7 @@ class Turn
         end
     end
 
+
     def pile_cards
         if type == :basic
             basic_spoils_pile
@@ -62,25 +63,28 @@ class Turn
         end
     end
 
-    def basic_spoils_pile
-        @spoils_of_war.concat([@player1.deck.cards.first, @player2.deck.cards.first])
-        @player1.deck.cards.first.delete_at(1)
-        @player2.deck.cards.first.delete_at(1)
+    def basic_spoils_pile    
+        @spoils_of_war << player1.deck.cards.first
+        @spoils_of_war << player2.deck.cards.first
+        @player1.deck.cards.shift
+        @player2.deck.cards.shift
     end
 
     def war_spoils_pile
-        3.times.do
-        @spoils_of_war.concat([@player1.deck.cards.first, @player2.deck.cards.first])
-        @player1.deck.cards.first.delete_at(1)
-        @player2.deck.cards.first.delete_at(1)
+        3.times do
+        @spoils_of_war << player1.deck.cards.first
+        @spoils_of_war << player2.deck.cards.first
+        @player1.deck.cards.shift
+        @player2.deck.cards.shift
+        end
     end
 
     def mad_spoils_pile
-        3.times.do
-        @player1.deck.cards.first.delete
-        @player2.deck.cards.first.delete
+        3.times do
+        @player1.deck.cards.shift
+        @player2.deck.cards.shift
+        end
     end
 
-
-
+    
 end

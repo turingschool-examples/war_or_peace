@@ -20,8 +20,9 @@ class Deck
     end
 
     def percent_high_ranking
-       percent = (@high_ranking_cards.count.to_f / @cards.count.to_f) * 100
+       percent = (self.high_ranking_cards.count.to_f / @cards.count.to_f) * 100
        formatted_percent = "%.2f" % percent
+       formatted_percent.to_f
     end
 
     def remove_card
