@@ -7,6 +7,7 @@ class Turn
         @spoils_of_war = []
     end
 
+
     def type
         if basic_turn
             :basic
@@ -26,6 +27,8 @@ class Turn
     end
 
     def mutually_assured_destruction_turn   
+        @player1.deck.cards.first.rank == @player2.deck.cards.first.rank && @player1.deck.cards[2].rank == @player2.deck.cards[2].rank
+        @player1
         puts "No Winner"
     end
 
