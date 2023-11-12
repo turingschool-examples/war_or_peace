@@ -12,7 +12,7 @@ class Turn
             :basic
         elsif war_turn
             :war
-        else mad_turn
+        else mutually_assured_destruction_turn
             :mutually_assured_destruction
         end
     end
@@ -25,9 +25,10 @@ class Turn
         @player1.deck.cards.first.rank == @player2.deck.cards.first.rank
     end
 
-    def mad_turn
-        
-        @player1.deck.cards.first.rank == @player2.deck.cards.first.rank && @player1.deck.cards[2].rank == @player2.deck.cards[2].rank
+    def mutually_assured_destruction_turn   
+        if @player1.deck.cards.first.rank == @player2.deck.cards.first.rank && @player1.deck.cards[2].rank == @player2.deck.cards[2].rank
+            puts "No Winner"
+        end
     end
 
     def winner
@@ -63,7 +64,7 @@ class Turn
         elsif type == :war
             war_spoils_pile
         else type == :mutually_assured_destruction
-            mad_spoils_pile
+            mutually_assured_destruction_spoils_pile
         end
     end
 
@@ -76,26 +77,30 @@ class Turn
 
     def war_spoils_pile
         3.times do
-        @spoils_of_war << player1.deck.cards.first
-        @spoils_of_war << player2.deck.cards.first
-        @player1.deck.cards.shift
-        @player2.deck.cards.shift
+            @spoils_of_war << player1.deck.cards.first
+            @spoils_of_war << player2.deck.cards.first
+            @player1.deck.cards.shift
+            @player2.deck.cards.shift 
         end
     end
 
-    def mad_spoils_pile
+    def mutually_assured_destruction_spoils_pile
         3.times do
-        @player1.deck.cards.shift
-        @player2.deck.cards.shift
+            @player1.deck.cards.shift
+            @player2.deck.cards.shift
         end
     end
 
     def award_spoils(winner)
+
         if winner == @player1
-            @player1.deck.cards.unshift(@spoils_of_war)
-        else winner == @player2
-            @player2.deck.cards.unshift(@spoils_of_war)
+            @spoils_of_war.map do |card|
+                @player1.deck.cards << card
+            end
+        else
+            @spoils_of_war.map do |card|
+                @player2.deck.cards << card
+            end
         end
-        @spoils_of_war = []
     end
 end
