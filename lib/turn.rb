@@ -7,28 +7,26 @@ class Turn
         @spoils_of_war = []
     end
 
-
     def type
-        if basic_turn
+        if basic_type
             :basic
-        elsif war_turn
+        elsif war_type
             :war
-        else mutually_assured_destruction_turn
+        else mutually_assured_destruction_type
             :mutually_assured_destruction
         end
     end
 
-    def basic_turn
-        @player1.deck.cards.first.rank != @player2.deck.cards.first.rank
+    def basic_type
+        @player1.deck.cards.first.rank != @player2.deck.cards.first.rank && @player1.deck.cards[2].rank != @player2.deck.cards[2].rank
     end
 
-    def war_turn
-        @player1.deck.cards.first.rank == @player2.deck.cards.first.rank
+    def war_type
+        @player1.deck.cards.first.rank == @player2.deck.cards.first.rank && @player1.deck.cards[2].rank != @player2.deck.cards[2].rank
     end
 
-    def mutually_assured_destruction_turn   
+    def mutually_assured_destruction_type
         @player1.deck.cards.first.rank == @player2.deck.cards.first.rank && @player1.deck.cards[2].rank == @player2.deck.cards[2].rank
-        @player1
         puts "No Winner"
     end
 
