@@ -26,9 +26,7 @@ class Turn
     end
 
     def mutually_assured_destruction_turn   
-        if @player1.deck.cards.first.rank == @player2.deck.cards.first.rank && @player1.deck.cards[2].rank == @player2.deck.cards[2].rank
-            puts "No Winner"
-        end
+        puts "No Winner"
     end
 
     def winner
