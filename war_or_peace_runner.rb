@@ -5,5 +5,5 @@ require "./lib/turn"
 require "./lib/start"
 
 
-turn = Turn.new
-turn.start_game
+# turn = Turn.new
+# turn.start_game

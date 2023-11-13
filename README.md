@@ -1,3 +1,5 @@
 ## War or Peace
 
-This is the starter repo for the BE Mod1 **War or Peace** project.
+This is the beginning of my War or Peace project. I have gotten to Iteration 3 thus far.
+
+There is no required gems or software for this repo.
