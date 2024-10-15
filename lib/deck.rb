@@ -5,12 +5,12 @@ class Deck
     cards = []
   end
 
-  def rank_of_card_at()
-    rank_of_card_at = cards.at()
+  def rank_of_card_at(index)
+    @cards.at(index)
   end
   
   def high_ranking_cards #works
-    cards.find_all do |card|
+    @cards.find_all do |card|
       card.rank >= 11
     end
   end
@@ -18,13 +18,14 @@ class Deck
   def percent_high_ranking
     cards_total = cards.length
     high_ranking_total = high_ranking_cards.length
+    (((high_ranking_total)/(cards_total))*100)
   end
   
   def remove_card #works
-    remove_card = cards.shift
+    @cards.shift
   end
   
-  def add_card()
-    add_card = cards.push()
+  def add_card(new_card)
+    @cards.push(new_card)
   end
 end
