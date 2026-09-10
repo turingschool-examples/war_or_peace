@@ -10,7 +10,7 @@ end
 RSpec.describe Deck do 
   it "exists" do 
     card1 = Card.new(:heart, '3', 3)
-    card2 = Card.new(:diamond, '10' 10)
+    card2 = Card.new(:diamond, '10', 10)
     card3 = Card.new(:spade, 'Ace', 14)
 
     expect(card1).to be_an_instance_of(Card)
@@ -20,7 +20,7 @@ RSpec.describe Deck do
 
   it "can store cards in an array" do
     card1 = Card.new(:heart, '3', 3)
-    card2 = Card.new(:diamond, '10' 10)
+    card2 = Card.new(:diamond, '10', 10)
     card3 = Card.new(:spade, 'Ace', 14)
 
     cards = [card1, card2, card3]
@@ -32,7 +32,7 @@ RSpec.describe Deck do
 
   it 'returns card rank via array indices' do 
     card1 = Card.new(:heart, '3', 3)
-    card2 = Card.new(:diamond, '10' 10)
+    card2 = Card.new(:diamond, '10', 10)
     card3 = Card.new(:spade, 'Ace', 14)
 
     cards = [card1, card2, card3]
@@ -45,19 +45,19 @@ RSpec.describe Deck do
 
   it 'returns high ranking cards' do 
     card1 = Card.new(:heart, '3', 3)
-    card2 = Card.new(:diamond, '10' 10)
+    card2 = Card.new(:diamond, '10', 10)
     card3 = Card.new(:spade, 'Ace', 14)
 
     cards = [card1, card2, card3]
 
     deck = Deck.new(cards)
 
-    expect(deck.percent_high_ranking).to eq(66.67)
+    expect(deck.percent_high_ranking).to eq(33.33)
   end
 
   it "can remove a players card from there deck" do
     card1 = Card.new(:heart, '3', 3)
-    card2 = Card.new(:diamond, '10' 10)
+    card2 = Card.new(:diamond, '10', 10)
     card3 = Card.new(:spade, 'Ace', 14)
 
     cards = [card1, card2, card3]
@@ -69,7 +69,7 @@ RSpec.describe Deck do
 
   it "can add a card to a players deck" do 
     card1 = Card.new(:heart, '3', 3)
-    card2 = Card.new(:diamond, '10' 10)
+    card2 = Card.new(:diamond, '10', 10)
     card3 = Card.new(:spade, 'Ace', 14)
 
     cards = [card1, card2, card3]
