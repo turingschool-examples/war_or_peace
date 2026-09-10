@@ -1,10 +1,15 @@
 require 'rspec'
-require './lib/card'
+require '../lib/card'
+require 'pry'
+
+Rspec.configure do |config|
+  config.formatter = :documentation
+end
 
 RSpec.describe Card do
   it "exists" do
     card = Card.new(:diamond, 'Queen', 12)
-
+    binding.pry
     expect(card).to be_an_instance_of(Card)
   end
 
